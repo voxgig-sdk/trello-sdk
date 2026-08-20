@@ -1,0 +1,290 @@
+# Entity: notification_channel_setting
+
+main: kit: entity: notification_channel_setting: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "blockedKeys"
+      op: {
+        update: {
+          req: true
+          type: "`$ANY`"
+        }
+      }
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "channel"
+      op: {
+        update: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "idMember"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "notification_channel_setting"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/members/{id}/notificationsChannelSettings"
+          parts: [
+            "members"
+            "{member_id}"
+            "notificationsChannelSettings"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+            }
+          }
+          select: {
+            exist: [
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "email"
+                kind: "param"
+                name: "channel"
+                orig: "channel"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/members/{id}/notificationsChannelSettings/{channel}"
+          parts: [
+            "members"
+            "{member_id}"
+            "notificationsChannelSettings"
+            "{channel}"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+            }
+          }
+          select: {
+            exist: [
+              "channel"
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "notification_comment_card"
+                kind: "param"
+                name: "blocked_key"
+                orig: "blocked_key"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "email"
+                kind: "param"
+                name: "channel"
+                orig: "channel"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}"
+          parts: [
+            "members"
+            "{id}"
+            "notificationsChannelSettings"
+            "{channel}"
+            "{blocked_key}"
+          ]
+          rename: {
+            param: {
+              blockedKeys: "blocked_key"
+            }
+          }
+          select: {
+            exist: [
+              "blocked_key"
+              "channel"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "email"
+                kind: "param"
+                name: "channel"
+                orig: "channel"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/members/{id}/notificationsChannelSettings/{channel}"
+          parts: [
+            "members"
+            "{member_id}"
+            "notificationsChannelSettings"
+            "{channel}"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+            }
+          }
+          select: {
+            exist: [
+              "channel"
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/members/{id}/notificationsChannelSettings"
+          parts: [
+            "members"
+            "{member_id}"
+            "notificationsChannelSettings"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+            }
+          }
+          select: {
+            exist: [
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "member"
+      ]
+      [
+        "member"
+        "notifications_channel_setting"
+      ]
+    ]
+  }
+
+
+
+}

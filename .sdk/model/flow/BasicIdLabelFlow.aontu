@@ -1,0 +1,9 @@
+# BasicIdLabelFlow
+
+main: kit: flow: BasicIdLabelFlow:
+{
+  entity: "id_label",
+  kind: "basic",
+  name: "BasicIdLabelFlow",
+  "key$": "BasicIdLabelFlow"
+}

@@ -1,0 +1,55 @@
+# Entity: application_compliance
+
+main: kit: entity: application_compliance: {
+
+  alias: field: {}
+
+  name: "application_compliance"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "key"
+                orig: "key"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/applications/{key}/compliance"
+          parts: [
+            "applications"
+            "{key}"
+            "compliance"
+          ]
+          select: {
+            exist: [
+              "key"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "application"
+      ]
+    ]
+  }
+
+
+
+}

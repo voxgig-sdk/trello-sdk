@@ -1,0 +1,59 @@
+# Entity: notification_list
+
+main: kit: entity: notification_list: {
+
+  alias: field: {}
+
+  name: "notification_list"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "all"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/notifications/{id}/list"
+          parts: [
+            "notifications"
+            "{id}"
+            "list"
+          ]
+          select: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

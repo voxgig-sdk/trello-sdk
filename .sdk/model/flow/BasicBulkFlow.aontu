@@ -1,0 +1,51 @@
+# BasicBulkFlow
+
+main: kit: flow: BasicBulkFlow:
+{
+  entity: "bulk",
+  kind: "basic",
+  name: "BasicBulkFlow",
+  step: [
+    {
+      input: {
+        ref: "bulk_ref01",
+        srcdatavar: "bulk_ref01_data",
+        suffix: "_up0"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-bulk_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "bulk_ref01",
+        srcdatavar: "bulk_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        enterpris_id: "enterpris01",
+        id: "bulk01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-bulk_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBulkFlow"
+}

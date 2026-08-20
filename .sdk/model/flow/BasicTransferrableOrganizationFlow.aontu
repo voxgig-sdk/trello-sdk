@@ -1,0 +1,33 @@
+# BasicTransferrableOrganizationFlow
+
+main: kit: flow: BasicTransferrableOrganizationFlow:
+{
+  entity: "transferrable_organization",
+  kind: "basic",
+  name: "BasicTransferrableOrganizationFlow",
+  step: [
+    {
+      input: {
+        ref: "transferrable_organization_ref01",
+        srcdatavar: "transferrable_organization_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        enterpris_id: "enterpris01",
+        id: "transferrable_organization01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-transferrable_organization_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTransferrableOrganizationFlow"
+}

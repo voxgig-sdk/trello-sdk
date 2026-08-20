@@ -1,0 +1,68 @@
+# BasicNotificationChannelSettingFlow
+
+main: kit: flow: BasicNotificationChannelSettingFlow:
+{
+  entity: "notification_channel_setting",
+  kind: "basic",
+  name: "BasicNotificationChannelSettingFlow",
+  step: [
+    {
+      match: {
+        member_id: "member01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "notification_channel_setting_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "notification_channel_setting_ref01",
+        srcdatavar: "notification_channel_setting_ref01_data",
+        suffix: "_up0",
+        textfield: "channel"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-notification_channel_setting_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "notification_channel_setting_ref01",
+        srcdatavar: "notification_channel_setting_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "notification_channel_setting01",
+        member_id: "member01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-notification_channel_setting_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNotificationChannelSettingFlow"
+}

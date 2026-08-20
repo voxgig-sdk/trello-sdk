@@ -1,0 +1,32 @@
+# BasicApplicationComplianceFlow
+
+main: kit: flow: BasicApplicationComplianceFlow:
+{
+  entity: "application_compliance",
+  kind: "basic",
+  name: "BasicApplicationComplianceFlow",
+  step: [
+    {
+      input: {
+        ref: "application_compliance_ref01",
+        srcdatavar: "application_compliance_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "application_compliance01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-application_compliance_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicApplicationComplianceFlow"
+}

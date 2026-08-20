@@ -1,0 +1,49 @@
+# BasicAttachmentFlow
+
+main: kit: flow: BasicAttachmentFlow:
+{
+  entity: "attachment",
+  kind: "basic",
+  name: "BasicAttachmentFlow",
+  step: [
+    {
+      match: {
+        card_id: "card01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "attachment_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "attachment_ref01",
+        srcdatavar: "attachment_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        card_id: "card01",
+        id: "attachment01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-attachment_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAttachmentFlow"
+}

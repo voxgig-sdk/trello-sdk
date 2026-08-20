@@ -1,0 +1,32 @@
+# BasicMembersVotedFlow
+
+main: kit: flow: BasicMembersVotedFlow:
+{
+  entity: "members_voted",
+  kind: "basic",
+  name: "BasicMembersVotedFlow",
+  step: [
+    {
+      input: {
+        ref: "members_voted_ref01",
+        srcdatavar: "members_voted_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "members_voted01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-members_voted_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMembersVotedFlow"
+}

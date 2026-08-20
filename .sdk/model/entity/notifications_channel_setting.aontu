@@ -1,0 +1,21 @@
+# Entity: notifications_channel_setting
+
+main: kit: entity: notifications_channel_setting: {
+
+  alias: field: {}
+
+  name: "notifications_channel_setting"
+  relations: {
+    ancestors: [
+      [
+        "member"
+      ]
+      [
+        "notifications_channel_setting"
+      ]
+    ]
+  }
+
+
+
+}

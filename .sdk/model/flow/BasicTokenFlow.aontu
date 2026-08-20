@@ -1,0 +1,48 @@
+# BasicTokenFlow
+
+main: kit: flow: BasicTokenFlow:
+{
+  entity: "token",
+  kind: "basic",
+  name: "BasicTokenFlow",
+  step: [
+    {
+      match: {
+        member_id: "member01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "token_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "token_ref01",
+        srcdatavar: "token_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "token01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-token_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTokenFlow"
+}

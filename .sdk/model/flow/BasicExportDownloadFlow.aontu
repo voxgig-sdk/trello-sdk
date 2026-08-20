@@ -1,0 +1,33 @@
+# BasicExportDownloadFlow
+
+main: kit: flow: BasicExportDownloadFlow:
+{
+  entity: "export_download",
+  kind: "basic",
+  name: "BasicExportDownloadFlow",
+  step: [
+    {
+      input: {
+        ref: "export_download_ref01",
+        srcdatavar: "export_download_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        board_id: "board01",
+        id: "export_download01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-export_download_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicExportDownloadFlow"
+}

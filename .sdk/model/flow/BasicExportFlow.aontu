@@ -1,0 +1,95 @@
+# BasicExportFlow
+
+main: kit: flow: BasicExportFlow:
+{
+  entity: "export",
+  kind: "basic",
+  name: "BasicExportFlow",
+  step: [
+    {
+      input: {
+        ref: "export_ref01"
+      }
+
+      match: {
+        board_id: "board01",
+        organization_id: "organization01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        organization_id: "organization01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "export_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "export_ref01",
+        srcdatavar: "export_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "export01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-export_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "export_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        board_id: "board01",
+        id: "export01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        organization_id: "organization01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "export_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicExportFlow"
+}

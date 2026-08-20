@@ -1,0 +1,158 @@
+# Entity: option
+
+main: kit: entity: option: {
+
+  alias: field: {}
+
+  name: "option"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "custom_field_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_custom_field_option"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/customFields/{id}/options/{idCustomFieldOption}"
+          parts: [
+            "customFields"
+            "{custom_field_id}"
+            "options"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "custom_field_id"
+              idCustomFieldOption: "id"
+            }
+          }
+          select: {
+            exist: [
+              "custom_field_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "custom_field_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/customFields/{id}/options"
+          parts: [
+            "customFields"
+            "{custom_field_id}"
+            "options"
+          ]
+          rename: {
+            param: {
+              id: "custom_field_id"
+            }
+          }
+          select: {
+            exist: [
+              "custom_field_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "custom_field_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_custom_field_option"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/customFields/{id}/options/{idCustomFieldOption}"
+          parts: [
+            "customFields"
+            "{custom_field_id}"
+            "options"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "custom_field_id"
+              idCustomFieldOption: "id"
+            }
+          }
+          select: {
+            exist: [
+              "custom_field_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "custom_field"
+      ]
+    ]
+  }
+
+
+
+}

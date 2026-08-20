@@ -1,0 +1,94 @@
+# Entity: enterpris_signup_url
+
+main: kit: entity: enterpris_signup_url: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "signupUrl"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "enterpris_signup_url"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: false
+                kind: "query"
+                name: "authenticate"
+                orig: "authenticate"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "confirmation_accepted"
+                orig: "confirmation_accepted"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: null
+                kind: "query"
+                name: "return_url"
+                orig: "return_url"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "tos_accepted"
+                orig: "tos_accepted"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/enterprises/{id}/signupUrl"
+          parts: [
+            "enterprises"
+            "{id}"
+            "signupUrl"
+          ]
+          select: {
+            exist: [
+              "authenticate"
+              "confirmation_accepted"
+              "id"
+              "return_url"
+              "tos_accepted"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

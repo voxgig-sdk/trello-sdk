@@ -1,0 +1,75 @@
+# BasicChecklistFlow
+
+main: kit: flow: BasicChecklistFlow:
+{
+  entity: "checklist",
+  kind: "basic",
+  name: "BasicChecklistFlow",
+  step: [
+    {
+      input: {
+        ref: "checklist_ref01"
+      }
+
+      match: {
+        card_id: "card01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "checklist_ref01",
+        srcdatavar: "checklist_ref01_data",
+        suffix: "_up0"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-checklist_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "checklist_ref01",
+        srcdatavar: "checklist_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "checklist01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-checklist_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "checklist_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "checklist01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicChecklistFlow"
+}

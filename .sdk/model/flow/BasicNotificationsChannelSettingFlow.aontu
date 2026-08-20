@@ -1,0 +1,9 @@
+# BasicNotificationsChannelSettingFlow
+
+main: kit: flow: BasicNotificationsChannelSettingFlow:
+{
+  entity: "notifications_channel_setting",
+  kind: "basic",
+  name: "BasicNotificationsChannelSettingFlow",
+  "key$": "BasicNotificationsChannelSettingFlow"
+}

@@ -1,0 +1,9 @@
+# BasicBoardPluginFlow
+
+main: kit: flow: BasicBoardPluginFlow:
+{
+  entity: "board_plugin",
+  kind: "basic",
+  name: "BasicBoardPluginFlow",
+  "key$": "BasicBoardPluginFlow"
+}

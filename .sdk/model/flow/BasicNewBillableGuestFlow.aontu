@@ -1,0 +1,33 @@
+# BasicNewBillableGuestFlow
+
+main: kit: flow: BasicNewBillableGuestFlow:
+{
+  entity: "new_billable_guest",
+  kind: "basic",
+  name: "BasicNewBillableGuestFlow",
+  step: [
+    {
+      input: {
+        ref: "new_billable_guest_ref01",
+        srcdatavar: "new_billable_guest_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "new_billable_guest01",
+        organization_id: "organization01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-new_billable_guest_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNewBillableGuestFlow"
+}

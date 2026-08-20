@@ -1,0 +1,59 @@
+# BasicEnterprisFlow
+
+main: kit: flow: BasicEnterprisFlow:
+{
+  entity: "enterpris",
+  kind: "basic",
+  name: "BasicEnterprisFlow",
+  step: [
+    {
+      input: {
+        ref: "enterpris_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "enterpris_ref01",
+        srcdatavar: "enterpris_ref01_data",
+        suffix: "_up0",
+        textfield: "dateOrganizationPrefsLastUpdated"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-enterpris_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "enterpris_ref01",
+        srcdatavar: "enterpris_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "enterpris01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-enterpris_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEnterprisFlow"
+}

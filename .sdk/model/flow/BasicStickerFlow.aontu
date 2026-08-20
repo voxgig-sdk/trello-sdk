@@ -1,0 +1,54 @@
+# BasicStickerFlow
+
+main: kit: flow: BasicStickerFlow:
+{
+  entity: "sticker",
+  kind: "basic",
+  name: "BasicStickerFlow",
+  step: [
+    {
+      data: {
+        card_id: "card01"
+      }
+
+      input: {
+        ref: "sticker_ref01",
+        srcdatavar: "sticker_ref01_data",
+        suffix: "_up0"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-sticker_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "sticker_ref01",
+        srcdatavar: "sticker_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "sticker01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-sticker_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStickerFlow"
+}

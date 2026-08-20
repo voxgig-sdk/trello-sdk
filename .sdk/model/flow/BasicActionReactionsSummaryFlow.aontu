@@ -1,0 +1,32 @@
+# BasicActionReactionsSummaryFlow
+
+main: kit: flow: BasicActionReactionsSummaryFlow:
+{
+  entity: "action_reactions_summary",
+  kind: "basic",
+  name: "BasicActionReactionsSummaryFlow",
+  step: [
+    {
+      input: {
+        ref: "action_reactions_summary_ref01",
+        srcdatavar: "action_reactions_summary_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "action_reactions_summary01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-action_reactions_summary_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicActionReactionsSummaryFlow"
+}

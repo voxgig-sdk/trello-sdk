@@ -1,0 +1,274 @@
+# Entity: sticker
+
+main: kit: entity: sticker: {
+
+  alias: field: {}
+
+  name: "sticker"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_sticker"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "all"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cards/{id}/stickers/{idSticker}"
+          parts: [
+            "cards"
+            "{card_id}"
+            "stickers"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+              idSticker: "id"
+            }
+          }
+          select: {
+            exist: [
+              "card_id"
+              "field"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "all"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cards/{id}/stickers"
+          parts: [
+            "cards"
+            "{card_id}"
+            "stickers"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+            }
+          }
+          select: {
+            exist: [
+              "card_id"
+              "field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_sticker"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/cards/{id}/stickers/{idSticker}"
+          parts: [
+            "cards"
+            "{card_id}"
+            "stickers"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+              idSticker: "id"
+            }
+          }
+          select: {
+            exist: [
+              "card_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_sticker"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "left"
+                orig: "left"
+                reqd: true
+                type: "`$NUMBER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "rotate"
+                orig: "rotate"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "top"
+                orig: "top"
+                reqd: true
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "z_index"
+                orig: "z_index"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/cards/{id}/stickers/{idSticker}"
+          parts: [
+            "cards"
+            "{card_id}"
+            "stickers"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+              idSticker: "id"
+            }
+          }
+          select: {
+            exist: [
+              "card_id"
+              "id"
+              "left"
+              "rotate"
+              "top"
+              "z_index"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "card"
+      ]
+    ]
+  }
+
+
+
+}

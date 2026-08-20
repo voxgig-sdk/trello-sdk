@@ -1,0 +1,32 @@
+# BasicEnterpriseAdminFlow
+
+main: kit: flow: BasicEnterpriseAdminFlow:
+{
+  entity: "enterprise_admin",
+  kind: "basic",
+  name: "BasicEnterpriseAdminFlow",
+  step: [
+    {
+      input: {
+        ref: "enterprise_admin_ref01",
+        srcdatavar: "enterprise_admin_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "enterprise_admin01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-enterprise_admin_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEnterpriseAdminFlow"
+}

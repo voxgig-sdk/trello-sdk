@@ -1,0 +1,9 @@
+# BasicCustomBoardBackgroundFlow
+
+main: kit: flow: BasicCustomBoardBackgroundFlow:
+{
+  entity: "custom_board_background",
+  kind: "basic",
+  name: "BasicCustomBoardBackgroundFlow",
+  "key$": "BasicCustomBoardBackgroundFlow"
+}

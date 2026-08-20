@@ -1,0 +1,62 @@
+# Entity: member_privacy
+
+main: kit: entity: member_privacy: {
+
+  alias: field: {}
+
+  name: "member_privacy"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "plugin_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/plugins/{id}/compliance/memberPrivacy"
+          parts: [
+            "plugins"
+            "{plugin_id}"
+            "compliance"
+            "memberPrivacy"
+          ]
+          rename: {
+            param: {
+              id: "plugin_id"
+            }
+          }
+          select: {
+            exist: [
+              "plugin_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "plugin"
+      ]
+    ]
+  }
+
+
+
+}

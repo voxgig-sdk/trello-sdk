@@ -1,0 +1,113 @@
+# BasicCustomFieldFlow
+
+main: kit: flow: BasicCustomFieldFlow:
+{
+  entity: "custom_field",
+  kind: "basic",
+  name: "BasicCustomFieldFlow",
+  step: [
+    {
+      input: {
+        ref: "custom_field_ref01"
+      }
+
+      match: {
+        board_id: "board01",
+        id_card: "id_card01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        board_id: "board01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "custom_field_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "custom_field_ref01",
+        srcdatavar: "custom_field_ref01_data",
+        suffix: "_up0",
+        textfield: "fieldGroup"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-custom_field_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "custom_field_ref01",
+        srcdatavar: "custom_field_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "custom_field01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-custom_field_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "custom_field_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "custom_field01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        board_id: "board01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "custom_field_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCustomFieldFlow"
+}

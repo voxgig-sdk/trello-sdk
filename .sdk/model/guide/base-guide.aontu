@@ -1,0 +1,1167 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 70
+  metrics: count: path: 191
+  metrics: count: method: 261
+
+  entity: action: {
+    path: "/actions/{idAction}/reactions": {
+      action: "reaction": {}
+      rename: param: "idAction": *"id_action"
+      op: create: method: *POST
+    }
+    path: "/actions/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/actions/{id}/text": {
+      action: "text": {}
+      op: update: method: *PUT
+    }
+    path: "/actions/{id}/{field}": {
+      op: load: method: *GET
+    }
+    path: "/boards/{boardId}/actions": {
+      rename: param: "boardId": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/cards/{id}/actions": {
+      rename: param: "id": *"card_id"
+      op: list: method: *GET
+    }
+    path: "/cards/{id}/actions/comments": {
+      action: "comment": {}
+      rename: param: "id": *"card_id"
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/actions/{idAction}/comments": {
+      action: "comment": {}
+      rename: param: "id": *"card_id"
+      rename: param: "idAction": *"id_action"
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/lists/{id}/actions": {
+      rename: param: "id": *"list_id"
+      op: load: method: *GET
+    }
+    path: "/members/{id}/actions": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/organizations/{id}/actions": {
+      rename: param: "id": *"organization_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: action_reactions_summary: {
+    path: "/actions/{idAction}/reactionsSummary": {
+      rename: param: "idAction": *"id_action"
+      op: load: method: *GET
+    }
+  }
+
+  entity: admin: {
+    path: "/enterprises/{id}/admins/{idMember}": {
+      rename: param: "id": *"enterpris_id"
+      rename: param: "idMember": *"id"
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: application: {
+    path: "/applications/{key}/compliance": {
+      action: "compliance": {}
+    }
+  }
+
+  entity: application_compliance: {
+    path: "/applications/{key}/compliance": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: associated_domain: {
+    path: "/organizations/{id}/prefs/associatedDomain": {
+      rename: param: "id": *"organization_id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: attachment: {
+    path: "/cards/{id}/attachments": {
+      rename: param: "id": *"card_id"
+      op: list: method: *GET
+    }
+    path: "/cards/{id}/attachments/{idAttachment}": {
+      rename: param: "id": *"card_id"
+      rename: param: "idAttachment": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: batch: {
+    path: "/batch": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: board: {
+    path: "/actions/{id}/board": {
+      rename: param: "id": *"action_id"
+      op: load: method: *GET
+    }
+    path: "/boards/": {
+      op: create: method: *POST
+    }
+    path: "/boards/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/boards/{id}/boardPlugins": {
+      action: "board_plugin": {}
+      op: create: method: *POST
+    }
+    path: "/boards/{id}/exports": {
+      action: "export": {}
+    }
+    path: "/boards/{id}/idTags": {
+      action: "id_tag": {}
+      op: create: method: *POST
+    }
+    path: "/boards/{id}/labels": {
+      action: "label": {}
+      op: create: method: *POST
+    }
+    path: "/boards/{id}/lists": {
+      action: "list": {}
+    }
+    path: "/boards/{id}/markedAsViewed": {
+      action: "marked_as_viewed": {}
+      op: create: method: *POST
+    }
+    path: "/boards/{id}/members": {
+      action: "member": {}
+      op: update: method: *PUT
+    }
+    path: "/boards/{id}/{field}": {
+      op: load: method: *GET
+    }
+    path: "/cards/{id}/board": {
+      rename: param: "id": *"card_id"
+      op: load: method: *GET
+    }
+    path: "/checklists/{id}/board": {
+      rename: param: "id": *"checklist_id"
+      op: load: method: *GET
+    }
+    path: "/lists/{id}/board": {
+      rename: param: "id": *"list_id"
+      op: load: method: *GET
+    }
+    path: "/members/{id}/boards": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/members/{id}/boardsInvited": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/notifications/{id}/board": {
+      rename: param: "id": *"notification_id"
+      op: load: method: *GET
+    }
+    path: "/organizations/{id}/boards": {
+      rename: param: "id": *"organization_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: board_background: {
+    path: "/members/{id}/boardBackgrounds": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/members/{id}/boardBackgrounds/{idBackground}": {
+      rename: param: "id": *"member_id"
+      rename: param: "idBackground": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/members/{id}/customBoardBackgrounds": {
+      rename: param: "id": *"member_id"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/members/{id}/customBoardBackgrounds/{idBackground}": {
+      rename: param: "id": *"member_id"
+      rename: param: "idBackground": *"id_background"
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: board_plugin: {
+    path: "/boards/{id}/boardPlugins/{idPlugin}": {
+      rename: param: "id": *"board_id"
+      rename: param: "idPlugin": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: board_star: {
+    path: "/boards/{boardId}/boardStars": {
+      rename: param: "boardId": *"id"
+      op: list: method: *GET
+    }
+    path: "/members/{id}/boardStars": {
+      rename: param: "id": *"member_id"
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/members/{id}/boardStars/{idStar}": {
+      rename: param: "id": *"member_id"
+      rename: param: "idStar": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: bulk: {
+    path: "/enterprises/${id}/enterpriseJoinRequest/bulk": {
+      op: update: method: *PUT
+    }
+    path: "/enterprises/{id}/organizations/bulk/{idOrganizations}": {
+      rename: param: "id": *"enterpris_id"
+      rename: param: "idOrganizations": *"id"
+      op: load: method: *GET
+    }
+    path: "/enterprises/{id}/transferrable/bulk/{idOrganizations}": {
+      rename: param: "id": *"enterpris_id"
+      rename: param: "idOrganizations": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: card: {
+    path: "/actions/{id}/card": {
+      rename: param: "id": *"action_id"
+      op: list: method: *GET
+    }
+    path: "/boards/{id}/cards": {
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/boards/{id}/cards/{filter}": {
+      rename: param: "filter": *"id"
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/cards": {
+      op: create: method: *POST
+    }
+    path: "/cards/{idCard}/customFields": {
+      action: "custom_field": {}
+      rename: param: "idCard": *"id_card"
+      op: update: method: *PUT
+    }
+    path: "/cards/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/cards/{id}/attachments": {
+      action: "attachment": {}
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/checklists": {
+      action: "checklist": {}
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/idLabels": {
+      action: "id_label": {}
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/idMembers": {
+      action: "id_member": {}
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/labels": {
+      action: "label": {}
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/markAssociatedNotificationsRead": {
+      action: "mark_associated_notifications_read": {}
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/membersVoted": {
+      action: "members_voted": {}
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/stickers": {
+      action: "sticker": {}
+      op: create: method: *POST
+    }
+    path: "/cards/{id}/{field}": {
+      op: list: method: *GET
+    }
+    path: "/checklists/{id}/cards": {
+      rename: param: "id": *"checklist_id"
+      op: load: method: *GET
+    }
+    path: "/lists/{id}/cards": {
+      rename: param: "id": *"list_id"
+      op: list: method: *GET
+    }
+    path: "/members/{id}/cards": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/notifications/{id}/card": {
+      rename: param: "id": *"notification_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: card_check_item_state: {
+    path: "/cards/{id}/checkItemStates": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: card_list: {
+    path: "/cards/{id}/list": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: check_item: {
+    path: "/cards/{idCard}/checklist/{idChecklist}/checkItem/{idCheckItem}": {
+      rename: param: "idCard": *"id_card"
+      rename: param: "idCheckItem": *"id"
+      rename: param: "idChecklist": *"checklist_id"
+      op: update: method: *PUT
+    }
+    path: "/cards/{id}/checkItem/{idCheckItem}": {
+      rename: param: "id": *"card_id"
+      rename: param: "idCheckItem": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/checklists/{id}/checkItems": {
+      rename: param: "id": *"checklist_id"
+      op: load: method: *GET
+    }
+    path: "/checklists/{id}/checkItems/{idCheckItem}": {
+      rename: param: "id": *"checklist_id"
+      rename: param: "idCheckItem": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: checklist: {
+    path: "/boards/{id}/checklists": {
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/cards/{id}/checklists": {
+      rename: param: "id": *"card_id"
+      op: load: method: *GET
+    }
+    path: "/cards/{id}/checklists/{idChecklist}": {
+      rename: param: "id": *"card_id"
+      rename: param: "idChecklist": *"id"
+      op: remove: method: *DELETE
+    }
+    path: "/checklists": {
+      op: create: method: *POST
+    }
+    path: "/checklists/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/checklists/{id}/checkItems": {
+      action: "check_item": {}
+      op: create: method: *POST
+    }
+    path: "/checklists/{id}/{field}": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: claimable_organization: {
+    path: "/enterprises/{id}/claimableOrganizations": {
+      rename: param: "id": *"enterpris_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.organizations`")|top
+    }
+  }
+
+  entity: custom_board_background: {
+    path: "/members/{id}/customBoardBackgrounds/{idBackground}": {
+      rename: param: "id": *"member_id"
+      rename: param: "idBackground": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: custom_emoji: {
+    path: "/members/{id}/customEmoji": {
+      rename: param: "id": *"member_id"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/members/{id}/customEmoji/{idEmoji}": {
+      rename: param: "id": *"member_id"
+      rename: param: "idEmoji": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: custom_field: {
+    path: "/boards/{id}/customFields": {
+      rename: param: "id": *"board_id"
+      op: list: method: *GET
+    }
+    path: "/cards/{idCard}/customField/{idCustomField}/item": {
+      action: "item": {}
+      rename: param: "idCard": *"id_card"
+      rename: param: "idCustomField": *"id_custom_field"
+      op: update: method: *PUT
+    }
+    path: "/customFields": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.display`")|top
+    }
+    path: "/customFields/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.display`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.display`")|top
+    }
+    path: "/customFields/{id}/options": {
+      action: "option": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: custom_field_item: {
+    path: "/cards/{id}/customFieldItems": {
+      rename: param: "id": *"card_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: custom_sticker: {
+    path: "/members/{id}/customStickers": {
+      rename: param: "id": *"member_id"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/members/{id}/customStickers/{idSticker}": {
+      rename: param: "id": *"member_id"
+      rename: param: "idSticker": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: email_position: {
+    path: "/boards/{id}/myPrefs/emailPosition": {
+      rename: param: "id": *"board_id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: emoji: {
+    path: "/emoji": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.trello`")|top
+    }
+  }
+
+  entity: enterpris: {
+    path: "/enterprises/{id}": {
+      op: load: method: *GET
+    }
+    path: "/enterprises/{id}/organizations": {
+      action: "organization": {}
+      op: update: method: *PUT
+    }
+    path: "/enterprises/{id}/tokens": {
+      action: "token": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: enterpris_signup_url: {
+    path: "/enterprises/{id}/signupUrl": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: enterprise_admin: {
+    path: "/enterprises/{id}/admins": {
+      rename: param: "id": *"enterpris_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: enterprise_audit_log: {
+    path: "/enterprises/{id}/auditlog": {
+      rename: param: "id": *"enterpris_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: export: {
+    path: "/boards/{id}/exports": {
+      rename: param: "id": *"board_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.status`")|top
+    }
+    path: "/boards/{id}/exports/mostRecent": {
+      action: "most_recent": {}
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.status`")|top
+    }
+    path: "/boards/{id}/exports/{idExport}": {
+      rename: param: "id": *"board_id"
+      rename: param: "idExport": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.status`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/boards/{id}/exports/{idExport}/download": {
+      action: "download": {}
+      rename: param: "id": *"board_id"
+      rename: param: "idExport": *"id_export"
+    }
+    path: "/organizations/{id}/exports": {
+      rename: param: "id": *"organization_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.status`")|top
+      op: list: method: *GET
+    }
+  }
+
+  entity: export_download: {
+    path: "/boards/{id}/exports/{idExport}/download": {
+      rename: param: "id": *"board_id"
+      rename: param: "idExport": *"id_export"
+      op: load: method: *GET
+    }
+  }
+
+  entity: generate: {
+    path: "/boards/{id}/calendarKey/generate": {
+      rename: param: "id": *"board_id"
+      op: create: method: *POST
+    }
+    path: "/boards/{id}/emailKey/generate": {
+      rename: param: "id": *"board_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: id_email_list: {
+    path: "/boards/{id}/myPrefs/idEmailList": {
+      rename: param: "id": *"board_id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: id_label: {
+    path: "/cards/{id}/idLabels/{idLabel}": {
+      rename: param: "id": *"card_id"
+      rename: param: "idLabel": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: id_member: {
+    path: "/cards/{id}/idMembers/{idMember}": {
+      rename: param: "id": *"card_id"
+      rename: param: "idMember": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: label: {
+    path: "/boards/{id}/labels": {
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/labels": {
+      op: create: method: *POST
+    }
+    path: "/labels/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/labels/{id}/{field}": {
+      op: update: method: *PUT
+    }
+  }
+
+  entity: list: {
+    path: "/boards/{id}/lists/{filter}": {
+      rename: param: "filter": *"id"
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/lists": {
+      op: create: method: *POST
+    }
+    path: "/lists/{id}": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/lists/{id}/archiveAllCards": {
+      action: "archive_all_card": {}
+      op: create: method: *POST
+    }
+    path: "/lists/{id}/closed": {
+      action: "closed": {}
+      op: update: method: *PUT
+    }
+    path: "/lists/{id}/idBoard": {
+      action: "id_board": {}
+      op: update: method: *PUT
+    }
+    path: "/lists/{id}/moveAllCards": {
+      action: "move_all_card": {}
+      op: create: method: *POST
+    }
+    path: "/lists/{id}/{field}": {
+      op: update: method: *PUT
+    }
+  }
+
+  entity: member: {
+    path: "/actions/{id}/member": {
+      rename: param: "id": *"action_id"
+      op: list: method: *GET
+    }
+    path: "/actions/{id}/memberCreator": {
+      rename: param: "id": *"action_id"
+      op: list: method: *GET
+    }
+    path: "/boards/{id}/members": {
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/boards/{id}/members/{idMember}": {
+      rename: param: "id": *"board_id"
+      rename: param: "idMember": *"id"
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/cards/{id}/members": {
+      rename: param: "id": *"card_id"
+      op: load: method: *GET
+    }
+    path: "/enterprises/{id}/members": {
+      rename: param: "id": *"enterpris_id"
+      op: list: method: *GET
+    }
+    path: "/enterprises/{id}/members/{idMember}": {
+      rename: param: "id": *"enterpris_id"
+      rename: param: "idMember": *"id"
+      op: load: method: *GET
+    }
+    path: "/enterprises/{id}/members/{idMember}/deactivated": {
+      action: "deactivated": {}
+      rename: param: "id": *"enterpris_id"
+      rename: param: "idMember": *"id_member"
+      op: update: method: *PUT
+    }
+    path: "/enterprises/{id}/members/{idMember}/licensed": {
+      action: "licensed": {}
+      rename: param: "id": *"enterpris_id"
+      rename: param: "idMember": *"id_member"
+      op: update: method: *PUT
+    }
+    path: "/members/{id}": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/members/{id}/avatar": {
+      action: "avatar": {}
+      op: create: method: *POST
+    }
+    path: "/members/{id}/boardBackgrounds": {
+      action: "board_background": {}
+      op: create: method: *POST
+    }
+    path: "/members/{id}/customBoardBackgrounds": {
+      action: "custom_board_background": {}
+    }
+    path: "/members/{id}/customEmoji": {
+      action: "custom_emoji": {}
+    }
+    path: "/members/{id}/customStickers": {
+      action: "custom_sticker": {}
+    }
+    path: "/members/{id}/notificationsChannelSettings": {
+      action: "notifications_channel_setting": {}
+    }
+    path: "/members/{id}/oneTimeMessagesDismissed": {
+      action: "one_time_messages_dismissed": {}
+      op: create: method: *POST
+    }
+    path: "/members/{id}/savedSearches": {
+      action: "saved_search": {}
+    }
+    path: "/members/{id}/{field}": {
+      op: load: method: *GET
+    }
+    path: "/notifications/{id}/member": {
+      rename: param: "id": *"notification_id"
+      op: load: method: *GET
+    }
+    path: "/organizations/{id}/members": {
+      rename: param: "id": *"organization_id"
+      op: list: method: *GET
+    }
+    path: "/organizations/{id}/members/{idMember}": {
+      rename: param: "id": *"organization_id"
+      rename: param: "idMember": *"id"
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/organizations/{id}/members/{idMember}/all": {
+      action: "all": {}
+      rename: param: "id": *"organization_id"
+      rename: param: "idMember": *"id_member"
+      op: remove: method: *DELETE
+    }
+    path: "/organizations/{id}/members/{idMember}/deactivated": {
+      action: "deactivated": {}
+      rename: param: "id": *"organization_id"
+      rename: param: "idMember": *"id_member"
+      op: update: method: *PUT
+    }
+    path: "/search/members/": {
+      op: list: method: *GET
+    }
+    path: "/tokens/{token}/member": {
+      rename: param: "token": *"token_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: member_privacy: {
+    path: "/plugins/{id}/compliance/memberPrivacy": {
+      rename: param: "id": *"plugin_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: members_voted: {
+    path: "/cards/{id}/membersVoted": {
+      rename: param: "id": *"card_id"
+      op: load: method: *GET
+    }
+    path: "/cards/{id}/membersVoted/{idMember}": {
+      rename: param: "id": *"card_id"
+      rename: param: "idMember": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: membership: {
+    path: "/boards/{id}/memberships": {
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/boards/{id}/memberships/{idMembership}": {
+      rename: param: "id": *"board_id"
+      rename: param: "idMembership": *"id"
+      op: update: method: *PUT
+    }
+    path: "/enterprises/{id}/members/query": {
+      rename: param: "id": *"enterpris_id"
+      op: list: method: *GET
+    }
+    path: "/organizations/{id}/memberships": {
+      rename: param: "id": *"organization_id"
+      op: list: method: *GET
+    }
+    path: "/organizations/{id}/memberships/{idMembership}": {
+      rename: param: "id": *"organization_id"
+      rename: param: "idMembership": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: most_recent: {
+    path: "/boards/{id}/exports/mostRecent": {
+      rename: param: "id": *"board_id"
+    }
+  }
+
+  entity: new_billable_guest: {
+    path: "/organizations/{id}/newBillableGuests/{idBoard}": {
+      rename: param: "id": *"organization_id"
+      rename: param: "idBoard": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: notification: {
+    path: "/members/{id}/notifications": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/notifications/{id}": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/notifications/{id}/unread": {
+      action: "unread": {}
+      op: update: method: *PUT
+    }
+    path: "/notifications/{id}/{field}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: notification_channel_setting: {
+    path: "/members/{id}/notificationsChannelSettings": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/members/{id}/notificationsChannelSettings/{channel}": {
+      rename: param: "id": *"member_id"
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}": {
+      rename: param: "blockedKeys": *"blocked_key"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: notification_list: {
+    path: "/notifications/{id}/list": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: notification_member_creator: {
+    path: "/notifications/{id}/memberCreator": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: notifications_channel_setting: {
+    path: "/members/{id}/notificationsChannelSettings/{channel}": {
+      rename: param: "channel": *"id"
+      rename: param: "id": *"member_id"
+    }
+    path: "/members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}": {
+      rename: param: "blockedKeys": *"blocked_key"
+    }
+  }
+
+  entity: option: {
+    path: "/customFields/{id}/options": {
+      rename: param: "id": *"custom_field_id"
+      op: load: method: *GET
+    }
+    path: "/customFields/{id}/options/{idCustomFieldOption}": {
+      rename: param: "id": *"custom_field_id"
+      rename: param: "idCustomFieldOption": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: org_invite_restrict: {
+    path: "/organizations/{id}/prefs/orgInviteRestrict": {
+      rename: param: "id": *"organization_id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: organization: {
+    path: "/actions/{id}/organization": {
+      rename: param: "id": *"action_id"
+      op: list: method: *GET
+    }
+    path: "/enterprises/{id}/organizations": {
+      rename: param: "id": *"enterpris_id"
+      op: list: method: *GET
+    }
+    path: "/enterprises/{id}/organizations/{idOrg}": {
+      rename: param: "id": *"enterpris_id"
+      rename: param: "idOrg": *"id"
+      op: remove: method: *DELETE
+    }
+    path: "/members/{id}/organizations": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/members/{id}/organizationsInvited": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/notifications/{id}/organization": {
+      rename: param: "id": *"notification_id"
+      op: load: method: *GET
+    }
+    path: "/organizations": {
+      op: create: method: *POST
+    }
+    path: "/organizations/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/organizations/{id}/exports": {
+      action: "export": {}
+    }
+    path: "/organizations/{id}/logo": {
+      action: "logo": {}
+      op: create: method: *POST
+      op: remove: method: *DELETE
+    }
+    path: "/organizations/{id}/members": {
+      action: "member": {}
+      op: update: method: *PUT
+    }
+    path: "/organizations/{id}/tags": {
+      action: "tag": {}
+      op: create: method: *POST
+    }
+    path: "/organizations/{id}/{field}": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: pending_organization: {
+    path: "/enterprises/{id}/pendingOrganizations": {
+      rename: param: "id": *"enterpris_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: plugin: {
+    path: "/boards/{id}/boardPlugins": {
+      rename: param: "id": *"board_id"
+      op: list: method: *GET
+    }
+    path: "/boards/{id}/plugins": {
+      rename: param: "id": *"board_id"
+      op: load: method: *GET
+    }
+    path: "/plugins/{id}/": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: plugin_data: {
+    path: "/cards/{id}/pluginData": {
+      rename: param: "id": *"card_id"
+      op: load: method: *GET
+    }
+    path: "/organizations/{id}/pluginData": {
+      rename: param: "id": *"organization_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: plugin_listing: {
+    path: "/plugins/{idPlugin}/listing": {
+      rename: param: "idPlugin": *"id_plugin"
+      op: create: method: *POST
+    }
+    path: "/plugins/{idPlugin}/listings/{idListing}": {
+      rename: param: "idListing": *"id"
+      rename: param: "idPlugin": *"id_plugin"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: reaction: {
+    path: "/actions/{idAction}/reactions": {
+      rename: param: "idAction": *"id_action"
+      op: load: method: *GET
+    }
+    path: "/actions/{idAction}/reactions/{id}": {
+      rename: param: "idAction": *"id_action"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: read: {
+    path: "/notifications/all/read": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: saved_search: {
+    path: "/members/{id}/savedSearches": {
+      rename: param: "id": *"member_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.pos`")|top
+      op: list: method: *GET
+    }
+    path: "/members/{id}/savedSearches/{idSearch}": {
+      rename: param: "id": *"member_id"
+      rename: param: "idSearch": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.pos`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.pos`")|top
+    }
+  }
+
+  entity: search: {
+    path: "/search": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: show_sidebar: {
+    path: "/boards/{id}/myPrefs/showSidebar": {
+      rename: param: "id": *"board_id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: show_sidebar_activity: {
+    path: "/boards/{id}/myPrefs/showSidebarActivity": {
+      rename: param: "id": *"board_id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: show_sidebar_board_action: {
+    path: "/boards/{id}/myPrefs/showSidebarBoardActions": {
+      rename: param: "id": *"board_id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: show_sidebar_member: {
+    path: "/boards/{id}/myPrefs/showSidebarMembers": {
+      rename: param: "id": *"board_id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: sticker: {
+    path: "/cards/{id}/stickers": {
+      rename: param: "id": *"card_id"
+      op: load: method: *GET
+    }
+    path: "/cards/{id}/stickers/{idSticker}": {
+      rename: param: "id": *"card_id"
+      rename: param: "idSticker": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: tag: {
+    path: "/organizations/{id}/tags": {
+      rename: param: "id": *"organization_id"
+      op: list: method: *GET
+    }
+    path: "/organizations/{id}/tags/{idTag}": {
+      rename: param: "id": *"organization_id"
+      rename: param: "idTag": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: token: {
+    path: "/members/{id}/tokens": {
+      rename: param: "id": *"member_id"
+      op: list: method: *GET
+    }
+    path: "/tokens/{token}": {
+      rename: param: "token": *"id"
+      op: load: method: *GET
+    }
+    path: "/tokens/{token}/": {
+      rename: param: "token": *"id"
+      op: remove: method: *DELETE
+    }
+    path: "/tokens/{token}/webhooks": {
+      action: "webhook": {}
+      rename: param: "token": *"id"
+    }
+  }
+
+  entity: transferrable_organization: {
+    path: "/enterprises/{id}/transferrable/organization/{idOrganization}": {
+      rename: param: "id": *"enterpris_id"
+      rename: param: "idOrganization": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: trello_list: {
+    path: "/actions/{id}/list": {
+      rename: param: "id": *"action_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.limits`")|top
+    }
+    path: "/boards/{id}/lists": {
+      rename: param: "id": *"board_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.limits`")|top
+      op: list: method: *GET
+    }
+  }
+
+  entity: webhook: {
+    path: "/tokens/{token}/webhooks": {
+      rename: param: "token": *"token_id"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/tokens/{token}/webhooks/{idWebhook}": {
+      rename: param: "idWebhook": *"id"
+      rename: param: "token": *"token_id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/webhooks/": {
+      op: create: method: *POST
+    }
+    path: "/webhooks/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/webhooks/{id}/{field}": {
+      op: load: method: *GET
+    }
+  }
+
+}

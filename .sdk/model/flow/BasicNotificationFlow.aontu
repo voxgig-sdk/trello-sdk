@@ -1,0 +1,67 @@
+# BasicNotificationFlow
+
+main: kit: flow: BasicNotificationFlow:
+{
+  entity: "notification",
+  kind: "basic",
+  name: "BasicNotificationFlow",
+  step: [
+    {
+      match: {
+        member_id: "member01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "notification_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "notification_ref01",
+        srcdatavar: "notification_ref01_data",
+        suffix: "_up0",
+        textfield: "data"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-notification_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "notification_ref01",
+        srcdatavar: "notification_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "notification01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-notification_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNotificationFlow"
+}

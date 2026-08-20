@@ -1,0 +1,72 @@
+# Entity: new_billable_guest
+
+main: kit: entity: new_billable_guest: {
+
+  alias: field: {}
+
+  name: "new_billable_guest"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_board"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "organization_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/organizations/{id}/newBillableGuests/{idBoard}"
+          parts: [
+            "organizations"
+            "{organization_id}"
+            "newBillableGuests"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "organization_id"
+              idBoard: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "organization_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "organization"
+      ]
+    ]
+  }
+
+
+
+}

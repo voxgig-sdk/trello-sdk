@@ -1,0 +1,26 @@
+# BasicClaimableOrganizationFlow
+
+main: kit: flow: BasicClaimableOrganizationFlow:
+{
+  entity: "claimable_organization",
+  kind: "basic",
+  name: "BasicClaimableOrganizationFlow",
+  step: [
+    {
+      match: {
+        enterpris_id: "enterpris01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "claimable_organization_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicClaimableOrganizationFlow"
+}

@@ -1,0 +1,56 @@
+# Entity: read
+
+main: kit: entity: read: {
+
+  alias: field: {}
+
+  name: "read"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "ids"
+                orig: "ids"
+                reqd: false
+                type: "`$ARRAY`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "read"
+                orig: "read"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/notifications/all/read"
+          parts: [
+            "notifications"
+            "all"
+            "read"
+          ]
+          select: {
+            exist: [
+              "ids"
+              "read"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

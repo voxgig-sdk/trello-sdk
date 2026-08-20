@@ -1,0 +1,886 @@
+# Entity: action
+
+main: kit: entity: action: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "idMemberCreator"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "limits"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "memberCreator"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "native"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "shortName"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "skinVariation"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "unified"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "action"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "text"
+                orig: "text"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/cards/{id}/actions/comments"
+          parts: [
+            "cards"
+            "{card_id}"
+            "actions"
+            "comments"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+            }
+          }
+          select: {
+            "$action": "comment"
+            exist: [
+              "card_id"
+              "text"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id_action"
+                orig: "id_action"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/actions/{idAction}/reactions"
+          parts: [
+            "actions"
+            "{id_action}"
+            "reactions"
+          ]
+          rename: {
+            param: {
+              idAction: "id_action"
+            }
+          }
+          select: {
+            "$action": "reaction"
+            exist: [
+              "id_action"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "commentCard, updateCard:idList"
+                kind: "query"
+                name: "filter"
+                orig: "filter"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cards/{id}/actions"
+          parts: [
+            "cards"
+            "{card_id}"
+            "actions"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+            }
+          }
+          select: {
+            exist: [
+              "card_id"
+              "filter"
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "filter"
+                orig: "filter"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/members/{id}/actions"
+          parts: [
+            "members"
+            "{member_id}"
+            "actions"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+            }
+          }
+          select: {
+            exist: [
+              "filter"
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "organization_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/organizations/{id}/actions"
+          parts: [
+            "organizations"
+            "{organization_id}"
+            "actions"
+          ]
+          rename: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          select: {
+            exist: [
+              "organization_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "board_id"
+                orig: "board_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "before"
+                orig: "before"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$OBJECT`"
+              }
+              {
+                kind: "query"
+                name: "filter"
+                orig: "filter"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "list"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "id_model"
+                orig: "id_model"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 50
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "member"
+                orig: "member"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "member_creator"
+                orig: "member_creator"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username"
+                kind: "query"
+                name: "member_creator_field"
+                orig: "member_creator_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username"
+                kind: "query"
+                name: "member_field"
+                orig: "member_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "reaction"
+                orig: "reaction"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "since"
+                orig: "since"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/boards/{boardId}/actions"
+          parts: [
+            "boards"
+            "{board_id}"
+            "actions"
+          ]
+          rename: {
+            param: {
+              boardId: "board_id"
+            }
+          }
+          select: {
+            exist: [
+              "before"
+              "board_id"
+              "field"
+              "filter"
+              "format"
+              "id_model"
+              "limit"
+              "member"
+              "member_creator"
+              "member_creator_field"
+              "member_field"
+              "page"
+              "reaction"
+              "since"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: true
+                kind: "query"
+                name: "display"
+                orig: "display"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "entity"
+                orig: "entity"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "all"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "member"
+                orig: "member"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "member_creator"
+                orig: "member_creator"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "avatarHash,fullName,initials,username"
+                kind: "query"
+                name: "member_creator_field"
+                orig: "member_creator_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "avatarHash,fullName,initials,username"
+                kind: "query"
+                name: "member_field"
+                orig: "member_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/actions/{id}"
+          parts: [
+            "actions"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "display"
+              "entity"
+              "field"
+              "id"
+              "member"
+              "member_creator"
+              "member_creator_field"
+              "member_field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "field"
+                orig: "field"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/actions/{id}/{field}"
+          parts: [
+            "actions"
+            "{id}"
+            "{field}"
+          ]
+          select: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "list_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "filter"
+                orig: "filter"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lists/{id}/actions"
+          parts: [
+            "lists"
+            "{list_id}"
+            "actions"
+          ]
+          rename: {
+            param: {
+              id: "list_id"
+            }
+          }
+          select: {
+            exist: [
+              "filter"
+              "list_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id_action"
+                orig: "id_action"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/cards/{id}/actions/{idAction}/comments"
+          parts: [
+            "cards"
+            "{card_id}"
+            "actions"
+            "{id_action}"
+            "comments"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+              idAction: "id_action"
+            }
+          }
+          select: {
+            "$action": "comment"
+            exist: [
+              "card_id"
+              "id_action"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/actions/{id}"
+          parts: [
+            "actions"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id_action"
+                orig: "id_action"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "text"
+                orig: "text"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/cards/{id}/actions/{idAction}/comments"
+          parts: [
+            "cards"
+            "{card_id}"
+            "actions"
+            "{id_action}"
+            "comments"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+              idAction: "id_action"
+            }
+          }
+          select: {
+            "$action": "comment"
+            exist: [
+              "card_id"
+              "id_action"
+              "text"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "text"
+                orig: "text"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/actions/{id}"
+          parts: [
+            "actions"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+              "text"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "value"
+                orig: "value"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/actions/{id}/text"
+          parts: [
+            "actions"
+            "{id}"
+            "text"
+          ]
+          select: {
+            "$action": "text"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "board"
+      ]
+      [
+        "card"
+      ]
+      [
+        "list"
+      ]
+      [
+        "member"
+      ]
+      [
+        "organization"
+      ]
+      [
+        "card"
+        "action"
+      ]
+    ]
+  }
+
+
+
+}

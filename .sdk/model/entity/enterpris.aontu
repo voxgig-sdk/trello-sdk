@@ -1,0 +1,355 @@
+# Entity: enterpris
+
+main: kit: entity: enterpris: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "dateOrganizationPrefsLastUpdated"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "displayName"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "domains"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "enterpriseDomains"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "idAdmins"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "idOrganizations"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "idp"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "isRealEnterprise"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "licenses"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "logoHash"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "logoUrl"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "organizationPrefs"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "pluginWhitelistingEnabled"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "prefs"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "products"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "ssoActivationFailed"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "enterpris"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "none"
+                kind: "query"
+                name: "expiration"
+                orig: "expiration"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/enterprises/{id}/tokens"
+          parts: [
+            "enterprises"
+            "{id}"
+            "tokens"
+          ]
+          select: {
+            "$action": "token"
+            exist: [
+              "expiration"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "all"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "none"
+                kind: "query"
+                name: "member"
+                orig: "member"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "10"
+                kind: "query"
+                name: "member_count"
+                orig: "member_count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "avatarHash, fullName, initials, username"
+                kind: "query"
+                name: "member_field"
+                orig: "member_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "none"
+                kind: "query"
+                name: "member_filter"
+                orig: "member_filter"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "member_sort"
+                orig: "member_sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "none"
+                kind: "query"
+                name: "member_sort_by"
+                orig: "member_sort_by"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "id"
+                kind: "query"
+                name: "member_sort_order"
+                orig: "member_sort_order"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "1"
+                kind: "query"
+                name: "member_start_index"
+                orig: "member_start_index"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "none"
+                kind: "query"
+                name: "organization"
+                orig: "organization"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "none"
+                kind: "query"
+                name: "organization_field"
+                orig: "organization_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "none"
+                kind: "query"
+                name: "organization_membership"
+                orig: "organization_membership"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "organization_paid_account"
+                orig: "organization_paid_account"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/enterprises/{id}"
+          parts: [
+            "enterprises"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "field"
+              "id"
+              "member"
+              "member_count"
+              "member_field"
+              "member_filter"
+              "member_sort"
+              "member_sort_by"
+              "member_sort_order"
+              "member_start_index"
+              "organization"
+              "organization_field"
+              "organization_membership"
+              "organization_paid_account"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "id_organization"
+                orig: "id_organization"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/enterprises/{id}/organizations"
+          parts: [
+            "enterprises"
+            "{id}"
+            "organizations"
+          ]
+          select: {
+            "$action": "organization"
+            exist: [
+              "id"
+              "id_organization"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,164 @@
+# Entity: bulk
+
+main: kit: entity: bulk: {
+
+  alias: field: {}
+
+  name: "bulk"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "enterpris_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "id"
+                orig: "id_organization"
+                reqd: true
+                type: "`$ARRAY`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/enterprises/{id}/organizations/bulk/{idOrganizations}"
+          parts: [
+            "enterprises"
+            "{enterpris_id}"
+            "organizations"
+            "bulk"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "enterpris_id"
+              idOrganizations: "id"
+            }
+          }
+          select: {
+            exist: [
+              "enterpris_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "enterpris_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "id"
+                orig: "id_organization"
+                reqd: true
+                type: "`$ARRAY`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/enterprises/{id}/transferrable/bulk/{idOrganizations}"
+          parts: [
+            "enterprises"
+            "{enterpris_id}"
+            "transferrable"
+            "bulk"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "enterpris_id"
+              idOrganizations: "id"
+            }
+          }
+          select: {
+            exist: [
+              "enterpris_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "id_organization"
+                orig: "id_organization"
+                reqd: true
+                type: "`$ARRAY`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/enterprises/${id}/enterpriseJoinRequest/bulk"
+          parts: [
+            "enterprises"
+            "${id}"
+            "enterpriseJoinRequest"
+            "bulk"
+          ]
+          select: {
+            exist: [
+              "id"
+              "id_organization"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "enterpris"
+      ]
+    ]
+  }
+
+
+
+}

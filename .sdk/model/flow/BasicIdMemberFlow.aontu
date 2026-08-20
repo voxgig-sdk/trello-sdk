@@ -1,0 +1,9 @@
+# BasicIdMemberFlow
+
+main: kit: flow: BasicIdMemberFlow:
+{
+  entity: "id_member",
+  kind: "basic",
+  name: "BasicIdMemberFlow",
+  "key$": "BasicIdMemberFlow"
+}

@@ -1,0 +1,62 @@
+# BasicListFlow
+
+main: kit: flow: BasicListFlow:
+{
+  entity: "list",
+  kind: "basic",
+  name: "BasicListFlow",
+  step: [
+    {
+      input: {
+        ref: "list_ref01"
+      }
+
+      match: {
+        board_id: "board01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "list_ref01",
+        srcdatavar: "list_ref01_data",
+        suffix: "_up0"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-list_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "list_ref01",
+        srcdatavar: "list_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "list01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListFlow"
+}

@@ -1,0 +1,32 @@
+# BasicNotificationMemberCreatorFlow
+
+main: kit: flow: BasicNotificationMemberCreatorFlow:
+{
+  entity: "notification_member_creator",
+  kind: "basic",
+  name: "BasicNotificationMemberCreatorFlow",
+  step: [
+    {
+      input: {
+        ref: "notification_member_creator_ref01",
+        srcdatavar: "notification_member_creator_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "notification_member_creator01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-notification_member_creator_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNotificationMemberCreatorFlow"
+}

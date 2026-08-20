@@ -1,0 +1,458 @@
+# Entity: list
+
+main: kit: entity: list: {
+
+  alias: field: {}
+
+  name: "list"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "query"
+                name: "id_board"
+                orig: "id_board"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "query"
+                name: "id_list_source"
+                orig: "id_list_source"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "name"
+                orig: "name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "pos"
+                orig: "pos"
+                reqd: false
+                type: "`$ANY`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/lists"
+          parts: [
+            "lists"
+          ]
+          select: {
+            exist: [
+              "id_board"
+              "id_list_source"
+              "name"
+              "pos"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "query"
+                name: "id_board"
+                orig: "id_board"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "query"
+                name: "id_list"
+                orig: "id_list"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/lists/{id}/moveAllCards"
+          parts: [
+            "lists"
+            "{id}"
+            "moveAllCards"
+          ]
+          select: {
+            "$action": "move_all_card"
+            exist: [
+              "id"
+              "id_board"
+              "id_list"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/lists/{id}/archiveAllCards"
+          parts: [
+            "lists"
+            "{id}"
+            "archiveAllCards"
+          ]
+          select: {
+            "$action": "archive_all_card"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "board_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "id"
+                orig: "filter"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/boards/{id}/lists/{filter}"
+          parts: [
+            "boards"
+            "{board_id}"
+            "lists"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              filter: "id"
+              id: "board_id"
+            }
+          }
+          select: {
+            exist: [
+              "board_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "name,closed,idBoard,pos"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lists/{id}"
+          parts: [
+            "lists"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "closed"
+                orig: "closed"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "query"
+                name: "id_board"
+                orig: "id_board"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "name"
+                orig: "name"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "pos"
+                orig: "pos"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "subscribed"
+                orig: "subscribed"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/lists/{id}"
+          parts: [
+            "lists"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "closed"
+              "id"
+              "id_board"
+              "name"
+              "pos"
+              "subscribed"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "field"
+                orig: "field"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "value"
+                orig: "value"
+                reqd: false
+                type: "`$ANY`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/lists/{id}/{field}"
+          parts: [
+            "lists"
+            "{id}"
+            "{field}"
+          ]
+          select: {
+            exist: [
+              "field"
+              "id"
+              "value"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "query"
+                name: "value"
+                orig: "value"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/lists/{id}/closed"
+          parts: [
+            "lists"
+            "{id}"
+            "closed"
+          ]
+          select: {
+            "$action": "closed"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "query"
+                name: "value"
+                orig: "value"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/lists/{id}/idBoard"
+          parts: [
+            "lists"
+            "{id}"
+            "idBoard"
+          ]
+          select: {
+            "$action": "id_board"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "board"
+      ]
+    ]
+  }
+
+
+
+}

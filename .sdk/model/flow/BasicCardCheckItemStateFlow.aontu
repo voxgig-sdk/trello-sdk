@@ -1,0 +1,32 @@
+# BasicCardCheckItemStateFlow
+
+main: kit: flow: BasicCardCheckItemStateFlow:
+{
+  entity: "card_check_item_state",
+  kind: "basic",
+  name: "BasicCardCheckItemStateFlow",
+  step: [
+    {
+      input: {
+        ref: "card_check_item_state_ref01",
+        srcdatavar: "card_check_item_state_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "card_check_item_state01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-card_check_item_state_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCardCheckItemStateFlow"
+}

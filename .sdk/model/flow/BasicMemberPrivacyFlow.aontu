@@ -1,0 +1,32 @@
+# BasicMemberPrivacyFlow
+
+main: kit: flow: BasicMemberPrivacyFlow:
+{
+  entity: "member_privacy",
+  kind: "basic",
+  name: "BasicMemberPrivacyFlow",
+  step: [
+    {
+      input: {
+        ref: "member_privacy_ref01",
+        srcdatavar: "member_privacy_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "member_privacy01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-member_privacy_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMemberPrivacyFlow"
+}

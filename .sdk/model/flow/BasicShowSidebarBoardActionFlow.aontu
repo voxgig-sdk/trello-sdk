@@ -1,0 +1,28 @@
+# BasicShowSidebarBoardActionFlow
+
+main: kit: flow: BasicShowSidebarBoardActionFlow:
+{
+  entity: "show_sidebar_board_action",
+  kind: "basic",
+  name: "BasicShowSidebarBoardActionFlow",
+  step: [
+    {
+      input: {
+        ref: "show_sidebar_board_action_ref01",
+        srcdatavar: "show_sidebar_board_action_ref01_data",
+        suffix: "_up0"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-show_sidebar_board_action_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicShowSidebarBoardActionFlow"
+}

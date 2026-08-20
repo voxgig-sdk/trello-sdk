@@ -1,0 +1,117 @@
+# Entity: emoji
+
+main: kit: entity: emoji: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "category"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "keywords"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "native"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "sheetX"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "sheetY"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "shortName"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "shortNames"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "texts"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tts"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "unified"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "emoji"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "locale"
+                orig: "locale"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "spritesheet"
+                orig: "spritesheet"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/emoji"
+          parts: [
+            "emoji"
+          ]
+          select: {
+            exist: [
+              "locale"
+              "spritesheet"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.trello`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

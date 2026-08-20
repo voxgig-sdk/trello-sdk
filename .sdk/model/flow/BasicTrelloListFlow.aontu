@@ -1,0 +1,60 @@
+# BasicTrelloListFlow
+
+main: kit: flow: BasicTrelloListFlow:
+{
+  entity: "trello_list",
+  kind: "basic",
+  name: "BasicTrelloListFlow",
+  step: [
+    {
+      input: {
+        ref: "trello_list_ref01"
+      }
+
+      match: {
+        board_id: "board01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        board_id: "board01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "trello_list_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "trello_list_ref01",
+        srcdatavar: "trello_list_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "trello_list01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-trello_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTrelloListFlow"
+}

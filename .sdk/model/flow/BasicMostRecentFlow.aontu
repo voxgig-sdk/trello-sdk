@@ -1,0 +1,9 @@
+# BasicMostRecentFlow
+
+main: kit: flow: BasicMostRecentFlow:
+{
+  entity: "most_recent",
+  kind: "basic",
+  name: "BasicMostRecentFlow",
+  "key$": "BasicMostRecentFlow"
+}

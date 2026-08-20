@@ -1,0 +1,464 @@
+# Entity: board_background
+
+main: kit: entity: board_background: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "board_background"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "file"
+                orig: "file"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/members/{id}/customBoardBackgrounds"
+          parts: [
+            "members"
+            "{member_id}"
+            "customBoardBackgrounds"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+            }
+          }
+          select: {
+            exist: [
+              "file"
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "all"
+                kind: "query"
+                name: "filter"
+                orig: "filter"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/members/{id}/boardBackgrounds"
+          parts: [
+            "members"
+            "{member_id}"
+            "boardBackgrounds"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+            }
+          }
+          select: {
+            exist: [
+              "filter"
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/members/{id}/customBoardBackgrounds"
+          parts: [
+            "members"
+            "{member_id}"
+            "customBoardBackgrounds"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+            }
+          }
+          select: {
+            exist: [
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_background"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "all"
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/members/{id}/boardBackgrounds/{idBackground}"
+          parts: [
+            "members"
+            "{member_id}"
+            "boardBackgrounds"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+              idBackground: "id"
+            }
+          }
+          select: {
+            exist: [
+              "field"
+              "id"
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id_background"
+                orig: "id_background"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/members/{id}/customBoardBackgrounds/{idBackground}"
+          parts: [
+            "members"
+            "{member_id}"
+            "customBoardBackgrounds"
+            "{id_background}"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+              idBackground: "id_background"
+            }
+          }
+          select: {
+            exist: [
+              "id_background"
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_background"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/members/{id}/boardBackgrounds/{idBackground}"
+          parts: [
+            "members"
+            "{member_id}"
+            "boardBackgrounds"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+              idBackground: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "member_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_background"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "brightness"
+                orig: "brightness"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "tile"
+                orig: "tile"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/members/{id}/boardBackgrounds/{idBackground}"
+          parts: [
+            "members"
+            "{member_id}"
+            "boardBackgrounds"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+              idBackground: "id"
+            }
+          }
+          select: {
+            exist: [
+              "brightness"
+              "id"
+              "member_id"
+              "tile"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id_background"
+                orig: "id_background"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "member_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "brightness"
+                orig: "brightness"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "tile"
+                orig: "tile"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/members/{id}/customBoardBackgrounds/{idBackground}"
+          parts: [
+            "members"
+            "{member_id}"
+            "customBoardBackgrounds"
+            "{id_background}"
+          ]
+          rename: {
+            param: {
+              id: "member_id"
+              idBackground: "id_background"
+            }
+          }
+          select: {
+            exist: [
+              "brightness"
+              "id_background"
+              "member_id"
+              "tile"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "member"
+      ]
+      [
+        "member"
+        "custom_board_background"
+      ]
+    ]
+  }
+
+
+
+}

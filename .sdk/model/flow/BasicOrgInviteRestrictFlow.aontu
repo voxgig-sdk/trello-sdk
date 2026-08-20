@@ -1,0 +1,9 @@
+# BasicOrgInviteRestrictFlow
+
+main: kit: flow: BasicOrgInviteRestrictFlow:
+{
+  entity: "org_invite_restrict",
+  kind: "basic",
+  name: "BasicOrgInviteRestrictFlow",
+  "key$": "BasicOrgInviteRestrictFlow"
+}

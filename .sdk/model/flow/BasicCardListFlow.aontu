@@ -1,0 +1,32 @@
+# BasicCardListFlow
+
+main: kit: flow: BasicCardListFlow:
+{
+  entity: "card_list",
+  kind: "basic",
+  name: "BasicCardListFlow",
+  step: [
+    {
+      input: {
+        ref: "card_list_ref01",
+        srcdatavar: "card_list_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "card_list01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-card_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCardListFlow"
+}

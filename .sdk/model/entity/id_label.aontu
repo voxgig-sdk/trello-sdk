@@ -1,0 +1,72 @@
+# Entity: id_label
+
+main: kit: entity: id_label: {
+
+  alias: field: {}
+
+  name: "id_label"
+  op: {
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_label"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/cards/{id}/idLabels/{idLabel}"
+          parts: [
+            "cards"
+            "{card_id}"
+            "idLabels"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+              idLabel: "id"
+            }
+          }
+          select: {
+            exist: [
+              "card_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "card"
+      ]
+    ]
+  }
+
+
+
+}

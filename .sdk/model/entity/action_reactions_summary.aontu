@@ -1,0 +1,61 @@
+# Entity: action_reactions_summary
+
+main: kit: entity: action_reactions_summary: {
+
+  alias: field: {}
+
+  name: "action_reactions_summary"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id_action"
+                orig: "id_action"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/actions/{idAction}/reactionsSummary"
+          parts: [
+            "actions"
+            "{id_action}"
+            "reactionsSummary"
+          ]
+          rename: {
+            param: {
+              idAction: "id_action"
+            }
+          }
+          select: {
+            exist: [
+              "id_action"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "action"
+      ]
+    ]
+  }
+
+
+
+}

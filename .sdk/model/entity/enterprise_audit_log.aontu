@@ -1,0 +1,94 @@
+# Entity: enterprise_audit_log
+
+main: kit: entity: enterprise_audit_log: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "idAction"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "member"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "memberCreator"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "organization"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "enterprise_audit_log"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "enterpris_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/enterprises/{id}/auditlog"
+          parts: [
+            "enterprises"
+            "{enterpris_id}"
+            "auditlog"
+          ]
+          rename: {
+            param: {
+              id: "enterpris_id"
+            }
+          }
+          select: {
+            exist: [
+              "enterpris_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "enterpris"
+      ]
+    ]
+  }
+
+
+
+}

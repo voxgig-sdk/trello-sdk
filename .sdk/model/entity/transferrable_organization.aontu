@@ -1,0 +1,91 @@
+# Entity: transferrable_organization
+
+main: kit: entity: transferrable_organization: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "newBillableMembers"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "restrictedMembers"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "transferrable"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "transferrable_organization"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "enterpris_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_organization"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/enterprises/{id}/transferrable/organization/{idOrganization}"
+          parts: [
+            "enterprises"
+            "{enterpris_id}"
+            "transferrable"
+            "organization"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "enterpris_id"
+              idOrganization: "id"
+            }
+          }
+          select: {
+            exist: [
+              "enterpris_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "enterpris"
+      ]
+    ]
+  }
+
+
+
+}

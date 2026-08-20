@@ -1,0 +1,32 @@
+# BasicNotificationListFlow
+
+main: kit: flow: BasicNotificationListFlow:
+{
+  entity: "notification_list",
+  kind: "basic",
+  name: "BasicNotificationListFlow",
+  step: [
+    {
+      input: {
+        ref: "notification_list_ref01",
+        srcdatavar: "notification_list_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "notification_list01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-notification_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNotificationListFlow"
+}

@@ -1,0 +1,32 @@
+# BasicEnterprisSignupUrlFlow
+
+main: kit: flow: BasicEnterprisSignupUrlFlow:
+{
+  entity: "enterpris_signup_url",
+  kind: "basic",
+  name: "BasicEnterprisSignupUrlFlow",
+  step: [
+    {
+      input: {
+        ref: "enterpris_signup_url_ref01",
+        srcdatavar: "enterpris_signup_url_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "enterpris_signup_url01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-enterpris_signup_url_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEnterprisSignupUrlFlow"
+}

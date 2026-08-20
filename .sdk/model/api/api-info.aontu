@@ -1,0 +1,26 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "The Trello REST API."
+      security: {
+        in: "query"
+        name: "key"
+        prefix: ""
+        scheme: "APIKey"
+        type: "apiKey"
+      }
+      servers: [
+        {
+          url: "https://api.trello.com/1"
+        }
+      ]
+      title: "Trello REST API"
+      version: "0.0.1"
+      website: "https://trello.com"
+    }
+  }
+}
+

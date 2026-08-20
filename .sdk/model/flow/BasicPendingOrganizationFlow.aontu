@@ -1,0 +1,26 @@
+# BasicPendingOrganizationFlow
+
+main: kit: flow: BasicPendingOrganizationFlow:
+{
+  entity: "pending_organization",
+  kind: "basic",
+  name: "BasicPendingOrganizationFlow",
+  step: [
+    {
+      match: {
+        enterpris_id: "enterpris01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "pending_organization_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPendingOrganizationFlow"
+}

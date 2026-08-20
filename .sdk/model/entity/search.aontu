@@ -1,0 +1,222 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  name: "search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "name,idOrganization"
+                kind: "query"
+                name: "board_field"
+                orig: "board_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "board_organization"
+                orig: "board_organization"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 10
+                kind: "query"
+                name: "boards_limit"
+                orig: "boards_limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "false"
+                kind: "query"
+                name: "card_attachment"
+                orig: "card_attachment"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "card_board"
+                orig: "card_board"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "all"
+                kind: "query"
+                name: "card_field"
+                orig: "card_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "card_list"
+                orig: "card_list"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "card_member"
+                orig: "card_member"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "card_sticker"
+                orig: "card_sticker"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 10
+                kind: "query"
+                name: "cards_limit"
+                orig: "cards_limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "cards_page"
+                orig: "cards_page"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "id_board"
+                orig: "id_board"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "id_card"
+                orig: "id_card"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "id_organization"
+                orig: "id_organization"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "avatarHash,fullName,initials,username,confirmed"
+                kind: "query"
+                name: "member_field"
+                orig: "member_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "10"
+                kind: "query"
+                name: "members_limit"
+                orig: "members_limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "all"
+                kind: "query"
+                name: "model_type"
+                orig: "model_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "name,displayName"
+                kind: "query"
+                name: "organization_field"
+                orig: "organization_field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "10"
+                kind: "query"
+                name: "organizations_limit"
+                orig: "organizations_limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "partial"
+                orig: "partial"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/search"
+          parts: [
+            "search"
+          ]
+          select: {
+            exist: [
+              "board_field"
+              "board_organization"
+              "boards_limit"
+              "card_attachment"
+              "card_board"
+              "card_field"
+              "card_list"
+              "card_member"
+              "card_sticker"
+              "cards_limit"
+              "cards_page"
+              "id_board"
+              "id_card"
+              "id_organization"
+              "member_field"
+              "members_limit"
+              "model_type"
+              "organization_field"
+              "organizations_limit"
+              "partial"
+              "query"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

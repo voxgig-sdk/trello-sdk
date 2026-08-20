@@ -1,0 +1,18 @@
+# Entity: most_recent
+
+main: kit: entity: most_recent: {
+
+  alias: field: {}
+
+  name: "most_recent"
+  relations: {
+    ancestors: [
+      [
+        "board"
+      ]
+    ]
+  }
+
+
+
+}

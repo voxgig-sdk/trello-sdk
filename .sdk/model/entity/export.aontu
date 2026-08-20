@@ -1,0 +1,361 @@
+# Entity: export
+
+main: kit: entity: export: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "attempts"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "exportUrl"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "finished"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "size"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "stage"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "startedAt"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "export"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "board_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: false
+                kind: "query"
+                name: "attachment"
+                orig: "attachment"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "attachment_age"
+                orig: "attachment_age"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/boards/{id}/exports"
+          parts: [
+            "boards"
+            "{board_id}"
+            "exports"
+          ]
+          rename: {
+            param: {
+              id: "board_id"
+            }
+          }
+          select: {
+            exist: [
+              "attachment"
+              "attachment_age"
+              "board_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.status`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "organization_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: true
+                kind: "query"
+                name: "attachment"
+                orig: "attachment"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/organizations/{id}/exports"
+          parts: [
+            "organizations"
+            "{organization_id}"
+            "exports"
+          ]
+          rename: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          select: {
+            exist: [
+              "attachment"
+              "organization_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.status`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "organization_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/organizations/{id}/exports"
+          parts: [
+            "organizations"
+            "{organization_id}"
+            "exports"
+          ]
+          rename: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          select: {
+            exist: [
+              "organization_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "board_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_export"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/boards/{id}/exports/{idExport}"
+          parts: [
+            "boards"
+            "{board_id}"
+            "exports"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "board_id"
+              idExport: "id"
+            }
+          }
+          select: {
+            exist: [
+              "board_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.status`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "board_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/boards/{id}/exports/mostRecent"
+          parts: [
+            "boards"
+            "{board_id}"
+            "exports"
+            "mostRecent"
+          ]
+          rename: {
+            param: {
+              id: "board_id"
+            }
+          }
+          select: {
+            "$action": "most_recent"
+            exist: [
+              "board_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.status`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "board_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_export"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/boards/{id}/exports/{idExport}"
+          parts: [
+            "boards"
+            "{board_id}"
+            "exports"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              id: "board_id"
+              idExport: "id"
+            }
+          }
+          select: {
+            exist: [
+              "board_id"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "board"
+      ]
+      [
+        "organization"
+      ]
+      [
+        "board"
+        "export"
+      ]
+    ]
+  }
+
+
+
+}

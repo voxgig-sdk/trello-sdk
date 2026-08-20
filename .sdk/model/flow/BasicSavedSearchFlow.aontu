@@ -1,0 +1,118 @@
+# BasicSavedSearchFlow
+
+main: kit: flow: BasicSavedSearchFlow:
+{
+  entity: "saved_search",
+  kind: "basic",
+  name: "BasicSavedSearchFlow",
+  step: [
+    {
+      input: {
+        ref: "saved_search_ref01"
+      }
+
+      match: {
+        member_id: "member01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        member_id: "member01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "saved_search_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      data: {
+        member_id: "member01"
+      }
+
+      input: {
+        ref: "saved_search_ref01",
+        srcdatavar: "saved_search_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-saved_search_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "saved_search_ref01",
+        srcdatavar: "saved_search_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "saved_search01",
+        member_id: "member01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-saved_search_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "saved_search_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "saved_search01",
+        member_id: "member01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        member_id: "member01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "saved_search_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSavedSearchFlow"
+}

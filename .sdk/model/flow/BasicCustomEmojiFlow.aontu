@@ -1,0 +1,61 @@
+# BasicCustomEmojiFlow
+
+main: kit: flow: BasicCustomEmojiFlow:
+{
+  entity: "custom_emoji",
+  kind: "basic",
+  name: "BasicCustomEmojiFlow",
+  step: [
+    {
+      input: {
+        ref: "custom_emoji_ref01"
+      }
+
+      match: {
+        member_id: "member01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        member_id: "member01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "custom_emoji_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "custom_emoji_ref01",
+        srcdatavar: "custom_emoji_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "custom_emoji01",
+        member_id: "member01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-custom_emoji_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCustomEmojiFlow"
+}
