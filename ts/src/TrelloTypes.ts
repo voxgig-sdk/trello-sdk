@@ -498,7 +498,8 @@ export interface CheckItem {
 }
 
 export interface CheckItemLoadMatch {
-  checklist_id: string
+  card_id: string
+  id: string
 }
 
 export interface CheckItemUpdateData {
@@ -1213,7 +1214,8 @@ export interface Membership {
 }
 
 export interface MembershipLoadMatch {
-  board_id: string
+  id: string
+  organization_id: string
 }
 
 export interface MembershipListMatch {
@@ -1302,9 +1304,9 @@ export interface NotificationChannelSettingListMatch {
 }
 
 export interface NotificationChannelSettingUpdateData {
+  channel: string
   member_id: string
   blockedKeys?: any[]
-  channel?: string
   id?: string
   idMember?: string
 }

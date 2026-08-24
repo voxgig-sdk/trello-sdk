@@ -1,0 +1,70 @@
+<?php
+declare(strict_types=1);
+
+// Trello SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+TrelloUtility::setRegistrar(function (TrelloUtility $u): void {
+    $u->clean = [TrelloClean::class, 'call'];
+    $u->done = [TrelloDone::class, 'call'];
+    $u->make_error = [TrelloMakeError::class, 'call'];
+    $u->feature_add = [TrelloFeatureAdd::class, 'call'];
+    $u->feature_hook = [TrelloFeatureHook::class, 'call'];
+    $u->feature_init = [TrelloFeatureInit::class, 'call'];
+    $u->fetcher = [TrelloFetcher::class, 'call'];
+    $u->make_fetch_def = [TrelloMakeFetchDef::class, 'call'];
+    $u->make_context = [TrelloMakeContext::class, 'call'];
+    $u->make_options = [TrelloMakeOptions::class, 'call'];
+    $u->make_request = [TrelloMakeRequest::class, 'call'];
+    $u->make_response = [TrelloMakeResponse::class, 'call'];
+    $u->make_result = [TrelloMakeResult::class, 'call'];
+    $u->make_point = [TrelloMakePoint::class, 'call'];
+    $u->make_spec = [TrelloMakeSpec::class, 'call'];
+    $u->make_url = [TrelloMakeUrl::class, 'call'];
+    $u->param = [TrelloParam::class, 'call'];
+    $u->prepare_auth = [TrelloPrepareAuth::class, 'call'];
+    $u->prepare_body = [TrelloPrepareBody::class, 'call'];
+    $u->prepare_headers = [TrelloPrepareHeaders::class, 'call'];
+    $u->prepare_method = [TrelloPrepareMethod::class, 'call'];
+    $u->prepare_params = [TrelloPrepareParams::class, 'call'];
+    $u->prepare_path = [TrelloPreparePath::class, 'call'];
+    $u->prepare_query = [TrelloPrepareQuery::class, 'call'];
+    $u->graphql_body = [TrelloGraphql::class, 'body'];
+    $u->graphql_errors = [TrelloGraphql::class, 'errors'];
+    $u->result_basic = [TrelloResultBasic::class, 'call'];
+    $u->result_body = [TrelloResultBody::class, 'call'];
+    $u->result_headers = [TrelloResultHeaders::class, 'call'];
+    $u->transform_request = [TrelloTransformRequest::class, 'call'];
+    $u->transform_response = [TrelloTransformResponse::class, 'call'];
+});

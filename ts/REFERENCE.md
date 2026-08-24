@@ -125,7 +125,7 @@ const board = client.Board()
 | `desc` | `string` | No |  |
 | `descData` | `string` | No |  |
 | `enterpriseOwned` | `boolean` | No |  |
-| `fullName` | `string` | No |  |
+| `fullName` | `string` | No | The full name of the user to as a member of the board. |
 | `id` | `string` | Yes |  |
 | `idMemberCreator` | `string` | No |  |
 | `idOrganization` | `string` | No |  |
@@ -134,7 +134,7 @@ const board = client.Board()
 | `labelNames` | `Record<string, any>` | No |  |
 | `limits` | `Record<string, any>` | No |  |
 | `memberships` | `string` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | The name of the board. |
 | `pinned` | `boolean` | No |  |
 | `powerUps` | `string` | No |  |
 | `prefs` | `Record<string, any>` | No |  |

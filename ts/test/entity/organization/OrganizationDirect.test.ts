@@ -38,18 +38,39 @@ describe('OrganizationDirect', async () => {
   test('direct-load-organization', async (t: any) => {
     const setup = directSetup({ id: 'direct01' })
     if (maybeSkipControl(t, 'direct', 'direct-load-organization', setup.live)) return
+    if (skipIfMissingIds(t, setup, ["field01"])) return
     const { client, calls } = setup
 
     const params: any = {}
     const query: any = {}
     if (setup.live) {
-      params.notification_id = "5abbe4b7ddc1b351ef961414"
+      const listResult: any = await client.direct({
+        path: 'enterprises/{enterpris_id}/organizations',
+        method: 'GET',
+        params: {
+        enterpris_id: setup.idmap['enterpris01'],
+        },
+      })
+      if (!listResult.ok) {
+        return // skip: list call failed (likely synthetic IDs against live API)
+      }
+      const listArr = unwrapListData(listResult.data)
+      if (null == listArr || listArr.length === 0) {
+        return // skip: no entities to load in live mode
+      }
+      const candidateId = listArr[0]?.id ?? listArr[0]?.id
+      if (null == candidateId) {
+        return // skip: list response shape does not expose load identifier
+      }
+      params.id = candidateId
+      params.field = setup.idmap['field01']
     } else {
-      params.notification_id = 'direct01'
+      params.field = 'direct01'
+      params.id = 'direct02'
     }
 
     const result: any = await client.direct({
-      path: 'notifications/{notification_id}/organization',
+      path: 'organizations/{id}/{field}',
       method: 'GET',
       params,
       query,
@@ -70,6 +91,7 @@ describe('OrganizationDirect', async () => {
       assert(calls.length === 1)
       assert(calls[0].init.method === 'GET')
       assert(calls[0].url.includes('direct01'))
+      assert(calls[0].url.includes('direct02'))
     }
   })
 

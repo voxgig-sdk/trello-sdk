@@ -28,11 +28,18 @@ declare class Config {
             fields: ({
                 name: string;
                 type: string;
+                short?: undefined;
+                req?: undefined;
+            } | {
+                name: string;
+                short: string;
+                type: string;
                 req?: undefined;
             } | {
                 name: string;
                 req: boolean;
                 type: string;
+                short?: undefined;
             })[];
             name: string;
             op: {

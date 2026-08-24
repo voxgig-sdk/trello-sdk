@@ -341,7 +341,7 @@ The `prepare()` method returns:
 | `desc` |  |
 | `descData` |  |
 | `enterpriseOwned` |  |
-| `fullName` |  |
+| `fullName` | The full name of the user to as a member of the board. |
 | `id` |  |
 | `idMemberCreator` |  |
 | `idOrganization` |  |
@@ -350,7 +350,7 @@ The `prepare()` method returns:
 | `labelNames` |  |
 | `limits` |  |
 | `memberships` |  |
-| `name` |  |
+| `name` | The name of the board. |
 | `pinned` |  |
 | `powerUps` |  |
 | `prefs` |  |
@@ -396,7 +396,7 @@ Create an instance: `const board = client.Board()`
 | `desc` | `string` |  |
 | `descData` | `string` |  |
 | `enterpriseOwned` | `boolean` |  |
-| `fullName` | `string` |  |
+| `fullName` | `string` | The full name of the user to as a member of the board. |
 | `id` | `string` |  |
 | `idMemberCreator` | `string` |  |
 | `idOrganization` | `string` |  |
@@ -405,7 +405,7 @@ Create an instance: `const board = client.Board()`
 | `labelNames` | `Record<string, any>` |  |
 | `limits` | `Record<string, any>` |  |
 | `memberships` | `string` |  |
-| `name` | `string` |  |
+| `name` | `string` | The name of the board. |
 | `pinned` | `boolean` |  |
 | `powerUps` | `string` |  |
 | `prefs` | `Record<string, any>` |  |

@@ -63,7 +63,6 @@ describe('OrganizationEntity', async () => {
     let organization_ref01_data = setup.data.new.organization['organization_ref01']
     organization_ref01_data['action_id'] = setup.idmap['action01']
     organization_ref01_data['enterpris_id'] = setup.idmap['enterpris01']
-    organization_ref01_data['field'] = setup.idmap['field01']
     organization_ref01_data['member_id'] = setup.idmap['member01']
 
     organization_ref01_data = (await organization_ref01_ent.create(organization_ref01_data)).data()

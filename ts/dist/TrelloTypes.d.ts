@@ -407,7 +407,8 @@ export interface CheckItem {
     state?: string;
 }
 export interface CheckItemLoadMatch {
-    checklist_id: string;
+    card_id: string;
+    id: string;
 }
 export interface CheckItemUpdateData {
     card_id?: string;
@@ -999,7 +1000,8 @@ export interface Membership {
     member?: Record<string, any>;
 }
 export interface MembershipLoadMatch {
-    board_id: string;
+    id: string;
+    organization_id: string;
 }
 export interface MembershipListMatch {
     organization_id: string;
@@ -1071,9 +1073,9 @@ export interface NotificationChannelSettingListMatch {
     member_id: string;
 }
 export interface NotificationChannelSettingUpdateData {
+    channel: string;
     member_id: string;
     blockedKeys?: any[];
-    channel?: string;
     id?: string;
     idMember?: string;
 }

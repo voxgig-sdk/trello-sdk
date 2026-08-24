@@ -71,6 +71,7 @@ class Config {
                 },
                 {
                     "name": "fullName",
+                    "short": "The full name of the user to as a member of the board.",
                     "type": "`$STRING`"
                 },
                 {
@@ -108,6 +109,7 @@ class Config {
                 },
                 {
                     "name": "name",
+                    "short": "The name of the board.",
                     "type": "`$STRING`"
                 },
                 {

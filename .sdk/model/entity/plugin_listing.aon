@@ -1,0 +1,149 @@
+# Entity: plugin_listing
+
+main: kit: entity: plugin_listing: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: false
+      short: "The description to show for the given locale"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "locale"
+      req: false
+      short: "The locale that this listing should be displayed for."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "The name to use for the given locale."
+      type: "`$STRING`"
+    }
+    {
+      name: "overview"
+      req: false
+      short: "The overview to show for the given locale."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "plugin_listing"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id_plugin"
+                orig: "id_plugin"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/plugins/{idPlugin}/listing"
+          parts: [
+            "plugins"
+            "{id_plugin}"
+            "listing"
+          ]
+          rename: {
+            param: {
+              idPlugin: "id_plugin"
+            }
+          }
+          select: {
+            exist: [
+              "id_plugin"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id"
+                orig: "id_listing"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "id_plugin"
+                orig: "id_plugin"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/plugins/{idPlugin}/listings/{idListing}"
+          parts: [
+            "plugins"
+            "{id_plugin}"
+            "listings"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              idListing: "id"
+              idPlugin: "id_plugin"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "id_plugin"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "plugin"
+      ]
+    ]
+  }
+
+
+
+}

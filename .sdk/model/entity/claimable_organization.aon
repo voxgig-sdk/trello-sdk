@@ -1,0 +1,152 @@
+# Entity: claimable_organization
+
+main: kit: entity: claimable_organization: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "activeMembershipCount"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "dateLastActive"
+      req: false
+      short: "The date of the most recent activity on any of the boards in the workspace."
+      type: "`$STRING`"
+    }
+    {
+      name: "displayName"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "idActiveAdmins"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "logoUrl"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "products"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "claimable_organization"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "5abbe4b7ddc1b351ef961414"
+                kind: "param"
+                name: "enterpris_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "active_since"
+                orig: "active_since"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "cursor"
+                orig: "cursor"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "inactive_since"
+                orig: "inactive_since"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "name"
+                orig: "name"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/enterprises/{id}/claimableOrganizations"
+          parts: [
+            "enterprises"
+            "{enterpris_id}"
+            "claimableOrganizations"
+          ]
+          rename: {
+            param: {
+              id: "enterpris_id"
+            }
+          }
+          select: {
+            exist: [
+              "active_since"
+              "cursor"
+              "enterpris_id"
+              "inactive_since"
+              "limit"
+              "name"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.organizations`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "enterpris"
+      ]
+    ]
+  }
+
+
+
+}

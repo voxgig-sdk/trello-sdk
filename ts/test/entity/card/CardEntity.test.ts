@@ -63,7 +63,6 @@ describe('CardEntity', async () => {
     let card_ref01_data = setup.data.new.card['card_ref01']
     card_ref01_data['action_id'] = setup.idmap['action01']
     card_ref01_data['board_id'] = setup.idmap['board01']
-    card_ref01_data['field'] = setup.idmap['field01']
     card_ref01_data['list_id'] = setup.idmap['list01']
     card_ref01_data['member_id'] = setup.idmap['member01']
 
