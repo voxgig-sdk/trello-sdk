@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "transferrable_organization": {
+      "TRANSFERRABLE_ORGANIZATION00": {
+        "newBillableMembers": [],
+        "restrictedMembers": [],
+        "transferrable": true,
+        "enterpris_id": "ENTERPRIS01",
+        "id": "TRANSFERRABLE_ORGANIZATION00"
+      },
+      "TRANSFERRABLE_ORGANIZATION01": {
+        "newBillableMembers": [],
+        "restrictedMembers": [],
+        "transferrable": true,
+        "enterpris_id": "ENTERPRIS01",
+        "id": "TRANSFERRABLE_ORGANIZATION01"
+      },
+      "TRANSFERRABLE_ORGANIZATION02": {
+        "newBillableMembers": [],
+        "restrictedMembers": [],
+        "transferrable": true,
+        "enterpris_id": "ENTERPRIS01",
+        "id": "TRANSFERRABLE_ORGANIZATION02"
+      }
+    }
+  },
+  "new": {
+    "transferrable_organization": {
+      "transferrable_organization_ref01": {
+        "newBillableMembers": [],
+        "restrictedMembers": [],
+        "transferrable": true
+      }
+    }
+  }
+}

@@ -27,7 +27,7 @@
       "docs": {},
       "entity": {
         "action": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -1000,7 +1000,7 @@
           }
         },
         "action_reactions_summary": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -1061,7 +1061,7 @@
           }
         },
         "admin": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -1190,7 +1190,7 @@
           }
         },
         "application": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -1206,7 +1206,7 @@
           }
         },
         "application_compliance": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -1261,7 +1261,7 @@
           }
         },
         "associated_domain": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -1323,7 +1323,7 @@
           }
         },
         "attachment": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -1550,7 +1550,7 @@
           }
         },
         "batch": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -3137,7 +3137,7 @@
           }
         },
         "board_background": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -3636,7 +3636,7 @@
           }
         },
         "board_plugin": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -3709,7 +3709,7 @@
           }
         },
         "board_star": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -4085,7 +4085,7 @@
           }
         },
         "bulk": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -4259,7 +4259,7 @@
           }
         },
         "card": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -5994,7 +5994,7 @@
           }
         },
         "card_check_item_state": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -6058,7 +6058,7 @@
           }
         },
         "card_list": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -6122,7 +6122,7 @@
           }
         },
         "check_item": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -6677,7 +6677,7 @@
           }
         },
         "checklist": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -7293,7 +7293,7 @@
           }
         },
         "claimable_organization": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -7455,7 +7455,7 @@
           }
         },
         "custom_board_background": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -7527,7 +7527,7 @@
           }
         },
         "custom_emoji": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -7743,7 +7743,7 @@
           }
         },
         "custom_field": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -8143,7 +8143,7 @@
           }
         },
         "custom_field_item": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -8239,7 +8239,7 @@
           }
         },
         "custom_sticker": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -8502,7 +8502,7 @@
           }
         },
         "email_position": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -8575,7 +8575,7 @@
           }
         },
         "emoji": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -8707,7 +8707,7 @@
           }
         },
         "enterpris": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -9104,7 +9104,7 @@
           }
         },
         "enterpris_signup_url": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -9205,7 +9205,7 @@
           }
         },
         "enterprise_admin": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -9301,7 +9301,7 @@
           }
         },
         "enterprise_audit_log": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -9399,7 +9399,7 @@
           }
         },
         "export": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -9788,7 +9788,7 @@
           }
         },
         "export_download": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -9863,7 +9863,7 @@
           }
         },
         "generate": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -9964,7 +9964,7 @@
           }
         },
         "id_email_list": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -10038,7 +10038,7 @@
           }
         },
         "id_label": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -10111,7 +10111,7 @@
           }
         },
         "id_member": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -10184,7 +10184,7 @@
           }
         },
         "label": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -10513,7 +10513,7 @@
           }
         },
         "list": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -11013,7 +11013,7 @@
           }
         },
         "member": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -12961,7 +12961,7 @@
           }
         },
         "member_privacy": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -13023,7 +13023,7 @@
           }
         },
         "members_voted": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -13152,7 +13152,7 @@
           }
         },
         "membership": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -13654,7 +13654,7 @@
           }
         },
         "most_recent": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -13670,7 +13670,7 @@
           }
         },
         "new_billable_guest": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -13743,7 +13743,7 @@
           }
         },
         "notification": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -14306,7 +14306,7 @@
           }
         },
         "notification_channel_setting": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -14616,7 +14616,7 @@
           }
         },
         "notification_list": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -14680,7 +14680,7 @@
           }
         },
         "notification_member_creator": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -14744,7 +14744,7 @@
           }
         },
         "notifications_channel_setting": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -14763,7 +14763,7 @@
           }
         },
         "option": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -14930,7 +14930,7 @@
           }
         },
         "org_invite_restrict": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -14992,7 +14992,7 @@
           }
         },
         "organization": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -15948,7 +15948,7 @@
           }
         },
         "pending_organization": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -16082,7 +16082,7 @@
           }
         },
         "plugin": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -16280,7 +16280,7 @@
           }
         },
         "plugin_data": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -16388,7 +16388,7 @@
           }
         },
         "plugin_listing": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -16544,7 +16544,7 @@
           }
         },
         "reaction": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -16753,7 +16753,7 @@
           }
         },
         "read": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -16814,7 +16814,7 @@
           }
         },
         "saved_search": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -17173,7 +17173,7 @@
           }
         },
         "search": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -17419,7 +17419,7 @@
           }
         },
         "show_sidebar": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -17492,7 +17492,7 @@
           }
         },
         "show_sidebar_activity": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -17565,7 +17565,7 @@
           }
         },
         "show_sidebar_board_action": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -17638,7 +17638,7 @@
           }
         },
         "show_sidebar_member": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -17711,7 +17711,7 @@
           }
         },
         "sticker": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -18006,7 +18006,7 @@
           }
         },
         "tag": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -18120,7 +18120,7 @@
           }
         },
         "token": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -18345,7 +18345,7 @@
           }
         },
         "transferrable_organization": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -18438,7 +18438,7 @@
           }
         },
         "trello_list": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -18723,7 +18723,7 @@
           }
         },
         "webhook": {
-          "active": false,
+          "active": true,
           "alias": {
             "field": {}
           },
@@ -19421,14 +19421,12 @@
             "py": {
               "deps": {}
             },
-            "seneca-provider": {
-              "deps": {}
-            },
             "ts": {
               "deps": {}
             }
           },
           "title": "In-memory mock transport for testing without a live server",
+          "transport": "base",
           "version": "0.0.1"
         }
       },
@@ -22994,6 +22992,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -23052,6 +23051,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -23126,6 +23126,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -23206,6 +23207,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -23269,6 +23271,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -23327,6 +23330,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -23391,6 +23395,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -23422,132 +23427,6 @@
           },
           "srcfeature": false,
           "title": "Python"
-        },
-        "seneca-provider": {
-          "active": true,
-          "author": {
-            "name": "",
-            "url": ""
-          },
-          "base": "",
-          "comment": {
-            "line": "//"
-          },
-          "deps": {
-            "@seneca/doc": {
-              "active": true,
-              "kind": "dev",
-              "version": "^8.0.0"
-            },
-            "@seneca/env": {
-              "active": true,
-              "kind": "peer",
-              "version": ">=0.4"
-            },
-            "@seneca/maintain": {
-              "active": true,
-              "kind": "prod",
-              "version": "^0.1.0"
-            },
-            "@seneca/provider": {
-              "active": true,
-              "kind": "peer",
-              "version": ">=4"
-            },
-            "@types/node": {
-              "active": true,
-              "kind": "dev",
-              "version": "^24.0.0"
-            },
-            "seneca": {
-              "active": true,
-              "kind": "peer,dev",
-              "version": ">=3||>=4.0.0-rc2"
-            },
-            "seneca-entity": {
-              "active": true,
-              "kind": "peer",
-              "version": ">=26"
-            },
-            "seneca-msg-test": {
-              "active": true,
-              "kind": "dev",
-              "version": "^4.1.0"
-            },
-            "seneca-promisify": {
-              "active": true,
-              "kind": "peer",
-              "version": ">=3"
-            },
-            "typescript": {
-              "active": true,
-              "kind": "dev",
-              "version": "^5.4.5"
-            }
-          },
-          "ext": "ts",
-          "feature": {
-            "fullset": [],
-            "trim": true
-          },
-          "module": {
-            "goversion": "",
-            "name": "trello",
-            "package": "",
-            "path": ""
-          },
-          "name": "seneca-provider",
-          "origname": "",
-          "output": {
-            "adopt": false,
-            "path": "../../seneca/trello-provider",
-            "repo": "",
-            "sdkrel": "../../voxgig-sdk/trello-sdk"
-          },
-          "package": "",
-          "phase": {
-            "agentguide": {
-              "active": false
-            },
-            "entity": {
-              "active": false
-            },
-            "feature": {
-              "active": false
-            },
-            "readme": {
-              "active": false
-            },
-            "test": {
-              "active": false
-            }
-          },
-          "publish": {
-            "registry": {
-              "active": false,
-              "name": "npm",
-              "package": "",
-              "state": "pending",
-              "url": "https://registry.npmjs.org",
-              "vault": {
-                "alias": "npm",
-                "env": "",
-                "recipe": "npm"
-              }
-            },
-            "tag": {
-              "active": true,
-              "prefix": "",
-              "vault": {
-                "alias": "github",
-                "recipe": "github"
-              },
-              "via": "port"
-            },
-            "version": "0.0.1"
-          },
-          "srcfeature": false,
-          "title": "Seneca Provider"
         },
         "ts": {
           "active": true,
@@ -23591,6 +23470,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""

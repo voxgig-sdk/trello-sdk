@@ -307,10 +307,424 @@ class TrelloSDK:
         return res
 
 
+    def Action(self, data=None) -> "ActionEntity":
+        """Entity factory: client.Action().list() / client.Action().load({"id": ...})."""
+        from trello_sdk.entity.action_entity import ActionEntity
+        return ActionEntity(self, data)
+
+
+    def ActionReactionsSummary(self, data=None) -> "ActionReactionsSummaryEntity":
+        """Entity factory: client.ActionReactionsSummary().list() / client.ActionReactionsSummary().load({"id": ...})."""
+        from trello_sdk.entity.action_reactions_summary_entity import ActionReactionsSummaryEntity
+        return ActionReactionsSummaryEntity(self, data)
+
+
+    def Admin(self, data=None) -> "AdminEntity":
+        """Entity factory: client.Admin().list() / client.Admin().load({"id": ...})."""
+        from trello_sdk.entity.admin_entity import AdminEntity
+        return AdminEntity(self, data)
+
+
+    def Application(self, data=None) -> "ApplicationEntity":
+        """Entity factory: client.Application().list() / client.Application().load({"id": ...})."""
+        from trello_sdk.entity.application_entity import ApplicationEntity
+        return ApplicationEntity(self, data)
+
+
+    def ApplicationCompliance(self, data=None) -> "ApplicationComplianceEntity":
+        """Entity factory: client.ApplicationCompliance().list() / client.ApplicationCompliance().load({"id": ...})."""
+        from trello_sdk.entity.application_compliance_entity import ApplicationComplianceEntity
+        return ApplicationComplianceEntity(self, data)
+
+
+    def AssociatedDomain(self, data=None) -> "AssociatedDomainEntity":
+        """Entity factory: client.AssociatedDomain().list() / client.AssociatedDomain().load({"id": ...})."""
+        from trello_sdk.entity.associated_domain_entity import AssociatedDomainEntity
+        return AssociatedDomainEntity(self, data)
+
+
+    def Attachment(self, data=None) -> "AttachmentEntity":
+        """Entity factory: client.Attachment().list() / client.Attachment().load({"id": ...})."""
+        from trello_sdk.entity.attachment_entity import AttachmentEntity
+        return AttachmentEntity(self, data)
+
+
+    def Batch(self, data=None) -> "BatchEntity":
+        """Entity factory: client.Batch().list() / client.Batch().load({"id": ...})."""
+        from trello_sdk.entity.batch_entity import BatchEntity
+        return BatchEntity(self, data)
+
+
     def Board(self, data=None) -> "BoardEntity":
         """Entity factory: client.Board().list() / client.Board().load({"id": ...})."""
         from trello_sdk.entity.board_entity import BoardEntity
         return BoardEntity(self, data)
+
+
+    def BoardBackground(self, data=None) -> "BoardBackgroundEntity":
+        """Entity factory: client.BoardBackground().list() / client.BoardBackground().load({"id": ...})."""
+        from trello_sdk.entity.board_background_entity import BoardBackgroundEntity
+        return BoardBackgroundEntity(self, data)
+
+
+    def BoardPlugin(self, data=None) -> "BoardPluginEntity":
+        """Entity factory: client.BoardPlugin().list() / client.BoardPlugin().load({"id": ...})."""
+        from trello_sdk.entity.board_plugin_entity import BoardPluginEntity
+        return BoardPluginEntity(self, data)
+
+
+    def BoardStar(self, data=None) -> "BoardStarEntity":
+        """Entity factory: client.BoardStar().list() / client.BoardStar().load({"id": ...})."""
+        from trello_sdk.entity.board_star_entity import BoardStarEntity
+        return BoardStarEntity(self, data)
+
+
+    def Bulk(self, data=None) -> "BulkEntity":
+        """Entity factory: client.Bulk().list() / client.Bulk().load({"id": ...})."""
+        from trello_sdk.entity.bulk_entity import BulkEntity
+        return BulkEntity(self, data)
+
+
+    def Card(self, data=None) -> "CardEntity":
+        """Entity factory: client.Card().list() / client.Card().load({"id": ...})."""
+        from trello_sdk.entity.card_entity import CardEntity
+        return CardEntity(self, data)
+
+
+    def CardCheckItemState(self, data=None) -> "CardCheckItemStateEntity":
+        """Entity factory: client.CardCheckItemState().list() / client.CardCheckItemState().load({"id": ...})."""
+        from trello_sdk.entity.card_check_item_state_entity import CardCheckItemStateEntity
+        return CardCheckItemStateEntity(self, data)
+
+
+    def CardList(self, data=None) -> "CardListEntity":
+        """Entity factory: client.CardList().list() / client.CardList().load({"id": ...})."""
+        from trello_sdk.entity.card_list_entity import CardListEntity
+        return CardListEntity(self, data)
+
+
+    def CheckItem(self, data=None) -> "CheckItemEntity":
+        """Entity factory: client.CheckItem().list() / client.CheckItem().load({"id": ...})."""
+        from trello_sdk.entity.check_item_entity import CheckItemEntity
+        return CheckItemEntity(self, data)
+
+
+    def Checklist(self, data=None) -> "ChecklistEntity":
+        """Entity factory: client.Checklist().list() / client.Checklist().load({"id": ...})."""
+        from trello_sdk.entity.checklist_entity import ChecklistEntity
+        return ChecklistEntity(self, data)
+
+
+    def ClaimableOrganization(self, data=None) -> "ClaimableOrganizationEntity":
+        """Entity factory: client.ClaimableOrganization().list() / client.ClaimableOrganization().load({"id": ...})."""
+        from trello_sdk.entity.claimable_organization_entity import ClaimableOrganizationEntity
+        return ClaimableOrganizationEntity(self, data)
+
+
+    def CustomBoardBackground(self, data=None) -> "CustomBoardBackgroundEntity":
+        """Entity factory: client.CustomBoardBackground().list() / client.CustomBoardBackground().load({"id": ...})."""
+        from trello_sdk.entity.custom_board_background_entity import CustomBoardBackgroundEntity
+        return CustomBoardBackgroundEntity(self, data)
+
+
+    def CustomEmoji(self, data=None) -> "CustomEmojiEntity":
+        """Entity factory: client.CustomEmoji().list() / client.CustomEmoji().load({"id": ...})."""
+        from trello_sdk.entity.custom_emoji_entity import CustomEmojiEntity
+        return CustomEmojiEntity(self, data)
+
+
+    def CustomField(self, data=None) -> "CustomFieldEntity":
+        """Entity factory: client.CustomField().list() / client.CustomField().load({"id": ...})."""
+        from trello_sdk.entity.custom_field_entity import CustomFieldEntity
+        return CustomFieldEntity(self, data)
+
+
+    def CustomFieldItem(self, data=None) -> "CustomFieldItemEntity":
+        """Entity factory: client.CustomFieldItem().list() / client.CustomFieldItem().load({"id": ...})."""
+        from trello_sdk.entity.custom_field_item_entity import CustomFieldItemEntity
+        return CustomFieldItemEntity(self, data)
+
+
+    def CustomSticker(self, data=None) -> "CustomStickerEntity":
+        """Entity factory: client.CustomSticker().list() / client.CustomSticker().load({"id": ...})."""
+        from trello_sdk.entity.custom_sticker_entity import CustomStickerEntity
+        return CustomStickerEntity(self, data)
+
+
+    def EmailPosition(self, data=None) -> "EmailPositionEntity":
+        """Entity factory: client.EmailPosition().list() / client.EmailPosition().load({"id": ...})."""
+        from trello_sdk.entity.email_position_entity import EmailPositionEntity
+        return EmailPositionEntity(self, data)
+
+
+    def Emoji(self, data=None) -> "EmojiEntity":
+        """Entity factory: client.Emoji().list() / client.Emoji().load({"id": ...})."""
+        from trello_sdk.entity.emoji_entity import EmojiEntity
+        return EmojiEntity(self, data)
+
+
+    def Enterpris(self, data=None) -> "EnterprisEntity":
+        """Entity factory: client.Enterpris().list() / client.Enterpris().load({"id": ...})."""
+        from trello_sdk.entity.enterpris_entity import EnterprisEntity
+        return EnterprisEntity(self, data)
+
+
+    def EnterprisSignupUrl(self, data=None) -> "EnterprisSignupUrlEntity":
+        """Entity factory: client.EnterprisSignupUrl().list() / client.EnterprisSignupUrl().load({"id": ...})."""
+        from trello_sdk.entity.enterpris_signup_url_entity import EnterprisSignupUrlEntity
+        return EnterprisSignupUrlEntity(self, data)
+
+
+    def EnterpriseAdmin(self, data=None) -> "EnterpriseAdminEntity":
+        """Entity factory: client.EnterpriseAdmin().list() / client.EnterpriseAdmin().load({"id": ...})."""
+        from trello_sdk.entity.enterprise_admin_entity import EnterpriseAdminEntity
+        return EnterpriseAdminEntity(self, data)
+
+
+    def EnterpriseAuditLog(self, data=None) -> "EnterpriseAuditLogEntity":
+        """Entity factory: client.EnterpriseAuditLog().list() / client.EnterpriseAuditLog().load({"id": ...})."""
+        from trello_sdk.entity.enterprise_audit_log_entity import EnterpriseAuditLogEntity
+        return EnterpriseAuditLogEntity(self, data)
+
+
+    def Export(self, data=None) -> "ExportEntity":
+        """Entity factory: client.Export().list() / client.Export().load({"id": ...})."""
+        from trello_sdk.entity.export_entity import ExportEntity
+        return ExportEntity(self, data)
+
+
+    def ExportDownload(self, data=None) -> "ExportDownloadEntity":
+        """Entity factory: client.ExportDownload().list() / client.ExportDownload().load({"id": ...})."""
+        from trello_sdk.entity.export_download_entity import ExportDownloadEntity
+        return ExportDownloadEntity(self, data)
+
+
+    def Generate(self, data=None) -> "GenerateEntity":
+        """Entity factory: client.Generate().list() / client.Generate().load({"id": ...})."""
+        from trello_sdk.entity.generate_entity import GenerateEntity
+        return GenerateEntity(self, data)
+
+
+    def IdEmailList(self, data=None) -> "IdEmailListEntity":
+        """Entity factory: client.IdEmailList().list() / client.IdEmailList().load({"id": ...})."""
+        from trello_sdk.entity.id_email_list_entity import IdEmailListEntity
+        return IdEmailListEntity(self, data)
+
+
+    def IdLabel(self, data=None) -> "IdLabelEntity":
+        """Entity factory: client.IdLabel().list() / client.IdLabel().load({"id": ...})."""
+        from trello_sdk.entity.id_label_entity import IdLabelEntity
+        return IdLabelEntity(self, data)
+
+
+    def IdMember(self, data=None) -> "IdMemberEntity":
+        """Entity factory: client.IdMember().list() / client.IdMember().load({"id": ...})."""
+        from trello_sdk.entity.id_member_entity import IdMemberEntity
+        return IdMemberEntity(self, data)
+
+
+    def Label(self, data=None) -> "LabelEntity":
+        """Entity factory: client.Label().list() / client.Label().load({"id": ...})."""
+        from trello_sdk.entity.label_entity import LabelEntity
+        return LabelEntity(self, data)
+
+
+    def List(self, data=None) -> "ListEntity":
+        """Entity factory: client.List().list() / client.List().load({"id": ...})."""
+        from trello_sdk.entity.list_entity import ListEntity
+        return ListEntity(self, data)
+
+
+    def Member(self, data=None) -> "MemberEntity":
+        """Entity factory: client.Member().list() / client.Member().load({"id": ...})."""
+        from trello_sdk.entity.member_entity import MemberEntity
+        return MemberEntity(self, data)
+
+
+    def MemberPrivacy(self, data=None) -> "MemberPrivacyEntity":
+        """Entity factory: client.MemberPrivacy().list() / client.MemberPrivacy().load({"id": ...})."""
+        from trello_sdk.entity.member_privacy_entity import MemberPrivacyEntity
+        return MemberPrivacyEntity(self, data)
+
+
+    def MembersVoted(self, data=None) -> "MembersVotedEntity":
+        """Entity factory: client.MembersVoted().list() / client.MembersVoted().load({"id": ...})."""
+        from trello_sdk.entity.members_voted_entity import MembersVotedEntity
+        return MembersVotedEntity(self, data)
+
+
+    def Membership(self, data=None) -> "MembershipEntity":
+        """Entity factory: client.Membership().list() / client.Membership().load({"id": ...})."""
+        from trello_sdk.entity.membership_entity import MembershipEntity
+        return MembershipEntity(self, data)
+
+
+    def MostRecent(self, data=None) -> "MostRecentEntity":
+        """Entity factory: client.MostRecent().list() / client.MostRecent().load({"id": ...})."""
+        from trello_sdk.entity.most_recent_entity import MostRecentEntity
+        return MostRecentEntity(self, data)
+
+
+    def NewBillableGuest(self, data=None) -> "NewBillableGuestEntity":
+        """Entity factory: client.NewBillableGuest().list() / client.NewBillableGuest().load({"id": ...})."""
+        from trello_sdk.entity.new_billable_guest_entity import NewBillableGuestEntity
+        return NewBillableGuestEntity(self, data)
+
+
+    def Notification(self, data=None) -> "NotificationEntity":
+        """Entity factory: client.Notification().list() / client.Notification().load({"id": ...})."""
+        from trello_sdk.entity.notification_entity import NotificationEntity
+        return NotificationEntity(self, data)
+
+
+    def NotificationChannelSetting(self, data=None) -> "NotificationChannelSettingEntity":
+        """Entity factory: client.NotificationChannelSetting().list() / client.NotificationChannelSetting().load({"id": ...})."""
+        from trello_sdk.entity.notification_channel_setting_entity import NotificationChannelSettingEntity
+        return NotificationChannelSettingEntity(self, data)
+
+
+    def NotificationList(self, data=None) -> "NotificationListEntity":
+        """Entity factory: client.NotificationList().list() / client.NotificationList().load({"id": ...})."""
+        from trello_sdk.entity.notification_list_entity import NotificationListEntity
+        return NotificationListEntity(self, data)
+
+
+    def NotificationMemberCreator(self, data=None) -> "NotificationMemberCreatorEntity":
+        """Entity factory: client.NotificationMemberCreator().list() / client.NotificationMemberCreator().load({"id": ...})."""
+        from trello_sdk.entity.notification_member_creator_entity import NotificationMemberCreatorEntity
+        return NotificationMemberCreatorEntity(self, data)
+
+
+    def NotificationsChannelSetting(self, data=None) -> "NotificationsChannelSettingEntity":
+        """Entity factory: client.NotificationsChannelSetting().list() / client.NotificationsChannelSetting().load({"id": ...})."""
+        from trello_sdk.entity.notifications_channel_setting_entity import NotificationsChannelSettingEntity
+        return NotificationsChannelSettingEntity(self, data)
+
+
+    def Option(self, data=None) -> "OptionEntity":
+        """Entity factory: client.Option().list() / client.Option().load({"id": ...})."""
+        from trello_sdk.entity.option_entity import OptionEntity
+        return OptionEntity(self, data)
+
+
+    def OrgInviteRestrict(self, data=None) -> "OrgInviteRestrictEntity":
+        """Entity factory: client.OrgInviteRestrict().list() / client.OrgInviteRestrict().load({"id": ...})."""
+        from trello_sdk.entity.org_invite_restrict_entity import OrgInviteRestrictEntity
+        return OrgInviteRestrictEntity(self, data)
+
+
+    def Organization(self, data=None) -> "OrganizationEntity":
+        """Entity factory: client.Organization().list() / client.Organization().load({"id": ...})."""
+        from trello_sdk.entity.organization_entity import OrganizationEntity
+        return OrganizationEntity(self, data)
+
+
+    def PendingOrganization(self, data=None) -> "PendingOrganizationEntity":
+        """Entity factory: client.PendingOrganization().list() / client.PendingOrganization().load({"id": ...})."""
+        from trello_sdk.entity.pending_organization_entity import PendingOrganizationEntity
+        return PendingOrganizationEntity(self, data)
+
+
+    def Plugin(self, data=None) -> "PluginEntity":
+        """Entity factory: client.Plugin().list() / client.Plugin().load({"id": ...})."""
+        from trello_sdk.entity.plugin_entity import PluginEntity
+        return PluginEntity(self, data)
+
+
+    def PluginData(self, data=None) -> "PluginDataEntity":
+        """Entity factory: client.PluginData().list() / client.PluginData().load({"id": ...})."""
+        from trello_sdk.entity.plugin_data_entity import PluginDataEntity
+        return PluginDataEntity(self, data)
+
+
+    def PluginListing(self, data=None) -> "PluginListingEntity":
+        """Entity factory: client.PluginListing().list() / client.PluginListing().load({"id": ...})."""
+        from trello_sdk.entity.plugin_listing_entity import PluginListingEntity
+        return PluginListingEntity(self, data)
+
+
+    def Reaction(self, data=None) -> "ReactionEntity":
+        """Entity factory: client.Reaction().list() / client.Reaction().load({"id": ...})."""
+        from trello_sdk.entity.reaction_entity import ReactionEntity
+        return ReactionEntity(self, data)
+
+
+    def Read(self, data=None) -> "ReadEntity":
+        """Entity factory: client.Read().list() / client.Read().load({"id": ...})."""
+        from trello_sdk.entity.read_entity import ReadEntity
+        return ReadEntity(self, data)
+
+
+    def SavedSearch(self, data=None) -> "SavedSearchEntity":
+        """Entity factory: client.SavedSearch().list() / client.SavedSearch().load({"id": ...})."""
+        from trello_sdk.entity.saved_search_entity import SavedSearchEntity
+        return SavedSearchEntity(self, data)
+
+
+    def Search(self, data=None) -> "SearchEntity":
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
+        from trello_sdk.entity.search_entity import SearchEntity
+        return SearchEntity(self, data)
+
+
+    def ShowSidebar(self, data=None) -> "ShowSidebarEntity":
+        """Entity factory: client.ShowSidebar().list() / client.ShowSidebar().load({"id": ...})."""
+        from trello_sdk.entity.show_sidebar_entity import ShowSidebarEntity
+        return ShowSidebarEntity(self, data)
+
+
+    def ShowSidebarActivity(self, data=None) -> "ShowSidebarActivityEntity":
+        """Entity factory: client.ShowSidebarActivity().list() / client.ShowSidebarActivity().load({"id": ...})."""
+        from trello_sdk.entity.show_sidebar_activity_entity import ShowSidebarActivityEntity
+        return ShowSidebarActivityEntity(self, data)
+
+
+    def ShowSidebarBoardAction(self, data=None) -> "ShowSidebarBoardActionEntity":
+        """Entity factory: client.ShowSidebarBoardAction().list() / client.ShowSidebarBoardAction().load({"id": ...})."""
+        from trello_sdk.entity.show_sidebar_board_action_entity import ShowSidebarBoardActionEntity
+        return ShowSidebarBoardActionEntity(self, data)
+
+
+    def ShowSidebarMember(self, data=None) -> "ShowSidebarMemberEntity":
+        """Entity factory: client.ShowSidebarMember().list() / client.ShowSidebarMember().load({"id": ...})."""
+        from trello_sdk.entity.show_sidebar_member_entity import ShowSidebarMemberEntity
+        return ShowSidebarMemberEntity(self, data)
+
+
+    def Sticker(self, data=None) -> "StickerEntity":
+        """Entity factory: client.Sticker().list() / client.Sticker().load({"id": ...})."""
+        from trello_sdk.entity.sticker_entity import StickerEntity
+        return StickerEntity(self, data)
+
+
+    def Tag(self, data=None) -> "TagEntity":
+        """Entity factory: client.Tag().list() / client.Tag().load({"id": ...})."""
+        from trello_sdk.entity.tag_entity import TagEntity
+        return TagEntity(self, data)
+
+
+    def Token(self, data=None) -> "TokenEntity":
+        """Entity factory: client.Token().list() / client.Token().load({"id": ...})."""
+        from trello_sdk.entity.token_entity import TokenEntity
+        return TokenEntity(self, data)
+
+
+    def TransferrableOrganization(self, data=None) -> "TransferrableOrganizationEntity":
+        """Entity factory: client.TransferrableOrganization().list() / client.TransferrableOrganization().load({"id": ...})."""
+        from trello_sdk.entity.transferrable_organization_entity import TransferrableOrganizationEntity
+        return TransferrableOrganizationEntity(self, data)
+
+
+    def TrelloList(self, data=None) -> "TrelloListEntity":
+        """Entity factory: client.TrelloList().list() / client.TrelloList().load({"id": ...})."""
+        from trello_sdk.entity.trello_list_entity import TrelloListEntity
+        return TrelloListEntity(self, data)
+
+
+    def Webhook(self, data=None) -> "WebhookEntity":
+        """Entity factory: client.Webhook().list() / client.Webhook().load({"id": ...})."""
+        from trello_sdk.entity.webhook_entity import WebhookEntity
+        return WebhookEntity(self, data)
 
 
 
@@ -340,4 +754,73 @@ class TrelloSDK:
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from trello_sdk.entity.action_entity import ActionEntity
+    from trello_sdk.entity.action_reactions_summary_entity import ActionReactionsSummaryEntity
+    from trello_sdk.entity.admin_entity import AdminEntity
+    from trello_sdk.entity.application_entity import ApplicationEntity
+    from trello_sdk.entity.application_compliance_entity import ApplicationComplianceEntity
+    from trello_sdk.entity.associated_domain_entity import AssociatedDomainEntity
+    from trello_sdk.entity.attachment_entity import AttachmentEntity
+    from trello_sdk.entity.batch_entity import BatchEntity
     from trello_sdk.entity.board_entity import BoardEntity
+    from trello_sdk.entity.board_background_entity import BoardBackgroundEntity
+    from trello_sdk.entity.board_plugin_entity import BoardPluginEntity
+    from trello_sdk.entity.board_star_entity import BoardStarEntity
+    from trello_sdk.entity.bulk_entity import BulkEntity
+    from trello_sdk.entity.card_entity import CardEntity
+    from trello_sdk.entity.card_check_item_state_entity import CardCheckItemStateEntity
+    from trello_sdk.entity.card_list_entity import CardListEntity
+    from trello_sdk.entity.check_item_entity import CheckItemEntity
+    from trello_sdk.entity.checklist_entity import ChecklistEntity
+    from trello_sdk.entity.claimable_organization_entity import ClaimableOrganizationEntity
+    from trello_sdk.entity.custom_board_background_entity import CustomBoardBackgroundEntity
+    from trello_sdk.entity.custom_emoji_entity import CustomEmojiEntity
+    from trello_sdk.entity.custom_field_entity import CustomFieldEntity
+    from trello_sdk.entity.custom_field_item_entity import CustomFieldItemEntity
+    from trello_sdk.entity.custom_sticker_entity import CustomStickerEntity
+    from trello_sdk.entity.email_position_entity import EmailPositionEntity
+    from trello_sdk.entity.emoji_entity import EmojiEntity
+    from trello_sdk.entity.enterpris_entity import EnterprisEntity
+    from trello_sdk.entity.enterpris_signup_url_entity import EnterprisSignupUrlEntity
+    from trello_sdk.entity.enterprise_admin_entity import EnterpriseAdminEntity
+    from trello_sdk.entity.enterprise_audit_log_entity import EnterpriseAuditLogEntity
+    from trello_sdk.entity.export_entity import ExportEntity
+    from trello_sdk.entity.export_download_entity import ExportDownloadEntity
+    from trello_sdk.entity.generate_entity import GenerateEntity
+    from trello_sdk.entity.id_email_list_entity import IdEmailListEntity
+    from trello_sdk.entity.id_label_entity import IdLabelEntity
+    from trello_sdk.entity.id_member_entity import IdMemberEntity
+    from trello_sdk.entity.label_entity import LabelEntity
+    from trello_sdk.entity.list_entity import ListEntity
+    from trello_sdk.entity.member_entity import MemberEntity
+    from trello_sdk.entity.member_privacy_entity import MemberPrivacyEntity
+    from trello_sdk.entity.members_voted_entity import MembersVotedEntity
+    from trello_sdk.entity.membership_entity import MembershipEntity
+    from trello_sdk.entity.most_recent_entity import MostRecentEntity
+    from trello_sdk.entity.new_billable_guest_entity import NewBillableGuestEntity
+    from trello_sdk.entity.notification_entity import NotificationEntity
+    from trello_sdk.entity.notification_channel_setting_entity import NotificationChannelSettingEntity
+    from trello_sdk.entity.notification_list_entity import NotificationListEntity
+    from trello_sdk.entity.notification_member_creator_entity import NotificationMemberCreatorEntity
+    from trello_sdk.entity.notifications_channel_setting_entity import NotificationsChannelSettingEntity
+    from trello_sdk.entity.option_entity import OptionEntity
+    from trello_sdk.entity.org_invite_restrict_entity import OrgInviteRestrictEntity
+    from trello_sdk.entity.organization_entity import OrganizationEntity
+    from trello_sdk.entity.pending_organization_entity import PendingOrganizationEntity
+    from trello_sdk.entity.plugin_entity import PluginEntity
+    from trello_sdk.entity.plugin_data_entity import PluginDataEntity
+    from trello_sdk.entity.plugin_listing_entity import PluginListingEntity
+    from trello_sdk.entity.reaction_entity import ReactionEntity
+    from trello_sdk.entity.read_entity import ReadEntity
+    from trello_sdk.entity.saved_search_entity import SavedSearchEntity
+    from trello_sdk.entity.search_entity import SearchEntity
+    from trello_sdk.entity.show_sidebar_entity import ShowSidebarEntity
+    from trello_sdk.entity.show_sidebar_activity_entity import ShowSidebarActivityEntity
+    from trello_sdk.entity.show_sidebar_board_action_entity import ShowSidebarBoardActionEntity
+    from trello_sdk.entity.show_sidebar_member_entity import ShowSidebarMemberEntity
+    from trello_sdk.entity.sticker_entity import StickerEntity
+    from trello_sdk.entity.tag_entity import TagEntity
+    from trello_sdk.entity.token_entity import TokenEntity
+    from trello_sdk.entity.transferrable_organization_entity import TransferrableOrganizationEntity
+    from trello_sdk.entity.trello_list_entity import TrelloListEntity
+    from trello_sdk.entity.webhook_entity import WebhookEntity

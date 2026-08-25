@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "tag": {
+      "TAG00": {
+        "organization_id": "ORGANIZATION01",
+        "id": "TAG00"
+      },
+      "TAG01": {
+        "organization_id": "ORGANIZATION01",
+        "id": "TAG01"
+      },
+      "TAG02": {
+        "organization_id": "ORGANIZATION01",
+        "id": "TAG02"
+      }
+    }
+  },
+  "new": {
+    "tag": {
+      "tag_ref01": {}
+    }
+  }
+}

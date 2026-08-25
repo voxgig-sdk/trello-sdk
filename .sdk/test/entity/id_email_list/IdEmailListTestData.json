@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "id_email_list": {
+      "ID_EMAIL_LIST00": {
+        "board_id": "BOARD01",
+        "id": "ID_EMAIL_LIST00"
+      },
+      "ID_EMAIL_LIST01": {
+        "board_id": "BOARD01",
+        "id": "ID_EMAIL_LIST01"
+      },
+      "ID_EMAIL_LIST02": {
+        "board_id": "BOARD01",
+        "id": "ID_EMAIL_LIST02"
+      }
+    }
+  },
+  "new": {
+    "id_email_list": {
+      "id_email_list_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "token": {
+      "TOKEN00": {
+        "dateCreated": "s3c",
+        "dateExpires": "s3d",
+        "id": "TOKEN00",
+        "idMember": "s3f",
+        "identifier": "s40",
+        "permissions": [],
+        "member_id": "MEMBER01"
+      },
+      "TOKEN01": {
+        "dateCreated": "s78",
+        "dateExpires": "s79",
+        "id": "TOKEN01",
+        "idMember": "s7b",
+        "identifier": "s7c",
+        "permissions": [],
+        "member_id": "MEMBER01"
+      },
+      "TOKEN02": {
+        "dateCreated": "sb4",
+        "dateExpires": "sb5",
+        "id": "TOKEN02",
+        "idMember": "sb7",
+        "identifier": "sb8",
+        "permissions": [],
+        "member_id": "MEMBER01"
+      }
+    }
+  },
+  "new": {
+    "token": {
+      "token_ref01": {
+        "dateCreated": "sf0",
+        "dateExpires": "sf1",
+        "idMember": "sf3",
+        "identifier": "sf4",
+        "permissions": []
+      }
+    }
+  }
+}

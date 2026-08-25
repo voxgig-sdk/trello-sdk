@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "check_item": {
+      "CHECK_ITEM00": {
+        "id": "CHECK_ITEM00",
+        "idChecklist": "s3d",
+        "name": "s3e",
+        "nameData": "s3f",
+        "pos": "s40",
+        "state": "s41",
+        "card_id": "CARD01",
+        "checklist_id": "CHECKLIST01",
+        "id_card": "ID_CARD01"
+      },
+      "CHECK_ITEM01": {
+        "id": "CHECK_ITEM01",
+        "idChecklist": "s79",
+        "name": "s7a",
+        "nameData": "s7b",
+        "pos": "s7c",
+        "state": "s7d",
+        "card_id": "CARD01",
+        "checklist_id": "CHECKLIST01",
+        "id_card": "ID_CARD01"
+      },
+      "CHECK_ITEM02": {
+        "id": "CHECK_ITEM02",
+        "idChecklist": "sb5",
+        "name": "sb6",
+        "nameData": "sb7",
+        "pos": "sb8",
+        "state": "sb9",
+        "card_id": "CARD01",
+        "checklist_id": "CHECKLIST01",
+        "id_card": "ID_CARD01"
+      }
+    }
+  },
+  "new": {
+    "check_item": {
+      "check_item_ref01": {
+        "idChecklist": "sf1",
+        "name": "sf2",
+        "nameData": "sf3",
+        "pos": "sf4",
+        "state": "sf5"
+      }
+    }
+  }
+}

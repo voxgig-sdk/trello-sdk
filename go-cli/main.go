@@ -20,7 +20,7 @@ import (
 const prompt = "trello"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "board"
+const entitiesHelp = "action action_reactions_summary admin application application_compliance associated_domain attachment batch board board_background board_plugin board_star bulk card card_check_item_state card_list check_item checklist claimable_organization custom_board_background custom_emoji custom_field custom_field_item custom_sticker email_position emoji enterpris enterpris_signup_url enterprise_admin enterprise_audit_log export export_download generate id_email_list id_label id_member label list member member_privacy members_voted membership most_recent new_billable_guest notification notification_channel_setting notification_list notification_member_creator notifications_channel_setting option org_invite_restrict organization pending_organization plugin plugin_data plugin_listing reaction read saved_search search show_sidebar show_sidebar_activity show_sidebar_board_action show_sidebar_member sticker tag token transferrable_organization trello_list webhook"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

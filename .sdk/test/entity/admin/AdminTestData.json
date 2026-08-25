@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "admin": {
+      "ADMIN00": {
+        "enterpris_id": "ENTERPRIS01",
+        "id": "ADMIN00"
+      },
+      "ADMIN01": {
+        "enterpris_id": "ENTERPRIS01",
+        "id": "ADMIN01"
+      },
+      "ADMIN02": {
+        "enterpris_id": "ENTERPRIS01",
+        "id": "ADMIN02"
+      }
+    }
+  },
+  "new": {
+    "admin": {
+      "admin_ref01": {}
+    }
+  }
+}

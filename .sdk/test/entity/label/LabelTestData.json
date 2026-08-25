@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "label": {
+      "LABEL00": {
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "id": "LABEL00"
+      },
+      "LABEL01": {
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "id": "LABEL01"
+      },
+      "LABEL02": {
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "id": "LABEL02"
+      }
+    }
+  },
+  "new": {
+    "label": {
+      "label_ref01": {}
+    }
+  }
+}

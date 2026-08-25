@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "bulk": {
+      "BULK00": {
+        "enterpris_id": "ENTERPRIS01",
+        "id": "BULK00"
+      },
+      "BULK01": {
+        "enterpris_id": "ENTERPRIS01",
+        "id": "BULK01"
+      },
+      "BULK02": {
+        "enterpris_id": "ENTERPRIS01",
+        "id": "BULK02"
+      }
+    }
+  },
+  "new": {
+    "bulk": {
+      "bulk_ref01": {}
+    }
+  }
+}

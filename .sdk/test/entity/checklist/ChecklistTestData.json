@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "checklist": {
+      "CHECKLIST00": {
+        "card_id": "CARD01",
+        "field": "FIELD01",
+        "board_id": "BOARD01",
+        "id": "CHECKLIST00"
+      },
+      "CHECKLIST01": {
+        "card_id": "CARD01",
+        "field": "FIELD01",
+        "board_id": "BOARD01",
+        "id": "CHECKLIST01"
+      },
+      "CHECKLIST02": {
+        "card_id": "CARD01",
+        "field": "FIELD01",
+        "board_id": "BOARD01",
+        "id": "CHECKLIST02"
+      }
+    }
+  },
+  "new": {
+    "checklist": {
+      "checklist_ref01": {}
+    }
+  }
+}

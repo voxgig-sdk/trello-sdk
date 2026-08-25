@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "custom_sticker": {
+      "CUSTOM_STICKER00": {
+        "id": "CUSTOM_STICKER00",
+        "scaled": [],
+        "url": "s20",
+        "member_id": "MEMBER01"
+      },
+      "CUSTOM_STICKER01": {
+        "id": "CUSTOM_STICKER01",
+        "scaled": [],
+        "url": "s3e",
+        "member_id": "MEMBER01"
+      },
+      "CUSTOM_STICKER02": {
+        "id": "CUSTOM_STICKER02",
+        "scaled": [],
+        "url": "s5c",
+        "member_id": "MEMBER01"
+      }
+    }
+  },
+  "new": {
+    "custom_sticker": {
+      "custom_sticker_ref01": {
+        "scaled": [],
+        "url": "s7a"
+      }
+    }
+  }
+}

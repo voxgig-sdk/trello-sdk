@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "card_check_item_state": {
+      "CARD_CHECK_ITEM_STATE00": {
+        "id": "CARD_CHECK_ITEM_STATE00"
+      },
+      "CARD_CHECK_ITEM_STATE01": {
+        "id": "CARD_CHECK_ITEM_STATE01"
+      },
+      "CARD_CHECK_ITEM_STATE02": {
+        "id": "CARD_CHECK_ITEM_STATE02"
+      }
+    }
+  },
+  "new": {
+    "card_check_item_state": {
+      "card_check_item_state_ref01": {}
+    }
+  }
+}

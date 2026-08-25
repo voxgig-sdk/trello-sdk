@@ -27,11 +27,11 @@ Tool-call arguments (what an agent sends):
 
 ```jsonc
 // trello_list: first page of records
-{ "entity": "board" }
-{ "entity": "board", "query": { } }
+{ "entity": "action" }
+{ "entity": "action", "query": { } }
 
 // trello_load: one record by id
-{ "entity": "board", "query": { "id": 1 } }
+{ "entity": "action", "query": { "id": 1 } }
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -60,8 +60,8 @@ Tool-call arguments (what an agent sends):
    ```
 
 4. **Restart Claude Code.** The `trello_list` and `trello_load` tools now appear
-   in new sessions. Ask the agent to *"list board using trello"*
-   and it calls `trello_list` with `{"entity":"board"}`.
+   in new sessions. Ask the agent to *"list action using trello"*
+   and it calls `trello_list` with `{"entity":"action"}`.
 
 ## How-to guides
 
@@ -92,7 +92,7 @@ Args: `entity` (required), `query` (optional filter map). Returns the first
 page of records as JSON:
 
 ```jsonc
-{ "entity": "board" }
+{ "entity": "action" }
 ```
 
 ### Call the `trello_load` tool
@@ -101,7 +101,7 @@ Args: `entity` (required), `query` = `{"id":N}` (required). Returns the single
 record as JSON:
 
 ```jsonc
-{ "entity": "board", "query": { "id": 1 } }
+{ "entity": "action", "query": { "id": 1 } }
 ```
 
 ### Cross-compile release binaries
@@ -129,7 +129,7 @@ Both tools take the same argument object:
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `entity` | string | One of the 1 supported entities (see below). |
+| `entity` | string | One of the 70 supported entities (see below). |
 | `query` | object | Optional match map. `{"id":N}` for load; omit or `{}` for list. |
 
 JSON schemas are emitted by the SDK from the `Args` struct's `json` /
@@ -151,9 +151,9 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 ### Entities
 
-The 1 entity valid as the `entity` argument:
+The 70 entities valid as the `entity` argument:
 
-board
+action | action_reactions_summary | admin | application | application_compliance | associated_domain | attachment | batch | board | board_background | board_plugin | board_star | bulk | card | card_check_item_state | card_list | check_item | checklist | claimable_organization | custom_board_background | custom_emoji | custom_field | custom_field_item | custom_sticker | email_position | emoji | enterpris | enterpris_signup_url | enterprise_admin | enterprise_audit_log | export | export_download | generate | id_email_list | id_label | id_member | label | list | member | member_privacy | members_voted | membership | most_recent | new_billable_guest | notification | notification_channel_setting | notification_list | notification_member_creator | notifications_channel_setting | option | org_invite_restrict | organization | pending_organization | plugin | plugin_data | plugin_listing | reaction | read | saved_search | search | show_sidebar | show_sidebar_activity | show_sidebar_board_action | show_sidebar_member | sticker | tag | token | transferrable_organization | trello_list | webhook
 
 ### Smoke test via HTTP (raw JSON-RPC)
 
@@ -173,7 +173,7 @@ curl -sN -X POST http://localhost:18080 \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
   -H "Mcp-Session-Id: $SESSION" \
-  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"trello_load","arguments":{"entity":"board","query":{"id":1}}}}'
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"trello_load","arguments":{"entity":"action","query":{"id":1}}}}'
 ```
 
 ## Explanation

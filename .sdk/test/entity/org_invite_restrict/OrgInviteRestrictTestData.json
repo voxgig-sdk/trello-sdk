@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "org_invite_restrict": {
+      "ORG_INVITE_RESTRICT00": {
+        "organization_id": "ORGANIZATION01",
+        "id": "ORG_INVITE_RESTRICT00"
+      },
+      "ORG_INVITE_RESTRICT01": {
+        "organization_id": "ORGANIZATION01",
+        "id": "ORG_INVITE_RESTRICT01"
+      },
+      "ORG_INVITE_RESTRICT02": {
+        "organization_id": "ORGANIZATION01",
+        "id": "ORG_INVITE_RESTRICT02"
+      }
+    }
+  },
+  "new": {
+    "org_invite_restrict": {
+      "org_invite_restrict_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "email_position": {
+      "EMAIL_POSITION00": {
+        "board_id": "BOARD01",
+        "id": "EMAIL_POSITION00"
+      },
+      "EMAIL_POSITION01": {
+        "board_id": "BOARD01",
+        "id": "EMAIL_POSITION01"
+      },
+      "EMAIL_POSITION02": {
+        "board_id": "BOARD01",
+        "id": "EMAIL_POSITION02"
+      }
+    }
+  },
+  "new": {
+    "email_position": {
+      "email_position_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "existing": {
+    "custom_field": {
+      "CUSTOM_FIELD00": {
+        "cardFront": true,
+        "display": {},
+        "display_cardFront": true,
+        "displaycardFront": false,
+        "fieldGroup": "s7c",
+        "id": "CUSTOM_FIELD00",
+        "idModel": "s7e",
+        "modelType": "s7f",
+        "name": "s80",
+        "options": [],
+        "pos": "s82",
+        "type": "s83",
+        "board_id": "BOARD01",
+        "id_card": "ID_CARD01",
+        "id_custom_field": "ID_CUSTOM_FIELD01"
+      },
+      "CUSTOM_FIELD01": {
+        "cardFront": true,
+        "display": {},
+        "display_cardFront": true,
+        "displaycardFront": false,
+        "fieldGroup": "sf4",
+        "id": "CUSTOM_FIELD01",
+        "idModel": "sf6",
+        "modelType": "sf7",
+        "name": "sf8",
+        "options": [],
+        "pos": "sfa",
+        "type": "sfb",
+        "board_id": "BOARD01",
+        "id_card": "ID_CARD01",
+        "id_custom_field": "ID_CUSTOM_FIELD01"
+      },
+      "CUSTOM_FIELD02": {
+        "cardFront": true,
+        "display": {},
+        "display_cardFront": true,
+        "displaycardFront": false,
+        "fieldGroup": "s16c",
+        "id": "CUSTOM_FIELD02",
+        "idModel": "s16e",
+        "modelType": "s16f",
+        "name": "s170",
+        "options": [],
+        "pos": "s172",
+        "type": "s173",
+        "board_id": "BOARD01",
+        "id_card": "ID_CARD01",
+        "id_custom_field": "ID_CUSTOM_FIELD01"
+      }
+    }
+  },
+  "new": {
+    "custom_field": {
+      "custom_field_ref01": {
+        "cardFront": true,
+        "display": {},
+        "display_cardFront": true,
+        "displaycardFront": false,
+        "fieldGroup": "s1e4",
+        "idModel": "s1e6",
+        "modelType": "s1e7",
+        "name": "s1e8",
+        "options": [],
+        "pos": "s1ea",
+        "type": "s1eb"
+      }
+    }
+  }
+}

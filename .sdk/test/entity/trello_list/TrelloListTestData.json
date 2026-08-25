@@ -1,0 +1,59 @@
+{
+  "existing": {
+    "trello_list": {
+      "TRELLO_LIST00": {
+        "attachments": {},
+        "closed": false,
+        "id": "TRELLO_LIST00",
+        "idBoard": "s5d",
+        "limits": {},
+        "name": "s5f",
+        "pos": 96,
+        "softLimit": "s61",
+        "subscribed": true,
+        "board_id": "BOARD01",
+        "action_id": "ACTION01"
+      },
+      "TRELLO_LIST01": {
+        "attachments": {},
+        "closed": false,
+        "id": "TRELLO_LIST01",
+        "idBoard": "sb7",
+        "limits": {},
+        "name": "sb9",
+        "pos": 186,
+        "softLimit": "sbb",
+        "subscribed": true,
+        "board_id": "BOARD01",
+        "action_id": "ACTION01"
+      },
+      "TRELLO_LIST02": {
+        "attachments": {},
+        "closed": false,
+        "id": "TRELLO_LIST02",
+        "idBoard": "s111",
+        "limits": {},
+        "name": "s113",
+        "pos": 276,
+        "softLimit": "s115",
+        "subscribed": true,
+        "board_id": "BOARD01",
+        "action_id": "ACTION01"
+      }
+    }
+  },
+  "new": {
+    "trello_list": {
+      "trello_list_ref01": {
+        "attachments": {},
+        "closed": false,
+        "idBoard": "s16b",
+        "limits": {},
+        "name": "s16d",
+        "pos": 366,
+        "softLimit": "s16f",
+        "subscribed": true
+      }
+    }
+  }
+}

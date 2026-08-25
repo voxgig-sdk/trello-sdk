@@ -31,7 +31,7 @@ Each feature is generated into every SDK target — as a directory
 `<lang>/src/feature/<name>/` (ts/js) or a flat file in the `<lang>/feature/`
 package (other languages). Each target's guide documents its features.
 
-**Entities** (1): `Board`.
+**Entities** (70): `Action`, `ActionReactionsSummary`, `Admin`, `Application`, `ApplicationCompliance`, `AssociatedDomain`, `Attachment`, `Batch`, `Board`, `BoardBackground`, `BoardPlugin`, `BoardStar`, `Bulk`, `Card`, `CardCheckItemState`, `CardList`, `CheckItem`, `Checklist`, `ClaimableOrganization`, `CustomBoardBackground`, `CustomEmoji`, `CustomField`, `CustomFieldItem`, `CustomSticker`, `EmailPosition`, `Emoji`, `Enterpris`, `EnterprisSignupUrl`, `EnterpriseAdmin`, `EnterpriseAuditLog`, `Export`, `ExportDownload`, `Generate`, `IdEmailList`, `IdLabel`, `IdMember`, `Label`, `List`, `Member`, `MemberPrivacy`, `MembersVoted`, `Membership`, `MostRecent`, `NewBillableGuest`, `Notification`, `NotificationChannelSetting`, `NotificationList`, `NotificationMemberCreator`, `NotificationsChannelSetting`, `Option`, `OrgInviteRestrict`, `Organization`, `PendingOrganization`, `Plugin`, `PluginData`, `PluginListing`, `Reaction`, `Read`, `SavedSearch`, `Search`, `ShowSidebar`, `ShowSidebarActivity`, `ShowSidebarBoardAction`, `ShowSidebarMember`, `Sticker`, `Tag`, `Token`, `TransferrableOrganization`, `TrelloList`, `Webhook`.
 
 ## Generating and updating the SDK
 

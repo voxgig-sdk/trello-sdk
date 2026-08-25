@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "show_sidebar_board_action": {
+      "SHOW_SIDEBAR_BOARD_ACTION00": {
+        "board_id": "BOARD01",
+        "id": "SHOW_SIDEBAR_BOARD_ACTION00"
+      },
+      "SHOW_SIDEBAR_BOARD_ACTION01": {
+        "board_id": "BOARD01",
+        "id": "SHOW_SIDEBAR_BOARD_ACTION01"
+      },
+      "SHOW_SIDEBAR_BOARD_ACTION02": {
+        "board_id": "BOARD01",
+        "id": "SHOW_SIDEBAR_BOARD_ACTION02"
+      }
+    }
+  },
+  "new": {
+    "show_sidebar_board_action": {
+      "show_sidebar_board_action_ref01": {}
+    }
+  }
+}

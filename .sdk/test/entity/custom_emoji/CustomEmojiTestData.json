@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "custom_emoji": {
+      "CUSTOM_EMOJI00": {
+        "id": "CUSTOM_EMOJI00",
+        "name": "s1f",
+        "url": "s20",
+        "member_id": "MEMBER01"
+      },
+      "CUSTOM_EMOJI01": {
+        "id": "CUSTOM_EMOJI01",
+        "name": "s3d",
+        "url": "s3e",
+        "member_id": "MEMBER01"
+      },
+      "CUSTOM_EMOJI02": {
+        "id": "CUSTOM_EMOJI02",
+        "name": "s5b",
+        "url": "s5c",
+        "member_id": "MEMBER01"
+      }
+    }
+  },
+  "new": {
+    "custom_emoji": {
+      "custom_emoji_ref01": {
+        "name": "s79",
+        "url": "s7a"
+      }
+    }
+  }
+}

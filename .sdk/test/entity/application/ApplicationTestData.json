@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "application": {
+      "APPLICATION00": {},
+      "APPLICATION01": {},
+      "APPLICATION02": {}
+    }
+  },
+  "new": {
+    "application": {
+      "application_ref01": {}
+    }
+  }
+}

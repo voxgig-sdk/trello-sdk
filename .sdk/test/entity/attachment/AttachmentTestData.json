@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "attachment": {
+      "ATTACHMENT00": {
+        "card_id": "CARD01",
+        "id": "ATTACHMENT00"
+      },
+      "ATTACHMENT01": {
+        "card_id": "CARD01",
+        "id": "ATTACHMENT01"
+      },
+      "ATTACHMENT02": {
+        "card_id": "CARD01",
+        "id": "ATTACHMENT02"
+      }
+    }
+  },
+  "new": {
+    "attachment": {
+      "attachment_ref01": {}
+    }
+  }
+}

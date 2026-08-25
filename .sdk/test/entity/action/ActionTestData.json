@@ -1,0 +1,86 @@
+{
+  "existing": {
+    "action": {
+      "ACTION00": {
+        "data": {},
+        "date": "s79",
+        "display": {},
+        "id": "ACTION00",
+        "idMemberCreator": "s7c",
+        "limits": {},
+        "memberCreator": {},
+        "native": "s7f",
+        "shortName": "s80",
+        "skinVariation": "s81",
+        "type": "s82",
+        "unified": "s83",
+        "card_id": "CARD01",
+        "id_action": "ID_ACTION01",
+        "member_id": "MEMBER01",
+        "organization_id": "ORGANIZATION01",
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "list_id": "LIST01"
+      },
+      "ACTION01": {
+        "data": {},
+        "date": "sf1",
+        "display": {},
+        "id": "ACTION01",
+        "idMemberCreator": "sf4",
+        "limits": {},
+        "memberCreator": {},
+        "native": "sf7",
+        "shortName": "sf8",
+        "skinVariation": "sf9",
+        "type": "sfa",
+        "unified": "sfb",
+        "card_id": "CARD01",
+        "id_action": "ID_ACTION01",
+        "member_id": "MEMBER01",
+        "organization_id": "ORGANIZATION01",
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "list_id": "LIST01"
+      },
+      "ACTION02": {
+        "data": {},
+        "date": "s169",
+        "display": {},
+        "id": "ACTION02",
+        "idMemberCreator": "s16c",
+        "limits": {},
+        "memberCreator": {},
+        "native": "s16f",
+        "shortName": "s170",
+        "skinVariation": "s171",
+        "type": "s172",
+        "unified": "s173",
+        "card_id": "CARD01",
+        "id_action": "ID_ACTION01",
+        "member_id": "MEMBER01",
+        "organization_id": "ORGANIZATION01",
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "list_id": "LIST01"
+      }
+    }
+  },
+  "new": {
+    "action": {
+      "action_ref01": {
+        "data": {},
+        "date": "s1e1",
+        "display": {},
+        "idMemberCreator": "s1e4",
+        "limits": {},
+        "memberCreator": {},
+        "native": "s1e7",
+        "shortName": "s1e8",
+        "skinVariation": "s1e9",
+        "type": "s1ea",
+        "unified": "s1eb"
+      }
+    }
+  }
+}

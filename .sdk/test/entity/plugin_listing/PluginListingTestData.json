@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "plugin_listing": {
+      "PLUGIN_LISTING00": {
+        "description": "s32",
+        "id": "PLUGIN_LISTING00",
+        "locale": "s34",
+        "name": "s35",
+        "overview": "s36",
+        "id_plugin": "ID_PLUGIN01"
+      },
+      "PLUGIN_LISTING01": {
+        "description": "s64",
+        "id": "PLUGIN_LISTING01",
+        "locale": "s66",
+        "name": "s67",
+        "overview": "s68",
+        "id_plugin": "ID_PLUGIN01"
+      },
+      "PLUGIN_LISTING02": {
+        "description": "s96",
+        "id": "PLUGIN_LISTING02",
+        "locale": "s98",
+        "name": "s99",
+        "overview": "s9a",
+        "id_plugin": "ID_PLUGIN01"
+      }
+    }
+  },
+  "new": {
+    "plugin_listing": {
+      "plugin_listing_ref01": {
+        "description": "sc8",
+        "locale": "sca",
+        "name": "scb",
+        "overview": "scc"
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "existing": {
+    "emoji": {
+      "EMOJI00": {
+        "category": "s78",
+        "keywords": [],
+        "name": "s7a",
+        "native": "s7b",
+        "sheetX": 124,
+        "sheetY": 125,
+        "shortName": "s7e",
+        "shortNames": [],
+        "text": "s80",
+        "texts": "s81",
+        "tts": "s82",
+        "unified": "s83"
+      },
+      "EMOJI01": {
+        "category": "sf0",
+        "keywords": [],
+        "name": "sf2",
+        "native": "sf3",
+        "sheetX": 244,
+        "sheetY": 245,
+        "shortName": "sf6",
+        "shortNames": [],
+        "text": "sf8",
+        "texts": "sf9",
+        "tts": "sfa",
+        "unified": "sfb"
+      },
+      "EMOJI02": {
+        "category": "s168",
+        "keywords": [],
+        "name": "s16a",
+        "native": "s16b",
+        "sheetX": 364,
+        "sheetY": 365,
+        "shortName": "s16e",
+        "shortNames": [],
+        "text": "s170",
+        "texts": "s171",
+        "tts": "s172",
+        "unified": "s173"
+      }
+    }
+  },
+  "new": {
+    "emoji": {
+      "emoji_ref01": {
+        "category": "s1e0",
+        "keywords": [],
+        "name": "s1e2",
+        "native": "s1e3",
+        "sheetX": 484,
+        "sheetY": 485,
+        "shortName": "s1e6",
+        "shortNames": [],
+        "text": "s1e8",
+        "texts": "s1e9",
+        "tts": "s1ea",
+        "unified": "s1eb"
+      }
+    }
+  }
+}

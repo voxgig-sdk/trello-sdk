@@ -1,0 +1,52 @@
+{
+  "existing": {
+    "claimable_organization": {
+      "CLAIMABLE_ORGANIZATION00": {
+        "activeMembershipCount": 80,
+        "dateLastActive": "s51",
+        "displayName": "s52",
+        "id": "CLAIMABLE_ORGANIZATION00",
+        "idActiveAdmins": [],
+        "logoUrl": "s55",
+        "name": "s56",
+        "products": [],
+        "enterpris_id": "ENTERPRIS01"
+      },
+      "CLAIMABLE_ORGANIZATION01": {
+        "activeMembershipCount": 160,
+        "dateLastActive": "sa1",
+        "displayName": "sa2",
+        "id": "CLAIMABLE_ORGANIZATION01",
+        "idActiveAdmins": [],
+        "logoUrl": "sa5",
+        "name": "sa6",
+        "products": [],
+        "enterpris_id": "ENTERPRIS01"
+      },
+      "CLAIMABLE_ORGANIZATION02": {
+        "activeMembershipCount": 240,
+        "dateLastActive": "sf1",
+        "displayName": "sf2",
+        "id": "CLAIMABLE_ORGANIZATION02",
+        "idActiveAdmins": [],
+        "logoUrl": "sf5",
+        "name": "sf6",
+        "products": [],
+        "enterpris_id": "ENTERPRIS01"
+      }
+    }
+  },
+  "new": {
+    "claimable_organization": {
+      "claimable_organization_ref01": {
+        "activeMembershipCount": 320,
+        "dateLastActive": "s141",
+        "displayName": "s142",
+        "idActiveAdmins": [],
+        "logoUrl": "s145",
+        "name": "s146",
+        "products": []
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "enterprise_audit_log": {
+      "ENTERPRISE_AUDIT_LOG00": {
+        "date": "s3c",
+        "idAction": "s3d",
+        "member": {},
+        "memberCreator": {},
+        "organization": {},
+        "type": "s41",
+        "enterpris_id": "ENTERPRIS01"
+      },
+      "ENTERPRISE_AUDIT_LOG01": {
+        "date": "s78",
+        "idAction": "s79",
+        "member": {},
+        "memberCreator": {},
+        "organization": {},
+        "type": "s7d",
+        "enterpris_id": "ENTERPRIS01"
+      },
+      "ENTERPRISE_AUDIT_LOG02": {
+        "date": "sb4",
+        "idAction": "sb5",
+        "member": {},
+        "memberCreator": {},
+        "organization": {},
+        "type": "sb9",
+        "enterpris_id": "ENTERPRIS01"
+      }
+    }
+  },
+  "new": {
+    "enterprise_audit_log": {
+      "enterprise_audit_log_ref01": {
+        "date": "sf0",
+        "idAction": "sf1",
+        "member": {},
+        "memberCreator": {},
+        "organization": {},
+        "type": "sf5"
+      }
+    }
+  }
+}

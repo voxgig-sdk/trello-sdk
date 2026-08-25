@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "new_billable_guest": {
+      "NEW_BILLABLE_GUEST00": {
+        "organization_id": "ORGANIZATION01",
+        "id": "NEW_BILLABLE_GUEST00"
+      },
+      "NEW_BILLABLE_GUEST01": {
+        "organization_id": "ORGANIZATION01",
+        "id": "NEW_BILLABLE_GUEST01"
+      },
+      "NEW_BILLABLE_GUEST02": {
+        "organization_id": "ORGANIZATION01",
+        "id": "NEW_BILLABLE_GUEST02"
+      }
+    }
+  },
+  "new": {
+    "new_billable_guest": {
+      "new_billable_guest_ref01": {}
+    }
+  }
+}

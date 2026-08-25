@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "read": {
+      "READ00": {
+        "id": "READ00"
+      },
+      "READ01": {
+        "id": "READ01"
+      },
+      "READ02": {
+        "id": "READ02"
+      }
+    }
+  },
+  "new": {
+    "read": {
+      "read_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "existing": {
+    "notification_channel_setting": {
+      "NOTIFICATION_CHANNEL_SETTING00": {
+        "blockedKeys": [],
+        "channel": "s29",
+        "id": "NOTIFICATION_CHANNEL_SETTING00",
+        "idMember": "s2b",
+        "member_id": "MEMBER01",
+        "blocked_key": "BLOCKED_KEY01"
+      },
+      "NOTIFICATION_CHANNEL_SETTING01": {
+        "blockedKeys": [],
+        "channel": "s51",
+        "id": "NOTIFICATION_CHANNEL_SETTING01",
+        "idMember": "s53",
+        "member_id": "MEMBER01",
+        "blocked_key": "BLOCKED_KEY01"
+      },
+      "NOTIFICATION_CHANNEL_SETTING02": {
+        "blockedKeys": [],
+        "channel": "s79",
+        "id": "NOTIFICATION_CHANNEL_SETTING02",
+        "idMember": "s7b",
+        "member_id": "MEMBER01",
+        "blocked_key": "BLOCKED_KEY01"
+      }
+    }
+  },
+  "new": {
+    "notification_channel_setting": {
+      "notification_channel_setting_ref01": {
+        "blockedKeys": [],
+        "channel": "sa1",
+        "idMember": "sa3"
+      }
+    }
+  }
+}

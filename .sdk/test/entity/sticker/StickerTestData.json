@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "sticker": {
+      "STICKER00": {
+        "card_id": "CARD01",
+        "id": "STICKER00"
+      },
+      "STICKER01": {
+        "card_id": "CARD01",
+        "id": "STICKER01"
+      },
+      "STICKER02": {
+        "card_id": "CARD01",
+        "id": "STICKER02"
+      }
+    }
+  },
+  "new": {
+    "sticker": {
+      "sticker_ref01": {}
+    }
+  }
+}

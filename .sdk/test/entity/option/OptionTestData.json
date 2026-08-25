@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "option": {
+      "OPTION00": {
+        "custom_field_id": "CUSTOM_FIELD01",
+        "id": "OPTION00"
+      },
+      "OPTION01": {
+        "custom_field_id": "CUSTOM_FIELD01",
+        "id": "OPTION01"
+      },
+      "OPTION02": {
+        "custom_field_id": "CUSTOM_FIELD01",
+        "id": "OPTION02"
+      }
+    }
+  },
+  "new": {
+    "option": {
+      "option_ref01": {}
+    }
+  }
+}

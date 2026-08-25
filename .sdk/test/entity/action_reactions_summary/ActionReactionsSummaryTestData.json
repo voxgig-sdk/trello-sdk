@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "action_reactions_summary": {
+      "ACTION_REACTIONS_SUMMARY00": {
+        "id_action": "ID_ACTION01",
+        "id": "ACTION_REACTIONS_SUMMARY00"
+      },
+      "ACTION_REACTIONS_SUMMARY01": {
+        "id_action": "ID_ACTION01",
+        "id": "ACTION_REACTIONS_SUMMARY01"
+      },
+      "ACTION_REACTIONS_SUMMARY02": {
+        "id_action": "ID_ACTION01",
+        "id": "ACTION_REACTIONS_SUMMARY02"
+      }
+    }
+  },
+  "new": {
+    "action_reactions_summary": {
+      "action_reactions_summary_ref01": {}
+    }
+  }
+}

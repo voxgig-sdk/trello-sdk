@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "application_compliance": {
+      "APPLICATION_COMPLIANCE00": {
+        "key": "KEY01",
+        "id": "APPLICATION_COMPLIANCE00"
+      },
+      "APPLICATION_COMPLIANCE01": {
+        "key": "KEY01",
+        "id": "APPLICATION_COMPLIANCE01"
+      },
+      "APPLICATION_COMPLIANCE02": {
+        "key": "KEY01",
+        "id": "APPLICATION_COMPLIANCE02"
+      }
+    }
+  },
+  "new": {
+    "application_compliance": {
+      "application_compliance_ref01": {}
+    }
+  }
+}

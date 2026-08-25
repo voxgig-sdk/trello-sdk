@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "generate": {
+      "GENERATE00": {
+        "board_id": "BOARD01",
+        "id": "GENERATE00"
+      },
+      "GENERATE01": {
+        "board_id": "BOARD01",
+        "id": "GENERATE01"
+      },
+      "GENERATE02": {
+        "board_id": "BOARD01",
+        "id": "GENERATE02"
+      }
+    }
+  },
+  "new": {
+    "generate": {
+      "generate_ref01": {}
+    }
+  }
+}

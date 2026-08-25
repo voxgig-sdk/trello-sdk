@@ -1,0 +1,54 @@
+{
+  "existing": {
+    "membership": {
+      "MEMBERSHIP00": {
+        "admin": true,
+        "collaborator": false,
+        "deactivated": true,
+        "id": "MEMBERSHIP00",
+        "licensed": true,
+        "managed": false,
+        "member": {},
+        "enterpris_id": "ENTERPRIS01",
+        "organization_id": "ORGANIZATION01",
+        "board_id": "BOARD01"
+      },
+      "MEMBERSHIP01": {
+        "admin": true,
+        "collaborator": false,
+        "deactivated": true,
+        "id": "MEMBERSHIP01",
+        "licensed": true,
+        "managed": false,
+        "member": {},
+        "enterpris_id": "ENTERPRIS01",
+        "organization_id": "ORGANIZATION01",
+        "board_id": "BOARD01"
+      },
+      "MEMBERSHIP02": {
+        "admin": true,
+        "collaborator": false,
+        "deactivated": true,
+        "id": "MEMBERSHIP02",
+        "licensed": true,
+        "managed": false,
+        "member": {},
+        "enterpris_id": "ENTERPRIS01",
+        "organization_id": "ORGANIZATION01",
+        "board_id": "BOARD01"
+      }
+    }
+  },
+  "new": {
+    "membership": {
+      "membership_ref01": {
+        "admin": true,
+        "collaborator": false,
+        "deactivated": true,
+        "licensed": true,
+        "managed": false,
+        "member": {}
+      }
+    }
+  }
+}

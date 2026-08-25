@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "plugin": {
+      "PLUGIN00": {
+        "id": "PLUGIN00",
+        "board_id": "BOARD01"
+      },
+      "PLUGIN01": {
+        "id": "PLUGIN01",
+        "board_id": "BOARD01"
+      },
+      "PLUGIN02": {
+        "id": "PLUGIN02",
+        "board_id": "BOARD01"
+      }
+    }
+  },
+  "new": {
+    "plugin": {
+      "plugin_ref01": {}
+    }
+  }
+}

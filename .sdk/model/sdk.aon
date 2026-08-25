@@ -34,79 +34,8 @@ def: 'trello-swagger.json'
 @"flow/flow-index.aon"
 
 
-# Scoped to board only.
-main: kit: entity: action: active: false
-main: kit: entity: action_reactions_summary: active: false
-main: kit: entity: admin: active: false
-main: kit: entity: application: active: false
-main: kit: entity: application_compliance: active: false
-main: kit: entity: associated_domain: active: false
-main: kit: entity: attachment: active: false
-main: kit: entity: batch: active: false
-main: kit: entity: board_background: active: false
-main: kit: entity: board_plugin: active: false
-main: kit: entity: board_star: active: false
-main: kit: entity: bulk: active: false
-main: kit: entity: card: active: false
-main: kit: entity: card_check_item_state: active: false
-main: kit: entity: card_list: active: false
-main: kit: entity: check_item: active: false
-main: kit: entity: checklist: active: false
-main: kit: entity: claimable_organization: active: false
-main: kit: entity: custom_board_background: active: false
-main: kit: entity: custom_emoji: active: false
-main: kit: entity: custom_field: active: false
-main: kit: entity: custom_field_item: active: false
-main: kit: entity: custom_sticker: active: false
-main: kit: entity: email_position: active: false
-main: kit: entity: emoji: active: false
-main: kit: entity: enterpris: active: false
-main: kit: entity: enterpris_signup_url: active: false
-main: kit: entity: enterprise_admin: active: false
-main: kit: entity: enterprise_audit_log: active: false
-main: kit: entity: export: active: false
-main: kit: entity: export_download: active: false
-main: kit: entity: generate: active: false
-main: kit: entity: id_email_list: active: false
-main: kit: entity: id_label: active: false
-main: kit: entity: id_member: active: false
-main: kit: entity: label: active: false
-main: kit: entity: list: active: false
-main: kit: entity: member: active: false
-main: kit: entity: member_privacy: active: false
-main: kit: entity: members_voted: active: false
-main: kit: entity: membership: active: false
-main: kit: entity: most_recent: active: false
-main: kit: entity: new_billable_guest: active: false
-main: kit: entity: notification: active: false
-main: kit: entity: notification_channel_setting: active: false
-main: kit: entity: notification_list: active: false
-main: kit: entity: notification_member_creator: active: false
-main: kit: entity: notifications_channel_setting: active: false
-main: kit: entity: option: active: false
-main: kit: entity: org_invite_restrict: active: false
-main: kit: entity: organization: active: false
-main: kit: entity: pending_organization: active: false
-main: kit: entity: plugin: active: false
-main: kit: entity: plugin_data: active: false
-main: kit: entity: plugin_listing: active: false
-main: kit: entity: reaction: active: false
-main: kit: entity: read: active: false
-main: kit: entity: saved_search: active: false
-main: kit: entity: search: active: false
-main: kit: entity: show_sidebar: active: false
-main: kit: entity: show_sidebar_activity: active: false
-main: kit: entity: show_sidebar_board_action: active: false
-main: kit: entity: show_sidebar_member: active: false
-main: kit: entity: sticker: active: false
-main: kit: entity: tag: active: false
-main: kit: entity: token: active: false
-main: kit: entity: transferrable_organization: active: false
-main: kit: entity: trello_list: active: false
-main: kit: entity: webhook: active: false
-
-# Seneca provider plugin generates out-of-tree into the sibling repo.
-main: kit: target: 'seneca-provider': output: {
-  path: '../../seneca/trello-provider'
-  sdkrel: '../../voxgig-sdk/trello-sdk'
-}
+# Project overlay — user-owned, created once and never overwritten.
+#
+# LAST, deliberately: it may refine main.kit.target.<t>, and a target can only
+# be refined after target-index.aon has defined it.
+@"project.aon"

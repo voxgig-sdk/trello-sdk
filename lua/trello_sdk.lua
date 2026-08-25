@@ -336,6 +336,118 @@ end
 
 
 
+-- Idiomatic facade: client:Action():list() / client:Action():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Action(data)
+  local EntityMod = require("entity.action_entity")
+  if data == nil then
+    if self._action == nil then
+      self._action = EntityMod.new(self, nil)
+    end
+    return self._action
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:ActionReactionsSummary():list() / client:ActionReactionsSummary():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:ActionReactionsSummary(data)
+  local EntityMod = require("entity.action_reactions_summary_entity")
+  if data == nil then
+    if self._action_reactions_summary == nil then
+      self._action_reactions_summary = EntityMod.new(self, nil)
+    end
+    return self._action_reactions_summary
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Admin():list() / client:Admin():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Admin(data)
+  local EntityMod = require("entity.admin_entity")
+  if data == nil then
+    if self._admin == nil then
+      self._admin = EntityMod.new(self, nil)
+    end
+    return self._admin
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Application():list() / client:Application():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Application(data)
+  local EntityMod = require("entity.application_entity")
+  if data == nil then
+    if self._application == nil then
+      self._application = EntityMod.new(self, nil)
+    end
+    return self._application
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:ApplicationCompliance():list() / client:ApplicationCompliance():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:ApplicationCompliance(data)
+  local EntityMod = require("entity.application_compliance_entity")
+  if data == nil then
+    if self._application_compliance == nil then
+      self._application_compliance = EntityMod.new(self, nil)
+    end
+    return self._application_compliance
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:AssociatedDomain():list() / client:AssociatedDomain():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:AssociatedDomain(data)
+  local EntityMod = require("entity.associated_domain_entity")
+  if data == nil then
+    if self._associated_domain == nil then
+      self._associated_domain = EntityMod.new(self, nil)
+    end
+    return self._associated_domain
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Attachment():list() / client:Attachment():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Attachment(data)
+  local EntityMod = require("entity.attachment_entity")
+  if data == nil then
+    if self._attachment == nil then
+      self._attachment = EntityMod.new(self, nil)
+    end
+    return self._attachment
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Batch():list() / client:Batch():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Batch(data)
+  local EntityMod = require("entity.batch_entity")
+  if data == nil then
+    if self._batch == nil then
+      self._batch = EntityMod.new(self, nil)
+    end
+    return self._batch
+  end
+  return EntityMod.new(self, data)
+end
+
+
 -- Idiomatic facade: client:Board():list() / client:Board():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function TrelloSDK:Board(data)
@@ -345,6 +457,860 @@ function TrelloSDK:Board(data)
       self._board = EntityMod.new(self, nil)
     end
     return self._board
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:BoardBackground():list() / client:BoardBackground():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:BoardBackground(data)
+  local EntityMod = require("entity.board_background_entity")
+  if data == nil then
+    if self._board_background == nil then
+      self._board_background = EntityMod.new(self, nil)
+    end
+    return self._board_background
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:BoardPlugin():list() / client:BoardPlugin():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:BoardPlugin(data)
+  local EntityMod = require("entity.board_plugin_entity")
+  if data == nil then
+    if self._board_plugin == nil then
+      self._board_plugin = EntityMod.new(self, nil)
+    end
+    return self._board_plugin
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:BoardStar():list() / client:BoardStar():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:BoardStar(data)
+  local EntityMod = require("entity.board_star_entity")
+  if data == nil then
+    if self._board_star == nil then
+      self._board_star = EntityMod.new(self, nil)
+    end
+    return self._board_star
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Bulk():list() / client:Bulk():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Bulk(data)
+  local EntityMod = require("entity.bulk_entity")
+  if data == nil then
+    if self._bulk == nil then
+      self._bulk = EntityMod.new(self, nil)
+    end
+    return self._bulk
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Card():list() / client:Card():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Card(data)
+  local EntityMod = require("entity.card_entity")
+  if data == nil then
+    if self._card == nil then
+      self._card = EntityMod.new(self, nil)
+    end
+    return self._card
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:CardCheckItemState():list() / client:CardCheckItemState():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:CardCheckItemState(data)
+  local EntityMod = require("entity.card_check_item_state_entity")
+  if data == nil then
+    if self._card_check_item_state == nil then
+      self._card_check_item_state = EntityMod.new(self, nil)
+    end
+    return self._card_check_item_state
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:CardList():list() / client:CardList():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:CardList(data)
+  local EntityMod = require("entity.card_list_entity")
+  if data == nil then
+    if self._card_list == nil then
+      self._card_list = EntityMod.new(self, nil)
+    end
+    return self._card_list
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:CheckItem():list() / client:CheckItem():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:CheckItem(data)
+  local EntityMod = require("entity.check_item_entity")
+  if data == nil then
+    if self._check_item == nil then
+      self._check_item = EntityMod.new(self, nil)
+    end
+    return self._check_item
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Checklist():list() / client:Checklist():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Checklist(data)
+  local EntityMod = require("entity.checklist_entity")
+  if data == nil then
+    if self._checklist == nil then
+      self._checklist = EntityMod.new(self, nil)
+    end
+    return self._checklist
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:ClaimableOrganization():list() / client:ClaimableOrganization():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:ClaimableOrganization(data)
+  local EntityMod = require("entity.claimable_organization_entity")
+  if data == nil then
+    if self._claimable_organization == nil then
+      self._claimable_organization = EntityMod.new(self, nil)
+    end
+    return self._claimable_organization
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:CustomBoardBackground():list() / client:CustomBoardBackground():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:CustomBoardBackground(data)
+  local EntityMod = require("entity.custom_board_background_entity")
+  if data == nil then
+    if self._custom_board_background == nil then
+      self._custom_board_background = EntityMod.new(self, nil)
+    end
+    return self._custom_board_background
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:CustomEmoji():list() / client:CustomEmoji():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:CustomEmoji(data)
+  local EntityMod = require("entity.custom_emoji_entity")
+  if data == nil then
+    if self._custom_emoji == nil then
+      self._custom_emoji = EntityMod.new(self, nil)
+    end
+    return self._custom_emoji
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:CustomField():list() / client:CustomField():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:CustomField(data)
+  local EntityMod = require("entity.custom_field_entity")
+  if data == nil then
+    if self._custom_field == nil then
+      self._custom_field = EntityMod.new(self, nil)
+    end
+    return self._custom_field
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:CustomFieldItem():list() / client:CustomFieldItem():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:CustomFieldItem(data)
+  local EntityMod = require("entity.custom_field_item_entity")
+  if data == nil then
+    if self._custom_field_item == nil then
+      self._custom_field_item = EntityMod.new(self, nil)
+    end
+    return self._custom_field_item
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:CustomSticker():list() / client:CustomSticker():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:CustomSticker(data)
+  local EntityMod = require("entity.custom_sticker_entity")
+  if data == nil then
+    if self._custom_sticker == nil then
+      self._custom_sticker = EntityMod.new(self, nil)
+    end
+    return self._custom_sticker
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:EmailPosition():list() / client:EmailPosition():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:EmailPosition(data)
+  local EntityMod = require("entity.email_position_entity")
+  if data == nil then
+    if self._email_position == nil then
+      self._email_position = EntityMod.new(self, nil)
+    end
+    return self._email_position
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Emoji():list() / client:Emoji():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Emoji(data)
+  local EntityMod = require("entity.emoji_entity")
+  if data == nil then
+    if self._emoji == nil then
+      self._emoji = EntityMod.new(self, nil)
+    end
+    return self._emoji
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Enterpris():list() / client:Enterpris():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Enterpris(data)
+  local EntityMod = require("entity.enterpris_entity")
+  if data == nil then
+    if self._enterpris == nil then
+      self._enterpris = EntityMod.new(self, nil)
+    end
+    return self._enterpris
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:EnterprisSignupUrl():list() / client:EnterprisSignupUrl():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:EnterprisSignupUrl(data)
+  local EntityMod = require("entity.enterpris_signup_url_entity")
+  if data == nil then
+    if self._enterpris_signup_url == nil then
+      self._enterpris_signup_url = EntityMod.new(self, nil)
+    end
+    return self._enterpris_signup_url
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:EnterpriseAdmin():list() / client:EnterpriseAdmin():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:EnterpriseAdmin(data)
+  local EntityMod = require("entity.enterprise_admin_entity")
+  if data == nil then
+    if self._enterprise_admin == nil then
+      self._enterprise_admin = EntityMod.new(self, nil)
+    end
+    return self._enterprise_admin
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:EnterpriseAuditLog():list() / client:EnterpriseAuditLog():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:EnterpriseAuditLog(data)
+  local EntityMod = require("entity.enterprise_audit_log_entity")
+  if data == nil then
+    if self._enterprise_audit_log == nil then
+      self._enterprise_audit_log = EntityMod.new(self, nil)
+    end
+    return self._enterprise_audit_log
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Export():list() / client:Export():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Export(data)
+  local EntityMod = require("entity.export_entity")
+  if data == nil then
+    if self._export == nil then
+      self._export = EntityMod.new(self, nil)
+    end
+    return self._export
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:ExportDownload():list() / client:ExportDownload():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:ExportDownload(data)
+  local EntityMod = require("entity.export_download_entity")
+  if data == nil then
+    if self._export_download == nil then
+      self._export_download = EntityMod.new(self, nil)
+    end
+    return self._export_download
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Generate():list() / client:Generate():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Generate(data)
+  local EntityMod = require("entity.generate_entity")
+  if data == nil then
+    if self._generate == nil then
+      self._generate = EntityMod.new(self, nil)
+    end
+    return self._generate
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:IdEmailList():list() / client:IdEmailList():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:IdEmailList(data)
+  local EntityMod = require("entity.id_email_list_entity")
+  if data == nil then
+    if self._id_email_list == nil then
+      self._id_email_list = EntityMod.new(self, nil)
+    end
+    return self._id_email_list
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:IdLabel():list() / client:IdLabel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:IdLabel(data)
+  local EntityMod = require("entity.id_label_entity")
+  if data == nil then
+    if self._id_label == nil then
+      self._id_label = EntityMod.new(self, nil)
+    end
+    return self._id_label
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:IdMember():list() / client:IdMember():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:IdMember(data)
+  local EntityMod = require("entity.id_member_entity")
+  if data == nil then
+    if self._id_member == nil then
+      self._id_member = EntityMod.new(self, nil)
+    end
+    return self._id_member
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Label():list() / client:Label():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Label(data)
+  local EntityMod = require("entity.label_entity")
+  if data == nil then
+    if self._label == nil then
+      self._label = EntityMod.new(self, nil)
+    end
+    return self._label
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:List():list() / client:List():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:List(data)
+  local EntityMod = require("entity.list_entity")
+  if data == nil then
+    if self._list == nil then
+      self._list = EntityMod.new(self, nil)
+    end
+    return self._list
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Member():list() / client:Member():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Member(data)
+  local EntityMod = require("entity.member_entity")
+  if data == nil then
+    if self._member == nil then
+      self._member = EntityMod.new(self, nil)
+    end
+    return self._member
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:MemberPrivacy():list() / client:MemberPrivacy():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:MemberPrivacy(data)
+  local EntityMod = require("entity.member_privacy_entity")
+  if data == nil then
+    if self._member_privacy == nil then
+      self._member_privacy = EntityMod.new(self, nil)
+    end
+    return self._member_privacy
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:MembersVoted():list() / client:MembersVoted():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:MembersVoted(data)
+  local EntityMod = require("entity.members_voted_entity")
+  if data == nil then
+    if self._members_voted == nil then
+      self._members_voted = EntityMod.new(self, nil)
+    end
+    return self._members_voted
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Membership():list() / client:Membership():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Membership(data)
+  local EntityMod = require("entity.membership_entity")
+  if data == nil then
+    if self._membership == nil then
+      self._membership = EntityMod.new(self, nil)
+    end
+    return self._membership
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:MostRecent():list() / client:MostRecent():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:MostRecent(data)
+  local EntityMod = require("entity.most_recent_entity")
+  if data == nil then
+    if self._most_recent == nil then
+      self._most_recent = EntityMod.new(self, nil)
+    end
+    return self._most_recent
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:NewBillableGuest():list() / client:NewBillableGuest():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:NewBillableGuest(data)
+  local EntityMod = require("entity.new_billable_guest_entity")
+  if data == nil then
+    if self._new_billable_guest == nil then
+      self._new_billable_guest = EntityMod.new(self, nil)
+    end
+    return self._new_billable_guest
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Notification():list() / client:Notification():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Notification(data)
+  local EntityMod = require("entity.notification_entity")
+  if data == nil then
+    if self._notification == nil then
+      self._notification = EntityMod.new(self, nil)
+    end
+    return self._notification
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:NotificationChannelSetting():list() / client:NotificationChannelSetting():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:NotificationChannelSetting(data)
+  local EntityMod = require("entity.notification_channel_setting_entity")
+  if data == nil then
+    if self._notification_channel_setting == nil then
+      self._notification_channel_setting = EntityMod.new(self, nil)
+    end
+    return self._notification_channel_setting
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:NotificationList():list() / client:NotificationList():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:NotificationList(data)
+  local EntityMod = require("entity.notification_list_entity")
+  if data == nil then
+    if self._notification_list == nil then
+      self._notification_list = EntityMod.new(self, nil)
+    end
+    return self._notification_list
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:NotificationMemberCreator():list() / client:NotificationMemberCreator():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:NotificationMemberCreator(data)
+  local EntityMod = require("entity.notification_member_creator_entity")
+  if data == nil then
+    if self._notification_member_creator == nil then
+      self._notification_member_creator = EntityMod.new(self, nil)
+    end
+    return self._notification_member_creator
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:NotificationsChannelSetting():list() / client:NotificationsChannelSetting():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:NotificationsChannelSetting(data)
+  local EntityMod = require("entity.notifications_channel_setting_entity")
+  if data == nil then
+    if self._notifications_channel_setting == nil then
+      self._notifications_channel_setting = EntityMod.new(self, nil)
+    end
+    return self._notifications_channel_setting
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Option():list() / client:Option():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Option(data)
+  local EntityMod = require("entity.option_entity")
+  if data == nil then
+    if self._option == nil then
+      self._option = EntityMod.new(self, nil)
+    end
+    return self._option
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:OrgInviteRestrict():list() / client:OrgInviteRestrict():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:OrgInviteRestrict(data)
+  local EntityMod = require("entity.org_invite_restrict_entity")
+  if data == nil then
+    if self._org_invite_restrict == nil then
+      self._org_invite_restrict = EntityMod.new(self, nil)
+    end
+    return self._org_invite_restrict
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Organization():list() / client:Organization():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Organization(data)
+  local EntityMod = require("entity.organization_entity")
+  if data == nil then
+    if self._organization == nil then
+      self._organization = EntityMod.new(self, nil)
+    end
+    return self._organization
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:PendingOrganization():list() / client:PendingOrganization():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:PendingOrganization(data)
+  local EntityMod = require("entity.pending_organization_entity")
+  if data == nil then
+    if self._pending_organization == nil then
+      self._pending_organization = EntityMod.new(self, nil)
+    end
+    return self._pending_organization
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Plugin():list() / client:Plugin():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Plugin(data)
+  local EntityMod = require("entity.plugin_entity")
+  if data == nil then
+    if self._plugin == nil then
+      self._plugin = EntityMod.new(self, nil)
+    end
+    return self._plugin
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:PluginData():list() / client:PluginData():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:PluginData(data)
+  local EntityMod = require("entity.plugin_data_entity")
+  if data == nil then
+    if self._plugin_data == nil then
+      self._plugin_data = EntityMod.new(self, nil)
+    end
+    return self._plugin_data
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:PluginListing():list() / client:PluginListing():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:PluginListing(data)
+  local EntityMod = require("entity.plugin_listing_entity")
+  if data == nil then
+    if self._plugin_listing == nil then
+      self._plugin_listing = EntityMod.new(self, nil)
+    end
+    return self._plugin_listing
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Reaction():list() / client:Reaction():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Reaction(data)
+  local EntityMod = require("entity.reaction_entity")
+  if data == nil then
+    if self._reaction == nil then
+      self._reaction = EntityMod.new(self, nil)
+    end
+    return self._reaction
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Read():list() / client:Read():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Read(data)
+  local EntityMod = require("entity.read_entity")
+  if data == nil then
+    if self._read == nil then
+      self._read = EntityMod.new(self, nil)
+    end
+    return self._read
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:SavedSearch():list() / client:SavedSearch():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:SavedSearch(data)
+  local EntityMod = require("entity.saved_search_entity")
+  if data == nil then
+    if self._saved_search == nil then
+      self._saved_search = EntityMod.new(self, nil)
+    end
+    return self._saved_search
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Search():list() / client:Search():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:ShowSidebar():list() / client:ShowSidebar():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:ShowSidebar(data)
+  local EntityMod = require("entity.show_sidebar_entity")
+  if data == nil then
+    if self._show_sidebar == nil then
+      self._show_sidebar = EntityMod.new(self, nil)
+    end
+    return self._show_sidebar
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:ShowSidebarActivity():list() / client:ShowSidebarActivity():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:ShowSidebarActivity(data)
+  local EntityMod = require("entity.show_sidebar_activity_entity")
+  if data == nil then
+    if self._show_sidebar_activity == nil then
+      self._show_sidebar_activity = EntityMod.new(self, nil)
+    end
+    return self._show_sidebar_activity
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:ShowSidebarBoardAction():list() / client:ShowSidebarBoardAction():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:ShowSidebarBoardAction(data)
+  local EntityMod = require("entity.show_sidebar_board_action_entity")
+  if data == nil then
+    if self._show_sidebar_board_action == nil then
+      self._show_sidebar_board_action = EntityMod.new(self, nil)
+    end
+    return self._show_sidebar_board_action
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:ShowSidebarMember():list() / client:ShowSidebarMember():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:ShowSidebarMember(data)
+  local EntityMod = require("entity.show_sidebar_member_entity")
+  if data == nil then
+    if self._show_sidebar_member == nil then
+      self._show_sidebar_member = EntityMod.new(self, nil)
+    end
+    return self._show_sidebar_member
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Sticker():list() / client:Sticker():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Sticker(data)
+  local EntityMod = require("entity.sticker_entity")
+  if data == nil then
+    if self._sticker == nil then
+      self._sticker = EntityMod.new(self, nil)
+    end
+    return self._sticker
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Tag():list() / client:Tag():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Tag(data)
+  local EntityMod = require("entity.tag_entity")
+  if data == nil then
+    if self._tag == nil then
+      self._tag = EntityMod.new(self, nil)
+    end
+    return self._tag
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Token():list() / client:Token():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Token(data)
+  local EntityMod = require("entity.token_entity")
+  if data == nil then
+    if self._token == nil then
+      self._token = EntityMod.new(self, nil)
+    end
+    return self._token
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:TransferrableOrganization():list() / client:TransferrableOrganization():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:TransferrableOrganization(data)
+  local EntityMod = require("entity.transferrable_organization_entity")
+  if data == nil then
+    if self._transferrable_organization == nil then
+      self._transferrable_organization = EntityMod.new(self, nil)
+    end
+    return self._transferrable_organization
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:TrelloList():list() / client:TrelloList():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:TrelloList(data)
+  local EntityMod = require("entity.trello_list_entity")
+  if data == nil then
+    if self._trello_list == nil then
+      self._trello_list = EntityMod.new(self, nil)
+    end
+    return self._trello_list
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:Webhook():list() / client:Webhook():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:Webhook(data)
+  local EntityMod = require("entity.webhook_entity")
+  if data == nil then
+    if self._webhook == nil then
+      self._webhook = EntityMod.new(self, nil)
+    end
+    return self._webhook
   end
   return EntityMod.new(self, data)
 end

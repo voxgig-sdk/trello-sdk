@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "custom_field_item": {
+      "CUSTOM_FIELD_ITEM00": {
+        "id": "CUSTOM_FIELD_ITEM00",
+        "idCustomField": "s33",
+        "idModel": "s34",
+        "modelType": "s35",
+        "value": {},
+        "card_id": "CARD01"
+      },
+      "CUSTOM_FIELD_ITEM01": {
+        "id": "CUSTOM_FIELD_ITEM01",
+        "idCustomField": "s65",
+        "idModel": "s66",
+        "modelType": "s67",
+        "value": {},
+        "card_id": "CARD01"
+      },
+      "CUSTOM_FIELD_ITEM02": {
+        "id": "CUSTOM_FIELD_ITEM02",
+        "idCustomField": "s97",
+        "idModel": "s98",
+        "modelType": "s99",
+        "value": {},
+        "card_id": "CARD01"
+      }
+    }
+  },
+  "new": {
+    "custom_field_item": {
+      "custom_field_item_ref01": {
+        "idCustomField": "sc9",
+        "idModel": "sca",
+        "modelType": "scb",
+        "value": {}
+      }
+    }
+  }
+}

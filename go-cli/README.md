@@ -19,17 +19,18 @@ make build
 export TRELLO_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
-./trello-cli list board
-./trello-cli load 1 board            # {id:1} shorthand
-./trello-cli load '{id:1}' board       # explicit match map
-./trello-cli update '{name:"x"}' board
+./trello-cli list action
+./trello-cli load 1 action            # {id:1} shorthand
+./trello-cli load '{id:1}' action       # explicit match map
+./trello-cli update '{name:"x"}' action
+./trello-cli list action_reactions_summary
 
 # 5. Override the API base URL for a single call
-TRELLO_BASE=https://api.example.com ./trello-cli list board
+TRELLO_BASE=https://api.example.com ./trello-cli list action
 
 # 6. No arguments -> interactive REPL
 ./trello-cli
-trello> list board
+trello> list action
 trello> /quit
 ```
 
@@ -55,7 +56,7 @@ trello> /quit
    arguments to open the REPL):
 
    ```sh
-   ./dist/*/trello-cli list board
+   ./dist/*/trello-cli list action
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
@@ -68,7 +69,7 @@ That is the whole loop: *build → set key → evaluate boru expressions*.
 ### List the records of an entity
 
 ```sh
-./trello-cli list board
+./trello-cli list action
 ```
 
 `list <entity>` returns the first page of records. `<entity>` is a bareword —
@@ -77,8 +78,8 @@ it is auto-quoted as an boru atom, so no quotes are needed.
 ### Load a single record
 
 ```sh
-./trello-cli load 1 board          # scalar shorthand for {id:1}
-./trello-cli load '{id:1}' board     # explicit match map
+./trello-cli load 1 action          # scalar shorthand for {id:1}
+./trello-cli load '{id:1}' action     # explicit match map
 ```
 
 The query is either a **scalar** (`1`, treated as `{id:1}`) or a **match map**
@@ -87,7 +88,7 @@ The query is either a **scalar** (`1`, treated as `{id:1}`) or a **match map**
 ### Update a record
 
 ```sh
-./trello-cli update '{id:1,name:"new"}' board
+./trello-cli update '{id:1,name:"new"}' action
 ```
 
 The match map carries both the selector and the new field values; the updated
@@ -100,7 +101,7 @@ Configuration is read from the environment — nothing is written to disk:
 ```sh
 export TRELLO_APIKEY=sk_live_xxx            # API key
 export TRELLO_BASE=https://api.example.com  # optional: override the API base URL
-./trello-cli list board
+./trello-cli list action
 ```
 
 Both are injectable by a secrets vault, so the key never has to be typed inline.
@@ -112,7 +113,7 @@ evaluated as its own boru expression:
 
 ```text
 $ ./trello-cli
-trello> list board
+trello> list action
 trello> /help
 trello> /quit
 ```
@@ -127,7 +128,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 1 entity.
+below — this SDK exposes 70 entities.
 
 ## Reference
 
@@ -141,7 +142,7 @@ The CLI registers these boru words, each bound to the SDK:
 | `load`   | `load <entity>` · `load <query> <entity>`     | A single record                |
 | `update` | `update <query> <entity>`                     | Update a record, return it     |
 
-- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `board`).
+- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `action`).
 - `<query>` is either a **Map** (`{id:1}`) or a **Scalar** (`1`, treated as
   `{id:1}`). A scalar is always wrapped as `{id:<value>}`.
 
@@ -182,9 +183,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 1 entity this SDK exposes (any is valid as `<entity>`):
+The 70 entities this SDK exposes (any is valid as `<entity>`):
 
-board
+action action_reactions_summary admin application application_compliance associated_domain attachment batch board board_background board_plugin board_star bulk card card_check_item_state card_list check_item checklist claimable_organization custom_board_background custom_emoji custom_field custom_field_item custom_sticker email_position emoji enterpris enterpris_signup_url enterprise_admin enterprise_audit_log export export_download generate id_email_list id_label id_member label list member member_privacy members_voted membership most_recent new_billable_guest notification notification_channel_setting notification_list notification_member_creator notifications_channel_setting option org_invite_restrict organization pending_organization plugin plugin_data plugin_listing reaction read saved_search search show_sidebar show_sidebar_activity show_sidebar_board_action show_sidebar_member sticker tag token transferrable_organization trello_list webhook
 
 ## Explanation
 

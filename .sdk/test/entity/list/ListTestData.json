@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "list": {
+      "LIST00": {
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "id": "LIST00"
+      },
+      "LIST01": {
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "id": "LIST01"
+      },
+      "LIST02": {
+        "board_id": "BOARD01",
+        "field": "FIELD01",
+        "id": "LIST02"
+      }
+    }
+  },
+  "new": {
+    "list": {
+      "list_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "card_list": {
+      "CARD_LIST00": {
+        "id": "CARD_LIST00"
+      },
+      "CARD_LIST01": {
+        "id": "CARD_LIST01"
+      },
+      "CARD_LIST02": {
+        "id": "CARD_LIST02"
+      }
+    }
+  },
+  "new": {
+    "card_list": {
+      "card_list_ref01": {}
+    }
+  }
+}

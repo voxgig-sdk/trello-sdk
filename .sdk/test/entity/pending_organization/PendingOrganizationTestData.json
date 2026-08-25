@@ -1,0 +1,52 @@
+{
+  "existing": {
+    "pending_organization": {
+      "PENDING_ORGANIZATION00": {
+        "date": "s50",
+        "displayName": "s51",
+        "id": "PENDING_ORGANIZATION00",
+        "idMember": "s53",
+        "logoUrl": "s54",
+        "memberRequestor": {},
+        "membershipCount": 86,
+        "transferability": {},
+        "enterpris_id": "ENTERPRIS01"
+      },
+      "PENDING_ORGANIZATION01": {
+        "date": "sa0",
+        "displayName": "sa1",
+        "id": "PENDING_ORGANIZATION01",
+        "idMember": "sa3",
+        "logoUrl": "sa4",
+        "memberRequestor": {},
+        "membershipCount": 166,
+        "transferability": {},
+        "enterpris_id": "ENTERPRIS01"
+      },
+      "PENDING_ORGANIZATION02": {
+        "date": "sf0",
+        "displayName": "sf1",
+        "id": "PENDING_ORGANIZATION02",
+        "idMember": "sf3",
+        "logoUrl": "sf4",
+        "memberRequestor": {},
+        "membershipCount": 246,
+        "transferability": {},
+        "enterpris_id": "ENTERPRIS01"
+      }
+    }
+  },
+  "new": {
+    "pending_organization": {
+      "pending_organization_ref01": {
+        "date": "s140",
+        "displayName": "s141",
+        "idMember": "s143",
+        "logoUrl": "s144",
+        "memberRequestor": {},
+        "membershipCount": 326,
+        "transferability": {}
+      }
+    }
+  }
+}

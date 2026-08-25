@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "board_star": {
+      "BOARD_STAR00": {
+        "id": "BOARD_STAR00",
+        "idBoard": "s1f",
+        "pos": "s20",
+        "member_id": "MEMBER01"
+      },
+      "BOARD_STAR01": {
+        "id": "BOARD_STAR01",
+        "idBoard": "s3d",
+        "pos": "s3e",
+        "member_id": "MEMBER01"
+      },
+      "BOARD_STAR02": {
+        "id": "BOARD_STAR02",
+        "idBoard": "s5b",
+        "pos": "s5c",
+        "member_id": "MEMBER01"
+      }
+    }
+  },
+  "new": {
+    "board_star": {
+      "board_star_ref01": {
+        "idBoard": "s79",
+        "pos": "s7a"
+      }
+    }
+  }
+}

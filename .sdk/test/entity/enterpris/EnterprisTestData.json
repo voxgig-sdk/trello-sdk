@@ -1,0 +1,89 @@
+{
+  "existing": {
+    "enterpris": {
+      "ENTERPRIS00": {
+        "dateOrganizationPrefsLastUpdated": "sb4",
+        "displayName": "sb5",
+        "domains": [],
+        "enterpriseDomains": [],
+        "id": "ENTERPRIS00",
+        "idAdmins": [],
+        "idOrganizations": [],
+        "idp": {},
+        "isRealEnterprise": true,
+        "licenses": {},
+        "logoHash": "sbe",
+        "logoUrl": "sbf",
+        "name": "sc0",
+        "organizationPrefs": {},
+        "pluginWhitelistingEnabled": [],
+        "prefs": {},
+        "products": [],
+        "ssoActivationFailed": false
+      },
+      "ENTERPRIS01": {
+        "dateOrganizationPrefsLastUpdated": "s168",
+        "displayName": "s169",
+        "domains": [],
+        "enterpriseDomains": [],
+        "id": "ENTERPRIS01",
+        "idAdmins": [],
+        "idOrganizations": [],
+        "idp": {},
+        "isRealEnterprise": true,
+        "licenses": {},
+        "logoHash": "s172",
+        "logoUrl": "s173",
+        "name": "s174",
+        "organizationPrefs": {},
+        "pluginWhitelistingEnabled": [],
+        "prefs": {},
+        "products": [],
+        "ssoActivationFailed": false
+      },
+      "ENTERPRIS02": {
+        "dateOrganizationPrefsLastUpdated": "s21c",
+        "displayName": "s21d",
+        "domains": [],
+        "enterpriseDomains": [],
+        "id": "ENTERPRIS02",
+        "idAdmins": [],
+        "idOrganizations": [],
+        "idp": {},
+        "isRealEnterprise": true,
+        "licenses": {},
+        "logoHash": "s226",
+        "logoUrl": "s227",
+        "name": "s228",
+        "organizationPrefs": {},
+        "pluginWhitelistingEnabled": [],
+        "prefs": {},
+        "products": [],
+        "ssoActivationFailed": false
+      }
+    }
+  },
+  "new": {
+    "enterpris": {
+      "enterpris_ref01": {
+        "dateOrganizationPrefsLastUpdated": "s2d0",
+        "displayName": "s2d1",
+        "domains": [],
+        "enterpriseDomains": [],
+        "idAdmins": [],
+        "idOrganizations": [],
+        "idp": {},
+        "isRealEnterprise": true,
+        "licenses": {},
+        "logoHash": "s2da",
+        "logoUrl": "s2db",
+        "name": "s2dc",
+        "organizationPrefs": {},
+        "pluginWhitelistingEnabled": [],
+        "prefs": {},
+        "products": [],
+        "ssoActivationFailed": false
+      }
+    }
+  }
+}

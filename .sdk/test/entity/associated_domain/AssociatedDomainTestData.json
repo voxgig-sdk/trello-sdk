@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "associated_domain": {
+      "ASSOCIATED_DOMAIN00": {
+        "organization_id": "ORGANIZATION01",
+        "id": "ASSOCIATED_DOMAIN00"
+      },
+      "ASSOCIATED_DOMAIN01": {
+        "organization_id": "ORGANIZATION01",
+        "id": "ASSOCIATED_DOMAIN01"
+      },
+      "ASSOCIATED_DOMAIN02": {
+        "organization_id": "ORGANIZATION01",
+        "id": "ASSOCIATED_DOMAIN02"
+      }
+    }
+  },
+  "new": {
+    "associated_domain": {
+      "associated_domain_ref01": {}
+    }
+  }
+}

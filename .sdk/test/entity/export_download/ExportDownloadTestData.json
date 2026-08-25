@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "export_download": {
+      "EXPORT_DOWNLOAD00": {
+        "board_id": "BOARD01",
+        "id_export": "ID_EXPORT01",
+        "id": "EXPORT_DOWNLOAD00"
+      },
+      "EXPORT_DOWNLOAD01": {
+        "board_id": "BOARD01",
+        "id_export": "ID_EXPORT01",
+        "id": "EXPORT_DOWNLOAD01"
+      },
+      "EXPORT_DOWNLOAD02": {
+        "board_id": "BOARD01",
+        "id_export": "ID_EXPORT01",
+        "id": "EXPORT_DOWNLOAD02"
+      }
+    }
+  },
+  "new": {
+    "export_download": {
+      "export_download_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "show_sidebar": {
+      "SHOW_SIDEBAR00": {
+        "board_id": "BOARD01",
+        "id": "SHOW_SIDEBAR00"
+      },
+      "SHOW_SIDEBAR01": {
+        "board_id": "BOARD01",
+        "id": "SHOW_SIDEBAR01"
+      },
+      "SHOW_SIDEBAR02": {
+        "board_id": "BOARD01",
+        "id": "SHOW_SIDEBAR02"
+      }
+    }
+  },
+  "new": {
+    "show_sidebar": {
+      "show_sidebar_ref01": {}
+    }
+  }
+}

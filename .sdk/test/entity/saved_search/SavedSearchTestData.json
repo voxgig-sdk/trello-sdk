@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "saved_search": {
+      "SAVED_SEARCH00": {
+        "id": "SAVED_SEARCH00",
+        "name": "s29",
+        "pos": "s2a",
+        "query": "s2b",
+        "member_id": "MEMBER01"
+      },
+      "SAVED_SEARCH01": {
+        "id": "SAVED_SEARCH01",
+        "name": "s51",
+        "pos": "s52",
+        "query": "s53",
+        "member_id": "MEMBER01"
+      },
+      "SAVED_SEARCH02": {
+        "id": "SAVED_SEARCH02",
+        "name": "s79",
+        "pos": "s7a",
+        "query": "s7b",
+        "member_id": "MEMBER01"
+      }
+    }
+  },
+  "new": {
+    "saved_search": {
+      "saved_search_ref01": {
+        "name": "sa1",
+        "pos": "sa2",
+        "query": "sa3"
+      }
+    }
+  }
+}

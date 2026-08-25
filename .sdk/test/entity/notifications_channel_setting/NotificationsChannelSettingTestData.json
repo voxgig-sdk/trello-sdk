@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "notifications_channel_setting": {
+      "NOTIFICATIONS_CHANNEL_SETTING00": {},
+      "NOTIFICATIONS_CHANNEL_SETTING01": {},
+      "NOTIFICATIONS_CHANNEL_SETTING02": {}
+    }
+  },
+  "new": {
+    "notifications_channel_setting": {
+      "notifications_channel_setting_ref01": {}
+    }
+  }
+}

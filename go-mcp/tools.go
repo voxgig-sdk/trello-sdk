@@ -16,7 +16,7 @@ import (
 // reqdata map passed through to the SDK. For load, `query` should be
 // `{"id": <value>}`. For list, omit `query` or pass an empty map.
 type Args struct {
-	Entity string         `json:"entity" jsonschema:"board"`
+	Entity string         `json:"entity" jsonschema:"action | action_reactions_summary | admin | application | application_compliance | associated_domain | attachment | batch | board | board_background | board_plugin | board_star | bulk | card | card_check_item_state | card_list | check_item | checklist | claimable_organization | custom_board_background | custom_emoji | custom_field | custom_field_item | custom_sticker | email_position | emoji | enterpris | enterpris_signup_url | enterprise_admin | enterprise_audit_log | export | export_download | generate | id_email_list | id_label | id_member | label | list | member | member_privacy | members_voted | membership | most_recent | new_billable_guest | notification | notification_channel_setting | notification_list | notification_member_creator | notifications_channel_setting | option | org_invite_restrict | organization | pending_organization | plugin | plugin_data | plugin_listing | reaction | read | saved_search | search | show_sidebar | show_sidebar_activity | show_sidebar_board_action | show_sidebar_member | sticker | tag | token | transferrable_organization | trello_list | webhook"`
 	Query  map[string]any `json:"query,omitempty" jsonschema:"optional match map e.g. {\"id\":1} for load, omit for list"`
 }
 
@@ -77,8 +77,146 @@ func runOp(client *sdk.TrelloSDK, op string, args Args) (*mcp.CallToolResult, an
 // emits one `case "<name>":` per entity defined in the SDK model.
 func entityFor(client *sdk.TrelloSDK, name string) (sdk.TrelloEntity, error) {
 	switch strings.ToLower(name) {
+	case "action":
+		return client.Action(nil), nil
+	case "action_reactions_summary":
+		return client.ActionReactionsSummary(nil), nil
+	case "admin":
+		return client.Admin(nil), nil
+	case "application":
+		return client.Application(nil), nil
+	case "application_compliance":
+		return client.ApplicationCompliance(nil), nil
+	case "associated_domain":
+		return client.AssociatedDomain(nil), nil
+	case "attachment":
+		return client.Attachment(nil), nil
+	case "batch":
+		return client.Batch(nil), nil
 	case "board":
 		return client.Board(nil), nil
+	case "board_background":
+		return client.BoardBackground(nil), nil
+	case "board_plugin":
+		return client.BoardPlugin(nil), nil
+	case "board_star":
+		return client.BoardStar(nil), nil
+	case "bulk":
+		return client.Bulk(nil), nil
+	case "card":
+		return client.Card(nil), nil
+	case "card_check_item_state":
+		return client.CardCheckItemState(nil), nil
+	case "card_list":
+		return client.CardList(nil), nil
+	case "check_item":
+		return client.CheckItem(nil), nil
+	case "checklist":
+		return client.Checklist(nil), nil
+	case "claimable_organization":
+		return client.ClaimableOrganization(nil), nil
+	case "custom_board_background":
+		return client.CustomBoardBackground(nil), nil
+	case "custom_emoji":
+		return client.CustomEmoji(nil), nil
+	case "custom_field":
+		return client.CustomField(nil), nil
+	case "custom_field_item":
+		return client.CustomFieldItem(nil), nil
+	case "custom_sticker":
+		return client.CustomSticker(nil), nil
+	case "email_position":
+		return client.EmailPosition(nil), nil
+	case "emoji":
+		return client.Emoji(nil), nil
+	case "enterpris":
+		return client.Enterpris(nil), nil
+	case "enterpris_signup_url":
+		return client.EnterprisSignupUrl(nil), nil
+	case "enterprise_admin":
+		return client.EnterpriseAdmin(nil), nil
+	case "enterprise_audit_log":
+		return client.EnterpriseAuditLog(nil), nil
+	case "export":
+		return client.Export(nil), nil
+	case "export_download":
+		return client.ExportDownload(nil), nil
+	case "generate":
+		return client.Generate(nil), nil
+	case "id_email_list":
+		return client.IdEmailList(nil), nil
+	case "id_label":
+		return client.IdLabel(nil), nil
+	case "id_member":
+		return client.IdMember(nil), nil
+	case "label":
+		return client.Label(nil), nil
+	case "list":
+		return client.List(nil), nil
+	case "member":
+		return client.Member(nil), nil
+	case "member_privacy":
+		return client.MemberPrivacy(nil), nil
+	case "members_voted":
+		return client.MembersVoted(nil), nil
+	case "membership":
+		return client.Membership(nil), nil
+	case "most_recent":
+		return client.MostRecent(nil), nil
+	case "new_billable_guest":
+		return client.NewBillableGuest(nil), nil
+	case "notification":
+		return client.Notification(nil), nil
+	case "notification_channel_setting":
+		return client.NotificationChannelSetting(nil), nil
+	case "notification_list":
+		return client.NotificationList(nil), nil
+	case "notification_member_creator":
+		return client.NotificationMemberCreator(nil), nil
+	case "notifications_channel_setting":
+		return client.NotificationsChannelSetting(nil), nil
+	case "option":
+		return client.Option(nil), nil
+	case "org_invite_restrict":
+		return client.OrgInviteRestrict(nil), nil
+	case "organization":
+		return client.Organization(nil), nil
+	case "pending_organization":
+		return client.PendingOrganization(nil), nil
+	case "plugin":
+		return client.Plugin(nil), nil
+	case "plugin_data":
+		return client.PluginData(nil), nil
+	case "plugin_listing":
+		return client.PluginListing(nil), nil
+	case "reaction":
+		return client.Reaction(nil), nil
+	case "read":
+		return client.Read(nil), nil
+	case "saved_search":
+		return client.SavedSearch(nil), nil
+	case "search":
+		return client.Search(nil), nil
+	case "show_sidebar":
+		return client.ShowSidebar(nil), nil
+	case "show_sidebar_activity":
+		return client.ShowSidebarActivity(nil), nil
+	case "show_sidebar_board_action":
+		return client.ShowSidebarBoardAction(nil), nil
+	case "show_sidebar_member":
+		return client.ShowSidebarMember(nil), nil
+	case "sticker":
+		return client.Sticker(nil), nil
+	case "tag":
+		return client.Tag(nil), nil
+	case "token":
+		return client.Token(nil), nil
+	case "transferrable_organization":
+		return client.TransferrableOrganization(nil), nil
+	case "trello_list":
+		return client.TrelloList(nil), nil
+	case "webhook":
+		return client.Webhook(nil), nil
 
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)

@@ -1,0 +1,67 @@
+{
+  "existing": {
+    "notification": {
+      "NOTIFICATION00": {
+        "board": {},
+        "card": {},
+        "data": "s70",
+        "date": "s71",
+        "dateRead": "s72",
+        "id": "NOTIFICATION00",
+        "idAction": "s74",
+        "idMemberCreator": "s75",
+        "reactions": [],
+        "type": "s77",
+        "unread": true,
+        "member_id": "MEMBER01",
+        "field": "FIELD01"
+      },
+      "NOTIFICATION01": {
+        "board": {},
+        "card": {},
+        "data": "sde",
+        "date": "sdf",
+        "dateRead": "se0",
+        "id": "NOTIFICATION01",
+        "idAction": "se2",
+        "idMemberCreator": "se3",
+        "reactions": [],
+        "type": "se5",
+        "unread": true,
+        "member_id": "MEMBER01",
+        "field": "FIELD01"
+      },
+      "NOTIFICATION02": {
+        "board": {},
+        "card": {},
+        "data": "s14c",
+        "date": "s14d",
+        "dateRead": "s14e",
+        "id": "NOTIFICATION02",
+        "idAction": "s150",
+        "idMemberCreator": "s151",
+        "reactions": [],
+        "type": "s153",
+        "unread": true,
+        "member_id": "MEMBER01",
+        "field": "FIELD01"
+      }
+    }
+  },
+  "new": {
+    "notification": {
+      "notification_ref01": {
+        "board": {},
+        "card": {},
+        "data": "s1ba",
+        "date": "s1bb",
+        "dateRead": "s1bc",
+        "idAction": "s1be",
+        "idMemberCreator": "s1bf",
+        "reactions": [],
+        "type": "s1c1",
+        "unread": true
+      }
+    }
+  }
+}

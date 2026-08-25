@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "board_background": {
+      "BOARD_BACKGROUND00": {
+        "id": "BOARD_BACKGROUND00",
+        "member_id": "MEMBER01",
+        "id_background": "ID_BACKGROUND01"
+      },
+      "BOARD_BACKGROUND01": {
+        "id": "BOARD_BACKGROUND01",
+        "member_id": "MEMBER01",
+        "id_background": "ID_BACKGROUND01"
+      },
+      "BOARD_BACKGROUND02": {
+        "id": "BOARD_BACKGROUND02",
+        "member_id": "MEMBER01",
+        "id_background": "ID_BACKGROUND01"
+      }
+    }
+  },
+  "new": {
+    "board_background": {
+      "board_background_ref01": {}
+    }
+  }
+}

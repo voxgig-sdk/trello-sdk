@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "enterpris_signup_url": {
+      "ENTERPRIS_SIGNUP_URL00": {
+        "signupUrl": "sa",
+        "id": "ENTERPRIS_SIGNUP_URL00"
+      },
+      "ENTERPRIS_SIGNUP_URL01": {
+        "signupUrl": "s14",
+        "id": "ENTERPRIS_SIGNUP_URL01"
+      },
+      "ENTERPRIS_SIGNUP_URL02": {
+        "signupUrl": "s1e",
+        "id": "ENTERPRIS_SIGNUP_URL02"
+      }
+    }
+  },
+  "new": {
+    "enterpris_signup_url": {
+      "enterpris_signup_url_ref01": {
+        "signupUrl": "s28"
+      }
+    }
+  }
+}

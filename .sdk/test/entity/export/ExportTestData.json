@@ -1,0 +1,55 @@
+{
+  "existing": {
+    "export": {
+      "EXPORT00": {
+        "attempts": 80,
+        "exportUrl": "s51",
+        "finished": true,
+        "id": "EXPORT00",
+        "size": "s54",
+        "stage": "s55",
+        "startedAt": "s56",
+        "status": {},
+        "board_id": "BOARD01",
+        "organization_id": "ORGANIZATION01"
+      },
+      "EXPORT01": {
+        "attempts": 160,
+        "exportUrl": "sa1",
+        "finished": true,
+        "id": "EXPORT01",
+        "size": "sa4",
+        "stage": "sa5",
+        "startedAt": "sa6",
+        "status": {},
+        "board_id": "BOARD01",
+        "organization_id": "ORGANIZATION01"
+      },
+      "EXPORT02": {
+        "attempts": 240,
+        "exportUrl": "sf1",
+        "finished": true,
+        "id": "EXPORT02",
+        "size": "sf4",
+        "stage": "sf5",
+        "startedAt": "sf6",
+        "status": {},
+        "board_id": "BOARD01",
+        "organization_id": "ORGANIZATION01"
+      }
+    }
+  },
+  "new": {
+    "export": {
+      "export_ref01": {
+        "attempts": 320,
+        "exportUrl": "s141",
+        "finished": true,
+        "size": "s144",
+        "stage": "s145",
+        "startedAt": "s146",
+        "status": {}
+      }
+    }
+  }
+}

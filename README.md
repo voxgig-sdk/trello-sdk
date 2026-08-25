@@ -12,14 +12,14 @@ Learn more about Voxgig SDKs at [voxgig.com/sdk](https://voxgig.com/sdk/).
 
 ## Entities, not endpoints
 
-This SDK exposes the API as a small set of **semantic entities** — Board — that you
-call directly, instead of assembling URL paths and query strings. Entities are
+This SDK exposes the API as **70 semantic entities** that you
+call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`, `create`, `update`, `remove`):
 
 ```ts
 const client = new TrelloSDK()
-const items = await client.Board().list({ member_id: "example" })
+const items = await client.Action().list({ card_id: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,23 +38,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = TrelloSDK.test({
   entity: {
-    board: {
-      test01: { id: 'test01' },
+    board_star: {
+      test01: { id: 'test01', member_id: 'example_member_id' },
     },
   },
 })
-const boards = await client.Board().list()
-// boards is an array of Board entities, populated with mock data
-// — call boards[0].data() for the record itself
-console.log(boards)
+const boardstars = await client.BoardStar().list()
+// boardstars is an array of BoardStar entities, populated with mock data
+// — call boardstars[0].data() for the record itself
+console.log(boardstars)
 ```
 
 ### Python
 
 ```python
 client = TrelloSDK.test()
-boards = client.Board().list()
-print(boards)
+boardstars = client.BoardStar().list()
+print(boardstars)
 ```
 
 ### PHP
@@ -62,16 +62,16 @@ print(boards)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = TrelloSDK::test([
-    "entity" => ["board" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["boardstar" => ["test01" => ["id" => "test01"]]],
 ]);
-$boards = $client->Board()->list();
+$boardstars = $client->BoardStar()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Board(nil).List(
+result, err := client.BoardStar(nil).List(
     nil, nil,
 )
 ```
@@ -80,17 +80,17 @@ result, err := client.Board(nil).List(
 
 ```lua
 local client = sdk.test()
-local results, err = client:Board():list()
+local results, err = client:BoardStar():list()
 ```
 
 ### JavaScript
 
 ```js
 const client = TrelloSDK.test()
-const boards = await client.Board().list()
-// boards is an array of entities, populated with mock data
-// — call boards[0].data() for the record itself
-console.log(boards)
+const boardstars = await client.BoardStar().list()
+// boardstars is an array of entities, populated with mock data
+// — call boardstars[0].data() for the record itself
+console.log(boardstars)
 ```
 
 ## Packages
@@ -117,11 +117,17 @@ const client = new TrelloSDK({
   apikey: process.env.TRELLO_APIKEY,
 })
 
-// List all boards (returns BoardEntity[] — .data() for the record)
-const boards = await client.Board().list({ member_id: "example" })
-for (const board of boards) {
-  console.log(board)
+// List all actions (returns ActionEntity[] — .data() for the record)
+const actions = await client.Action().list({ card_id: "example" })
+for (const action of actions) {
+  console.log(action)
 }
+
+// Load a specific actionreactionssummary (returns a ActionReactionsSummary)
+const actionreactionssummary = await client.ActionReactionsSummary().load({
+  id_action: 'example_id_action',
+})
+console.log(actionreactionssummary)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -158,11 +164,80 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes one entity:
+The API exposes 70 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
+| **Action** | The Action entity (create, list, load, remove, update). | `/cards/{id}/actions` |
+| **ActionReactionsSummary** | The ActionReactionsSummary entity (load). | `/actions/{idAction}/reactionsSummary` |
+| **Admin** | The Admin entity (remove, update). | `/enterprises/{id}/admins/{idMember}` |
+| **Application** | The Application entity. | `` |
+| **ApplicationCompliance** | The ApplicationCompliance entity (load). | `/applications/{key}/compliance` |
+| **AssociatedDomain** | The AssociatedDomain entity (remove). | `/organizations/{id}/prefs/associatedDomain` |
+| **Attachment** | The Attachment entity (list, load, remove). | `/cards/{id}/attachments` |
+| **Batch** | The Batch entity (load). | `/batch` |
 | **Board** | The Board entity (create, list, load, remove, update). | `/members/{id}/boards` |
+| **BoardBackground** | The BoardBackground entity (create, list, load, remove, update). | `/members/{id}/boardBackgrounds` |
+| **BoardPlugin** | The BoardPlugin entity (remove). | `/boards/{id}/boardPlugins/{idPlugin}` |
+| **BoardStar** | The BoardStar entity (create, list, load, remove, update). | `/boards/{boardId}/boardStars` |
+| **Bulk** | The Bulk entity (load, update). | `/enterprises/{id}/organizations/bulk/{idOrganizations}` |
+| **Card** | The Card entity (create, list, load, remove, update). | `/actions/{id}/card` |
+| **CardCheckItemState** | The CardCheckItemState entity (load). | `/cards/{id}/checkItemStates` |
+| **CardList** | The CardList entity (load). | `/cards/{id}/list` |
+| **CheckItem** | The CheckItem entity (load, remove, update). | `/cards/{id}/checkItem/{idCheckItem}` |
+| **Checklist** | The Checklist entity (create, load, remove, update). | `/checklists/{id}` |
+| **ClaimableOrganization** | The ClaimableOrganization entity (list). | `/enterprises/{id}/claimableOrganizations` |
+| **CustomBoardBackground** | The CustomBoardBackground entity (remove). | `/members/{id}/customBoardBackgrounds/{idBackground}` |
+| **CustomEmoji** | The CustomEmoji entity (create, list, load). | `/members/{id}/customEmoji` |
+| **CustomField** | The CustomField entity (create, list, load, remove, update). | `/boards/{id}/customFields` |
+| **CustomFieldItem** | The CustomFieldItem entity (list). | `/cards/{id}/customFieldItems` |
+| **CustomSticker** | The CustomSticker entity (create, list, load, remove). | `/members/{id}/customStickers` |
+| **EmailPosition** | The EmailPosition entity (update). | `/boards/{id}/myPrefs/emailPosition` |
+| **Emoji** | The Emoji entity (list). | `/emoji` |
+| **Enterpris** | The Enterpris entity (create, load, update). | `/enterprises/{id}` |
+| **EnterprisSignupUrl** | The EnterprisSignupUrl entity (load). | `/enterprises/{id}/signupUrl` |
+| **EnterpriseAdmin** | The EnterpriseAdmin entity (load). | `/enterprises/{id}/admins` |
+| **EnterpriseAuditLog** | The EnterpriseAuditLog entity (list). | `/enterprises/{id}/auditlog` |
+| **Export** | The Export entity (create, list, load, remove). | `/organizations/{id}/exports` |
+| **ExportDownload** | The ExportDownload entity (load). | `/boards/{id}/exports/{idExport}/download` |
+| **Generate** | The Generate entity (create). | `/boards/{id}/calendarKey/generate` |
+| **IdEmailList** | The IdEmailList entity (update). | `/boards/{id}/myPrefs/idEmailList` |
+| **IdLabel** | The IdLabel entity (remove). | `/cards/{id}/idLabels/{idLabel}` |
+| **IdMember** | The IdMember entity (remove). | `/cards/{id}/idMembers/{idMember}` |
+| **Label** | The Label entity (create, load, remove, update). | `/boards/{id}/labels` |
+| **List** | The List entity (create, load, update). | `/boards/{id}/lists/{filter}` |
+| **Member** | The Member entity (create, list, load, remove, update). | `/enterprises/{id}/members` |
+| **MemberPrivacy** | The MemberPrivacy entity (load). | `/plugins/{id}/compliance/memberPrivacy` |
+| **MembersVoted** | The MembersVoted entity (load, remove). | `/cards/{id}/membersVoted` |
+| **Membership** | The Membership entity (list, load, update). | `/enterprises/{id}/members/query` |
+| **MostRecent** | The MostRecent entity. | `` |
+| **NewBillableGuest** | The NewBillableGuest entity (load). | `/organizations/{id}/newBillableGuests/{idBoard}` |
+| **Notification** | The Notification entity (list, load, update). | `/members/{id}/notifications` |
+| **NotificationChannelSetting** | The NotificationChannelSetting entity (list, load, update). | `/members/{id}/notificationsChannelSettings` |
+| **NotificationList** | The NotificationList entity (load). | `/notifications/{id}/list` |
+| **NotificationMemberCreator** | The NotificationMemberCreator entity (load). | `/notifications/{id}/memberCreator` |
+| **NotificationsChannelSetting** | The NotificationsChannelSetting entity. | `` |
+| **Option** | The Option entity (load, remove). | `/customFields/{id}/options/{idCustomFieldOption}` |
+| **OrgInviteRestrict** | The OrgInviteRestrict entity (remove). | `/organizations/{id}/prefs/orgInviteRestrict` |
+| **Organization** | The Organization entity (create, list, load, remove, update). | `/enterprises/{id}/organizations` |
+| **PendingOrganization** | The PendingOrganization entity (list). | `/enterprises/{id}/pendingOrganizations` |
+| **Plugin** | The Plugin entity (list, load, update). | `/boards/{id}/boardPlugins` |
+| **PluginData** | The PluginData entity (list, load). | `/organizations/{id}/pluginData` |
+| **PluginListing** | The PluginListing entity (create, update). | `/plugins/{idPlugin}/listing` |
+| **Reaction** | The Reaction entity (load, remove). | `/actions/{idAction}/reactions/{id}` |
+| **Read** | The Read entity (create). | `/notifications/all/read` |
+| **SavedSearch** | The SavedSearch entity (create, list, load, remove, update). | `/members/{id}/savedSearches` |
+| **Search** | The Search entity (list). | `/search` |
+| **ShowSidebar** | The ShowSidebar entity (update). | `/boards/{id}/myPrefs/showSidebar` |
+| **ShowSidebarActivity** | The ShowSidebarActivity entity (update). | `/boards/{id}/myPrefs/showSidebarActivity` |
+| **ShowSidebarBoardAction** | The ShowSidebarBoardAction entity (update). | `/boards/{id}/myPrefs/showSidebarBoardActions` |
+| **ShowSidebarMember** | The ShowSidebarMember entity (update). | `/boards/{id}/myPrefs/showSidebarMembers` |
+| **Sticker** | The Sticker entity (load, remove, update). | `/cards/{id}/stickers/{idSticker}` |
+| **Tag** | The Tag entity (list, remove). | `/organizations/{id}/tags` |
+| **Token** | The Token entity (list, load, remove). | `/members/{id}/tokens` |
+| **TransferrableOrganization** | The TransferrableOrganization entity (load). | `/enterprises/{id}/transferrable/organization/{idOrganization}` |
+| **TrelloList** | The TrelloList entity (create, list, load). | `/boards/{id}/lists` |
+| **Webhook** | The Webhook entity (create, list, load, remove, update). | `/tokens/{token}/webhooks` |
 
 The operations available across these entities are **load**, **list**, **create**, **update**, **remove** — see each entity's
 own list above for exactly which it supports.
@@ -179,14 +254,14 @@ client = TrelloSDK({
     "apikey": os.environ.get("TRELLO_APIKEY"),
 })
 
-# List all boards (returns a list, raises on error)
-boards = client.Board().list({"member_id": "example"})
-for board in boards:
-    print(board)
+# List all actions (returns a list, raises on error)
+actions = client.Action().list({"card_id": "example"})
+for action in actions:
+    print(action)
 
-# Load a specific board (returns the record, raises on error)
-board = client.Board().load({"id": "example_id"})
-print(board)
+# Load a specific action (returns the record, raises on error)
+action = client.Action().load({"id": "example_id"})
+print(action)
 ```
 
 ### PHP
@@ -199,13 +274,13 @@ $client = new TrelloSDK([
     "apikey" => getenv("TRELLO_APIKEY"),
 ]);
 
-// List all boards (returns an array; throws on error)
-$boards = $client->Board()->list();
-print_r($boards);
+// List all actions (returns an array; throws on error)
+$actions = $client->Action()->list();
+print_r($actions);
 
-// Load a specific board (returns the ENTITY; call data_get() for the record; throws on error)
-$board = $client->Board()->load(["id" => "example_id"]);
-print_r($board);
+// Load a specific action (returns the ENTITY; call data_get() for the record; throws on error)
+$action = $client->Action()->load(["id" => "example_id"]);
+print_r($action);
 ```
 
 ### Golang
@@ -217,12 +292,21 @@ client := sdk.NewTrelloSDK(map[string]any{
     "apikey": os.Getenv("TRELLO_APIKEY"),
 })
 
-// List all boards
-boards, err := client.Board(nil).List(nil, nil)
+// List all actions
+actions, err := client.Action(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(boards)
+fmt.Println(actions)
+
+// Load a specific actionreactionssummary
+actionReactionsSummary, err := client.ActionReactionsSummary(nil).Load(
+    map[string]any{"id_action": "example_id_action"}, nil,
+)
+if err != nil {
+    panic(err)
+}
+fmt.Println(actionReactionsSummary)
 ```
 
 ### Lua
@@ -234,13 +318,13 @@ local client = sdk.new({
   apikey = os.getenv("TRELLO_APIKEY"),
 })
 
--- List all boards
-local boards, err = client:Board():list()
-print(boards)
+-- List all actions
+local actions, err = client:Action():list()
+print(actions)
 
--- Load a specific board
-local board, err = client:Board():load({ id = "example_id" })
-print(board)
+-- Load a specific action
+local action, err = client:Action():load({ id = "example_id" })
+print(action)
 ```
 
 ### JavaScript
@@ -252,11 +336,17 @@ const client = new TrelloSDK({
   apikey: process.env.TRELLO_APIKEY,
 })
 
-// List all boards (returns an array)
-const boards = await client.Board().list({ member_id: "example" })
-for (const board of boards) {
-  console.log(board)
+// List all actions (returns an array)
+const actions = await client.Action().list({ card_id: "example" })
+for (const action of actions) {
+  console.log(action)
 }
+
+// Load a specific actionreactionssummary (returns the entity)
+const actionreactionssummary = await client.ActionReactionsSummary().load({
+  id_action: 'example_id_action',
+})
+console.log(actionreactionssummary)
 ```
 
 ## Direct and prepare

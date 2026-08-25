@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "id_member": {
+      "ID_MEMBER00": {
+        "card_id": "CARD01",
+        "id": "ID_MEMBER00"
+      },
+      "ID_MEMBER01": {
+        "card_id": "CARD01",
+        "id": "ID_MEMBER01"
+      },
+      "ID_MEMBER02": {
+        "card_id": "CARD01",
+        "id": "ID_MEMBER02"
+      }
+    }
+  },
+  "new": {
+    "id_member": {
+      "id_member_ref01": {}
+    }
+  }
+}

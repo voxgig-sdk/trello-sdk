@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "enterprise_admin": {
+      "ENTERPRISE_ADMIN00": {
+        "fullName": "s1e",
+        "id": "ENTERPRISE_ADMIN00",
+        "username": "s20",
+        "enterpris_id": "ENTERPRIS01"
+      },
+      "ENTERPRISE_ADMIN01": {
+        "fullName": "s3c",
+        "id": "ENTERPRISE_ADMIN01",
+        "username": "s3e",
+        "enterpris_id": "ENTERPRIS01"
+      },
+      "ENTERPRISE_ADMIN02": {
+        "fullName": "s5a",
+        "id": "ENTERPRISE_ADMIN02",
+        "username": "s5c",
+        "enterpris_id": "ENTERPRIS01"
+      }
+    }
+  },
+  "new": {
+    "enterprise_admin": {
+      "enterprise_admin_ref01": {
+        "fullName": "s78",
+        "username": "s7a"
+      }
+    }
+  }
+}

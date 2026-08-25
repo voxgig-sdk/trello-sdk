@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "member_privacy": {
+      "MEMBER_PRIVACY00": {
+        "plugin_id": "PLUGIN01",
+        "id": "MEMBER_PRIVACY00"
+      },
+      "MEMBER_PRIVACY01": {
+        "plugin_id": "PLUGIN01",
+        "id": "MEMBER_PRIVACY01"
+      },
+      "MEMBER_PRIVACY02": {
+        "plugin_id": "PLUGIN01",
+        "id": "MEMBER_PRIVACY02"
+      }
+    }
+  },
+  "new": {
+    "member_privacy": {
+      "member_privacy_ref01": {}
+    }
+  }
+}
