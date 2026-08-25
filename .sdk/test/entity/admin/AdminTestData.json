@@ -2,16 +2,16 @@
   "existing": {
     "admin": {
       "ADMIN00": {
-        "enterpris_id": "ENTERPRIS01",
-        "id": "ADMIN00"
+        "id": "ADMIN00",
+        "enterpris_id": "ENTERPRIS01"
       },
       "ADMIN01": {
-        "enterpris_id": "ENTERPRIS01",
-        "id": "ADMIN01"
+        "id": "ADMIN01",
+        "enterpris_id": "ENTERPRIS01"
       },
       "ADMIN02": {
-        "enterpris_id": "ENTERPRIS01",
-        "id": "ADMIN02"
+        "id": "ADMIN02",
+        "enterpris_id": "ENTERPRIS01"
       }
     }
   },

@@ -44,8 +44,9 @@ describe('ReactionEntity', async () => {
     // LOAD
     const reaction_ref01_ent = client.Reaction()
     const reaction_ref01_match_dt0 = {}
+    reaction_ref01_match_dt0.id = reaction_ref01_data.id
     const reaction_ref01_data_dt0 = (await reaction_ref01_ent.load(reaction_ref01_match_dt0)).data()
-    assert(null != reaction_ref01_data_dt0)
+    assert(reaction_ref01_data_dt0.id === reaction_ref01_data.id)
 
 
   })

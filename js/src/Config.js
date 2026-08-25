@@ -1189,7 +1189,12 @@ class Config {
       }
     },
     "admin": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "admin",
       "op": {
         "remove": {
@@ -1425,7 +1430,12 @@ class Config {
       }
     },
     "attachment": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "attachment",
       "op": {
         "list": {
@@ -3443,7 +3453,12 @@ class Config {
       }
     },
     "board_plugin": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "board_plugin",
       "op": {
         "remove": {
@@ -3850,7 +3865,12 @@ class Config {
       }
     },
     "bulk": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "bulk",
       "op": {
         "load": {
@@ -5487,7 +5507,12 @@ class Config {
       }
     },
     "card_check_item_state": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "card_check_item_state",
       "op": {
         "load": {
@@ -5543,7 +5568,12 @@ class Config {
       }
     },
     "card_list": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "card_list",
       "op": {
         "load": {
@@ -6089,7 +6119,12 @@ class Config {
       }
     },
     "checklist": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "checklist",
       "op": {
         "create": {
@@ -6766,7 +6801,12 @@ class Config {
       }
     },
     "custom_board_background": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "custom_board_background",
       "op": {
         "remove": {
@@ -8173,6 +8213,10 @@ class Config {
     "enterpris_signup_url": {
       "fields": [
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "signupUrl",
           "type": "`$STRING`"
         }
@@ -8987,7 +9031,12 @@ class Config {
       }
     },
     "id_label": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "id_label",
       "op": {
         "remove": {
@@ -9053,7 +9102,12 @@ class Config {
       }
     },
     "id_member": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "id_member",
       "op": {
         "remove": {
@@ -9119,7 +9173,12 @@ class Config {
       }
     },
     "label": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "label",
       "op": {
         "create": {
@@ -9418,7 +9477,12 @@ class Config {
       }
     },
     "list": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "list",
       "op": {
         "create": {
@@ -11610,7 +11674,12 @@ class Config {
       }
     },
     "members_voted": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "members_voted",
       "op": {
         "load": {
@@ -12171,7 +12240,12 @@ class Config {
       }
     },
     "new_billable_guest": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "new_billable_guest",
       "op": {
         "load": {
@@ -12986,7 +13060,12 @@ class Config {
       }
     },
     "notification_list": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "notification_list",
       "op": {
         "load": {
@@ -13042,7 +13121,12 @@ class Config {
       }
     },
     "notification_member_creator": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "notification_member_creator",
       "op": {
         "load": {
@@ -13113,7 +13197,12 @@ class Config {
       }
     },
     "option": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "option",
       "op": {
         "load": {
@@ -14677,7 +14766,12 @@ class Config {
       }
     },
     "reaction": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "reaction",
       "op": {
         "load": {
@@ -15703,7 +15797,12 @@ class Config {
       }
     },
     "sticker": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "sticker",
       "op": {
         "load": {
@@ -15973,7 +16072,12 @@ class Config {
       }
     },
     "tag": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "tag",
       "op": {
         "list": {
@@ -16272,6 +16376,10 @@ class Config {
     },
     "transferrable_organization": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "newBillableMembers",
           "type": "`$ARRAY`"

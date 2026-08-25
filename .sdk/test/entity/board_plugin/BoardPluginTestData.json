@@ -2,16 +2,16 @@
   "existing": {
     "board_plugin": {
       "BOARD_PLUGIN00": {
-        "board_id": "BOARD01",
-        "id": "BOARD_PLUGIN00"
+        "id": "BOARD_PLUGIN00",
+        "board_id": "BOARD01"
       },
       "BOARD_PLUGIN01": {
-        "board_id": "BOARD01",
-        "id": "BOARD_PLUGIN01"
+        "id": "BOARD_PLUGIN01",
+        "board_id": "BOARD01"
       },
       "BOARD_PLUGIN02": {
-        "board_id": "BOARD01",
-        "id": "BOARD_PLUGIN02"
+        "id": "BOARD_PLUGIN02",
+        "board_id": "BOARD01"
       }
     }
   },

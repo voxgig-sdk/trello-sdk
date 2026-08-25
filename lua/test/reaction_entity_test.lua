@@ -44,10 +44,14 @@ describe("ReactionEntity", function()
 
     -- LOAD
     local reaction_ref01_ent = client:Reaction(nil)
-    local reaction_ref01_match_dt0 = {}
+    local reaction_ref01_match_dt0 = {
+      id = reaction_ref01_data["id"],
+    }
     local reaction_ref01_data_dt0_loaded, err = reaction_ref01_ent:load(reaction_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(reaction_ref01_data_dt0_loaded)
+    local reaction_ref01_data_dt0_load_result = helpers.to_map(type(reaction_ref01_data_dt0_loaded) == 'table' and reaction_ref01_data_dt0_loaded.data_get and reaction_ref01_data_dt0_loaded:data_get() or reaction_ref01_data_dt0_loaded)
+    assert.is_not_nil(reaction_ref01_data_dt0_load_result)
+    assert.are.equal(reaction_ref01_data_dt0_load_result["id"], reaction_ref01_data["id"])
 
   end)
 end)

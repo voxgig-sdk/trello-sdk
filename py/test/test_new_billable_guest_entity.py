@@ -48,9 +48,13 @@ class TestNewBillableGuestEntity:
 
         # LOAD
         new_billable_guest_ref01_ent = client.NewBillableGuest(None)
-        new_billable_guest_ref01_match_dt0 = {}
+        new_billable_guest_ref01_match_dt0 = {
+            "id": new_billable_guest_ref01_data["id"],
+        }
         new_billable_guest_ref01_data_dt0_loaded = new_billable_guest_ref01_ent.load(new_billable_guest_ref01_match_dt0, None)
-        assert new_billable_guest_ref01_data_dt0_loaded is not None
+        new_billable_guest_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(new_billable_guest_ref01_data_dt0_loaded))
+        assert new_billable_guest_ref01_data_dt0_load_result is not None
+        assert new_billable_guest_ref01_data_dt0_load_result["id"] == new_billable_guest_ref01_data["id"]
 
 
 

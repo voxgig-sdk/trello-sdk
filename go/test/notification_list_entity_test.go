@@ -61,13 +61,19 @@ func TestNotificationListEntity(t *testing.T) {
 
 		// LOAD
 		notificationListRef01Ent := client.NotificationList(nil)
-		notificationListRef01MatchDt0 := map[string]any{}
+		notificationListRef01MatchDt0 := map[string]any{
+			"id": notificationListRef01Data["id"],
+		}
 		notificationListRef01DataDt0Loaded, err := notificationListRef01Ent.Load(notificationListRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if notificationListRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		notificationListRef01DataDt0LoadResult := core.ToMapAny(entityData(notificationListRef01DataDt0Loaded))
+		if notificationListRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if notificationListRef01DataDt0LoadResult["id"] != notificationListRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

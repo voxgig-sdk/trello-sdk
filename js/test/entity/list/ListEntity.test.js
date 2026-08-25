@@ -46,20 +46,22 @@ describe('ListEntity', async () => {
     list_ref01_data['board_id'] = setup.idmap['board01']
 
     list_ref01_data = (await list_ref01_ent.create(list_ref01_data)).data()
-    assert(null != list_ref01_data)
+    assert(null != list_ref01_data.id)
 
 
     // UPDATE
     const list_ref01_data_up0 = {}
+    list_ref01_data_up0.id = list_ref01_data.id
 
     const list_ref01_resdata_up0 = (await list_ref01_ent.update(list_ref01_data_up0)).data()
-    assert(null != list_ref01_resdata_up0)
+    assert(list_ref01_resdata_up0.id === list_ref01_data_up0.id)
 
 
     // LOAD
     const list_ref01_match_dt0 = {}
+    list_ref01_match_dt0.id = list_ref01_data.id
     const list_ref01_data_dt0 = (await list_ref01_ent.load(list_ref01_match_dt0)).data()
-    assert(null != list_ref01_data_dt0)
+    assert(list_ref01_data_dt0.id === list_ref01_data.id)
 
 
   })

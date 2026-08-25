@@ -48,9 +48,13 @@ class CardCheckItemStateEntityTest extends TestCase
 
         // LOAD
         $card_check_item_state_ref01_ent = $client->CardCheckItemState(null);
-        $card_check_item_state_ref01_match_dt0 = [];
+        $card_check_item_state_ref01_match_dt0 = [
+            "id" => $card_check_item_state_ref01_data["id"],
+        ];
         $card_check_item_state_ref01_data_dt0_loaded = $card_check_item_state_ref01_ent->load($card_check_item_state_ref01_match_dt0, null);
-        $this->assertNotNull($card_check_item_state_ref01_data_dt0_loaded);
+        $card_check_item_state_ref01_data_dt0_load_result = Helpers::to_map(is_object($card_check_item_state_ref01_data_dt0_loaded) && method_exists($card_check_item_state_ref01_data_dt0_loaded, 'data_get') ? $card_check_item_state_ref01_data_dt0_loaded->data_get() : $card_check_item_state_ref01_data_dt0_loaded);
+        $this->assertNotNull($card_check_item_state_ref01_data_dt0_load_result);
+        $this->assertEquals($card_check_item_state_ref01_data_dt0_load_result["id"], $card_check_item_state_ref01_data["id"]);
 
     }
 }

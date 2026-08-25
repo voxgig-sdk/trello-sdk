@@ -48,9 +48,13 @@ class TestNotificationListEntity:
 
         # LOAD
         notification_list_ref01_ent = client.NotificationList(None)
-        notification_list_ref01_match_dt0 = {}
+        notification_list_ref01_match_dt0 = {
+            "id": notification_list_ref01_data["id"],
+        }
         notification_list_ref01_data_dt0_loaded = notification_list_ref01_ent.load(notification_list_ref01_match_dt0, None)
-        assert notification_list_ref01_data_dt0_loaded is not None
+        notification_list_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(notification_list_ref01_data_dt0_loaded))
+        assert notification_list_ref01_data_dt0_load_result is not None
+        assert notification_list_ref01_data_dt0_load_result["id"] == notification_list_ref01_data["id"]
 
 
 

@@ -48,9 +48,13 @@ class NotificationMemberCreatorEntityTest extends TestCase
 
         // LOAD
         $notification_member_creator_ref01_ent = $client->NotificationMemberCreator(null);
-        $notification_member_creator_ref01_match_dt0 = [];
+        $notification_member_creator_ref01_match_dt0 = [
+            "id" => $notification_member_creator_ref01_data["id"],
+        ];
         $notification_member_creator_ref01_data_dt0_loaded = $notification_member_creator_ref01_ent->load($notification_member_creator_ref01_match_dt0, null);
-        $this->assertNotNull($notification_member_creator_ref01_data_dt0_loaded);
+        $notification_member_creator_ref01_data_dt0_load_result = Helpers::to_map(is_object($notification_member_creator_ref01_data_dt0_loaded) && method_exists($notification_member_creator_ref01_data_dt0_loaded, 'data_get') ? $notification_member_creator_ref01_data_dt0_loaded->data_get() : $notification_member_creator_ref01_data_dt0_loaded);
+        $this->assertNotNull($notification_member_creator_ref01_data_dt0_load_result);
+        $this->assertEquals($notification_member_creator_ref01_data_dt0_load_result["id"], $notification_member_creator_ref01_data["id"]);
 
     }
 }

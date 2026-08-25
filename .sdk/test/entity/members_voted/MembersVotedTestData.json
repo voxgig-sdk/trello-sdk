@@ -2,16 +2,16 @@
   "existing": {
     "members_voted": {
       "MEMBERS_VOTED00": {
-        "card_id": "CARD01",
-        "id": "MEMBERS_VOTED00"
+        "id": "MEMBERS_VOTED00",
+        "card_id": "CARD01"
       },
       "MEMBERS_VOTED01": {
-        "card_id": "CARD01",
-        "id": "MEMBERS_VOTED01"
+        "id": "MEMBERS_VOTED01",
+        "card_id": "CARD01"
       },
       "MEMBERS_VOTED02": {
-        "card_id": "CARD01",
-        "id": "MEMBERS_VOTED02"
+        "id": "MEMBERS_VOTED02",
+        "card_id": "CARD01"
       }
     }
   },

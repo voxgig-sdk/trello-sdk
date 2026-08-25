@@ -44,22 +44,35 @@ describe("ChecklistEntity", function()
     assert.is_nil(err)
     checklist_ref01_data = helpers.to_map(type(checklist_ref01_data_result) == 'table' and checklist_ref01_data_result.data_get and checklist_ref01_data_result:data_get() or checklist_ref01_data_result)
     assert.is_not_nil(checklist_ref01_data)
+    assert.is_not_nil(checklist_ref01_data["id"])
 
     -- UPDATE
     local checklist_ref01_data_up0_up = {
+      id = checklist_ref01_data["id"],
     }
 
     local checklist_ref01_resdata_up0_result, err = checklist_ref01_ent:update(checklist_ref01_data_up0_up, nil)
     assert.is_nil(err)
     local checklist_ref01_resdata_up0 = helpers.to_map(type(checklist_ref01_resdata_up0_result) == 'table' and checklist_ref01_resdata_up0_result.data_get and checklist_ref01_resdata_up0_result:data_get() or checklist_ref01_resdata_up0_result)
     assert.is_not_nil(checklist_ref01_resdata_up0)
+    assert.are.equal(checklist_ref01_resdata_up0["id"], checklist_ref01_data_up0_up["id"])
 
     -- LOAD
-    local checklist_ref01_match_dt0 = {}
+    local checklist_ref01_match_dt0 = {
+      id = checklist_ref01_data["id"],
+    }
     local checklist_ref01_data_dt0_loaded, err = checklist_ref01_ent:load(checklist_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(checklist_ref01_data_dt0_loaded)
+    local checklist_ref01_data_dt0_load_result = helpers.to_map(type(checklist_ref01_data_dt0_loaded) == 'table' and checklist_ref01_data_dt0_loaded.data_get and checklist_ref01_data_dt0_loaded:data_get() or checklist_ref01_data_dt0_loaded)
+    assert.is_not_nil(checklist_ref01_data_dt0_load_result)
+    assert.are.equal(checklist_ref01_data_dt0_load_result["id"], checklist_ref01_data["id"])
 
+    -- REMOVE
+    local checklist_ref01_match_rm0 = {
+      id = checklist_ref01_data["id"],
+    }
+    local _, err = checklist_ref01_ent:remove(checklist_ref01_match_rm0, nil)
+    assert.is_nil(err)
 
   end)
 end)

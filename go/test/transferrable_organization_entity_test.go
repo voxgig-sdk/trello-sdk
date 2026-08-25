@@ -61,13 +61,19 @@ func TestTransferrableOrganizationEntity(t *testing.T) {
 
 		// LOAD
 		transferrableOrganizationRef01Ent := client.TransferrableOrganization(nil)
-		transferrableOrganizationRef01MatchDt0 := map[string]any{}
+		transferrableOrganizationRef01MatchDt0 := map[string]any{
+			"id": transferrableOrganizationRef01Data["id"],
+		}
 		transferrableOrganizationRef01DataDt0Loaded, err := transferrableOrganizationRef01Ent.Load(transferrableOrganizationRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if transferrableOrganizationRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		transferrableOrganizationRef01DataDt0LoadResult := core.ToMapAny(entityData(transferrableOrganizationRef01DataDt0Loaded))
+		if transferrableOrganizationRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if transferrableOrganizationRef01DataDt0LoadResult["id"] != transferrableOrganizationRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

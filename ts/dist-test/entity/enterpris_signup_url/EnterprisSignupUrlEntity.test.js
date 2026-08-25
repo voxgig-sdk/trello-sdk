@@ -72,9 +72,12 @@ const utility_1 = require("../../utility");
         const isempty = struct.isempty;
         const select = struct.select;
         let enterpris_signup_url_ref01_data = Object.values(setup.data.existing.enterpris_signup_url)[0];
-        // LOAD: skipped — no entity id field and load requires path params.
-        // Entity-var is declared here so later flow steps still compile.
+        // LOAD
         const enterpris_signup_url_ref01_ent = client.EnterprisSignupUrl();
+        const enterpris_signup_url_ref01_match_dt0 = {};
+        enterpris_signup_url_ref01_match_dt0.id = enterpris_signup_url_ref01_data.id;
+        const enterpris_signup_url_ref01_data_dt0 = (await enterpris_signup_url_ref01_ent.load(enterpris_signup_url_ref01_match_dt0)).data();
+        (0, node_assert_1.default)(enterpris_signup_url_ref01_data_dt0.id === enterpris_signup_url_ref01_data.id);
     });
 });
 function basicSetup(extra) {

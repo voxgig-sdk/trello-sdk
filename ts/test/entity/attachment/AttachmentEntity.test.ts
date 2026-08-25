@@ -67,6 +67,12 @@ describe('AttachmentEntity', async () => {
     const attachment_ref01_list = (await attachment_ref01_ent.list(attachment_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const attachment_ref01_match_dt0: any = {}
+    attachment_ref01_match_dt0.id = attachment_ref01_data.id
+    const attachment_ref01_data_dt0 = (await attachment_ref01_ent.load(attachment_ref01_match_dt0)).data()
+    assert(attachment_ref01_data_dt0.id === attachment_ref01_data.id)
+
 
   })
 })

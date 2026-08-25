@@ -44,10 +44,14 @@ describe("NotificationMemberCreatorEntity", function()
 
     -- LOAD
     local notification_member_creator_ref01_ent = client:NotificationMemberCreator(nil)
-    local notification_member_creator_ref01_match_dt0 = {}
+    local notification_member_creator_ref01_match_dt0 = {
+      id = notification_member_creator_ref01_data["id"],
+    }
     local notification_member_creator_ref01_data_dt0_loaded, err = notification_member_creator_ref01_ent:load(notification_member_creator_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(notification_member_creator_ref01_data_dt0_loaded)
+    local notification_member_creator_ref01_data_dt0_load_result = helpers.to_map(type(notification_member_creator_ref01_data_dt0_loaded) == 'table' and notification_member_creator_ref01_data_dt0_loaded.data_get and notification_member_creator_ref01_data_dt0_loaded:data_get() or notification_member_creator_ref01_data_dt0_loaded)
+    assert.is_not_nil(notification_member_creator_ref01_data_dt0_load_result)
+    assert.are.equal(notification_member_creator_ref01_data_dt0_load_result["id"], notification_member_creator_ref01_data["id"])
 
   end)
 end)

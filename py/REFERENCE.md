@@ -506,6 +506,12 @@ Return the entity name.
 admin = client.Admin()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -687,6 +693,12 @@ Return the entity name.
 ```python
 attachment = client.Attachment()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -1003,6 +1015,12 @@ Return the entity name.
 board_plugin = client.BoardPlugin()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -1140,6 +1158,12 @@ Return the entity name.
 ```python
 bulk = client.Bulk()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -1319,6 +1343,12 @@ Return the entity name.
 card_check_item_state = client.CardCheckItemState()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -1363,6 +1393,12 @@ Return the entity name.
 ```python
 card_list = client.CardList()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -1483,6 +1519,12 @@ Return the entity name.
 ```python
 checklist = client.Checklist()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -1616,6 +1658,12 @@ Return the entity name.
 ```python
 custom_board_background = client.CustomBoardBackground()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -2198,6 +2246,7 @@ enterpris_signup_url = client.EnterprisSignupUrl()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `signupUrl` | `str` | No |  |
 
 ### Operations
@@ -2582,6 +2631,12 @@ Return the entity name.
 id_label = client.IdLabel()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -2627,6 +2682,12 @@ Return the entity name.
 id_member = client.IdMember()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -2671,6 +2732,12 @@ Return the entity name.
 ```python
 label = client.Label()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -2744,6 +2811,12 @@ Return the entity name.
 ```python
 list = client.List()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -2986,6 +3059,12 @@ Return the entity name.
 members_voted = client.MembersVoted()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -3152,6 +3231,12 @@ Return the entity name.
 ```python
 new_billable_guest = client.NewBillableGuest()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -3365,6 +3450,12 @@ Return the entity name.
 notification_list = client.NotificationList()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -3409,6 +3500,12 @@ Return the entity name.
 ```python
 notification_member_creator = client.NotificationMemberCreator()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -3489,6 +3586,12 @@ Return the entity name.
 ```python
 option = client.Option()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -3943,6 +4046,12 @@ Return the entity name.
 reaction = client.Reaction()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -4375,6 +4484,12 @@ Return the entity name.
 sticker = client.Sticker()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -4439,6 +4554,12 @@ Return the entity name.
 ```python
 tag = client.Tag()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -4573,6 +4694,7 @@ transferrable_organization = client.TransferrableOrganization()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `newBillableMembers` | `list` | No |  |
 | `restrictedMembers` | `list` | No |  |
 | `transferrable` | `bool` | No |  |

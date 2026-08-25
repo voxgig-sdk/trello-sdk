@@ -62,6 +62,7 @@ func TestBulkEntity(t *testing.T) {
 		// UPDATE
 		bulkRef01Ent := client.Bulk(nil)
 		bulkRef01DataUp0Up := map[string]any{
+			"id": bulkRef01Data["id"],
 		}
 
 		bulkRef01ResdataUp0Result, err := bulkRef01Ent.Update(bulkRef01DataUp0Up, nil)
@@ -72,15 +73,24 @@ func TestBulkEntity(t *testing.T) {
 		if bulkRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
 		}
+		if bulkRef01ResdataUp0["id"] != bulkRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
 
 		// LOAD
-		bulkRef01MatchDt0 := map[string]any{}
+		bulkRef01MatchDt0 := map[string]any{
+			"id": bulkRef01Data["id"],
+		}
 		bulkRef01DataDt0Loaded, err := bulkRef01Ent.Load(bulkRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if bulkRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		bulkRef01DataDt0LoadResult := core.ToMapAny(entityData(bulkRef01DataDt0Loaded))
+		if bulkRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if bulkRef01DataDt0LoadResult["id"] != bulkRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

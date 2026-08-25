@@ -49,12 +49,14 @@ class AdminEntityTest extends TestCase
         // UPDATE
         $admin_ref01_ent = $client->Admin(null);
         $admin_ref01_data_up0_up = [
+            "id" => $admin_ref01_data["id"],
             "enterpris_id" => $setup["idmap"]["enterpris_id"],
         ];
 
         $admin_ref01_resdata_up0_result = $admin_ref01_ent->update($admin_ref01_data_up0_up, null);
         $admin_ref01_resdata_up0 = Helpers::to_map(is_object($admin_ref01_resdata_up0_result) && method_exists($admin_ref01_resdata_up0_result, 'data_get') ? $admin_ref01_resdata_up0_result->data_get() : $admin_ref01_resdata_up0_result);
         $this->assertNotNull($admin_ref01_resdata_up0);
+        $this->assertEquals($admin_ref01_resdata_up0["id"], $admin_ref01_data_up0_up["id"]);
 
     }
 }

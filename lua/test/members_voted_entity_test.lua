@@ -44,10 +44,14 @@ describe("MembersVotedEntity", function()
 
     -- LOAD
     local members_voted_ref01_ent = client:MembersVoted(nil)
-    local members_voted_ref01_match_dt0 = {}
+    local members_voted_ref01_match_dt0 = {
+      id = members_voted_ref01_data["id"],
+    }
     local members_voted_ref01_data_dt0_loaded, err = members_voted_ref01_ent:load(members_voted_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(members_voted_ref01_data_dt0_loaded)
+    local members_voted_ref01_data_dt0_load_result = helpers.to_map(type(members_voted_ref01_data_dt0_loaded) == 'table' and members_voted_ref01_data_dt0_loaded.data_get and members_voted_ref01_data_dt0_loaded:data_get() or members_voted_ref01_data_dt0_loaded)
+    assert.is_not_nil(members_voted_ref01_data_dt0_load_result)
+    assert.are.equal(members_voted_ref01_data_dt0_load_result["id"], members_voted_ref01_data["id"])
 
   end)
 end)

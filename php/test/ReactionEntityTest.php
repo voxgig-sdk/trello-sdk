@@ -48,9 +48,13 @@ class ReactionEntityTest extends TestCase
 
         // LOAD
         $reaction_ref01_ent = $client->Reaction(null);
-        $reaction_ref01_match_dt0 = [];
+        $reaction_ref01_match_dt0 = [
+            "id" => $reaction_ref01_data["id"],
+        ];
         $reaction_ref01_data_dt0_loaded = $reaction_ref01_ent->load($reaction_ref01_match_dt0, null);
-        $this->assertNotNull($reaction_ref01_data_dt0_loaded);
+        $reaction_ref01_data_dt0_load_result = Helpers::to_map(is_object($reaction_ref01_data_dt0_loaded) && method_exists($reaction_ref01_data_dt0_loaded, 'data_get') ? $reaction_ref01_data_dt0_loaded->data_get() : $reaction_ref01_data_dt0_loaded);
+        $this->assertNotNull($reaction_ref01_data_dt0_load_result);
+        $this->assertEquals($reaction_ref01_data_dt0_load_result["id"], $reaction_ref01_data["id"]);
 
     }
 }

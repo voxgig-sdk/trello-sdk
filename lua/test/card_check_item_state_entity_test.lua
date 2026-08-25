@@ -44,10 +44,14 @@ describe("CardCheckItemStateEntity", function()
 
     -- LOAD
     local card_check_item_state_ref01_ent = client:CardCheckItemState(nil)
-    local card_check_item_state_ref01_match_dt0 = {}
+    local card_check_item_state_ref01_match_dt0 = {
+      id = card_check_item_state_ref01_data["id"],
+    }
     local card_check_item_state_ref01_data_dt0_loaded, err = card_check_item_state_ref01_ent:load(card_check_item_state_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(card_check_item_state_ref01_data_dt0_loaded)
+    local card_check_item_state_ref01_data_dt0_load_result = helpers.to_map(type(card_check_item_state_ref01_data_dt0_loaded) == 'table' and card_check_item_state_ref01_data_dt0_loaded.data_get and card_check_item_state_ref01_data_dt0_loaded:data_get() or card_check_item_state_ref01_data_dt0_loaded)
+    assert.is_not_nil(card_check_item_state_ref01_data_dt0_load_result)
+    assert.are.equal(card_check_item_state_ref01_data_dt0_load_result["id"], card_check_item_state_ref01_data["id"])
 
   end)
 end)

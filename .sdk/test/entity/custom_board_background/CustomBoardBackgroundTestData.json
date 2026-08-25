@@ -2,16 +2,16 @@
   "existing": {
     "custom_board_background": {
       "CUSTOM_BOARD_BACKGROUND00": {
-        "member_id": "MEMBER01",
-        "id": "CUSTOM_BOARD_BACKGROUND00"
+        "id": "CUSTOM_BOARD_BACKGROUND00",
+        "member_id": "MEMBER01"
       },
       "CUSTOM_BOARD_BACKGROUND01": {
-        "member_id": "MEMBER01",
-        "id": "CUSTOM_BOARD_BACKGROUND01"
+        "id": "CUSTOM_BOARD_BACKGROUND01",
+        "member_id": "MEMBER01"
       },
       "CUSTOM_BOARD_BACKGROUND02": {
-        "member_id": "MEMBER01",
-        "id": "CUSTOM_BOARD_BACKGROUND02"
+        "id": "CUSTOM_BOARD_BACKGROUND02",
+        "member_id": "MEMBER01"
       }
     }
   },

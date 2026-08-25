@@ -45,18 +45,24 @@ describe("BulkEntity", function()
     -- UPDATE
     local bulk_ref01_ent = client:Bulk(nil)
     local bulk_ref01_data_up0_up = {
+      id = bulk_ref01_data["id"],
     }
 
     local bulk_ref01_resdata_up0_result, err = bulk_ref01_ent:update(bulk_ref01_data_up0_up, nil)
     assert.is_nil(err)
     local bulk_ref01_resdata_up0 = helpers.to_map(type(bulk_ref01_resdata_up0_result) == 'table' and bulk_ref01_resdata_up0_result.data_get and bulk_ref01_resdata_up0_result:data_get() or bulk_ref01_resdata_up0_result)
     assert.is_not_nil(bulk_ref01_resdata_up0)
+    assert.are.equal(bulk_ref01_resdata_up0["id"], bulk_ref01_data_up0_up["id"])
 
     -- LOAD
-    local bulk_ref01_match_dt0 = {}
+    local bulk_ref01_match_dt0 = {
+      id = bulk_ref01_data["id"],
+    }
     local bulk_ref01_data_dt0_loaded, err = bulk_ref01_ent:load(bulk_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(bulk_ref01_data_dt0_loaded)
+    local bulk_ref01_data_dt0_load_result = helpers.to_map(type(bulk_ref01_data_dt0_loaded) == 'table' and bulk_ref01_data_dt0_loaded.data_get and bulk_ref01_data_dt0_loaded:data_get() or bulk_ref01_data_dt0_loaded)
+    assert.is_not_nil(bulk_ref01_data_dt0_load_result)
+    assert.are.equal(bulk_ref01_data_dt0_load_result["id"], bulk_ref01_data["id"])
 
   end)
 end)

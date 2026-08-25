@@ -44,10 +44,14 @@ describe("EnterprisSignupUrlEntity", function()
 
     -- LOAD
     local enterpris_signup_url_ref01_ent = client:EnterprisSignupUrl(nil)
-    local enterpris_signup_url_ref01_match_dt0 = {}
+    local enterpris_signup_url_ref01_match_dt0 = {
+      id = enterpris_signup_url_ref01_data["id"],
+    }
     local enterpris_signup_url_ref01_data_dt0_loaded, err = enterpris_signup_url_ref01_ent:load(enterpris_signup_url_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(enterpris_signup_url_ref01_data_dt0_loaded)
+    local enterpris_signup_url_ref01_data_dt0_load_result = helpers.to_map(type(enterpris_signup_url_ref01_data_dt0_loaded) == 'table' and enterpris_signup_url_ref01_data_dt0_loaded.data_get and enterpris_signup_url_ref01_data_dt0_loaded:data_get() or enterpris_signup_url_ref01_data_dt0_loaded)
+    assert.is_not_nil(enterpris_signup_url_ref01_data_dt0_load_result)
+    assert.are.equal(enterpris_signup_url_ref01_data_dt0_load_result["id"], enterpris_signup_url_ref01_data["id"])
 
   end)
 end)

@@ -47,18 +47,25 @@ class TestListEntity:
 
         list_ref01_data = helpers.to_map(runner.entity_data(list_ref01_ent.create(list_ref01_data, None)))
         assert list_ref01_data is not None
+        assert list_ref01_data["id"] is not None
 
         # UPDATE
         list_ref01_data_up0_up = {
+            "id": list_ref01_data["id"],
         }
 
         list_ref01_resdata_up0 = helpers.to_map(runner.entity_data(list_ref01_ent.update(list_ref01_data_up0_up, None)))
         assert list_ref01_resdata_up0 is not None
+        assert list_ref01_resdata_up0["id"] == list_ref01_data_up0_up["id"]
 
         # LOAD
-        list_ref01_match_dt0 = {}
+        list_ref01_match_dt0 = {
+            "id": list_ref01_data["id"],
+        }
         list_ref01_data_dt0_loaded = list_ref01_ent.load(list_ref01_match_dt0, None)
-        assert list_ref01_data_dt0_loaded is not None
+        list_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(list_ref01_data_dt0_loaded))
+        assert list_ref01_data_dt0_load_result is not None
+        assert list_ref01_data_dt0_load_result["id"] == list_ref01_data["id"]
 
 
 

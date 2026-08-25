@@ -96,6 +96,7 @@ class ActionReactionsSummaryLoadMatch
 /** Admin entity data model. */
 class Admin
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Admin#update. */
@@ -142,6 +143,7 @@ class AssociatedDomainRemoveMatch
 /** Attachment entity data model. */
 class Attachment
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Attachment#load. */
@@ -333,6 +335,7 @@ class BoardBackgroundRemoveMatch
 /** BoardPlugin entity data model. */
 class BoardPlugin
 {
+    public ?string $id = null;
 }
 
 /** Request payload for BoardPlugin#remove. */
@@ -391,6 +394,7 @@ class BoardStarRemoveMatch
 /** Bulk entity data model. */
 class Bulk
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Bulk#load. */
@@ -544,6 +548,7 @@ class CardRemoveMatch
 /** CardCheckItemState entity data model. */
 class CardCheckItemState
 {
+    public ?string $id = null;
 }
 
 /** Request payload for CardCheckItemState#load. */
@@ -555,6 +560,7 @@ class CardCheckItemStateLoadMatch
 /** CardList entity data model. */
 class CardList
 {
+    public ?string $id = null;
 }
 
 /** Request payload for CardList#load. */
@@ -606,6 +612,7 @@ class CheckItemRemoveMatch
 /** Checklist entity data model. */
 class Checklist
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Checklist#load. */
@@ -617,6 +624,7 @@ class ChecklistLoadMatch
 /** Request payload for Checklist#create. */
 class ChecklistCreateData
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Checklist#update. */
@@ -655,6 +663,7 @@ class ClaimableOrganizationListMatch
 /** CustomBoardBackground entity data model. */
 class CustomBoardBackground
 {
+    public ?string $id = null;
 }
 
 /** Request payload for CustomBoardBackground#remove. */
@@ -939,6 +948,7 @@ class EnterprisUpdateData
 /** EnterprisSignupUrl entity data model. */
 class EnterprisSignupUrl
 {
+    public ?string $id = null;
     public ?string $signupUrl = null;
 }
 
@@ -1063,6 +1073,7 @@ class IdEmailListUpdateData
 /** IdLabel entity data model. */
 class IdLabel
 {
+    public ?string $id = null;
 }
 
 /** Request payload for IdLabel#remove. */
@@ -1075,6 +1086,7 @@ class IdLabelRemoveMatch
 /** IdMember entity data model. */
 class IdMember
 {
+    public ?string $id = null;
 }
 
 /** Request payload for IdMember#remove. */
@@ -1087,6 +1099,7 @@ class IdMemberRemoveMatch
 /** Label entity data model. */
 class Label
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Label#load. */
@@ -1098,6 +1111,7 @@ class LabelLoadMatch
 /** Request payload for Label#create. */
 class LabelCreateData
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Label#update. */
@@ -1116,6 +1130,7 @@ class LabelRemoveMatch
 /** List entity data model. */
 class ListType
 {
+    public ?string $id = null;
 }
 
 /** Request payload for List#load. */
@@ -1128,6 +1143,7 @@ class ListLoadMatch
 /** Request payload for List#create. */
 class ListCreateData
 {
+    public ?string $id = null;
 }
 
 /** Request payload for List#update. */
@@ -1355,6 +1371,7 @@ class MemberPrivacyLoadMatch
 /** MembersVoted entity data model. */
 class MembersVoted
 {
+    public ?string $id = null;
 }
 
 /** Request payload for MembersVoted#load. */
@@ -1416,6 +1433,7 @@ class MostRecent
 /** NewBillableGuest entity data model. */
 class NewBillableGuest
 {
+    public ?string $id = null;
 }
 
 /** Request payload for NewBillableGuest#load. */
@@ -1505,6 +1523,7 @@ class NotificationChannelSettingUpdateData
 /** NotificationList entity data model. */
 class NotificationList
 {
+    public ?string $id = null;
 }
 
 /** Request payload for NotificationList#load. */
@@ -1516,6 +1535,7 @@ class NotificationListLoadMatch
 /** NotificationMemberCreator entity data model. */
 class NotificationMemberCreator
 {
+    public ?string $id = null;
 }
 
 /** Request payload for NotificationMemberCreator#load. */
@@ -1532,6 +1552,7 @@ class NotificationsChannelSetting
 /** Option entity data model. */
 class Option
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Option#load. */
@@ -1721,6 +1742,7 @@ class PluginListingUpdateData
 /** Reaction entity data model. */
 class Reaction
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Reaction#load. */
@@ -1853,6 +1875,7 @@ class ShowSidebarMemberUpdateData
 /** Sticker entity data model. */
 class Sticker
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Sticker#load. */
@@ -1879,6 +1902,7 @@ class StickerRemoveMatch
 /** Tag entity data model. */
 class Tag
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Tag#list. */
@@ -1926,6 +1950,7 @@ class TokenRemoveMatch
 /** TransferrableOrganization entity data model. */
 class TransferrableOrganization
 {
+    public ?string $id = null;
     public ?array $newBillableMembers = null;
     public ?array $restrictedMembers = null;
     public ?bool $transferrable = null;

@@ -62,6 +62,7 @@ func TestAdminEntity(t *testing.T) {
 		// UPDATE
 		adminRef01Ent := client.Admin(nil)
 		adminRef01DataUp0Up := map[string]any{
+			"id": adminRef01Data["id"],
 			"enterpris_id": setup.idmap["enterpris_id"],
 		}
 
@@ -72,6 +73,9 @@ func TestAdminEntity(t *testing.T) {
 		adminRef01ResdataUp0 := core.ToMapAny(entityData(adminRef01ResdataUp0Result))
 		if adminRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
+		}
+		if adminRef01ResdataUp0["id"] != adminRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
 		}
 
 	})

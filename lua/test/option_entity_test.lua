@@ -44,10 +44,14 @@ describe("OptionEntity", function()
 
     -- LOAD
     local option_ref01_ent = client:Option(nil)
-    local option_ref01_match_dt0 = {}
+    local option_ref01_match_dt0 = {
+      id = option_ref01_data["id"],
+    }
     local option_ref01_data_dt0_loaded, err = option_ref01_ent:load(option_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(option_ref01_data_dt0_loaded)
+    local option_ref01_data_dt0_load_result = helpers.to_map(type(option_ref01_data_dt0_loaded) == 'table' and option_ref01_data_dt0_loaded.data_get and option_ref01_data_dt0_loaded:data_get() or option_ref01_data_dt0_loaded)
+    assert.is_not_nil(option_ref01_data_dt0_load_result)
+    assert.are.equal(option_ref01_data_dt0_load_result["id"], option_ref01_data["id"])
 
   end)
 end)

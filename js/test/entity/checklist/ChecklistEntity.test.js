@@ -46,22 +46,29 @@ describe('ChecklistEntity', async () => {
     checklist_ref01_data['card_id'] = setup.idmap['card01']
 
     checklist_ref01_data = (await checklist_ref01_ent.create(checklist_ref01_data)).data()
-    assert(null != checklist_ref01_data)
+    assert(null != checklist_ref01_data.id)
 
 
     // UPDATE
     const checklist_ref01_data_up0 = {}
+    checklist_ref01_data_up0.id = checklist_ref01_data.id
 
     const checklist_ref01_resdata_up0 = (await checklist_ref01_ent.update(checklist_ref01_data_up0)).data()
-    assert(null != checklist_ref01_resdata_up0)
+    assert(checklist_ref01_resdata_up0.id === checklist_ref01_data_up0.id)
 
 
     // LOAD
     const checklist_ref01_match_dt0 = {}
+    checklist_ref01_match_dt0.id = checklist_ref01_data.id
     const checklist_ref01_data_dt0 = (await checklist_ref01_ent.load(checklist_ref01_match_dt0)).data()
-    assert(null != checklist_ref01_data_dt0)
+    assert(checklist_ref01_data_dt0.id === checklist_ref01_data.id)
 
 
+    // REMOVE
+    const checklist_ref01_match_rm0 = {}
+    checklist_ref01_match_rm0.id = checklist_ref01_data.id
+    await checklist_ref01_ent.remove(checklist_ref01_match_rm0)
+  
 
   })
 })

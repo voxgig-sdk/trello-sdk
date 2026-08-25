@@ -2,16 +2,16 @@
   "existing": {
     "bulk": {
       "BULK00": {
-        "enterpris_id": "ENTERPRIS01",
-        "id": "BULK00"
+        "id": "BULK00",
+        "enterpris_id": "ENTERPRIS01"
       },
       "BULK01": {
-        "enterpris_id": "ENTERPRIS01",
-        "id": "BULK01"
+        "id": "BULK01",
+        "enterpris_id": "ENTERPRIS01"
       },
       "BULK02": {
-        "enterpris_id": "ENTERPRIS01",
-        "id": "BULK02"
+        "id": "BULK02",
+        "enterpris_id": "ENTERPRIS01"
       }
     }
   },

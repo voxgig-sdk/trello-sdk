@@ -44,8 +44,9 @@ describe('CardCheckItemStateEntity', async () => {
     // LOAD
     const card_check_item_state_ref01_ent = client.CardCheckItemState()
     const card_check_item_state_ref01_match_dt0 = {}
+    card_check_item_state_ref01_match_dt0.id = card_check_item_state_ref01_data.id
     const card_check_item_state_ref01_data_dt0 = (await card_check_item_state_ref01_ent.load(card_check_item_state_ref01_match_dt0)).data()
-    assert(null != card_check_item_state_ref01_data_dt0)
+    assert(card_check_item_state_ref01_data_dt0.id === card_check_item_state_ref01_data.id)
 
 
   })

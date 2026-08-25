@@ -2,16 +2,16 @@
   "existing": {
     "id_label": {
       "ID_LABEL00": {
-        "card_id": "CARD01",
-        "id": "ID_LABEL00"
+        "id": "ID_LABEL00",
+        "card_id": "CARD01"
       },
       "ID_LABEL01": {
-        "card_id": "CARD01",
-        "id": "ID_LABEL01"
+        "id": "ID_LABEL01",
+        "card_id": "CARD01"
       },
       "ID_LABEL02": {
-        "card_id": "CARD01",
-        "id": "ID_LABEL02"
+        "id": "ID_LABEL02",
+        "card_id": "CARD01"
       }
     }
   },

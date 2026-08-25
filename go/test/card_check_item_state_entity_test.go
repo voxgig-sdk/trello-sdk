@@ -61,13 +61,19 @@ func TestCardCheckItemStateEntity(t *testing.T) {
 
 		// LOAD
 		cardCheckItemStateRef01Ent := client.CardCheckItemState(nil)
-		cardCheckItemStateRef01MatchDt0 := map[string]any{}
+		cardCheckItemStateRef01MatchDt0 := map[string]any{
+			"id": cardCheckItemStateRef01Data["id"],
+		}
 		cardCheckItemStateRef01DataDt0Loaded, err := cardCheckItemStateRef01Ent.Load(cardCheckItemStateRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if cardCheckItemStateRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		cardCheckItemStateRef01DataDt0LoadResult := core.ToMapAny(entityData(cardCheckItemStateRef01DataDt0Loaded))
+		if cardCheckItemStateRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if cardCheckItemStateRef01DataDt0LoadResult["id"] != cardCheckItemStateRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

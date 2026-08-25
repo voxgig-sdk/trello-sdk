@@ -61,13 +61,19 @@ func TestEnterprisSignupUrlEntity(t *testing.T) {
 
 		// LOAD
 		enterprisSignupUrlRef01Ent := client.EnterprisSignupUrl(nil)
-		enterprisSignupUrlRef01MatchDt0 := map[string]any{}
+		enterprisSignupUrlRef01MatchDt0 := map[string]any{
+			"id": enterprisSignupUrlRef01Data["id"],
+		}
 		enterprisSignupUrlRef01DataDt0Loaded, err := enterprisSignupUrlRef01Ent.Load(enterprisSignupUrlRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if enterprisSignupUrlRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		enterprisSignupUrlRef01DataDt0LoadResult := core.ToMapAny(entityData(enterprisSignupUrlRef01DataDt0Loaded))
+		if enterprisSignupUrlRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if enterprisSignupUrlRef01DataDt0LoadResult["id"] != enterprisSignupUrlRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

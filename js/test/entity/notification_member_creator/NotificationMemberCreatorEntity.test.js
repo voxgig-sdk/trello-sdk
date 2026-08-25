@@ -44,8 +44,9 @@ describe('NotificationMemberCreatorEntity', async () => {
     // LOAD
     const notification_member_creator_ref01_ent = client.NotificationMemberCreator()
     const notification_member_creator_ref01_match_dt0 = {}
+    notification_member_creator_ref01_match_dt0.id = notification_member_creator_ref01_data.id
     const notification_member_creator_ref01_data_dt0 = (await notification_member_creator_ref01_ent.load(notification_member_creator_ref01_match_dt0)).data()
-    assert(null != notification_member_creator_ref01_data_dt0)
+    assert(notification_member_creator_ref01_data_dt0.id === notification_member_creator_ref01_data.id)
 
 
   })

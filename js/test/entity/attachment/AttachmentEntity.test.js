@@ -51,8 +51,9 @@ describe('AttachmentEntity', async () => {
 
     // LOAD
     const attachment_ref01_match_dt0 = {}
+    attachment_ref01_match_dt0.id = attachment_ref01_data.id
     const attachment_ref01_data_dt0 = (await attachment_ref01_ent.load(attachment_ref01_match_dt0)).data()
-    assert(null != attachment_ref01_data_dt0)
+    assert(attachment_ref01_data_dt0.id === attachment_ref01_data.id)
 
 
   })

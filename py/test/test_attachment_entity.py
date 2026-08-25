@@ -90,9 +90,13 @@ class TestAttachmentEntity:
         assert isinstance(attachment_ref01_list_result, list)
 
         # LOAD
-        attachment_ref01_match_dt0 = {}
+        attachment_ref01_match_dt0 = {
+            "id": attachment_ref01_data["id"],
+        }
         attachment_ref01_data_dt0_loaded = attachment_ref01_ent.load(attachment_ref01_match_dt0, None)
-        assert attachment_ref01_data_dt0_loaded is not None
+        attachment_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(attachment_ref01_data_dt0_loaded))
+        assert attachment_ref01_data_dt0_load_result is not None
+        assert attachment_ref01_data_dt0_load_result["id"] == attachment_ref01_data["id"]
 
 
 

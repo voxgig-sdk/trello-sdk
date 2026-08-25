@@ -1041,7 +1041,12 @@ class TrelloConfig
           ],
         ],
         'admin' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'admin',
           'op' => [
             'remove' => [
@@ -1277,7 +1282,12 @@ class TrelloConfig
           ],
         ],
         'attachment' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'attachment',
           'op' => [
             'list' => [
@@ -3295,7 +3305,12 @@ class TrelloConfig
           ],
         ],
         'board_plugin' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'board_plugin',
           'op' => [
             'remove' => [
@@ -3702,7 +3717,12 @@ class TrelloConfig
           ],
         ],
         'bulk' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'bulk',
           'op' => [
             'load' => [
@@ -5339,7 +5359,12 @@ class TrelloConfig
           ],
         ],
         'card_check_item_state' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'card_check_item_state',
           'op' => [
             'load' => [
@@ -5395,7 +5420,12 @@ class TrelloConfig
           ],
         ],
         'card_list' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'card_list',
           'op' => [
             'load' => [
@@ -5941,7 +5971,12 @@ class TrelloConfig
           ],
         ],
         'checklist' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'checklist',
           'op' => [
             'create' => [
@@ -6618,7 +6653,12 @@ class TrelloConfig
           ],
         ],
         'custom_board_background' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'custom_board_background',
           'op' => [
             'remove' => [
@@ -8025,6 +8065,10 @@ class TrelloConfig
         'enterpris_signup_url' => [
           'fields' => [
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'signupUrl',
               'type' => '`$STRING`',
             ],
@@ -8839,7 +8883,12 @@ class TrelloConfig
           ],
         ],
         'id_label' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'id_label',
           'op' => [
             'remove' => [
@@ -8905,7 +8954,12 @@ class TrelloConfig
           ],
         ],
         'id_member' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'id_member',
           'op' => [
             'remove' => [
@@ -8971,7 +9025,12 @@ class TrelloConfig
           ],
         ],
         'label' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'label',
           'op' => [
             'create' => [
@@ -9270,7 +9329,12 @@ class TrelloConfig
           ],
         ],
         'list' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'list',
           'op' => [
             'create' => [
@@ -11462,7 +11526,12 @@ class TrelloConfig
           ],
         ],
         'members_voted' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'members_voted',
           'op' => [
             'load' => [
@@ -12023,7 +12092,12 @@ class TrelloConfig
           ],
         ],
         'new_billable_guest' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'new_billable_guest',
           'op' => [
             'load' => [
@@ -12838,7 +12912,12 @@ class TrelloConfig
           ],
         ],
         'notification_list' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'notification_list',
           'op' => [
             'load' => [
@@ -12894,7 +12973,12 @@ class TrelloConfig
           ],
         ],
         'notification_member_creator' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'notification_member_creator',
           'op' => [
             'load' => [
@@ -12965,7 +13049,12 @@ class TrelloConfig
           ],
         ],
         'option' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'option',
           'op' => [
             'load' => [
@@ -14529,7 +14618,12 @@ class TrelloConfig
           ],
         ],
         'reaction' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'reaction',
           'op' => [
             'load' => [
@@ -15555,7 +15649,12 @@ class TrelloConfig
           ],
         ],
         'sticker' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'sticker',
           'op' => [
             'load' => [
@@ -15825,7 +15924,12 @@ class TrelloConfig
           ],
         ],
         'tag' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'tag',
           'op' => [
             'list' => [
@@ -16124,6 +16228,10 @@ class TrelloConfig
         ],
         'transferrable_organization' => [
           'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
             [
               'name' => 'newBillableMembers',
               'type' => '`$ARRAY`',

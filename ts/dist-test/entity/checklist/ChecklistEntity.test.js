@@ -76,11 +76,20 @@ const utility_1 = require("../../utility");
         let checklist_ref01_data = setup.data.new.checklist['checklist_ref01'];
         checklist_ref01_data['card_id'] = setup.idmap['card01'];
         checklist_ref01_data = (await checklist_ref01_ent.create(checklist_ref01_data)).data();
-        (0, node_assert_1.default)(null != checklist_ref01_data);
+        (0, node_assert_1.default)(null != checklist_ref01_data.id);
         // UPDATE
         const checklist_ref01_data_up0 = {};
+        checklist_ref01_data_up0.id = checklist_ref01_data.id;
         const checklist_ref01_resdata_up0 = (await checklist_ref01_ent.update(checklist_ref01_data_up0)).data();
-        (0, node_assert_1.default)(null != checklist_ref01_resdata_up0);
+        (0, node_assert_1.default)(checklist_ref01_resdata_up0.id === checklist_ref01_data_up0.id);
+        // LOAD
+        const checklist_ref01_match_dt0 = {};
+        checklist_ref01_match_dt0.id = checklist_ref01_data.id;
+        const checklist_ref01_data_dt0 = (await checklist_ref01_ent.load(checklist_ref01_match_dt0)).data();
+        (0, node_assert_1.default)(checklist_ref01_data_dt0.id === checklist_ref01_data.id);
+        // REMOVE
+        const checklist_ref01_match_rm0 = { id: checklist_ref01_data.id };
+        await checklist_ref01_ent.remove(checklist_ref01_match_rm0);
     });
 });
 function basicSetup(extra) {

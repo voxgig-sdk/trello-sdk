@@ -46,19 +46,31 @@ class TestLabelEntity:
 
         label_ref01_data = helpers.to_map(runner.entity_data(label_ref01_ent.create(label_ref01_data, None)))
         assert label_ref01_data is not None
+        assert label_ref01_data["id"] is not None
 
         # UPDATE
         label_ref01_data_up0_up = {
+            "id": label_ref01_data["id"],
         }
 
         label_ref01_resdata_up0 = helpers.to_map(runner.entity_data(label_ref01_ent.update(label_ref01_data_up0_up, None)))
         assert label_ref01_resdata_up0 is not None
+        assert label_ref01_resdata_up0["id"] == label_ref01_data_up0_up["id"]
 
         # LOAD
-        label_ref01_match_dt0 = {}
+        label_ref01_match_dt0 = {
+            "id": label_ref01_data["id"],
+        }
         label_ref01_data_dt0_loaded = label_ref01_ent.load(label_ref01_match_dt0, None)
-        assert label_ref01_data_dt0_loaded is not None
+        label_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(label_ref01_data_dt0_loaded))
+        assert label_ref01_data_dt0_load_result is not None
+        assert label_ref01_data_dt0_load_result["id"] == label_ref01_data["id"]
 
+        # REMOVE
+        label_ref01_match_rm0 = {
+            "id": label_ref01_data["id"],
+        }
+        label_ref01_ent.remove(label_ref01_match_rm0, None)
 
 
 

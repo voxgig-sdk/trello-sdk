@@ -89,6 +89,7 @@ export interface ActionReactionsSummaryLoadMatch {
 }
 
 export interface Admin {
+  id?: string
 }
 
 export interface AdminUpdateData {
@@ -119,6 +120,7 @@ export interface AssociatedDomainRemoveMatch {
 }
 
 export interface Attachment {
+  id?: string
 }
 
 export interface AttachmentLoadMatch {
@@ -286,6 +288,7 @@ export interface BoardBackgroundRemoveMatch {
 }
 
 export interface BoardPlugin {
+  id?: string
 }
 
 export interface BoardPluginRemoveMatch {
@@ -328,6 +331,7 @@ export interface BoardStarRemoveMatch {
 }
 
 export interface Bulk {
+  id?: string
 }
 
 export interface BulkLoadMatch {
@@ -475,6 +479,7 @@ export interface CardRemoveMatch {
 }
 
 export interface CardCheckItemState {
+  id?: string
 }
 
 export interface CardCheckItemStateLoadMatch {
@@ -482,6 +487,7 @@ export interface CardCheckItemStateLoadMatch {
 }
 
 export interface CardList {
+  id?: string
 }
 
 export interface CardListLoadMatch {
@@ -521,6 +527,7 @@ export interface CheckItemRemoveMatch {
 }
 
 export interface Checklist {
+  id?: string
 }
 
 export interface ChecklistLoadMatch {
@@ -528,6 +535,7 @@ export interface ChecklistLoadMatch {
 }
 
 export interface ChecklistCreateData {
+  id?: string
 
   // Selects a custom action instead of the plain create:
   //   'check_item'
@@ -562,6 +570,7 @@ export interface ClaimableOrganizationListMatch {
 }
 
 export interface CustomBoardBackground {
+  id?: string
 }
 
 export interface CustomBoardBackgroundRemoveMatch {
@@ -816,6 +825,7 @@ export interface EnterprisUpdateData {
 }
 
 export interface EnterprisSignupUrl {
+  id?: string
   signupUrl?: string
 }
 
@@ -912,6 +922,7 @@ export interface IdEmailListUpdateData {
 }
 
 export interface IdLabel {
+  id?: string
 }
 
 export interface IdLabelRemoveMatch {
@@ -920,6 +931,7 @@ export interface IdLabelRemoveMatch {
 }
 
 export interface IdMember {
+  id?: string
 }
 
 export interface IdMemberRemoveMatch {
@@ -928,6 +940,7 @@ export interface IdMemberRemoveMatch {
 }
 
 export interface Label {
+  id?: string
 }
 
 export interface LabelLoadMatch {
@@ -935,6 +948,7 @@ export interface LabelLoadMatch {
 }
 
 export interface LabelCreateData {
+  id?: string
 }
 
 export interface LabelUpdateData {
@@ -947,6 +961,7 @@ export interface LabelRemoveMatch {
 }
 
 export interface List {
+  id?: string
 }
 
 export interface ListLoadMatch {
@@ -955,6 +970,7 @@ export interface ListLoadMatch {
 }
 
 export interface ListCreateData {
+  id?: string
 
   // Selects a custom action instead of the plain create:
   //   'archive_all_card' | 'move_all_card'
@@ -1192,6 +1208,7 @@ export interface MemberPrivacyLoadMatch {
 }
 
 export interface MembersVoted {
+  id?: string
 }
 
 export interface MembersVotedLoadMatch {
@@ -1237,6 +1254,7 @@ export interface MostRecent {
 }
 
 export interface NewBillableGuest {
+  id?: string
 }
 
 export interface NewBillableGuestLoadMatch {
@@ -1312,6 +1330,7 @@ export interface NotificationChannelSettingUpdateData {
 }
 
 export interface NotificationList {
+  id?: string
 }
 
 export interface NotificationListLoadMatch {
@@ -1319,6 +1338,7 @@ export interface NotificationListLoadMatch {
 }
 
 export interface NotificationMemberCreator {
+  id?: string
 }
 
 export interface NotificationMemberCreatorLoadMatch {
@@ -1329,6 +1349,7 @@ export interface NotificationsChannelSetting {
 }
 
 export interface Option {
+  id?: string
 }
 
 export interface OptionLoadMatch {
@@ -1490,6 +1511,7 @@ export interface PluginListingUpdateData {
 }
 
 export interface Reaction {
+  id?: string
 }
 
 export interface ReactionLoadMatch {
@@ -1580,6 +1602,7 @@ export interface ShowSidebarMemberUpdateData {
 }
 
 export interface Sticker {
+  id?: string
 }
 
 export interface StickerLoadMatch {
@@ -1598,6 +1621,7 @@ export interface StickerRemoveMatch {
 }
 
 export interface Tag {
+  id?: string
 }
 
 export interface TagListMatch {
@@ -1631,6 +1655,7 @@ export interface TokenRemoveMatch {
 }
 
 export interface TransferrableOrganization {
+  id?: string
   newBillableMembers?: any[]
   restrictedMembers?: any[]
   transferrable?: boolean

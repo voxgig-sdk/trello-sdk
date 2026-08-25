@@ -652,7 +652,10 @@ declare class Config {
             };
         };
         admin: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 remove: {
@@ -811,7 +814,10 @@ declare class Config {
             };
         };
         attachment: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 list: {
@@ -1756,7 +1762,10 @@ declare class Config {
             };
         };
         board_plugin: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 remove: {
@@ -2027,7 +2036,10 @@ declare class Config {
             };
         };
         bulk: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -2738,7 +2750,10 @@ declare class Config {
             };
         };
         card_check_item_state: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -2781,7 +2796,10 @@ declare class Config {
             };
         };
         card_list: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -3028,7 +3046,10 @@ declare class Config {
             };
         };
         checklist: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 create: {
@@ -3439,7 +3460,10 @@ declare class Config {
             };
         };
         custom_board_background: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 remove: {
@@ -4738,7 +4762,10 @@ declare class Config {
             };
         };
         id_label: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 remove: {
@@ -4780,7 +4807,10 @@ declare class Config {
             };
         };
         id_member: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 remove: {
@@ -4822,7 +4852,10 @@ declare class Config {
             };
         };
         label: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 create: {
@@ -5021,7 +5054,10 @@ declare class Config {
             };
         };
         list: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 create: {
@@ -6110,7 +6146,10 @@ declare class Config {
             };
         };
         members_voted: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -6385,7 +6424,10 @@ declare class Config {
             };
         };
         new_billable_guest: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -6818,7 +6860,10 @@ declare class Config {
             };
         };
         notification_list: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -6861,7 +6906,10 @@ declare class Config {
             };
         };
         notification_member_creator: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -6912,7 +6960,10 @@ declare class Config {
             };
         };
         option: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -7802,7 +7853,10 @@ declare class Config {
             };
         };
         reaction: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -8373,7 +8427,10 @@ declare class Config {
             };
         };
         sticker: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 load: {
@@ -8538,7 +8595,10 @@ declare class Config {
             };
         };
         tag: {
-            fields: never[];
+            fields: {
+                name: string;
+                type: string;
+            }[];
             name: string;
             op: {
                 list: {

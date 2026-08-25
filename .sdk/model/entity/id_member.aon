@@ -4,6 +4,19 @@ main: kit: entity: id_member: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "id_member"
   op: {
     remove: {

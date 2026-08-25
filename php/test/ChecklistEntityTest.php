@@ -47,20 +47,32 @@ class ChecklistEntityTest extends TestCase
         $checklist_ref01_data_result = $checklist_ref01_ent->create($checklist_ref01_data, null);
         $checklist_ref01_data = Helpers::to_map(is_object($checklist_ref01_data_result) && method_exists($checklist_ref01_data_result, 'data_get') ? $checklist_ref01_data_result->data_get() : $checklist_ref01_data_result);
         $this->assertNotNull($checklist_ref01_data);
+        $this->assertNotNull($checklist_ref01_data["id"]);
 
         // UPDATE
         $checklist_ref01_data_up0_up = [
+            "id" => $checklist_ref01_data["id"],
         ];
 
         $checklist_ref01_resdata_up0_result = $checklist_ref01_ent->update($checklist_ref01_data_up0_up, null);
         $checklist_ref01_resdata_up0 = Helpers::to_map(is_object($checklist_ref01_resdata_up0_result) && method_exists($checklist_ref01_resdata_up0_result, 'data_get') ? $checklist_ref01_resdata_up0_result->data_get() : $checklist_ref01_resdata_up0_result);
         $this->assertNotNull($checklist_ref01_resdata_up0);
+        $this->assertEquals($checklist_ref01_resdata_up0["id"], $checklist_ref01_data_up0_up["id"]);
 
         // LOAD
-        $checklist_ref01_match_dt0 = [];
+        $checklist_ref01_match_dt0 = [
+            "id" => $checklist_ref01_data["id"],
+        ];
         $checklist_ref01_data_dt0_loaded = $checklist_ref01_ent->load($checklist_ref01_match_dt0, null);
-        $this->assertNotNull($checklist_ref01_data_dt0_loaded);
+        $checklist_ref01_data_dt0_load_result = Helpers::to_map(is_object($checklist_ref01_data_dt0_loaded) && method_exists($checklist_ref01_data_dt0_loaded, 'data_get') ? $checklist_ref01_data_dt0_loaded->data_get() : $checklist_ref01_data_dt0_loaded);
+        $this->assertNotNull($checklist_ref01_data_dt0_load_result);
+        $this->assertEquals($checklist_ref01_data_dt0_load_result["id"], $checklist_ref01_data["id"]);
 
+        // REMOVE
+        $checklist_ref01_match_rm0 = [
+            "id" => $checklist_ref01_data["id"],
+        ];
+        $checklist_ref01_ent->remove($checklist_ref01_match_rm0, null);
 
     }
 }

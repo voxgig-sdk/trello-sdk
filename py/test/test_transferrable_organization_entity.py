@@ -48,9 +48,13 @@ class TestTransferrableOrganizationEntity:
 
         # LOAD
         transferrable_organization_ref01_ent = client.TransferrableOrganization(None)
-        transferrable_organization_ref01_match_dt0 = {}
+        transferrable_organization_ref01_match_dt0 = {
+            "id": transferrable_organization_ref01_data["id"],
+        }
         transferrable_organization_ref01_data_dt0_loaded = transferrable_organization_ref01_ent.load(transferrable_organization_ref01_match_dt0, None)
-        assert transferrable_organization_ref01_data_dt0_loaded is not None
+        transferrable_organization_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(transferrable_organization_ref01_data_dt0_loaded))
+        assert transferrable_organization_ref01_data_dt0_load_result is not None
+        assert transferrable_organization_ref01_data_dt0_load_result["id"] == transferrable_organization_ref01_data["id"]
 
 
 

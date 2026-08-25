@@ -531,6 +531,12 @@ admin := client.Admin(nil)
 fmt.Println(admin.GetName()) // "admin"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Update(reqdata, ctrl map[string]any) (any, error)`
@@ -712,6 +718,12 @@ Return the entity name.
 attachment := client.Attachment(nil)
 fmt.Println(attachment.GetName()) // "attachment"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1062,6 +1074,12 @@ boardPlugin := client.BoardPlugin(nil)
 fmt.Println(boardPlugin.GetName()) // "board_plugin"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
@@ -1213,6 +1231,12 @@ Return the entity name.
 bulk := client.Bulk(nil)
 fmt.Println(bulk.GetName()) // "bulk"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1410,6 +1434,12 @@ cardCheckItemState := client.CardCheckItemState(nil)
 fmt.Println(cardCheckItemState.GetName()) // "card_check_item_state"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -1454,6 +1484,12 @@ Return the entity name.
 cardList := client.CardList(nil)
 fmt.Println(cardList.GetName()) // "card_list"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1582,6 +1618,12 @@ Return the entity name.
 checklist := client.Checklist(nil)
 fmt.Println(checklist.GetName()) // "checklist"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1725,6 +1767,12 @@ Return the entity name.
 customBoardBackground := client.CustomBoardBackground(nil)
 fmt.Println(customBoardBackground.GetName()) // "custom_board_background"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2341,6 +2389,7 @@ fmt.Println(enterprisSignupUrl.GetName()) // "enterpris_signup_url"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `signupUrl` | `string` | No |  |
 
 ### Operations
@@ -2733,6 +2782,12 @@ idLabel := client.IdLabel(nil)
 fmt.Println(idLabel.GetName()) // "id_label"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
@@ -2778,6 +2833,12 @@ idMember := client.IdMember(nil)
 fmt.Println(idMember.GetName()) // "id_member"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
@@ -2822,6 +2883,12 @@ Return the entity name.
 label := client.Label(nil)
 fmt.Println(label.GetName()) // "label"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2907,6 +2974,12 @@ Return the entity name.
 list := client.List(nil)
 fmt.Println(list.GetName()) // "list"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3171,6 +3244,12 @@ membersVoted := client.MembersVoted(nil)
 fmt.Println(membersVoted.GetName()) // "members_voted"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -3343,6 +3422,12 @@ Return the entity name.
 newBillableGuest := client.NewBillableGuest(nil)
 fmt.Println(newBillableGuest.GetName()) // "new_billable_guest"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3568,6 +3653,12 @@ notificationList := client.NotificationList(nil)
 fmt.Println(notificationList.GetName()) // "notification_list"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -3612,6 +3703,12 @@ Return the entity name.
 notificationMemberCreator := client.NotificationMemberCreator(nil)
 fmt.Println(notificationMemberCreator.GetName()) // "notification_member_creator"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3688,6 +3785,12 @@ Return the entity name.
 option := client.Option(nil)
 fmt.Println(option.GetName()) // "option"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4170,6 +4273,12 @@ reaction := client.Reaction(nil)
 fmt.Println(reaction.GetName()) // "reaction"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -4618,6 +4727,12 @@ sticker := client.Sticker(nil)
 fmt.Println(sticker.GetName()) // "sticker"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -4690,6 +4805,12 @@ Return the entity name.
 tag := client.Tag(nil)
 fmt.Println(tag.GetName()) // "tag"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4832,6 +4953,7 @@ fmt.Println(transferrableOrganization.GetName()) // "transferrable_organization"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `newBillableMembers` | `[]any` | No |  |
 | `restrictedMembers` | `[]any` | No |  |
 | `transferrable` | `bool` | No |  |

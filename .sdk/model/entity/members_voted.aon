@@ -4,6 +4,19 @@ main: kit: entity: members_voted: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "members_voted"
   op: {
     load: {

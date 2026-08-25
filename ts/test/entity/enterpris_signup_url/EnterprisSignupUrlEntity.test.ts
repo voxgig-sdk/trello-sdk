@@ -59,9 +59,12 @@ describe('EnterprisSignupUrlEntity', async () => {
 
     let enterpris_signup_url_ref01_data = Object.values(setup.data.existing.enterpris_signup_url)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const enterpris_signup_url_ref01_ent = client.EnterprisSignupUrl()
+    const enterpris_signup_url_ref01_match_dt0: any = {}
+    enterpris_signup_url_ref01_match_dt0.id = enterpris_signup_url_ref01_data.id
+    const enterpris_signup_url_ref01_data_dt0 = (await enterpris_signup_url_ref01_ent.load(enterpris_signup_url_ref01_match_dt0)).data()
+    assert(enterpris_signup_url_ref01_data_dt0.id === enterpris_signup_url_ref01_data.id)
 
 
   })

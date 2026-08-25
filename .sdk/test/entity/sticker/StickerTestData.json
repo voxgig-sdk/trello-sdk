@@ -2,16 +2,16 @@
   "existing": {
     "sticker": {
       "STICKER00": {
-        "card_id": "CARD01",
-        "id": "STICKER00"
+        "id": "STICKER00",
+        "card_id": "CARD01"
       },
       "STICKER01": {
-        "card_id": "CARD01",
-        "id": "STICKER01"
+        "id": "STICKER01",
+        "card_id": "CARD01"
       },
       "STICKER02": {
-        "card_id": "CARD01",
-        "id": "STICKER02"
+        "id": "STICKER02",
+        "card_id": "CARD01"
       }
     }
   },

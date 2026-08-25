@@ -45,6 +45,7 @@ describe("AdminEntity", function()
     -- UPDATE
     local admin_ref01_ent = client:Admin(nil)
     local admin_ref01_data_up0_up = {
+      id = admin_ref01_data["id"],
       ["enterpris_id"] = setup.idmap["enterpris_id"],
     }
 
@@ -52,6 +53,7 @@ describe("AdminEntity", function()
     assert.is_nil(err)
     local admin_ref01_resdata_up0 = helpers.to_map(type(admin_ref01_resdata_up0_result) == 'table' and admin_ref01_resdata_up0_result.data_get and admin_ref01_resdata_up0_result:data_get() or admin_ref01_resdata_up0_result)
     assert.is_not_nil(admin_ref01_resdata_up0)
+    assert.are.equal(admin_ref01_resdata_up0["id"], admin_ref01_data_up0_up["id"])
 
   end)
 end)

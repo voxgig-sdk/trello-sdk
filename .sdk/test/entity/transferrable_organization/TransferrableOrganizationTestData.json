@@ -2,25 +2,25 @@
   "existing": {
     "transferrable_organization": {
       "TRANSFERRABLE_ORGANIZATION00": {
+        "id": "TRANSFERRABLE_ORGANIZATION00",
         "newBillableMembers": [],
         "restrictedMembers": [],
-        "transferrable": true,
-        "enterpris_id": "ENTERPRIS01",
-        "id": "TRANSFERRABLE_ORGANIZATION00"
+        "transferrable": false,
+        "enterpris_id": "ENTERPRIS01"
       },
       "TRANSFERRABLE_ORGANIZATION01": {
+        "id": "TRANSFERRABLE_ORGANIZATION01",
         "newBillableMembers": [],
         "restrictedMembers": [],
-        "transferrable": true,
-        "enterpris_id": "ENTERPRIS01",
-        "id": "TRANSFERRABLE_ORGANIZATION01"
+        "transferrable": false,
+        "enterpris_id": "ENTERPRIS01"
       },
       "TRANSFERRABLE_ORGANIZATION02": {
+        "id": "TRANSFERRABLE_ORGANIZATION02",
         "newBillableMembers": [],
         "restrictedMembers": [],
-        "transferrable": true,
-        "enterpris_id": "ENTERPRIS01",
-        "id": "TRANSFERRABLE_ORGANIZATION02"
+        "transferrable": false,
+        "enterpris_id": "ENTERPRIS01"
       }
     }
   },
@@ -29,7 +29,7 @@
       "transferrable_organization_ref01": {
         "newBillableMembers": [],
         "restrictedMembers": [],
-        "transferrable": true
+        "transferrable": false
       }
     }
   }

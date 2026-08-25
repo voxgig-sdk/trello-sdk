@@ -44,8 +44,9 @@ describe('NotificationListEntity', async () => {
     // LOAD
     const notification_list_ref01_ent = client.NotificationList()
     const notification_list_ref01_match_dt0 = {}
+    notification_list_ref01_match_dt0.id = notification_list_ref01_data.id
     const notification_list_ref01_data_dt0 = (await notification_list_ref01_ent.load(notification_list_ref01_match_dt0)).data()
-    assert(null != notification_list_ref01_data_dt0)
+    assert(notification_list_ref01_data_dt0.id === notification_list_ref01_data.id)
 
 
   })

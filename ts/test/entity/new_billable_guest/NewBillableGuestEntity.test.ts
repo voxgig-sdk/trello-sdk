@@ -59,9 +59,12 @@ describe('NewBillableGuestEntity', async () => {
 
     let new_billable_guest_ref01_data = Object.values(setup.data.existing.new_billable_guest)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const new_billable_guest_ref01_ent = client.NewBillableGuest()
+    const new_billable_guest_ref01_match_dt0: any = {}
+    new_billable_guest_ref01_match_dt0.id = new_billable_guest_ref01_data.id
+    const new_billable_guest_ref01_data_dt0 = (await new_billable_guest_ref01_ent.load(new_billable_guest_ref01_match_dt0)).data()
+    assert(new_billable_guest_ref01_data_dt0.id === new_billable_guest_ref01_data.id)
 
 
   })

@@ -62,6 +62,7 @@ export interface ActionReactionsSummaryLoadMatch {
     id_action: string;
 }
 export interface Admin {
+    id?: string;
 }
 export interface AdminUpdateData {
     enterpris_id: string;
@@ -84,6 +85,7 @@ export interface AssociatedDomainRemoveMatch {
     organization_id: string;
 }
 export interface Attachment {
+    id?: string;
 }
 export interface AttachmentLoadMatch {
     card_id: string;
@@ -225,6 +227,7 @@ export interface BoardBackgroundRemoveMatch {
     member_id: string;
 }
 export interface BoardPlugin {
+    id?: string;
 }
 export interface BoardPluginRemoveMatch {
     board_id: string;
@@ -259,6 +262,7 @@ export interface BoardStarRemoveMatch {
     member_id: string;
 }
 export interface Bulk {
+    id?: string;
 }
 export interface BulkLoadMatch {
     enterpris_id: string;
@@ -389,11 +393,13 @@ export interface CardRemoveMatch {
     id: string;
 }
 export interface CardCheckItemState {
+    id?: string;
 }
 export interface CardCheckItemStateLoadMatch {
     id: string;
 }
 export interface CardList {
+    id?: string;
 }
 export interface CardListLoadMatch {
     id: string;
@@ -427,11 +433,13 @@ export interface CheckItemRemoveMatch {
     checklist_id?: string;
 }
 export interface Checklist {
+    id?: string;
 }
 export interface ChecklistLoadMatch {
     id: string;
 }
 export interface ChecklistCreateData {
+    id?: string;
     $action?: string;
     [action: string]: any;
 }
@@ -457,6 +465,7 @@ export interface ClaimableOrganizationListMatch {
     enterpris_id: string;
 }
 export interface CustomBoardBackground {
+    id?: string;
 }
 export interface CustomBoardBackgroundRemoveMatch {
     id: string;
@@ -668,6 +677,7 @@ export interface EnterprisUpdateData {
     [action: string]: any;
 }
 export interface EnterprisSignupUrl {
+    id?: string;
     signupUrl?: string;
 }
 export interface EnterprisSignupUrlLoadMatch {
@@ -743,23 +753,27 @@ export interface IdEmailListUpdateData {
     board_id: string;
 }
 export interface IdLabel {
+    id?: string;
 }
 export interface IdLabelRemoveMatch {
     card_id: string;
     id: string;
 }
 export interface IdMember {
+    id?: string;
 }
 export interface IdMemberRemoveMatch {
     card_id: string;
     id: string;
 }
 export interface Label {
+    id?: string;
 }
 export interface LabelLoadMatch {
     id: string;
 }
 export interface LabelCreateData {
+    id?: string;
 }
 export interface LabelUpdateData {
     id: string;
@@ -769,12 +783,14 @@ export interface LabelRemoveMatch {
     id: string;
 }
 export interface List {
+    id?: string;
 }
 export interface ListLoadMatch {
     board_id?: string;
     id: string;
 }
 export interface ListCreateData {
+    id?: string;
     $action?: string;
     [action: string]: any;
 }
@@ -982,6 +998,7 @@ export interface MemberPrivacyLoadMatch {
     plugin_id: string;
 }
 export interface MembersVoted {
+    id?: string;
 }
 export interface MembersVotedLoadMatch {
     card_id: string;
@@ -1019,6 +1036,7 @@ export interface MembershipUpdateData {
 export interface MostRecent {
 }
 export interface NewBillableGuest {
+    id?: string;
 }
 export interface NewBillableGuestLoadMatch {
     id: string;
@@ -1080,11 +1098,13 @@ export interface NotificationChannelSettingUpdateData {
     idMember?: string;
 }
 export interface NotificationList {
+    id?: string;
 }
 export interface NotificationListLoadMatch {
     id: string;
 }
 export interface NotificationMemberCreator {
+    id?: string;
 }
 export interface NotificationMemberCreatorLoadMatch {
     id: string;
@@ -1092,6 +1112,7 @@ export interface NotificationMemberCreatorLoadMatch {
 export interface NotificationsChannelSetting {
 }
 export interface Option {
+    id?: string;
 }
 export interface OptionLoadMatch {
     custom_field_id: string;
@@ -1218,6 +1239,7 @@ export interface PluginListingUpdateData {
     overview?: string;
 }
 export interface Reaction {
+    id?: string;
 }
 export interface ReactionLoadMatch {
     id?: string;
@@ -1287,6 +1309,7 @@ export interface ShowSidebarMemberUpdateData {
     board_id: string;
 }
 export interface Sticker {
+    id?: string;
 }
 export interface StickerLoadMatch {
     card_id: string;
@@ -1301,6 +1324,7 @@ export interface StickerRemoveMatch {
     id: string;
 }
 export interface Tag {
+    id?: string;
 }
 export interface TagListMatch {
     organization_id: string;
@@ -1327,6 +1351,7 @@ export interface TokenRemoveMatch {
     id: string;
 }
 export interface TransferrableOrganization {
+    id?: string;
     newBillableMembers?: any[];
     restrictedMembers?: any[];
     transferrable?: boolean;

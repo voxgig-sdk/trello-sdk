@@ -62,6 +62,7 @@ func TestStickerEntity(t *testing.T) {
 		// UPDATE
 		stickerRef01Ent := client.Sticker(nil)
 		stickerRef01DataUp0Up := map[string]any{
+			"id": stickerRef01Data["id"],
 			"card_id": setup.idmap["card_id"],
 		}
 
@@ -73,15 +74,24 @@ func TestStickerEntity(t *testing.T) {
 		if stickerRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
 		}
+		if stickerRef01ResdataUp0["id"] != stickerRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
 
 		// LOAD
-		stickerRef01MatchDt0 := map[string]any{}
+		stickerRef01MatchDt0 := map[string]any{
+			"id": stickerRef01Data["id"],
+		}
 		stickerRef01DataDt0Loaded, err := stickerRef01Ent.Load(stickerRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if stickerRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		stickerRef01DataDt0LoadResult := core.ToMapAny(entityData(stickerRef01DataDt0Loaded))
+		if stickerRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if stickerRef01DataDt0LoadResult["id"] != stickerRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

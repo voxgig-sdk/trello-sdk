@@ -4,6 +4,19 @@ main: kit: entity: new_billable_guest: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "new_billable_guest"
   op: {
     load: {

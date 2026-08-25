@@ -95,9 +95,13 @@ class AttachmentEntityTest extends TestCase
         $this->assertIsArray($attachment_ref01_list_result);
 
         // LOAD
-        $attachment_ref01_match_dt0 = [];
+        $attachment_ref01_match_dt0 = [
+            "id" => $attachment_ref01_data["id"],
+        ];
         $attachment_ref01_data_dt0_loaded = $attachment_ref01_ent->load($attachment_ref01_match_dt0, null);
-        $this->assertNotNull($attachment_ref01_data_dt0_loaded);
+        $attachment_ref01_data_dt0_load_result = Helpers::to_map(is_object($attachment_ref01_data_dt0_loaded) && method_exists($attachment_ref01_data_dt0_loaded, 'data_get') ? $attachment_ref01_data_dt0_loaded->data_get() : $attachment_ref01_data_dt0_loaded);
+        $this->assertNotNull($attachment_ref01_data_dt0_load_result);
+        $this->assertEquals($attachment_ref01_data_dt0_load_result["id"], $attachment_ref01_data["id"]);
 
     }
 }

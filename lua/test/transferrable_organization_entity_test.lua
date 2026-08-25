@@ -44,10 +44,14 @@ describe("TransferrableOrganizationEntity", function()
 
     -- LOAD
     local transferrable_organization_ref01_ent = client:TransferrableOrganization(nil)
-    local transferrable_organization_ref01_match_dt0 = {}
+    local transferrable_organization_ref01_match_dt0 = {
+      id = transferrable_organization_ref01_data["id"],
+    }
     local transferrable_organization_ref01_data_dt0_loaded, err = transferrable_organization_ref01_ent:load(transferrable_organization_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(transferrable_organization_ref01_data_dt0_loaded)
+    local transferrable_organization_ref01_data_dt0_load_result = helpers.to_map(type(transferrable_organization_ref01_data_dt0_loaded) == 'table' and transferrable_organization_ref01_data_dt0_loaded.data_get and transferrable_organization_ref01_data_dt0_loaded:data_get() or transferrable_organization_ref01_data_dt0_loaded)
+    assert.is_not_nil(transferrable_organization_ref01_data_dt0_load_result)
+    assert.are.equal(transferrable_organization_ref01_data_dt0_load_result["id"], transferrable_organization_ref01_data["id"])
 
   end)
 end)

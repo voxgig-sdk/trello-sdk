@@ -48,9 +48,13 @@ class TestEnterprisSignupUrlEntity:
 
         # LOAD
         enterpris_signup_url_ref01_ent = client.EnterprisSignupUrl(None)
-        enterpris_signup_url_ref01_match_dt0 = {}
+        enterpris_signup_url_ref01_match_dt0 = {
+            "id": enterpris_signup_url_ref01_data["id"],
+        }
         enterpris_signup_url_ref01_data_dt0_loaded = enterpris_signup_url_ref01_ent.load(enterpris_signup_url_ref01_match_dt0, None)
-        assert enterpris_signup_url_ref01_data_dt0_loaded is not None
+        enterpris_signup_url_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(enterpris_signup_url_ref01_data_dt0_loaded))
+        assert enterpris_signup_url_ref01_data_dt0_load_result is not None
+        assert enterpris_signup_url_ref01_data_dt0_load_result["id"] == enterpris_signup_url_ref01_data["id"]
 
 
 

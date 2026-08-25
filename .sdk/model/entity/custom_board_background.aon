@@ -4,6 +4,19 @@ main: kit: entity: custom_board_background: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "custom_board_background"
   op: {
     remove: {

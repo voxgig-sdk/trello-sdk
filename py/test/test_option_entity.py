@@ -48,9 +48,13 @@ class TestOptionEntity:
 
         # LOAD
         option_ref01_ent = client.Option(None)
-        option_ref01_match_dt0 = {}
+        option_ref01_match_dt0 = {
+            "id": option_ref01_data["id"],
+        }
         option_ref01_data_dt0_loaded = option_ref01_ent.load(option_ref01_match_dt0, None)
-        assert option_ref01_data_dt0_loaded is not None
+        option_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(option_ref01_data_dt0_loaded))
+        assert option_ref01_data_dt0_load_result is not None
+        assert option_ref01_data_dt0_load_result["id"] == option_ref01_data["id"]
 
 
 

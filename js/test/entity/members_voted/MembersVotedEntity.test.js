@@ -44,8 +44,9 @@ describe('MembersVotedEntity', async () => {
     // LOAD
     const members_voted_ref01_ent = client.MembersVoted()
     const members_voted_ref01_match_dt0 = {}
+    members_voted_ref01_match_dt0.id = members_voted_ref01_data.id
     const members_voted_ref01_data_dt0 = (await members_voted_ref01_ent.load(members_voted_ref01_match_dt0)).data()
-    assert(null != members_voted_ref01_data_dt0)
+    assert(members_voted_ref01_data_dt0.id === members_voted_ref01_data.id)
 
 
   })

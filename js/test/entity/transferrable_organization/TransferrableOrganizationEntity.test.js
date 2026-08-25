@@ -44,8 +44,9 @@ describe('TransferrableOrganizationEntity', async () => {
     // LOAD
     const transferrable_organization_ref01_ent = client.TransferrableOrganization()
     const transferrable_organization_ref01_match_dt0 = {}
+    transferrable_organization_ref01_match_dt0.id = transferrable_organization_ref01_data.id
     const transferrable_organization_ref01_data_dt0 = (await transferrable_organization_ref01_ent.load(transferrable_organization_ref01_match_dt0)).data()
-    assert(null != transferrable_organization_ref01_data_dt0)
+    assert(transferrable_organization_ref01_data_dt0.id === transferrable_organization_ref01_data.id)
 
 
   })

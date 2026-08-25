@@ -81,6 +81,7 @@
 
 /**
  * @typedef {Object} Admin
+ * @property {string} [id]
  */
 
 /**
@@ -119,6 +120,7 @@
 
 /**
  * @typedef {Object} Attachment
+ * @property {string} [id]
  */
 
 /**
@@ -292,6 +294,7 @@
 
 /**
  * @typedef {Object} BoardPlugin
+ * @property {string} [id]
  */
 
 /**
@@ -342,6 +345,7 @@
 
 /**
  * @typedef {Object} Bulk
+ * @property {string} [id]
  */
 
 /**
@@ -486,6 +490,7 @@
 
 /**
  * @typedef {Object} CardCheckItemState
+ * @property {string} [id]
  */
 
 /**
@@ -495,6 +500,7 @@
 
 /**
  * @typedef {Object} CardList
+ * @property {string} [id]
  */
 
 /**
@@ -540,6 +546,7 @@
 
 /**
  * @typedef {Object} Checklist
+ * @property {string} [id]
  */
 
 /**
@@ -549,6 +556,7 @@
 
 /**
  * @typedef {Object} ChecklistCreateData
+ * @property {string} [id]
  */
 
 /**
@@ -582,6 +590,7 @@
 
 /**
  * @typedef {Object} CustomBoardBackground
+ * @property {string} [id]
  */
 
 /**
@@ -839,6 +848,7 @@
 
 /**
  * @typedef {Object} EnterprisSignupUrl
+ * @property {string} [id]
  * @property {string} [signupUrl]
  */
 
@@ -946,6 +956,7 @@
 
 /**
  * @typedef {Object} IdLabel
+ * @property {string} [id]
  */
 
 /**
@@ -956,6 +967,7 @@
 
 /**
  * @typedef {Object} IdMember
+ * @property {string} [id]
  */
 
 /**
@@ -966,6 +978,7 @@
 
 /**
  * @typedef {Object} Label
+ * @property {string} [id]
  */
 
 /**
@@ -975,6 +988,7 @@
 
 /**
  * @typedef {Object} LabelCreateData
+ * @property {string} [id]
  */
 
 /**
@@ -990,6 +1004,7 @@
 
 /**
  * @typedef {Object} List
+ * @property {string} [id]
  */
 
 /**
@@ -1000,6 +1015,7 @@
 
 /**
  * @typedef {Object} ListCreateData
+ * @property {string} [id]
  */
 
 /**
@@ -1217,6 +1233,7 @@
 
 /**
  * @typedef {Object} MembersVoted
+ * @property {string} [id]
  */
 
 /**
@@ -1270,6 +1287,7 @@
 
 /**
  * @typedef {Object} NewBillableGuest
+ * @property {string} [id]
  */
 
 /**
@@ -1349,6 +1367,7 @@
 
 /**
  * @typedef {Object} NotificationList
+ * @property {string} [id]
  */
 
 /**
@@ -1358,6 +1377,7 @@
 
 /**
  * @typedef {Object} NotificationMemberCreator
+ * @property {string} [id]
  */
 
 /**
@@ -1371,6 +1391,7 @@
 
 /**
  * @typedef {Object} Option
+ * @property {string} [id]
  */
 
 /**
@@ -1537,6 +1558,7 @@
 
 /**
  * @typedef {Object} Reaction
+ * @property {string} [id]
  */
 
 /**
@@ -1648,6 +1670,7 @@
 
 /**
  * @typedef {Object} Sticker
+ * @property {string} [id]
  */
 
 /**
@@ -1670,6 +1693,7 @@
 
 /**
  * @typedef {Object} Tag
+ * @property {string} [id]
  */
 
 /**
@@ -1710,6 +1734,7 @@
 
 /**
  * @typedef {Object} TransferrableOrganization
+ * @property {string} [id]
  * @property {Array} [newBillableMembers]
  * @property {Array} [restrictedMembers]
  * @property {boolean} [transferrable]

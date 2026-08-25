@@ -87,6 +87,7 @@ type ActionReactionsSummaryLoadMatch struct {
 
 // Admin is the typed data model for the admin entity.
 type Admin struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // AdminUpdateData is the typed request payload for Admin.UpdateTyped.
@@ -125,6 +126,7 @@ type AssociatedDomainRemoveMatch struct {
 
 // Attachment is the typed data model for the attachment entity.
 type Attachment struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // AttachmentLoadMatch is the typed request payload for Attachment.LoadTyped.
@@ -298,6 +300,7 @@ type BoardBackgroundRemoveMatch struct {
 
 // BoardPlugin is the typed data model for the board_plugin entity.
 type BoardPlugin struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // BoardPluginRemoveMatch is the typed request payload for BoardPlugin.RemoveTyped.
@@ -348,6 +351,7 @@ type BoardStarRemoveMatch struct {
 
 // Bulk is the typed data model for the bulk entity.
 type Bulk struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // BulkLoadMatch is the typed request payload for Bulk.LoadTyped.
@@ -492,6 +496,7 @@ type CardRemoveMatch struct {
 
 // CardCheckItemState is the typed data model for the card_check_item_state entity.
 type CardCheckItemState struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // CardCheckItemStateLoadMatch is the typed request payload for CardCheckItemState.LoadTyped.
@@ -501,6 +506,7 @@ type CardCheckItemStateLoadMatch struct {
 
 // CardList is the typed data model for the card_list entity.
 type CardList struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // CardListLoadMatch is the typed request payload for CardList.LoadTyped.
@@ -546,6 +552,7 @@ type CheckItemRemoveMatch struct {
 
 // Checklist is the typed data model for the checklist entity.
 type Checklist struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // ChecklistLoadMatch is the typed request payload for Checklist.LoadTyped.
@@ -555,6 +562,7 @@ type ChecklistLoadMatch struct {
 
 // ChecklistCreateData is the typed request payload for Checklist.CreateTyped.
 type ChecklistCreateData struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // ChecklistUpdateData is the typed request payload for Checklist.UpdateTyped.
@@ -588,6 +596,7 @@ type ClaimableOrganizationListMatch struct {
 
 // CustomBoardBackground is the typed data model for the custom_board_background entity.
 type CustomBoardBackground struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // CustomBoardBackgroundRemoveMatch is the typed request payload for CustomBoardBackground.RemoveTyped.
@@ -845,6 +854,7 @@ type EnterprisUpdateData struct {
 
 // EnterprisSignupUrl is the typed data model for the enterpris_signup_url entity.
 type EnterprisSignupUrl struct {
+	Id *string `json:"id,omitempty"`
 	SignupUrl *string `json:"signupUrl,omitempty"`
 }
 
@@ -952,6 +962,7 @@ type IdEmailListUpdateData struct {
 
 // IdLabel is the typed data model for the id_label entity.
 type IdLabel struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // IdLabelRemoveMatch is the typed request payload for IdLabel.RemoveTyped.
@@ -962,6 +973,7 @@ type IdLabelRemoveMatch struct {
 
 // IdMember is the typed data model for the id_member entity.
 type IdMember struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // IdMemberRemoveMatch is the typed request payload for IdMember.RemoveTyped.
@@ -972,6 +984,7 @@ type IdMemberRemoveMatch struct {
 
 // Label is the typed data model for the label entity.
 type Label struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // LabelLoadMatch is the typed request payload for Label.LoadTyped.
@@ -981,6 +994,7 @@ type LabelLoadMatch struct {
 
 // LabelCreateData is the typed request payload for Label.CreateTyped.
 type LabelCreateData struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // LabelUpdateData is the typed request payload for Label.UpdateTyped.
@@ -996,6 +1010,7 @@ type LabelRemoveMatch struct {
 
 // List is the typed data model for the list entity.
 type List struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // ListLoadMatch is the typed request payload for List.LoadTyped.
@@ -1006,6 +1021,7 @@ type ListLoadMatch struct {
 
 // ListCreateData is the typed request payload for List.CreateTyped.
 type ListCreateData struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // ListUpdateData is the typed request payload for List.UpdateTyped.
@@ -1223,6 +1239,7 @@ type MemberPrivacyLoadMatch struct {
 
 // MembersVoted is the typed data model for the members_voted entity.
 type MembersVoted struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // MembersVotedLoadMatch is the typed request payload for MembersVoted.LoadTyped.
@@ -1276,6 +1293,7 @@ type MostRecent struct {
 
 // NewBillableGuest is the typed data model for the new_billable_guest entity.
 type NewBillableGuest struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // NewBillableGuestLoadMatch is the typed request payload for NewBillableGuest.LoadTyped.
@@ -1355,6 +1373,7 @@ type NotificationChannelSettingUpdateData struct {
 
 // NotificationList is the typed data model for the notification_list entity.
 type NotificationList struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // NotificationListLoadMatch is the typed request payload for NotificationList.LoadTyped.
@@ -1364,6 +1383,7 @@ type NotificationListLoadMatch struct {
 
 // NotificationMemberCreator is the typed data model for the notification_member_creator entity.
 type NotificationMemberCreator struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // NotificationMemberCreatorLoadMatch is the typed request payload for NotificationMemberCreator.LoadTyped.
@@ -1377,6 +1397,7 @@ type NotificationsChannelSetting struct {
 
 // Option is the typed data model for the option entity.
 type Option struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // OptionLoadMatch is the typed request payload for Option.LoadTyped.
@@ -1543,6 +1564,7 @@ type PluginListingUpdateData struct {
 
 // Reaction is the typed data model for the reaction entity.
 type Reaction struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // ReactionLoadMatch is the typed request payload for Reaction.LoadTyped.
@@ -1654,6 +1676,7 @@ type ShowSidebarMemberUpdateData struct {
 
 // Sticker is the typed data model for the sticker entity.
 type Sticker struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // StickerLoadMatch is the typed request payload for Sticker.LoadTyped.
@@ -1676,6 +1699,7 @@ type StickerRemoveMatch struct {
 
 // Tag is the typed data model for the tag entity.
 type Tag struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // TagListMatch is the typed request payload for Tag.ListTyped.
@@ -1716,6 +1740,7 @@ type TokenRemoveMatch struct {
 
 // TransferrableOrganization is the typed data model for the transferrable_organization entity.
 type TransferrableOrganization struct {
+	Id *string `json:"id,omitempty"`
 	NewBillableMembers *[]any `json:"newBillableMembers,omitempty"`
 	RestrictedMembers *[]any `json:"restrictedMembers,omitempty"`
 	Transferrable *bool `json:"transferrable,omitempty"`

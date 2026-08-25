@@ -44,21 +44,28 @@ describe("ListEntity", function()
     assert.is_nil(err)
     list_ref01_data = helpers.to_map(type(list_ref01_data_result) == 'table' and list_ref01_data_result.data_get and list_ref01_data_result:data_get() or list_ref01_data_result)
     assert.is_not_nil(list_ref01_data)
+    assert.is_not_nil(list_ref01_data["id"])
 
     -- UPDATE
     local list_ref01_data_up0_up = {
+      id = list_ref01_data["id"],
     }
 
     local list_ref01_resdata_up0_result, err = list_ref01_ent:update(list_ref01_data_up0_up, nil)
     assert.is_nil(err)
     local list_ref01_resdata_up0 = helpers.to_map(type(list_ref01_resdata_up0_result) == 'table' and list_ref01_resdata_up0_result.data_get and list_ref01_resdata_up0_result:data_get() or list_ref01_resdata_up0_result)
     assert.is_not_nil(list_ref01_resdata_up0)
+    assert.are.equal(list_ref01_resdata_up0["id"], list_ref01_data_up0_up["id"])
 
     -- LOAD
-    local list_ref01_match_dt0 = {}
+    local list_ref01_match_dt0 = {
+      id = list_ref01_data["id"],
+    }
     local list_ref01_data_dt0_loaded, err = list_ref01_ent:load(list_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(list_ref01_data_dt0_loaded)
+    local list_ref01_data_dt0_load_result = helpers.to_map(type(list_ref01_data_dt0_loaded) == 'table' and list_ref01_data_dt0_loaded.data_get and list_ref01_data_dt0_loaded:data_get() or list_ref01_data_dt0_loaded)
+    assert.is_not_nil(list_ref01_data_dt0_load_result)
+    assert.are.equal(list_ref01_data_dt0_load_result["id"], list_ref01_data["id"])
 
   end)
 end)

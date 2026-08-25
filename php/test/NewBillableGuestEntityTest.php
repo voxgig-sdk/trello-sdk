@@ -48,9 +48,13 @@ class NewBillableGuestEntityTest extends TestCase
 
         // LOAD
         $new_billable_guest_ref01_ent = $client->NewBillableGuest(null);
-        $new_billable_guest_ref01_match_dt0 = [];
+        $new_billable_guest_ref01_match_dt0 = [
+            "id" => $new_billable_guest_ref01_data["id"],
+        ];
         $new_billable_guest_ref01_data_dt0_loaded = $new_billable_guest_ref01_ent->load($new_billable_guest_ref01_match_dt0, null);
-        $this->assertNotNull($new_billable_guest_ref01_data_dt0_loaded);
+        $new_billable_guest_ref01_data_dt0_load_result = Helpers::to_map(is_object($new_billable_guest_ref01_data_dt0_loaded) && method_exists($new_billable_guest_ref01_data_dt0_loaded, 'data_get') ? $new_billable_guest_ref01_data_dt0_loaded->data_get() : $new_billable_guest_ref01_data_dt0_loaded);
+        $this->assertNotNull($new_billable_guest_ref01_data_dt0_load_result);
+        $this->assertEquals($new_billable_guest_ref01_data_dt0_load_result["id"], $new_billable_guest_ref01_data["id"]);
 
     }
 }

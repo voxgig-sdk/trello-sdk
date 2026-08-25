@@ -63,9 +63,13 @@ func TestChecklistEntity(t *testing.T) {
 		if checklistRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if checklistRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// UPDATE
 		checklistRef01DataUp0Up := map[string]any{
+			"id": checklistRef01Data["id"],
 		}
 
 		checklistRef01ResdataUp0Result, err := checklistRef01Ent.Update(checklistRef01DataUp0Up, nil)
@@ -76,17 +80,34 @@ func TestChecklistEntity(t *testing.T) {
 		if checklistRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
 		}
+		if checklistRef01ResdataUp0["id"] != checklistRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
 
 		// LOAD
-		checklistRef01MatchDt0 := map[string]any{}
+		checklistRef01MatchDt0 := map[string]any{
+			"id": checklistRef01Data["id"],
+		}
 		checklistRef01DataDt0Loaded, err := checklistRef01Ent.Load(checklistRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if checklistRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		checklistRef01DataDt0LoadResult := core.ToMapAny(entityData(checklistRef01DataDt0Loaded))
+		if checklistRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if checklistRef01DataDt0LoadResult["id"] != checklistRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
+		// REMOVE
+		checklistRef01MatchRm0 := map[string]any{
+			"id": checklistRef01Data["id"],
+		}
+		_, err = checklistRef01Ent.Remove(checklistRef01MatchRm0, nil)
+		if err != nil {
+			t.Fatalf("remove failed: %v", err)
+		}
 
 	})
 }

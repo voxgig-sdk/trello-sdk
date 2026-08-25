@@ -63,17 +63,28 @@ describe('LabelEntity', async () => {
     let label_ref01_data = setup.data.new.label['label_ref01']
 
     label_ref01_data = (await label_ref01_ent.create(label_ref01_data)).data()
-    assert(null != label_ref01_data)
+    assert(null != label_ref01_data.id)
 
 
     // UPDATE
     const label_ref01_data_up0: any = {}
+    label_ref01_data_up0.id = label_ref01_data.id
 
     const label_ref01_resdata_up0 = (await label_ref01_ent.update(label_ref01_data_up0)).data()
-    assert(null != label_ref01_resdata_up0)
+    assert(label_ref01_resdata_up0.id === label_ref01_data_up0.id)
 
 
+    // LOAD
+    const label_ref01_match_dt0: any = {}
+    label_ref01_match_dt0.id = label_ref01_data.id
+    const label_ref01_data_dt0 = (await label_ref01_ent.load(label_ref01_match_dt0)).data()
+    assert(label_ref01_data_dt0.id === label_ref01_data.id)
 
+
+    // REMOVE
+    const label_ref01_match_rm0: any = { id: label_ref01_data.id }
+    await label_ref01_ent.remove(label_ref01_match_rm0)
+  
 
   })
 })

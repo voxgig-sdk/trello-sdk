@@ -44,8 +44,9 @@ describe('CardListEntity', async () => {
     // LOAD
     const card_list_ref01_ent = client.CardList()
     const card_list_ref01_match_dt0 = {}
+    card_list_ref01_match_dt0.id = card_list_ref01_data.id
     const card_list_ref01_data_dt0 = (await card_list_ref01_ent.load(card_list_ref01_match_dt0)).data()
-    assert(null != card_list_ref01_data_dt0)
+    assert(card_list_ref01_data_dt0.id === card_list_ref01_data.id)
 
 
   })

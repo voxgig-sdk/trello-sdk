@@ -2,16 +2,16 @@
   "existing": {
     "reaction": {
       "REACTION00": {
-        "id_action": "ID_ACTION01",
-        "id": "REACTION00"
+        "id": "REACTION00",
+        "id_action": "ID_ACTION01"
       },
       "REACTION01": {
-        "id_action": "ID_ACTION01",
-        "id": "REACTION01"
+        "id": "REACTION01",
+        "id_action": "ID_ACTION01"
       },
       "REACTION02": {
-        "id_action": "ID_ACTION01",
-        "id": "REACTION02"
+        "id": "REACTION02",
+        "id_action": "ID_ACTION01"
       }
     }
   },

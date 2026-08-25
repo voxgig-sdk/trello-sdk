@@ -2,16 +2,16 @@
   "existing": {
     "attachment": {
       "ATTACHMENT00": {
-        "card_id": "CARD01",
-        "id": "ATTACHMENT00"
+        "id": "ATTACHMENT00",
+        "card_id": "CARD01"
       },
       "ATTACHMENT01": {
-        "card_id": "CARD01",
-        "id": "ATTACHMENT01"
+        "id": "ATTACHMENT01",
+        "card_id": "CARD01"
       },
       "ATTACHMENT02": {
-        "card_id": "CARD01",
-        "id": "ATTACHMENT02"
+        "id": "ATTACHMENT02",
+        "card_id": "CARD01"
       }
     }
   },

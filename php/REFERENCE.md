@@ -511,6 +511,12 @@ Return the entity name.
 $admin = $client->Admin();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -696,6 +702,12 @@ Return the entity name.
 ```php
 $attachment = $client->Attachment();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1010,6 +1022,12 @@ Return the entity name.
 $board_plugin = $client->BoardPlugin();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1147,6 +1165,12 @@ Return the entity name.
 ```php
 $bulk = $client->Bulk();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1326,6 +1350,12 @@ Return the entity name.
 $card_check_item_state = $client->CardCheckItemState();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1371,6 +1401,12 @@ Return the entity name.
 ```php
 $card_list = $client->CardList();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1493,6 +1529,12 @@ Return the entity name.
 ```php
 $checklist = $client->Checklist();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1626,6 +1668,12 @@ Return the entity name.
 ```php
 $custom_board_background = $client->CustomBoardBackground();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2206,6 +2254,7 @@ $enterpris_signup_url = $client->EnterprisSignupUrl();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `signupUrl` | `string` | No |  |
 
 ### Operations
@@ -2593,6 +2642,12 @@ Return the entity name.
 $id_label = $client->IdLabel();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2639,6 +2694,12 @@ Return the entity name.
 $id_member = $client->IdMember();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2684,6 +2745,12 @@ Return the entity name.
 ```php
 $label = $client->Label();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2758,6 +2825,12 @@ Return the entity name.
 ```php
 $list = $client->List();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3001,6 +3074,12 @@ Return the entity name.
 $members_voted = $client->MembersVoted();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -3168,6 +3247,12 @@ Return the entity name.
 ```php
 $new_billable_guest = $client->NewBillableGuest();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3380,6 +3465,12 @@ Return the entity name.
 $notification_list = $client->NotificationList();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -3425,6 +3516,12 @@ Return the entity name.
 ```php
 $notification_member_creator = $client->NotificationMemberCreator();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3507,6 +3604,12 @@ Return the entity name.
 ```php
 $option = $client->Option();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3960,6 +4063,12 @@ Return the entity name.
 $reaction = $client->Reaction();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -4396,6 +4505,12 @@ Return the entity name.
 $sticker = $client->Sticker();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -4461,6 +4576,12 @@ Return the entity name.
 ```php
 $tag = $client->Tag();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4593,6 +4714,7 @@ $transferrable_organization = $client->TransferrableOrganization();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `newBillableMembers` | `array` | No |  |
 | `restrictedMembers` | `array` | No |  |
 | `transferrable` | `bool` | No |  |

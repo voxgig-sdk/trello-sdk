@@ -2,16 +2,16 @@
   "existing": {
     "tag": {
       "TAG00": {
-        "organization_id": "ORGANIZATION01",
-        "id": "TAG00"
+        "id": "TAG00",
+        "organization_id": "ORGANIZATION01"
       },
       "TAG01": {
-        "organization_id": "ORGANIZATION01",
-        "id": "TAG01"
+        "id": "TAG01",
+        "organization_id": "ORGANIZATION01"
       },
       "TAG02": {
-        "organization_id": "ORGANIZATION01",
-        "id": "TAG02"
+        "id": "TAG02",
+        "organization_id": "ORGANIZATION01"
       }
     }
   },

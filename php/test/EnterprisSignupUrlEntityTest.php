@@ -48,9 +48,13 @@ class EnterprisSignupUrlEntityTest extends TestCase
 
         // LOAD
         $enterpris_signup_url_ref01_ent = $client->EnterprisSignupUrl(null);
-        $enterpris_signup_url_ref01_match_dt0 = [];
+        $enterpris_signup_url_ref01_match_dt0 = [
+            "id" => $enterpris_signup_url_ref01_data["id"],
+        ];
         $enterpris_signup_url_ref01_data_dt0_loaded = $enterpris_signup_url_ref01_ent->load($enterpris_signup_url_ref01_match_dt0, null);
-        $this->assertNotNull($enterpris_signup_url_ref01_data_dt0_loaded);
+        $enterpris_signup_url_ref01_data_dt0_load_result = Helpers::to_map(is_object($enterpris_signup_url_ref01_data_dt0_loaded) && method_exists($enterpris_signup_url_ref01_data_dt0_loaded, 'data_get') ? $enterpris_signup_url_ref01_data_dt0_loaded->data_get() : $enterpris_signup_url_ref01_data_dt0_loaded);
+        $this->assertNotNull($enterpris_signup_url_ref01_data_dt0_load_result);
+        $this->assertEquals($enterpris_signup_url_ref01_data_dt0_load_result["id"], $enterpris_signup_url_ref01_data["id"]);
 
     }
 }

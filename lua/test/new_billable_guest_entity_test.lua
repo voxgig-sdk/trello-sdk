@@ -44,10 +44,14 @@ describe("NewBillableGuestEntity", function()
 
     -- LOAD
     local new_billable_guest_ref01_ent = client:NewBillableGuest(nil)
-    local new_billable_guest_ref01_match_dt0 = {}
+    local new_billable_guest_ref01_match_dt0 = {
+      id = new_billable_guest_ref01_data["id"],
+    }
     local new_billable_guest_ref01_data_dt0_loaded, err = new_billable_guest_ref01_ent:load(new_billable_guest_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(new_billable_guest_ref01_data_dt0_loaded)
+    local new_billable_guest_ref01_data_dt0_load_result = helpers.to_map(type(new_billable_guest_ref01_data_dt0_loaded) == 'table' and new_billable_guest_ref01_data_dt0_loaded.data_get and new_billable_guest_ref01_data_dt0_loaded:data_get() or new_billable_guest_ref01_data_dt0_loaded)
+    assert.is_not_nil(new_billable_guest_ref01_data_dt0_load_result)
+    assert.are.equal(new_billable_guest_ref01_data_dt0_load_result["id"], new_billable_guest_ref01_data["id"])
 
   end)
 end)

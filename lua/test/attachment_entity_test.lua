@@ -94,10 +94,14 @@ describe("AttachmentEntity", function()
     assert.is_table(attachment_ref01_list_result)
 
     -- LOAD
-    local attachment_ref01_match_dt0 = {}
+    local attachment_ref01_match_dt0 = {
+      id = attachment_ref01_data["id"],
+    }
     local attachment_ref01_data_dt0_loaded, err = attachment_ref01_ent:load(attachment_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(attachment_ref01_data_dt0_loaded)
+    local attachment_ref01_data_dt0_load_result = helpers.to_map(type(attachment_ref01_data_dt0_loaded) == 'table' and attachment_ref01_data_dt0_loaded.data_get and attachment_ref01_data_dt0_loaded:data_get() or attachment_ref01_data_dt0_loaded)
+    assert.is_not_nil(attachment_ref01_data_dt0_load_result)
+    assert.are.equal(attachment_ref01_data_dt0_load_result["id"], attachment_ref01_data["id"])
 
   end)
 end)

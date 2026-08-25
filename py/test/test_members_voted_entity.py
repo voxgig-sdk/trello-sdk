@@ -48,9 +48,13 @@ class TestMembersVotedEntity:
 
         # LOAD
         members_voted_ref01_ent = client.MembersVoted(None)
-        members_voted_ref01_match_dt0 = {}
+        members_voted_ref01_match_dt0 = {
+            "id": members_voted_ref01_data["id"],
+        }
         members_voted_ref01_data_dt0_loaded = members_voted_ref01_ent.load(members_voted_ref01_match_dt0, None)
-        assert members_voted_ref01_data_dt0_loaded is not None
+        members_voted_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(members_voted_ref01_data_dt0_loaded))
+        assert members_voted_ref01_data_dt0_load_result is not None
+        assert members_voted_ref01_data_dt0_load_result["id"] == members_voted_ref01_data["id"]
 
 
 

@@ -4,6 +4,19 @@ main: kit: entity: card_check_item_state: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "card_check_item_state"
   op: {
     load: {

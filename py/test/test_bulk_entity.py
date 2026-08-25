@@ -49,15 +49,21 @@ class TestBulkEntity:
         # UPDATE
         bulk_ref01_ent = client.Bulk(None)
         bulk_ref01_data_up0_up = {
+            "id": bulk_ref01_data["id"],
         }
 
         bulk_ref01_resdata_up0 = helpers.to_map(runner.entity_data(bulk_ref01_ent.update(bulk_ref01_data_up0_up, None)))
         assert bulk_ref01_resdata_up0 is not None
+        assert bulk_ref01_resdata_up0["id"] == bulk_ref01_data_up0_up["id"]
 
         # LOAD
-        bulk_ref01_match_dt0 = {}
+        bulk_ref01_match_dt0 = {
+            "id": bulk_ref01_data["id"],
+        }
         bulk_ref01_data_dt0_loaded = bulk_ref01_ent.load(bulk_ref01_match_dt0, None)
-        assert bulk_ref01_data_dt0_loaded is not None
+        bulk_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(bulk_ref01_data_dt0_loaded))
+        assert bulk_ref01_data_dt0_load_result is not None
+        assert bulk_ref01_data_dt0_load_result["id"] == bulk_ref01_data["id"]
 
 
 

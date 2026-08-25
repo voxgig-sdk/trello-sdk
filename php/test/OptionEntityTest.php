@@ -48,9 +48,13 @@ class OptionEntityTest extends TestCase
 
         // LOAD
         $option_ref01_ent = $client->Option(null);
-        $option_ref01_match_dt0 = [];
+        $option_ref01_match_dt0 = [
+            "id" => $option_ref01_data["id"],
+        ];
         $option_ref01_data_dt0_loaded = $option_ref01_ent->load($option_ref01_match_dt0, null);
-        $this->assertNotNull($option_ref01_data_dt0_loaded);
+        $option_ref01_data_dt0_load_result = Helpers::to_map(is_object($option_ref01_data_dt0_loaded) && method_exists($option_ref01_data_dt0_loaded, 'data_get') ? $option_ref01_data_dt0_loaded->data_get() : $option_ref01_data_dt0_loaded);
+        $this->assertNotNull($option_ref01_data_dt0_load_result);
+        $this->assertEquals($option_ref01_data_dt0_load_result["id"], $option_ref01_data["id"]);
 
     }
 }

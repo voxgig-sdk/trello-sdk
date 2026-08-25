@@ -88,8 +88,8 @@ class ActionReactionsSummaryLoadMatch(TypedDict):
     id_action: str
 
 
-class Admin(TypedDict):
-    pass
+class Admin(TypedDict, total=False):
+    id: str
 
 
 class AdminUpdateData(TypedDict):
@@ -122,8 +122,8 @@ class AssociatedDomainRemoveMatch(TypedDict):
     organization_id: str
 
 
-class Attachment(TypedDict):
-    pass
+class Attachment(TypedDict, total=False):
+    id: str
 
 
 class AttachmentLoadMatch(TypedDict):
@@ -298,8 +298,8 @@ class BoardBackgroundRemoveMatch(TypedDict):
     member_id: str
 
 
-class BoardPlugin(TypedDict):
-    pass
+class BoardPlugin(TypedDict, total=False):
+    id: str
 
 
 class BoardPluginRemoveMatch(TypedDict):
@@ -350,8 +350,8 @@ class BoardStarRemoveMatch(TypedDict):
     member_id: str
 
 
-class Bulk(TypedDict):
-    pass
+class Bulk(TypedDict, total=False):
+    id: str
 
 
 class BulkLoadMatch(TypedDict):
@@ -489,16 +489,16 @@ class CardRemoveMatch(TypedDict):
     id: str
 
 
-class CardCheckItemState(TypedDict):
-    pass
+class CardCheckItemState(TypedDict, total=False):
+    id: str
 
 
 class CardCheckItemStateLoadMatch(TypedDict):
     id: str
 
 
-class CardList(TypedDict):
-    pass
+class CardList(TypedDict, total=False):
+    id: str
 
 
 class CardListLoadMatch(TypedDict):
@@ -543,16 +543,16 @@ class CheckItemRemoveMatch(CheckItemRemoveMatchRequired, total=False):
     checklist_id: str
 
 
-class Checklist(TypedDict):
-    pass
+class Checklist(TypedDict, total=False):
+    id: str
 
 
 class ChecklistLoadMatch(TypedDict):
     id: str
 
 
-class ChecklistCreateData(TypedDict):
-    pass
+class ChecklistCreateData(TypedDict, total=False):
+    id: str
 
 
 class ChecklistUpdateDataRequired(TypedDict):
@@ -586,8 +586,8 @@ class ClaimableOrganizationListMatch(TypedDict):
     enterpris_id: str
 
 
-class CustomBoardBackground(TypedDict):
-    pass
+class CustomBoardBackground(TypedDict, total=False):
+    id: str
 
 
 class CustomBoardBackgroundRemoveMatch(TypedDict):
@@ -840,6 +840,7 @@ class EnterprisUpdateData(EnterprisUpdateDataRequired, total=False):
 
 
 class EnterprisSignupUrl(TypedDict, total=False):
+    id: str
     signupUrl: str
 
 
@@ -935,8 +936,8 @@ class IdEmailListUpdateData(TypedDict):
     board_id: str
 
 
-class IdLabel(TypedDict):
-    pass
+class IdLabel(TypedDict, total=False):
+    id: str
 
 
 class IdLabelRemoveMatch(TypedDict):
@@ -944,8 +945,8 @@ class IdLabelRemoveMatch(TypedDict):
     id: str
 
 
-class IdMember(TypedDict):
-    pass
+class IdMember(TypedDict, total=False):
+    id: str
 
 
 class IdMemberRemoveMatch(TypedDict):
@@ -953,16 +954,16 @@ class IdMemberRemoveMatch(TypedDict):
     id: str
 
 
-class Label(TypedDict):
-    pass
+class Label(TypedDict, total=False):
+    id: str
 
 
 class LabelLoadMatch(TypedDict):
     id: str
 
 
-class LabelCreateData(TypedDict):
-    pass
+class LabelCreateData(TypedDict, total=False):
+    id: str
 
 
 class LabelUpdateDataRequired(TypedDict):
@@ -977,8 +978,8 @@ class LabelRemoveMatch(TypedDict):
     id: str
 
 
-class List(TypedDict):
-    pass
+class List(TypedDict, total=False):
+    id: str
 
 
 class ListLoadMatchRequired(TypedDict):
@@ -989,8 +990,8 @@ class ListLoadMatch(ListLoadMatchRequired, total=False):
     board_id: str
 
 
-class ListCreateData(TypedDict):
-    pass
+class ListCreateData(TypedDict, total=False):
+    id: str
 
 
 class ListUpdateDataRequired(TypedDict):
@@ -1210,8 +1211,8 @@ class MemberPrivacyLoadMatch(TypedDict):
     plugin_id: str
 
 
-class MembersVoted(TypedDict):
-    pass
+class MembersVoted(TypedDict, total=False):
+    id: str
 
 
 class MembersVotedLoadMatch(TypedDict):
@@ -1260,8 +1261,8 @@ class MostRecent(TypedDict):
     pass
 
 
-class NewBillableGuest(TypedDict):
-    pass
+class NewBillableGuest(TypedDict, total=False):
+    id: str
 
 
 class NewBillableGuestLoadMatch(TypedDict):
@@ -1342,16 +1343,16 @@ class NotificationChannelSettingUpdateData(NotificationChannelSettingUpdateDataR
     idMember: str
 
 
-class NotificationList(TypedDict):
-    pass
+class NotificationList(TypedDict, total=False):
+    id: str
 
 
 class NotificationListLoadMatch(TypedDict):
     id: str
 
 
-class NotificationMemberCreator(TypedDict):
-    pass
+class NotificationMemberCreator(TypedDict, total=False):
+    id: str
 
 
 class NotificationMemberCreatorLoadMatch(TypedDict):
@@ -1362,8 +1363,8 @@ class NotificationsChannelSetting(TypedDict):
     pass
 
 
-class Option(TypedDict):
-    pass
+class Option(TypedDict, total=False):
+    id: str
 
 
 class OptionLoadMatchRequired(TypedDict):
@@ -1523,8 +1524,8 @@ class PluginListingUpdateData(PluginListingUpdateDataRequired, total=False):
     overview: str
 
 
-class Reaction(TypedDict):
-    pass
+class Reaction(TypedDict, total=False):
+    id: str
 
 
 class ReactionLoadMatchRequired(TypedDict):
@@ -1631,8 +1632,8 @@ class ShowSidebarMemberUpdateData(TypedDict):
     board_id: str
 
 
-class Sticker(TypedDict):
-    pass
+class Sticker(TypedDict, total=False):
+    id: str
 
 
 class StickerLoadMatchRequired(TypedDict):
@@ -1653,8 +1654,8 @@ class StickerRemoveMatch(TypedDict):
     id: str
 
 
-class Tag(TypedDict):
-    pass
+class Tag(TypedDict, total=False):
+    id: str
 
 
 class TagListMatch(TypedDict):
@@ -1688,6 +1689,7 @@ class TokenRemoveMatch(TypedDict):
 
 
 class TransferrableOrganization(TypedDict, total=False):
+    id: str
     newBillableMembers: list
     restrictedMembers: list
     transferrable: bool

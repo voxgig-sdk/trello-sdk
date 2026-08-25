@@ -44,8 +44,9 @@ describe('OptionEntity', async () => {
     // LOAD
     const option_ref01_ent = client.Option()
     const option_ref01_match_dt0 = {}
+    option_ref01_match_dt0.id = option_ref01_data.id
     const option_ref01_data_dt0 = (await option_ref01_ent.load(option_ref01_match_dt0)).data()
-    assert(null != option_ref01_data_dt0)
+    assert(option_ref01_data_dt0.id === option_ref01_data.id)
 
 
   })

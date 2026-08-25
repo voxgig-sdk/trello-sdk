@@ -509,6 +509,12 @@ Return the entity name.
 local admin = client:Admin(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -694,6 +700,12 @@ Return the entity name.
 ```lua
 local attachment = client:Attachment(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1008,6 +1020,12 @@ Return the entity name.
 local board_plugin = client:BoardPlugin(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -1145,6 +1163,12 @@ Return the entity name.
 ```lua
 local bulk = client:Bulk(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1324,6 +1348,12 @@ Return the entity name.
 local card_check_item_state = client:CardCheckItemState(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -1369,6 +1399,12 @@ Return the entity name.
 ```lua
 local card_list = client:CardList(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1491,6 +1527,12 @@ Return the entity name.
 ```lua
 local checklist = client:Checklist(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1624,6 +1666,12 @@ Return the entity name.
 ```lua
 local custom_board_background = client:CustomBoardBackground(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2204,6 +2252,7 @@ local enterpris_signup_url = client:EnterprisSignupUrl(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `signupUrl` | `string` | No |  |
 
 ### Operations
@@ -2591,6 +2640,12 @@ Return the entity name.
 local id_label = client:IdLabel(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -2637,6 +2692,12 @@ Return the entity name.
 local id_member = client:IdMember(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -2682,6 +2743,12 @@ Return the entity name.
 ```lua
 local label = client:Label(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2756,6 +2823,12 @@ Return the entity name.
 ```lua
 local list = client:List(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2999,6 +3072,12 @@ Return the entity name.
 local members_voted = client:MembersVoted(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -3166,6 +3245,12 @@ Return the entity name.
 ```lua
 local new_billable_guest = client:NewBillableGuest(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3378,6 +3463,12 @@ Return the entity name.
 local notification_list = client:NotificationList(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -3423,6 +3514,12 @@ Return the entity name.
 ```lua
 local notification_member_creator = client:NotificationMemberCreator(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3505,6 +3602,12 @@ Return the entity name.
 ```lua
 local option = client:Option(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3958,6 +4061,12 @@ Return the entity name.
 local reaction = client:Reaction(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -4394,6 +4503,12 @@ Return the entity name.
 local sticker = client:Sticker(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -4459,6 +4574,12 @@ Return the entity name.
 ```lua
 local tag = client:Tag(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4591,6 +4712,7 @@ local transferrable_organization = client:TransferrableOrganization(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `newBillableMembers` | `table` | No |  |
 | `restrictedMembers` | `table` | No |  |
 | `transferrable` | `boolean` | No |  |

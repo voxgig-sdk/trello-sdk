@@ -44,8 +44,9 @@ describe('EnterprisSignupUrlEntity', async () => {
     // LOAD
     const enterpris_signup_url_ref01_ent = client.EnterprisSignupUrl()
     const enterpris_signup_url_ref01_match_dt0 = {}
+    enterpris_signup_url_ref01_match_dt0.id = enterpris_signup_url_ref01_data.id
     const enterpris_signup_url_ref01_data_dt0 = (await enterpris_signup_url_ref01_ent.load(enterpris_signup_url_ref01_match_dt0)).data()
-    assert(null != enterpris_signup_url_ref01_data_dt0)
+    assert(enterpris_signup_url_ref01_data_dt0.id === enterpris_signup_url_ref01_data.id)
 
 
   })

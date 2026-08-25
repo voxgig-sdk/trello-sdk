@@ -123,13 +123,19 @@ func TestAttachmentEntity(t *testing.T) {
 		}
 
 		// LOAD
-		attachmentRef01MatchDt0 := map[string]any{}
+		attachmentRef01MatchDt0 := map[string]any{
+			"id": attachmentRef01Data["id"],
+		}
 		attachmentRef01DataDt0Loaded, err := attachmentRef01Ent.Load(attachmentRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if attachmentRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		attachmentRef01DataDt0LoadResult := core.ToMapAny(entityData(attachmentRef01DataDt0Loaded))
+		if attachmentRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if attachmentRef01DataDt0LoadResult["id"] != attachmentRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

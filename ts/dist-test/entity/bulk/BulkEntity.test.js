@@ -75,8 +75,14 @@ const utility_1 = require("../../utility");
         // UPDATE
         const bulk_ref01_ent = client.Bulk();
         const bulk_ref01_data_up0 = {};
+        bulk_ref01_data_up0.id = bulk_ref01_data.id;
         const bulk_ref01_resdata_up0 = (await bulk_ref01_ent.update(bulk_ref01_data_up0)).data();
-        (0, node_assert_1.default)(null != bulk_ref01_resdata_up0);
+        (0, node_assert_1.default)(bulk_ref01_resdata_up0.id === bulk_ref01_data_up0.id);
+        // LOAD
+        const bulk_ref01_match_dt0 = {};
+        bulk_ref01_match_dt0.id = bulk_ref01_data.id;
+        const bulk_ref01_data_dt0 = (await bulk_ref01_ent.load(bulk_ref01_match_dt0)).data();
+        (0, node_assert_1.default)(bulk_ref01_data_dt0.id === bulk_ref01_data.id);
     });
 });
 function basicSetup(extra) {

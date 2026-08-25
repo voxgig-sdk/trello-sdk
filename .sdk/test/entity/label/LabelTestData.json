@@ -2,19 +2,19 @@
   "existing": {
     "label": {
       "LABEL00": {
+        "id": "LABEL00",
         "board_id": "BOARD01",
-        "field": "FIELD01",
-        "id": "LABEL00"
+        "field": "FIELD01"
       },
       "LABEL01": {
+        "id": "LABEL01",
         "board_id": "BOARD01",
-        "field": "FIELD01",
-        "id": "LABEL01"
+        "field": "FIELD01"
       },
       "LABEL02": {
+        "id": "LABEL02",
         "board_id": "BOARD01",
-        "field": "FIELD01",
-        "id": "LABEL02"
+        "field": "FIELD01"
       }
     }
   },

@@ -49,16 +49,22 @@ class TestStickerEntity:
         # UPDATE
         sticker_ref01_ent = client.Sticker(None)
         sticker_ref01_data_up0_up = {
+            "id": sticker_ref01_data["id"],
             "card_id": setup["idmap"]["card_id"],
         }
 
         sticker_ref01_resdata_up0 = helpers.to_map(runner.entity_data(sticker_ref01_ent.update(sticker_ref01_data_up0_up, None)))
         assert sticker_ref01_resdata_up0 is not None
+        assert sticker_ref01_resdata_up0["id"] == sticker_ref01_data_up0_up["id"]
 
         # LOAD
-        sticker_ref01_match_dt0 = {}
+        sticker_ref01_match_dt0 = {
+            "id": sticker_ref01_data["id"],
+        }
         sticker_ref01_data_dt0_loaded = sticker_ref01_ent.load(sticker_ref01_match_dt0, None)
-        assert sticker_ref01_data_dt0_loaded is not None
+        sticker_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(sticker_ref01_data_dt0_loaded))
+        assert sticker_ref01_data_dt0_load_result is not None
+        assert sticker_ref01_data_dt0_load_result["id"] == sticker_ref01_data["id"]
 
 
 

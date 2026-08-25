@@ -6,11 +6,21 @@ main: kit: entity: enterpris_signup_url: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "signupUrl"
       req: false
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "enterpris_signup_url"
   op: {

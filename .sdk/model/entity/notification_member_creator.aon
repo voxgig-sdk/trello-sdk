@@ -4,6 +4,19 @@ main: kit: entity: notification_member_creator: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "notification_member_creator"
   op: {
     load: {

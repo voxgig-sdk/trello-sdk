@@ -61,13 +61,19 @@ func TestNotificationMemberCreatorEntity(t *testing.T) {
 
 		// LOAD
 		notificationMemberCreatorRef01Ent := client.NotificationMemberCreator(nil)
-		notificationMemberCreatorRef01MatchDt0 := map[string]any{}
+		notificationMemberCreatorRef01MatchDt0 := map[string]any{
+			"id": notificationMemberCreatorRef01Data["id"],
+		}
 		notificationMemberCreatorRef01DataDt0Loaded, err := notificationMemberCreatorRef01Ent.Load(notificationMemberCreatorRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if notificationMemberCreatorRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		notificationMemberCreatorRef01DataDt0LoadResult := core.ToMapAny(entityData(notificationMemberCreatorRef01DataDt0Loaded))
+		if notificationMemberCreatorRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if notificationMemberCreatorRef01DataDt0LoadResult["id"] != notificationMemberCreatorRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

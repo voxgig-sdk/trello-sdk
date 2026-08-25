@@ -63,9 +63,13 @@ func TestListEntity(t *testing.T) {
 		if listRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if listRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// UPDATE
 		listRef01DataUp0Up := map[string]any{
+			"id": listRef01Data["id"],
 		}
 
 		listRef01ResdataUp0Result, err := listRef01Ent.Update(listRef01DataUp0Up, nil)
@@ -76,15 +80,24 @@ func TestListEntity(t *testing.T) {
 		if listRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
 		}
+		if listRef01ResdataUp0["id"] != listRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
 
 		// LOAD
-		listRef01MatchDt0 := map[string]any{}
+		listRef01MatchDt0 := map[string]any{
+			"id": listRef01Data["id"],
+		}
 		listRef01DataDt0Loaded, err := listRef01Ent.Load(listRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if listRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		listRef01DataDt0LoadResult := core.ToMapAny(entityData(listRef01DataDt0Loaded))
+		if listRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if listRef01DataDt0LoadResult["id"] != listRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

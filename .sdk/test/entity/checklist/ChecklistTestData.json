@@ -2,22 +2,22 @@
   "existing": {
     "checklist": {
       "CHECKLIST00": {
+        "id": "CHECKLIST00",
         "card_id": "CARD01",
         "field": "FIELD01",
-        "board_id": "BOARD01",
-        "id": "CHECKLIST00"
+        "board_id": "BOARD01"
       },
       "CHECKLIST01": {
+        "id": "CHECKLIST01",
         "card_id": "CARD01",
         "field": "FIELD01",
-        "board_id": "BOARD01",
-        "id": "CHECKLIST01"
+        "board_id": "BOARD01"
       },
       "CHECKLIST02": {
+        "id": "CHECKLIST02",
         "card_id": "CARD01",
         "field": "FIELD01",
-        "board_id": "BOARD01",
-        "id": "CHECKLIST02"
+        "board_id": "BOARD01"
       }
     }
   },

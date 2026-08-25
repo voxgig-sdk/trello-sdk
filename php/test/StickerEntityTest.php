@@ -49,17 +49,23 @@ class StickerEntityTest extends TestCase
         // UPDATE
         $sticker_ref01_ent = $client->Sticker(null);
         $sticker_ref01_data_up0_up = [
+            "id" => $sticker_ref01_data["id"],
             "card_id" => $setup["idmap"]["card_id"],
         ];
 
         $sticker_ref01_resdata_up0_result = $sticker_ref01_ent->update($sticker_ref01_data_up0_up, null);
         $sticker_ref01_resdata_up0 = Helpers::to_map(is_object($sticker_ref01_resdata_up0_result) && method_exists($sticker_ref01_resdata_up0_result, 'data_get') ? $sticker_ref01_resdata_up0_result->data_get() : $sticker_ref01_resdata_up0_result);
         $this->assertNotNull($sticker_ref01_resdata_up0);
+        $this->assertEquals($sticker_ref01_resdata_up0["id"], $sticker_ref01_data_up0_up["id"]);
 
         // LOAD
-        $sticker_ref01_match_dt0 = [];
+        $sticker_ref01_match_dt0 = [
+            "id" => $sticker_ref01_data["id"],
+        ];
         $sticker_ref01_data_dt0_loaded = $sticker_ref01_ent->load($sticker_ref01_match_dt0, null);
-        $this->assertNotNull($sticker_ref01_data_dt0_loaded);
+        $sticker_ref01_data_dt0_load_result = Helpers::to_map(is_object($sticker_ref01_data_dt0_loaded) && method_exists($sticker_ref01_data_dt0_loaded, 'data_get') ? $sticker_ref01_data_dt0_loaded->data_get() : $sticker_ref01_data_dt0_loaded);
+        $this->assertNotNull($sticker_ref01_data_dt0_load_result);
+        $this->assertEquals($sticker_ref01_data_dt0_load_result["id"], $sticker_ref01_data["id"]);
 
     }
 }

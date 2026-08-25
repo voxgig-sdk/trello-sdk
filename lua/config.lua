@@ -1015,7 +1015,12 @@ local function make_config()
         },
       },
       ["admin"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "admin",
         ["op"] = {
           ["remove"] = {
@@ -1251,7 +1256,12 @@ local function make_config()
         },
       },
       ["attachment"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "attachment",
         ["op"] = {
           ["list"] = {
@@ -3269,7 +3279,12 @@ local function make_config()
         },
       },
       ["board_plugin"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "board_plugin",
         ["op"] = {
           ["remove"] = {
@@ -3676,7 +3691,12 @@ local function make_config()
         },
       },
       ["bulk"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "bulk",
         ["op"] = {
           ["load"] = {
@@ -5313,7 +5333,12 @@ local function make_config()
         },
       },
       ["card_check_item_state"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "card_check_item_state",
         ["op"] = {
           ["load"] = {
@@ -5369,7 +5394,12 @@ local function make_config()
         },
       },
       ["card_list"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "card_list",
         ["op"] = {
           ["load"] = {
@@ -5915,7 +5945,12 @@ local function make_config()
         },
       },
       ["checklist"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "checklist",
         ["op"] = {
           ["create"] = {
@@ -6592,7 +6627,12 @@ local function make_config()
         },
       },
       ["custom_board_background"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "custom_board_background",
         ["op"] = {
           ["remove"] = {
@@ -7999,6 +8039,10 @@ local function make_config()
       ["enterpris_signup_url"] = {
         ["fields"] = {
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "signupUrl",
             ["type"] = "`$STRING`",
           },
@@ -8813,7 +8857,12 @@ local function make_config()
         },
       },
       ["id_label"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "id_label",
         ["op"] = {
           ["remove"] = {
@@ -8879,7 +8928,12 @@ local function make_config()
         },
       },
       ["id_member"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "id_member",
         ["op"] = {
           ["remove"] = {
@@ -8945,7 +8999,12 @@ local function make_config()
         },
       },
       ["label"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "label",
         ["op"] = {
           ["create"] = {
@@ -9244,7 +9303,12 @@ local function make_config()
         },
       },
       ["list"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "list",
         ["op"] = {
           ["create"] = {
@@ -11436,7 +11500,12 @@ local function make_config()
         },
       },
       ["members_voted"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "members_voted",
         ["op"] = {
           ["load"] = {
@@ -11997,7 +12066,12 @@ local function make_config()
         },
       },
       ["new_billable_guest"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "new_billable_guest",
         ["op"] = {
           ["load"] = {
@@ -12812,7 +12886,12 @@ local function make_config()
         },
       },
       ["notification_list"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "notification_list",
         ["op"] = {
           ["load"] = {
@@ -12868,7 +12947,12 @@ local function make_config()
         },
       },
       ["notification_member_creator"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "notification_member_creator",
         ["op"] = {
           ["load"] = {
@@ -12939,7 +13023,12 @@ local function make_config()
         },
       },
       ["option"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "option",
         ["op"] = {
           ["load"] = {
@@ -14503,7 +14592,12 @@ local function make_config()
         },
       },
       ["reaction"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "reaction",
         ["op"] = {
           ["load"] = {
@@ -15529,7 +15623,12 @@ local function make_config()
         },
       },
       ["sticker"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "sticker",
         ["op"] = {
           ["load"] = {
@@ -15799,7 +15898,12 @@ local function make_config()
         },
       },
       ["tag"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "tag",
         ["op"] = {
           ["list"] = {
@@ -16098,6 +16202,10 @@ local function make_config()
       },
       ["transferrable_organization"] = {
         ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
           {
             ["name"] = "newBillableMembers",
             ["type"] = "`$ARRAY`",

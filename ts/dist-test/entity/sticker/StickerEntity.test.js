@@ -75,9 +75,15 @@ const utility_1 = require("../../utility");
         // UPDATE
         const sticker_ref01_ent = client.Sticker();
         const sticker_ref01_data_up0 = {};
+        sticker_ref01_data_up0.id = sticker_ref01_data.id;
         sticker_ref01_data_up0['card_id'] = setup.idmap['card_id'];
         const sticker_ref01_resdata_up0 = (await sticker_ref01_ent.update(sticker_ref01_data_up0)).data();
-        (0, node_assert_1.default)(null != sticker_ref01_resdata_up0);
+        (0, node_assert_1.default)(sticker_ref01_resdata_up0.id === sticker_ref01_data_up0.id);
+        // LOAD
+        const sticker_ref01_match_dt0 = {};
+        sticker_ref01_match_dt0.id = sticker_ref01_data.id;
+        const sticker_ref01_data_dt0 = (await sticker_ref01_ent.load(sticker_ref01_match_dt0)).data();
+        (0, node_assert_1.default)(sticker_ref01_data_dt0.id === sticker_ref01_data.id);
     });
 });
 function basicSetup(extra) {

@@ -4,6 +4,19 @@ main: kit: entity: notification_list: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "notification_list"
   op: {
     load: {

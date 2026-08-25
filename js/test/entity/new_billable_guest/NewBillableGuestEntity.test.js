@@ -44,8 +44,9 @@ describe('NewBillableGuestEntity', async () => {
     // LOAD
     const new_billable_guest_ref01_ent = client.NewBillableGuest()
     const new_billable_guest_ref01_match_dt0 = {}
+    new_billable_guest_ref01_match_dt0.id = new_billable_guest_ref01_data.id
     const new_billable_guest_ref01_data_dt0 = (await new_billable_guest_ref01_ent.load(new_billable_guest_ref01_match_dt0)).data()
-    assert(null != new_billable_guest_ref01_data_dt0)
+    assert(new_billable_guest_ref01_data_dt0.id === new_billable_guest_ref01_data.id)
 
 
   })

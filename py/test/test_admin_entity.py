@@ -49,11 +49,13 @@ class TestAdminEntity:
         # UPDATE
         admin_ref01_ent = client.Admin(None)
         admin_ref01_data_up0_up = {
+            "id": admin_ref01_data["id"],
             "enterpris_id": setup["idmap"]["enterpris_id"],
         }
 
         admin_ref01_resdata_up0 = helpers.to_map(runner.entity_data(admin_ref01_ent.update(admin_ref01_data_up0_up, None)))
         assert admin_ref01_resdata_up0 is not None
+        assert admin_ref01_resdata_up0["id"] == admin_ref01_data_up0_up["id"]
 
 
 

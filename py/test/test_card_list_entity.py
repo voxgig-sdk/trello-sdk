@@ -48,9 +48,13 @@ class TestCardListEntity:
 
         # LOAD
         card_list_ref01_ent = client.CardList(None)
-        card_list_ref01_match_dt0 = {}
+        card_list_ref01_match_dt0 = {
+            "id": card_list_ref01_data["id"],
+        }
         card_list_ref01_data_dt0_loaded = card_list_ref01_ent.load(card_list_ref01_match_dt0, None)
-        assert card_list_ref01_data_dt0_loaded is not None
+        card_list_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(card_list_ref01_data_dt0_loaded))
+        assert card_list_ref01_data_dt0_load_result is not None
+        assert card_list_ref01_data_dt0_load_result["id"] == card_list_ref01_data["id"]
 
 
 

@@ -44,10 +44,14 @@ describe("NotificationListEntity", function()
 
     -- LOAD
     local notification_list_ref01_ent = client:NotificationList(nil)
-    local notification_list_ref01_match_dt0 = {}
+    local notification_list_ref01_match_dt0 = {
+      id = notification_list_ref01_data["id"],
+    }
     local notification_list_ref01_data_dt0_loaded, err = notification_list_ref01_ent:load(notification_list_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(notification_list_ref01_data_dt0_loaded)
+    local notification_list_ref01_data_dt0_load_result = helpers.to_map(type(notification_list_ref01_data_dt0_loaded) == 'table' and notification_list_ref01_data_dt0_loaded.data_get and notification_list_ref01_data_dt0_loaded:data_get() or notification_list_ref01_data_dt0_loaded)
+    assert.is_not_nil(notification_list_ref01_data_dt0_load_result)
+    assert.are.equal(notification_list_ref01_data_dt0_load_result["id"], notification_list_ref01_data["id"])
 
   end)
 end)

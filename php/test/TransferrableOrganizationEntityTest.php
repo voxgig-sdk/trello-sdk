@@ -48,9 +48,13 @@ class TransferrableOrganizationEntityTest extends TestCase
 
         // LOAD
         $transferrable_organization_ref01_ent = $client->TransferrableOrganization(null);
-        $transferrable_organization_ref01_match_dt0 = [];
+        $transferrable_organization_ref01_match_dt0 = [
+            "id" => $transferrable_organization_ref01_data["id"],
+        ];
         $transferrable_organization_ref01_data_dt0_loaded = $transferrable_organization_ref01_ent->load($transferrable_organization_ref01_match_dt0, null);
-        $this->assertNotNull($transferrable_organization_ref01_data_dt0_loaded);
+        $transferrable_organization_ref01_data_dt0_load_result = Helpers::to_map(is_object($transferrable_organization_ref01_data_dt0_loaded) && method_exists($transferrable_organization_ref01_data_dt0_loaded, 'data_get') ? $transferrable_organization_ref01_data_dt0_loaded->data_get() : $transferrable_organization_ref01_data_dt0_loaded);
+        $this->assertNotNull($transferrable_organization_ref01_data_dt0_load_result);
+        $this->assertEquals($transferrable_organization_ref01_data_dt0_load_result["id"], $transferrable_organization_ref01_data["id"]);
 
     }
 }

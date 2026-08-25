@@ -44,10 +44,14 @@ describe("CardListEntity", function()
 
     -- LOAD
     local card_list_ref01_ent = client:CardList(nil)
-    local card_list_ref01_match_dt0 = {}
+    local card_list_ref01_match_dt0 = {
+      id = card_list_ref01_data["id"],
+    }
     local card_list_ref01_data_dt0_loaded, err = card_list_ref01_ent:load(card_list_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(card_list_ref01_data_dt0_loaded)
+    local card_list_ref01_data_dt0_load_result = helpers.to_map(type(card_list_ref01_data_dt0_loaded) == 'table' and card_list_ref01_data_dt0_loaded.data_get and card_list_ref01_data_dt0_loaded:data_get() or card_list_ref01_data_dt0_loaded)
+    assert.is_not_nil(card_list_ref01_data_dt0_load_result)
+    assert.are.equal(card_list_ref01_data_dt0_load_result["id"], card_list_ref01_data["id"])
 
   end)
 end)

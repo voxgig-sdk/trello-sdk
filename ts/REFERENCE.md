@@ -1107,6 +1107,12 @@ Return a copy of the entity options.
 const admin = client.Admin()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(match: object, ctrl?: object)`
@@ -1284,6 +1290,12 @@ Return a copy of the entity options.
 ```ts
 const attachment = client.Attachment()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1614,6 +1626,12 @@ Return a copy of the entity options.
 const board_plugin = client.BoardPlugin()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(match: object, ctrl?: object)`
@@ -1747,6 +1765,12 @@ Return a copy of the entity options.
 ```ts
 const bulk = client.Bulk()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1950,6 +1974,12 @@ Return a copy of the entity options.
 const card_check_item_state = client.CardCheckItemState()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -1993,6 +2023,12 @@ Return a copy of the entity options.
 ```ts
 const card_list = client.CardList()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2111,6 +2147,12 @@ Return a copy of the entity options.
 ```ts
 const checklist = client.Checklist()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Actions
 
@@ -2260,6 +2302,12 @@ Return a copy of the entity options.
 ```ts
 const custom_board_background = client.CustomBoardBackground()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -2866,6 +2914,7 @@ const enterpris_signup_url = client.EnterprisSignupUrl()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `signupUrl` | `string` | No |  |
 
 ### Operations
@@ -3259,6 +3308,12 @@ Return a copy of the entity options.
 const id_label = client.IdLabel()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(match: object, ctrl?: object)`
@@ -3303,6 +3358,12 @@ Return a copy of the entity options.
 const id_member = client.IdMember()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `remove(match: object, ctrl?: object)`
@@ -3346,6 +3407,12 @@ Return a copy of the entity options.
 ```ts
 const label = client.Label()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3418,6 +3485,12 @@ Return a copy of the entity options.
 ```ts
 const list = client.List()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Actions
 
@@ -3704,6 +3777,12 @@ Return a copy of the entity options.
 const members_voted = client.MembersVoted()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -3865,6 +3944,12 @@ Return a copy of the entity options.
 ```ts
 const new_billable_guest = client.NewBillableGuest()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4091,6 +4176,12 @@ Return a copy of the entity options.
 const notification_list = client.NotificationList()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -4134,6 +4225,12 @@ Return a copy of the entity options.
 ```ts
 const notification_member_creator = client.NotificationMemberCreator()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4212,6 +4309,12 @@ Return a copy of the entity options.
 ```ts
 const option = client.Option()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4674,6 +4777,12 @@ Return a copy of the entity options.
 const reaction = client.Reaction()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -5094,6 +5203,12 @@ Return a copy of the entity options.
 const sticker = client.Sticker()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -5157,6 +5272,12 @@ Return a copy of the entity options.
 ```ts
 const tag = client.Tag()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -5285,6 +5406,7 @@ const transferrable_organization = client.TransferrableOrganization()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `newBillableMembers` | `any[]` | No |  |
 | `restrictedMembers` | `any[]` | No |  |
 | `transferrable` | `boolean` | No |  |

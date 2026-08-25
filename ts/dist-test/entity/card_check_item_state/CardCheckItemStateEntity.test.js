@@ -72,9 +72,12 @@ const utility_1 = require("../../utility");
         const isempty = struct.isempty;
         const select = struct.select;
         let card_check_item_state_ref01_data = Object.values(setup.data.existing.card_check_item_state)[0];
-        // LOAD: skipped — no entity id field and load requires path params.
-        // Entity-var is declared here so later flow steps still compile.
+        // LOAD
         const card_check_item_state_ref01_ent = client.CardCheckItemState();
+        const card_check_item_state_ref01_match_dt0 = {};
+        card_check_item_state_ref01_match_dt0.id = card_check_item_state_ref01_data.id;
+        const card_check_item_state_ref01_data_dt0 = (await card_check_item_state_ref01_ent.load(card_check_item_state_ref01_match_dt0)).data();
+        (0, node_assert_1.default)(card_check_item_state_ref01_data_dt0.id === card_check_item_state_ref01_data.id);
     });
 });
 function basicSetup(extra) {

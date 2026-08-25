@@ -6,6 +6,11 @@ main: kit: entity: transferrable_organization: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "newBillableMembers"
       req: false
       type: "`$ARRAY`"
@@ -21,6 +26,11 @@ main: kit: entity: transferrable_organization: {
       type: "`$BOOLEAN`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "transferrable_organization"
   op: {

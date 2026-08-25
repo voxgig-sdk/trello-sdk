@@ -48,9 +48,13 @@ class TestNotificationMemberCreatorEntity:
 
         # LOAD
         notification_member_creator_ref01_ent = client.NotificationMemberCreator(None)
-        notification_member_creator_ref01_match_dt0 = {}
+        notification_member_creator_ref01_match_dt0 = {
+            "id": notification_member_creator_ref01_data["id"],
+        }
         notification_member_creator_ref01_data_dt0_loaded = notification_member_creator_ref01_ent.load(notification_member_creator_ref01_match_dt0, None)
-        assert notification_member_creator_ref01_data_dt0_loaded is not None
+        notification_member_creator_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(notification_member_creator_ref01_data_dt0_loaded))
+        assert notification_member_creator_ref01_data_dt0_load_result is not None
+        assert notification_member_creator_ref01_data_dt0_load_result["id"] == notification_member_creator_ref01_data["id"]
 
 
 

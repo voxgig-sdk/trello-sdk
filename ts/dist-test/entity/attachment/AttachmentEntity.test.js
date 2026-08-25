@@ -77,6 +77,11 @@ const utility_1 = require("../../utility");
         const attachment_ref01_match = {};
         attachment_ref01_match['card_id'] = setup.idmap['card01'];
         const attachment_ref01_list = (await attachment_ref01_ent.list(attachment_ref01_match)).map((e) => e.data());
+        // LOAD
+        const attachment_ref01_match_dt0 = {};
+        attachment_ref01_match_dt0.id = attachment_ref01_data.id;
+        const attachment_ref01_data_dt0 = (await attachment_ref01_ent.load(attachment_ref01_match_dt0)).data();
+        (0, node_assert_1.default)(attachment_ref01_data_dt0.id === attachment_ref01_data.id);
     });
 });
 function basicSetup(extra) {

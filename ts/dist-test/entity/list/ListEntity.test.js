@@ -76,11 +76,17 @@ const utility_1 = require("../../utility");
         let list_ref01_data = setup.data.new.list['list_ref01'];
         list_ref01_data['board_id'] = setup.idmap['board01'];
         list_ref01_data = (await list_ref01_ent.create(list_ref01_data)).data();
-        (0, node_assert_1.default)(null != list_ref01_data);
+        (0, node_assert_1.default)(null != list_ref01_data.id);
         // UPDATE
         const list_ref01_data_up0 = {};
+        list_ref01_data_up0.id = list_ref01_data.id;
         const list_ref01_resdata_up0 = (await list_ref01_ent.update(list_ref01_data_up0)).data();
-        (0, node_assert_1.default)(null != list_ref01_resdata_up0);
+        (0, node_assert_1.default)(list_ref01_resdata_up0.id === list_ref01_data_up0.id);
+        // LOAD
+        const list_ref01_match_dt0 = {};
+        list_ref01_match_dt0.id = list_ref01_data.id;
+        const list_ref01_data_dt0 = (await list_ref01_ent.load(list_ref01_match_dt0)).data();
+        (0, node_assert_1.default)(list_ref01_data_dt0.id === list_ref01_data.id);
     });
 });
 function basicSetup(extra) {

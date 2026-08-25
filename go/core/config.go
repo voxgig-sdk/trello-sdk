@@ -1019,7 +1019,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"admin": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "admin",
 				"op": map[string]any{
 					"remove": map[string]any{
@@ -1255,7 +1260,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"attachment": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "attachment",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -3273,7 +3283,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"board_plugin": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "board_plugin",
 				"op": map[string]any{
 					"remove": map[string]any{
@@ -3680,7 +3695,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"bulk": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "bulk",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -5317,7 +5337,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"card_check_item_state": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "card_check_item_state",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -5373,7 +5398,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"card_list": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "card_list",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -5919,7 +5949,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"checklist": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "checklist",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -6596,7 +6631,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"custom_board_background": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "custom_board_background",
 				"op": map[string]any{
 					"remove": map[string]any{
@@ -8003,6 +8043,10 @@ func MakeConfig() map[string]any {
 			"enterpris_signup_url": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "signupUrl",
 						"type": "`$STRING`",
 					},
@@ -8817,7 +8861,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"id_label": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "id_label",
 				"op": map[string]any{
 					"remove": map[string]any{
@@ -8883,7 +8932,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"id_member": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "id_member",
 				"op": map[string]any{
 					"remove": map[string]any{
@@ -8949,7 +9003,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"label": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "label",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -9248,7 +9307,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"list": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "list",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -11440,7 +11504,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"members_voted": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "members_voted",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -12001,7 +12070,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"new_billable_guest": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "new_billable_guest",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -12816,7 +12890,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"notification_list": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "notification_list",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -12872,7 +12951,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"notification_member_creator": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "notification_member_creator",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -12943,7 +13027,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"option": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "option",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -14507,7 +14596,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"reaction": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "reaction",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -15533,7 +15627,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"sticker": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "sticker",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -15803,7 +15902,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"tag": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "tag",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -16102,6 +16206,10 @@ func MakeConfig() map[string]any {
 			},
 			"transferrable_organization": map[string]any{
 				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
 					map[string]any{
 						"name": "newBillableMembers",
 						"type": "`$ARRAY`",

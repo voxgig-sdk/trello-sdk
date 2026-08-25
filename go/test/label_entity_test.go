@@ -62,9 +62,13 @@ func TestLabelEntity(t *testing.T) {
 		if labelRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if labelRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// UPDATE
 		labelRef01DataUp0Up := map[string]any{
+			"id": labelRef01Data["id"],
 		}
 
 		labelRef01ResdataUp0Result, err := labelRef01Ent.Update(labelRef01DataUp0Up, nil)
@@ -75,17 +79,34 @@ func TestLabelEntity(t *testing.T) {
 		if labelRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
 		}
+		if labelRef01ResdataUp0["id"] != labelRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
 
 		// LOAD
-		labelRef01MatchDt0 := map[string]any{}
+		labelRef01MatchDt0 := map[string]any{
+			"id": labelRef01Data["id"],
+		}
 		labelRef01DataDt0Loaded, err := labelRef01Ent.Load(labelRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if labelRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		labelRef01DataDt0LoadResult := core.ToMapAny(entityData(labelRef01DataDt0Loaded))
+		if labelRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if labelRef01DataDt0LoadResult["id"] != labelRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
+		// REMOVE
+		labelRef01MatchRm0 := map[string]any{
+			"id": labelRef01Data["id"],
+		}
+		_, err = labelRef01Ent.Remove(labelRef01MatchRm0, nil)
+		if err != nil {
+			t.Fatalf("remove failed: %v", err)
+		}
 
 	})
 }

@@ -397,6 +397,7 @@ API path: `/actions/{idAction}/reactionsSummary`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Remove, Update.
 
@@ -433,6 +434,7 @@ API path: `/organizations/{id}/prefs/associatedDomain`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: List, Load, Remove.
 
@@ -497,6 +499,7 @@ API path: `/members/{id}/customBoardBackgrounds`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Remove.
 
@@ -518,6 +521,7 @@ API path: `/members/{id}/boardStars`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load, Update.
 
@@ -570,6 +574,7 @@ API path: `/cards`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -579,6 +584,7 @@ API path: `/cards/{id}/checkItemStates`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -603,6 +609,7 @@ API path: `/cards/{id}/checkItem/{idCheckItem}`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Create, Load, Remove, Update.
 
@@ -629,6 +636,7 @@ API path: `/enterprises/{id}/claimableOrganizations`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Remove.
 
@@ -754,6 +762,7 @@ API path: `/enterprises/{id}/tokens`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"signupUrl"` |  |
 
 Operations: Load.
@@ -835,6 +844,7 @@ API path: `/boards/{id}/myPrefs/idEmailList`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Remove.
 
@@ -844,6 +854,7 @@ API path: `/cards/{id}/idLabels/{idLabel}`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Remove.
 
@@ -853,6 +864,7 @@ API path: `/cards/{id}/idMembers/{idMember}`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Create, Load, Remove, Update.
 
@@ -862,6 +874,7 @@ API path: `/labels`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Create, Load, Update.
 
@@ -931,6 +944,7 @@ API path: `/plugins/{id}/compliance/memberPrivacy`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load, Remove.
 
@@ -965,6 +979,7 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -1007,6 +1022,7 @@ API path: `/members/{id}/notificationsChannelSettings`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -1016,6 +1032,7 @@ API path: `/notifications/{id}/list`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -1034,6 +1051,7 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load, Remove.
 
@@ -1122,6 +1140,7 @@ API path: `/plugins/{idPlugin}/listing`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load, Remove.
 
@@ -1198,6 +1217,7 @@ API path: `/boards/{id}/myPrefs/showSidebarMembers`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load, Remove, Update.
 
@@ -1207,6 +1227,7 @@ API path: `/cards/{id}/stickers/{idSticker}`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: List, Remove.
 
@@ -1231,6 +1252,7 @@ API path: `/members/{id}/tokens`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"newBillableMembers"` |  |
 | `"restrictedMembers"` |  |
 | `"transferrable"` |  |
@@ -1374,6 +1396,12 @@ Create an instance: `admin := client.Admin(nil)`
 | `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+
 
 ### Application
 
@@ -1423,6 +1451,12 @@ Create an instance: `attachment := client.Attachment(nil)`
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -1608,6 +1642,12 @@ Create an instance: `boardPlugin := client.BoardPlugin(nil)`
 | --- | --- |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+
 
 ### BoardStar
 
@@ -1674,6 +1714,12 @@ Create an instance: `bulk := client.Bulk(nil)`
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Update(data, ctrl)` | Update an existing entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -1781,6 +1827,12 @@ Create an instance: `cardCheckItemState := client.CardCheckItemState(nil)`
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+
 #### Example: Load
 
 ```go
@@ -1801,6 +1853,12 @@ Create an instance: `cardList := client.CardList(nil)`
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -1859,6 +1917,12 @@ Create an instance: `checklist := client.Checklist(nil)`
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -1925,6 +1989,12 @@ Create an instance: `customBoardBackground := client.CustomBoardBackground(nil)`
 | Method | Description |
 | --- | --- |
 | `Remove(match, ctrl)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 
 ### CustomEmoji
@@ -2252,6 +2322,7 @@ Create an instance: `enterprisSignupUrl := client.EnterprisSignupUrl(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `signupUrl` | `string` |  |
 
 #### Example: Load
@@ -2450,6 +2521,12 @@ Create an instance: `idLabel := client.IdLabel(nil)`
 | --- | --- |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+
 
 ### IdMember
 
@@ -2460,6 +2537,12 @@ Create an instance: `idMember := client.IdMember(nil)`
 | Method | Description |
 | --- | --- |
 | `Remove(match, ctrl)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 
 ### Label
@@ -2474,6 +2557,12 @@ Create an instance: `label := client.Label(nil)`
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -2508,6 +2597,12 @@ Create an instance: `list := client.List(nil)`
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Update(data, ctrl)` | Update an existing entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -2657,6 +2752,12 @@ Create an instance: `membersVoted := client.MembersVoted(nil)`
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+
 #### Example: Load
 
 ```go
@@ -2727,6 +2828,12 @@ Create an instance: `newBillableGuest := client.NewBillableGuest(nil)`
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -2840,6 +2947,12 @@ Create an instance: `notificationList := client.NotificationList(nil)`
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+
 #### Example: Load
 
 ```go
@@ -2860,6 +2973,12 @@ Create an instance: `notificationMemberCreator := client.NotificationMemberCreat
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -2887,6 +3006,12 @@ Create an instance: `option := client.Option(nil)`
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -3122,6 +3247,12 @@ Create an instance: `reaction := client.Reaction(nil)`
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+
 #### Example: Load
 
 ```go
@@ -3288,6 +3419,12 @@ Create an instance: `sticker := client.Sticker(nil)`
 | `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+
 #### Example: Load
 
 ```go
@@ -3309,6 +3446,12 @@ Create an instance: `tag := client.Tag(nil)`
 | --- | --- |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: List
 
@@ -3379,6 +3522,7 @@ Create an instance: `transferrableOrganization := client.TransferrableOrganizati
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `newBillableMembers` | `[]any` |  |
 | `restrictedMembers` | `[]any` |  |
 | `transferrable` | `bool` |  |

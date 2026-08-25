@@ -47,19 +47,31 @@ class TestChecklistEntity:
 
         checklist_ref01_data = helpers.to_map(runner.entity_data(checklist_ref01_ent.create(checklist_ref01_data, None)))
         assert checklist_ref01_data is not None
+        assert checklist_ref01_data["id"] is not None
 
         # UPDATE
         checklist_ref01_data_up0_up = {
+            "id": checklist_ref01_data["id"],
         }
 
         checklist_ref01_resdata_up0 = helpers.to_map(runner.entity_data(checklist_ref01_ent.update(checklist_ref01_data_up0_up, None)))
         assert checklist_ref01_resdata_up0 is not None
+        assert checklist_ref01_resdata_up0["id"] == checklist_ref01_data_up0_up["id"]
 
         # LOAD
-        checklist_ref01_match_dt0 = {}
+        checklist_ref01_match_dt0 = {
+            "id": checklist_ref01_data["id"],
+        }
         checklist_ref01_data_dt0_loaded = checklist_ref01_ent.load(checklist_ref01_match_dt0, None)
-        assert checklist_ref01_data_dt0_loaded is not None
+        checklist_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(checklist_ref01_data_dt0_loaded))
+        assert checklist_ref01_data_dt0_load_result is not None
+        assert checklist_ref01_data_dt0_load_result["id"] == checklist_ref01_data["id"]
 
+        # REMOVE
+        checklist_ref01_match_rm0 = {
+            "id": checklist_ref01_data["id"],
+        }
+        checklist_ref01_ent.remove(checklist_ref01_match_rm0, None)
 
 
 

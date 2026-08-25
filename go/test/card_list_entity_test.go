@@ -61,13 +61,19 @@ func TestCardListEntity(t *testing.T) {
 
 		// LOAD
 		cardListRef01Ent := client.CardList(nil)
-		cardListRef01MatchDt0 := map[string]any{}
+		cardListRef01MatchDt0 := map[string]any{
+			"id": cardListRef01Data["id"],
+		}
 		cardListRef01DataDt0Loaded, err := cardListRef01Ent.Load(cardListRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if cardListRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		cardListRef01DataDt0LoadResult := core.ToMapAny(entityData(cardListRef01DataDt0Loaded))
+		if cardListRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if cardListRef01DataDt0LoadResult["id"] != cardListRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

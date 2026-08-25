@@ -62,10 +62,11 @@ describe('AdminEntity', async () => {
     // UPDATE
     const admin_ref01_ent = client.Admin()
     const admin_ref01_data_up0: any = {}
+    admin_ref01_data_up0.id = admin_ref01_data.id
     admin_ref01_data_up0 ['enterpris_id'] = setup.idmap['enterpris_id']
 
     const admin_ref01_resdata_up0 = (await admin_ref01_ent.update(admin_ref01_data_up0)).data()
-    assert(null != admin_ref01_resdata_up0)
+    assert(admin_ref01_resdata_up0.id === admin_ref01_data_up0.id)
 
 
   })

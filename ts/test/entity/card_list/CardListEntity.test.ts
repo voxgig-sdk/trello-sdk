@@ -59,9 +59,12 @@ describe('CardListEntity', async () => {
 
     let card_list_ref01_data = Object.values(setup.data.existing.card_list)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const card_list_ref01_ent = client.CardList()
+    const card_list_ref01_match_dt0: any = {}
+    card_list_ref01_match_dt0.id = card_list_ref01_data.id
+    const card_list_ref01_data_dt0 = (await card_list_ref01_ent.load(card_list_ref01_match_dt0)).data()
+    assert(card_list_ref01_data_dt0.id === card_list_ref01_data.id)
 
 
   })

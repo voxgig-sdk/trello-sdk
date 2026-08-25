@@ -62,10 +62,17 @@ describe('BulkEntity', async () => {
     // UPDATE
     const bulk_ref01_ent = client.Bulk()
     const bulk_ref01_data_up0: any = {}
+    bulk_ref01_data_up0.id = bulk_ref01_data.id
 
     const bulk_ref01_resdata_up0 = (await bulk_ref01_ent.update(bulk_ref01_data_up0)).data()
-    assert(null != bulk_ref01_resdata_up0)
+    assert(bulk_ref01_resdata_up0.id === bulk_ref01_data_up0.id)
 
+
+    // LOAD
+    const bulk_ref01_match_dt0: any = {}
+    bulk_ref01_match_dt0.id = bulk_ref01_data.id
+    const bulk_ref01_data_dt0 = (await bulk_ref01_ent.load(bulk_ref01_match_dt0)).data()
+    assert(bulk_ref01_data_dt0.id === bulk_ref01_data.id)
 
 
   })

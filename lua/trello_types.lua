@@ -64,6 +64,7 @@
 ---@field id_action string
 
 ---@class Admin
+---@field id? string
 
 ---@class AdminUpdateData
 ---@field enterpris_id string
@@ -86,6 +87,7 @@
 ---@field organization_id string
 
 ---@class Attachment
+---@field id? string
 
 ---@class AttachmentLoadMatch
 ---@field card_id string
@@ -223,6 +225,7 @@
 ---@field member_id string
 
 ---@class BoardPlugin
+---@field id? string
 
 ---@class BoardPluginRemoveMatch
 ---@field board_id string
@@ -257,6 +260,7 @@
 ---@field member_id string
 
 ---@class Bulk
+---@field id? string
 
 ---@class BulkLoadMatch
 ---@field enterpris_id string
@@ -383,11 +387,13 @@
 ---@field id string
 
 ---@class CardCheckItemState
+---@field id? string
 
 ---@class CardCheckItemStateLoadMatch
 ---@field id string
 
 ---@class CardList
+---@field id? string
 
 ---@class CardListLoadMatch
 ---@field id string
@@ -421,11 +427,13 @@
 ---@field checklist_id? string
 
 ---@class Checklist
+---@field id? string
 
 ---@class ChecklistLoadMatch
 ---@field id string
 
 ---@class ChecklistCreateData
+---@field id? string
 
 ---@class ChecklistUpdateData
 ---@field field? string
@@ -449,6 +457,7 @@
 ---@field enterpris_id string
 
 ---@class CustomBoardBackground
+---@field id? string
 
 ---@class CustomBoardBackgroundRemoveMatch
 ---@field id string
@@ -652,6 +661,7 @@
 ---@field ssoActivationFailed? boolean
 
 ---@class EnterprisSignupUrl
+---@field id? string
 ---@field signupUrl? string
 
 ---@class EnterprisSignupUrlLoadMatch
@@ -725,23 +735,27 @@
 ---@field board_id string
 
 ---@class IdLabel
+---@field id? string
 
 ---@class IdLabelRemoveMatch
 ---@field card_id string
 ---@field id string
 
 ---@class IdMember
+---@field id? string
 
 ---@class IdMemberRemoveMatch
 ---@field card_id string
 ---@field id string
 
 ---@class Label
+---@field id? string
 
 ---@class LabelLoadMatch
 ---@field id string
 
 ---@class LabelCreateData
+---@field id? string
 
 ---@class LabelUpdateData
 ---@field id string
@@ -751,12 +765,14 @@
 ---@field id string
 
 ---@class List
+---@field id? string
 
 ---@class ListLoadMatch
 ---@field board_id? string
 ---@field id string
 
 ---@class ListCreateData
+---@field id? string
 
 ---@class ListUpdateData
 ---@field id string
@@ -954,6 +970,7 @@
 ---@field plugin_id string
 
 ---@class MembersVoted
+---@field id? string
 
 ---@class MembersVotedLoadMatch
 ---@field card_id string
@@ -991,6 +1008,7 @@
 ---@class MostRecent
 
 ---@class NewBillableGuest
+---@field id? string
 
 ---@class NewBillableGuestLoadMatch
 ---@field id string
@@ -1050,11 +1068,13 @@
 ---@field idMember? string
 
 ---@class NotificationList
+---@field id? string
 
 ---@class NotificationListLoadMatch
 ---@field id string
 
 ---@class NotificationMemberCreator
+---@field id? string
 
 ---@class NotificationMemberCreatorLoadMatch
 ---@field id string
@@ -1062,6 +1082,7 @@
 ---@class NotificationsChannelSetting
 
 ---@class Option
+---@field id? string
 
 ---@class OptionLoadMatch
 ---@field custom_field_id string
@@ -1182,6 +1203,7 @@
 ---@field overview? string
 
 ---@class Reaction
+---@field id? string
 
 ---@class ReactionLoadMatch
 ---@field id? string
@@ -1251,6 +1273,7 @@
 ---@field board_id string
 
 ---@class Sticker
+---@field id? string
 
 ---@class StickerLoadMatch
 ---@field card_id string
@@ -1265,6 +1288,7 @@
 ---@field id string
 
 ---@class Tag
+---@field id? string
 
 ---@class TagListMatch
 ---@field organization_id string
@@ -1291,6 +1315,7 @@
 ---@field id string
 
 ---@class TransferrableOrganization
+---@field id? string
 ---@field newBillableMembers? table
 ---@field restrictedMembers? table
 ---@field transferrable? boolean

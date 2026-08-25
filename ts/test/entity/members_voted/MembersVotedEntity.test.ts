@@ -59,9 +59,12 @@ describe('MembersVotedEntity', async () => {
 
     let members_voted_ref01_data = Object.values(setup.data.existing.members_voted)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const members_voted_ref01_ent = client.MembersVoted()
+    const members_voted_ref01_match_dt0: any = {}
+    members_voted_ref01_match_dt0.id = members_voted_ref01_data.id
+    const members_voted_ref01_data_dt0 = (await members_voted_ref01_ent.load(members_voted_ref01_match_dt0)).data()
+    assert(members_voted_ref01_data_dt0.id === members_voted_ref01_data.id)
 
 
   })

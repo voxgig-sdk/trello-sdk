@@ -47,19 +47,26 @@ class ListEntityTest extends TestCase
         $list_ref01_data_result = $list_ref01_ent->create($list_ref01_data, null);
         $list_ref01_data = Helpers::to_map(is_object($list_ref01_data_result) && method_exists($list_ref01_data_result, 'data_get') ? $list_ref01_data_result->data_get() : $list_ref01_data_result);
         $this->assertNotNull($list_ref01_data);
+        $this->assertNotNull($list_ref01_data["id"]);
 
         // UPDATE
         $list_ref01_data_up0_up = [
+            "id" => $list_ref01_data["id"],
         ];
 
         $list_ref01_resdata_up0_result = $list_ref01_ent->update($list_ref01_data_up0_up, null);
         $list_ref01_resdata_up0 = Helpers::to_map(is_object($list_ref01_resdata_up0_result) && method_exists($list_ref01_resdata_up0_result, 'data_get') ? $list_ref01_resdata_up0_result->data_get() : $list_ref01_resdata_up0_result);
         $this->assertNotNull($list_ref01_resdata_up0);
+        $this->assertEquals($list_ref01_resdata_up0["id"], $list_ref01_data_up0_up["id"]);
 
         // LOAD
-        $list_ref01_match_dt0 = [];
+        $list_ref01_match_dt0 = [
+            "id" => $list_ref01_data["id"],
+        ];
         $list_ref01_data_dt0_loaded = $list_ref01_ent->load($list_ref01_match_dt0, null);
-        $this->assertNotNull($list_ref01_data_dt0_loaded);
+        $list_ref01_data_dt0_load_result = Helpers::to_map(is_object($list_ref01_data_dt0_loaded) && method_exists($list_ref01_data_dt0_loaded, 'data_get') ? $list_ref01_data_dt0_loaded->data_get() : $list_ref01_data_dt0_loaded);
+        $this->assertNotNull($list_ref01_data_dt0_load_result);
+        $this->assertEquals($list_ref01_data_dt0_load_result["id"], $list_ref01_data["id"]);
 
     }
 }

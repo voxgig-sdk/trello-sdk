@@ -48,9 +48,13 @@ class MembersVotedEntityTest extends TestCase
 
         // LOAD
         $members_voted_ref01_ent = $client->MembersVoted(null);
-        $members_voted_ref01_match_dt0 = [];
+        $members_voted_ref01_match_dt0 = [
+            "id" => $members_voted_ref01_data["id"],
+        ];
         $members_voted_ref01_data_dt0_loaded = $members_voted_ref01_ent->load($members_voted_ref01_match_dt0, null);
-        $this->assertNotNull($members_voted_ref01_data_dt0_loaded);
+        $members_voted_ref01_data_dt0_load_result = Helpers::to_map(is_object($members_voted_ref01_data_dt0_loaded) && method_exists($members_voted_ref01_data_dt0_loaded, 'data_get') ? $members_voted_ref01_data_dt0_loaded->data_get() : $members_voted_ref01_data_dt0_loaded);
+        $this->assertNotNull($members_voted_ref01_data_dt0_load_result);
+        $this->assertEquals($members_voted_ref01_data_dt0_load_result["id"], $members_voted_ref01_data["id"]);
 
     }
 }
