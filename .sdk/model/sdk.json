@@ -21732,7 +21732,7 @@
                 "ref": "notification_channel_setting_ref01",
                 "srcdatavar": "notification_channel_setting_ref01_data",
                 "suffix": "_up0",
-                "textfield": "channel"
+                "textfield": "idMember"
               },
               "match": {},
               "op": "update",

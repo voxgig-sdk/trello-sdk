@@ -128,7 +128,7 @@ func TestNotificationChannelSettingEntity(t *testing.T) {
 			"id": notificationChannelSettingRef01Data["id"],
 		}
 
-		notificationChannelSettingRef01MarkdefUp0Name := "channel"
+		notificationChannelSettingRef01MarkdefUp0Name := "idMember"
 		notificationChannelSettingRef01MarkdefUp0Value := fmt.Sprintf("Mark01-notification_channel_setting_ref01_%d", setup.now)
 		notificationChannelSettingRef01DataUp0Up[notificationChannelSettingRef01MarkdefUp0Name] = notificationChannelSettingRef01MarkdefUp0Value
 

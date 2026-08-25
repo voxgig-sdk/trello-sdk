@@ -80,7 +80,7 @@ const utility_1 = require("../../utility");
         // UPDATE
         const notification_channel_setting_ref01_data_up0 = {};
         notification_channel_setting_ref01_data_up0.id = notification_channel_setting_ref01_data.id;
-        const notification_channel_setting_ref01_markdef_up0 = { name: 'channel', value: 'Mark01-notification_channel_setting_ref01_' + setup.now };
+        const notification_channel_setting_ref01_markdef_up0 = { name: 'idMember', value: 'Mark01-notification_channel_setting_ref01_' + setup.now };
         notification_channel_setting_ref01_data_up0[notification_channel_setting_ref01_markdef_up0.name] = notification_channel_setting_ref01_markdef_up0.value;
         const notification_channel_setting_ref01_resdata_up0 = (await notification_channel_setting_ref01_ent.update(notification_channel_setting_ref01_data_up0)).data();
         (0, node_assert_1.default)(notification_channel_setting_ref01_resdata_up0.id === notification_channel_setting_ref01_data_up0.id);

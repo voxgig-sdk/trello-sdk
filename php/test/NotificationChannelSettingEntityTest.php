@@ -99,7 +99,7 @@ class NotificationChannelSettingEntityTest extends TestCase
             "id" => $notification_channel_setting_ref01_data["id"],
         ];
 
-        $notification_channel_setting_ref01_markdef_up0_name = "channel";
+        $notification_channel_setting_ref01_markdef_up0_name = "idMember";
         $notification_channel_setting_ref01_markdef_up0_value = "Mark01-notification_channel_setting_ref01_" . $setup["now"];
         $notification_channel_setting_ref01_data_up0_up[$notification_channel_setting_ref01_markdef_up0_name] = $notification_channel_setting_ref01_markdef_up0_value;
 
