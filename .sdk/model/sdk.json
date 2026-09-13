@@ -1,6 +1,15 @@
 {
+  "NAME": "TRELLO",
+  "Name": "Trello",
   "def": "trello-swagger.json",
   "main": {
+    "api": {
+      "entity": {},
+      "guide": {}
+    },
+    "custom": {
+      "plurals": {}
+    },
     "def": {
       "desc": ""
     },
@@ -25479,5 +25488,8 @@
     }
   },
   "name": "trello",
+  "name-": "trello",
+  "name_": "trello",
+  "name__orig": "trello",
   "origin": "voxgig-sdk"
 }
