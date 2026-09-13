@@ -101,7 +101,7 @@ func TestBoardStarEntity(t *testing.T) {
 		// CREATE
 		boardStarRef01Ent := client.BoardStar(nil)
 		boardStarRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "board_star"}, setup.data), "board_star_ref01"))
+			vs.GetPath(setup.data, []any{"new", "board_star"}), "board_star_ref01"))
 		boardStarRef01Data["member_id"] = setup.idmap["member01"]
 
 		boardStarRef01DataResult, err := boardStarRef01Ent.Create(boardStarRef01Data, nil)
@@ -231,7 +231,7 @@ func board_starBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"board_star01", "board_star02", "board_star03", "member01", "member02", "member03", "board01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -251,7 +251,7 @@ func board_starBasicSetup(extra map[string]any) *entityTestSetup {
 		"TRELLO_TEST_BOARD_STAR_ENTID": idmap,
 		"TRELLO_TEST_LIVE":      "FALSE",
 		"TRELLO_TEST_EXPLAIN":   "FALSE",
-		"TRELLO_APIKEY":         "NONE",
+		"TRELLO_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TRELLO_TEST_BOARD_STAR_ENTID"])
@@ -264,11 +264,23 @@ func board_starBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TRELLO_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TRELLO_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTrelloSDK(core.ToMapAny(mergedOpts))
 	}

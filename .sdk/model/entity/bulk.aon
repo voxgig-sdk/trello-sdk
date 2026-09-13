@@ -44,19 +44,29 @@ main: kit: entity: bulk: {
           }
           method: "GET"
           orig: "/enterprises/{id}/organizations/bulk/{idOrganizations}"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "organizations"
-            "bulk"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idOrganizations: "id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "organizations"
+            }
+            {
+              lit: "bulk"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "enterpris_id"
@@ -90,19 +100,29 @@ main: kit: entity: bulk: {
           }
           method: "GET"
           orig: "/enterprises/{id}/transferrable/bulk/{idOrganizations}"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "transferrable"
-            "bulk"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idOrganizations: "id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "transferrable"
+            }
+            {
+              lit: "bulk"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "enterpris_id"
@@ -143,11 +163,19 @@ main: kit: entity: bulk: {
           }
           method: "PUT"
           orig: "/enterprises/${id}/enterpriseJoinRequest/bulk"
-          parts: [
-            "enterprises"
-            "${id}"
-            "enterpriseJoinRequest"
-            "bulk"
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              lit: "${id}"
+            }
+            {
+              lit: "enterpriseJoinRequest"
+            }
+            {
+              lit: "bulk"
+            }
           ]
           select: {
             exist: [

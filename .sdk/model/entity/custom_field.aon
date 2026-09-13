@@ -129,10 +129,16 @@ main: kit: entity: custom_field: {
           }
           method: "POST"
           orig: "/customFields/{id}/options"
-          parts: [
-            "customFields"
-            "{id}"
-            "options"
+          segments: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "options"
+            }
           ]
           select: {
             "$action": "option"
@@ -148,8 +154,10 @@ main: kit: entity: custom_field: {
         {
           method: "POST"
           orig: "/customFields"
-          parts: [
-            "customFields"
+          segments: [
+            {
+              lit: "customFields"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -176,16 +184,22 @@ main: kit: entity: custom_field: {
           }
           method: "GET"
           orig: "/boards/{id}/customFields"
-          parts: [
-            "boards"
-            "{board_id}"
-            "customFields"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "customFields"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -216,9 +230,13 @@ main: kit: entity: custom_field: {
           }
           method: "GET"
           orig: "/customFields/{id}"
-          parts: [
-            "customFields"
-            "{id}"
+          segments: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -250,9 +268,13 @@ main: kit: entity: custom_field: {
           }
           method: "DELETE"
           orig: "/customFields/{id}"
-          parts: [
-            "customFields"
-            "{id}"
+          segments: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -292,19 +314,29 @@ main: kit: entity: custom_field: {
           }
           method: "PUT"
           orig: "/cards/{idCard}/customField/{idCustomField}/item"
-          parts: [
-            "cards"
-            "{id_card}"
-            "customField"
-            "{id_custom_field}"
-            "item"
-          ]
           rename: {
             param: {
               idCard: "id_card"
               idCustomField: "id_custom_field"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id_card"
+            }
+            {
+              lit: "customField"
+            }
+            {
+              var: "id_custom_field"
+            }
+            {
+              lit: "item"
+            }
+          ]
           select: {
             "$action": "item"
             exist: [
@@ -332,9 +364,13 @@ main: kit: entity: custom_field: {
           }
           method: "PUT"
           orig: "/customFields/{id}"
-          parts: [
-            "customFields"
-            "{id}"
+          segments: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

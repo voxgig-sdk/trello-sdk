@@ -80,16 +80,22 @@ main: kit: entity: saved_search: {
           }
           method: "POST"
           orig: "/members/{id}/savedSearches"
-          parts: [
-            "members"
-            "{member_id}"
-            "savedSearches"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "savedSearches"
+            }
+          ]
           select: {
             exist: [
               "member_id"
@@ -123,16 +129,22 @@ main: kit: entity: saved_search: {
           }
           method: "GET"
           orig: "/members/{id}/savedSearches"
-          parts: [
-            "members"
-            "{member_id}"
-            "savedSearches"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "savedSearches"
+            }
+          ]
           select: {
             exist: [
               "member_id"
@@ -169,18 +181,26 @@ main: kit: entity: saved_search: {
           }
           method: "GET"
           orig: "/members/{id}/savedSearches/{idSearch}"
-          parts: [
-            "members"
-            "{member_id}"
-            "savedSearches"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idSearch: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "savedSearches"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -218,18 +238,26 @@ main: kit: entity: saved_search: {
           }
           method: "DELETE"
           orig: "/members/{id}/savedSearches/{idSearch}"
-          parts: [
-            "members"
-            "{member_id}"
-            "savedSearches"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idSearch: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "savedSearches"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -290,18 +318,26 @@ main: kit: entity: saved_search: {
           }
           method: "PUT"
           orig: "/members/{id}/savedSearches/{idSearch}"
-          parts: [
-            "members"
-            "{member_id}"
-            "savedSearches"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idSearch: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "savedSearches"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

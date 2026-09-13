@@ -45,18 +45,26 @@ main: kit: entity: new_billable_guest: {
           }
           method: "GET"
           orig: "/organizations/{id}/newBillableGuests/{idBoard}"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "newBillableGuests"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "organization_id"
               idBoard: "id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "newBillableGuests"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

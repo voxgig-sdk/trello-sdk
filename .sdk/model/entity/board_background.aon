@@ -46,16 +46,22 @@ main: kit: entity: board_background: {
           }
           method: "POST"
           orig: "/members/{id}/customBoardBackgrounds"
-          parts: [
-            "members"
-            "{member_id}"
-            "customBoardBackgrounds"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+          ]
           select: {
             exist: [
               "file"
@@ -97,16 +103,22 @@ main: kit: entity: board_background: {
           }
           method: "GET"
           orig: "/members/{id}/boardBackgrounds"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardBackgrounds"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+          ]
           select: {
             exist: [
               "filter"
@@ -133,16 +145,22 @@ main: kit: entity: board_background: {
           }
           method: "GET"
           orig: "/members/{id}/customBoardBackgrounds"
-          parts: [
-            "members"
-            "{member_id}"
-            "customBoardBackgrounds"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+          ]
           select: {
             exist: [
               "member_id"
@@ -191,18 +209,26 @@ main: kit: entity: board_background: {
           }
           method: "GET"
           orig: "/members/{id}/boardBackgrounds/{idBackground}"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardBackgrounds"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idBackground: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -237,18 +263,26 @@ main: kit: entity: board_background: {
           }
           method: "GET"
           orig: "/members/{id}/customBoardBackgrounds/{idBackground}"
-          parts: [
-            "members"
-            "{member_id}"
-            "customBoardBackgrounds"
-            "{id_background}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idBackground: "id_background"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+            {
+              var: "id_background"
+            }
+          ]
           select: {
             exist: [
               "id_background"
@@ -288,18 +322,26 @@ main: kit: entity: board_background: {
           }
           method: "DELETE"
           orig: "/members/{id}/boardBackgrounds/{idBackground}"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardBackgrounds"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idBackground: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -355,18 +397,26 @@ main: kit: entity: board_background: {
           }
           method: "PUT"
           orig: "/members/{id}/boardBackgrounds/{idBackground}"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardBackgrounds"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idBackground: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "brightness"
@@ -418,18 +468,26 @@ main: kit: entity: board_background: {
           }
           method: "PUT"
           orig: "/members/{id}/customBoardBackgrounds/{idBackground}"
-          parts: [
-            "members"
-            "{member_id}"
-            "customBoardBackgrounds"
-            "{id_background}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idBackground: "id_background"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+            {
+              var: "id_background"
+            }
+          ]
           select: {
             exist: [
               "brightness"

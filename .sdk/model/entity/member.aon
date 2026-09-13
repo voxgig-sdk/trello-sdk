@@ -6,6 +6,7 @@ main: kit: entity: member: {
 
   fields: [
     {
+      format: "email"
       name: "aaEmail"
       req: false
       type: "`$STRING`"
@@ -36,6 +37,7 @@ main: kit: entity: member: {
       type: "`$STRING`"
     }
     {
+      format: "url"
       name: "avatarUrl"
       req: false
       type: "`$STRING`"
@@ -203,11 +205,13 @@ main: kit: entity: member: {
       type: "`$STRING`"
     }
     {
+      format: "url"
       name: "uploadedAvatarUrl"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "url"
       name: "url"
       req: false
       type: "`$STRING`"
@@ -252,10 +256,16 @@ main: kit: entity: member: {
           }
           method: "POST"
           orig: "/members/{id}/avatar"
-          parts: [
-            "members"
-            "{id}"
-            "avatar"
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "avatar"
+            }
           ]
           select: {
             "$action": "avatar"
@@ -293,10 +303,16 @@ main: kit: entity: member: {
           }
           method: "POST"
           orig: "/members/{id}/boardBackgrounds"
-          parts: [
-            "members"
-            "{id}"
-            "boardBackgrounds"
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
           ]
           select: {
             "$action": "board_background"
@@ -335,10 +351,16 @@ main: kit: entity: member: {
           }
           method: "POST"
           orig: "/members/{id}/oneTimeMessagesDismissed"
-          parts: [
-            "members"
-            "{id}"
-            "oneTimeMessagesDismissed"
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "oneTimeMessagesDismissed"
+            }
           ]
           select: {
             "$action": "one_time_messages_dismissed"
@@ -442,16 +464,22 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/enterprises/{id}/members"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "members"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
           select: {
             exist: [
               "board_field"
@@ -517,9 +545,13 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/search/members/"
-          parts: [
-            "search"
-            "members"
+          segments: [
+            {
+              lit: "search"
+            }
+            {
+              lit: "members"
+            }
           ]
           select: {
             exist: [
@@ -560,16 +592,22 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/actions/{id}/member"
-          parts: [
-            "actions"
-            "{action_id}"
-            "member"
-          ]
           rename: {
             param: {
               id: "action_id"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "member"
+            }
+          ]
           select: {
             exist: [
               "action_id"
@@ -606,16 +644,22 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/actions/{id}/memberCreator"
-          parts: [
-            "actions"
-            "{action_id}"
-            "memberCreator"
-          ]
           rename: {
             param: {
               id: "action_id"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "memberCreator"
+            }
+          ]
           select: {
             exist: [
               "action_id"
@@ -651,16 +695,22 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/tokens/{token}/member"
-          parts: [
-            "tokens"
-            "{token_id}"
-            "member"
-          ]
           rename: {
             param: {
               token: "token_id"
             }
           }
+          segments: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "member"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -687,16 +737,22 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/organizations/{id}/members"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "members"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
           select: {
             exist: [
               "organization_id"
@@ -884,9 +940,13 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/members/{id}"
-          parts: [
-            "members"
-            "{id}"
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -967,18 +1027,26 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/enterprises/{id}/members/{idMember}"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "members"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idMember: "id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "board_field"
@@ -1018,16 +1086,22 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/cards/{id}/members"
-          parts: [
-            "cards"
-            "{card_id}"
-            "members"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -1061,10 +1135,16 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/members/{id}/{field}"
-          parts: [
-            "members"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -1102,16 +1182,22 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/notifications/{id}/member"
-          parts: [
-            "notifications"
-            "{notification_id}"
-            "member"
-          ]
           rename: {
             param: {
               id: "notification_id"
             }
           }
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "notification_id"
+            }
+            {
+              lit: "member"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -1138,16 +1224,22 @@ main: kit: entity: member: {
           }
           method: "GET"
           orig: "/boards/{id}/members"
-          parts: [
-            "boards"
-            "{board_id}"
-            "members"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -1186,18 +1278,26 @@ main: kit: entity: member: {
           }
           method: "DELETE"
           orig: "/boards/{id}/members/{idMember}"
-          parts: [
-            "boards"
-            "{board_id}"
-            "members"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "board_id"
               idMember: "id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -1231,18 +1331,26 @@ main: kit: entity: member: {
           }
           method: "DELETE"
           orig: "/organizations/{id}/members/{idMember}"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "members"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "organization_id"
               idMember: "id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -1277,19 +1385,29 @@ main: kit: entity: member: {
           }
           method: "DELETE"
           orig: "/organizations/{id}/members/{idMember}/all"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "members"
-            "{id_member}"
-            "all"
-          ]
           rename: {
             param: {
               id: "organization_id"
               idMember: "id_member"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id_member"
+            }
+            {
+              lit: "all"
+            }
+          ]
           select: {
             "$action": "all"
             exist: [
@@ -1380,9 +1498,13 @@ main: kit: entity: member: {
           }
           method: "PUT"
           orig: "/members/{id}"
-          parts: [
-            "members"
-            "{id}"
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -1458,19 +1580,29 @@ main: kit: entity: member: {
           }
           method: "PUT"
           orig: "/enterprises/{id}/members/{idMember}/deactivated"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "members"
-            "{id_member}"
-            "deactivated"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idMember: "id_member"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id_member"
+            }
+            {
+              lit: "deactivated"
+            }
+          ]
           select: {
             "$action": "deactivated"
             exist: [
@@ -1527,18 +1659,26 @@ main: kit: entity: member: {
           }
           method: "PUT"
           orig: "/boards/{id}/members/{idMember}"
-          parts: [
-            "boards"
-            "{board_id}"
-            "members"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "board_id"
               idMember: "id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "allow_billable_guest"
@@ -1584,19 +1724,29 @@ main: kit: entity: member: {
           }
           method: "PUT"
           orig: "/enterprises/{id}/members/{idMember}/licensed"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "members"
-            "{id_member}"
-            "licensed"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idMember: "id_member"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id_member"
+            }
+            {
+              lit: "licensed"
+            }
+          ]
           select: {
             "$action": "licensed"
             exist: [
@@ -1641,18 +1791,26 @@ main: kit: entity: member: {
           }
           method: "PUT"
           orig: "/organizations/{id}/members/{idMember}"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "members"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "organization_id"
               idMember: "id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -1696,19 +1854,29 @@ main: kit: entity: member: {
           }
           method: "PUT"
           orig: "/organizations/{id}/members/{idMember}/deactivated"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "members"
-            "{id_member}"
-            "deactivated"
-          ]
           rename: {
             param: {
               id: "organization_id"
               idMember: "id_member"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id_member"
+            }
+            {
+              lit: "deactivated"
+            }
+          ]
           select: {
             "$action": "deactivated"
             exist: [

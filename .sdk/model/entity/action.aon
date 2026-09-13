@@ -11,6 +11,7 @@ main: kit: entity: action: {
       type: "`$OBJECT`"
     }
     {
+      format: "date-time"
       name: "date"
       req: false
       type: "`$STRING`"
@@ -105,17 +106,25 @@ main: kit: entity: action: {
           }
           method: "POST"
           orig: "/cards/{id}/actions/comments"
-          parts: [
-            "cards"
-            "{card_id}"
-            "actions"
-            "comments"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "actions"
+            }
+            {
+              lit: "comments"
+            }
+          ]
           select: {
             "$action": "comment"
             exist: [
@@ -143,16 +152,22 @@ main: kit: entity: action: {
           }
           method: "POST"
           orig: "/actions/{idAction}/reactions"
-          parts: [
-            "actions"
-            "{id_action}"
-            "reactions"
-          ]
           rename: {
             param: {
               idAction: "id_action"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactions"
+            }
+          ]
           select: {
             "$action": "reaction"
             exist: [
@@ -202,16 +217,22 @@ main: kit: entity: action: {
           }
           method: "GET"
           orig: "/cards/{id}/actions"
-          parts: [
-            "cards"
-            "{card_id}"
-            "actions"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "actions"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -248,16 +269,22 @@ main: kit: entity: action: {
           }
           method: "GET"
           orig: "/members/{id}/actions"
-          parts: [
-            "members"
-            "{member_id}"
-            "actions"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "actions"
+            }
+          ]
           select: {
             exist: [
               "filter"
@@ -284,16 +311,22 @@ main: kit: entity: action: {
           }
           method: "GET"
           orig: "/organizations/{id}/actions"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "actions"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "actions"
+            }
+          ]
           select: {
             exist: [
               "organization_id"
@@ -423,16 +456,22 @@ main: kit: entity: action: {
           }
           method: "GET"
           orig: "/boards/{boardId}/actions"
-          parts: [
-            "boards"
-            "{board_id}"
-            "actions"
-          ]
           rename: {
             param: {
               boardId: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "actions"
+            }
+          ]
           select: {
             exist: [
               "before"
@@ -529,9 +568,13 @@ main: kit: entity: action: {
           }
           method: "GET"
           orig: "/actions/{id}"
-          parts: [
-            "actions"
-            "{id}"
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -572,10 +615,16 @@ main: kit: entity: action: {
           }
           method: "GET"
           orig: "/actions/{id}/{field}"
-          parts: [
-            "actions"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -611,16 +660,22 @@ main: kit: entity: action: {
           }
           method: "GET"
           orig: "/lists/{id}/actions"
-          parts: [
-            "lists"
-            "{list_id}"
-            "actions"
-          ]
           rename: {
             param: {
               id: "list_id"
             }
           }
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "list_id"
+            }
+            {
+              lit: "actions"
+            }
+          ]
           select: {
             exist: [
               "filter"
@@ -660,19 +715,29 @@ main: kit: entity: action: {
           }
           method: "DELETE"
           orig: "/cards/{id}/actions/{idAction}/comments"
-          parts: [
-            "cards"
-            "{card_id}"
-            "actions"
-            "{id_action}"
-            "comments"
-          ]
           rename: {
             param: {
               id: "card_id"
               idAction: "id_action"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "comments"
+            }
+          ]
           select: {
             "$action": "comment"
             exist: [
@@ -700,9 +765,13 @@ main: kit: entity: action: {
           }
           method: "DELETE"
           orig: "/actions/{id}"
-          parts: [
-            "actions"
-            "{id}"
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -751,19 +820,29 @@ main: kit: entity: action: {
           }
           method: "PUT"
           orig: "/cards/{id}/actions/{idAction}/comments"
-          parts: [
-            "cards"
-            "{card_id}"
-            "actions"
-            "{id_action}"
-            "comments"
-          ]
           rename: {
             param: {
               id: "card_id"
               idAction: "id_action"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "comments"
+            }
+          ]
           select: {
             "$action": "comment"
             exist: [
@@ -801,9 +880,13 @@ main: kit: entity: action: {
           }
           method: "PUT"
           orig: "/actions/{id}"
-          parts: [
-            "actions"
-            "{id}"
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -840,10 +923,16 @@ main: kit: entity: action: {
           }
           method: "PUT"
           orig: "/actions/{id}/text"
-          parts: [
-            "actions"
-            "{id}"
-            "text"
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "text"
+            }
           ]
           select: {
             "$action": "text"

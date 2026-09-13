@@ -16,6 +16,7 @@ main: kit: entity: custom_emoji: {
       type: "`$STRING`"
     }
     {
+      format: "url"
       name: "url"
       req: false
       type: "`$STRING`"
@@ -63,16 +64,22 @@ main: kit: entity: custom_emoji: {
           }
           method: "POST"
           orig: "/members/{id}/customEmoji"
-          parts: [
-            "members"
-            "{member_id}"
-            "customEmoji"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customEmoji"
+            }
+          ]
           select: {
             exist: [
               "file"
@@ -105,16 +112,22 @@ main: kit: entity: custom_emoji: {
           }
           method: "GET"
           orig: "/members/{id}/customEmoji"
-          parts: [
-            "members"
-            "{member_id}"
-            "customEmoji"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customEmoji"
+            }
+          ]
           select: {
             exist: [
               "member_id"
@@ -163,18 +176,26 @@ main: kit: entity: custom_emoji: {
           }
           method: "GET"
           orig: "/members/{id}/customEmoji/{idEmoji}"
-          parts: [
-            "members"
-            "{member_id}"
-            "customEmoji"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idEmoji: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customEmoji"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "field"

@@ -11,6 +11,7 @@ main: kit: entity: claimable_organization: {
       type: "`$NUMBER`"
     }
     {
+      format: "date"
       name: "dateLastActive"
       req: false
       short: "The date of the most recent activity on any of the boards in the workspace."
@@ -110,16 +111,22 @@ main: kit: entity: claimable_organization: {
           }
           method: "GET"
           orig: "/enterprises/{id}/claimableOrganizations"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "claimableOrganizations"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "claimableOrganizations"
+            }
+          ]
           select: {
             exist: [
               "active_since"

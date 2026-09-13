@@ -24,17 +24,25 @@ main: kit: entity: member_privacy: {
           }
           method: "GET"
           orig: "/plugins/{id}/compliance/memberPrivacy"
-          parts: [
-            "plugins"
-            "{plugin_id}"
-            "compliance"
-            "memberPrivacy"
-          ]
           rename: {
             param: {
               id: "plugin_id"
             }
           }
+          segments: [
+            {
+              lit: "plugins"
+            }
+            {
+              var: "plugin_id"
+            }
+            {
+              lit: "compliance"
+            }
+            {
+              lit: "memberPrivacy"
+            }
+          ]
           select: {
             exist: [
               "plugin_id"

@@ -6,6 +6,7 @@ main: kit: entity: organization: {
 
   fields: [
     {
+      format: "date"
       name: "dateLastActivity"
       req: false
       type: "`$STRING`"
@@ -56,6 +57,7 @@ main: kit: entity: organization: {
       type: "`$ARRAY`"
     }
     {
+      format: "url"
       name: "url"
       req: false
       type: "`$STRING`"
@@ -107,8 +109,10 @@ main: kit: entity: organization: {
           }
           method: "POST"
           orig: "/organizations"
-          parts: [
-            "organizations"
+          segments: [
+            {
+              lit: "organizations"
+            }
           ]
           select: {
             exist: [
@@ -147,10 +151,16 @@ main: kit: entity: organization: {
           }
           method: "POST"
           orig: "/organizations/{id}/logo"
-          parts: [
-            "organizations"
-            "{id}"
-            "logo"
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "logo"
+            }
           ]
           select: {
             "$action": "logo"
@@ -178,10 +188,16 @@ main: kit: entity: organization: {
           }
           method: "POST"
           orig: "/organizations/{id}/tags"
-          parts: [
-            "organizations"
-            "{id}"
-            "tags"
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "tags"
+            }
           ]
           select: {
             "$action": "tag"
@@ -246,16 +262,22 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/enterprises/{id}/organizations"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "organizations"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "organizations"
+            }
+          ]
           select: {
             exist: [
               "count"
@@ -311,16 +333,22 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/members/{id}/organizations"
-          parts: [
-            "members"
-            "{member_id}"
-            "organizations"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "organizations"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -359,16 +387,22 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/actions/{id}/organization"
-          parts: [
-            "actions"
-            "{action_id}"
-            "organization"
-          ]
           rename: {
             param: {
               id: "action_id"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "organization"
+            }
+          ]
           select: {
             exist: [
               "action_id"
@@ -405,16 +439,22 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/members/{id}/organizationsInvited"
-          parts: [
-            "members"
-            "{member_id}"
-            "organizationsInvited"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "organizationsInvited"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -453,10 +493,16 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/organizations/{id}/{field}"
-          parts: [
-            "organizations"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -494,16 +540,22 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/notifications/{id}/organization"
-          parts: [
-            "notifications"
-            "{notification_id}"
-            "organization"
-          ]
           rename: {
             param: {
               id: "notification_id"
             }
           }
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "notification_id"
+            }
+            {
+              lit: "organization"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -530,9 +582,13 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/organizations/{id}"
-          parts: [
-            "organizations"
-            "{id}"
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -572,18 +628,26 @@ main: kit: entity: organization: {
           }
           method: "DELETE"
           orig: "/enterprises/{id}/organizations/{idOrg}"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "organizations"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idOrg: "id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "enterpris_id"
@@ -610,9 +674,13 @@ main: kit: entity: organization: {
           }
           method: "DELETE"
           orig: "/organizations/{id}"
-          parts: [
-            "organizations"
-            "{id}"
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -639,10 +707,16 @@ main: kit: entity: organization: {
           }
           method: "DELETE"
           orig: "/organizations/{id}/logo"
-          parts: [
-            "organizations"
-            "{id}"
-            "logo"
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "logo"
+            }
           ]
           select: {
             "$action": "logo"
@@ -761,9 +835,13 @@ main: kit: entity: organization: {
           }
           method: "PUT"
           orig: "/organizations/{id}"
-          parts: [
-            "organizations"
-            "{id}"
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -826,10 +904,16 @@ main: kit: entity: organization: {
           }
           method: "PUT"
           orig: "/organizations/{id}/members"
-          parts: [
-            "organizations"
-            "{id}"
-            "members"
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "members"
+            }
           ]
           select: {
             "$action": "member"

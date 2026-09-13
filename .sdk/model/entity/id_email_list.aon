@@ -34,17 +34,25 @@ main: kit: entity: id_email_list: {
           }
           method: "PUT"
           orig: "/boards/{id}/myPrefs/idEmailList"
-          parts: [
-            "boards"
-            "{board_id}"
-            "myPrefs"
-            "idEmailList"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "myPrefs"
+            }
+            {
+              lit: "idEmailList"
+            }
+          ]
           select: {
             exist: [
               "board_id"

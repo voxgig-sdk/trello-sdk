@@ -120,15 +120,18 @@ def _notification_channel_setting_direct_setup(mockres):
     env = runner.env_override({
         "TRELLO_TEST_NOTIFICATION_CHANNEL_SETTING_ENTID": {},
         "TRELLO_TEST_LIVE": "FALSE",
-        "TRELLO_APIKEY": "NONE",
+        "TRELLO_APIKEY": "",
     })
 
     live = env.get("TRELLO_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("TRELLO_APIKEY"),
-        }
+        })
         client = TrelloSDK(merged_opts)
         return {
             "client": client,

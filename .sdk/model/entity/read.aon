@@ -31,10 +31,16 @@ main: kit: entity: read: {
           }
           method: "POST"
           orig: "/notifications/all/read"
-          parts: [
-            "notifications"
-            "all"
-            "read"
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              lit: "all"
+            }
+            {
+              lit: "read"
+            }
           ]
           select: {
             exist: [

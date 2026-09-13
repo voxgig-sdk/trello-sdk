@@ -45,18 +45,26 @@ main: kit: entity: id_label: {
           }
           method: "DELETE"
           orig: "/cards/{id}/idLabels/{idLabel}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "idLabels"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idLabel: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "idLabels"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"

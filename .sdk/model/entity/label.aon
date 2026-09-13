@@ -50,8 +50,10 @@ main: kit: entity: label: {
           }
           method: "POST"
           orig: "/labels"
-          parts: [
-            "labels"
+          segments: [
+            {
+              lit: "labels"
+            }
           ]
           select: {
             exist: [
@@ -102,16 +104,22 @@ main: kit: entity: label: {
           }
           method: "GET"
           orig: "/boards/{id}/labels"
-          parts: [
-            "boards"
-            "{board_id}"
-            "labels"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "labels"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -149,9 +157,13 @@ main: kit: entity: label: {
           }
           method: "GET"
           orig: "/labels/{id}"
-          parts: [
-            "labels"
-            "{id}"
+          segments: [
+            {
+              lit: "labels"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -184,9 +196,13 @@ main: kit: entity: label: {
           }
           method: "DELETE"
           orig: "/labels/{id}"
-          parts: [
-            "labels"
-            "{id}"
+          segments: [
+            {
+              lit: "labels"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -234,9 +250,13 @@ main: kit: entity: label: {
           }
           method: "PUT"
           orig: "/labels/{id}"
-          parts: [
-            "labels"
-            "{id}"
+          segments: [
+            {
+              lit: "labels"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -281,10 +301,16 @@ main: kit: entity: label: {
           }
           method: "PUT"
           orig: "/labels/{id}/{field}"
-          parts: [
-            "labels"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "labels"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [

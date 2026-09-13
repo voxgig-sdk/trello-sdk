@@ -11,6 +11,7 @@ main: kit: entity: webhook: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "url"
       name: "callbackURL"
       req: false
       type: "`$STRING`"
@@ -26,6 +27,7 @@ main: kit: entity: webhook: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "firstConsecutiveFailDate"
       req: false
       type: "`$STRING`"
@@ -88,8 +90,10 @@ main: kit: entity: webhook: {
           }
           method: "POST"
           orig: "/webhooks/"
-          parts: [
-            "webhooks"
+          segments: [
+            {
+              lit: "webhooks"
+            }
           ]
           select: {
             exist: [
@@ -142,16 +146,22 @@ main: kit: entity: webhook: {
           }
           method: "POST"
           orig: "/tokens/{token}/webhooks"
-          parts: [
-            "tokens"
-            "{token_id}"
-            "webhooks"
-          ]
           rename: {
             param: {
               token: "token_id"
             }
           }
+          segments: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+          ]
           select: {
             exist: [
               "callback_url"
@@ -184,16 +194,22 @@ main: kit: entity: webhook: {
           }
           method: "GET"
           orig: "/tokens/{token}/webhooks"
-          parts: [
-            "tokens"
-            "{token_id}"
-            "webhooks"
-          ]
           rename: {
             param: {
               token: "token_id"
             }
           }
+          segments: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+          ]
           select: {
             exist: [
               "token_id"
@@ -231,10 +247,16 @@ main: kit: entity: webhook: {
           }
           method: "GET"
           orig: "/webhooks/{id}/{field}"
-          parts: [
-            "webhooks"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -269,18 +291,26 @@ main: kit: entity: webhook: {
           }
           method: "GET"
           orig: "/tokens/{token}/webhooks/{idWebhook}"
-          parts: [
-            "tokens"
-            "{token_id}"
-            "webhooks"
-            "{id}"
-          ]
           rename: {
             param: {
               idWebhook: "id"
               token: "token_id"
             }
           }
+          segments: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -307,9 +337,13 @@ main: kit: entity: webhook: {
           }
           method: "GET"
           orig: "/webhooks/{id}"
-          parts: [
-            "webhooks"
-            "{id}"
+          segments: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -348,18 +382,26 @@ main: kit: entity: webhook: {
           }
           method: "DELETE"
           orig: "/tokens/{token}/webhooks/{idWebhook}"
-          parts: [
-            "tokens"
-            "{token_id}"
-            "webhooks"
-            "{id}"
-          ]
           rename: {
             param: {
               idWebhook: "id"
               token: "token_id"
             }
           }
+          segments: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -386,9 +428,13 @@ main: kit: entity: webhook: {
           }
           method: "DELETE"
           orig: "/webhooks/{id}"
-          parts: [
-            "webhooks"
-            "{id}"
+          segments: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -451,9 +497,13 @@ main: kit: entity: webhook: {
           }
           method: "PUT"
           orig: "/webhooks/{id}"
-          parts: [
-            "webhooks"
-            "{id}"
+          segments: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -515,18 +565,26 @@ main: kit: entity: webhook: {
           }
           method: "PUT"
           orig: "/tokens/{token}/webhooks/{idWebhook}"
-          parts: [
-            "tokens"
-            "{token_id}"
-            "webhooks"
-            "{id}"
-          ]
           rename: {
             param: {
               idWebhook: "id"
               token: "token_id"
             }
           }
+          segments: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "callback_url"

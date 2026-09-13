@@ -59,8 +59,10 @@ main: kit: entity: list: {
           }
           method: "POST"
           orig: "/lists"
-          parts: [
-            "lists"
+          segments: [
+            {
+              lit: "lists"
+            }
           ]
           select: {
             exist: [
@@ -108,10 +110,16 @@ main: kit: entity: list: {
           }
           method: "POST"
           orig: "/lists/{id}/moveAllCards"
-          parts: [
-            "lists"
-            "{id}"
-            "moveAllCards"
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "moveAllCards"
+            }
           ]
           select: {
             "$action": "move_all_card"
@@ -141,10 +149,16 @@ main: kit: entity: list: {
           }
           method: "POST"
           orig: "/lists/{id}/archiveAllCards"
-          parts: [
-            "lists"
-            "{id}"
-            "archiveAllCards"
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "archiveAllCards"
+            }
           ]
           select: {
             "$action": "archive_all_card"
@@ -184,18 +198,26 @@ main: kit: entity: list: {
           }
           method: "GET"
           orig: "/boards/{id}/lists/{filter}"
-          parts: [
-            "boards"
-            "{board_id}"
-            "lists"
-            "{id}"
-          ]
           rename: {
             param: {
               filter: "id"
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -231,9 +253,13 @@ main: kit: entity: list: {
           }
           method: "GET"
           orig: "/lists/{id}"
-          parts: [
-            "lists"
-            "{id}"
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -303,9 +329,13 @@ main: kit: entity: list: {
           }
           method: "PUT"
           orig: "/lists/{id}"
-          parts: [
-            "lists"
-            "{id}"
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -353,10 +383,16 @@ main: kit: entity: list: {
           }
           method: "PUT"
           orig: "/lists/{id}/{field}"
-          parts: [
-            "lists"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -395,10 +431,16 @@ main: kit: entity: list: {
           }
           method: "PUT"
           orig: "/lists/{id}/closed"
-          parts: [
-            "lists"
-            "{id}"
-            "closed"
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "closed"
+            }
           ]
           select: {
             "$action": "closed"
@@ -437,10 +479,16 @@ main: kit: entity: list: {
           }
           method: "PUT"
           orig: "/lists/{id}/idBoard"
-          parts: [
-            "lists"
-            "{id}"
-            "idBoard"
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "idBoard"
+            }
           ]
           select: {
             "$action": "id_board"

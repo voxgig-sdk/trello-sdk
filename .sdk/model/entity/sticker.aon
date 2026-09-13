@@ -55,18 +55,26 @@ main: kit: entity: sticker: {
           }
           method: "GET"
           orig: "/cards/{id}/stickers/{idSticker}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "stickers"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idSticker: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "stickers"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -112,16 +120,22 @@ main: kit: entity: sticker: {
           }
           method: "GET"
           orig: "/cards/{id}/stickers"
-          parts: [
-            "cards"
-            "{card_id}"
-            "stickers"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "stickers"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -161,18 +175,26 @@ main: kit: entity: sticker: {
           }
           method: "DELETE"
           orig: "/cards/{id}/stickers/{idSticker}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "stickers"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idSticker: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "stickers"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -243,18 +265,26 @@ main: kit: entity: sticker: {
           }
           method: "PUT"
           orig: "/cards/{id}/stickers/{idSticker}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "stickers"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idSticker: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "stickers"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"

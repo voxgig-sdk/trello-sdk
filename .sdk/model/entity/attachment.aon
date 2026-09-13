@@ -55,16 +55,22 @@ main: kit: entity: attachment: {
           }
           method: "GET"
           orig: "/cards/{id}/attachments"
-          parts: [
-            "cards"
-            "{card_id}"
-            "attachments"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "attachments"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -117,18 +123,26 @@ main: kit: entity: attachment: {
           }
           method: "GET"
           orig: "/cards/{id}/attachments/{idAttachment}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "attachments"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idAttachment: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "attachments"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -185,18 +199,26 @@ main: kit: entity: attachment: {
           }
           method: "DELETE"
           orig: "/cards/{id}/attachments/{idAttachment}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "attachments"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idAttachment: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "attachments"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"

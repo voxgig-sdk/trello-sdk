@@ -67,7 +67,7 @@ local created, err = client:Action():create({ id_action = "example_id_action" })
 if err then error(err) end
 
 -- Update
-client:Action():update({ id = created:data_get()["id"], data = {}, date = "example_date" })
+client:Action():update({ id = created:data_get()["id"], text = "example_text", data = {} })
 
 -- Remove
 client:Action():remove({ id = created:data_get()["id"] })
@@ -1430,7 +1430,7 @@ Create an instance: `local batch = client:Batch(nil)`
 #### Example: Load
 
 ```lua
-local batch, err = client:Batch():load()
+local batch, err = client:Batch():load({ url = "url" })
 ```
 
 
@@ -1496,6 +1496,7 @@ local boards, err = client:Board():list()
 
 ```lua
 local board, err = client:Board():create({
+  name = "example_name", -- string
   id = "example_id", -- string
 })
 ```
@@ -1538,6 +1539,7 @@ local board_backgrounds, err = client:BoardBackground():list()
 ```lua
 local board_background, err = client:BoardBackground():create({
   member_id = "example_member_id", -- string
+  file = "example_file", -- string
 })
 ```
 
@@ -1598,6 +1600,8 @@ local board_stars, err = client:BoardStar():list()
 ```lua
 local board_star, err = client:BoardStar():create({
   member_id = "example_member_id", -- string
+  id_board = "example_id_board", -- string
+  pos = "example_pos", -- any
 })
 ```
 
@@ -1695,6 +1699,7 @@ local cards, err = client:Card():list()
 
 ```lua
 local card, err = client:Card():create({
+  id_list = "example_id_list", -- string
 })
 ```
 
@@ -1804,6 +1809,7 @@ local checklist, err = client:Checklist():load({ id = "checklist_id" })
 
 ```lua
 local checklist, err = client:Checklist():create({
+  id_card = "example_id_card", -- string
 })
 ```
 
@@ -1892,6 +1898,8 @@ local custom_emojis, err = client:CustomEmoji():list()
 ```lua
 local custom_emoji, err = client:CustomEmoji():create({
   member_id = "example_member_id", -- string
+  file = "example_file", -- string
+  name = "example_name", -- string
 })
 ```
 
@@ -2015,6 +2023,7 @@ local custom_stickers, err = client:CustomSticker():list()
 ```lua
 local custom_sticker, err = client:CustomSticker():create({
   member_id = "example_member_id", -- string
+  file = "example_file", -- string
 })
 ```
 
@@ -2348,6 +2357,9 @@ local label, err = client:Label():load({ id = "label_id" })
 
 ```lua
 local label, err = client:Label():create({
+  color = "example_color", -- string
+  id_board = "example_id_board", -- string
+  name = "example_name", -- string
 })
 ```
 
@@ -2380,6 +2392,8 @@ local list, err = client:List():load({ id = "list_id" })
 
 ```lua
 local list, err = client:List():create({
+  id_board = "example_id_board", -- string
+  name = "example_name", -- string
 })
 ```
 
@@ -2779,6 +2793,7 @@ local organizations, err = client:Organization():list()
 
 ```lua
 local organization, err = client:Organization():create({
+  display_name = "example_display_name", -- string
 })
 ```
 
@@ -2980,6 +2995,9 @@ local saved_searchs, err = client:SavedSearch():list()
 ```lua
 local saved_search, err = client:SavedSearch():create({
   member_id = "example_member_id", -- string
+  name = "example_name", -- string
+  pos = "example_pos", -- any
+  query = "example_query", -- string
 })
 ```
 
@@ -3199,6 +3217,7 @@ local trello_lists, err = client:TrelloList():list()
 ```lua
 local trello_list, err = client:TrelloList():create({
   board_id = "example_board_id", -- string
+  name = "example_name", -- string
 })
 ```
 
@@ -3245,8 +3264,33 @@ local webhooks, err = client:Webhook():list()
 
 ```lua
 local webhook, err = client:Webhook():create({
+  callback_url = "example_callback_url", -- string
+  id_model = "example_id_model", -- string
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

@@ -94,8 +94,10 @@ main: kit: entity: emoji: {
           }
           method: "GET"
           orig: "/emoji"
-          parts: [
-            "emoji"
+          segments: [
+            {
+              lit: "emoji"
+            }
           ]
           select: {
             exist: [

@@ -76,10 +76,16 @@ main: kit: entity: enterpris_signup_url: {
           }
           method: "GET"
           orig: "/enterprises/{id}/signupUrl"
-          parts: [
-            "enterprises"
-            "{id}"
-            "signupUrl"
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "signupUrl"
+            }
           ]
           select: {
             exist: [

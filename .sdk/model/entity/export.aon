@@ -36,6 +36,7 @@ main: kit: entity: export: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "startedAt"
       req: false
       type: "`$STRING`"
@@ -90,16 +91,22 @@ main: kit: entity: export: {
           }
           method: "POST"
           orig: "/boards/{id}/exports"
-          parts: [
-            "boards"
-            "{board_id}"
-            "exports"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+          ]
           select: {
             exist: [
               "attachment"
@@ -137,16 +144,22 @@ main: kit: entity: export: {
           }
           method: "POST"
           orig: "/organizations/{id}/exports"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "exports"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "exports"
+            }
+          ]
           select: {
             exist: [
               "attachment"
@@ -178,16 +191,22 @@ main: kit: entity: export: {
           }
           method: "GET"
           orig: "/organizations/{id}/exports"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "exports"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "exports"
+            }
+          ]
           select: {
             exist: [
               "organization_id"
@@ -226,18 +245,26 @@ main: kit: entity: export: {
           }
           method: "GET"
           orig: "/boards/{id}/exports/{idExport}"
-          parts: [
-            "boards"
-            "{board_id}"
-            "exports"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "board_id"
               idExport: "id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -264,17 +291,25 @@ main: kit: entity: export: {
           }
           method: "GET"
           orig: "/boards/{id}/exports/mostRecent"
-          parts: [
-            "boards"
-            "{board_id}"
-            "exports"
-            "mostRecent"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              lit: "mostRecent"
+            }
+          ]
           select: {
             "$action": "most_recent"
             exist: [
@@ -314,18 +349,26 @@ main: kit: entity: export: {
           }
           method: "DELETE"
           orig: "/boards/{id}/exports/{idExport}"
-          parts: [
-            "boards"
-            "{board_id}"
-            "exports"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "board_id"
               idExport: "id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "board_id"

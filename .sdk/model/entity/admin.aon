@@ -45,18 +45,26 @@ main: kit: entity: admin: {
           }
           method: "DELETE"
           orig: "/enterprises/{id}/admins/{idMember}"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "admins"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idMember: "id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "admins"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "enterpris_id"
@@ -96,18 +104,26 @@ main: kit: entity: admin: {
           }
           method: "PUT"
           orig: "/enterprises/{id}/admins/{idMember}"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "admins"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idMember: "id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "admins"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "enterpris_id"

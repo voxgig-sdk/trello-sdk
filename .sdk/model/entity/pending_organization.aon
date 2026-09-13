@@ -6,6 +6,7 @@ main: kit: entity: pending_organization: {
 
   fields: [
     {
+      format: "date"
       name: "date"
       req: false
       type: "`$STRING`"
@@ -88,16 +89,22 @@ main: kit: entity: pending_organization: {
           }
           method: "GET"
           orig: "/enterprises/{id}/pendingOrganizations"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "pendingOrganizations"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "pendingOrganizations"
+            }
+          ]
           select: {
             exist: [
               "active_since"

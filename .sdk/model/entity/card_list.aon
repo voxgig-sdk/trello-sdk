@@ -47,10 +47,16 @@ main: kit: entity: card_list: {
           }
           method: "GET"
           orig: "/cards/{id}/list"
-          parts: [
-            "cards"
-            "{id}"
-            "list"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "list"
+            }
           ]
           select: {
             exist: [

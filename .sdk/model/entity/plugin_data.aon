@@ -24,16 +24,22 @@ main: kit: entity: plugin_data: {
           }
           method: "GET"
           orig: "/organizations/{id}/pluginData"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "pluginData"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "pluginData"
+            }
+          ]
           select: {
             exist: [
               "organization_id"
@@ -64,16 +70,22 @@ main: kit: entity: plugin_data: {
           }
           method: "GET"
           orig: "/cards/{id}/pluginData"
-          parts: [
-            "cards"
-            "{card_id}"
-            "pluginData"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "pluginData"
+            }
+          ]
           select: {
             exist: [
               "card_id"

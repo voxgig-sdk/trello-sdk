@@ -48,7 +48,7 @@ func TestNotificationsChannelSettingEntity(t *testing.T) {
 			return
 		}
 		// Bootstrap entity data from existing test data (no create step in flow).
-		notificationsChannelSettingRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.notifications_channel_setting", setup.data)))
+		notificationsChannelSettingRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.notifications_channel_setting")))
 		var notificationsChannelSettingRef01Data map[string]any
 		if len(notificationsChannelSettingRef01DataRaw) > 0 {
 			notificationsChannelSettingRef01Data = core.ToMapAny(notificationsChannelSettingRef01DataRaw[0][1])
@@ -84,7 +84,7 @@ func notifications_channel_settingBasicSetup(extra map[string]any) *entityTestSe
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"notifications_channel_setting01", "notifications_channel_setting02", "notifications_channel_setting03", "member01", "member02", "member03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -104,7 +104,7 @@ func notifications_channel_settingBasicSetup(extra map[string]any) *entityTestSe
 		"TRELLO_TEST_NOTIFICATIONS_CHANNEL_SETTING_ENTID": idmap,
 		"TRELLO_TEST_LIVE":      "FALSE",
 		"TRELLO_TEST_EXPLAIN":   "FALSE",
-		"TRELLO_APIKEY":         "NONE",
+		"TRELLO_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TRELLO_TEST_NOTIFICATIONS_CHANNEL_SETTING_ENTID"])
@@ -113,11 +113,23 @@ func notifications_channel_settingBasicSetup(extra map[string]any) *entityTestSe
 	}
 
 	if env["TRELLO_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TRELLO_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTrelloSDK(core.ToMapAny(mergedOpts))
 	}

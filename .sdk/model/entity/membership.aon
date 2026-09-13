@@ -141,17 +141,25 @@ main: kit: entity: membership: {
           }
           method: "GET"
           orig: "/enterprises/{id}/members/query"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "members"
-            "query"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              lit: "query"
+            }
+          ]
           select: {
             exist: [
               "active_since"
@@ -204,16 +212,22 @@ main: kit: entity: membership: {
           }
           method: "GET"
           orig: "/organizations/{id}/memberships"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "memberships"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "memberships"
+            }
+          ]
           select: {
             exist: [
               "filter"
@@ -288,16 +302,22 @@ main: kit: entity: membership: {
           }
           method: "GET"
           orig: "/boards/{id}/memberships"
-          parts: [
-            "boards"
-            "{board_id}"
-            "memberships"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "memberships"
+            }
+          ]
           select: {
             exist: [
               "activity"
@@ -346,18 +366,26 @@ main: kit: entity: membership: {
           }
           method: "GET"
           orig: "/organizations/{id}/memberships/{idMembership}"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "memberships"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "organization_id"
               idMembership: "id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "memberships"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -415,18 +443,26 @@ main: kit: entity: membership: {
           }
           method: "PUT"
           orig: "/boards/{id}/memberships/{idMembership}"
-          parts: [
-            "boards"
-            "{board_id}"
-            "memberships"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "board_id"
               idMembership: "id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "memberships"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "board_id"

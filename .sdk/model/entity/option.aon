@@ -45,18 +45,26 @@ main: kit: entity: option: {
           }
           method: "GET"
           orig: "/customFields/{id}/options/{idCustomFieldOption}"
-          parts: [
-            "customFields"
-            "{custom_field_id}"
-            "options"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "custom_field_id"
               idCustomFieldOption: "id"
             }
           }
+          segments: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "custom_field_id"
+            }
+            {
+              lit: "options"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "custom_field_id"
@@ -83,16 +91,22 @@ main: kit: entity: option: {
           }
           method: "GET"
           orig: "/customFields/{id}/options"
-          parts: [
-            "customFields"
-            "{custom_field_id}"
-            "options"
-          ]
           rename: {
             param: {
               id: "custom_field_id"
             }
           }
+          segments: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "custom_field_id"
+            }
+            {
+              lit: "options"
+            }
+          ]
           select: {
             exist: [
               "custom_field_id"
@@ -131,18 +145,26 @@ main: kit: entity: option: {
           }
           method: "DELETE"
           orig: "/customFields/{id}/options/{idCustomFieldOption}"
-          parts: [
-            "customFields"
-            "{custom_field_id}"
-            "options"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "custom_field_id"
               idCustomFieldOption: "id"
             }
           }
+          segments: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "custom_field_id"
+            }
+            {
+              lit: "options"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "custom_field_id"

@@ -48,7 +48,7 @@ func TestIdLabelEntity(t *testing.T) {
 			return
 		}
 		// Bootstrap entity data from existing test data (no create step in flow).
-		idLabelRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.id_label", setup.data)))
+		idLabelRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.id_label")))
 		var idLabelRef01Data map[string]any
 		if len(idLabelRef01DataRaw) > 0 {
 			idLabelRef01Data = core.ToMapAny(idLabelRef01DataRaw[0][1])
@@ -84,7 +84,7 @@ func id_labelBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"id_label01", "id_label02", "id_label03", "card01", "card02", "card03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -104,7 +104,7 @@ func id_labelBasicSetup(extra map[string]any) *entityTestSetup {
 		"TRELLO_TEST_ID_LABEL_ENTID": idmap,
 		"TRELLO_TEST_LIVE":      "FALSE",
 		"TRELLO_TEST_EXPLAIN":   "FALSE",
-		"TRELLO_APIKEY":         "NONE",
+		"TRELLO_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TRELLO_TEST_ID_LABEL_ENTID"])
@@ -113,11 +113,23 @@ func id_labelBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TRELLO_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TRELLO_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTrelloSDK(core.ToMapAny(mergedOpts))
 	}

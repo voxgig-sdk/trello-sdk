@@ -37,16 +37,22 @@ main: kit: entity: plugin: {
           }
           method: "GET"
           orig: "/boards/{id}/boardPlugins"
-          parts: [
-            "boards"
-            "{board_id}"
-            "boardPlugins"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "boardPlugins"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -87,16 +93,22 @@ main: kit: entity: plugin: {
           }
           method: "GET"
           orig: "/boards/{id}/plugins"
-          parts: [
-            "boards"
-            "{board_id}"
-            "plugins"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "plugins"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -123,9 +135,13 @@ main: kit: entity: plugin: {
           }
           method: "GET"
           orig: "/plugins/{id}/"
-          parts: [
-            "plugins"
-            "{id}"
+          segments: [
+            {
+              lit: "plugins"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -157,9 +173,13 @@ main: kit: entity: plugin: {
           }
           method: "PUT"
           orig: "/plugins/{id}/"
-          parts: [
-            "plugins"
-            "{id}"
+          segments: [
+            {
+              lit: "plugins"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

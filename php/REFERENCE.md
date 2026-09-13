@@ -425,6 +425,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->Action()->update([
   "id" => "action_id",
+  "text" => "text",
   // Fields to update
 ]);
 ```
@@ -778,7 +779,7 @@ $batch = $client->Batch();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Batch()->load();
+$result = $client->Batch()->load(["url" => "url"]);
 ```
 
 ### Common Methods
@@ -857,6 +858,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Board()->create([
+  "name" => null, // string
   "id" => null, // string
 ]);
 ```
@@ -947,6 +949,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->BoardBackground()->create([
   "member_id" => null, // string
+  "file" => null, // string
 ]);
 ```
 
@@ -1091,6 +1094,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->BoardStar()->create([
   "member_id" => null, // string
+  "id_board" => null, // string
+  "pos" => null, // mixed
 ]);
 ```
 
@@ -1189,6 +1194,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->Bulk()->update([
   "id" => "bulk_id",
+  "id_organization" => [],
   // Fields to update
 ]);
 ```
@@ -1276,6 +1282,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Card()->create([
+  "id_list" => null, // string
 ]);
 ```
 
@@ -1544,6 +1551,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Checklist()->create([
+  "id_card" => null, // string
 ]);
 ```
 
@@ -1738,6 +1746,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->CustomEmoji()->create([
   "member_id" => null, // string
+  "file" => null, // string
+  "name" => null, // string
 ]);
 ```
 
@@ -1985,6 +1995,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->CustomSticker()->create([
   "member_id" => null, // string
+  "file" => null, // string
 ]);
 ```
 
@@ -2057,6 +2068,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->EmailPosition()->update([
   "board_id" => "board_id",
+  "value" => "value",
   // Fields to update
 ]);
 ```
@@ -2210,6 +2222,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->Enterpris()->update([
   "id" => "enterpris_id",
+  "id_organization" => "id_organization",
   // Fields to update
 ]);
 ```
@@ -2602,6 +2615,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->IdEmailList()->update([
   "board_id" => "board_id",
+  "value" => "value",
   // Fields to update
 ]);
 ```
@@ -2760,6 +2774,9 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Label()->create([
+  "color" => null, // string
+  "id_board" => null, // string
+  "name" => null, // string
 ]);
 ```
 
@@ -2840,6 +2857,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->List()->create([
+  "id_board" => null, // string
+  "name" => null, // string
 ]);
 ```
 
@@ -3172,6 +3191,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 $result = $client->Membership()->update([
   "id" => "membership_id",
   "board_id" => "board_id",
+  "type" => "type",
   // Fields to update
 ]);
 ```
@@ -3735,6 +3755,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Organization()->create([
+  "display_name" => null, // string
 ]);
 ```
 
@@ -4188,6 +4209,9 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->SavedSearch()->create([
   "member_id" => null, // string
+  "name" => null, // string
+  "pos" => null, // mixed
+  "query" => null, // string
 ]);
 ```
 
@@ -4318,6 +4342,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->ShowSidebar()->update([
   "board_id" => "board_id",
+  "value" => true,
   // Fields to update
 ]);
 ```
@@ -4367,6 +4392,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->ShowSidebarActivity()->update([
   "board_id" => "board_id",
+  "value" => true,
   // Fields to update
 ]);
 ```
@@ -4416,6 +4442,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->ShowSidebarBoardAction()->update([
   "board_id" => "board_id",
+  "value" => true,
   // Fields to update
 ]);
 ```
@@ -4465,6 +4492,7 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 ```php
 $result = $client->ShowSidebarMember()->update([
   "board_id" => "board_id",
+  "value" => true,
   // Fields to update
 ]);
 ```
@@ -4537,6 +4565,9 @@ Update an existing entity. The data must include the entity `id`. Throws on erro
 $result = $client->Sticker()->update([
   "id" => "sticker_id",
   "card_id" => "card_id",
+  "left" => 1,
+  "top" => 1,
+  "z_index" => 1,
   // Fields to update
 ]);
 ```
@@ -4788,6 +4819,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->TrelloList()->create([
   "board_id" => null, // string
+  "name" => null, // string
 ]);
 ```
 
@@ -4863,6 +4895,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Webhook()->create([
+  "callback_url" => null, // string
+  "id_model" => null, // string
 ]);
 ```
 
@@ -4947,4 +4981,42 @@ $client = new TrelloSDK([
   ],
 ]);
 ```
+
+
+### Configuring features
+
+Each feature is inactive until switched on, and an SDK with no feature
+configured does no feature work at all. Every option below keeps its default
+unless you name it.
+
+The array form of \`feature\` is significant: several features wrap the
+transport, and the order you list them in is the order they nest.
+
+#### `test`
+
+In-memory mock transport for testing without a live server.
+
+**Configuration**
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Options above are those the model carries a default for. A feature may
+also accept callback options — a `sink` to receive each record, for
+instance — which have no default and are covered in the full feature
+reference.
+
+**Usage**
+
+Set `feature.test.active` to true in the client options, and override any option above in the same entry. Every option keeps
+its default unless you name it.
+
+**Considerations**
+
+- Attaches to pipeline hooks, not the transport, so activation order does
+  not change what it observes.
+- Installs the BASE transport that the wrapping features wrap, so it must be
+  activated before them.
+- Inactive by default: leaving it out costs nothing at runtime.
 

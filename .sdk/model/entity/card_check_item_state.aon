@@ -47,10 +47,16 @@ main: kit: entity: card_check_item_state: {
           }
           method: "GET"
           orig: "/cards/{id}/checkItemStates"
-          parts: [
-            "cards"
-            "{id}"
-            "checkItemStates"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "checkItemStates"
+            }
           ]
           select: {
             exist: [

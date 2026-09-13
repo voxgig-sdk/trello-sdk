@@ -61,16 +61,22 @@ main: kit: entity: plugin_listing: {
           }
           method: "POST"
           orig: "/plugins/{idPlugin}/listing"
-          parts: [
-            "plugins"
-            "{id_plugin}"
-            "listing"
-          ]
           rename: {
             param: {
               idPlugin: "id_plugin"
             }
           }
+          segments: [
+            {
+              lit: "plugins"
+            }
+            {
+              var: "id_plugin"
+            }
+            {
+              lit: "listing"
+            }
+          ]
           select: {
             exist: [
               "id_plugin"
@@ -109,18 +115,26 @@ main: kit: entity: plugin_listing: {
           }
           method: "PUT"
           orig: "/plugins/{idPlugin}/listings/{idListing}"
-          parts: [
-            "plugins"
-            "{id_plugin}"
-            "listings"
-            "{id}"
-          ]
           rename: {
             param: {
               idListing: "id"
               idPlugin: "id_plugin"
             }
           }
+          segments: [
+            {
+              lit: "plugins"
+            }
+            {
+              var: "id_plugin"
+            }
+            {
+              lit: "listings"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

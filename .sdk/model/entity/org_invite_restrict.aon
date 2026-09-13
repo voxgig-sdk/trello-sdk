@@ -24,17 +24,25 @@ main: kit: entity: org_invite_restrict: {
           }
           method: "DELETE"
           orig: "/organizations/{id}/prefs/orgInviteRestrict"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "prefs"
-            "orgInviteRestrict"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "prefs"
+            }
+            {
+              lit: "orgInviteRestrict"
+            }
+          ]
           select: {
             exist: [
               "organization_id"

@@ -68,7 +68,7 @@ try {
 $created = $client->Action()->create(["id_action" => "example_id_action"]);
 
 // Update — index the record via data_get() ($created->data_get()["id"]).
-$client->Action()->update(["id" => $created->data_get()["id"], "data" => [], "date" => "example_date"]);
+$client->Action()->update(["id" => $created->data_get()["id"], "text" => "example_text", "data" => []]);
 
 // Remove
 $client->Action()->remove(["id" => $created->data_get()["id"]]);
@@ -1458,7 +1458,7 @@ Create an instance: `$batch = $client->Batch();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Batch record (throws on error).
-$batch = $client->Batch()->load();
+$batch = $client->Batch()->load(["url" => "url"]);
 ```
 
 
@@ -1526,6 +1526,7 @@ $boards = $client->Board()->list();
 
 ```php
 $board = $client->Board()->create([
+    "name" => null, // string
     "id" => null, // string
 ]);
 ```
@@ -1570,6 +1571,7 @@ $board_backgrounds = $client->BoardBackground()->list();
 ```php
 $board_background = $client->BoardBackground()->create([
     "member_id" => null, // string
+    "file" => null, // string
 ]);
 ```
 
@@ -1632,6 +1634,8 @@ $board_stars = $client->BoardStar()->list();
 ```php
 $board_star = $client->BoardStar()->create([
     "member_id" => null, // string
+    "id_board" => null, // string
+    "pos" => null, // mixed
 ]);
 ```
 
@@ -1732,6 +1736,7 @@ $cards = $client->Card()->list();
 
 ```php
 $card = $client->Card()->create([
+    "id_list" => null, // string
 ]);
 ```
 
@@ -1845,6 +1850,7 @@ $checklist = $client->Checklist()->load(["id" => "checklist_id"]);
 
 ```php
 $checklist = $client->Checklist()->create([
+    "id_card" => null, // string
 ]);
 ```
 
@@ -1936,6 +1942,8 @@ $custom_emojis = $client->CustomEmoji()->list();
 ```php
 $custom_emoji = $client->CustomEmoji()->create([
     "member_id" => null, // string
+    "file" => null, // string
+    "name" => null, // string
 ]);
 ```
 
@@ -2064,6 +2072,7 @@ $custom_stickers = $client->CustomSticker()->list();
 ```php
 $custom_sticker = $client->CustomSticker()->create([
     "member_id" => null, // string
+    "file" => null, // string
 ]);
 ```
 
@@ -2406,6 +2415,9 @@ $label = $client->Label()->load(["id" => "label_id"]);
 
 ```php
 $label = $client->Label()->create([
+    "color" => null, // string
+    "id_board" => null, // string
+    "name" => null, // string
 ]);
 ```
 
@@ -2439,6 +2451,8 @@ $list = $client->List()->load(["id" => "list_id"]);
 
 ```php
 $list = $client->List()->create([
+    "id_board" => null, // string
+    "name" => null, // string
 ]);
 ```
 
@@ -2854,6 +2868,7 @@ $organizations = $client->Organization()->list();
 
 ```php
 $organization = $client->Organization()->create([
+    "display_name" => null, // string
 ]);
 ```
 
@@ -3063,6 +3078,9 @@ $saved_searchs = $client->SavedSearch()->list();
 ```php
 $saved_search = $client->SavedSearch()->create([
     "member_id" => null, // string
+    "name" => null, // string
+    "pos" => null, // mixed
+    "query" => null, // string
 ]);
 ```
 
@@ -3290,6 +3308,7 @@ $trello_lists = $client->TrelloList()->list();
 ```php
 $trello_list = $client->TrelloList()->create([
     "board_id" => null, // string
+    "name" => null, // string
 ]);
 ```
 
@@ -3338,8 +3357,33 @@ $webhooks = $client->Webhook()->list();
 
 ```php
 $webhook = $client->Webhook()->create([
+    "callback_url" => null, // string
+    "id_model" => null, // string
 ]);
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

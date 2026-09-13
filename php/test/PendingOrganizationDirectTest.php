@@ -82,15 +82,17 @@ function pending_organization_direct_setup($mockres)
     $env = Runner::env_override([
         "TRELLO_TEST_PENDING_ORGANIZATION_ENTID" => [],
         "TRELLO_TEST_LIVE" => "FALSE",
-        "TRELLO_APIKEY" => "NONE",
+        "TRELLO_APIKEY" => "",
     ]);
 
     $live = $env["TRELLO_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["TRELLO_APIKEY"],
-        ];
+        ]);
         $client = new TrelloSDK($merged_opts);
         return [
             "client" => $client,

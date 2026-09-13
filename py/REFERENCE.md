@@ -422,6 +422,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.Action().update({
     "id": "action_id",
+    "text": "text",
     # Fields to update
 })
 ```
@@ -770,7 +771,7 @@ batch = client.Batch()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Batch().load()
+result = client.Batch().load({"url": "url"})
 ```
 
 ### Common Methods
@@ -848,6 +849,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Board().create({
+    "name": "example_name",  # str
     "id": "example_id",  # str
 })
 ```
@@ -939,6 +941,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.BoardBackground().create({
     "member_id": "example_member_id",  # str
+    "file": "example_file",  # str
 })
 ```
 
@@ -1083,6 +1086,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.BoardStar().create({
     "member_id": "example_member_id",  # str
+    "id_board": "example_id_board",  # str
+    "pos": "example_pos",  # Any
 })
 ```
 
@@ -1182,6 +1187,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.Bulk().update({
     "id": "bulk_id",
+    "id_organization": [],
     # Fields to update
 })
 ```
@@ -1268,6 +1274,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Card().create({
+    "id_list": "example_id_list",  # str
 })
 ```
 
@@ -1534,6 +1541,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Checklist().create({
+    "id_card": "example_id_card",  # str
 })
 ```
 
@@ -1727,6 +1735,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.CustomEmoji().create({
     "member_id": "example_member_id",  # str
+    "file": "example_file",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -1977,6 +1987,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.CustomSticker().create({
     "member_id": "example_member_id",  # str
+    "file": "example_file",  # str
 })
 ```
 
@@ -2050,6 +2061,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.EmailPosition().update({
     "board_id": "board_id",
+    "value": "value",
     # Fields to update
 })
 ```
@@ -2203,6 +2215,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.Enterpris().update({
     "id": "enterpris_id",
+    "id_organization": "id_organization",
     # Fields to update
 })
 ```
@@ -2592,6 +2605,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.IdEmailList().update({
     "board_id": "board_id",
+    "value": "value",
     # Fields to update
 })
 ```
@@ -2747,6 +2761,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Label().create({
+    "color": "example_color",  # str
+    "id_board": "example_id_board",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -2826,6 +2843,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.List().create({
+    "id_board": "example_id_board",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -2947,7 +2966,7 @@ result = client.Member().create({
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Member().list()
+results = client.Member().list({"query": "example"})
 for member in results:
     print(member)
 ```
@@ -3158,6 +3177,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 result = client.Membership().update({
     "id": "membership_id",
     "board_id": "board_id",
+    "type": "type",
     # Fields to update
 })
 ```
@@ -3715,6 +3735,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Organization().create({
+    "display_name": "example_display_name",  # str
 })
 ```
 
@@ -4169,6 +4190,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.SavedSearch().create({
     "member_id": "example_member_id",  # str
+    "name": "example_name",  # str
+    "pos": "example_pos",  # Any
+    "query": "example_query",  # str
 })
 ```
 
@@ -4252,7 +4276,7 @@ search = client.Search()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Search().list()
+results = client.Search().list({"query": "example"})
 for search in results:
     print(search)
 ```
@@ -4301,6 +4325,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.ShowSidebar().update({
     "board_id": "board_id",
+    "value": True,
     # Fields to update
 })
 ```
@@ -4349,6 +4374,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.ShowSidebarActivity().update({
     "board_id": "board_id",
+    "value": True,
     # Fields to update
 })
 ```
@@ -4397,6 +4423,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.ShowSidebarBoardAction().update({
     "board_id": "board_id",
+    "value": True,
     # Fields to update
 })
 ```
@@ -4445,6 +4472,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 ```python
 result = client.ShowSidebarMember().update({
     "board_id": "board_id",
+    "value": True,
     # Fields to update
 })
 ```
@@ -4516,6 +4544,9 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 result = client.Sticker().update({
     "id": "sticker_id",
     "card_id": "card_id",
+    "left": 1,
+    "top": 1,
+    "z_index": 1,
     # Fields to update
 })
 ```
@@ -4767,6 +4798,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.TrelloList().create({
     "board_id": "example_board_id",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -4843,6 +4875,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Webhook().create({
+    "callback_url": "example_callback_url",  # str
+    "id_model": "example_id_model",  # str
 })
 ```
 
@@ -4928,4 +4962,42 @@ client = TrelloSDK({
     },
 })
 ```
+
+
+### Configuring features
+
+Each feature is inactive until switched on, and an SDK with no feature
+configured does no feature work at all. Every option below keeps its default
+unless you name it.
+
+The array form of \`feature\` is significant: several features wrap the
+transport, and the order you list them in is the order they nest.
+
+#### `test`
+
+In-memory mock transport for testing without a live server.
+
+**Configuration**
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Options above are those the model carries a default for. A feature may
+also accept callback options — a `sink` to receive each record, for
+instance — which have no default and are covered in the full feature
+reference.
+
+**Usage**
+
+Set `feature.test.active` to true in the client options, and override any option above in the same entry. Every option keeps
+its default unless you name it.
+
+**Considerations**
+
+- Attaches to pipeline hooks, not the transport, so activation order does
+  not change what it observes.
+- Installs the BASE transport that the wrapping features wrap, so it must be
+  activated before them.
+- Inactive by default: leaving it out costs nothing at runtime.
 

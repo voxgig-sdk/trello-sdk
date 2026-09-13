@@ -45,18 +45,26 @@ main: kit: entity: board_plugin: {
           }
           method: "DELETE"
           orig: "/boards/{id}/boardPlugins/{idPlugin}"
-          parts: [
-            "boards"
-            "{board_id}"
-            "boardPlugins"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "board_id"
               idPlugin: "id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "boardPlugins"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "board_id"

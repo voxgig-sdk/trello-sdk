@@ -6,6 +6,7 @@ main: kit: entity: enterprise_audit_log: {
 
   fields: [
     {
+      format: "date"
       name: "date"
       req: false
       type: "`$STRING`"
@@ -57,16 +58,22 @@ main: kit: entity: enterprise_audit_log: {
           }
           method: "GET"
           orig: "/enterprises/{id}/auditlog"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "auditlog"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "auditlog"
+            }
+          ]
           select: {
             exist: [
               "enterpris_id"

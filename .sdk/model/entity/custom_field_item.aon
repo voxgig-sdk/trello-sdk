@@ -57,16 +57,22 @@ main: kit: entity: custom_field_item: {
           }
           method: "GET"
           orig: "/cards/{id}/customFieldItems"
-          parts: [
-            "cards"
-            "{card_id}"
-            "customFieldItems"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "customFieldItems"
+            }
+          ]
           select: {
             exist: [
               "card_id"

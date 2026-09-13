@@ -24,17 +24,25 @@ main: kit: entity: associated_domain: {
           }
           method: "DELETE"
           orig: "/organizations/{id}/prefs/associatedDomain"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "prefs"
-            "associatedDomain"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "prefs"
+            }
+            {
+              lit: "associatedDomain"
+            }
+          ]
           select: {
             exist: [
               "organization_id"

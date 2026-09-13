@@ -60,19 +60,29 @@ main: kit: entity: transferrable_organization: {
           }
           method: "GET"
           orig: "/enterprises/{id}/transferrable/organization/{idOrganization}"
-          parts: [
-            "enterprises"
-            "{enterpris_id}"
-            "transferrable"
-            "organization"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "enterpris_id"
               idOrganization: "id"
             }
           }
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterpris_id"
+            }
+            {
+              lit: "transferrable"
+            }
+            {
+              lit: "organization"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "enterpris_id"

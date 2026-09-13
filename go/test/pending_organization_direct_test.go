@@ -119,14 +119,22 @@ func pending_organizationDirectSetup(mockres any) *pending_organizationDirectSet
 	env := envOverride(map[string]any{
 		"TRELLO_TEST_PENDING_ORGANIZATION_ENTID": map[string]any{},
 		"TRELLO_TEST_LIVE":    "FALSE",
-		"TRELLO_APIKEY":       "NONE",
+		"TRELLO_APIKEY":       "",
 	})
 
 	live := env["TRELLO_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["TRELLO_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewTrelloSDK(mergedOpts)
 

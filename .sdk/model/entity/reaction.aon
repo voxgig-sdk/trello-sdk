@@ -63,17 +63,25 @@ main: kit: entity: reaction: {
           }
           method: "GET"
           orig: "/actions/{idAction}/reactions/{id}"
-          parts: [
-            "actions"
-            "{id_action}"
-            "reactions"
-            "{id}"
-          ]
           rename: {
             param: {
               idAction: "id_action"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactions"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "emoji"
@@ -120,16 +128,22 @@ main: kit: entity: reaction: {
           }
           method: "GET"
           orig: "/actions/{idAction}/reactions"
-          parts: [
-            "actions"
-            "{id_action}"
-            "reactions"
-          ]
           rename: {
             param: {
               idAction: "id_action"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactions"
+            }
+          ]
           select: {
             exist: [
               "emoji"
@@ -170,17 +184,25 @@ main: kit: entity: reaction: {
           }
           method: "DELETE"
           orig: "/actions/{idAction}/reactions/{id}"
-          parts: [
-            "actions"
-            "{id_action}"
-            "reactions"
-            "{id}"
-          ]
           rename: {
             param: {
               idAction: "id_action"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactions"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

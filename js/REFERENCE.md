@@ -1001,6 +1001,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.Action().update({
   id: 'action_id',
+  text: 'text',
   // Fields to update
 })
 ```
@@ -1340,7 +1341,7 @@ const batch = client.Batch()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Batch().load()
+const result = await client.Batch().load({ url: 'url' })
 ```
 
 ### Common Methods
@@ -1417,6 +1418,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Board().create({
+  name: 'example_name',
   id: 'example_id',
 })
 ```
@@ -1505,6 +1507,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.BoardBackground().create({
   member_id: 'example_member_id',
+  file: 'example_file',
 })
 ```
 
@@ -1645,6 +1648,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.BoardStar().create({
   member_id: 'example_member_id',
+  id_board: 'example_id_board',
+  pos: 'example_pos',
 })
 ```
 
@@ -1741,6 +1746,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.Bulk().update({
   id: 'bulk_id',
+  id_organization: [],
   // Fields to update
 })
 ```
@@ -1826,6 +1832,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Card().create({
+  id_list: 'example_id_list',
 })
 ```
 
@@ -2086,6 +2093,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Checklist().create({
+  id_card: 'example_id_card',
 })
 ```
 
@@ -2274,6 +2282,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.CustomEmoji().create({
   member_id: 'example_member_id',
+  file: 'example_file',
+  name: 'example_name',
 })
 ```
 
@@ -2515,6 +2525,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.CustomSticker().create({
   member_id: 'example_member_id',
+  file: 'example_file',
 })
 ```
 
@@ -2585,6 +2596,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.EmailPosition().update({
   board_id: 'board_id',
+  value: 'value',
   // Fields to update
 })
 ```
@@ -2734,6 +2746,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.Enterpris().update({
   id: 'enterpris_id',
+  id_organization: 'id_organization',
   // Fields to update
 })
 ```
@@ -3112,6 +3125,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.IdEmailList().update({
   board_id: 'board_id',
+  value: 'value',
   // Fields to update
 })
 ```
@@ -3264,6 +3278,9 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Label().create({
+  color: 'example_color',
+  id_board: 'example_id_board',
+  name: 'example_name',
 })
 ```
 
@@ -3342,6 +3359,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.List().create({
+  id_board: 'example_id_board',
+  name: 'example_name',
 })
 ```
 
@@ -3666,6 +3685,7 @@ Update an existing entity. The data must include the entity `id`.
 const result = await client.Membership().update({
   id: 'membership_id',
   board_id: 'board_id',
+  type: 'type',
   // Fields to update
 })
 ```
@@ -4209,6 +4229,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Organization().create({
+  display_name: 'example_display_name',
 })
 ```
 
@@ -4648,6 +4669,9 @@ Create a new entity with the given data.
 ```ts
 const result = await client.SavedSearch().create({
   member_id: 'example_member_id',
+  name: 'example_name',
+  pos: 'example_pos',
+  query: 'example_query',
 })
 ```
 
@@ -4774,6 +4798,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.ShowSidebar().update({
   board_id: 'board_id',
+  value: true,
   // Fields to update
 })
 ```
@@ -4821,6 +4846,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.ShowSidebarActivity().update({
   board_id: 'board_id',
+  value: true,
   // Fields to update
 })
 ```
@@ -4868,6 +4894,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.ShowSidebarBoardAction().update({
   board_id: 'board_id',
+  value: true,
   // Fields to update
 })
 ```
@@ -4915,6 +4942,7 @@ Update an existing entity. The data must include the entity `id`.
 ```ts
 const result = await client.ShowSidebarMember().update({
   board_id: 'board_id',
+  value: true,
   // Fields to update
 })
 ```
@@ -4985,6 +5013,9 @@ Update an existing entity. The data must include the entity `id`.
 const result = await client.Sticker().update({
   id: 'sticker_id',
   card_id: 'card_id',
+  left: 1,
+  top: 1,
+  z_index: 1,
   // Fields to update
 })
 ```
@@ -5228,6 +5259,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.TrelloList().create({
   board_id: 'example_board_id',
+  name: 'example_name',
 })
 ```
 
@@ -5301,6 +5333,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Webhook().create({
+  callback_url: 'example_callback_url',
+  id_model: 'example_id_model',
 })
 ```
 
@@ -5383,4 +5417,42 @@ const client = new TrelloSDK({
   }
 })
 ```
+
+
+### Configuring features
+
+Each feature is inactive until switched on, and an SDK with no feature
+configured does no feature work at all. Every option below keeps its default
+unless you name it.
+
+The array form of \`feature\` is significant: several features wrap the
+transport, and the order you list them in is the order they nest.
+
+#### `test`
+
+In-memory mock transport for testing without a live server.
+
+**Configuration**
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Options above are those the model carries a default for. A feature may
+also accept callback options — a `sink` to receive each record, for
+instance — which have no default and are covered in the full feature
+reference.
+
+**Usage**
+
+Set `feature.test.active` to true in the client options, and override any option above in the same entry. Every option keeps
+its default unless you name it.
+
+**Considerations**
+
+- Attaches to pipeline hooks, not the transport, so activation order does
+  not change what it observes.
+- Installs the BASE transport that the wrapping features wrap, so it must be
+  activated before them.
+- Inactive by default: leaving it out costs nothing at runtime.
 

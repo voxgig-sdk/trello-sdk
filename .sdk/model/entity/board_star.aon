@@ -63,16 +63,22 @@ main: kit: entity: board_star: {
           }
           method: "POST"
           orig: "/members/{id}/boardStars"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardStars"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardStars"
+            }
+          ]
           select: {
             exist: [
               "id_board"
@@ -114,16 +120,22 @@ main: kit: entity: board_star: {
           }
           method: "GET"
           orig: "/boards/{boardId}/boardStars"
-          parts: [
-            "boards"
-            "{id}"
-            "boardStars"
-          ]
           rename: {
             param: {
               boardId: "id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "boardStars"
+            }
+          ]
           select: {
             exist: [
               "filter"
@@ -163,18 +175,26 @@ main: kit: entity: board_star: {
           }
           method: "GET"
           orig: "/members/{id}/boardStars/{idStar}"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardStars"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idStar: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardStars"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -201,16 +221,22 @@ main: kit: entity: board_star: {
           }
           method: "GET"
           orig: "/members/{id}/boardStars"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardStars"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardStars"
+            }
+          ]
           select: {
             exist: [
               "member_id"
@@ -249,18 +275,26 @@ main: kit: entity: board_star: {
           }
           method: "DELETE"
           orig: "/members/{id}/boardStars/{idStar}"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardStars"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idStar: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardStars"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -309,18 +343,26 @@ main: kit: entity: board_star: {
           }
           method: "PUT"
           orig: "/members/{id}/boardStars/{idStar}"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardStars"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idStar: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardStars"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

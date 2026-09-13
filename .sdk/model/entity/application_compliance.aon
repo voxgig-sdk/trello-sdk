@@ -23,10 +23,16 @@ main: kit: entity: application_compliance: {
           }
           method: "GET"
           orig: "/applications/{key}/compliance"
-          parts: [
-            "applications"
-            "{key}"
-            "compliance"
+          segments: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "key"
+            }
+            {
+              lit: "compliance"
+            }
           ]
           select: {
             exist: [

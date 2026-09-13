@@ -192,7 +192,7 @@ function organization_basic_setup(extra)
     ["TRELLO_TEST_ORGANIZATION_ENTID"] = idmap,
     ["TRELLO_TEST_LIVE"] = "FALSE",
     ["TRELLO_TEST_EXPLAIN"] = "FALSE",
-    ["TRELLO_APIKEY"] = "NONE",
+    ["TRELLO_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -203,6 +203,9 @@ function organization_basic_setup(extra)
 
   if env["TRELLO_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["TRELLO_APIKEY"],
       },

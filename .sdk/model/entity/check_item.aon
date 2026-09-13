@@ -80,18 +80,26 @@ main: kit: entity: check_item: {
           }
           method: "GET"
           orig: "/cards/{id}/checkItem/{idCheckItem}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "checkItem"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idCheckItem: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "checkItem"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -137,16 +145,22 @@ main: kit: entity: check_item: {
           }
           method: "GET"
           orig: "/checklists/{id}/checkItems"
-          parts: [
-            "checklists"
-            "{checklist_id}"
-            "checkItems"
-          ]
           rename: {
             param: {
               id: "checklist_id"
             }
           }
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "checklist_id"
+            }
+            {
+              lit: "checkItems"
+            }
+          ]
           select: {
             exist: [
               "checklist_id"
@@ -192,18 +206,26 @@ main: kit: entity: check_item: {
           }
           method: "GET"
           orig: "/checklists/{id}/checkItems/{idCheckItem}"
-          parts: [
-            "checklists"
-            "{checklist_id}"
-            "checkItems"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "checklist_id"
               idCheckItem: "id"
             }
           }
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "checklist_id"
+            }
+            {
+              lit: "checkItems"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "checklist_id"
@@ -244,18 +266,26 @@ main: kit: entity: check_item: {
           }
           method: "DELETE"
           orig: "/cards/{id}/checkItem/{idCheckItem}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "checkItem"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idCheckItem: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "checkItem"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -290,18 +320,26 @@ main: kit: entity: check_item: {
           }
           method: "DELETE"
           orig: "/checklists/{id}/checkItems/{idCheckItem}"
-          parts: [
-            "checklists"
-            "{checklist_id}"
-            "checkItems"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "checklist_id"
               idCheckItem: "id"
             }
           }
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "checklist_id"
+            }
+            {
+              lit: "checkItems"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "checklist_id"
@@ -394,18 +432,26 @@ main: kit: entity: check_item: {
           }
           method: "PUT"
           orig: "/cards/{id}/checkItem/{idCheckItem}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "checkItem"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idCheckItem: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "checkItem"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -464,14 +510,6 @@ main: kit: entity: check_item: {
           }
           method: "PUT"
           orig: "/cards/{idCard}/checklist/{idChecklist}/checkItem/{idCheckItem}"
-          parts: [
-            "cards"
-            "{id_card}"
-            "checklist"
-            "{checklist_id}"
-            "checkItem"
-            "{id}"
-          ]
           rename: {
             param: {
               idCard: "id_card"
@@ -479,6 +517,26 @@ main: kit: entity: check_item: {
               idChecklist: "checklist_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id_card"
+            }
+            {
+              lit: "checklist"
+            }
+            {
+              var: "checklist_id"
+            }
+            {
+              lit: "checkItem"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "checklist_id"

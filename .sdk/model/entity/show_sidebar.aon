@@ -33,17 +33,25 @@ main: kit: entity: show_sidebar: {
           }
           method: "PUT"
           orig: "/boards/{id}/myPrefs/showSidebar"
-          parts: [
-            "boards"
-            "{board_id}"
-            "myPrefs"
-            "showSidebar"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "myPrefs"
+            }
+            {
+              lit: "showSidebar"
+            }
+          ]
           select: {
             exist: [
               "board_id"

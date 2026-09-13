@@ -24,17 +24,25 @@ main: kit: entity: generate: {
           }
           method: "POST"
           orig: "/boards/{id}/calendarKey/generate"
-          parts: [
-            "boards"
-            "{board_id}"
-            "calendarKey"
-            "generate"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "calendarKey"
+            }
+            {
+              lit: "generate"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -60,17 +68,25 @@ main: kit: entity: generate: {
           }
           method: "POST"
           orig: "/boards/{id}/emailKey/generate"
-          parts: [
-            "boards"
-            "{board_id}"
-            "emailKey"
-            "generate"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "emailKey"
+            }
+            {
+              lit: "generate"
+            }
+          ]
           select: {
             exist: [
               "board_id"

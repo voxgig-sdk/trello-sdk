@@ -52,6 +52,7 @@ main: kit: entity: card: {
       type: "`$ARRAY`"
     }
     {
+      format: "date-time"
       name: "dateLastActivity"
       req: false
       type: "`$STRING`"
@@ -67,6 +68,7 @@ main: kit: entity: card: {
       type: "`$OBJECT`"
     }
     {
+      format: "date"
       name: "due"
       req: false
       type: "`$STRING`"
@@ -162,6 +164,7 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
+      format: "float"
       name: "pos"
       req: false
       type: "`$NUMBER`"
@@ -172,6 +175,7 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
+      format: "url"
       name: "shortUrl"
       req: false
       type: "`$STRING`"
@@ -182,6 +186,7 @@ main: kit: entity: card: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "url"
       name: "url"
       req: false
       type: "`$STRING`"
@@ -334,8 +339,10 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards"
-          parts: [
-            "cards"
+          segments: [
+            {
+              lit: "cards"
+            }
           ]
           select: {
             exist: [
@@ -417,10 +424,16 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards/{id}/attachments"
-          parts: [
-            "cards"
-            "{id}"
-            "attachments"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "attachments"
+            }
           ]
           select: {
             "$action": "attachment"
@@ -491,10 +504,16 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards/{id}/stickers"
-          parts: [
-            "cards"
-            "{id}"
-            "stickers"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "stickers"
+            }
           ]
           select: {
             "$action": "sticker"
@@ -551,10 +570,16 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards/{id}/checklists"
-          parts: [
-            "cards"
-            "{id}"
-            "checklists"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "checklists"
+            }
           ]
           select: {
             "$action": "checklist"
@@ -601,10 +626,16 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards/{id}/labels"
-          parts: [
-            "cards"
-            "{id}"
-            "labels"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "labels"
+            }
           ]
           select: {
             "$action": "label"
@@ -644,10 +675,16 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards/{id}/idLabels"
-          parts: [
-            "cards"
-            "{id}"
-            "idLabels"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "idLabels"
+            }
           ]
           select: {
             "$action": "id_label"
@@ -686,10 +723,16 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards/{id}/idMembers"
-          parts: [
-            "cards"
-            "{id}"
-            "idMembers"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "idMembers"
+            }
           ]
           select: {
             "$action": "id_member"
@@ -728,10 +771,16 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards/{id}/membersVoted"
-          parts: [
-            "cards"
-            "{id}"
-            "membersVoted"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "membersVoted"
+            }
           ]
           select: {
             "$action": "members_voted"
@@ -760,10 +809,16 @@ main: kit: entity: card: {
           }
           method: "POST"
           orig: "/cards/{id}/markAssociatedNotificationsRead"
-          parts: [
-            "cards"
-            "{id}"
-            "markAssociatedNotificationsRead"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "markAssociatedNotificationsRead"
+            }
           ]
           select: {
             "$action": "mark_associated_notifications_read"
@@ -806,16 +861,22 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/actions/{id}/card"
-          parts: [
-            "actions"
-            "{action_id}"
-            "card"
-          ]
           rename: {
             param: {
               id: "action_id"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "card"
+            }
+          ]
           select: {
             exist: [
               "action_id"
@@ -852,16 +913,22 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/members/{id}/cards"
-          parts: [
-            "members"
-            "{member_id}"
-            "cards"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "cards"
+            }
+          ]
           select: {
             exist: [
               "filter"
@@ -888,16 +955,22 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/lists/{id}/cards"
-          parts: [
-            "lists"
-            "{list_id}"
-            "cards"
-          ]
           rename: {
             param: {
               id: "list_id"
             }
           }
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "list_id"
+            }
+            {
+              lit: "cards"
+            }
+          ]
           select: {
             exist: [
               "list_id"
@@ -1069,9 +1142,13 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/cards/{id}"
-          parts: [
-            "cards"
-            "{id}"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -1122,18 +1199,26 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/boards/{id}/cards/{filter}"
-          parts: [
-            "boards"
-            "{board_id}"
-            "cards"
-            "{id}"
-          ]
           rename: {
             param: {
               filter: "id"
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -1167,10 +1252,16 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/cards/{id}/{field}"
-          parts: [
-            "cards"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -1208,16 +1299,22 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/notifications/{id}/card"
-          parts: [
-            "notifications"
-            "{notification_id}"
-            "card"
-          ]
           rename: {
             param: {
               id: "notification_id"
             }
           }
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "notification_id"
+            }
+            {
+              lit: "card"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -1243,16 +1340,22 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/boards/{id}/cards"
-          parts: [
-            "boards"
-            "{board_id}"
-            "cards"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "cards"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -1278,16 +1381,22 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/checklists/{id}/cards"
-          parts: [
-            "checklists"
-            "{checklist_id}"
-            "cards"
-          ]
           rename: {
             param: {
               id: "checklist_id"
             }
           }
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "checklist_id"
+            }
+            {
+              lit: "cards"
+            }
+          ]
           select: {
             exist: [
               "checklist_id"
@@ -1318,9 +1427,13 @@ main: kit: entity: card: {
           }
           method: "DELETE"
           orig: "/cards/{id}"
-          parts: [
-            "cards"
-            "{id}"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -1478,9 +1591,13 @@ main: kit: entity: card: {
           }
           method: "PUT"
           orig: "/cards/{id}"
-          parts: [
-            "cards"
-            "{id}"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -1512,16 +1629,22 @@ main: kit: entity: card: {
         {
           method: "PUT"
           orig: "/cards/{idCard}/customFields"
-          parts: [
-            "cards"
-            "{id_card}"
-            "customFields"
-          ]
           rename: {
             param: {
               idCard: "id_card"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id_card"
+            }
+            {
+              lit: "customFields"
+            }
+          ]
           select: {
             "$action": "custom_field"
           }

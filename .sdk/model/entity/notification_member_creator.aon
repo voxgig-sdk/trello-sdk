@@ -47,10 +47,16 @@ main: kit: entity: notification_member_creator: {
           }
           method: "GET"
           orig: "/notifications/{id}/memberCreator"
-          parts: [
-            "notifications"
-            "{id}"
-            "memberCreator"
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "memberCreator"
+            }
           ]
           select: {
             exist: [

@@ -42,7 +42,15 @@ main: kit: entity: notification_channel_setting: {
 
   id: {
     field: "id"
+    from: {
+      channel: "channel"
+    }
     name: "id"
+    parts: [
+      "channel"
+      "blocked_key"
+    ]
+    sep: "/"
   }
 
   name: "notification_channel_setting"
@@ -64,16 +72,22 @@ main: kit: entity: notification_channel_setting: {
           }
           method: "GET"
           orig: "/members/{id}/notificationsChannelSettings"
-          parts: [
-            "members"
-            "{member_id}"
-            "notificationsChannelSettings"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+          ]
           select: {
             exist: [
               "member_id"
@@ -111,17 +125,25 @@ main: kit: entity: notification_channel_setting: {
           }
           method: "GET"
           orig: "/members/{id}/notificationsChannelSettings/{channel}"
-          parts: [
-            "members"
-            "{member_id}"
-            "notificationsChannelSettings"
-            "{channel}"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+            {
+              var: "channel"
+            }
+          ]
           select: {
             exist: [
               "channel"
@@ -168,18 +190,28 @@ main: kit: entity: notification_channel_setting: {
           }
           method: "PUT"
           orig: "/members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}"
-          parts: [
-            "members"
-            "{id}"
-            "notificationsChannelSettings"
-            "{channel}"
-            "{blocked_key}"
-          ]
           rename: {
             param: {
               blockedKeys: "blocked_key"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+            {
+              var: "channel"
+            }
+            {
+              var: "blocked_key"
+            }
+          ]
           select: {
             exist: [
               "blocked_key"
@@ -214,17 +246,25 @@ main: kit: entity: notification_channel_setting: {
           }
           method: "PUT"
           orig: "/members/{id}/notificationsChannelSettings/{channel}"
-          parts: [
-            "members"
-            "{member_id}"
-            "notificationsChannelSettings"
-            "{channel}"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+            {
+              var: "channel"
+            }
+          ]
           select: {
             exist: [
               "channel"
@@ -250,16 +290,22 @@ main: kit: entity: notification_channel_setting: {
           }
           method: "PUT"
           orig: "/members/{id}/notificationsChannelSettings"
-          parts: [
-            "members"
-            "{member_id}"
-            "notificationsChannelSettings"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+          ]
           select: {
             exist: [
               "member_id"

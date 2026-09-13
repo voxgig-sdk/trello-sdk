@@ -435,6 +435,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.Action(nil).Update(map[string]any{
     "id": "action_id",
+    "text": "text",
     // Fields to update
 }, nil)
 if err != nil {
@@ -801,7 +802,7 @@ fmt.Println(batch.GetName()) // "batch"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Batch(nil).Load(nil, nil)
+result, err := client.Batch(nil).Load(map[string]any{"url": "url"}, nil)
 if err != nil {
     panic(err)
 }
@@ -903,6 +904,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Board(nil).Create(map[string]any{
+    "name": "example_name",
     "id": "example_id",
 }, nil)
 if err != nil {
@@ -1008,6 +1010,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.BoardBackground(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "file": "example_file",
 }, nil)
 if err != nil {
     panic(err)
@@ -1166,6 +1169,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.BoardStar(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "id_board": "example_id_board",
+    "pos": "example_pos",
 }, nil)
 if err != nil {
     panic(err)
@@ -1259,6 +1264,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.Bulk(nil).Update(map[string]any{
     "id": "bulk_id",
+    "id_organization": []any{},
     // Fields to update
 }, nil)
 if err != nil {
@@ -1369,6 +1375,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Card(nil).Create(map[string]any{
+    "id_list": "example_id_list",
 }, nil)
 if err != nil {
     panic(err)
@@ -1645,6 +1652,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Checklist(nil).Create(map[string]any{
+    "id_card": "example_id_card",
 }, nil)
 if err != nil {
     panic(err)
@@ -1860,6 +1868,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.CustomEmoji(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "file": "example_file",
+    "name": "example_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -2128,6 +2138,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.CustomSticker(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "file": "example_file",
 }, nil)
 if err != nil {
     panic(err)
@@ -2187,6 +2198,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.EmailPosition(nil).Update(map[string]any{
     "board_id": "board_id",
+    "value": "value",
     // Fields to update
 }, nil)
 if err != nil {
@@ -2346,6 +2358,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.Enterpris(nil).Update(map[string]any{
     "id": "enterpris_id",
+    "id_organization": "id_organization",
     // Fields to update
 }, nil)
 if err != nil {
@@ -2743,6 +2756,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.IdEmailList(nil).Update(map[string]any{
     "board_id": "board_id",
+    "value": "value",
     // Fields to update
 }, nil)
 if err != nil {
@@ -2910,6 +2924,9 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Label(nil).Create(map[string]any{
+    "color": "example_color",
+    "id_board": "example_id_board",
+    "name": "example_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -3001,6 +3018,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.List(nil).Create(map[string]any{
+    "id_board": "example_id_board",
+    "name": "example_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -3353,6 +3372,7 @@ Update an existing entity. The data must include the entity `id`.
 result, err := client.Membership(nil).Update(map[string]any{
     "id": "membership_id",
     "board_id": "board_id",
+    "type": "type",
     // Fields to update
 }, nil)
 if err != nil {
@@ -3942,6 +3962,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Organization(nil).Create(map[string]any{
+    "display_name": "example_display_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -4424,6 +4445,9 @@ Create a new entity with the given data.
 ```go
 result, err := client.SavedSearch(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "name": "example_name",
+    "pos": "example_pos",
+    "query": "example_query",
 }, nil)
 if err != nil {
     panic(err)
@@ -4544,6 +4568,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.ShowSidebar(nil).Update(map[string]any{
     "board_id": "board_id",
+    "value": true,
     // Fields to update
 }, nil)
 if err != nil {
@@ -4592,6 +4617,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.ShowSidebarActivity(nil).Update(map[string]any{
     "board_id": "board_id",
+    "value": true,
     // Fields to update
 }, nil)
 if err != nil {
@@ -4640,6 +4666,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.ShowSidebarBoardAction(nil).Update(map[string]any{
     "board_id": "board_id",
+    "value": true,
     // Fields to update
 }, nil)
 if err != nil {
@@ -4688,6 +4715,7 @@ Update an existing entity. The data must include the entity `id`.
 ```go
 result, err := client.ShowSidebarMember(nil).Update(map[string]any{
     "board_id": "board_id",
+    "value": true,
     // Fields to update
 }, nil)
 if err != nil {
@@ -4755,6 +4783,9 @@ Update an existing entity. The data must include the entity `id`.
 result, err := client.Sticker(nil).Update(map[string]any{
     "id": "sticker_id",
     "card_id": "card_id",
+    "left": 1,
+    "top": 1,
+    "z_index": 1,
     // Fields to update
 }, nil)
 if err != nil {
@@ -5050,6 +5081,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.TrelloList(nil).Create(map[string]any{
     "board_id": "example_board_id",
+    "name": "example_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -5132,6 +5164,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Webhook(nil).Create(map[string]any{
+    "callback_url": "example_callback_url",
+    "id_model": "example_id_model",
 }, nil)
 if err != nil {
     panic(err)
@@ -5206,4 +5240,42 @@ client := sdk.NewTrelloSDK(map[string]any{
     },
 })
 ```
+
+
+### Configuring features
+
+Each feature is inactive until switched on, and an SDK with no feature
+configured does no feature work at all. Every option below keeps its default
+unless you name it.
+
+The array form of \`feature\` is significant: several features wrap the
+transport, and the order you list them in is the order they nest.
+
+#### `test`
+
+In-memory mock transport for testing without a live server.
+
+**Configuration**
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Options above are those the model carries a default for. A feature may
+also accept callback options — a `sink` to receive each record, for
+instance — which have no default and are covered in the full feature
+reference.
+
+**Usage**
+
+Set `feature.test.active` to true in the client options, and override any option above in the same entry. Every option keeps
+its default unless you name it.
+
+**Considerations**
+
+- Attaches to pipeline hooks, not the transport, so activation order does
+  not change what it observes.
+- Installs the BASE transport that the wrapping features wrap, so it must be
+  activated before them.
+- Inactive by default: leaving it out costs nothing at runtime.
 

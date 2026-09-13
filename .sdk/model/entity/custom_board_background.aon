@@ -44,18 +44,26 @@ main: kit: entity: custom_board_background: {
           }
           method: "DELETE"
           orig: "/members/{id}/customBoardBackgrounds/{idBackground}"
-          parts: [
-            "members"
-            "{member_id}"
-            "customBoardBackgrounds"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idBackground: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

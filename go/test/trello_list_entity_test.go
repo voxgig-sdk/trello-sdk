@@ -100,7 +100,7 @@ func TestTrelloListEntity(t *testing.T) {
 		// CREATE
 		trelloListRef01Ent := client.TrelloList(nil)
 		trelloListRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "trello_list"}, setup.data), "trello_list_ref01"))
+			vs.GetPath(setup.data, []any{"new", "trello_list"}), "trello_list_ref01"))
 		trelloListRef01Data["board_id"] = setup.idmap["board01"]
 
 		trelloListRef01DataResult, err := trelloListRef01Ent.Create(trelloListRef01Data, nil)
@@ -177,7 +177,7 @@ func trello_listBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"trello_list01", "trello_list02", "trello_list03", "action01", "action02", "action03", "board01", "board02", "board03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -197,7 +197,7 @@ func trello_listBasicSetup(extra map[string]any) *entityTestSetup {
 		"TRELLO_TEST_TRELLO_LIST_ENTID": idmap,
 		"TRELLO_TEST_LIVE":      "FALSE",
 		"TRELLO_TEST_EXPLAIN":   "FALSE",
-		"TRELLO_APIKEY":         "NONE",
+		"TRELLO_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TRELLO_TEST_TRELLO_LIST_ENTID"])
@@ -206,11 +206,23 @@ func trello_listBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TRELLO_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TRELLO_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTrelloSDK(core.ToMapAny(mergedOpts))
 	}

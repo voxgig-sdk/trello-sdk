@@ -63,8 +63,8 @@ console.log(created)
 ```js
 const updated = await client.Action().update({
   id: 'action_id',
+  text: 'example_text',
   data: {},
-  date: 'example_date',
 })
 console.log(updated)
 ```
@@ -1500,7 +1500,7 @@ Create an instance: `const batch = client.Batch()`
 #### Example: Load
 
 ```ts
-const batch = await client.Batch().load()
+const batch = await client.Batch().load({ url: 'url' })
 ```
 
 
@@ -1566,6 +1566,7 @@ const boards = await client.Board().list({ member_id: "example" })
 
 ```ts
 const board = await client.Board().create({
+  name: 'example_name',
   id: 'example_id',
 })
 ```
@@ -1608,6 +1609,7 @@ const board_backgrounds = await client.BoardBackground().list({ member_id: "exam
 ```ts
 const board_background = await client.BoardBackground().create({
   member_id: 'example_member_id',
+  file: 'example_file',
 })
 ```
 
@@ -1668,6 +1670,8 @@ const board_stars = await client.BoardStar().list({ id: "example_id" })
 ```ts
 const board_star = await client.BoardStar().create({
   member_id: 'example_member_id',
+  id_board: 'example_id_board',
+  pos: 'example_pos',
 })
 ```
 
@@ -1765,6 +1769,7 @@ const cards = await client.Card().list({ action_id: "example" })
 
 ```ts
 const card = await client.Card().create({
+  id_list: 'example_id_list',
 })
 ```
 
@@ -1874,6 +1879,7 @@ const checklist = await client.Checklist().load({ id: 'checklist_id' })
 
 ```ts
 const checklist = await client.Checklist().create({
+  id_card: 'example_id_card',
 })
 ```
 
@@ -1962,6 +1968,8 @@ const custom_emojis = await client.CustomEmoji().list({ member_id: "example" })
 ```ts
 const custom_emoji = await client.CustomEmoji().create({
   member_id: 'example_member_id',
+  file: 'example_file',
+  name: 'example_name',
 })
 ```
 
@@ -2085,6 +2093,7 @@ const custom_stickers = await client.CustomSticker().list({ member_id: "example"
 ```ts
 const custom_sticker = await client.CustomSticker().create({
   member_id: 'example_member_id',
+  file: 'example_file',
 })
 ```
 
@@ -2418,6 +2427,9 @@ const label = await client.Label().load({ id: 'label_id' })
 
 ```ts
 const label = await client.Label().create({
+  color: 'example_color',
+  id_board: 'example_id_board',
+  name: 'example_name',
 })
 ```
 
@@ -2450,6 +2462,8 @@ const list = await client.List().load({ id: 'list_id' })
 
 ```ts
 const list = await client.List().create({
+  id_board: 'example_id_board',
+  name: 'example_name',
 })
 ```
 
@@ -2524,7 +2538,7 @@ const member = await client.Member().load({ id: 'member_id' })
 #### Example: List
 
 ```ts
-const members = await client.Member().list()
+const members = await client.Member().list({ query: "example" })
 ```
 
 #### Example: Create
@@ -2849,6 +2863,7 @@ const organizations = await client.Organization().list({ enterpris_id: "example"
 
 ```ts
 const organization = await client.Organization().create({
+  display_name: 'example_display_name',
 })
 ```
 
@@ -3050,6 +3065,9 @@ const saved_searchs = await client.SavedSearch().list({ member_id: "example" })
 ```ts
 const saved_search = await client.SavedSearch().create({
   member_id: 'example_member_id',
+  name: 'example_name',
+  pos: 'example_pos',
+  query: 'example_query',
 })
 ```
 
@@ -3067,7 +3085,7 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.Search().list({ query: "example" })
 ```
 
 
@@ -3269,6 +3287,7 @@ const trello_lists = await client.TrelloList().list({ board_id: "example" })
 ```ts
 const trello_list = await client.TrelloList().create({
   board_id: 'example_board_id',
+  name: 'example_name',
 })
 ```
 
@@ -3315,8 +3334,33 @@ const webhooks = await client.Webhook().list({ token_id: "example" })
 
 ```ts
 const webhook = await client.Webhook().create({
+  callback_url: 'example_callback_url',
+  id_model: 'example_id_model',
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

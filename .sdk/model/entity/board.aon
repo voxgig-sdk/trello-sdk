@@ -16,16 +16,19 @@ main: kit: entity: board: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "dateLastActivity"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "dateLastView"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "datePluginDisable"
       req: false
       type: "`$STRING`"
@@ -118,6 +121,7 @@ main: kit: entity: board: {
       type: "`$STRING`"
     }
     {
+      format: "url"
       name: "shortUrl"
       req: false
       type: "`$STRING`"
@@ -138,6 +142,7 @@ main: kit: entity: board: {
       type: "`$STRING`"
     }
     {
+      format: "url"
       name: "url"
       req: false
       type: "`$STRING`"
@@ -286,8 +291,10 @@ main: kit: entity: board: {
           }
           method: "POST"
           orig: "/boards/"
-          parts: [
-            "boards"
+          segments: [
+            {
+              lit: "boards"
+            }
           ]
           select: {
             exist: [
@@ -344,10 +351,16 @@ main: kit: entity: board: {
           }
           method: "POST"
           orig: "/boards/{id}/labels"
-          parts: [
-            "boards"
-            "{id}"
-            "labels"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "labels"
+            }
           ]
           select: {
             "$action": "label"
@@ -387,10 +400,16 @@ main: kit: entity: board: {
           }
           method: "POST"
           orig: "/boards/{id}/boardPlugins"
-          parts: [
-            "boards"
-            "{id}"
-            "boardPlugins"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "boardPlugins"
+            }
           ]
           select: {
             "$action": "board_plugin"
@@ -429,10 +448,16 @@ main: kit: entity: board: {
           }
           method: "POST"
           orig: "/boards/{id}/idTags"
-          parts: [
-            "boards"
-            "{id}"
-            "idTags"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "idTags"
+            }
           ]
           select: {
             "$action": "id_tag"
@@ -461,10 +486,16 @@ main: kit: entity: board: {
           }
           method: "POST"
           orig: "/boards/{id}/markedAsViewed"
-          parts: [
-            "boards"
-            "{id}"
-            "markedAsViewed"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "markedAsViewed"
+            }
           ]
           select: {
             "$action": "marked_as_viewed"
@@ -539,16 +570,22 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/members/{id}/boards"
-          parts: [
-            "members"
-            "{member_id}"
-            "boards"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boards"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -597,16 +634,22 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/organizations/{id}/boards"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "boards"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "boards"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -644,16 +687,22 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/members/{id}/boardsInvited"
-          parts: [
-            "members"
-            "{member_id}"
-            "boardsInvited"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardsInvited"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -814,9 +863,13 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/boards/{id}"
-          parts: [
-            "boards"
-            "{id}"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -868,16 +921,22 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/actions/{id}/board"
-          parts: [
-            "actions"
-            "{action_id}"
-            "board"
-          ]
           rename: {
             param: {
               id: "action_id"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
           select: {
             exist: [
               "action_id"
@@ -914,16 +973,22 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/cards/{id}/board"
-          parts: [
-            "cards"
-            "{card_id}"
-            "board"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -960,16 +1025,22 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/checklists/{id}/board"
-          parts: [
-            "checklists"
-            "{checklist_id}"
-            "board"
-          ]
           rename: {
             param: {
               id: "checklist_id"
             }
           }
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "checklist_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
           select: {
             exist: [
               "checklist_id"
@@ -1002,10 +1073,16 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/boards/{id}/{field}"
-          parts: [
-            "boards"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -1042,16 +1119,22 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/lists/{id}/board"
-          parts: [
-            "lists"
-            "{list_id}"
-            "board"
-          ]
           rename: {
             param: {
               id: "list_id"
             }
           }
+          segments: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "list_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -1088,16 +1171,22 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/notifications/{id}/board"
-          parts: [
-            "notifications"
-            "{notification_id}"
-            "board"
-          ]
           rename: {
             param: {
               id: "notification_id"
             }
           }
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "notification_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -1136,9 +1225,13 @@ main: kit: entity: board: {
           }
           method: "DELETE"
           orig: "/boards/{id}"
-          parts: [
-            "boards"
-            "{id}"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -1278,9 +1371,13 @@ main: kit: entity: board: {
           }
           method: "PUT"
           orig: "/boards/{id}"
-          parts: [
-            "boards"
-            "{id}"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -1339,10 +1436,16 @@ main: kit: entity: board: {
           }
           method: "PUT"
           orig: "/boards/{id}/members"
-          parts: [
-            "boards"
-            "{id}"
-            "members"
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "members"
+            }
           ]
           select: {
             "$action": "member"

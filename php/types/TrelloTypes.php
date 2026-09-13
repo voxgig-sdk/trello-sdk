@@ -33,12 +33,21 @@ class Action
 class ActionLoadMatch
 {
     public string $id;
+    public ?bool $display = null;
+    public ?bool $entity = null;
+    public ?string $field = null;
+    public ?bool $member = null;
+    public ?bool $member_creator = null;
+    public ?string $member_creator_field = null;
+    public ?string $member_field = null;
 }
 
 /** Request payload for Action#list. */
 class ActionListMatch
 {
     public string $card_id;
+    public ?string $filter = null;
+    public ?float $page = null;
 }
 
 /** Request payload for Action#create. */
@@ -63,6 +72,7 @@ class ActionCreateData
 class ActionUpdateData
 {
     public string $id;
+    public string $text;
     public ?array $data = null;
     public ?string $date = null;
     public ?array $display = null;
@@ -151,12 +161,15 @@ class AttachmentLoadMatch
 {
     public string $card_id;
     public string $id;
+    public ?array $field = null;
 }
 
 /** Request payload for Attachment#list. */
 class AttachmentListMatch
 {
     public string $card_id;
+    public ?string $field = null;
+    public ?string $filter = null;
 }
 
 /** Request payload for Attachment#remove. */
@@ -174,6 +187,7 @@ class Batch
 /** Request payload for Batch#load. */
 class BatchLoadMatch
 {
+    public string $url;
 }
 
 /** Board entity data model. */
@@ -212,23 +226,59 @@ class Board
 class BoardLoadMatch
 {
     public string $id;
+    public ?string $action = null;
+    public ?string $board_star = null;
+    public ?string $card = null;
+    public ?bool $card_plugin_data = null;
+    public ?string $checklist = null;
+    public ?bool $custom_field = null;
+    public ?string $field = null;
+    public ?string $label = null;
+    public ?string $list = null;
+    public ?string $member = null;
+    public ?string $membership = null;
+    public ?bool $my_pref = null;
+    public ?bool $organization = null;
+    public ?bool $organization_plugin_data = null;
+    public ?bool $plugin_data = null;
+    public ?bool $tag = null;
 }
 
 /** Request payload for Board#list. */
 class BoardListMatch
 {
     public string $member_id;
+    public ?string $field = null;
+    public ?string $filter = null;
+    public ?string $list = null;
+    public ?bool $organization = null;
+    public ?string $organization_field = null;
 }
 
 /** Request payload for Board#create. */
 class BoardCreateData
 {
+    public ?bool $default_label = null;
+    public ?bool $default_list = null;
+    public ?string $desc = null;
+    public ?string $id_board_source = null;
+    public ?string $id_organization = null;
+    public ?string $keep_from_source = null;
+    public string $name;
+    public ?string $power_up = null;
+    public ?string $prefs_background = null;
+    public ?string $prefs_card_aging = null;
+    public ?bool $prefs_card_cover = null;
+    public ?string $prefs_comment = null;
+    public ?string $prefs_invitation = null;
+    public ?string $prefs_permission_level = null;
+    public ?bool $prefs_self_join = null;
+    public ?string $prefs_voting = null;
     public ?bool $closed = null;
     public ?string $creationMethod = null;
     public ?string $dateLastActivity = null;
     public ?string $dateLastView = null;
     public ?string $datePluginDisable = null;
-    public ?string $desc = null;
     public ?string $descData = null;
     public ?bool $enterpriseOwned = null;
     public ?string $fullName = null;
@@ -240,7 +290,6 @@ class BoardCreateData
     public ?array $labelNames = null;
     public ?array $limits = null;
     public ?string $memberships = null;
-    public ?string $name = null;
     public ?bool $pinned = null;
     public ?string $powerUps = null;
     public ?array $prefs = null;
@@ -257,11 +306,14 @@ class BoardUpdateData
 {
     public string $id;
     public ?bool $closed = null;
+    public ?string $desc = null;
+    public ?string $id_organization = null;
+    public ?string $name = null;
+    public ?string $subscribed = null;
     public ?string $creationMethod = null;
     public ?string $dateLastActivity = null;
     public ?string $dateLastView = null;
     public ?string $datePluginDisable = null;
-    public ?string $desc = null;
     public ?string $descData = null;
     public ?bool $enterpriseOwned = null;
     public ?string $fullName = null;
@@ -272,14 +324,12 @@ class BoardUpdateData
     public ?array $labelNames = null;
     public ?array $limits = null;
     public ?string $memberships = null;
-    public ?string $name = null;
     public ?bool $pinned = null;
     public ?string $powerUps = null;
     public ?array $prefs = null;
     public ?string $shortLink = null;
     public ?string $shortUrl = null;
     public ?bool $starred = null;
-    public ?bool $subscribed = null;
     public ?string $templateGallery = null;
     public ?string $url = null;
 }
@@ -301,6 +351,7 @@ class BoardBackgroundLoadMatch
 {
     public ?string $id = null;
     public string $member_id;
+    public ?string $field = null;
     public ?string $id_background = null;
 }
 
@@ -308,12 +359,14 @@ class BoardBackgroundLoadMatch
 class BoardBackgroundListMatch
 {
     public string $member_id;
+    public ?string $filter = null;
 }
 
 /** Request payload for BoardBackground#create. */
 class BoardBackgroundCreateData
 {
     public string $member_id;
+    public string $file;
     public ?string $id = null;
 }
 
@@ -322,6 +375,8 @@ class BoardBackgroundUpdateData
 {
     public ?string $id = null;
     public string $member_id;
+    public ?string $brightness = null;
+    public ?bool $tile = null;
     public ?string $id_background = null;
 }
 
@@ -364,15 +419,17 @@ class BoardStarLoadMatch
 class BoardStarListMatch
 {
     public string $id;
+    public ?string $filter = null;
 }
 
 /** Request payload for BoardStar#create. */
 class BoardStarCreateData
 {
     public string $member_id;
+    public string $id_board;
+    public mixed $pos;
     public ?string $id = null;
     public ?string $idBoard = null;
-    public ?int $pos = null;
 }
 
 /** Request payload for BoardStar#update. */
@@ -380,8 +437,8 @@ class BoardStarUpdateData
 {
     public string $id;
     public string $member_id;
+    public mixed $pos = null;
     public ?string $idBoard = null;
-    public ?int $pos = null;
 }
 
 /** Request payload for BoardStar#remove. */
@@ -408,6 +465,7 @@ class BulkLoadMatch
 class BulkUpdateData
 {
     public string $id;
+    public array $id_organization;
 }
 
 /** Card entity data model. */
@@ -453,18 +511,54 @@ class Card
 class CardLoadMatch
 {
     public string $id;
+    public ?string $action = null;
+    public ?string $attachment = null;
+    public ?string $attachment_field = null;
+    public ?bool $board = null;
+    public ?string $board_field = null;
+    public ?bool $check_item_state = null;
+    public ?string $checklist = null;
+    public ?string $checklist_field = null;
+    public ?bool $custom_field_item = null;
+    public ?string $field = null;
+    public ?bool $list = null;
+    public ?bool $member = null;
+    public ?string $member_field = null;
+    public ?string $member_voted_field = null;
+    public ?bool $members_voted = null;
+    public ?bool $plugin_data = null;
+    public ?bool $sticker = null;
+    public ?string $sticker_field = null;
 }
 
 /** Request payload for Card#list. */
 class CardListMatch
 {
     public string $action_id;
+    public ?string $field = null;
 }
 
 /** Request payload for Card#create. */
 class CardCreateData
 {
     public ?string $address = null;
+    public ?string $card_role = null;
+    public ?string $coordinate = null;
+    public ?string $desc = null;
+    public ?string $due = null;
+    public ?bool $due_complete = null;
+    public ?string $file_source = null;
+    public ?string $id_card_source = null;
+    public ?array $id_label = null;
+    public string $id_list;
+    public ?array $id_member = null;
+    public ?string $keep_from_source = null;
+    public ?string $location_name = null;
+    public ?string $mime_type = null;
+    public ?string $name = null;
+    public mixed $pos = null;
+    public ?string $start = null;
+    public ?string $url_source = null;
     public ?array $badges = null;
     public ?string $cardRole = null;
     public ?array $checkItemStates = null;
@@ -474,9 +568,7 @@ class CardCreateData
     public ?string $creationMethod = null;
     public ?array $customFieldItems = null;
     public ?string $dateLastActivity = null;
-    public ?string $desc = null;
     public ?array $descData = null;
-    public ?string $due = null;
     public ?string $dueReminder = null;
     public ?string $id = null;
     public ?string $idAttachmentCover = null;
@@ -492,8 +584,6 @@ class CardCreateData
     public ?string $locationName = null;
     public ?bool $manualCoverAttachment = null;
     public ?string $mirrorSourceId = null;
-    public ?string $name = null;
-    public ?float $pos = null;
     public ?string $shortLink = null;
     public ?string $shortUrl = null;
     public ?bool $subscribed = null;
@@ -505,18 +595,30 @@ class CardUpdateData
 {
     public string $id;
     public ?string $address = null;
+    public ?bool $closed = null;
+    public ?string $coordinate = null;
+    public ?array $cover = null;
+    public ?string $desc = null;
+    public ?string $due = null;
+    public ?bool $due_complete = null;
+    public ?string $id_attachment_cover = null;
+    public ?string $id_board = null;
+    public ?string $id_label = null;
+    public ?string $id_list = null;
+    public ?string $id_member = null;
+    public ?string $location_name = null;
+    public ?string $name = null;
+    public mixed $pos = null;
+    public ?string $start = null;
+    public ?bool $subscribed = null;
     public ?array $badges = null;
     public ?string $cardRole = null;
     public ?array $checkItemStates = null;
-    public ?bool $closed = null;
     public ?string $coordinates = null;
-    public ?array $cover = null;
     public ?string $creationMethod = null;
     public ?array $customFieldItems = null;
     public ?string $dateLastActivity = null;
-    public ?string $desc = null;
     public ?array $descData = null;
-    public ?string $due = null;
     public ?string $dueReminder = null;
     public ?string $idAttachmentCover = null;
     public ?string $idBoard = null;
@@ -531,11 +633,8 @@ class CardUpdateData
     public ?string $locationName = null;
     public ?bool $manualCoverAttachment = null;
     public ?string $mirrorSourceId = null;
-    public ?string $name = null;
-    public ?float $pos = null;
     public ?string $shortLink = null;
     public ?string $shortUrl = null;
-    public ?bool $subscribed = null;
     public ?string $url = null;
 }
 
@@ -555,6 +654,7 @@ class CardCheckItemState
 class CardCheckItemStateLoadMatch
 {
     public string $id;
+    public ?string $field = null;
 }
 
 /** CardList entity data model. */
@@ -567,6 +667,7 @@ class CardList
 class CardListLoadMatch
 {
     public string $id;
+    public ?string $field = null;
 }
 
 /** CheckItem entity data model. */
@@ -585,6 +686,7 @@ class CheckItemLoadMatch
 {
     public string $card_id;
     public string $id;
+    public ?string $field = null;
 }
 
 /** Request payload for CheckItem#update. */
@@ -592,13 +694,17 @@ class CheckItemUpdateData
 {
     public ?string $card_id = null;
     public string $id;
+    public ?string $due = null;
+    public ?float $due_reminder = null;
+    public ?string $id_checklist = null;
+    public ?string $id_member = null;
+    public ?string $name = null;
+    public mixed $pos = null;
+    public ?string $state = null;
     public ?string $checklist_id = null;
     public ?string $id_card = null;
     public ?string $idChecklist = null;
-    public ?string $name = null;
     public ?string $nameData = null;
-    public ?string $pos = null;
-    public ?string $state = null;
 }
 
 /** Request payload for CheckItem#remove. */
@@ -619,11 +725,19 @@ class Checklist
 class ChecklistLoadMatch
 {
     public string $id;
+    public ?string $card = null;
+    public ?string $check_item = null;
+    public ?string $check_item_field = null;
+    public ?string $field = null;
 }
 
 /** Request payload for Checklist#create. */
 class ChecklistCreateData
 {
+    public string $id_card;
+    public ?string $id_checklist_source = null;
+    public ?string $name = null;
+    public mixed $pos = null;
     public ?string $id = null;
 }
 
@@ -632,6 +746,9 @@ class ChecklistUpdateData
 {
     public ?string $field = null;
     public string $id;
+    public mixed $value = null;
+    public ?string $name = null;
+    public mixed $pos = null;
 }
 
 /** Request payload for Checklist#remove. */
@@ -658,6 +775,11 @@ class ClaimableOrganization
 class ClaimableOrganizationListMatch
 {
     public string $enterpris_id;
+    public ?string $active_since = null;
+    public ?string $cursor = null;
+    public ?string $inactive_since = null;
+    public ?int $limit = null;
+    public ?string $name = null;
 }
 
 /** CustomBoardBackground entity data model. */
@@ -686,6 +808,7 @@ class CustomEmojiLoadMatch
 {
     public string $id;
     public string $member_id;
+    public ?string $field = null;
 }
 
 /** Request payload for CustomEmoji#list. */
@@ -698,8 +821,9 @@ class CustomEmojiListMatch
 class CustomEmojiCreateData
 {
     public string $member_id;
+    public string $file;
+    public string $name;
     public ?string $id = null;
-    public ?string $name = null;
     public ?string $url = null;
 }
 
@@ -801,6 +925,7 @@ class CustomStickerLoadMatch
 {
     public string $id;
     public string $member_id;
+    public ?string $field = null;
 }
 
 /** Request payload for CustomSticker#list. */
@@ -813,6 +938,7 @@ class CustomStickerListMatch
 class CustomStickerCreateData
 {
     public string $member_id;
+    public string $file;
     public ?string $id = null;
     public ?array $scaled = null;
     public ?string $url = null;
@@ -834,6 +960,7 @@ class EmailPosition
 class EmailPositionUpdateData
 {
     public string $board_id;
+    public string $value;
 }
 
 /** Emoji entity data model. */
@@ -856,18 +983,8 @@ class Emoji
 /** Request payload for Emoji#list. */
 class EmojiListMatch
 {
-    public ?string $category = null;
-    public ?array $keywords = null;
-    public ?string $name = null;
-    public ?string $native = null;
-    public ?float $sheetX = null;
-    public ?float $sheetY = null;
-    public ?string $shortName = null;
-    public ?array $shortNames = null;
-    public ?string $text = null;
-    public ?string $texts = null;
-    public ?string $tts = null;
-    public ?string $unified = null;
+    public ?string $locale = null;
+    public ?bool $spritesheet = null;
 }
 
 /** Enterpris entity data model. */
@@ -897,12 +1014,26 @@ class Enterpris
 class EnterprisLoadMatch
 {
     public string $id;
+    public ?string $field = null;
+    public ?string $member = null;
+    public ?int $member_count = null;
+    public ?string $member_field = null;
+    public ?string $member_filter = null;
+    public ?string $member_sort = null;
+    public ?string $member_sort_by = null;
+    public ?string $member_sort_order = null;
+    public ?int $member_start_index = null;
+    public ?string $organization = null;
+    public ?string $organization_field = null;
+    public ?string $organization_membership = null;
+    public ?bool $organization_paid_account = null;
 }
 
 /** Request payload for Enterpris#create. */
 class EnterprisCreateData
 {
     public string $id;
+    public ?string $expiration = null;
     public ?string $dateOrganizationPrefsLastUpdated = null;
     public ?string $displayName = null;
     public ?array $domains = null;
@@ -926,6 +1057,7 @@ class EnterprisCreateData
 class EnterprisUpdateData
 {
     public string $id;
+    public string $id_organization;
     public ?string $dateOrganizationPrefsLastUpdated = null;
     public ?string $displayName = null;
     public ?array $domains = null;
@@ -956,6 +1088,10 @@ class EnterprisSignupUrl
 class EnterprisSignupUrlLoadMatch
 {
     public string $id;
+    public ?bool $authenticate = null;
+    public ?bool $confirmation_accepted = null;
+    public ?string $return_url = null;
+    public ?bool $tos_accepted = null;
 }
 
 /** EnterpriseAdmin entity data model. */
@@ -970,6 +1106,7 @@ class EnterpriseAdmin
 class EnterpriseAdminLoadMatch
 {
     public string $enterpris_id;
+    public ?string $field = null;
 }
 
 /** EnterpriseAuditLog entity data model. */
@@ -1019,6 +1156,8 @@ class ExportListMatch
 class ExportCreateData
 {
     public string $board_id;
+    public ?bool $attachment = null;
+    public ?float $attachment_age = null;
     public ?float $attempts = null;
     public ?string $exportUrl = null;
     public ?bool $finished = null;
@@ -1068,6 +1207,7 @@ class IdEmailList
 class IdEmailListUpdateData
 {
     public string $board_id;
+    public string $value;
 }
 
 /** IdLabel entity data model. */
@@ -1106,11 +1246,15 @@ class Label
 class LabelLoadMatch
 {
     public string $id;
+    public ?string $field = null;
 }
 
 /** Request payload for Label#create. */
 class LabelCreateData
 {
+    public string $color;
+    public string $id_board;
+    public string $name;
     public ?string $id = null;
 }
 
@@ -1118,7 +1262,10 @@ class LabelCreateData
 class LabelUpdateData
 {
     public string $id;
+    public ?string $color = null;
+    public ?string $name = null;
     public ?string $field = null;
+    public ?string $value = null;
 }
 
 /** Request payload for Label#remove. */
@@ -1138,11 +1285,16 @@ class ListLoadMatch
 {
     public ?string $board_id = null;
     public string $id;
+    public ?string $field = null;
 }
 
 /** Request payload for List#create. */
 class ListCreateData
 {
+    public string $id_board;
+    public ?string $id_list_source = null;
+    public string $name;
+    public mixed $pos = null;
     public ?string $id = null;
 }
 
@@ -1150,7 +1302,13 @@ class ListCreateData
 class ListUpdateData
 {
     public string $id;
+    public ?bool $closed = null;
+    public ?string $id_board = null;
+    public ?string $name = null;
+    public mixed $pos = null;
+    public ?bool $subscribed = null;
     public ?string $field = null;
+    public mixed $value = null;
 }
 
 /** Member entity data model. */
@@ -1204,59 +1362,44 @@ class Member
 class MemberLoadMatch
 {
     public string $id;
+    public ?string $action = null;
+    public ?string $board = null;
+    public ?string $board_background = null;
+    public ?bool $board_star = null;
+    public ?string $boards_invited = null;
+    public ?string $boards_invited_field = null;
+    public ?string $card = null;
+    public ?string $custom_board_background = null;
+    public ?string $custom_emoji = null;
+    public ?string $custom_sticker = null;
+    public ?string $field = null;
+    public ?string $notification = null;
+    public ?string $organization = null;
+    public ?string $organization_field = null;
+    public ?bool $organization_paid_account = null;
+    public ?string $organizations_invited = null;
+    public ?string $organizations_invited_field = null;
+    public ?bool $paid_account = null;
+    public ?bool $saved_search = null;
+    public ?string $token = null;
 }
 
 /** Request payload for Member#list. */
 class MemberListMatch
 {
-    public ?string $aaEmail = null;
-    public ?string $aaEnrolledDate = null;
-    public ?string $aaId = null;
-    public ?bool $activityBlocked = null;
-    public ?string $avatarHash = null;
-    public ?string $avatarSource = null;
-    public ?string $avatarUrl = null;
-    public ?string $bio = null;
-    public ?array $bioData = null;
-    public ?bool $confirmed = null;
-    public ?string $email = null;
-    public ?string $fullName = null;
-    public ?string $gravatarHash = null;
-    public ?string $id = null;
-    public ?array $idBoards = null;
-    public ?array $idBoardsPinned = null;
-    public ?string $idEnterprise = null;
-    public ?array $idEnterprisesAdmin = null;
-    public ?array $idEnterprisesDeactivated = null;
-    public ?string $idMemberReferrer = null;
-    public ?array $idOrganizations = null;
-    public ?array $idPremOrgsAdmin = null;
-    public ?string $initials = null;
-    public ?bool $isAaMastered = null;
-    public ?float $ixUpdate = null;
-    public ?array $limits = null;
-    public ?array $loginTypes = null;
-    public ?array $marketingOptIn = null;
-    public ?string $memberType = null;
-    public ?array $messagesDismissed = null;
-    public ?array $nonPublic = null;
-    public ?bool $nonPublicAvailable = null;
-    public ?array $oneTimeMessagesDismissed = null;
-    public ?array $prefs = null;
-    public ?array $premiumFeatures = null;
-    public ?array $products = null;
-    public ?string $status = null;
-    public ?array $trophies = null;
-    public ?string $uploadedAvatarHash = null;
-    public ?string $uploadedAvatarUrl = null;
-    public ?string $url = null;
-    public ?string $username = null;
+    public ?string $id_board = null;
+    public ?string $id_organization = null;
+    public ?int $limit = null;
+    public ?bool $only_org_member = null;
+    public string $query;
 }
 
 /** Request payload for Member#create. */
 class MemberCreateData
 {
     public string $id;
+    public ?string $file = null;
+    public ?string $value = null;
     public ?string $aaEmail = null;
     public ?string $aaEnrolledDate = null;
     public ?string $aaId = null;
@@ -1304,7 +1447,14 @@ class MemberCreateData
 class MemberUpdateData
 {
     public string $id;
+    public ?string $avatar_source = null;
+    public ?string $bio = null;
+    public ?string $full_name = null;
+    public ?string $initial = null;
+    public ?string $username = null;
     public ?string $board_id = null;
+    public ?bool $allow_billable_guest = null;
+    public ?string $type = null;
     public ?string $organization_id = null;
     public ?string $aaEmail = null;
     public ?string $aaEnrolledDate = null;
@@ -1313,7 +1463,6 @@ class MemberUpdateData
     public ?string $avatarHash = null;
     public ?string $avatarSource = null;
     public ?string $avatarUrl = null;
-    public ?string $bio = null;
     public ?array $bioData = null;
     public ?bool $confirmed = null;
     public ?string $email = null;
@@ -1346,7 +1495,6 @@ class MemberUpdateData
     public ?string $uploadedAvatarHash = null;
     public ?string $uploadedAvatarUrl = null;
     public ?string $url = null;
-    public ?string $username = null;
 }
 
 /** Request payload for Member#remove. */
@@ -1378,6 +1526,7 @@ class MembersVoted
 class MembersVotedLoadMatch
 {
     public string $card_id;
+    public ?string $field = null;
 }
 
 /** Request payload for MembersVoted#remove. */
@@ -1404,12 +1553,15 @@ class MembershipLoadMatch
 {
     public string $id;
     public string $organization_id;
+    public ?bool $member = null;
 }
 
 /** Request payload for Membership#list. */
 class MembershipListMatch
 {
     public string $organization_id;
+    public ?string $filter = null;
+    public ?bool $member = null;
 }
 
 /** Request payload for Membership#update. */
@@ -1417,6 +1569,8 @@ class MembershipUpdateData
 {
     public string $board_id;
     public string $id;
+    public ?string $member_field = null;
+    public string $type;
     public ?bool $admin = null;
     public ?bool $collaborator = null;
     public ?bool $deactivated = null;
@@ -1463,19 +1617,44 @@ class Notification
 class NotificationLoadMatch
 {
     public string $id;
+    public ?bool $board = null;
+    public ?string $board_field = null;
+    public ?bool $card = null;
+    public ?string $card_field = null;
+    public ?bool $display = null;
+    public ?bool $entity = null;
     public ?string $field = null;
+    public ?bool $list = null;
+    public ?bool $member = null;
+    public ?bool $member_creator = null;
+    public ?string $member_creator_field = null;
+    public ?string $member_field = null;
+    public ?bool $organization = null;
+    public ?string $organization_field = null;
 }
 
 /** Request payload for Notification#list. */
 class NotificationListMatch
 {
     public string $member_id;
+    public ?string $before = null;
+    public ?bool $display = null;
+    public ?bool $entity = null;
+    public ?string $field = null;
+    public ?string $filter = null;
+    public ?int $limit = null;
+    public ?bool $member_creator = null;
+    public ?string $member_creator_field = null;
+    public ?int $page = null;
+    public ?string $read_filter = null;
+    public ?string $since = null;
 }
 
 /** Request payload for Notification#update. */
 class NotificationUpdateData
 {
     public string $id;
+    public ?bool $unread = null;
     public ?array $board = null;
     public ?array $card = null;
     public ?string $data = null;
@@ -1485,7 +1664,6 @@ class NotificationUpdateData
     public ?string $idMemberCreator = null;
     public ?array $reactions = null;
     public ?string $type = null;
-    public ?bool $unread = null;
 }
 
 /** NotificationChannelSetting entity data model. */
@@ -1530,6 +1708,7 @@ class NotificationList
 class NotificationListLoadMatch
 {
     public string $id;
+    public ?string $field = null;
 }
 
 /** NotificationMemberCreator entity data model. */
@@ -1542,6 +1721,7 @@ class NotificationMemberCreator
 class NotificationMemberCreatorLoadMatch
 {
     public string $id;
+    public ?string $field = null;
 }
 
 /** NotificationsChannelSetting entity data model. */
@@ -1606,18 +1786,25 @@ class OrganizationLoadMatch
 class OrganizationListMatch
 {
     public string $enterpris_id;
+    public ?int $count = null;
+    public ?string $field = null;
+    public ?string $filter = null;
+    public ?int $start_index = null;
 }
 
 /** Request payload for Organization#create. */
 class OrganizationCreateData
 {
+    public ?string $desc = null;
+    public string $display_name;
+    public ?string $name = null;
+    public ?string $website = null;
     public ?string $dateLastActivity = null;
     public ?string $displayName = null;
     public ?string $id = null;
     public ?array $idBoards = null;
     public ?string $idEnterprise = null;
     public ?array $memberships = null;
-    public ?string $name = null;
     public ?string $offering = null;
     public ?array $prefs = null;
     public ?array $premiumFeatures = null;
@@ -1628,12 +1815,15 @@ class OrganizationCreateData
 class OrganizationUpdateData
 {
     public string $id;
+    public ?string $desc = null;
+    public ?string $display_name = null;
+    public ?string $name = null;
+    public ?string $website = null;
     public ?string $dateLastActivity = null;
     public ?string $displayName = null;
     public ?array $idBoards = null;
     public ?string $idEnterprise = null;
     public ?array $memberships = null;
-    public ?string $name = null;
     public ?string $offering = null;
     public ?array $prefs = null;
     public ?array $premiumFeatures = null;
@@ -1664,6 +1854,8 @@ class PendingOrganization
 class PendingOrganizationListMatch
 {
     public string $enterpris_id;
+    public ?string $active_since = null;
+    public ?string $inactive_since = null;
 }
 
 /** Plugin entity data model. */
@@ -1750,6 +1942,8 @@ class ReactionLoadMatch
 {
     public ?string $id = null;
     public string $id_action;
+    public ?bool $emoji = null;
+    public ?bool $member = null;
 }
 
 /** Request payload for Reaction#remove. */
@@ -1767,6 +1961,8 @@ class Read
 /** Request payload for Read#create. */
 class ReadCreateData
 {
+    public ?array $ids = null;
+    public ?bool $read = null;
 }
 
 /** SavedSearch entity data model. */
@@ -1795,10 +1991,10 @@ class SavedSearchListMatch
 class SavedSearchCreateData
 {
     public string $member_id;
+    public string $name;
+    public mixed $pos;
+    public string $query;
     public ?string $id = null;
-    public ?string $name = null;
-    public mixed $pos = null;
-    public ?string $query = null;
 }
 
 /** Request payload for SavedSearch#update. */
@@ -1807,7 +2003,7 @@ class SavedSearchUpdateData
     public string $id;
     public string $member_id;
     public ?string $name = null;
-    public mixed $pos = null;
+    public ?string $pos = null;
     public ?string $query = null;
 }
 
@@ -1826,6 +2022,27 @@ class Search
 /** Request payload for Search#list. */
 class SearchListMatch
 {
+    public ?string $board_field = null;
+    public ?bool $board_organization = null;
+    public ?int $boards_limit = null;
+    public ?string $card_attachment = null;
+    public ?bool $card_board = null;
+    public ?string $card_field = null;
+    public ?bool $card_list = null;
+    public ?bool $card_member = null;
+    public ?bool $card_sticker = null;
+    public ?int $cards_limit = null;
+    public ?float $cards_page = null;
+    public mixed $id_board = null;
+    public ?string $id_card = null;
+    public ?string $id_organization = null;
+    public ?string $member_field = null;
+    public ?int $members_limit = null;
+    public ?string $model_type = null;
+    public ?string $organization_field = null;
+    public ?int $organizations_limit = null;
+    public ?bool $partial = null;
+    public string $query;
 }
 
 /** ShowSidebar entity data model. */
@@ -1837,6 +2054,7 @@ class ShowSidebar
 class ShowSidebarUpdateData
 {
     public string $board_id;
+    public bool $value;
 }
 
 /** ShowSidebarActivity entity data model. */
@@ -1848,6 +2066,7 @@ class ShowSidebarActivity
 class ShowSidebarActivityUpdateData
 {
     public string $board_id;
+    public bool $value;
 }
 
 /** ShowSidebarBoardAction entity data model. */
@@ -1859,6 +2078,7 @@ class ShowSidebarBoardAction
 class ShowSidebarBoardActionUpdateData
 {
     public string $board_id;
+    public bool $value;
 }
 
 /** ShowSidebarMember entity data model. */
@@ -1870,6 +2090,7 @@ class ShowSidebarMember
 class ShowSidebarMemberUpdateData
 {
     public string $board_id;
+    public bool $value;
 }
 
 /** Sticker entity data model. */
@@ -1883,6 +2104,7 @@ class StickerLoadMatch
 {
     public string $card_id;
     public ?string $id = null;
+    public ?string $field = null;
 }
 
 /** Request payload for Sticker#update. */
@@ -1890,6 +2112,10 @@ class StickerUpdateData
 {
     public string $card_id;
     public string $id;
+    public float $left;
+    public ?float $rotate = null;
+    public float $top;
+    public int $z_index;
 }
 
 /** Request payload for Sticker#remove. */
@@ -1933,12 +2159,15 @@ class Token
 class TokenLoadMatch
 {
     public string $id;
+    public ?string $field = null;
+    public ?bool $webhook = null;
 }
 
 /** Request payload for Token#list. */
 class TokenListMatch
 {
     public string $member_id;
+    public ?bool $webhook = null;
 }
 
 /** Request payload for Token#remove. */
@@ -1981,25 +2210,30 @@ class TrelloList
 class TrelloListLoadMatch
 {
     public string $action_id;
+    public ?string $field = null;
 }
 
 /** Request payload for TrelloList#list. */
 class TrelloListListMatch
 {
     public string $board_id;
+    public ?string $card = null;
+    public ?string $card_field = null;
+    public ?string $field = null;
+    public ?string $filter = null;
 }
 
 /** Request payload for TrelloList#create. */
 class TrelloListCreateData
 {
     public string $board_id;
+    public string $name;
+    public ?string $pos = null;
     public ?array $attachments = null;
     public ?bool $closed = null;
     public ?string $id = null;
     public ?string $idBoard = null;
     public ?array $limits = null;
-    public ?string $name = null;
-    public ?float $pos = null;
     public ?string $softLimit = null;
     public ?bool $subscribed = null;
 }
@@ -2034,9 +2268,12 @@ class WebhookListMatch
 class WebhookCreateData
 {
     public ?bool $active = null;
+    public string $callback_url;
+    public ?string $description = null;
+    public string $id_model;
+    public ?string $token_id = null;
     public ?string $callbackURL = null;
     public ?float $consecutiveFailures = null;
-    public ?string $description = null;
     public ?string $firstConsecutiveFailDate = null;
     public ?string $id = null;
     public ?string $idModel = null;
@@ -2046,11 +2283,13 @@ class WebhookCreateData
 class WebhookUpdateData
 {
     public string $id;
-    public ?string $token_id = null;
     public ?bool $active = null;
+    public ?string $callback_url = null;
+    public ?string $description = null;
+    public ?string $id_model = null;
+    public ?string $token_id = null;
     public ?string $callbackURL = null;
     public ?float $consecutiveFailures = null;
-    public ?string $description = null;
     public ?string $firstConsecutiveFailDate = null;
     public ?string $idModel = null;
 }

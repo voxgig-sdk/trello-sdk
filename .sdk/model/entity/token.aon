@@ -6,11 +6,13 @@ main: kit: entity: token: {
 
   fields: [
     {
+      format: "date-time"
       name: "dateCreated"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "dateExpires"
       req: false
       type: "`$STRING`"
@@ -77,16 +79,22 @@ main: kit: entity: token: {
           }
           method: "GET"
           orig: "/members/{id}/tokens"
-          parts: [
-            "members"
-            "{member_id}"
-            "tokens"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "tokens"
+            }
+          ]
           select: {
             exist: [
               "member_id"
@@ -135,15 +143,19 @@ main: kit: entity: token: {
           }
           method: "GET"
           orig: "/tokens/{token}"
-          parts: [
-            "tokens"
-            "{id}"
-          ]
           rename: {
             param: {
               token: "id"
             }
           }
+          segments: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -175,15 +187,19 @@ main: kit: entity: token: {
           }
           method: "DELETE"
           orig: "/tokens/{token}/"
-          parts: [
-            "tokens"
-            "{id}"
-          ]
           rename: {
             param: {
               token: "id"
             }
           }
+          segments: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

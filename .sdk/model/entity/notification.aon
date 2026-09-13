@@ -180,16 +180,22 @@ main: kit: entity: notification: {
           }
           method: "GET"
           orig: "/members/{id}/notifications"
-          parts: [
-            "members"
-            "{member_id}"
-            "notifications"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notifications"
+            }
+          ]
           select: {
             exist: [
               "before"
@@ -345,9 +351,13 @@ main: kit: entity: notification: {
           }
           method: "GET"
           orig: "/notifications/{id}"
-          parts: [
-            "notifications"
-            "{id}"
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -395,10 +405,16 @@ main: kit: entity: notification: {
           }
           method: "GET"
           orig: "/notifications/{id}/{field}"
-          parts: [
-            "notifications"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -440,9 +456,13 @@ main: kit: entity: notification: {
           }
           method: "PUT"
           orig: "/notifications/{id}"
-          parts: [
-            "notifications"
-            "{id}"
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -479,10 +499,16 @@ main: kit: entity: notification: {
           }
           method: "PUT"
           orig: "/notifications/{id}/unread"
-          parts: [
-            "notifications"
-            "{id}"
-            "unread"
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "unread"
+            }
           ]
           select: {
             "$action": "unread"

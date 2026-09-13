@@ -24,16 +24,22 @@ main: kit: entity: action_reactions_summary: {
           }
           method: "GET"
           orig: "/actions/{idAction}/reactionsSummary"
-          parts: [
-            "actions"
-            "{id_action}"
-            "reactionsSummary"
-          ]
           rename: {
             param: {
               idAction: "id_action"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactionsSummary"
+            }
+          ]
           select: {
             exist: [
               "id_action"

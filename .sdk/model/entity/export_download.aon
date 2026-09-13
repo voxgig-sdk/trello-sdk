@@ -32,19 +32,29 @@ main: kit: entity: export_download: {
           }
           method: "GET"
           orig: "/boards/{id}/exports/{idExport}/download"
-          parts: [
-            "boards"
-            "{board_id}"
-            "exports"
-            "{id_export}"
-            "download"
-          ]
           rename: {
             param: {
               id: "board_id"
               idExport: "id_export"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              var: "id_export"
+            }
+            {
+              lit: "download"
+            }
+          ]
           select: {
             exist: [
               "board_id"

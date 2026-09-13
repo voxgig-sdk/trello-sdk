@@ -98,7 +98,7 @@ func TestAttachmentEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		attachmentRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.attachment", setup.data)))
+		attachmentRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.attachment")))
 		var attachmentRef01Data map[string]any
 		if len(attachmentRef01DataRaw) > 0 {
 			attachmentRef01Data = core.ToMapAny(attachmentRef01DataRaw[0][1])
@@ -165,7 +165,7 @@ func attachmentBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"attachment01", "attachment02", "attachment03", "card01", "card02", "card03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -185,7 +185,7 @@ func attachmentBasicSetup(extra map[string]any) *entityTestSetup {
 		"TRELLO_TEST_ATTACHMENT_ENTID": idmap,
 		"TRELLO_TEST_LIVE":      "FALSE",
 		"TRELLO_TEST_EXPLAIN":   "FALSE",
-		"TRELLO_APIKEY":         "NONE",
+		"TRELLO_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TRELLO_TEST_ATTACHMENT_ENTID"])
@@ -194,11 +194,23 @@ func attachmentBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TRELLO_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TRELLO_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTrelloSDK(core.ToMapAny(mergedOpts))
 	}

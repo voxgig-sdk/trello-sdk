@@ -52,7 +52,7 @@ func TestReadEntity(t *testing.T) {
 		// CREATE
 		readRef01Ent := client.Read(nil)
 		readRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "read"}, setup.data), "read_ref01"))
+			vs.GetPath(setup.data, []any{"new", "read"}), "read_ref01"))
 
 		readRef01DataResult, err := readRef01Ent.Create(readRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func readBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"read01", "read02", "read03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -110,7 +110,7 @@ func readBasicSetup(extra map[string]any) *entityTestSetup {
 		"TRELLO_TEST_READ_ENTID": idmap,
 		"TRELLO_TEST_LIVE":      "FALSE",
 		"TRELLO_TEST_EXPLAIN":   "FALSE",
-		"TRELLO_APIKEY":         "NONE",
+		"TRELLO_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TRELLO_TEST_READ_ENTID"])
@@ -119,11 +119,23 @@ func readBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TRELLO_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TRELLO_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTrelloSDK(core.ToMapAny(mergedOpts))
 	}

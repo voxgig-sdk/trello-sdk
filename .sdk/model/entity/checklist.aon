@@ -84,10 +84,16 @@ main: kit: entity: checklist: {
           }
           method: "POST"
           orig: "/checklists/{id}/checkItems"
-          parts: [
-            "checklists"
-            "{id}"
-            "checkItems"
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "checkItems"
+            }
           ]
           select: {
             "$action": "check_item"
@@ -143,8 +149,10 @@ main: kit: entity: checklist: {
           }
           method: "POST"
           orig: "/checklists"
-          parts: [
-            "checklists"
+          segments: [
+            {
+              lit: "checklists"
+            }
           ]
           select: {
             exist: [
@@ -213,9 +221,13 @@ main: kit: entity: checklist: {
           }
           method: "GET"
           orig: "/checklists/{id}"
-          parts: [
-            "checklists"
-            "{id}"
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -280,16 +292,22 @@ main: kit: entity: checklist: {
           }
           method: "GET"
           orig: "/cards/{id}/checklists"
-          parts: [
-            "cards"
-            "{card_id}"
-            "checklists"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "checklists"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -326,10 +344,16 @@ main: kit: entity: checklist: {
           }
           method: "GET"
           orig: "/checklists/{id}/{field}"
-          parts: [
-            "checklists"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -356,16 +380,22 @@ main: kit: entity: checklist: {
           }
           method: "GET"
           orig: "/boards/{id}/checklists"
-          parts: [
-            "boards"
-            "{board_id}"
-            "checklists"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "checklists"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -404,18 +434,26 @@ main: kit: entity: checklist: {
           }
           method: "DELETE"
           orig: "/cards/{id}/checklists/{idChecklist}"
-          parts: [
-            "cards"
-            "{card_id}"
-            "checklists"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "card_id"
               idChecklist: "id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "checklists"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "card_id"
@@ -442,9 +480,13 @@ main: kit: entity: checklist: {
           }
           method: "DELETE"
           orig: "/checklists/{id}"
-          parts: [
-            "checklists"
-            "{id}"
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -492,10 +534,16 @@ main: kit: entity: checklist: {
           }
           method: "PUT"
           orig: "/checklists/{id}/{field}"
-          parts: [
-            "checklists"
-            "{id}"
-            "{field}"
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -540,9 +588,13 @@ main: kit: entity: checklist: {
           }
           method: "PUT"
           orig: "/checklists/{id}"
-          parts: [
-            "checklists"
-            "{id}"
+          segments: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

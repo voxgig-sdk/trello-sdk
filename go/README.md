@@ -77,7 +77,7 @@ func main() {
     fmt.Println(created)
 
     // Update a action.
-    updated, err := client.Action(nil).Update(map[string]any{"id": "example_id", "data": map[string]any{}, "date": "example_date"}, nil)
+    updated, err := client.Action(nil).Update(map[string]any{"id": "example_id", "text": "example_text", "data": map[string]any{}}, nil)
     if err != nil {
         panic(err)
     }
@@ -1492,7 +1492,7 @@ Create an instance: `batch := client.Batch(nil)`
 #### Example: Load
 
 ```go
-batch, err := client.Batch(nil).Load(nil, nil)
+batch, err := client.Batch(nil).Load(map[string]any{"url": "url"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1570,6 +1570,7 @@ fmt.Println(boards) // the array of records
 
 ```go
 result, err := client.Board(nil).Create(map[string]any{
+    "name": "example_name",
     "id": "example_id",
 }, nil)
 if err != nil {
@@ -1624,6 +1625,7 @@ fmt.Println(boardBackgrounds) // the array of records
 ```go
 result, err := client.BoardBackground(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "file": "example_file",
 }, nil)
 if err != nil {
     panic(err)
@@ -1696,6 +1698,8 @@ fmt.Println(boardStars) // the array of records
 ```go
 result, err := client.BoardStar(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "id_board": "example_id_board",
+    "pos": "example_pos",
 }, nil)
 if err != nil {
     panic(err)
@@ -1809,6 +1813,7 @@ fmt.Println(cards) // the array of records
 
 ```go
 result, err := client.Card(nil).Create(map[string]any{
+    "id_list": "example_id_list",
 }, nil)
 if err != nil {
     panic(err)
@@ -1938,6 +1943,7 @@ fmt.Println(checklist) // the loaded record
 
 ```go
 result, err := client.Checklist(nil).Create(map[string]any{
+    "id_card": "example_id_card",
 }, nil)
 if err != nil {
     panic(err)
@@ -2042,6 +2048,8 @@ fmt.Println(customEmojis) // the array of records
 ```go
 result, err := client.CustomEmoji(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "file": "example_file",
+    "name": "example_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -2193,6 +2201,7 @@ fmt.Println(customStickers) // the array of records
 ```go
 result, err := client.CustomSticker(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "file": "example_file",
 }, nil)
 if err != nil {
     panic(err)
@@ -2578,6 +2587,9 @@ fmt.Println(label) // the loaded record
 
 ```go
 result, err := client.Label(nil).Create(map[string]any{
+    "color": "example_color",
+    "id_board": "example_id_board",
+    "name": "example_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -2618,6 +2630,8 @@ fmt.Println(list) // the loaded record
 
 ```go
 result, err := client.List(nil).Create(map[string]any{
+    "id_board": "example_id_board",
+    "name": "example_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -3089,6 +3103,7 @@ fmt.Println(organizations) // the array of records
 
 ```go
 result, err := client.Organization(nil).Create(map[string]any{
+    "display_name": "example_display_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -3334,6 +3349,9 @@ fmt.Println(savedSearchs) // the array of records
 ```go
 result, err := client.SavedSearch(nil).Create(map[string]any{
     "member_id": "example_member_id",
+    "name": "example_name",
+    "pos": "example_pos",
+    "query": "example_query",
 }, nil)
 if err != nil {
     panic(err)
@@ -3589,6 +3607,7 @@ fmt.Println(trelloLists) // the array of records
 ```go
 result, err := client.TrelloList(nil).Create(map[string]any{
     "board_id": "example_board_id",
+    "name": "example_name",
 }, nil)
 if err != nil {
     panic(err)
@@ -3647,12 +3666,37 @@ fmt.Println(webhooks) // the array of records
 
 ```go
 result, err := client.Webhook(nil).Create(map[string]any{
+    "callback_url": "example_callback_url",
+    "id_model": "example_id_model",
 }, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

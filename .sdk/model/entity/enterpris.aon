@@ -6,6 +6,7 @@ main: kit: entity: enterpris: {
 
   fields: [
     {
+      format: "date"
       name: "dateOrganizationPrefsLastUpdated"
       req: false
       type: "`$STRING`"
@@ -131,10 +132,16 @@ main: kit: entity: enterpris: {
           }
           method: "POST"
           orig: "/enterprises/{id}/tokens"
-          parts: [
-            "enterprises"
-            "{id}"
-            "tokens"
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "tokens"
+            }
           ]
           select: {
             "$action": "token"
@@ -273,9 +280,13 @@ main: kit: entity: enterpris: {
           }
           method: "GET"
           orig: "/enterprises/{id}"
-          parts: [
-            "enterprises"
-            "{id}"
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -329,10 +340,16 @@ main: kit: entity: enterpris: {
           }
           method: "PUT"
           orig: "/enterprises/{id}/organizations"
-          parts: [
-            "enterprises"
-            "{id}"
-            "organizations"
+          segments: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "organizations"
+            }
           ]
           select: {
             "$action": "organization"

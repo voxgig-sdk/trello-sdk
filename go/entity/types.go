@@ -31,11 +31,20 @@ type Action struct {
 // ActionLoadMatch is the typed request payload for Action.LoadTyped.
 type ActionLoadMatch struct {
 	Id string `json:"id"`
+	Display *bool `json:"display,omitempty"`
+	Entity *bool `json:"entity,omitempty"`
+	Field *string `json:"field,omitempty"`
+	Member *bool `json:"member,omitempty"`
+	MemberCreator *bool `json:"member_creator,omitempty"`
+	MemberCreatorField *string `json:"member_creator_field,omitempty"`
+	MemberField *string `json:"member_field,omitempty"`
 }
 
 // ActionListMatch is the typed request payload for Action.ListTyped.
 type ActionListMatch struct {
 	CardId string `json:"card_id"`
+	Filter *string `json:"filter,omitempty"`
+	Page *float64 `json:"page,omitempty"`
 }
 
 // ActionCreateData is the typed request payload for Action.CreateTyped.
@@ -58,6 +67,7 @@ type ActionCreateData struct {
 // ActionUpdateData is the typed request payload for Action.UpdateTyped.
 type ActionUpdateData struct {
 	Id string `json:"id"`
+	Text string `json:"text"`
 	Data *map[string]any `json:"data,omitempty"`
 	Date *string `json:"date,omitempty"`
 	Display *map[string]any `json:"display,omitempty"`
@@ -133,11 +143,14 @@ type Attachment struct {
 type AttachmentLoadMatch struct {
 	CardId string `json:"card_id"`
 	Id string `json:"id"`
+	Field *[]any `json:"field,omitempty"`
 }
 
 // AttachmentListMatch is the typed request payload for Attachment.ListTyped.
 type AttachmentListMatch struct {
 	CardId string `json:"card_id"`
+	Field *string `json:"field,omitempty"`
+	Filter *string `json:"filter,omitempty"`
 }
 
 // AttachmentRemoveMatch is the typed request payload for Attachment.RemoveTyped.
@@ -152,6 +165,7 @@ type Batch struct {
 
 // BatchLoadMatch is the typed request payload for Batch.LoadTyped.
 type BatchLoadMatch struct {
+	Url string `json:"url"`
 }
 
 // Board is the typed data model for the board entity.
@@ -188,33 +202,68 @@ type Board struct {
 // BoardLoadMatch is the typed request payload for Board.LoadTyped.
 type BoardLoadMatch struct {
 	Id string `json:"id"`
+	Action *string `json:"action,omitempty"`
+	BoardStar *string `json:"board_star,omitempty"`
+	Card *string `json:"card,omitempty"`
+	CardPluginData *bool `json:"card_plugin_data,omitempty"`
+	Checklist *string `json:"checklist,omitempty"`
+	CustomField *bool `json:"custom_field,omitempty"`
+	Field *string `json:"field,omitempty"`
+	Label *string `json:"label,omitempty"`
+	List *string `json:"list,omitempty"`
+	Member *string `json:"member,omitempty"`
+	Membership *string `json:"membership,omitempty"`
+	MyPref *bool `json:"my_pref,omitempty"`
+	Organization *bool `json:"organization,omitempty"`
+	OrganizationPluginData *bool `json:"organization_plugin_data,omitempty"`
+	PluginData *bool `json:"plugin_data,omitempty"`
+	Tag *bool `json:"tag,omitempty"`
 }
 
 // BoardListMatch is the typed request payload for Board.ListTyped.
 type BoardListMatch struct {
 	MemberId string `json:"member_id"`
+	Field *string `json:"field,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	List *string `json:"list,omitempty"`
+	Organization *bool `json:"organization,omitempty"`
+	OrganizationField *string `json:"organization_field,omitempty"`
 }
 
 // BoardCreateData is the typed request payload for Board.CreateTyped.
 type BoardCreateData struct {
+	DefaultLabel *bool `json:"default_label,omitempty"`
+	DefaultList *bool `json:"default_list,omitempty"`
+	Desc *string `json:"desc,omitempty"`
+	IdBoardSource *string `json:"id_board_source,omitempty"`
+	IdOrganization *string `json:"id_organization,omitempty"`
+	KeepFromSource *string `json:"keep_from_source,omitempty"`
+	Name string `json:"name"`
+	PowerUp *string `json:"power_up,omitempty"`
+	PrefsBackground *string `json:"prefs_background,omitempty"`
+	PrefsCardAging *string `json:"prefs_card_aging,omitempty"`
+	PrefsCardCover *bool `json:"prefs_card_cover,omitempty"`
+	PrefsComment *string `json:"prefs_comment,omitempty"`
+	PrefsInvitation *string `json:"prefs_invitation,omitempty"`
+	PrefsPermissionLevel *string `json:"prefs_permission_level,omitempty"`
+	PrefsSelfJoin *bool `json:"prefs_self_join,omitempty"`
+	PrefsVoting *string `json:"prefs_voting,omitempty"`
 	Closed *bool `json:"closed,omitempty"`
 	CreationMethod *string `json:"creationMethod,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
 	DateLastView *string `json:"dateLastView,omitempty"`
 	DatePluginDisable *string `json:"datePluginDisable,omitempty"`
-	Desc *string `json:"desc,omitempty"`
 	DescData *string `json:"descData,omitempty"`
 	EnterpriseOwned *bool `json:"enterpriseOwned,omitempty"`
 	FullName *string `json:"fullName,omitempty"`
 	Id string `json:"id"`
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
-	IdOrganization *string `json:"idOrganization,omitempty"`
+	IdOrganization2 *string `json:"idOrganization,omitempty"`
 	IdTags *string `json:"idTags,omitempty"`
 	IxUpdate *int `json:"ixUpdate,omitempty"`
 	LabelNames *map[string]any `json:"labelNames,omitempty"`
 	Limits *map[string]any `json:"limits,omitempty"`
 	Memberships *string `json:"memberships,omitempty"`
-	Name *string `json:"name,omitempty"`
 	Pinned *bool `json:"pinned,omitempty"`
 	PowerUps *string `json:"powerUps,omitempty"`
 	Prefs *map[string]any `json:"prefs,omitempty"`
@@ -230,29 +279,40 @@ type BoardCreateData struct {
 type BoardUpdateData struct {
 	Id string `json:"id"`
 	Closed *bool `json:"closed,omitempty"`
+	Desc *string `json:"desc,omitempty"`
+	IdOrganization *string `json:"id_organization,omitempty"`
+	Name *string `json:"name,omitempty"`
+	PrefsBackground *string `json:"prefs/background,omitempty"`
+	PrefsCalendarFeedEnabled *bool `json:"prefs/calendar_feed_enabled,omitempty"`
+	PrefsCardAging *string `json:"prefs/card_aging,omitempty"`
+	PrefsCardCover *bool `json:"prefs/card_cover,omitempty"`
+	PrefsComment *string `json:"prefs/comment,omitempty"`
+	PrefsHideVote *bool `json:"prefs/hide_vote,omitempty"`
+	PrefsInvitation *string `json:"prefs/invitation,omitempty"`
+	PrefsPermissionLevel *string `json:"prefs/permission_level,omitempty"`
+	PrefsSelfJoin *bool `json:"prefs/self_join,omitempty"`
+	PrefsVoting *string `json:"prefs/voting,omitempty"`
+	Subscribed *string `json:"subscribed,omitempty"`
 	CreationMethod *string `json:"creationMethod,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
 	DateLastView *string `json:"dateLastView,omitempty"`
 	DatePluginDisable *string `json:"datePluginDisable,omitempty"`
-	Desc *string `json:"desc,omitempty"`
 	DescData *string `json:"descData,omitempty"`
 	EnterpriseOwned *bool `json:"enterpriseOwned,omitempty"`
 	FullName *string `json:"fullName,omitempty"`
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
-	IdOrganization *string `json:"idOrganization,omitempty"`
+	IdOrganization2 *string `json:"idOrganization,omitempty"`
 	IdTags *string `json:"idTags,omitempty"`
 	IxUpdate *int `json:"ixUpdate,omitempty"`
 	LabelNames *map[string]any `json:"labelNames,omitempty"`
 	Limits *map[string]any `json:"limits,omitempty"`
 	Memberships *string `json:"memberships,omitempty"`
-	Name *string `json:"name,omitempty"`
 	Pinned *bool `json:"pinned,omitempty"`
 	PowerUps *string `json:"powerUps,omitempty"`
 	Prefs *map[string]any `json:"prefs,omitempty"`
 	ShortLink *string `json:"shortLink,omitempty"`
 	ShortUrl *string `json:"shortUrl,omitempty"`
 	Starred *bool `json:"starred,omitempty"`
-	Subscribed *bool `json:"subscribed,omitempty"`
 	TemplateGallery *string `json:"templateGallery,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
@@ -271,17 +331,20 @@ type BoardBackground struct {
 type BoardBackgroundLoadMatch struct {
 	Id *string `json:"id,omitempty"`
 	MemberId string `json:"member_id"`
+	Field *string `json:"field,omitempty"`
 	IdBackground *string `json:"id_background,omitempty"`
 }
 
 // BoardBackgroundListMatch is the typed request payload for BoardBackground.ListTyped.
 type BoardBackgroundListMatch struct {
 	MemberId string `json:"member_id"`
+	Filter *string `json:"filter,omitempty"`
 }
 
 // BoardBackgroundCreateData is the typed request payload for BoardBackground.CreateTyped.
 type BoardBackgroundCreateData struct {
 	MemberId string `json:"member_id"`
+	File string `json:"file"`
 	Id *string `json:"id,omitempty"`
 }
 
@@ -289,6 +352,8 @@ type BoardBackgroundCreateData struct {
 type BoardBackgroundUpdateData struct {
 	Id *string `json:"id,omitempty"`
 	MemberId string `json:"member_id"`
+	Brightness *string `json:"brightness,omitempty"`
+	Tile *bool `json:"tile,omitempty"`
 	IdBackground *string `json:"id_background,omitempty"`
 }
 
@@ -325,22 +390,24 @@ type BoardStarLoadMatch struct {
 // BoardStarListMatch is the typed request payload for BoardStar.ListTyped.
 type BoardStarListMatch struct {
 	Id string `json:"id"`
+	Filter *string `json:"filter,omitempty"`
 }
 
 // BoardStarCreateData is the typed request payload for BoardStar.CreateTyped.
 type BoardStarCreateData struct {
 	MemberId string `json:"member_id"`
+	IdBoard string `json:"id_board"`
+	Pos any `json:"pos"`
 	Id *string `json:"id,omitempty"`
-	IdBoard *string `json:"idBoard,omitempty"`
-	Pos *int `json:"pos,omitempty"`
+	IdBoard2 *string `json:"idBoard,omitempty"`
 }
 
 // BoardStarUpdateData is the typed request payload for BoardStar.UpdateTyped.
 type BoardStarUpdateData struct {
 	Id string `json:"id"`
 	MemberId string `json:"member_id"`
+	Pos *any `json:"pos,omitempty"`
 	IdBoard *string `json:"idBoard,omitempty"`
-	Pos *int `json:"pos,omitempty"`
 }
 
 // BoardStarRemoveMatch is the typed request payload for BoardStar.RemoveTyped.
@@ -363,6 +430,7 @@ type BulkLoadMatch struct {
 // BulkUpdateData is the typed request payload for Bulk.UpdateTyped.
 type BulkUpdateData struct {
 	Id string `json:"id"`
+	IdOrganization []any `json:"id_organization"`
 }
 
 // Card is the typed data model for the card entity.
@@ -406,18 +474,54 @@ type Card struct {
 // CardLoadMatch is the typed request payload for Card.LoadTyped.
 type CardLoadMatch struct {
 	Id string `json:"id"`
+	Action *string `json:"action,omitempty"`
+	Attachment *string `json:"attachment,omitempty"`
+	AttachmentField *string `json:"attachment_field,omitempty"`
+	Board *bool `json:"board,omitempty"`
+	BoardField *string `json:"board_field,omitempty"`
+	CheckItemState *bool `json:"check_item_state,omitempty"`
+	Checklist *string `json:"checklist,omitempty"`
+	ChecklistField *string `json:"checklist_field,omitempty"`
+	CustomFieldItem *bool `json:"custom_field_item,omitempty"`
+	Field *string `json:"field,omitempty"`
+	List *bool `json:"list,omitempty"`
+	Member *bool `json:"member,omitempty"`
+	MemberField *string `json:"member_field,omitempty"`
+	MemberVotedField *string `json:"member_voted_field,omitempty"`
+	MembersVoted *bool `json:"members_voted,omitempty"`
+	PluginData *bool `json:"plugin_data,omitempty"`
+	Sticker *bool `json:"sticker,omitempty"`
+	StickerField *string `json:"sticker_field,omitempty"`
 }
 
 // CardListMatch is the typed request payload for Card.ListTyped.
 type CardListMatch struct {
 	ActionId string `json:"action_id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // CardCreateData is the typed request payload for Card.CreateTyped.
 type CardCreateData struct {
 	Address *string `json:"address,omitempty"`
+	CardRole *string `json:"card_role,omitempty"`
+	Coordinate *string `json:"coordinate,omitempty"`
+	Desc *string `json:"desc,omitempty"`
+	Due *string `json:"due,omitempty"`
+	DueComplete *bool `json:"due_complete,omitempty"`
+	FileSource *string `json:"file_source,omitempty"`
+	IdCardSource *string `json:"id_card_source,omitempty"`
+	IdLabel *[]any `json:"id_label,omitempty"`
+	IdList string `json:"id_list"`
+	IdMember *[]any `json:"id_member,omitempty"`
+	KeepFromSource *string `json:"keep_from_source,omitempty"`
+	LocationName *string `json:"location_name,omitempty"`
+	MimeType *string `json:"mime_type,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Pos *any `json:"pos,omitempty"`
+	Start *string `json:"start,omitempty"`
+	UrlSource *string `json:"url_source,omitempty"`
 	Badges *map[string]any `json:"badges,omitempty"`
-	CardRole *string `json:"cardRole,omitempty"`
+	CardRole2 *string `json:"cardRole,omitempty"`
 	CheckItemStates *[]any `json:"checkItemStates,omitempty"`
 	Closed *bool `json:"closed,omitempty"`
 	Coordinates *string `json:"coordinates,omitempty"`
@@ -425,26 +529,22 @@ type CardCreateData struct {
 	CreationMethod *string `json:"creationMethod,omitempty"`
 	CustomFieldItems *[]any `json:"customFieldItems,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
-	Desc *string `json:"desc,omitempty"`
 	DescData *map[string]any `json:"descData,omitempty"`
-	Due *string `json:"due,omitempty"`
 	DueReminder *string `json:"dueReminder,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IdAttachmentCover *string `json:"idAttachmentCover,omitempty"`
 	IdBoard *string `json:"idBoard,omitempty"`
 	IdChecklists *[]any `json:"idChecklists,omitempty"`
 	IdLabels *[]any `json:"idLabels,omitempty"`
-	IdList *string `json:"idList,omitempty"`
+	IdList2 *string `json:"idList,omitempty"`
 	IdMembers *[]any `json:"idMembers,omitempty"`
 	IdMembersVoted *[]any `json:"idMembersVoted,omitempty"`
 	IdShort *int `json:"idShort,omitempty"`
 	Labels *[]any `json:"labels,omitempty"`
 	Limits *map[string]any `json:"limits,omitempty"`
-	LocationName *string `json:"locationName,omitempty"`
+	LocationName2 *string `json:"locationName,omitempty"`
 	ManualCoverAttachment *bool `json:"manualCoverAttachment,omitempty"`
 	MirrorSourceId *string `json:"mirrorSourceId,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Pos *float64 `json:"pos,omitempty"`
 	ShortLink *string `json:"shortLink,omitempty"`
 	ShortUrl *string `json:"shortUrl,omitempty"`
 	Subscribed *bool `json:"subscribed,omitempty"`
@@ -455,37 +555,46 @@ type CardCreateData struct {
 type CardUpdateData struct {
 	Id string `json:"id"`
 	Address *string `json:"address,omitempty"`
+	Closed *bool `json:"closed,omitempty"`
+	Coordinate *string `json:"coordinate,omitempty"`
+	Cover *map[string]any `json:"cover,omitempty"`
+	Desc *string `json:"desc,omitempty"`
+	Due *string `json:"due,omitempty"`
+	DueComplete *bool `json:"due_complete,omitempty"`
+	IdAttachmentCover *string `json:"id_attachment_cover,omitempty"`
+	IdBoard *string `json:"id_board,omitempty"`
+	IdLabel *string `json:"id_label,omitempty"`
+	IdList *string `json:"id_list,omitempty"`
+	IdMember *string `json:"id_member,omitempty"`
+	LocationName *string `json:"location_name,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Pos *any `json:"pos,omitempty"`
+	Start *string `json:"start,omitempty"`
+	Subscribed *bool `json:"subscribed,omitempty"`
 	Badges *map[string]any `json:"badges,omitempty"`
 	CardRole *string `json:"cardRole,omitempty"`
 	CheckItemStates *[]any `json:"checkItemStates,omitempty"`
-	Closed *bool `json:"closed,omitempty"`
 	Coordinates *string `json:"coordinates,omitempty"`
-	Cover *map[string]any `json:"cover,omitempty"`
 	CreationMethod *string `json:"creationMethod,omitempty"`
 	CustomFieldItems *[]any `json:"customFieldItems,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
-	Desc *string `json:"desc,omitempty"`
 	DescData *map[string]any `json:"descData,omitempty"`
-	Due *string `json:"due,omitempty"`
 	DueReminder *string `json:"dueReminder,omitempty"`
-	IdAttachmentCover *string `json:"idAttachmentCover,omitempty"`
-	IdBoard *string `json:"idBoard,omitempty"`
+	IdAttachmentCover2 *string `json:"idAttachmentCover,omitempty"`
+	IdBoard2 *string `json:"idBoard,omitempty"`
 	IdChecklists *[]any `json:"idChecklists,omitempty"`
 	IdLabels *[]any `json:"idLabels,omitempty"`
-	IdList *string `json:"idList,omitempty"`
+	IdList2 *string `json:"idList,omitempty"`
 	IdMembers *[]any `json:"idMembers,omitempty"`
 	IdMembersVoted *[]any `json:"idMembersVoted,omitempty"`
 	IdShort *int `json:"idShort,omitempty"`
 	Labels *[]any `json:"labels,omitempty"`
 	Limits *map[string]any `json:"limits,omitempty"`
-	LocationName *string `json:"locationName,omitempty"`
+	LocationName2 *string `json:"locationName,omitempty"`
 	ManualCoverAttachment *bool `json:"manualCoverAttachment,omitempty"`
 	MirrorSourceId *string `json:"mirrorSourceId,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Pos *float64 `json:"pos,omitempty"`
 	ShortLink *string `json:"shortLink,omitempty"`
 	ShortUrl *string `json:"shortUrl,omitempty"`
-	Subscribed *bool `json:"subscribed,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -502,6 +611,7 @@ type CardCheckItemState struct {
 // CardCheckItemStateLoadMatch is the typed request payload for CardCheckItemState.LoadTyped.
 type CardCheckItemStateLoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // CardList is the typed data model for the card_list entity.
@@ -512,6 +622,7 @@ type CardList struct {
 // CardListLoadMatch is the typed request payload for CardList.LoadTyped.
 type CardListLoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // CheckItem is the typed data model for the check_item entity.
@@ -528,19 +639,24 @@ type CheckItem struct {
 type CheckItemLoadMatch struct {
 	CardId string `json:"card_id"`
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // CheckItemUpdateData is the typed request payload for CheckItem.UpdateTyped.
 type CheckItemUpdateData struct {
 	CardId *string `json:"card_id,omitempty"`
 	Id string `json:"id"`
+	Due *string `json:"due,omitempty"`
+	DueReminder *float64 `json:"due_reminder,omitempty"`
+	IdChecklist *string `json:"id_checklist,omitempty"`
+	IdMember *string `json:"id_member,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Pos *any `json:"pos,omitempty"`
+	State *string `json:"state,omitempty"`
 	ChecklistId *string `json:"checklist_id,omitempty"`
 	IdCard *string `json:"id_card,omitempty"`
-	IdChecklist *string `json:"idChecklist,omitempty"`
-	Name *string `json:"name,omitempty"`
+	IdChecklist2 *string `json:"idChecklist,omitempty"`
 	NameData *string `json:"nameData,omitempty"`
-	Pos *string `json:"pos,omitempty"`
-	State *string `json:"state,omitempty"`
 }
 
 // CheckItemRemoveMatch is the typed request payload for CheckItem.RemoveTyped.
@@ -558,10 +674,18 @@ type Checklist struct {
 // ChecklistLoadMatch is the typed request payload for Checklist.LoadTyped.
 type ChecklistLoadMatch struct {
 	Id string `json:"id"`
+	Card *string `json:"card,omitempty"`
+	CheckItem *string `json:"check_item,omitempty"`
+	CheckItemField *string `json:"check_item_field,omitempty"`
+	Field *string `json:"field,omitempty"`
 }
 
 // ChecklistCreateData is the typed request payload for Checklist.CreateTyped.
 type ChecklistCreateData struct {
+	IdCard string `json:"id_card"`
+	IdChecklistSource *string `json:"id_checklist_source,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Pos *any `json:"pos,omitempty"`
 	Id *string `json:"id,omitempty"`
 }
 
@@ -569,6 +693,9 @@ type ChecklistCreateData struct {
 type ChecklistUpdateData struct {
 	Field *string `json:"field,omitempty"`
 	Id string `json:"id"`
+	Value *any `json:"value,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Pos *any `json:"pos,omitempty"`
 }
 
 // ChecklistRemoveMatch is the typed request payload for Checklist.RemoveTyped.
@@ -592,6 +719,11 @@ type ClaimableOrganization struct {
 // ClaimableOrganizationListMatch is the typed request payload for ClaimableOrganization.ListTyped.
 type ClaimableOrganizationListMatch struct {
 	EnterprisId string `json:"enterpris_id"`
+	ActiveSince *string `json:"active_since,omitempty"`
+	Cursor *string `json:"cursor,omitempty"`
+	InactiveSince *string `json:"inactive_since,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // CustomBoardBackground is the typed data model for the custom_board_background entity.
@@ -616,6 +748,7 @@ type CustomEmoji struct {
 type CustomEmojiLoadMatch struct {
 	Id string `json:"id"`
 	MemberId string `json:"member_id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // CustomEmojiListMatch is the typed request payload for CustomEmoji.ListTyped.
@@ -626,8 +759,9 @@ type CustomEmojiListMatch struct {
 // CustomEmojiCreateData is the typed request payload for CustomEmoji.CreateTyped.
 type CustomEmojiCreateData struct {
 	MemberId string `json:"member_id"`
+	File string `json:"file"`
+	Name string `json:"name"`
 	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -719,6 +853,7 @@ type CustomSticker struct {
 type CustomStickerLoadMatch struct {
 	Id string `json:"id"`
 	MemberId string `json:"member_id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // CustomStickerListMatch is the typed request payload for CustomSticker.ListTyped.
@@ -729,6 +864,7 @@ type CustomStickerListMatch struct {
 // CustomStickerCreateData is the typed request payload for CustomSticker.CreateTyped.
 type CustomStickerCreateData struct {
 	MemberId string `json:"member_id"`
+	File string `json:"file"`
 	Id *string `json:"id,omitempty"`
 	Scaled *[]any `json:"scaled,omitempty"`
 	Url *string `json:"url,omitempty"`
@@ -747,6 +883,7 @@ type EmailPosition struct {
 // EmailPositionUpdateData is the typed request payload for EmailPosition.UpdateTyped.
 type EmailPositionUpdateData struct {
 	BoardId string `json:"board_id"`
+	Value string `json:"value"`
 }
 
 // Emoji is the typed data model for the emoji entity.
@@ -767,18 +904,8 @@ type Emoji struct {
 
 // EmojiListMatch is the typed request payload for Emoji.ListTyped.
 type EmojiListMatch struct {
-	Category *string `json:"category,omitempty"`
-	Keywords *[]any `json:"keywords,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Native *string `json:"native,omitempty"`
-	SheetX *float64 `json:"sheetX,omitempty"`
-	SheetY *float64 `json:"sheetY,omitempty"`
-	ShortName *string `json:"shortName,omitempty"`
-	ShortNames *[]any `json:"shortNames,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Texts *string `json:"texts,omitempty"`
-	Tts *string `json:"tts,omitempty"`
-	Unified *string `json:"unified,omitempty"`
+	Locale *string `json:"locale,omitempty"`
+	Spritesheet *bool `json:"spritesheet,omitempty"`
 }
 
 // Enterpris is the typed data model for the enterpris entity.
@@ -806,11 +933,25 @@ type Enterpris struct {
 // EnterprisLoadMatch is the typed request payload for Enterpris.LoadTyped.
 type EnterprisLoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
+	Member *string `json:"member,omitempty"`
+	MemberCount *int `json:"member_count,omitempty"`
+	MemberField *string `json:"member_field,omitempty"`
+	MemberFilter *string `json:"member_filter,omitempty"`
+	MemberSort *string `json:"member_sort,omitempty"`
+	MemberSortBy *string `json:"member_sort_by,omitempty"`
+	MemberSortOrder *string `json:"member_sort_order,omitempty"`
+	MemberStartIndex *int `json:"member_start_index,omitempty"`
+	Organization *string `json:"organization,omitempty"`
+	OrganizationField *string `json:"organization_field,omitempty"`
+	OrganizationMembership *string `json:"organization_membership,omitempty"`
+	OrganizationPaidAccount *bool `json:"organization_paid_account,omitempty"`
 }
 
 // EnterprisCreateData is the typed request payload for Enterpris.CreateTyped.
 type EnterprisCreateData struct {
 	Id string `json:"id"`
+	Expiration *string `json:"expiration,omitempty"`
 	DateOrganizationPrefsLastUpdated *string `json:"dateOrganizationPrefsLastUpdated,omitempty"`
 	DisplayName *string `json:"displayName,omitempty"`
 	Domains *[]any `json:"domains,omitempty"`
@@ -833,6 +974,7 @@ type EnterprisCreateData struct {
 // EnterprisUpdateData is the typed request payload for Enterpris.UpdateTyped.
 type EnterprisUpdateData struct {
 	Id string `json:"id"`
+	IdOrganization string `json:"id_organization"`
 	DateOrganizationPrefsLastUpdated *string `json:"dateOrganizationPrefsLastUpdated,omitempty"`
 	DisplayName *string `json:"displayName,omitempty"`
 	Domains *[]any `json:"domains,omitempty"`
@@ -861,6 +1003,10 @@ type EnterprisSignupUrl struct {
 // EnterprisSignupUrlLoadMatch is the typed request payload for EnterprisSignupUrl.LoadTyped.
 type EnterprisSignupUrlLoadMatch struct {
 	Id string `json:"id"`
+	Authenticate *bool `json:"authenticate,omitempty"`
+	ConfirmationAccepted *bool `json:"confirmation_accepted,omitempty"`
+	ReturnUrl *string `json:"return_url,omitempty"`
+	TosAccepted *bool `json:"tos_accepted,omitempty"`
 }
 
 // EnterpriseAdmin is the typed data model for the enterprise_admin entity.
@@ -873,6 +1019,7 @@ type EnterpriseAdmin struct {
 // EnterpriseAdminLoadMatch is the typed request payload for EnterpriseAdmin.LoadTyped.
 type EnterpriseAdminLoadMatch struct {
 	EnterprisId string `json:"enterpris_id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // EnterpriseAuditLog is the typed data model for the enterprise_audit_log entity.
@@ -916,6 +1063,8 @@ type ExportListMatch struct {
 // ExportCreateData is the typed request payload for Export.CreateTyped.
 type ExportCreateData struct {
 	BoardId string `json:"board_id"`
+	Attachment *bool `json:"attachment,omitempty"`
+	AttachmentAge *float64 `json:"attachment_age,omitempty"`
 	Attempts *float64 `json:"attempts,omitempty"`
 	ExportUrl *string `json:"exportUrl,omitempty"`
 	Finished *bool `json:"finished,omitempty"`
@@ -958,6 +1107,7 @@ type IdEmailList struct {
 // IdEmailListUpdateData is the typed request payload for IdEmailList.UpdateTyped.
 type IdEmailListUpdateData struct {
 	BoardId string `json:"board_id"`
+	Value string `json:"value"`
 }
 
 // IdLabel is the typed data model for the id_label entity.
@@ -990,17 +1140,24 @@ type Label struct {
 // LabelLoadMatch is the typed request payload for Label.LoadTyped.
 type LabelLoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // LabelCreateData is the typed request payload for Label.CreateTyped.
 type LabelCreateData struct {
+	Color string `json:"color"`
+	IdBoard string `json:"id_board"`
+	Name string `json:"name"`
 	Id *string `json:"id,omitempty"`
 }
 
 // LabelUpdateData is the typed request payload for Label.UpdateTyped.
 type LabelUpdateData struct {
 	Id string `json:"id"`
+	Color *string `json:"color,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Field *string `json:"field,omitempty"`
+	Value *string `json:"value,omitempty"`
 }
 
 // LabelRemoveMatch is the typed request payload for Label.RemoveTyped.
@@ -1017,17 +1174,28 @@ type List struct {
 type ListLoadMatch struct {
 	BoardId *string `json:"board_id,omitempty"`
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // ListCreateData is the typed request payload for List.CreateTyped.
 type ListCreateData struct {
+	IdBoard string `json:"id_board"`
+	IdListSource *string `json:"id_list_source,omitempty"`
+	Name string `json:"name"`
+	Pos *any `json:"pos,omitempty"`
 	Id *string `json:"id,omitempty"`
 }
 
 // ListUpdateData is the typed request payload for List.UpdateTyped.
 type ListUpdateData struct {
 	Id string `json:"id"`
+	Closed *bool `json:"closed,omitempty"`
+	IdBoard *string `json:"id_board,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Pos *any `json:"pos,omitempty"`
+	Subscribed *bool `json:"subscribed,omitempty"`
 	Field *string `json:"field,omitempty"`
+	Value *any `json:"value,omitempty"`
 }
 
 // Member is the typed data model for the member entity.
@@ -1079,57 +1247,42 @@ type Member struct {
 // MemberLoadMatch is the typed request payload for Member.LoadTyped.
 type MemberLoadMatch struct {
 	Id string `json:"id"`
+	Action *string `json:"action,omitempty"`
+	Board *string `json:"board,omitempty"`
+	BoardBackground *string `json:"board_background,omitempty"`
+	BoardStar *bool `json:"board_star,omitempty"`
+	BoardsInvited *string `json:"boards_invited,omitempty"`
+	BoardsInvitedField *string `json:"boards_invited_field,omitempty"`
+	Card *string `json:"card,omitempty"`
+	CustomBoardBackground *string `json:"custom_board_background,omitempty"`
+	CustomEmoji *string `json:"custom_emoji,omitempty"`
+	CustomSticker *string `json:"custom_sticker,omitempty"`
+	Field *string `json:"field,omitempty"`
+	Notification *string `json:"notification,omitempty"`
+	Organization *string `json:"organization,omitempty"`
+	OrganizationField *string `json:"organization_field,omitempty"`
+	OrganizationPaidAccount *bool `json:"organization_paid_account,omitempty"`
+	OrganizationsInvited *string `json:"organizations_invited,omitempty"`
+	OrganizationsInvitedField *string `json:"organizations_invited_field,omitempty"`
+	PaidAccount *bool `json:"paid_account,omitempty"`
+	SavedSearch *bool `json:"saved_search,omitempty"`
+	Token *string `json:"token,omitempty"`
 }
 
 // MemberListMatch is the typed request payload for Member.ListTyped.
 type MemberListMatch struct {
-	AaEmail *string `json:"aaEmail,omitempty"`
-	AaEnrolledDate *string `json:"aaEnrolledDate,omitempty"`
-	AaId *string `json:"aaId,omitempty"`
-	ActivityBlocked *bool `json:"activityBlocked,omitempty"`
-	AvatarHash *string `json:"avatarHash,omitempty"`
-	AvatarSource *string `json:"avatarSource,omitempty"`
-	AvatarUrl *string `json:"avatarUrl,omitempty"`
-	Bio *string `json:"bio,omitempty"`
-	BioData *map[string]any `json:"bioData,omitempty"`
-	Confirmed *bool `json:"confirmed,omitempty"`
-	Email *string `json:"email,omitempty"`
-	FullName *string `json:"fullName,omitempty"`
-	GravatarHash *string `json:"gravatarHash,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdBoards *[]any `json:"idBoards,omitempty"`
-	IdBoardsPinned *[]any `json:"idBoardsPinned,omitempty"`
-	IdEnterprise *string `json:"idEnterprise,omitempty"`
-	IdEnterprisesAdmin *[]any `json:"idEnterprisesAdmin,omitempty"`
-	IdEnterprisesDeactivated *[]any `json:"idEnterprisesDeactivated,omitempty"`
-	IdMemberReferrer *string `json:"idMemberReferrer,omitempty"`
-	IdOrganizations *[]any `json:"idOrganizations,omitempty"`
-	IdPremOrgsAdmin *[]any `json:"idPremOrgsAdmin,omitempty"`
-	Initials *string `json:"initials,omitempty"`
-	IsAaMastered *bool `json:"isAaMastered,omitempty"`
-	IxUpdate *float64 `json:"ixUpdate,omitempty"`
-	Limits *map[string]any `json:"limits,omitempty"`
-	LoginTypes *[]any `json:"loginTypes,omitempty"`
-	MarketingOptIn *map[string]any `json:"marketingOptIn,omitempty"`
-	MemberType *string `json:"memberType,omitempty"`
-	MessagesDismissed *map[string]any `json:"messagesDismissed,omitempty"`
-	NonPublic *map[string]any `json:"nonPublic,omitempty"`
-	NonPublicAvailable *bool `json:"nonPublicAvailable,omitempty"`
-	OneTimeMessagesDismissed *[]any `json:"oneTimeMessagesDismissed,omitempty"`
-	Prefs *map[string]any `json:"prefs,omitempty"`
-	PremiumFeatures *[]any `json:"premiumFeatures,omitempty"`
-	Products *[]any `json:"products,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Trophies *[]any `json:"trophies,omitempty"`
-	UploadedAvatarHash *string `json:"uploadedAvatarHash,omitempty"`
-	UploadedAvatarUrl *string `json:"uploadedAvatarUrl,omitempty"`
-	Url *string `json:"url,omitempty"`
-	Username *string `json:"username,omitempty"`
+	IdBoard *string `json:"id_board,omitempty"`
+	IdOrganization *string `json:"id_organization,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	OnlyOrgMember *bool `json:"only_org_member,omitempty"`
+	Query string `json:"query"`
 }
 
 // MemberCreateData is the typed request payload for Member.CreateTyped.
 type MemberCreateData struct {
 	Id string `json:"id"`
+	File *string `json:"file,omitempty"`
+	Value *string `json:"value,omitempty"`
 	AaEmail *string `json:"aaEmail,omitempty"`
 	AaEnrolledDate *string `json:"aaEnrolledDate,omitempty"`
 	AaId *string `json:"aaId,omitempty"`
@@ -1176,20 +1329,29 @@ type MemberCreateData struct {
 // MemberUpdateData is the typed request payload for Member.UpdateTyped.
 type MemberUpdateData struct {
 	Id string `json:"id"`
+	AvatarSource *string `json:"avatar_source,omitempty"`
+	Bio *string `json:"bio,omitempty"`
+	FullName *string `json:"full_name,omitempty"`
+	Initial *string `json:"initial,omitempty"`
+	PrefsColorBlind *bool `json:"prefs/color_blind,omitempty"`
+	PrefsLocale *string `json:"prefs/locale,omitempty"`
+	PrefsMinutesBetweenSummary *int `json:"prefs/minutes_between_summary,omitempty"`
+	Username *string `json:"username,omitempty"`
 	BoardId *string `json:"board_id,omitempty"`
+	AllowBillableGuest *bool `json:"allow_billable_guest,omitempty"`
+	Type *string `json:"type,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AaEmail *string `json:"aaEmail,omitempty"`
 	AaEnrolledDate *string `json:"aaEnrolledDate,omitempty"`
 	AaId *string `json:"aaId,omitempty"`
 	ActivityBlocked *bool `json:"activityBlocked,omitempty"`
 	AvatarHash *string `json:"avatarHash,omitempty"`
-	AvatarSource *string `json:"avatarSource,omitempty"`
+	AvatarSource2 *string `json:"avatarSource,omitempty"`
 	AvatarUrl *string `json:"avatarUrl,omitempty"`
-	Bio *string `json:"bio,omitempty"`
 	BioData *map[string]any `json:"bioData,omitempty"`
 	Confirmed *bool `json:"confirmed,omitempty"`
 	Email *string `json:"email,omitempty"`
-	FullName *string `json:"fullName,omitempty"`
+	FullName2 *string `json:"fullName,omitempty"`
 	GravatarHash *string `json:"gravatarHash,omitempty"`
 	IdBoards *[]any `json:"idBoards,omitempty"`
 	IdBoardsPinned *[]any `json:"idBoardsPinned,omitempty"`
@@ -1218,7 +1380,6 @@ type MemberUpdateData struct {
 	UploadedAvatarHash *string `json:"uploadedAvatarHash,omitempty"`
 	UploadedAvatarUrl *string `json:"uploadedAvatarUrl,omitempty"`
 	Url *string `json:"url,omitempty"`
-	Username *string `json:"username,omitempty"`
 }
 
 // MemberRemoveMatch is the typed request payload for Member.RemoveTyped.
@@ -1245,6 +1406,7 @@ type MembersVoted struct {
 // MembersVotedLoadMatch is the typed request payload for MembersVoted.LoadTyped.
 type MembersVotedLoadMatch struct {
 	CardId string `json:"card_id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // MembersVotedRemoveMatch is the typed request payload for MembersVoted.RemoveTyped.
@@ -1268,17 +1430,22 @@ type Membership struct {
 type MembershipLoadMatch struct {
 	Id string `json:"id"`
 	OrganizationId string `json:"organization_id"`
+	Member *bool `json:"member,omitempty"`
 }
 
 // MembershipListMatch is the typed request payload for Membership.ListTyped.
 type MembershipListMatch struct {
 	OrganizationId string `json:"organization_id"`
+	Filter *string `json:"filter,omitempty"`
+	Member *bool `json:"member,omitempty"`
 }
 
 // MembershipUpdateData is the typed request payload for Membership.UpdateTyped.
 type MembershipUpdateData struct {
 	BoardId string `json:"board_id"`
 	Id string `json:"id"`
+	MemberField *string `json:"member_field,omitempty"`
+	Type string `json:"type"`
 	Admin *bool `json:"admin,omitempty"`
 	Collaborator *bool `json:"collaborator,omitempty"`
 	Deactivated *bool `json:"deactivated,omitempty"`
@@ -1320,17 +1487,42 @@ type Notification struct {
 // NotificationLoadMatch is the typed request payload for Notification.LoadTyped.
 type NotificationLoadMatch struct {
 	Id string `json:"id"`
+	Board *bool `json:"board,omitempty"`
+	BoardField *string `json:"board_field,omitempty"`
+	Card *bool `json:"card,omitempty"`
+	CardField *string `json:"card_field,omitempty"`
+	Display *bool `json:"display,omitempty"`
+	Entity *bool `json:"entity,omitempty"`
 	Field *string `json:"field,omitempty"`
+	List *bool `json:"list,omitempty"`
+	Member *bool `json:"member,omitempty"`
+	MemberCreator *bool `json:"member_creator,omitempty"`
+	MemberCreatorField *string `json:"member_creator_field,omitempty"`
+	MemberField *string `json:"member_field,omitempty"`
+	Organization *bool `json:"organization,omitempty"`
+	OrganizationField *string `json:"organization_field,omitempty"`
 }
 
 // NotificationListMatch is the typed request payload for Notification.ListTyped.
 type NotificationListMatch struct {
 	MemberId string `json:"member_id"`
+	Before *string `json:"before,omitempty"`
+	Display *bool `json:"display,omitempty"`
+	Entity *bool `json:"entity,omitempty"`
+	Field *string `json:"field,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	MemberCreator *bool `json:"member_creator,omitempty"`
+	MemberCreatorField *string `json:"member_creator_field,omitempty"`
+	Page *int `json:"page,omitempty"`
+	ReadFilter *string `json:"read_filter,omitempty"`
+	Since *string `json:"since,omitempty"`
 }
 
 // NotificationUpdateData is the typed request payload for Notification.UpdateTyped.
 type NotificationUpdateData struct {
 	Id string `json:"id"`
+	Unread *bool `json:"unread,omitempty"`
 	Board *map[string]any `json:"board,omitempty"`
 	Card *map[string]any `json:"card,omitempty"`
 	Data *string `json:"data,omitempty"`
@@ -1340,7 +1532,6 @@ type NotificationUpdateData struct {
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
 	Reactions *[]any `json:"reactions,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Unread *bool `json:"unread,omitempty"`
 }
 
 // NotificationChannelSetting is the typed data model for the notification_channel_setting entity.
@@ -1379,6 +1570,7 @@ type NotificationList struct {
 // NotificationListLoadMatch is the typed request payload for NotificationList.LoadTyped.
 type NotificationListLoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // NotificationMemberCreator is the typed data model for the notification_member_creator entity.
@@ -1389,6 +1581,7 @@ type NotificationMemberCreator struct {
 // NotificationMemberCreatorLoadMatch is the typed request payload for NotificationMemberCreator.LoadTyped.
 type NotificationMemberCreatorLoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // NotificationsChannelSetting is the typed data model for the notifications_channel_setting entity.
@@ -1444,17 +1637,24 @@ type OrganizationLoadMatch struct {
 // OrganizationListMatch is the typed request payload for Organization.ListTyped.
 type OrganizationListMatch struct {
 	EnterprisId string `json:"enterpris_id"`
+	Count *int `json:"count,omitempty"`
+	Field *string `json:"field,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	StartIndex *int `json:"start_index,omitempty"`
 }
 
 // OrganizationCreateData is the typed request payload for Organization.CreateTyped.
 type OrganizationCreateData struct {
+	Desc *string `json:"desc,omitempty"`
+	DisplayName string `json:"display_name"`
+	Name *string `json:"name,omitempty"`
+	Website *string `json:"website,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName2 *string `json:"displayName,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IdBoards *[]any `json:"idBoards,omitempty"`
 	IdEnterprise *string `json:"idEnterprise,omitempty"`
 	Memberships *[]any `json:"memberships,omitempty"`
-	Name *string `json:"name,omitempty"`
 	Offering *string `json:"offering,omitempty"`
 	Prefs *map[string]any `json:"prefs,omitempty"`
 	PremiumFeatures *[]any `json:"premiumFeatures,omitempty"`
@@ -1464,12 +1664,23 @@ type OrganizationCreateData struct {
 // OrganizationUpdateData is the typed request payload for Organization.UpdateTyped.
 type OrganizationUpdateData struct {
 	Id string `json:"id"`
+	Desc *string `json:"desc,omitempty"`
+	DisplayName *string `json:"display_name,omitempty"`
+	Name *string `json:"name,omitempty"`
+	PrefsAssociatedDomain *string `json:"prefs/associated_domain,omitempty"`
+	PrefsBoardVisibilityRestrictOrg *string `json:"prefs/board_visibility_restrict/org,omitempty"`
+	PrefsBoardVisibilityRestrictPrivate *string `json:"prefs/board_visibility_restrict/private,omitempty"`
+	PrefsBoardVisibilityRestrictPublic *string `json:"prefs/board_visibility_restrict/public,omitempty"`
+	PrefsExternalMembersDisabled *bool `json:"prefs/external_members_disabled,omitempty"`
+	PrefsGoogleAppsVersion *int `json:"prefs/google_apps_version,omitempty"`
+	PrefsOrgInviteRestrict *string `json:"prefs/org_invite_restrict,omitempty"`
+	PrefsPermissionLevel *string `json:"prefs/permission_level,omitempty"`
+	Website *string `json:"website,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName2 *string `json:"displayName,omitempty"`
 	IdBoards *[]any `json:"idBoards,omitempty"`
 	IdEnterprise *string `json:"idEnterprise,omitempty"`
 	Memberships *[]any `json:"memberships,omitempty"`
-	Name *string `json:"name,omitempty"`
 	Offering *string `json:"offering,omitempty"`
 	Prefs *map[string]any `json:"prefs,omitempty"`
 	PremiumFeatures *[]any `json:"premiumFeatures,omitempty"`
@@ -1497,6 +1708,8 @@ type PendingOrganization struct {
 // PendingOrganizationListMatch is the typed request payload for PendingOrganization.ListTyped.
 type PendingOrganizationListMatch struct {
 	EnterprisId string `json:"enterpris_id"`
+	ActiveSince *string `json:"active_since,omitempty"`
+	InactiveSince *string `json:"inactive_since,omitempty"`
 }
 
 // Plugin is the typed data model for the plugin entity.
@@ -1571,6 +1784,8 @@ type Reaction struct {
 type ReactionLoadMatch struct {
 	Id *string `json:"id,omitempty"`
 	IdAction string `json:"id_action"`
+	Emoji *bool `json:"emoji,omitempty"`
+	Member *bool `json:"member,omitempty"`
 }
 
 // ReactionRemoveMatch is the typed request payload for Reaction.RemoveTyped.
@@ -1585,6 +1800,8 @@ type Read struct {
 
 // ReadCreateData is the typed request payload for Read.CreateTyped.
 type ReadCreateData struct {
+	Ids *[]any `json:"ids,omitempty"`
+	Read *bool `json:"read,omitempty"`
 }
 
 // SavedSearch is the typed data model for the saved_search entity.
@@ -1609,10 +1826,10 @@ type SavedSearchListMatch struct {
 // SavedSearchCreateData is the typed request payload for SavedSearch.CreateTyped.
 type SavedSearchCreateData struct {
 	MemberId string `json:"member_id"`
+	Name string `json:"name"`
+	Pos any `json:"pos"`
+	Query string `json:"query"`
 	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Pos *any `json:"pos,omitempty"`
-	Query *string `json:"query,omitempty"`
 }
 
 // SavedSearchUpdateData is the typed request payload for SavedSearch.UpdateTyped.
@@ -1620,7 +1837,7 @@ type SavedSearchUpdateData struct {
 	Id string `json:"id"`
 	MemberId string `json:"member_id"`
 	Name *string `json:"name,omitempty"`
-	Pos *any `json:"pos,omitempty"`
+	Pos *string `json:"pos,omitempty"`
 	Query *string `json:"query,omitempty"`
 }
 
@@ -1636,6 +1853,27 @@ type Search struct {
 
 // SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
+	BoardField *string `json:"board_field,omitempty"`
+	BoardOrganization *bool `json:"board_organization,omitempty"`
+	BoardsLimit *int `json:"boards_limit,omitempty"`
+	CardAttachment *string `json:"card_attachment,omitempty"`
+	CardBoard *bool `json:"card_board,omitempty"`
+	CardField *string `json:"card_field,omitempty"`
+	CardList *bool `json:"card_list,omitempty"`
+	CardMember *bool `json:"card_member,omitempty"`
+	CardSticker *bool `json:"card_sticker,omitempty"`
+	CardsLimit *int `json:"cards_limit,omitempty"`
+	CardsPage *float64 `json:"cards_page,omitempty"`
+	IdBoard *any `json:"id_board,omitempty"`
+	IdCard *string `json:"id_card,omitempty"`
+	IdOrganization *string `json:"id_organization,omitempty"`
+	MemberField *string `json:"member_field,omitempty"`
+	MembersLimit *int `json:"members_limit,omitempty"`
+	ModelType *string `json:"model_type,omitempty"`
+	OrganizationField *string `json:"organization_field,omitempty"`
+	OrganizationsLimit *int `json:"organizations_limit,omitempty"`
+	Partial *bool `json:"partial,omitempty"`
+	Query string `json:"query"`
 }
 
 // ShowSidebar is the typed data model for the show_sidebar entity.
@@ -1645,6 +1883,7 @@ type ShowSidebar struct {
 // ShowSidebarUpdateData is the typed request payload for ShowSidebar.UpdateTyped.
 type ShowSidebarUpdateData struct {
 	BoardId string `json:"board_id"`
+	Value bool `json:"value"`
 }
 
 // ShowSidebarActivity is the typed data model for the show_sidebar_activity entity.
@@ -1654,6 +1893,7 @@ type ShowSidebarActivity struct {
 // ShowSidebarActivityUpdateData is the typed request payload for ShowSidebarActivity.UpdateTyped.
 type ShowSidebarActivityUpdateData struct {
 	BoardId string `json:"board_id"`
+	Value bool `json:"value"`
 }
 
 // ShowSidebarBoardAction is the typed data model for the show_sidebar_board_action entity.
@@ -1663,6 +1903,7 @@ type ShowSidebarBoardAction struct {
 // ShowSidebarBoardActionUpdateData is the typed request payload for ShowSidebarBoardAction.UpdateTyped.
 type ShowSidebarBoardActionUpdateData struct {
 	BoardId string `json:"board_id"`
+	Value bool `json:"value"`
 }
 
 // ShowSidebarMember is the typed data model for the show_sidebar_member entity.
@@ -1672,6 +1913,7 @@ type ShowSidebarMember struct {
 // ShowSidebarMemberUpdateData is the typed request payload for ShowSidebarMember.UpdateTyped.
 type ShowSidebarMemberUpdateData struct {
 	BoardId string `json:"board_id"`
+	Value bool `json:"value"`
 }
 
 // Sticker is the typed data model for the sticker entity.
@@ -1683,12 +1925,17 @@ type Sticker struct {
 type StickerLoadMatch struct {
 	CardId string `json:"card_id"`
 	Id *string `json:"id,omitempty"`
+	Field *string `json:"field,omitempty"`
 }
 
 // StickerUpdateData is the typed request payload for Sticker.UpdateTyped.
 type StickerUpdateData struct {
 	CardId string `json:"card_id"`
 	Id string `json:"id"`
+	Left float64 `json:"left"`
+	Rotate *float64 `json:"rotate,omitempty"`
+	Top float64 `json:"top"`
+	ZIndex int `json:"z_index"`
 }
 
 // StickerRemoveMatch is the typed request payload for Sticker.RemoveTyped.
@@ -1726,11 +1973,14 @@ type Token struct {
 // TokenLoadMatch is the typed request payload for Token.LoadTyped.
 type TokenLoadMatch struct {
 	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
+	Webhook *bool `json:"webhook,omitempty"`
 }
 
 // TokenListMatch is the typed request payload for Token.ListTyped.
 type TokenListMatch struct {
 	MemberId string `json:"member_id"`
+	Webhook *bool `json:"webhook,omitempty"`
 }
 
 // TokenRemoveMatch is the typed request payload for Token.RemoveTyped.
@@ -1768,23 +2018,28 @@ type TrelloList struct {
 // TrelloListLoadMatch is the typed request payload for TrelloList.LoadTyped.
 type TrelloListLoadMatch struct {
 	ActionId string `json:"action_id"`
+	Field *string `json:"field,omitempty"`
 }
 
 // TrelloListListMatch is the typed request payload for TrelloList.ListTyped.
 type TrelloListListMatch struct {
 	BoardId string `json:"board_id"`
+	Card *string `json:"card,omitempty"`
+	CardField *string `json:"card_field,omitempty"`
+	Field *string `json:"field,omitempty"`
+	Filter *string `json:"filter,omitempty"`
 }
 
 // TrelloListCreateData is the typed request payload for TrelloList.CreateTyped.
 type TrelloListCreateData struct {
 	BoardId string `json:"board_id"`
+	Name string `json:"name"`
+	Pos *string `json:"pos,omitempty"`
 	Attachments *map[string]any `json:"attachments,omitempty"`
 	Closed *bool `json:"closed,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IdBoard *string `json:"idBoard,omitempty"`
 	Limits *map[string]any `json:"limits,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Pos *float64 `json:"pos,omitempty"`
 	SoftLimit *string `json:"softLimit,omitempty"`
 	Subscribed *bool `json:"subscribed,omitempty"`
 }
@@ -1815,24 +2070,29 @@ type WebhookListMatch struct {
 // WebhookCreateData is the typed request payload for Webhook.CreateTyped.
 type WebhookCreateData struct {
 	Active *bool `json:"active,omitempty"`
+	CallbackUrl string `json:"callback_url"`
+	Description *string `json:"description,omitempty"`
+	IdModel string `json:"id_model"`
+	TokenId *string `json:"token_id,omitempty"`
 	CallbackURL *string `json:"callbackURL,omitempty"`
 	ConsecutiveFailures *float64 `json:"consecutiveFailures,omitempty"`
-	Description *string `json:"description,omitempty"`
 	FirstConsecutiveFailDate *string `json:"firstConsecutiveFailDate,omitempty"`
 	Id *string `json:"id,omitempty"`
-	IdModel *string `json:"idModel,omitempty"`
+	IdModel2 *string `json:"idModel,omitempty"`
 }
 
 // WebhookUpdateData is the typed request payload for Webhook.UpdateTyped.
 type WebhookUpdateData struct {
 	Id string `json:"id"`
-	TokenId *string `json:"token_id,omitempty"`
 	Active *bool `json:"active,omitempty"`
+	CallbackUrl *string `json:"callback_url,omitempty"`
+	Description *string `json:"description,omitempty"`
+	IdModel *string `json:"id_model,omitempty"`
+	TokenId *string `json:"token_id,omitempty"`
 	CallbackURL *string `json:"callbackURL,omitempty"`
 	ConsecutiveFailures *float64 `json:"consecutiveFailures,omitempty"`
-	Description *string `json:"description,omitempty"`
 	FirstConsecutiveFailDate *string `json:"firstConsecutiveFailDate,omitempty"`
-	IdModel *string `json:"idModel,omitempty"`
+	IdModel2 *string `json:"idModel,omitempty"`
 }
 
 // WebhookRemoveMatch is the typed request payload for Webhook.RemoveTyped.

@@ -103,7 +103,7 @@ def _bulk_basic_setup(extra):
         "TRELLO_TEST_BULK_ENTID": idmap,
         "TRELLO_TEST_LIVE": "FALSE",
         "TRELLO_TEST_EXPLAIN": "FALSE",
-        "TRELLO_APIKEY": "NONE",
+        "TRELLO_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,6 +113,10 @@ def _bulk_basic_setup(extra):
 
     if env.get("TRELLO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("TRELLO_APIKEY"),
             },

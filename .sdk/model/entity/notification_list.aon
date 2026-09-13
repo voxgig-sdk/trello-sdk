@@ -47,10 +47,16 @@ main: kit: entity: notification_list: {
           }
           method: "GET"
           orig: "/notifications/{id}/list"
-          parts: [
-            "notifications"
-            "{id}"
-            "list"
+          segments: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "list"
+            }
           ]
           select: {
             exist: [

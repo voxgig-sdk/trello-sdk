@@ -16,6 +16,7 @@ main: kit: entity: custom_sticker: {
       type: "`$ARRAY`"
     }
     {
+      format: "url"
       name: "url"
       req: false
       type: "`$STRING`"
@@ -56,16 +57,22 @@ main: kit: entity: custom_sticker: {
           }
           method: "POST"
           orig: "/members/{id}/customStickers"
-          parts: [
-            "members"
-            "{member_id}"
-            "customStickers"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customStickers"
+            }
+          ]
           select: {
             exist: [
               "file"
@@ -97,16 +104,22 @@ main: kit: entity: custom_sticker: {
           }
           method: "GET"
           orig: "/members/{id}/customStickers"
-          parts: [
-            "members"
-            "{member_id}"
-            "customStickers"
-          ]
           rename: {
             param: {
               id: "member_id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customStickers"
+            }
+          ]
           select: {
             exist: [
               "member_id"
@@ -155,18 +168,26 @@ main: kit: entity: custom_sticker: {
           }
           method: "GET"
           orig: "/members/{id}/customStickers/{idSticker}"
-          parts: [
-            "members"
-            "{member_id}"
-            "customStickers"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idSticker: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customStickers"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "field"
@@ -207,18 +228,26 @@ main: kit: entity: custom_sticker: {
           }
           method: "DELETE"
           orig: "/members/{id}/customStickers/{idSticker}"
-          parts: [
-            "members"
-            "{member_id}"
-            "customStickers"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "member_id"
               idSticker: "id"
             }
           }
+          segments: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customStickers"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

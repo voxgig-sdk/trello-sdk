@@ -36,16 +36,22 @@ main: kit: entity: tag: {
           }
           method: "GET"
           orig: "/organizations/{id}/tags"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "tags"
-          ]
           rename: {
             param: {
               id: "organization_id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
           select: {
             exist: [
               "organization_id"
@@ -82,18 +88,26 @@ main: kit: entity: tag: {
           }
           method: "DELETE"
           orig: "/organizations/{id}/tags/{idTag}"
-          parts: [
-            "organizations"
-            "{organization_id}"
-            "tags"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "organization_id"
               idTag: "id"
             }
           }
+          segments: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

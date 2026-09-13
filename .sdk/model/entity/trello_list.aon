@@ -95,16 +95,22 @@ main: kit: entity: trello_list: {
           }
           method: "POST"
           orig: "/boards/{id}/lists"
-          parts: [
-            "boards"
-            "{board_id}"
-            "lists"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "lists"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -169,16 +175,22 @@ main: kit: entity: trello_list: {
           }
           method: "GET"
           orig: "/boards/{id}/lists"
-          parts: [
-            "boards"
-            "{board_id}"
-            "lists"
-          ]
           rename: {
             param: {
               id: "board_id"
             }
           }
+          segments: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "lists"
+            }
+          ]
           select: {
             exist: [
               "board_id"
@@ -223,16 +235,22 @@ main: kit: entity: trello_list: {
           }
           method: "GET"
           orig: "/actions/{id}/list"
-          parts: [
-            "actions"
-            "{action_id}"
-            "list"
-          ]
           rename: {
             param: {
               id: "action_id"
             }
           }
+          segments: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "list"
+            }
+          ]
           select: {
             exist: [
               "action_id"

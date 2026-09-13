@@ -73,7 +73,7 @@ except Exception as err:
 created = client.Action().create({"id_action": "example_id_action"})
 
 # Update — the created record's id is a plain dict key
-client.Action().update({"id": created.data_get()["id"], "data": {}, "date": "example_date"})
+client.Action().update({"id": created.data_get()["id"], "text": "example_text", "data": {}})
 
 # Remove
 client.Action().remove({"id": created.data_get()["id"]})
@@ -1444,7 +1444,7 @@ Create an instance: `batch = client.Batch()`
 #### Example: Load
 
 ```python
-batch = client.Batch().load()
+batch = client.Batch().load({"url": "url"})
 ```
 
 
@@ -1510,6 +1510,7 @@ boards = client.Board().list({"member_id": "example"})
 
 ```python
 board = client.Board().create({
+    "name": "example_name",  # str
     "id": "example_id",  # str
 })
 ```
@@ -1552,6 +1553,7 @@ board_backgrounds = client.BoardBackground().list({"member_id": "example"})
 ```python
 board_background = client.BoardBackground().create({
     "member_id": "example_member_id",  # str
+    "file": "example_file",  # str
 })
 ```
 
@@ -1612,6 +1614,8 @@ board_stars = client.BoardStar().list({"id": "example_id"})
 ```python
 board_star = client.BoardStar().create({
     "member_id": "example_member_id",  # str
+    "id_board": "example_id_board",  # str
+    "pos": "example_pos",  # Any
 })
 ```
 
@@ -1709,6 +1713,7 @@ cards = client.Card().list({"action_id": "example"})
 
 ```python
 card = client.Card().create({
+    "id_list": "example_id_list",  # str
 })
 ```
 
@@ -1818,6 +1823,7 @@ checklist = client.Checklist().load({"id": "checklist_id"})
 
 ```python
 checklist = client.Checklist().create({
+    "id_card": "example_id_card",  # str
 })
 ```
 
@@ -1906,6 +1912,8 @@ custom_emojis = client.CustomEmoji().list({"member_id": "example"})
 ```python
 custom_emoji = client.CustomEmoji().create({
     "member_id": "example_member_id",  # str
+    "file": "example_file",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -2029,6 +2037,7 @@ custom_stickers = client.CustomSticker().list({"member_id": "example"})
 ```python
 custom_sticker = client.CustomSticker().create({
     "member_id": "example_member_id",  # str
+    "file": "example_file",  # str
 })
 ```
 
@@ -2362,6 +2371,9 @@ label = client.Label().load({"id": "label_id"})
 
 ```python
 label = client.Label().create({
+    "color": "example_color",  # str
+    "id_board": "example_id_board",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -2394,6 +2406,8 @@ list = client.List().load({"id": "list_id"})
 
 ```python
 list = client.List().create({
+    "id_board": "example_id_board",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -2468,7 +2482,7 @@ member = client.Member().load({"id": "member_id"})
 #### Example: List
 
 ```python
-members = client.Member().list()
+members = client.Member().list({"query": "example"})
 ```
 
 #### Example: Create
@@ -2793,6 +2807,7 @@ organizations = client.Organization().list({"enterpris_id": "example"})
 
 ```python
 organization = client.Organization().create({
+    "display_name": "example_display_name",  # str
 })
 ```
 
@@ -2994,6 +3009,9 @@ saved_searchs = client.SavedSearch().list({"member_id": "example"})
 ```python
 saved_search = client.SavedSearch().create({
     "member_id": "example_member_id",  # str
+    "name": "example_name",  # str
+    "pos": "example_pos",  # Any
+    "query": "example_query",  # str
 })
 ```
 
@@ -3011,7 +3029,7 @@ Create an instance: `search = client.Search()`
 #### Example: List
 
 ```python
-searchs = client.Search().list()
+searchs = client.Search().list({"query": "example"})
 ```
 
 
@@ -3213,6 +3231,7 @@ trello_lists = client.TrelloList().list({"board_id": "example"})
 ```python
 trello_list = client.TrelloList().create({
     "board_id": "example_board_id",  # str
+    "name": "example_name",  # str
 })
 ```
 
@@ -3259,8 +3278,33 @@ webhooks = client.Webhook().list({"token_id": "example"})
 
 ```python
 webhook = client.Webhook().create({
+    "callback_url": "example_callback_url",  # str
+    "id_model": "example_id_model",  # str
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

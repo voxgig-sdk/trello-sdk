@@ -98,7 +98,7 @@ func TestEnterpriseAuditLogEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		enterpriseAuditLogRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.enterprise_audit_log", setup.data)))
+		enterpriseAuditLogRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.enterprise_audit_log")))
 		var enterpriseAuditLogRef01Data map[string]any
 		if len(enterpriseAuditLogRef01DataRaw) > 0 {
 			enterpriseAuditLogRef01Data = core.ToMapAny(enterpriseAuditLogRef01DataRaw[0][1])
@@ -149,7 +149,7 @@ func enterprise_audit_logBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03", "enterpris01", "enterpris02", "enterpris03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -169,7 +169,7 @@ func enterprise_audit_logBasicSetup(extra map[string]any) *entityTestSetup {
 		"TRELLO_TEST_ENTERPRISE_AUDIT_LOG_ENTID": idmap,
 		"TRELLO_TEST_LIVE":      "FALSE",
 		"TRELLO_TEST_EXPLAIN":   "FALSE",
-		"TRELLO_APIKEY":         "NONE",
+		"TRELLO_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TRELLO_TEST_ENTERPRISE_AUDIT_LOG_ENTID"])
@@ -178,11 +178,23 @@ func enterprise_audit_logBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TRELLO_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TRELLO_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTrelloSDK(core.ToMapAny(mergedOpts))
 	}
