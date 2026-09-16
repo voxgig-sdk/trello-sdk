@@ -19,5 +19,51 @@
     "associated_domain": {
       "associated_domain_ref01": {}
     }
+  },
+  "requests": {
+    "DELETE /organizations/{id}/prefs/associatedDomain": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-organizations-id-prefs-associateddomain",
+        "parameters": [
+          {
+            "description": "The ID or name of the organization",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

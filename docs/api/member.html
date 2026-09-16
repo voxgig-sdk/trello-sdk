@@ -1,0 +1,4207 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Member | Trello REST API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Trello REST API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/trello-sdk">voxgig-sdk/trello-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Trello REST API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/application.html">Application</a>
+<a href="../api/application_compliance.html">ApplicationCompliance</a>
+<a href="../api/associated_domain.html">AssociatedDomain</a>
+<a href="../api/attachment.html">Attachment</a>
+<a href="../api/batch.html">Batch</a>
+<a href="../api/board.html">Board</a>
+<a href="../api/board_background.html">BoardBackground</a>
+<a href="../api/board_plugin.html">BoardPlugin</a>
+<a href="../api/board_star.html">BoardStar</a>
+<a href="../api/bulk.html">Bulk</a>
+<a href="../api/card.html">Card</a>
+<a href="../api/card_check_item_state.html">CardCheckItemState</a>
+<a href="../api/card_list.html">CardList</a>
+<a href="../api/check_item.html">CheckItem</a>
+<a href="../api/checklist.html">Checklist</a>
+<a href="../api/claimable_organization.html">ClaimableOrganization</a>
+<a href="../api/custom_board_background.html">CustomBoardBackground</a>
+<a href="../api/custom_emoji.html">CustomEmoji</a>
+<a href="../api/custom_field.html">CustomField</a>
+<a href="../api/custom_field_item.html">CustomFieldItem</a>
+<a href="../api/custom_sticker.html">CustomSticker</a>
+<a href="../api/email_position.html">EmailPosition</a>
+<a href="../api/emoji.html">Emoji</a>
+<a href="../api/enterpris.html">Enterpris</a>
+<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
+<a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/export_download.html">ExportDownload</a>
+<a href="../api/generate.html">Generate</a>
+<a href="../api/id_email_list.html">IdEmailList</a>
+<a href="../api/id_label.html">IdLabel</a>
+<a href="../api/id_member.html">IdMember</a>
+<a href="../api/label.html">Label</a>
+<a href="../api/list.html">List</a>
+<a aria-current="page" href="../api/member.html">Member</a><div class="nav-sections"><a class="nav-section" href="#post-membersidavatar">POST /members/{id}/avatar</a>
+<a class="nav-section" href="#post-membersidboardbackgrounds">POST /members/{id}/boardBackgrounds</a>
+<a class="nav-section" href="#post-membersidonetimemessagesdismissed">POST /members/{id}/oneTimeMessagesDismissed</a>
+<a class="nav-section" href="#get-enterprisesidmembers">GET /enterprises/{id}/members</a>
+<a class="nav-section" href="#get-searchmembers">GET /search/members/</a>
+<a class="nav-section" href="#get-actionsidmember">GET /actions/{id}/member</a>
+<a class="nav-section" href="#get-actionsidmembercreator">GET /actions/{id}/memberCreator</a>
+<a class="nav-section" href="#get-tokenstokenmember">GET /tokens/{token}/member</a>
+<a class="nav-section" href="#get-organizationsidmembers">GET /organizations/{id}/members</a>
+<a class="nav-section" href="#get-membersid">GET /members/{id}</a>
+<a class="nav-section" href="#get-enterprisesidmembersidmember">GET /enterprises/{id}/members/{idMember}</a>
+<a class="nav-section" href="#get-cardsidmembers">GET /cards/{id}/members</a>
+<a class="nav-section" href="#get-membersidfield">GET /members/{id}/{field}</a>
+<a class="nav-section" href="#get-notificationsidmember">GET /notifications/{id}/member</a>
+<a class="nav-section" href="#get-boardsidmembers">GET /boards/{id}/members</a>
+<a class="nav-section" href="#delete-boardsidmembersidmember">DELETE /boards/{id}/members/{idMember}</a>
+<a class="nav-section" href="#delete-organizationsidmembersidmember">DELETE /organizations/{id}/members/{idMember}</a>
+<a class="nav-section" href="#delete-organizationsidmembersidmemberall">DELETE /organizations/{id}/members/{idMember}/all</a>
+<a class="nav-section" href="#put-membersid">PUT /members/{id}</a>
+<a class="nav-section" href="#put-enterprisesidmembersidmemberdeactivated">PUT /enterprises/{id}/members/{idMember}/deactivated</a>
+<a class="nav-section" href="#put-boardsidmembersidmember">PUT /boards/{id}/members/{idMember}</a>
+<a class="nav-section" href="#put-enterprisesidmembersidmemberlicensed">PUT /enterprises/{id}/members/{idMember}/licensed</a>
+<a class="nav-section" href="#put-organizationsidmembersidmember">PUT /organizations/{id}/members/{idMember}</a>
+<a class="nav-section" href="#put-organizationsidmembersidmemberdeactivated">PUT /organizations/{id}/members/{idMember}/deactivated</a></div>
+<a href="../api/member_privacy.html">MemberPrivacy</a>
+<a href="../api/members_voted.html">MembersVoted</a>
+<a href="../api/membership.html">Membership</a>
+<a href="../api/most_recent.html">MostRecent</a>
+<a href="../api/new_billable_guest.html">NewBillableGuest</a>
+<a href="../api/notification.html">Notification</a>
+<a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
+<a href="../api/notification_list.html">NotificationList</a>
+<a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
+<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
+<a href="../api/option.html">Option</a>
+<a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
+<a href="../api/organization.html">Organization</a>
+<a href="../api/pending_organization.html">PendingOrganization</a>
+<a href="../api/plugin.html">Plugin</a>
+<a href="../api/plugin_data.html">PluginData</a>
+<a href="../api/plugin_listing.html">PluginListing</a>
+<a href="../api/reaction.html">Reaction</a>
+<a href="../api/read.html">Read</a>
+<a href="../api/saved_search.html">SavedSearch</a>
+<a href="../api/search.html">Search</a>
+<a href="../api/show_sidebar.html">ShowSidebar</a>
+<a href="../api/show_sidebar_activity.html">ShowSidebarActivity</a>
+<a href="../api/show_sidebar_board_action.html">ShowSidebarBoardAction</a>
+<a href="../api/show_sidebar_member.html">ShowSidebarMember</a>
+<a href="../api/sticker.html">Sticker</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/token.html">Token</a>
+<a href="../api/transferrable_organization.html">TransferrableOrganization</a>
+<a href="../api/trello_list.html">TrelloList</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="member">Member</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-membersidavatar"><code>/members/{id}/avatar</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-membersidboardbackgrounds"><code>/members/{id}/boardBackgrounds</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-membersidonetimemessagesdismissed"><code>/members/{id}/oneTimeMessagesDismissed</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-enterprisesidmembers"><code>/enterprises/{id}/members</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-searchmembers"><code>/search/members/</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-actionsidmember"><code>/actions/{id}/member</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-actionsidmembercreator"><code>/actions/{id}/memberCreator</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-tokenstokenmember"><code>/tokens/{token}/member</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-organizationsidmembers"><code>/organizations/{id}/members</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-membersid"><code>/members/{id}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-enterprisesidmembersidmember"><code>/enterprises/{id}/members/{idMember}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-cardsidmembers"><code>/cards/{id}/members</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-membersidfield"><code>/members/{id}/{field}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-notificationsidmember"><code>/notifications/{id}/member</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-boardsidmembers"><code>/boards/{id}/members</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-boardsidmembersidmember"><code>/boards/{id}/members/{idMember}</code></a></td>
+<td><code>remove</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-organizationsidmembersidmember"><code>/organizations/{id}/members/{idMember}</code></a></td>
+<td><code>remove</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-organizationsidmembersidmemberall"><code>/organizations/{id}/members/{idMember}/all</code></a></td>
+<td><code>remove</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-membersid"><code>/members/{id}</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-enterprisesidmembersidmemberdeactivated"><code>/enterprises/{id}/members/{idMember}/deactivated</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-boardsidmembersidmember"><code>/boards/{id}/members/{idMember}</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-enterprisesidmembersidmemberlicensed"><code>/enterprises/{id}/members/{idMember}/licensed</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-organizationsidmembersidmember"><code>/organizations/{id}/members/{idMember}</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-organizationsidmembersidmemberdeactivated"><code>/organizations/{id}/members/{idMember}/deactivated</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aaEmail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaEnrolledDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activityBlocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarSource</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bio</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gravatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoards</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoardsPinned</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprise</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesAdmin</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesDeactivated</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganizations</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idPremOrgsAdmin</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isAaMastered</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>loginTypes</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberType</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Profile data with restricted visibility.</td>
+</tr>
+<tr>
+<td><code>nonPublicAvailable</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the response contains non-public profile data for the member</td>
+</tr>
+<tr>
+<td><code>oneTimeMessagesDismissed</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>premiumFeatures</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trophies</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-membersidavatar" class="operation" data-method="post"><code>POST</code> /members/{id}/avatar</h3>
+<p>Operation ID: <code>membersidavatar</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or username of the member |
+| <code>file</code> | <code>query</code> | <code>string (binary)</code> | Yes |  |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-success" class="status" data-status="2xx">200: Success</h5>
+<h3 id="post-membersidboardbackgrounds" class="operation" data-method="post"><code>POST</code> /members/{id}/boardBackgrounds</h3>
+<p>Operation ID: <code>post-members-id-boardbackgrounds-1</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or username of the member |
+| <code>file</code> | <code>query</code> | <code>string (binary)</code> | Yes |  |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-success-1" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>array of object</code>.</p>
+<h3 id="post-membersidonetimemessagesdismissed" class="operation" data-method="post"><code>POST</code> /members/{id}/oneTimeMessagesDismissed</h3>
+<p>Operation ID: <code>post-members-id-onetimemessagesdismissed</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or username of the member |
+| <code>value</code> | <code>query</code> | <code>string</code> | Yes | The message to dismiss |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-success-2" class="status" data-status="2xx">200: Success</h5>
+<h2 id="list">list</h2>
+<h3 id="get-enterprisesidmembers" class="operation" data-method="get"><code>GET</code> /enterprises/{id}/members</h3>
+<p>Operation ID: <code>get-enterprises-id-members</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of the Enterprise to retrieve. |
+| <code>fields</code> | <code>query</code> | <code>string</code> | No | A comma-seperated list of valid <a href="/cloud/trello/guides/rest-api/object-definitions/#member-object">member fields</a>. |
+| <code>filter</code> | <code>query</code> | <code>string</code> | No | Pass a SCIM-style query to filter members. This takes precedence over the all/normal/admins value of members. If any of the below member_* args are set, the member array will be paginated. |
+| <code>sort</code> | <code>query</code> | <code>string</code> | No | This parameter expects a SCIM-style sorting value prefixed by a <code>-</code> to sort descending. If no <code>-</code> is prefixed, it will be sorted ascending. Note that the members array returned will be paginated if <code>members</code> is 'normal' or 'admins'. Pagination can be controlled with member_startIndex, etc, but the API response will not contain the total available result count or pagination status data. |
+| <code>sortBy</code> | <code>query</code> | <code>string</code> | No | Deprecated: Please use <code>sort</code> instead. This parameter expects a SCIM-style sorting value. Note that the members array returned will be paginated if <code>members</code> is 'normal' or 'admins'. Pagination can be controlled with member_startIndex, etc, but the API response will not contain the total available result count or pagination status data. |
+| <code>sortOrder</code> | <code>query</code> | <code>enum: ascending, descending, asc, desc, null</code> | No | Deprecated: Please use <code>sort</code> instead. One of: <code>ascending</code>, <code>descending</code>, <code>asc</code>, <code>desc</code>. |
+| <code>startIndex</code> | <code>query</code> | <code>integer (int32)</code> | No | Any integer between 0 and 9999. |
+| <code>count</code> | <code>query</code> | <code>string</code> | No | SCIM-style filter. |
+| <code>organization_fields</code> | <code>query</code> | <code>string</code> | No | Any valid value that the <a href="/cloud/trello/guides/rest-api/nested-resources/">nested organization field resource</a> accepts. |
+| <code>board_fields</code> | <code>query</code> | <code>string</code> | No | Any valid value that the <a href="/cloud/trello/guides/rest-api/nested-resources/">nested board resource</a> accepts. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-success-3" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].aaEmail</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].aaEnrolledDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].aaId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].activityBlocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].avatarSource</code></td>
+<td><code>enum: gravatar, upload</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].bio</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].bioData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].bioData.emoji</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].confirmed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].gravatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idBoards</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idBoardsPinned</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idEnterprise</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idEnterprisesAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idEnterprisesDeactivated</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idMemberReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idOrganizations</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idPremOrgsAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].isAaMastered</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].ixUpdate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].loginTypes</code></td>
+<td><code>array of enum: password, saml</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].marketingOptIn</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].marketingOptIn.date</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].marketingOptIn.optedIn</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].memberType</code></td>
+<td><code>enum: normal, ghost</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed._id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed.count</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed.lastDismissed</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].nonPublic</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Profile data with restricted visibility. These fields are visible only to members of the same organization. The values here (full name, for example) may differ from the values at the top level of the response.</td>
+</tr>
+<tr>
+<td><code>[].nonPublic.avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].nonPublic.avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>A URL that references the non-public avatar for the member</td>
+</tr>
+<tr>
+<td><code>[].nonPublic.fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].nonPublic.initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].nonPublicAvailable</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the response contains non-public profile data for the member</td>
+</tr>
+<tr>
+<td><code>[].oneTimeMessagesDismissed</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.colorBlind</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.minutesBeforeDeadlineToNotify</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.minutesBetweenSummaries</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.privacy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.privacy.avatar</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.privacy.fullName</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.sendSummaries</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.dateNext</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.offsetCurrent</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.offsetNext</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.timezoneCurrent</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.timezoneNext</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.twoFactor</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.twoFactor.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.twoFactor.needsNewBackups</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].premiumFeatures</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].products</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].status</code></td>
+<td><code>enum: disconnected</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].trophies</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].uploadedAvatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].uploadedAvatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-searchmembers" class="operation" data-method="get"><code>GET</code> /search/members/</h3>
+<p>Operation ID: <code>get-search-members</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>query</code> | <code>query</code> | <code>string</code> | Yes | Search query 1 to 16384 characters long |
+| <code>limit</code> | <code>query</code> | <code>integer (int32)</code> | No | The maximum number of results to return. Maximum of 20. |
+| <code>idBoard</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>idOrganization</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>onlyOrgMembers</code> | <code>query</code> | <code>boolean</code> | No |  |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-success-4" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].aaEmail</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].aaEnrolledDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].aaId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].activityBlocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].avatarSource</code></td>
+<td><code>enum: gravatar, upload</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].bio</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].bioData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].bioData.emoji</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].confirmed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].gravatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idBoards</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idBoardsPinned</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idEnterprise</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idEnterprisesAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idEnterprisesDeactivated</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idMemberReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idOrganizations</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idPremOrgsAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].isAaMastered</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].ixUpdate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].loginTypes</code></td>
+<td><code>array of enum: password, saml</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].marketingOptIn</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].marketingOptIn.date</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].marketingOptIn.optedIn</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].memberType</code></td>
+<td><code>enum: normal, ghost</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed._id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed.count</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed.lastDismissed</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].messagesDismissed.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].nonPublic</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Profile data with restricted visibility. These fields are visible only to members of the same organization. The values here (full name, for example) may differ from the values at the top level of the response.</td>
+</tr>
+<tr>
+<td><code>[].nonPublic.avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].nonPublic.avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>A URL that references the non-public avatar for the member</td>
+</tr>
+<tr>
+<td><code>[].nonPublic.fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].nonPublic.initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].nonPublicAvailable</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the response contains non-public profile data for the member</td>
+</tr>
+<tr>
+<td><code>[].oneTimeMessagesDismissed</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.colorBlind</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.minutesBeforeDeadlineToNotify</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.minutesBetweenSummaries</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.privacy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.privacy.avatar</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.privacy.fullName</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.sendSummaries</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.dateNext</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.offsetCurrent</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.offsetNext</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.timezoneCurrent</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.timezoneInfo.timezoneNext</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.twoFactor</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.twoFactor.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.twoFactor.needsNewBackups</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].premiumFeatures</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].products</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].status</code></td>
+<td><code>enum: disconnected</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].trophies</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].uploadedAvatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].uploadedAvatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-actionsidmember" class="operation" data-method="get"><code>GET</code> /actions/{id}/member</h3>
+<p>Operation ID: <code>get-actions-id-member</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Action |
+| <code>fields</code> | <code>query</code> | <code>enum: id</code> | No | <code>all</code> or a comma-separated list of member fields |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-success-5" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aaEmail</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaEnrolledDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activityBlocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarSource</code></td>
+<td><code>enum: gravatar, upload</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bio</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData.emoji</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gravatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoards</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoardsPinned</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprise</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesDeactivated</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganizations</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idPremOrgsAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isAaMastered</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>loginTypes</code></td>
+<td><code>array of enum: password, saml</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.date</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.optedIn</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberType</code></td>
+<td><code>enum: normal, ghost</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed._id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.count</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.lastDismissed</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Profile data with restricted visibility. These fields are visible only to members of the same organization. The values here (full name, for example) may differ from the values at the top level of the response.</td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>A URL that references the non-public avatar for the member</td>
+</tr>
+<tr>
+<td><code>nonPublic.fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublicAvailable</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the response contains non-public profile data for the member</td>
+</tr>
+<tr>
+<td><code>oneTimeMessagesDismissed</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.colorBlind</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBeforeDeadlineToNotify</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBetweenSummaries</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.avatar</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.fullName</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.sendSummaries</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.dateNext</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetCurrent</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetNext</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneCurrent</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneNext</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.needsNewBackups</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>premiumFeatures</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: disconnected</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trophies</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-actionsidmembercreator" class="operation" data-method="get"><code>GET</code> /actions/{id}/memberCreator</h3>
+<p>Operation ID: <code>get-actions-id-membercreator</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Action |
+| <code>fields</code> | <code>query</code> | <code>enum: id</code> | No | <code>all</code> or a comma-separated list of member fields |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-success-6" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aaEmail</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaEnrolledDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activityBlocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarSource</code></td>
+<td><code>enum: gravatar, upload</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bio</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData.emoji</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gravatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoards</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoardsPinned</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprise</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesDeactivated</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganizations</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idPremOrgsAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isAaMastered</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>loginTypes</code></td>
+<td><code>array of enum: password, saml</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.date</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.optedIn</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberType</code></td>
+<td><code>enum: normal, ghost</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed._id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.count</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.lastDismissed</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Profile data with restricted visibility. These fields are visible only to members of the same organization. The values here (full name, for example) may differ from the values at the top level of the response.</td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>A URL that references the non-public avatar for the member</td>
+</tr>
+<tr>
+<td><code>nonPublic.fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublicAvailable</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the response contains non-public profile data for the member</td>
+</tr>
+<tr>
+<td><code>oneTimeMessagesDismissed</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.colorBlind</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBeforeDeadlineToNotify</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBetweenSummaries</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.avatar</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.fullName</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.sendSummaries</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.dateNext</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetCurrent</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetNext</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneCurrent</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneNext</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.needsNewBackups</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>premiumFeatures</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: disconnected</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trophies</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-tokenstokenmember" class="operation" data-method="get"><code>GET</code> /tokens/{token}/member</h3>
+<p>Operation ID: <code>get-tokens-token-member</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>token</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>fields</code> | <code>query</code> | <code>enum: id</code> | No | <code>all</code> or a comma-separated list of valid fields for <a href="/cloud/trello/guides/rest-api/object-definitions/">Member Object</a>. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-success-7" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aaEmail</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaEnrolledDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activityBlocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarSource</code></td>
+<td><code>enum: gravatar, upload</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bio</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData.emoji</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gravatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoards</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoardsPinned</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprise</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesDeactivated</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganizations</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idPremOrgsAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isAaMastered</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>loginTypes</code></td>
+<td><code>array of enum: password, saml</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.date</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.optedIn</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberType</code></td>
+<td><code>enum: normal, ghost</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed._id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.count</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.lastDismissed</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Profile data with restricted visibility. These fields are visible only to members of the same organization. The values here (full name, for example) may differ from the values at the top level of the response.</td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>A URL that references the non-public avatar for the member</td>
+</tr>
+<tr>
+<td><code>nonPublic.fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublicAvailable</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the response contains non-public profile data for the member</td>
+</tr>
+<tr>
+<td><code>oneTimeMessagesDismissed</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.colorBlind</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBeforeDeadlineToNotify</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBetweenSummaries</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.avatar</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.fullName</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.sendSummaries</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.dateNext</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetCurrent</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetNext</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneCurrent</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneNext</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.needsNewBackups</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>premiumFeatures</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: disconnected</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trophies</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-organizationsidmembers" class="operation" data-method="get"><code>GET</code> /organizations/{id}/members</h3>
+<p>Operation ID: <code>get-organizations-id-members</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or name of the Organization |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-success-8" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>array of object</code>.</p>
+<h2 id="load">load</h2>
+<h3 id="get-membersid" class="operation" data-method="get"><code>GET</code> /members/{id}</h3>
+<p>Operation ID: <code>get-members=id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string or string</code> | Yes | The ID or username of the member |
+| <code>actions</code> | <code>query</code> | <code>string</code> | No | See the <a href="/cloud/trello/guides/rest-api/nested-resources/#actions-nested-resource">Actions Nested Resource</a> |
+| <code>boards</code> | <code>query</code> | <code>string</code> | No | See the <a href="/cloud/trello/guides/rest-api/nested-resources/#boards-nested-resource">Boards Nested Resource</a> |
+| <code>boardBackgrounds</code> | <code>query</code> | <code>enum: all, custom, default, none, premium</code> | No | One of: <code>all</code>, <code>custom</code>, <code>default</code>, <code>none</code>, <code>premium</code> |
+| <code>boardsInvited</code> | <code>query</code> | <code>enum: closed, members, open, organization, pinned, public, ...</code> | No | <code>all</code> or a comma-separated list of: closed, members, open, organization, pinned, public, starred, unpinned |
+| <code>boardsInvited_fields</code> | <code>query</code> | <code>enum: id, name, desc, descData, closed, idMemberCreator, ...</code> | No | <code>all</code> or a comma-separated list of board <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>boardStars</code> | <code>query</code> | <code>boolean</code> | No | Whether to return the boardStars or not |
+| <code>cards</code> | <code>query</code> | <code>string</code> | No | See the <a href="/cloud/trello/guides/rest-api/nested-resources/#cards-nested-resource">Cards Nested Resource</a> for additional options |
+| <code>customBoardBackgrounds</code> | <code>query</code> | <code>enum: all, none</code> | No | <code>all</code> or <code>none</code> |
+| <code>customEmoji</code> | <code>query</code> | <code>enum: all, none</code> | No | <code>all</code> or <code>none</code> |
+| <code>customStickers</code> | <code>query</code> | <code>enum: all, none</code> | No | <code>all</code> or <code>none</code> |
+| <code>fields</code> | <code>query</code> | <code>enum: id</code> | No | <code>all</code> or a comma-separated list of member <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>notifications</code> | <code>query</code> | <code>string</code> | No | See the <a href="/cloud/trello/guides/rest-api/nested-resources/#notifications-nested-resource">Notifications Nested Resource</a> |
+| <code>organizations</code> | <code>query</code> | <code>enum: all, members, none, public</code> | No | One of: <code>all</code>, <code>members</code>, <code>none</code>, <code>public</code> |
+| <code>organization_fields</code> | <code>query</code> | <code>enum: id, name</code> | No | <code>all</code> or a comma-separated list of organization <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>organization_paid_account</code> | <code>query</code> | <code>boolean</code> | No | Whether or not to include paid account information in the returned workspace object |
+| <code>organizationsInvited</code> | <code>query</code> | <code>enum: all, members, none, public</code> | No | One of: <code>all</code>, <code>members</code>, <code>none</code>, <code>public</code> |
+| <code>organizationsInvited_fields</code> | <code>query</code> | <code>enum: id, name</code> | No | <code>all</code> or a comma-separated list of organization <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>paid_account</code> | <code>query</code> | <code>boolean</code> | No | Whether or not to include paid account information in the returned member object |
+| <code>savedSearches</code> | <code>query</code> | <code>boolean</code> | No |  |
+| <code>tokens</code> | <code>query</code> | <code>enum: all, none</code> | No | <code>all</code> or <code>none</code> |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-success-9" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h3 id="get-enterprisesidmembersidmember" class="operation" data-method="get"><code>GET</code> /enterprises/{id}/members/{idMember}</h3>
+<p>Operation ID: <code>get-enterprises-id-members-idmember</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of the enterprise to retrieve. |
+| <code>idMember</code> | <code>path</code> | <code>string</code> | Yes | An ID of a member resource. |
+| <code>fields</code> | <code>query</code> | <code>string</code> | No | A comma separated list of any valid values that the <a href="">nested member field resource</a> accepts. |
+| <code>organization_fields</code> | <code>query</code> | <code>string</code> | No | Any valid value that the <a href="/cloud/trello/guides/rest-api/nested-resources/">nested organization field resource</a> accepts. |
+| <code>board_fields</code> | <code>query</code> | <code>string</code> | No | Any valid value that the <a href="/cloud/trello/guides/rest-api/nested-resources/">nested board resource</a> accepts. |</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-success-10" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aaEmail</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaEnrolledDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activityBlocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarSource</code></td>
+<td><code>enum: gravatar, upload</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bio</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData.emoji</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gravatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoards</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoardsPinned</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprise</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesDeactivated</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganizations</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idPremOrgsAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isAaMastered</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>loginTypes</code></td>
+<td><code>array of enum: password, saml</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.date</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.optedIn</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberType</code></td>
+<td><code>enum: normal, ghost</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed._id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.count</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.lastDismissed</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Profile data with restricted visibility. These fields are visible only to members of the same organization. The values here (full name, for example) may differ from the values at the top level of the response.</td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>A URL that references the non-public avatar for the member</td>
+</tr>
+<tr>
+<td><code>nonPublic.fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublicAvailable</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the response contains non-public profile data for the member</td>
+</tr>
+<tr>
+<td><code>oneTimeMessagesDismissed</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.colorBlind</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBeforeDeadlineToNotify</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBetweenSummaries</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.avatar</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.fullName</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.sendSummaries</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.dateNext</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetCurrent</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetNext</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneCurrent</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneNext</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.needsNewBackups</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>premiumFeatures</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: disconnected</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trophies</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-specified-resource-was-not-found" class="status" data-status="4xx">404: The specified resource was not found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="default-unexpected-error">default: Unexpected error</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-cardsidmembers" class="operation" data-method="get"><code>GET</code> /cards/{id}/members</h3>
+<p>Operation ID: <code>get-cards-id-members</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Card |
+| <code>fields</code> | <code>query</code> | <code>string</code> | No | <code>all</code> or a comma-separated list of member <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-success-11" class="status" data-status="2xx">200: Success</h5>
+<h3 id="get-membersidfield" class="operation" data-method="get"><code>GET</code> /members/{id}/{field}</h3>
+<p>Operation ID: <code>get-members-id-field</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or username of the member |
+| <code>field</code> | <code>path</code> | <code>enum: id</code> | Yes | One of the member <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-success-12" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h3 id="get-notificationsidmember" class="operation" data-method="get"><code>GET</code> /notifications/{id}/member</h3>
+<p>Operation ID: <code>notificationsidmember</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-13">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the notification |
+| <code>fields</code> | <code>query</code> | <code>enum: id</code> | No | <code>all</code> or a comma-separated list of member <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-13">Responses</h4>
+<h5 id="200-success-13" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h3 id="get-boardsidmembers" class="operation" data-method="get"><code>GET</code> /boards/{id}/members</h3>
+<p>Operation ID: <code>get-boards-id-members</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-14">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the board |</p>
+<h4 id="responses-14">Responses</h4>
+<h5 id="200-success-14" class="status" data-status="2xx">200: Success</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-boardsidmembersidmember" class="operation" data-method="delete"><code>DELETE</code> /boards/{id}/members/{idMember}</h3>
+<p>Operation ID: <code>boardsidmembersidmember</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-15">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The id of the board to update |
+| <code>idMember</code> | <code>path</code> | <code>string</code> | Yes | The id of the member to add to the board. |</p>
+<h4 id="responses-15">Responses</h4>
+<h5 id="200-success-15" class="status" data-status="2xx">200: Success</h5>
+<h3 id="delete-organizationsidmembersidmember" class="operation" data-method="delete"><code>DELETE</code> /organizations/{id}/members/{idMember}</h3>
+<p>Operation ID: <code>delete-organizations-id-members</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-16">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string or string</code> | Yes | The ID or name of the organization |
+| <code>idMember</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Member to remove from the Workspace |</p>
+<h4 id="responses-16">Responses</h4>
+<h5 id="200-success-16" class="status" data-status="2xx">200: Success</h5>
+<h3 id="delete-organizationsidmembersidmemberall" class="operation" data-method="delete"><code>DELETE</code> /organizations/{id}/members/{idMember}/all</h3>
+<p>Operation ID: <code>organizations-id-members-idmember-all</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-17">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or name of the organization |
+| <code>idMember</code> | <code>path</code> | <code>string</code> | Yes | The ID of the member to remove from the Workspace |</p>
+<h4 id="responses-17">Responses</h4>
+<h5 id="200-success-17" class="status" data-status="2xx">200: Success</h5>
+<h2 id="update">update</h2>
+<h3 id="put-membersid" class="operation" data-method="put"><code>PUT</code> /members/{id}</h3>
+<p>Operation ID: <code>put-members-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-18">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or username of the member |
+| <code>fullName</code> | <code>query</code> | <code>string</code> | No | New name for the member. Cannot begin or end with a space. |
+| <code>initials</code> | <code>query</code> | <code>string</code> | No | New initials for the member. 1-4 characters long. |
+| <code>username</code> | <code>query</code> | <code>string</code> | No | New username for the member. At least 3 characters long, only lowercase letters, underscores, and numbers. Must be unique. |
+| <code>bio</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>avatarSource</code> | <code>query</code> | <code>enum: gravatar, none, upload</code> | No | One of: <code>gravatar</code>, <code>none</code>, <code>upload</code> |
+| <code>prefs/colorBlind</code> | <code>query</code> | <code>boolean</code> | No |  |
+| <code>prefs/locale</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>prefs/minutesBetweenSummaries</code> | <code>query</code> | <code>integer (int32)</code> | No | <code>-1</code> for disabled, <code>1</code>, or <code>60</code> |</p>
+<h4 id="responses-18">Responses</h4>
+<h5 id="200-success-18" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h3 id="put-enterprisesidmembersidmemberdeactivated" class="operation" data-method="put"><code>PUT</code> /enterprises/{id}/members/{idMember}/deactivated</h3>
+<p>Operation ID: <code>enterprises-id-members-idMember-deactivated</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-19">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of the enterprise to retrieve. |
+| <code>idMember</code> | <code>path</code> | <code>string</code> | Yes | ID of the Member to deactive. |
+| <code>value</code> | <code>query</code> | <code>boolean</code> | Yes | Determines whether the user is deactivated or not. |
+| <code>fields</code> | <code>query</code> | <code>enum: id</code> | No | A comma separated list of any valid values that the <a href="">nested member field resource</a> accepts. |
+| <code>organization_fields</code> | <code>query</code> | <code>enum: id, name</code> | No | Any valid value that the <a href="/cloud/trello/guides/rest-api/nested-resources/">nested organization resource</a> accepts. |
+| <code>board_fields</code> | <code>query</code> | <code>enum: id, name, desc, descData, closed, idMemberCreator, ...</code> | No | Any valid value that the <a href="/cloud/trello/guides/rest-api/nested-resources/">nested board resource</a> accepts. |</p>
+<h4 id="responses-19">Responses</h4>
+<h5 id="200-success-19" class="status" data-status="2xx">200: Success</h5>
+<h3 id="put-boardsidmembersidmember" class="operation" data-method="put"><code>PUT</code> /boards/{id}/members/{idMember}</h3>
+<p>Operation ID: <code>put-boards-id-members-idmember</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-20">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The id of the board to update |
+| <code>idMember</code> | <code>path</code> | <code>string</code> | Yes | The id of the member to add to the board. |
+| <code>type</code> | <code>query</code> | <code>enum: admin, normal, observer</code> | Yes | One of: admin, normal, observer. Determines the type of member this user will be on the board. |
+| <code>allowBillableGuest</code> | <code>query</code> | <code>boolean</code> | No | Optional param that allows organization admins to add multi-board guests onto a board. |</p>
+<h4 id="responses-20">Responses</h4>
+<h5 id="200-success-20" class="status" data-status="2xx">200: Success</h5>
+<h3 id="put-enterprisesidmembersidmemberlicensed" class="operation" data-method="put"><code>PUT</code> /enterprises/{id}/members/{idMember}/licensed</h3>
+<p>Operation ID: <code>put-enterprises-id-members-idmember-licensed</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-21">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of the Enterprise. |
+| <code>idMember</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Member |
+| <code>value</code> | <code>query</code> | <code>boolean</code> | Yes | Boolean value to determine whether the user should be given an Enterprise license (true) or not (false). |</p>
+<h4 id="responses-21">Responses</h4>
+<h5 id="200-success-21" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aaEmail</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaEnrolledDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aaId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activityBlocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarSource</code></td>
+<td><code>enum: gravatar, upload</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bio</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bioData.emoji</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gravatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoards</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idBoardsPinned</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprise</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idEnterprisesDeactivated</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganizations</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idPremOrgsAdmin</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isAaMastered</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>loginTypes</code></td>
+<td><code>array of enum: password, saml</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.date</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>marketingOptIn.optedIn</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberType</code></td>
+<td><code>enum: normal, ghost</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed._id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.count</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.lastDismissed</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messagesDismissed.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Profile data with restricted visibility. These fields are visible only to members of the same organization. The values here (full name, for example) may differ from the values at the top level of the response.</td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.avatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>A URL that references the non-public avatar for the member</td>
+</tr>
+<tr>
+<td><code>nonPublic.fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublic.initials</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nonPublicAvailable</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the response contains non-public profile data for the member</td>
+</tr>
+<tr>
+<td><code>oneTimeMessagesDismissed</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.colorBlind</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBeforeDeadlineToNotify</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.minutesBetweenSummaries</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.avatar</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.privacy.fullName</code></td>
+<td><code>enum: public, private, collaborator</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.sendSummaries</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.dateNext</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetCurrent</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.offsetNext</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneCurrent</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.timezoneInfo.timezoneNext</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.twoFactor.needsNewBackups</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>premiumFeatures</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: disconnected</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trophies</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarHash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>uploadedAvatarUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-1" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-specified-resource-was-not-found-1" class="status" data-status="4xx">404: The specified resource was not found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="default-unexpected-error-1">default: Unexpected error</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="put-organizationsidmembersidmember" class="operation" data-method="put"><code>PUT</code> /organizations/{id}/members/{idMember}</h3>
+<p>Operation ID: <code>put-organizations-id-members-idmember</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-22">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or name of the organization |
+| <code>idMember</code> | <code>path</code> | <code>string or string</code> | Yes | The ID or username of the member to update |
+| <code>type</code> | <code>query</code> | <code>enum: admin, normal</code> | Yes | One of: <code>admin</code>, <code>normal</code> |</p>
+<h4 id="responses-22">Responses</h4>
+<h5 id="200-success-22" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h3 id="put-organizationsidmembersidmemberdeactivated" class="operation" data-method="put"><code>PUT</code> /organizations/{id}/members/{idMember}/deactivated</h3>
+<p>Operation ID: <code>put-organizations-id-members-idmember-deactivated</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-23">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or name of the organization |
+| <code>idMember</code> | <code>path</code> | <code>string or string</code> | Yes | The ID or username of the member to update |
+| <code>value</code> | <code>query</code> | <code>boolean</code> | Yes |  |</p>
+<h4 id="responses-23">Responses</h4>
+<h5 id="200-success-23" class="status" data-status="2xx">200: Success</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

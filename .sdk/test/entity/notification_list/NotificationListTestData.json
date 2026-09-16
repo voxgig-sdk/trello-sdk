@@ -16,5 +16,132 @@
     "notification_list": {
       "notification_list_ref01": {}
     }
+  },
+  "requests": {
+    "GET /notifications/{id}/list": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-notifications-id-list",
+        "parameters": [
+          {
+            "description": "The ID of the notification",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of list [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "id"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "closed": {
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "idBoard": {
+                          "type": "string"
+                        },
+                        "limits": {
+                          "properties": {
+                            "attachments": {
+                              "properties": {
+                                "perBoard": {
+                                  "properties": {
+                                    "disableAt": {
+                                      "example": 36000,
+                                      "type": "number"
+                                    },
+                                    "status": {
+                                      "enum": [
+                                        "ok",
+                                        "warning"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "warnAt": {
+                                      "example": 32400,
+                                      "type": "number"
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "name": {
+                          "description": "The name of the list",
+                          "example": "Things to buy today",
+                          "type": "string"
+                        },
+                        "pos": {
+                          "type": "number"
+                        },
+                        "softLimit": {
+                          "type": "string"
+                        },
+                        "subscribed": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

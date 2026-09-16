@@ -19,5 +19,62 @@
     "id_email_list": {
       "id_email_list_ref01": {}
     }
+  },
+  "requests": {
+    "PUT /boards/{id}/myPrefs/idEmailList": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-boards-id-myprefs-idemaillist",
+        "parameters": [
+          {
+            "description": "The id of the board to update",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of an email list.",
+            "in": "query",
+            "name": "value",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

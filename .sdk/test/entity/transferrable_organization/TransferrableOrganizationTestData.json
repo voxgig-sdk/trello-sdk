@@ -32,5 +32,199 @@
         "transferrable": false
       }
     }
+  },
+  "requests": {
+    "GET /enterprises/{id}/transferrable/organization/{idOrganization}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-enterprises-id-transferrable-organization-idOrganization",
+        "parameters": [
+          {
+            "description": "ID of the Enterprise to retrieve.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "An ID of an Organization resource.",
+            "in": "path",
+            "name": "idOrganization",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "newBillableMembers": {
+                      "items": {
+                        "properties": {
+                          "avatarHash": {
+                            "example": "fc8faaaee46666a4eb8b626c08933e16",
+                            "type": "string"
+                          },
+                          "fullName": {
+                            "example": "Bob Loblaw",
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "5ab10be237846c43015f1091",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "initials": {
+                            "example": "BL",
+                            "type": "string"
+                          },
+                          "username": {
+                            "example": "bobloblaw",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "restrictedMembers": {
+                      "items": {
+                        "properties": {
+                          "avatarHash": {
+                            "example": "fc8faaaee46666a4eb8b626c08933e16",
+                            "type": "string"
+                          },
+                          "fullName": {
+                            "example": "Bob Loblaw",
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "5ab10be237846c43015f1091",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "initials": {
+                            "example": "BL",
+                            "type": "string"
+                          },
+                          "username": {
+                            "example": "bobloblaw",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "transferrable": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The specified resource was not found"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

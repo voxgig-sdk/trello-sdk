@@ -127,6 +127,12 @@ main: kit: entity: custom_field: {
               }
             ]
           }
+          contract: {
+            id: "POST /customFields/{id}/options"
+            json: "{\"operationId\":\"get-customfields-id-options\",\"parameters\":[{\"description\":\"ID of the customfield.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/customFields/{id}/options"
           segments: [
@@ -152,6 +158,12 @@ main: kit: entity: custom_field: {
           }
         }
         {
+          contract: {
+            id: "POST /customFields"
+            json: "{\"operationId\":\"post-customfields\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"display_cardFront\":{\"default\":true,\"description\":\"Whether this Custom Field should be shown on the front of Cards\",\"type\":\"boolean\"},\"idModel\":{\"description\":\"The ID of the model for which the Custom Field is being defined. This should always be the ID of a board.\",\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"modelType\":{\"description\":\"The type of model that the Custom Field is being defined on. This should always be `board`.\",\"enum\":[\"board\"],\"type\":\"string\"},\"name\":{\"description\":\"The name of the Custom Field\",\"type\":\"string\"},\"options\":{\"description\":\"If the type is `checkbox` \",\"type\":\"string\"},\"pos\":{\"description\":\"\",\"oneOf\":[{\"enum\":[\"top\",\"bottom\"],\"type\":\"string\"},{\"example\":1293.5,\"format\":\"float\",\"type\":\"number\"}]},\"type\":{\"description\":\"The type of Custom Field to create.\",\"enum\":[\"checkbox\",\"list\",\"number\",\"text\",\"date\"],\"type\":\"string\"}},\"required\":[\"idModel\",\"modelType\",\"name\",\"type\",\"pos\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"display\":{\"properties\":{\"cardFront\":{\"example\":true,\"type\":\"boolean\"},\"name\":{\"example\":\"Priority 🏔\",\"type\":\"string\"},\"options\":{\"items\":{\"properties\":{\"color\":{\"example\":\"red\",\"type\":\"string\"},\"id\":{\"example\":\"5ab10be237846c43015f1091\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idCustomField\":{\"example\":\"5ab10be237846c43015f108e\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"pos\":{\"example\":16384,\"type\":\"number\"},\"value\":{\"properties\":{\"text\":{\"example\":\"High\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"},\"pos\":{\"example\":\"98304,\",\"type\":\"string\"}},\"type\":\"object\"},\"fieldGroup\":{\"example\":\"f6177ba6839d6fff0f73922c1cea105e793fda8a1433d466104dacc0b7c56955\",\"type\":\"string\"},\"id\":{\"example\":\"5ab10be237846c43015f108e\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"586e8f681d4fe9b06a928307\",\"type\":\"string\"},\"modelType\":{\"enum\":[\"card\",\"board\",\"member\"],\"example\":\"board\",\"type\":\"string\"},\"type\":{\"example\":\"list\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/customFields"
           segments: [
@@ -181,6 +193,12 @@ main: kit: entity: custom_field: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /boards/{id}/customFields"
+            json: "{\"operationId\":\"get-boards-id-customfields\",\"parameters\":[{\"description\":\"The ID of the board\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"display\":{\"properties\":{\"cardFront\":{\"example\":true,\"type\":\"boolean\"},\"name\":{\"example\":\"Priority 🏔\",\"type\":\"string\"},\"options\":{\"items\":{\"properties\":{\"color\":{\"example\":\"red\",\"type\":\"string\"},\"id\":{\"example\":\"5ab10be237846c43015f1091\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idCustomField\":{\"example\":\"5ab10be237846c43015f108e\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"pos\":{\"example\":16384,\"type\":\"number\"},\"value\":{\"properties\":{\"text\":{\"example\":\"High\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"},\"pos\":{\"example\":\"98304,\",\"type\":\"string\"}},\"type\":\"object\"},\"fieldGroup\":{\"example\":\"f6177ba6839d6fff0f73922c1cea105e793fda8a1433d466104dacc0b7c56955\",\"type\":\"string\"},\"id\":{\"example\":\"5ab10be237846c43015f108e\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"586e8f681d4fe9b06a928307\",\"type\":\"string\"},\"modelType\":{\"enum\":[\"card\",\"board\",\"member\"],\"example\":\"board\",\"type\":\"string\"},\"type\":{\"example\":\"list\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/boards/{id}/customFields"
@@ -228,6 +246,12 @@ main: kit: entity: custom_field: {
               }
             ]
           }
+          contract: {
+            id: "GET /customFields/{id}"
+            json: "{\"operationId\":\"get-customfields-id\",\"parameters\":[{\"description\":\"ID of the Custom Field.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"display\":{\"properties\":{\"cardFront\":{\"example\":true,\"type\":\"boolean\"},\"name\":{\"example\":\"Priority 🏔\",\"type\":\"string\"},\"options\":{\"items\":{\"properties\":{\"color\":{\"example\":\"red\",\"type\":\"string\"},\"id\":{\"example\":\"5ab10be237846c43015f1091\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idCustomField\":{\"example\":\"5ab10be237846c43015f108e\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"pos\":{\"example\":16384,\"type\":\"number\"},\"value\":{\"properties\":{\"text\":{\"example\":\"High\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"},\"pos\":{\"example\":\"98304,\",\"type\":\"string\"}},\"type\":\"object\"},\"fieldGroup\":{\"example\":\"f6177ba6839d6fff0f73922c1cea105e793fda8a1433d466104dacc0b7c56955\",\"type\":\"string\"},\"id\":{\"example\":\"5ab10be237846c43015f108e\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"586e8f681d4fe9b06a928307\",\"type\":\"string\"},\"modelType\":{\"enum\":[\"card\",\"board\",\"member\"],\"example\":\"board\",\"type\":\"string\"},\"type\":{\"example\":\"list\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/customFields/{id}"
           segments: [
@@ -265,6 +289,12 @@ main: kit: entity: custom_field: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "DELETE /customFields/{id}"
+            json: "{\"operationId\":\"delete-customfields-id\",\"parameters\":[{\"description\":\"ID of the Custom Field.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "DELETE"
           orig: "/customFields/{id}"
@@ -311,6 +341,12 @@ main: kit: entity: custom_field: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /cards/{idCard}/customField/{idCustomField}/item"
+            json: "{\"operationId\":\"put-cards-idcard-customfield-idcustomfield-item\",\"parameters\":[{\"description\":\"ID of the card that the Custom Field value should be set/updated for\",\"in\":\"path\",\"name\":\"idCard\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"ID of the Custom Field on the card.\",\"in\":\"path\",\"name\":\"idCustomField\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"value\":{\"description\":\"An object containing the key and value to set for the card's Custom Field value. The key used to set the value should match the type of Custom Field defined.\",\"properties\":{\"checked\":{\"type\":\"boolean\"},\"date\":{\"example\":\"2018-03-13T16:00:00.000Z\",\"format\":\"date-time\",\"type\":\"string\"},\"number\":{\"example\":\"2154\",\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},{\"properties\":{\"idValue\":{\"description\":\"The ID of the option for the list type Custom Field\",\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}]}}}},\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/cards/{idCard}/customField/{idCustomField}/item"
@@ -361,6 +397,12 @@ main: kit: entity: custom_field: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /customFields/{id}"
+            json: "{\"operationId\":\"put-customfields-id\",\"parameters\":[{\"description\":\"ID of the Custom Field.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"display/cardFront\":{\"description\":\"Whether to display this custom field on the front of cards\",\"type\":\"boolean\"},\"name\":{\"description\":\"The name of the Custom Field\",\"type\":\"string\"},\"pos\":{\"oneOf\":[{\"enum\":[\"top\",\"bottom\"],\"type\":\"string\"},{\"example\":1293.5,\"format\":\"float\",\"type\":\"number\"}]}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"display\":{\"properties\":{\"cardFront\":{\"example\":true,\"type\":\"boolean\"},\"name\":{\"example\":\"Priority 🏔\",\"type\":\"string\"},\"options\":{\"items\":{\"properties\":{\"color\":{\"example\":\"red\",\"type\":\"string\"},\"id\":{\"example\":\"5ab10be237846c43015f1091\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idCustomField\":{\"example\":\"5ab10be237846c43015f108e\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"pos\":{\"example\":16384,\"type\":\"number\"},\"value\":{\"properties\":{\"text\":{\"example\":\"High\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"},\"pos\":{\"example\":\"98304,\",\"type\":\"string\"}},\"type\":\"object\"},\"fieldGroup\":{\"example\":\"f6177ba6839d6fff0f73922c1cea105e793fda8a1433d466104dacc0b7c56955\",\"type\":\"string\"},\"id\":{\"example\":\"5ab10be237846c43015f108e\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"586e8f681d4fe9b06a928307\",\"type\":\"string\"},\"modelType\":{\"enum\":[\"card\",\"board\",\"member\"],\"example\":\"board\",\"type\":\"string\"},\"type\":{\"example\":\"list\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/customFields/{id}"

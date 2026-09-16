@@ -35,5 +35,659 @@
         "idMember": "sa3"
       }
     }
+  },
+  "requests": {
+    "GET /members/{id}/notificationsChannelSettings": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-notificationChannelSettings",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "blockedKeys": {
+                        "items": {
+                          "enum": [
+                            "notification_comment_card",
+                            "notification_added_a_due_date",
+                            "notification_changed_due_date",
+                            "notification_card_due_soon",
+                            "notification_removed_from_card",
+                            "notification_added_attachment_to_card",
+                            "notification_created_card",
+                            "notification_moved_card",
+                            "notification_archived_card",
+                            "notification_unarchived_card"
+                          ],
+                          "example": "notification_comment_card",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "channel": {
+                        "enum": [
+                          "email"
+                        ],
+                        "example": "email",
+                        "type": "string"
+                      },
+                      "id": {
+                        "example": "5dc591ac425f2a223aba0a8e",
+                        "type": "string"
+                      },
+                      "idMember": {
+                        "example": "5589c3ea49b40cedc28cf70e",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/notificationsChannelSettings/{channel}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-notificationChannelSettings-channel",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "Channel to block notifications on",
+            "in": "path",
+            "name": "channel",
+            "required": true,
+            "schema": {
+              "enum": [
+                "email"
+              ],
+              "example": "email",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blockedKeys": {
+                      "items": {
+                        "enum": [
+                          "notification_comment_card",
+                          "notification_added_a_due_date",
+                          "notification_changed_due_date",
+                          "notification_card_due_soon",
+                          "notification_removed_from_card",
+                          "notification_added_attachment_to_card",
+                          "notification_created_card",
+                          "notification_moved_card",
+                          "notification_archived_card",
+                          "notification_unarchived_card"
+                        ],
+                        "example": "notification_comment_card",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "channel": {
+                      "enum": [
+                        "email"
+                      ],
+                      "example": "email",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5dc591ac425f2a223aba0a8e",
+                      "type": "string"
+                    },
+                    "idMember": {
+                      "example": "5589c3ea49b40cedc28cf70e",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-members-id-notificationChannelSettings-channel-blockedKeys",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "Channel to block notifications on",
+            "in": "path",
+            "name": "channel",
+            "required": true,
+            "schema": {
+              "enum": [
+                "email"
+              ],
+              "example": "email",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Singular key or comma-separated list of notification keys",
+            "in": "path",
+            "name": "blockedKeys",
+            "required": true,
+            "schema": {
+              "enum": [
+                "notification_comment_card",
+                "notification_added_a_due_date",
+                "notification_changed_due_date",
+                "notification_card_due_soon",
+                "notification_removed_from_card",
+                "notification_added_attachment_to_card",
+                "notification_created_card",
+                "notification_moved_card",
+                "notification_archived_card",
+                "notification_unarchived_card"
+              ],
+              "example": "notification_comment_card",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blockedKeys": {
+                      "items": {
+                        "enum": [
+                          "notification_comment_card",
+                          "notification_added_a_due_date",
+                          "notification_changed_due_date",
+                          "notification_card_due_soon",
+                          "notification_removed_from_card",
+                          "notification_added_attachment_to_card",
+                          "notification_created_card",
+                          "notification_moved_card",
+                          "notification_archived_card",
+                          "notification_unarchived_card"
+                        ],
+                        "example": "notification_comment_card",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "channel": {
+                      "enum": [
+                        "email"
+                      ],
+                      "example": "email",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5dc591ac425f2a223aba0a8e",
+                      "type": "string"
+                    },
+                    "idMember": {
+                      "example": "5589c3ea49b40cedc28cf70e",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /members/{id}/notificationsChannelSettings/{channel}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-members-id-notificationChannelSettings-channel-blockedKeys",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "Channel to block notifications on",
+            "in": "path",
+            "name": "channel",
+            "required": true,
+            "schema": {
+              "enum": [
+                "email"
+              ],
+              "example": "email",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "blockedKeys": {
+                    "description": "Singular key or array of notification keys",
+                    "oneOf": [
+                      {
+                        "enum": [
+                          "notification_comment_card",
+                          "notification_added_a_due_date",
+                          "notification_changed_due_date",
+                          "notification_card_due_soon",
+                          "notification_removed_from_card",
+                          "notification_added_attachment_to_card",
+                          "notification_created_card",
+                          "notification_moved_card",
+                          "notification_archived_card",
+                          "notification_unarchived_card"
+                        ],
+                        "example": "notification_comment_card",
+                        "type": "string"
+                      },
+                      {
+                        "items": {
+                          "enum": [
+                            "notification_comment_card",
+                            "notification_added_a_due_date",
+                            "notification_changed_due_date",
+                            "notification_card_due_soon",
+                            "notification_removed_from_card",
+                            "notification_added_attachment_to_card",
+                            "notification_created_card",
+                            "notification_moved_card",
+                            "notification_archived_card",
+                            "notification_unarchived_card"
+                          ],
+                          "example": "notification_comment_card",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "blockedKeys"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blockedKeys": {
+                      "items": {
+                        "enum": [
+                          "notification_comment_card",
+                          "notification_added_a_due_date",
+                          "notification_changed_due_date",
+                          "notification_card_due_soon",
+                          "notification_removed_from_card",
+                          "notification_added_attachment_to_card",
+                          "notification_created_card",
+                          "notification_moved_card",
+                          "notification_archived_card",
+                          "notification_unarchived_card"
+                        ],
+                        "example": "notification_comment_card",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "channel": {
+                      "enum": [
+                        "email"
+                      ],
+                      "example": "email",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5dc591ac425f2a223aba0a8e",
+                      "type": "string"
+                    },
+                    "idMember": {
+                      "example": "5589c3ea49b40cedc28cf70e",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /members/{id}/notificationsChannelSettings": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-members-id-notificationChannelSettings-channel-blockedKeys",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "blockedKeys": {
+                    "description": "Blocked key or array of blocked keys.",
+                    "oneOf": [
+                      {
+                        "enum": [
+                          "notification_comment_card",
+                          "notification_added_a_due_date",
+                          "notification_changed_due_date",
+                          "notification_card_due_soon",
+                          "notification_removed_from_card",
+                          "notification_added_attachment_to_card",
+                          "notification_created_card",
+                          "notification_moved_card",
+                          "notification_archived_card",
+                          "notification_unarchived_card"
+                        ],
+                        "example": "notification_comment_card",
+                        "type": "string"
+                      },
+                      {
+                        "items": {
+                          "enum": [
+                            "notification_comment_card",
+                            "notification_added_a_due_date",
+                            "notification_changed_due_date",
+                            "notification_card_due_soon",
+                            "notification_removed_from_card",
+                            "notification_added_attachment_to_card",
+                            "notification_created_card",
+                            "notification_moved_card",
+                            "notification_archived_card",
+                            "notification_unarchived_card"
+                          ],
+                          "example": "notification_comment_card",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    ]
+                  },
+                  "channel": {
+                    "enum": [
+                      "email"
+                    ],
+                    "example": "email",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "channel",
+                  "blockedKeys"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blockedKeys": {
+                      "items": {
+                        "enum": [
+                          "notification_comment_card",
+                          "notification_added_a_due_date",
+                          "notification_changed_due_date",
+                          "notification_card_due_soon",
+                          "notification_removed_from_card",
+                          "notification_added_attachment_to_card",
+                          "notification_created_card",
+                          "notification_moved_card",
+                          "notification_archived_card",
+                          "notification_unarchived_card"
+                        ],
+                        "example": "notification_comment_card",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "channel": {
+                      "enum": [
+                        "email"
+                      ],
+                      "example": "email",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5dc591ac425f2a223aba0a8e",
+                      "type": "string"
+                    },
+                    "idMember": {
+                      "example": "5589c3ea49b40cedc28cf70e",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

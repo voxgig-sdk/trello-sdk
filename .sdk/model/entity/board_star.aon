@@ -61,6 +61,12 @@ main: kit: entity: board_star: {
               }
             ]
           }
+          contract: {
+            id: "POST /members/{id}/boardStars"
+            json: "{\"operationId\":\"post-members-id-boardstars\",\"parameters\":[{\"description\":\"The ID or username of the member\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"oneOf\":[{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},{\"type\":\"string\"}]}},{\"description\":\"The ID of the board to star\",\"in\":\"query\",\"name\":\"idBoard\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The position of the newly starred board. `top`, `bottom`, or a positive float.\",\"in\":\"query\",\"name\":\"pos\",\"required\":true,\"schema\":{\"oneOf\":[{\"enum\":[\"top\",\"bottom\"],\"type\":\"string\"},{\"example\":1293.5,\"format\":\"float\",\"type\":\"number\"}]}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"example\":\"585063850027165010be15a8\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoard\":{\"example\":\"57f7df684f1ca8c2877162e0\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"pos\":{\"example\":32768,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/members/{id}/boardStars"
           rename: {
@@ -118,6 +124,12 @@ main: kit: entity: board_star: {
               }
             ]
           }
+          contract: {
+            id: "GET /boards/{boardId}/boardStars"
+            json: "{\"operationId\":\"get-boards-id-boardstars\",\"parameters\":[{\"description\":\"\",\"in\":\"path\",\"name\":\"boardId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Valid values: mine, none\",\"in\":\"query\",\"name\":\"filter\",\"required\":false,\"schema\":{\"default\":\"mine\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"oneOf\":[{\"properties\":{\"id\":{\"example\":\"585063850027165010be15a8\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoard\":{\"example\":\"57f7df684f1ca8c2877162e0\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"pos\":{\"example\":32768,\"type\":\"integer\"}},\"type\":\"object\"}]},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/boards/{boardId}/boardStars"
           rename: {
@@ -173,6 +185,12 @@ main: kit: entity: board_star: {
               }
             ]
           }
+          contract: {
+            id: "GET /members/{id}/boardStars/{idStar}"
+            json: "{\"operationId\":\"get-members-id-boardstars-idstar\",\"parameters\":[{\"description\":\"The ID or username of the member\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The ID of the board star\",\"in\":\"path\",\"name\":\"idStar\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"example\":\"585063850027165010be15a8\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoard\":{\"example\":\"57f7df684f1ca8c2877162e0\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"pos\":{\"example\":32768,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/members/{id}/boardStars/{idStar}"
           rename: {
@@ -218,6 +236,12 @@ main: kit: entity: board_star: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /members/{id}/boardStars"
+            json: "{\"operationId\":\"get-members-id-boardstars\",\"parameters\":[{\"description\":\"The ID or username of the member\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/members/{id}/boardStars"
@@ -272,6 +296,12 @@ main: kit: entity: board_star: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "DELETE /members/{id}/boardStars/{idStar}"
+            json: "{\"operationId\":\"delete-members-id-boardstars-idstar\",\"parameters\":[{\"description\":\"The ID or username of the member\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The ID of the board star\",\"in\":\"path\",\"name\":\"idStar\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "DELETE"
           orig: "/members/{id}/boardStars/{idStar}"
@@ -340,6 +370,12 @@ main: kit: entity: board_star: {
                 type: "`$ANY`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /members/{id}/boardStars/{idStar}"
+            json: "{\"operationId\":\"put-members-id-boardstars-idstar\",\"parameters\":[{\"description\":\"The ID or username of the member\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The ID of the board star\",\"in\":\"path\",\"name\":\"idStar\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"New position for the starred board. `top`, `bottom`, or a positive float.\",\"in\":\"query\",\"name\":\"pos\",\"required\":false,\"schema\":{\"oneOf\":[{\"enum\":[\"top\",\"bottom\"],\"type\":\"string\"},{\"example\":1293.5,\"format\":\"float\",\"type\":\"number\"}]}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/members/{id}/boardStars/{idStar}"

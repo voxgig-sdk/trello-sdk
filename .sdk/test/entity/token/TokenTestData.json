@@ -40,5 +40,319 @@
         "permissions": []
       }
     }
+  },
+  "requests": {
+    "GET /members/{id}/tokens": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-tokens",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to include webhooks",
+            "in": "query",
+            "name": "webhooks",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "dateCreated": {
+                        "example": "2019-10-16T14:27:17.304Z",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "dateExpires": {
+                        "example": null,
+                        "format": "date-time",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "id": {
+                        "example": "5da728c55235b443c5b97181",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idMember": {
+                        "example": "5589c3ea49b40cedc28cf70e",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "identifier": {
+                        "example": "App Name",
+                        "type": "string"
+                      },
+                      "permissions": {
+                        "items": {
+                          "properties": {
+                            "idModel": {
+                              "oneOf": [
+                                {
+                                  "example": "5abbe4b7ddc1b351ef961414",
+                                  "pattern": "^[0-9a-fA-F]{24}$",
+                                  "type": "string"
+                                },
+                                {
+                                  "enum": [
+                                    "*"
+                                  ],
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "modelType": {
+                              "enum": [
+                                "board",
+                                "member",
+                                "organization",
+                                "enterprise"
+                              ],
+                              "type": "string"
+                            },
+                            "read": {
+                              "type": "boolean"
+                            },
+                            "write": {
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /tokens/{token}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-tokens-token",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of `dateCreated`, `dateExpires`, `idMember`, `identifier`, `permissions`",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "identifier",
+                "idMember",
+                "dateCreated",
+                "dateExpires",
+                "permissions"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines whether to include webhooks.",
+            "in": "query",
+            "name": "webhooks",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "dateCreated": {
+                      "example": "2019-10-16T14:27:17.304Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "dateExpires": {
+                      "example": null,
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5da728c55235b443c5b97181",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idMember": {
+                      "example": "5589c3ea49b40cedc28cf70e",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "identifier": {
+                      "example": "App Name",
+                      "type": "string"
+                    },
+                    "permissions": {
+                      "items": {
+                        "properties": {
+                          "idModel": {
+                            "oneOf": [
+                              {
+                                "example": "5abbe4b7ddc1b351ef961414",
+                                "pattern": "^[0-9a-fA-F]{24}$",
+                                "type": "string"
+                              },
+                              {
+                                "enum": [
+                                  "*"
+                                ],
+                                "type": "string"
+                              }
+                            ]
+                          },
+                          "modelType": {
+                            "enum": [
+                              "board",
+                              "member",
+                              "organization",
+                              "enterprise"
+                            ],
+                            "type": "string"
+                          },
+                          "read": {
+                            "type": "boolean"
+                          },
+                          "write": {
+                            "type": "boolean"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /tokens/{token}/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-token",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

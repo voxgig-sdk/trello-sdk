@@ -21,6 +21,12 @@ main: kit: entity: application_compliance: {
               }
             ]
           }
+          contract: {
+            id: "GET /applications/{key}/compliance"
+            json: "{\"operationId\":\"applications-key-compliance\",\"parameters\":[{\"in\":\"path\",\"name\":\"key\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/applications/{key}/compliance"
           segments: [

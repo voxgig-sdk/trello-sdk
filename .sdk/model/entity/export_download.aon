@@ -30,6 +30,12 @@ main: kit: entity: export_download: {
               }
             ]
           }
+          contract: {
+            id: "GET /boards/{id}/exports/{idExport}/download"
+            json: "{\"operationId\":\"get-boards-id-exports-idexport-download\",\"parameters\":[{\"description\":\"The ID of the board\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The ID of the export\",\"in\":\"path\",\"name\":\"idExport\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"302\":{\"description\":\"Redirects to the export file's download location\"},\"400\":{\"description\":\"Export is not ready for download\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/boards/{id}/exports/{idExport}/download"
           rename: {

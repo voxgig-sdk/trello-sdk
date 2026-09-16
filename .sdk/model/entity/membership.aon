@@ -139,6 +139,12 @@ main: kit: entity: membership: {
               }
             ]
           }
+          contract: {
+            id: "GET /enterprises/{id}/members/query"
+            json: "{\"operationId\":\"get-users-id\",\"parameters\":[{\"description\":\"ID of the enterprise to retrieve.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"When true, returns members who possess a license for the corresponding Trello Enterprise; when false, returns members who do not. If unspecified, both licensed and unlicensed members will be returned.\",\"in\":\"query\",\"name\":\"licensed\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"When true, returns members who have been deactivated for the corresponding Trello Enterprise; when false, returns members who have not. If unspecified, both active and deactivated members will be returned.\",\"in\":\"query\",\"name\":\"deactivated\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"When true, returns members who are guests on one or more boards in the corresponding Trello Enterprise (but do not possess a license); when false, returns members who are not. If unspecified, both guests and non-guests will be returned.\",\"in\":\"query\",\"name\":\"collaborator\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"When true, returns members who are managed by the corresponding Trello Enterprise; when false, returns members who are not. If unspecified, both managed and unmanaged members will be returned.\",\"in\":\"query\",\"name\":\"managed\",\"required\":false,\"schema\":{\"default\":\"none\",\"type\":\"boolean\"}},{\"description\":\"When true, returns members who are administrators of the corresponding Trello Enterprise; when false, returns members who are not. If unspecified, both admin and non-admin members will be returned.\",\"in\":\"query\",\"name\":\"admin\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"Returns only Trello users active since this date (inclusive).\",\"in\":\"query\",\"name\":\"activeSince\",\"required\":false,\"schema\":{\"default\":\"none\",\"type\":\"string\"}},{\"description\":\"Returns only Trello users active since this date (inclusive).\",\"in\":\"query\",\"name\":\"inactiveSince\",\"required\":false,\"schema\":{\"default\":\"none\",\"type\":\"string\"}},{\"description\":\"Returns members with email address or full name that start with the search value.\",\"in\":\"query\",\"name\":\"search\",\"required\":false,\"schema\":{\"default\":\"none\",\"type\":\"string\"}},{\"description\":\"Cursor to return next set of results, use cursor returned in the response to query the next batch.\",\"in\":\"query\",\"name\":\"cursor\",\"required\":false,\"schema\":{\"default\":\"none\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"admin\":{\"type\":\"boolean\"},\"collaborator\":{\"type\":\"boolean\"},\"deactivated\":{\"type\":\"boolean\"},\"licensed\":{\"type\":\"boolean\"},\"managed\":{\"type\":\"boolean\"},\"member\":{\"example\":{\"avatarURL\":\"trello.com/avatarURL\",\"confirmed\":true,\"dateLastImpression\":\"2023-05-24T22:41:36.406Z\",\"email\":\"amath@trello.com\",\"fullname\":\"Lex Math\",\"id\":\"646e92a0a016198d3cf81e8a\",\"initials\":\"AM\",\"memberType\":\"Admin\",\"username\":\"amath\"},\"properties\":{\"avatarURL\":{\"type\":\"string\"},\"confirmed\":{\"type\":\"boolean\"},\"dateLastImpression\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"fullname\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"initials\":{\"type\":\"string\"},\"memberType\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/enterprises/{id}/members/query"
           rename: {
@@ -209,6 +215,12 @@ main: kit: entity: membership: {
                 type: "`$BOOLEAN`"
               }
             ]
+          }
+          contract: {
+            id: "GET /organizations/{id}/memberships"
+            json: "{\"operationId\":\"get-organizations-id-memberships\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"`all` or a comma-separated list of: `active`, `admin`, `deactivated`, `me`, `normal`\",\"explode\":false,\"in\":\"query\",\"name\":\"filter\",\"required\":false,\"schema\":{\"default\":\"all\",\"enum\":[\"all\",\"active\",\"admin\",\"deactivated\",\"me\",\"normal\"],\"type\":\"string\"},\"style\":\"form\"},{\"description\":\"Whether to include the Member objects with the Memberships\",\"in\":\"query\",\"name\":\"member\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"oneOf\":[{\"description\":\"\",\"properties\":{\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}]},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/organizations/{id}/memberships"
@@ -300,6 +312,12 @@ main: kit: entity: membership: {
               }
             ]
           }
+          contract: {
+            id: "GET /boards/{id}/memberships"
+            json: "{\"operationId\":\"get-boards-id-memberships\",\"parameters\":[{\"description\":\"The ID of the board\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"One of `admins`, `all`, `none`, `normal`\",\"in\":\"query\",\"name\":\"filter\",\"required\":false,\"schema\":{\"default\":\"all\",\"enum\":[\"admins\",\"all\",\"none\",\"normal\"],\"type\":\"string\"}},{\"description\":\"Works for premium organizations only.\",\"in\":\"query\",\"name\":\"activity\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"Shows the type of member to the org the user is. For instance, an org admin will have a `orgMemberType` of `admin`.\",\"in\":\"query\",\"name\":\"orgMemberType\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"Determines whether to include a [nested member object](/cloud/trello/guides/rest-api/nested-resources/).\",\"in\":\"query\",\"name\":\"member\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"Fields to show if `member=true`. Valid values: [nested member resource fields](/cloud/trello/guides/rest-api/nested-resources/).\",\"explode\":false,\"in\":\"query\",\"name\":\"member_fields\",\"required\":false,\"schema\":{\"default\":\"fullname,username\",\"enum\":[\"id\"],\"type\":\"string\"},\"style\":\"form\"}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"\",\"properties\":{\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/boards/{id}/memberships"
           rename: {
@@ -363,6 +381,12 @@ main: kit: entity: membership: {
                 type: "`$BOOLEAN`"
               }
             ]
+          }
+          contract: {
+            id: "GET /organizations/{id}/memberships/{idMembership}"
+            json: "{\"operationId\":\"get-organizations-id-memberships-idmembership\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The ID of the membership to load\",\"in\":\"path\",\"name\":\"idMembership\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"Whether to include the Member object in the response\",\"in\":\"query\",\"name\":\"member\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"description\":\"\",\"properties\":{\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}]}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/organizations/{id}/memberships/{idMembership}"
@@ -440,6 +464,12 @@ main: kit: entity: membership: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /boards/{id}/memberships/{idMembership}"
+            json: "{\"operationId\":\"put-boards-id-memberships-idmembership\",\"parameters\":[{\"description\":\"The id of the board to update\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The id of a membership that should be added to this board.\",\"in\":\"path\",\"name\":\"idMembership\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"One of: admin, normal, observer. Determines the type of member that this membership will be to this board.\",\"in\":\"query\",\"name\":\"type\",\"required\":true,\"schema\":{\"enum\":[\"admin\",\"normal\",\"observer\"],\"type\":\"string\"}},{\"description\":\"Valid values: all, avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url, username\",\"explode\":false,\"in\":\"query\",\"name\":\"member_fields\",\"required\":false,\"schema\":{\"default\":\"fullName, username\",\"enum\":[\"all\",\"avatarHash\",\"bio\",\"bioData\",\"confirmed\",\"fullName\",\"idPremOrgsAdmin\",\"initials\",\"memberType\",\"products\",\"status\",\"url\",\"username\"],\"type\":\"string\"},\"style\":\"form\"}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/boards/{id}/memberships/{idMembership}"

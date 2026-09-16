@@ -28,5 +28,260 @@
         "url": "s7a"
       }
     }
+  },
+  "requests": {
+    "POST /members/{id}/customEmoji": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-members-id-customemoji",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "file",
+            "required": true,
+            "schema": {
+              "format": "binary",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Name for the emoji. 2 - 64 characters",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 2,
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": "5900ac11ed55d6d2c355c5d6",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "chorizo",
+                      "type": "string"
+                    },
+                    "url": {
+                      "example": "https://trello-emoji.s3.amazonaws.com/5589c3ea49b40cedc28cf70e/b40d9925f4e75495104b5e560881d8e4/chorizo.png",
+                      "format": "url",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/customEmoji": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-customemoji",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "example": "5900ac11ed55d6d2c355c5d6",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "name": {
+                        "example": "chorizo",
+                        "type": "string"
+                      },
+                      "url": {
+                        "example": "https://trello-emoji.s3.amazonaws.com/5589c3ea49b40cedc28cf70e/b40d9925f4e75495104b5e560881d8e4/chorizo.png",
+                        "format": "url",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/customEmoji/{idEmoji}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "membersidcustomemojiidemoji",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the custom emoji",
+            "in": "path",
+            "name": "idEmoji",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of `name`, `url`",
+            "explode": false,
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "name",
+                "url",
+                "all"
+              ],
+              "type": "string"
+            },
+            "style": "form"
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": "5900ac11ed55d6d2c355c5d6",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "chorizo",
+                      "type": "string"
+                    },
+                    "url": {
+                      "example": "https://trello-emoji.s3.amazonaws.com/5589c3ea49b40cedc28cf70e/b40d9925f4e75495104b5e560881d8e4/chorizo.png",
+                      "format": "url",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

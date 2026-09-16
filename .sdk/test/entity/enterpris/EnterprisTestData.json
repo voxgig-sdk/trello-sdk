@@ -85,5 +85,682 @@
         "ssoActivationFailed": false
       }
     }
+  },
+  "requests": {
+    "POST /enterprises/{id}/tokens": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-enterprises-id-tokens",
+        "parameters": [
+          {
+            "description": "ID of the enterprise to retrieve.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "One of: `1hour`, `1day`, `30days`, `never`",
+            "in": "query",
+            "name": "expiration",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /enterprises/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-enterprises-id",
+        "parameters": [
+          {
+            "description": "ID of the enterprise to retrieve.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of: `id`, `name`, `displayName`, `prefs`, `ssoActivationFailed`, `idAdmins`, `idMembers` (Note that the members array returned will be paginated if `members` is 'normal' or 'admins'. Pagination can be controlled with member_startIndex, etc, but the API response will not contain the total available result count or pagination status data.), `idOrganizations`, `products`, `userTypes`, `idMembers`, `idOrganizations`",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          },
+          {
+            "description": "One of: `none`, `normal`, `admins`, `owners`, `all`",
+            "in": "query",
+            "name": "members",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "One of: `avatarHash`, `fullName`, `initials`, `username`",
+            "in": "query",
+            "name": "member_fields",
+            "required": false,
+            "schema": {
+              "default": "avatarHash, fullName, initials, username",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Pass a SCIM-style query to filter members. This takes precedence over the all/normal/admins value of members. If any of the member_* args are set, the member array will be paginated.",
+            "in": "query",
+            "name": "member_filter",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "This parameter expects a SCIM-style sorting value prefixed by a `-` to sort descending. If no `-` is prefixed, it will be sorted ascending. Note that the members array returned will be paginated if `members` is 'normal' or 'admins'. Pagination can be controlled with member_startIndex, etc, but the API response will not contain the total available result count or pagination status data.",
+            "in": "query",
+            "name": "member_sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Deprecated: Please use member_sort. This parameter expects a SCIM-style sorting value. Note that the members array returned will be paginated if `members` is `normal` or `admins`. Pagination can be controlled with `member_startIndex`, etc, and the API response's header will contain the total count and pagination state.",
+            "in": "query",
+            "name": "member_sortBy",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Deprecated: Please use member_sort. One of: `ascending`, `descending`, `asc`, `desc`",
+            "in": "query",
+            "name": "member_sortOrder",
+            "required": false,
+            "schema": {
+              "default": "id",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Any integer between 0 and 100.",
+            "in": "query",
+            "name": "member_startIndex",
+            "required": false,
+            "schema": {
+              "default": "1",
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "0 to 100",
+            "in": "query",
+            "name": "member_count",
+            "required": false,
+            "schema": {
+              "default": "10",
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "One of: `none`, `members`, `public`, `all`",
+            "in": "query",
+            "name": "organizations",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Any valid value that the [nested organization field resource]() accepts.",
+            "in": "query",
+            "name": "organization_fields",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether or not to include paid account information in the returned workspace objects",
+            "in": "query",
+            "name": "organization_paid_accounts",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Comma-seperated list of: `me`, `normal`, `admin`, `active`, `deactivated`",
+            "in": "query",
+            "name": "organization_memberships",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "dateOrganizationPrefsLastUpdated": {
+                      "example": "2019-08-22T18:15:53.546Z",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "displayName": {
+                      "example": "Bentley's Test Enterprise!",
+                      "type": "string"
+                    },
+                    "domains": {
+                      "items": {
+                        "format": "url",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "enterpriseDomains": {
+                      "items": {
+                        "format": "url",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "example": "59c15d19566e197b23665901",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idAdmins": {
+                      "items": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "idOrganizations": {
+                      "items": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "idp": {
+                      "properties": {
+                        "certificate": {
+                          "example": null,
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "loginUrl": {
+                          "example": null,
+                          "format": "url",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "requestSigned": {
+                          "example": false,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "isRealEnterprise": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "licenses": {
+                      "properties": {
+                        "maxMembers": {
+                          "example": null,
+                          "format": "integer",
+                          "nullable": true,
+                          "type": "number"
+                        },
+                        "relatedEnterprises": {
+                          "items": {
+                            "properties": {
+                              "count": {
+                                "example": 5,
+                                "format": "integer",
+                                "type": "number"
+                              },
+                              "displayName": {
+                                "example": "My Test Enterprise!",
+                                "type": "string"
+                              },
+                              "name": {
+                                "example": "enterprise_name",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "totalMembers": {
+                          "example": 5,
+                          "format": "integer",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "logoHash": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "logoUrl": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "bentley_test",
+                      "type": "string"
+                    },
+                    "organizationPrefs": {
+                      "properties": {
+                        "attachmentRestrictions": {
+                          "items": {
+                            "enum": [
+                              "computer",
+                              "trello",
+                              "google-drive",
+                              "box",
+                              "onedrive",
+                              "link"
+                            ],
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "boardDeleteRestrict": {
+                          "type": "object"
+                        },
+                        "boardVisibilityRestrict": {
+                          "type": "object"
+                        },
+                        "permissionLevel": {
+                          "enum": [
+                            "org",
+                            "private",
+                            "public",
+                            "enterprise",
+                            "domain"
+                          ],
+                          "example": "private",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "pluginWhitelistingEnabled": {
+                      "items": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "prefs": {
+                      "properties": {
+                        "autoJoinOrganizations": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "brandingColor": {
+                          "type": "string"
+                        },
+                        "mandatoryTransferDate": {
+                          "example": null,
+                          "format": "date",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "maxMembers": {
+                          "example": null,
+                          "nullable": true,
+                          "type": "number"
+                        },
+                        "notifications": {
+                          "type": "object"
+                        },
+                        "signup": {
+                          "properties": {
+                            "banner": {
+                              "type": "string"
+                            },
+                            "bannerHtml": {
+                              "example": "<p>Hello</p>\n",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "ssoOnly": {
+                          "example": false,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "products": {
+                      "items": {
+                        "format": "integer",
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "ssoActivationFailed": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /enterprises/{id}/organizations": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-enterprises-id-organizations",
+        "parameters": [
+          {
+            "description": "ID of the Enterprise to retrieve.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "ID of Organization to be transferred to Enterprise.",
+            "in": "query",
+            "name": "idOrganization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "dateLastActivity": {
+                            "example": "2018-10-17T19:10:14.808Z",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "displayName": {
+                            "example": "Organization Name",
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "5abbe4b7ddc1b351ef961414",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "idBoards": {
+                            "items": {
+                              "example": "5abbe4b7ddc1b351ef961414",
+                              "pattern": "^[0-9a-fA-F]{24}$",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "idEnterprise": {
+                            "example": "5abbe4b7ddc1b351ef961414",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "memberships": {
+                            "items": {
+                              "example": "5abbe4b7ddc1b351ef961414",
+                              "pattern": "^[0-9a-fA-F]{24}$",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "offering": {
+                            "example": "trello.enterprise",
+                            "type": "string"
+                          },
+                          "prefs": {
+                            "properties": {
+                              "attachmentRestrictions": {
+                                "items": {
+                                  "enum": [
+                                    "computer",
+                                    "trello",
+                                    "google-drive",
+                                    "box",
+                                    "onedrive",
+                                    "link"
+                                  ],
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "boardDeleteRestrict": {
+                                "type": "object"
+                              },
+                              "boardVisibilityRestrict": {
+                                "type": "object"
+                              },
+                              "permissionLevel": {
+                                "enum": [
+                                  "org",
+                                  "private",
+                                  "public",
+                                  "enterprise",
+                                  "domain"
+                                ],
+                                "example": "private",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "premiumFeatures": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "url": {
+                            "example": "https://trello.com/w/<name>",
+                            "format": "url",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The specified resource was not found"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

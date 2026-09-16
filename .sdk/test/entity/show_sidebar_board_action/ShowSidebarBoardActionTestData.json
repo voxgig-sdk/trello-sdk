@@ -19,5 +19,60 @@
     "show_sidebar_board_action": {
       "show_sidebar_board_action_ref01": {}
     }
+  },
+  "requests": {
+    "PUT /boards/{id}/myPrefs/showSidebarBoardActions": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-boards-id-myPrefs-showsidebarboardactions",
+        "parameters": [
+          {
+            "description": "The id of the board to update",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines whether to show the sidebar board actions.",
+            "in": "query",
+            "name": "value",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

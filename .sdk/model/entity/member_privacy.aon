@@ -22,6 +22,12 @@ main: kit: entity: member_privacy: {
               }
             ]
           }
+          contract: {
+            id: "GET /plugins/{id}/compliance/memberPrivacy"
+            json: "{\"operationId\":\"get-plugins-id-compliance-memberprivacy\",\"parameters\":[{\"description\":\"The ID of the Power-Up\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/plugins/{id}/compliance/memberPrivacy"
           rename: {

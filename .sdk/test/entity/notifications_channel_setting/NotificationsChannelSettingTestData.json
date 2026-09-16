@@ -10,5 +10,6 @@
     "notifications_channel_setting": {
       "notifications_channel_setting_ref01": {}
     }
-  }
+  },
+  "requests": {}
 }

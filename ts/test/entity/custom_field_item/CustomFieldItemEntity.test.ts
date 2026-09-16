@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { TrelloSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('CustomFieldItemEntity', async () => {
 
     const live = 'TRUE' === process.env.TRELLO_TEST_LIVE
     for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'custom_field_item.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'custom_field_item.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set TRELLO_TEST_CUSTOM_FIELD_ITEM_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":0},{"active":true,"name":"idCustomField","req":false,"type":"`$STRING`","index$":1},{"active":true,"name":"idModel","req":false,"type":"`$STRING`","index$":2},{"active":true,"name":"modelType","req":false,"type":"`$STRING`","index$":3},{"active":true,"name":"value","req":false,"type":"`$OBJECT`","index$":4}],"id":{"field":"id","name":"id"},"name":"custom_field_item","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"params":[{"active":true,"example":"5abbe4b7ddc1b351ef961414","kind":"param","name":"card_id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /cards/{id}/customFieldItems","json":"{\"operationId\":\"get-cards-id-customfielditems\",\"parameters\":[{\"description\":\"The ID of the Card\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idCustomField\":{\"example\":\"5b080fd8017bd1653b5480fa\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"5b080ff194611b41aaaa9570\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"modelType\":{\"enum\":[\"card\",\"board\",\"member\"],\"example\":\"card\",\"type\":\"string\"},\"value\":{\"properties\":{\"checked\":{\"example\":\"true\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/cards/{id}/customFieldItems","rename":{"param":{"id":"card_id"}},"segments":[{"lit":"cards"},{"var":"card_id"},{"lit":"customFieldItems"}],"select":{"exist":["card_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[["card"]]},"key$":"custom_field_item","name__orig":"custom_field_item","Name":"CustomFieldItem","name_":"custom_field_item","name-":"custom-field-item","NAME":"CUSTOM_FIELD_ITEM","index$":22}, {"active":true,"entity":"custom_field_item","key$":"BasicCustomFieldItemFlow","kind":"basic","name":"BasicCustomFieldItemFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{"card_id":"card01"},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"custom_field_item_ref01"}}],"index$":0}]}, 'CustomFieldItem')
     }
     const client = setup.client
     const struct = setup.struct
@@ -110,13 +109,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['TRELLO_TEST_CUSTOM_FIELD_ITEM_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'TRELLO_TEST_CUSTOM_FIELD_ITEM_ENTID': idmap,
     'TRELLO_TEST_LIVE': 'FALSE',
@@ -128,7 +120,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.TRELLO_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['TRELLO_TEST_CUSTOM_FIELD_ITEM_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new TrelloSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -141,7 +139,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -154,7 +153,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.TRELLO_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

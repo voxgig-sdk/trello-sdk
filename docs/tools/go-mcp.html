@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Go MCP server | Trello REST API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Trello REST API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/trello-sdk">voxgig-sdk/trello-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Trello REST API</a></details>
+<details><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/application.html">Application</a>
+<a href="../api/application_compliance.html">ApplicationCompliance</a>
+<a href="../api/associated_domain.html">AssociatedDomain</a>
+<a href="../api/attachment.html">Attachment</a>
+<a href="../api/batch.html">Batch</a>
+<a href="../api/board.html">Board</a>
+<a href="../api/board_background.html">BoardBackground</a>
+<a href="../api/board_plugin.html">BoardPlugin</a>
+<a href="../api/board_star.html">BoardStar</a>
+<a href="../api/bulk.html">Bulk</a>
+<a href="../api/card.html">Card</a>
+<a href="../api/card_check_item_state.html">CardCheckItemState</a>
+<a href="../api/card_list.html">CardList</a>
+<a href="../api/check_item.html">CheckItem</a>
+<a href="../api/checklist.html">Checklist</a>
+<a href="../api/claimable_organization.html">ClaimableOrganization</a>
+<a href="../api/custom_board_background.html">CustomBoardBackground</a>
+<a href="../api/custom_emoji.html">CustomEmoji</a>
+<a href="../api/custom_field.html">CustomField</a>
+<a href="../api/custom_field_item.html">CustomFieldItem</a>
+<a href="../api/custom_sticker.html">CustomSticker</a>
+<a href="../api/email_position.html">EmailPosition</a>
+<a href="../api/emoji.html">Emoji</a>
+<a href="../api/enterpris.html">Enterpris</a>
+<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
+<a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/export_download.html">ExportDownload</a>
+<a href="../api/generate.html">Generate</a>
+<a href="../api/id_email_list.html">IdEmailList</a>
+<a href="../api/id_label.html">IdLabel</a>
+<a href="../api/id_member.html">IdMember</a>
+<a href="../api/label.html">Label</a>
+<a href="../api/list.html">List</a>
+<a href="../api/member.html">Member</a>
+<a href="../api/member_privacy.html">MemberPrivacy</a>
+<a href="../api/members_voted.html">MembersVoted</a>
+<a href="../api/membership.html">Membership</a>
+<a href="../api/most_recent.html">MostRecent</a>
+<a href="../api/new_billable_guest.html">NewBillableGuest</a>
+<a href="../api/notification.html">Notification</a>
+<a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
+<a href="../api/notification_list.html">NotificationList</a>
+<a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
+<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
+<a href="../api/option.html">Option</a>
+<a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
+<a href="../api/organization.html">Organization</a>
+<a href="../api/pending_organization.html">PendingOrganization</a>
+<a href="../api/plugin.html">Plugin</a>
+<a href="../api/plugin_data.html">PluginData</a>
+<a href="../api/plugin_listing.html">PluginListing</a>
+<a href="../api/reaction.html">Reaction</a>
+<a href="../api/read.html">Read</a>
+<a href="../api/saved_search.html">SavedSearch</a>
+<a href="../api/search.html">Search</a>
+<a href="../api/show_sidebar.html">ShowSidebar</a>
+<a href="../api/show_sidebar_activity.html">ShowSidebarActivity</a>
+<a href="../api/show_sidebar_board_action.html">ShowSidebarBoardAction</a>
+<a href="../api/show_sidebar_member.html">ShowSidebarMember</a>
+<a href="../api/sticker.html">Sticker</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/token.html">Token</a>
+<a href="../api/transferrable_organization.html">TransferrableOrganization</a>
+<a href="../api/trello_list.html">TrelloList</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details open><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a aria-current="page" href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>Tools</div><h1 id="go-mcp-server">Go MCP server</h1>
+<p>Go MCP server</p>
+<h2 id="install">Install</h2>
+<p>Not published. Build from the go-mcp directory.</p>
+<h2 id="package">Package</h2>
+<p><code>github.com/voxgig-sdk/trello-sdk/go-mcp</code></p>
+<h2 id="api-reference">API reference</h2>
+<p>The API reference covers all entities. The tools section lists the operations this server exposes.</p>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Operations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/action.html">Action</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/action_reactions_summary.html">ActionReactionsSummary</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/admin.html">Admin</a></td>
+<td><code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/application.html">Application</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/application_compliance.html">ApplicationCompliance</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/associated_domain.html">AssociatedDomain</a></td>
+<td><code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/attachment.html">Attachment</a></td>
+<td><code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/batch.html">Batch</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/board.html">Board</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/board_background.html">BoardBackground</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/board_plugin.html">BoardPlugin</a></td>
+<td><code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/board_star.html">BoardStar</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/bulk.html">Bulk</a></td>
+<td><code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/card.html">Card</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/card_check_item_state.html">CardCheckItemState</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/card_list.html">CardList</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/check_item.html">CheckItem</a></td>
+<td><code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/checklist.html">Checklist</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/claimable_organization.html">ClaimableOrganization</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/custom_board_background.html">CustomBoardBackground</a></td>
+<td><code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/custom_emoji.html">CustomEmoji</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/custom_field.html">CustomField</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/custom_field_item.html">CustomFieldItem</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/custom_sticker.html">CustomSticker</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/email_position.html">EmailPosition</a></td>
+<td><code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/emoji.html">Emoji</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/enterpris.html">Enterpris</a></td>
+<td><code>create</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/enterprise_admin.html">EnterpriseAdmin</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/export.html">Export</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/export_download.html">ExportDownload</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/generate.html">Generate</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/id_email_list.html">IdEmailList</a></td>
+<td><code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/id_label.html">IdLabel</a></td>
+<td><code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/id_member.html">IdMember</a></td>
+<td><code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/label.html">Label</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/list.html">List</a></td>
+<td><code>create</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/member.html">Member</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/member_privacy.html">MemberPrivacy</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/members_voted.html">MembersVoted</a></td>
+<td><code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/membership.html">Membership</a></td>
+<td><code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/most_recent.html">MostRecent</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/new_billable_guest.html">NewBillableGuest</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/notification.html">Notification</a></td>
+<td><code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/notification_channel_setting.html">NotificationChannelSetting</a></td>
+<td><code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/notification_list.html">NotificationList</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/notification_member_creator.html">NotificationMemberCreator</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/option.html">Option</a></td>
+<td><code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/org_invite_restrict.html">OrgInviteRestrict</a></td>
+<td><code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/organization.html">Organization</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/pending_organization.html">PendingOrganization</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/plugin.html">Plugin</a></td>
+<td><code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/plugin_data.html">PluginData</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/plugin_listing.html">PluginListing</a></td>
+<td><code>create</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/reaction.html">Reaction</a></td>
+<td><code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/read.html">Read</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/saved_search.html">SavedSearch</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/search.html">Search</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/show_sidebar.html">ShowSidebar</a></td>
+<td><code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/show_sidebar_activity.html">ShowSidebarActivity</a></td>
+<td><code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/show_sidebar_board_action.html">ShowSidebarBoardAction</a></td>
+<td><code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/show_sidebar_member.html">ShowSidebarMember</a></td>
+<td><code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/sticker.html">Sticker</a></td>
+<td><code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/tag.html">Tag</a></td>
+<td><code>list</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/token.html">Token</a></td>
+<td><code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/transferrable_organization.html">TransferrableOrganization</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/trello_list.html">TrelloList</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/webhook.html">Webhook</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration</h2>
+<p>Set the server URL and credentials for your environment. Enable only the features your application needs.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><a href="../features/debug.html">Request/response capture ring buffer for debugging</a></li>
+<li><a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a></li>
+<li><a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a></li>
+<li><a href="../features/paging.html">Pagination signals for list operations</a></li>
+<li><a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a></li>
+<li><a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a></li>
+<li><a href="../features/test.html">In-memory mock transport for testing without a live server</a></li>
+<li><a href="../features/timeout.html">Per-request timeout with transport abort</a></li>
+</ul>
+<h2 id="tools">Tools</h2>
+<h3 id="trello_list"><code>trello_list</code></h3>
+<p>List records for an entity.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;entity&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;entity&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;action | action_reactions_summary | admin | application | application_compliance | associated_domain | attachment | batch | board | board_background | board_plugin | board_star | bulk | card | card_check_item_state | card_list | check_item | checklist | claimable_organization | custom_board_background | custom_emoji | custom_field | custom_field_item | custom_sticker | email_position | emoji | enterpris | enterpris_signup_url | enterprise_admin | enterprise_audit_log | export | export_download | generate | id_email_list | id_label | id_member | label | list | member | member_privacy | members_voted | membership | most_recent | new_billable_guest | notification | notification_channel_setting | notification_list | notification_member_creator | notifications_channel_setting | option | org_invite_restrict | organization | pending_organization | plugin | plugin_data | plugin_listing | reaction | read | saved_search | search | show_sidebar | show_sidebar_activity | show_sidebar_board_action | show_sidebar_member | sticker | tag | token | transferrable_organization | trello_list | webhook&quot;
+    },
+    &quot;query&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;description&quot;: &quot;Optional match fields for the selected entity.&quot;
+    }
+  }
+}
+</code></pre>
+<p>Supported entities: <code>action</code>, <code>attachment</code>, <code>board</code>, <code>board_background</code>, <code>board_star</code>, <code>card</code>, <code>claimable_organization</code>, <code>custom_emoji</code>, <code>custom_field</code>, <code>custom_field_item</code>, <code>custom_sticker</code>, <code>emoji</code>, <code>enterprise_audit_log</code>, <code>export</code>, <code>member</code>, <code>membership</code>, <code>notification</code>, <code>notification_channel_setting</code>, <code>organization</code>, <code>pending_organization</code>, <code>plugin</code>, <code>plugin_data</code>, <code>saved_search</code>, <code>search</code>, <code>tag</code>, <code>token</code>, <code>trello_list</code>, <code>webhook</code>.</p>
+<h3 id="trello_load"><code>trello_load</code></h3>
+<p>Load one record for an entity.</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;entity&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;entity&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;action | action_reactions_summary | admin | application | application_compliance | associated_domain | attachment | batch | board | board_background | board_plugin | board_star | bulk | card | card_check_item_state | card_list | check_item | checklist | claimable_organization | custom_board_background | custom_emoji | custom_field | custom_field_item | custom_sticker | email_position | emoji | enterpris | enterpris_signup_url | enterprise_admin | enterprise_audit_log | export | export_download | generate | id_email_list | id_label | id_member | label | list | member | member_privacy | members_voted | membership | most_recent | new_billable_guest | notification | notification_channel_setting | notification_list | notification_member_creator | notifications_channel_setting | option | org_invite_restrict | organization | pending_organization | plugin | plugin_data | plugin_listing | reaction | read | saved_search | search | show_sidebar | show_sidebar_activity | show_sidebar_board_action | show_sidebar_member | sticker | tag | token | transferrable_organization | trello_list | webhook&quot;
+    },
+    &quot;query&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;description&quot;: &quot;Optional match fields for the selected entity.&quot;
+    }
+  }
+}
+</code></pre>
+<p>Supported entities: <code>action</code>, <code>action_reactions_summary</code>, <code>application_compliance</code>, <code>attachment</code>, <code>batch</code>, <code>board</code>, <code>board_background</code>, <code>board_star</code>, <code>bulk</code>, <code>card</code>, <code>card_check_item_state</code>, <code>card_list</code>, <code>check_item</code>, <code>checklist</code>, <code>custom_emoji</code>, <code>custom_field</code>, <code>custom_sticker</code>, <code>enterpris</code>, <code>enterpris_signup_url</code>, <code>enterprise_admin</code>, <code>export</code>, <code>export_download</code>, <code>label</code>, <code>list</code>, <code>member</code>, <code>member_privacy</code>, <code>members_voted</code>, <code>membership</code>, <code>new_billable_guest</code>, <code>notification</code>, <code>notification_channel_setting</code>, <code>notification_list</code>, <code>notification_member_creator</code>, <code>option</code>, <code>organization</code>, <code>plugin</code>, <code>plugin_data</code>, <code>reaction</code>, <code>saved_search</code>, <code>sticker</code>, <code>token</code>, <code>transferrable_organization</code>, <code>trello_list</code>, <code>webhook</code>.</p>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

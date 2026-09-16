@@ -56,6 +56,12 @@ main: kit: entity: enterprise_audit_log: {
               }
             ]
           }
+          contract: {
+            id: "GET /enterprises/{id}/auditlog"
+            json: "{\"operationId\":\"get-enterprises-id-auditlog\",\"parameters\":[{\"description\":\"ID of the enterprise to retrieve.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"date\":{\"example\":\"2018-04-26T17:03:25.155Z\",\"format\":\"date\",\"type\":\"string\"},\"idAction\":{\"example\":\"5dced8665015383ed5ca248c\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"member\":{\"properties\":{\"fullName\":{\"example\":\"Bentley Cook\",\"type\":\"string\"},\"id\":{\"example\":\"5bc79d4206526d2279c1e6ea\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"username\":{\"example\":\"bentleycook\",\"type\":\"string\"}},\"type\":\"object\"},\"memberCreator\":{\"properties\":{\"fullName\":{\"example\":\"Bob Loblaw (Trello)\",\"type\":\"string\"},\"id\":{\"example\":\"5bc79d4206526d2279c1e6ea\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"username\":{\"example\":\"bobloblaw\",\"type\":\"string\"}},\"type\":\"object\"},\"organization\":{\"properties\":{\"enterpriseJoinRequest\":{\"nullable\":true,\"properties\":{\"date\":{\"example\":\"2018-04-26T17:03:25.155Z\",\"format\":\"date\",\"type\":\"string\"},\"idEnterprise\":{\"example\":\"617ac9070293e6612650e0ca\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idMember\":{\"example\":\"5bc79d4206526d2279c1e6ea\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"},\"id\":{\"example\":\"617ac9070293e6612650e0ca\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"name\":{\"example\":\"organization name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":{\"example\":\"addOrganizationToEnterprise\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/enterprises/{id}/auditlog"
           rename: {

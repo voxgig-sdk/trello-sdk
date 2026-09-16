@@ -107,6 +107,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "POST /organizations"
+            json: "{\"operationId\":\"post-organizations\",\"parameters\":[{\"description\":\"The name to display for the Organization\",\"in\":\"query\",\"name\":\"displayName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The description for the organizations\",\"in\":\"query\",\"name\":\"desc\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"A string with a length of at least 3. Only lowercase letters, underscores, and numbers are allowed. If the name contains invalid characters, they will be removed. If the name conflicts with an existing name, a new name will be substituted.\",\"in\":\"query\",\"name\":\"name\",\"required\":false,\"schema\":{\"minLength\":3,\"type\":\"string\"}},{\"description\":\"A URL starting with `http://` or `https://`\",\"in\":\"query\",\"name\":\"website\",\"required\":false,\"schema\":{\"format\":\"url\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"}]}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/organizations"
           segments: [
@@ -149,6 +155,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "POST /organizations/{id}/logo"
+            json: "{\"operationId\":\"post-organizations-id-logo\",\"parameters\":[{\"description\":\"The ID or name of the Workspace\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"Image file for the logo\",\"in\":\"query\",\"name\":\"file\",\"required\":false,\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"}]}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/organizations/{id}/logo"
           segments: [
@@ -185,6 +197,12 @@ main: kit: entity: organization: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "POST /organizations/{id}/tags"
+            json: "{\"operationId\":\"post-organizations-id-tags\",\"parameters\":[{\"description\":\"The ID or name of the Organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"oneOf\":[{\"type\":\"string\"},{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}]}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"id\":{\"example\":\"58dd6dcaf8b86744d3cb4cde\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"name\":{\"example\":\"My Collection\",\"type\":\"string\"}},\"type\":\"object\"}]}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "POST"
           orig: "/organizations/{id}/tags"
@@ -260,6 +278,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "GET /enterprises/{id}/organizations"
+            json: "{\"operationId\":\"get-enterprises-id-organizations\",\"parameters\":[{\"description\":\"ID of the Enterprise to retrieve.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"comma-separated list of organization [fields](/cloud/trello/guides/rest-api/object-definitions/)\",\"in\":\"query\",\"name\":\"fields\",\"required\":false,\"schema\":{\"default\":\"all\",\"enum\":[\"id\",\"name\"],\"type\":\"string\"}},{\"description\":\"\",\"in\":\"query\",\"name\":\"filter\",\"required\":false,\"schema\":{\"default\":\"all\",\"type\":\"string\"}},{\"description\":\"Any integer greater than and equal to 1.\",\"in\":\"query\",\"name\":\"startIndex\",\"required\":false,\"schema\":{\"format\":\"int32\",\"maximum\":9999,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Any integer between 0 and 100.\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"format\":\"int32\",\"maximum\":100,\"minimum\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"message\":{\"type\":\"string\"}},\"required\":[\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"message\":{\"type\":\"string\"}},\"required\":[\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"The specified resource was not found\"},\"default\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"message\":{\"type\":\"string\"}},\"required\":[\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unexpected error\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/enterprises/{id}/organizations"
           rename: {
@@ -331,6 +355,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "GET /members/{id}/organizations"
+            json: "{\"operationId\":\"get-members-id-organizations\",\"parameters\":[{\"description\":\"The ID or username of the member\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"One of: `all`, `members`, `none`, `public` (Note: `members` filters to only private Workspaces)\",\"in\":\"query\",\"name\":\"filter\",\"required\":false,\"schema\":{\"default\":\"all\",\"enum\":[\"all\",\"members\",\"none\",\"public\"],\"type\":\"string\"}},{\"description\":\"`all` or a comma-separated list of organization [fields](/cloud/trello/guides/rest-api/object-definitions/)\",\"explode\":false,\"in\":\"query\",\"name\":\"fields\",\"required\":false,\"schema\":{\"default\":\"all\",\"enum\":[\"id\",\"name\"],\"type\":\"string\"},\"style\":\"form\"},{\"description\":\"Whether or not to include paid account information in the returned workspace object\",\"in\":\"query\",\"name\":\"paid_account\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/members/{id}/organizations"
           rename: {
@@ -385,6 +415,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "GET /actions/{id}/organization"
+            json: "{\"operationId\":\"get-actions-id-organization\",\"parameters\":[{\"description\":\"The ID of the action\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"`all` or a comma-separated list of organization fields\",\"in\":\"query\",\"name\":\"fields\",\"required\":false,\"schema\":{\"default\":\"all\",\"enum\":[\"id\",\"name\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/actions/{id}/organization"
           rename: {
@@ -436,6 +472,12 @@ main: kit: entity: organization: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /members/{id}/organizationsInvited"
+            json: "{\"operationId\":\"get-members-id-organizationsinvited\",\"parameters\":[{\"description\":\"The ID or username of the member\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"`all` or a comma-separated list of organization [fields](/cloud/trello/guides/rest-api/object-definitions/)\",\"in\":\"query\",\"name\":\"fields\",\"required\":false,\"schema\":{\"default\":\"all\",\"enum\":[\"id\",\"name\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/members/{id}/organizationsInvited"
@@ -491,6 +533,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "GET /organizations/{id}/{field}"
+            json: "{\"operationId\":\"get-organizations-id-field\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"An organization [field](/cloud/trello/guides/rest-api/object-definitions/)\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"id\",\"name\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/organizations/{id}/{field}"
           segments: [
@@ -538,6 +586,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "GET /notifications/{id}/organization"
+            json: "{\"operationId\":\"get-notifications-id-organization\",\"parameters\":[{\"description\":\"The ID of the notification\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"`all` or a comma-separated list of organization [fields](/cloud/trello/guides/rest-api/object-definitions/)\",\"explode\":false,\"in\":\"query\",\"name\":\"fields\",\"required\":false,\"schema\":{\"default\":\"all\",\"enum\":[\"id\",\"name\"],\"type\":\"string\"},\"style\":\"form\"}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"}]}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/notifications/{id}/organization"
           rename: {
@@ -579,6 +633,12 @@ main: kit: entity: organization: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /organizations/{id}"
+            json: "{\"operationId\":\"get-organizations-id\",\"parameters\":[{\"description\":\"The ID or name of the Organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/organizations/{id}"
@@ -626,6 +686,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "DELETE /enterprises/{id}/organizations/{idOrg}"
+            json: "{\"operationId\":\"delete-enterprises-id-organizations-idorg\",\"parameters\":[{\"description\":\"ID of the enterprise to retrieve.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"ID of the organization to be removed from the enterprise.\",\"in\":\"path\",\"name\":\"idOrg\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "DELETE"
           orig: "/enterprises/{id}/organizations/{idOrg}"
           rename: {
@@ -672,6 +738,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "DELETE /organizations/{id}"
+            json: "{\"operationId\":\"delete-organizations-id\",\"parameters\":[{\"description\":\"The ID or name of the Organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "DELETE"
           orig: "/organizations/{id}"
           segments: [
@@ -704,6 +776,12 @@ main: kit: entity: organization: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "DELETE /organizations/{id}/logo"
+            json: "{\"operationId\":\"delete-organizations-id-logo\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "DELETE"
           orig: "/organizations/{id}/logo"
@@ -833,6 +911,12 @@ main: kit: entity: organization: {
               }
             ]
           }
+          contract: {
+            id: "PUT /organizations/{id}"
+            json: "{\"operationId\":\"put-organizations-id\",\"parameters\":[{\"description\":\"The ID or name of the Organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"A new name for the organization. At least 3 lowercase letters, underscores, and numbers. Must be unique\",\"in\":\"query\",\"name\":\"name\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"A new displayName for the organization. Must be at least 1 character long and not begin or end with a space.\",\"in\":\"query\",\"name\":\"displayName\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"A new description for the organization\",\"in\":\"query\",\"name\":\"desc\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"A URL starting with `http://`, `https://`, or `null`\",\"in\":\"query\",\"name\":\"website\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Google Apps domain to link this org to.\",\"in\":\"query\",\"name\":\"prefs/associatedDomain\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Whether non-workspace members can be added to boards inside the Workspace\",\"in\":\"query\",\"name\":\"prefs/externalMembersDisabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"`1` or `2`\",\"in\":\"query\",\"name\":\"prefs/googleAppsVersion\",\"required\":false,\"schema\":{\"format\":\"int32\",\"type\":\"integer\"}},{\"description\":\"Who on the Workspace can make Workspace visible boards. One of `admin`, `none`, `org`\",\"in\":\"query\",\"name\":\"prefs/boardVisibilityRestrict/org\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Who can make private boards. One of: `admin`, `none`, `org`\",\"in\":\"query\",\"name\":\"prefs/boardVisibilityRestrict/private\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Who on the Workspace can make public boards. One of: `admin`, `none`, `org`\",\"in\":\"query\",\"name\":\"prefs/boardVisibilityRestrict/public\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"An email address with optional wildcard characters. (E.g. `subdomain.*.trello.com`)\",\"in\":\"query\",\"name\":\"prefs/orgInviteRestrict\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Whether the Workspace page is publicly visible. One of: `private`, `public`\",\"in\":\"query\",\"name\":\"prefs/permissionLevel\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"dateLastActivity\":{\"example\":\"2018-10-17T19:10:14.808Z\",\"format\":\"date\",\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idBoards\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"idEnterprise\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"memberships\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"type\":\"string\"},\"offering\":{\"example\":\"trello.enterprise\",\"type\":\"string\"},\"prefs\":{\"properties\":{\"attachmentRestrictions\":{\"items\":{\"enum\":[\"computer\",\"trello\",\"google-drive\",\"box\",\"onedrive\",\"link\"],\"type\":\"string\"},\"type\":\"array\"},\"boardDeleteRestrict\":{\"type\":\"object\"},\"boardVisibilityRestrict\":{\"type\":\"object\"},\"permissionLevel\":{\"enum\":[\"org\",\"private\",\"public\",\"enterprise\",\"domain\"],\"example\":\"private\",\"type\":\"string\"}},\"type\":\"object\"},\"premiumFeatures\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"url\":{\"example\":\"https://trello.com/w/<name>\",\"format\":\"url\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "PUT"
           orig: "/organizations/{id}"
           segments: [
@@ -901,6 +985,12 @@ main: kit: entity: organization: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /organizations/{id}/members"
+            json: "{\"operationId\":\"put-organizations-id-members\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"An email address\",\"in\":\"query\",\"name\":\"email\",\"required\":true,\"schema\":{\"format\":\"email\",\"type\":\"string\"}},{\"description\":\"Name for the member, at least 1 character not beginning or ending with a space\",\"in\":\"query\",\"name\":\"fullName\",\"required\":true,\"schema\":{\"minLength\":1,\"type\":\"string\"}},{\"description\":\"One of: `admin`, `normal`\",\"in\":\"query\",\"name\":\"type\",\"required\":false,\"schema\":{\"default\":\"normal\",\"enum\":[\"admin\",\"normal\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/organizations/{id}/members"

@@ -21,5 +21,105 @@
         "signupUrl": "s51"
       }
     }
+  },
+  "requests": {
+    "GET /enterprises/{id}/signupUrl": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-enterprises-id-signupurl",
+        "parameters": [
+          {
+            "description": "ID of the enterprise to retrieve.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "authenticate",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "confirmationAccepted",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Any valid URL.",
+            "in": "query",
+            "name": "returnUrl",
+            "required": false,
+            "schema": {
+              "default": null,
+              "format": "url",
+              "nullable": true,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Designates whether the user has seen/consented to the Trello ToS prior to being redirected to the enterprise signup page/their IdP.",
+            "in": "query",
+            "name": "tosAccepted",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "signupUrl": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

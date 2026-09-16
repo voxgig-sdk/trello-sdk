@@ -36,5 +36,220 @@
         "overview": "scc"
       }
     }
+  },
+  "requests": {
+    "POST /plugins/{idPlugin}/listing": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-plugins-idplugin-listing",
+        "parameters": [
+          {
+            "description": "The ID of the Power-Up for which you are creating a new listing.",
+            "in": "path",
+            "name": "idPlugin",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "description": {
+                    "description": "The description to show for the given locale",
+                    "type": "string"
+                  },
+                  "locale": {
+                    "description": "The locale that this listing should be displayed for.",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name to use for the given locale.",
+                    "type": "string"
+                  },
+                  "overview": {
+                    "description": "The overview to show for the given locale.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "description": {
+                      "example": "The [Glitch](https://glitch.com) Power-Up allows you to...",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5a7cd2f8f99c517f58da1579",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "locale": {
+                      "example": "en-US",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "Attachment Section Example",
+                      "type": "string"
+                    },
+                    "overview": {
+                      "example": "",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /plugins/{idPlugin}/listings/{idListing}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-plugins-idplugin-listings-idlisting",
+        "parameters": [
+          {
+            "description": "The ID of the Power-Up whose listing is being updated.",
+            "in": "path",
+            "name": "idPlugin",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the existing listing for the Power-Up that is being updated.",
+            "in": "path",
+            "name": "idListing",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "description": {
+                    "description": "The description to show for the given locale",
+                    "type": "string"
+                  },
+                  "locale": {
+                    "description": "The locale that this listing should be displayed for.",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name to use for the given locale.",
+                    "type": "string"
+                  },
+                  "overview": {
+                    "description": "The overview to show for the given locale.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "description": {
+                      "example": "The [Glitch](https://glitch.com) Power-Up allows you to...",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5a7cd2f8f99c517f58da1579",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "locale": {
+                      "example": "en-US",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "Attachment Section Example",
+                      "type": "string"
+                    },
+                    "overview": {
+                      "example": "",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

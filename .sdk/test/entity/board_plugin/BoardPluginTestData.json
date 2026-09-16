@@ -19,5 +19,62 @@
     "board_plugin": {
       "board_plugin_ref01": {}
     }
+  },
+  "requests": {
+    "DELETE /boards/{id}/boardPlugins/{idPlugin}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-boards-id-boardplugins",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the Power-Up to disable",
+            "in": "path",
+            "name": "idPlugin",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

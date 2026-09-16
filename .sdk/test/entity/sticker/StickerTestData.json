@@ -19,5 +19,293 @@
     "sticker": {
       "sticker_ref01": {}
     }
+  },
+  "requests": {
+    "GET /cards/{id}/stickers/{idSticker}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-cards-id-stickers-idsticker",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the sticker",
+            "in": "path",
+            "name": "idSticker",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of sticker [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /cards/{id}/stickers": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-cards-id-stickers",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of sticker [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /cards/{id}/stickers/{idSticker}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-cards-id-stickers-idsticker",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the sticker",
+            "in": "path",
+            "name": "idSticker",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /cards/{id}/stickers/{idSticker}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-cards-id-stickers-idsticker",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the sticker",
+            "in": "path",
+            "name": "idSticker",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The top position of the sticker, from -60 to 100",
+            "in": "query",
+            "name": "top",
+            "required": true,
+            "schema": {
+              "format": "float",
+              "maximum": 100,
+              "minimum": -60,
+              "type": "number"
+            }
+          },
+          {
+            "description": "The left position of the sticker, from -60 to 100",
+            "in": "query",
+            "name": "left",
+            "required": true,
+            "schema": {
+              "format": "float",
+              "maximum": 100,
+              "minimum": -60,
+              "type": "number"
+            }
+          },
+          {
+            "description": "The z-index of the sticker",
+            "in": "query",
+            "name": "zIndex",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The rotation of the sticker",
+            "in": "query",
+            "name": "rotate",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "format": "float",
+              "maximum": 360,
+              "minimum": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

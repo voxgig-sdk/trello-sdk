@@ -1,12 +1,14 @@
 
 const envlocal = __dirname + '/../../../.env.local'
-require('dotenv').config({ quiet: true, path: [envlocal] })
+require('../../utility').loadEnvLocal(envlocal)
 
 const Path = require('node:path')
 const Fs = require('node:fs')
 
 const { test, describe, afterEach } = require('node:test')
 const assert = require('node:assert')
+const { createLiveTransport } = require('../../live-runner')
+const { runLiveEntity } = require('../../live-entity')
 
 
 const { TrelloSDK, BaseFeature, stdutil, config } = require('../../..')
@@ -36,9 +38,13 @@ describe('AssociatedDomainEntity', async () => {
   })
 
 
-  test('basic', async () => {
+  test('basic', async (t) => {
 
+    
     const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"associated_domain","op":{"remove":{"input":"data","name":"remove","points":[{"active":true,"args":{"params":[{"active":true,"example":"5abbe4b7ddc1b351ef961414","kind":"param","name":"organization_id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"DELETE /organizations/{id}/prefs/associatedDomain","json":"{\"operationId\":\"delete-organizations-id-prefs-associateddomain\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"DELETE","orig":"/organizations/{id}/prefs/associatedDomain","rename":{"param":{"id":"organization_id"}},"segments":[{"lit":"organizations"},{"var":"organization_id"},{"lit":"prefs"},{"lit":"associatedDomain"}],"select":{"exist":["organization_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"remove"}},"relations":{"ancestors":[["organization"]]},"key$":"associated_domain","name__orig":"associated_domain","Name":"AssociatedDomain","name_":"associated_domain","name-":"associated-domain","NAME":"ASSOCIATED_DOMAIN","index$":5}, {"active":true,"entity":"associated_domain","key$":"BasicAssociatedDomainFlow","kind":"basic","name":"BasicAssociatedDomainFlow","param":{},"step":[]}, 'AssociatedDomain')
+    }
     const client = setup.client
     const struct = setup.struct
 
@@ -92,7 +98,14 @@ function basicSetup(extra) {
 
   idmap = env['TRELLO_TEST_ASSOCIATED_DOMAIN_ENTID']
 
-  if ('TRUE' === env.TRELLO_TEST_LIVE) {
+  const live = 'TRUE' === env.TRELLO_TEST_LIVE
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['TRELLO_TEST_ASSOCIATED_DOMAIN_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new TrelloSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -104,7 +117,8 @@ function basicSetup(extra) {
       // the last entry is undefined, and basicSetup is normally called with no
       // argument at all - so a bare 'extra' silently discarded the apikey and
       // server values above and handed the SDK undefined.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -116,6 +130,8 @@ function basicSetup(extra) {
     struct,
     data: entityData,
     explain: 'TRUE' === env.TRELLO_TEST_EXPLAIN,
+    live,
+    transport,
     now: Date.now(),
   }
 

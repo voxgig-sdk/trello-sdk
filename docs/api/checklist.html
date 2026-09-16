@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Checklist | Trello REST API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Trello REST API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/trello-sdk">voxgig-sdk/trello-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Trello REST API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/application.html">Application</a>
+<a href="../api/application_compliance.html">ApplicationCompliance</a>
+<a href="../api/associated_domain.html">AssociatedDomain</a>
+<a href="../api/attachment.html">Attachment</a>
+<a href="../api/batch.html">Batch</a>
+<a href="../api/board.html">Board</a>
+<a href="../api/board_background.html">BoardBackground</a>
+<a href="../api/board_plugin.html">BoardPlugin</a>
+<a href="../api/board_star.html">BoardStar</a>
+<a href="../api/bulk.html">Bulk</a>
+<a href="../api/card.html">Card</a>
+<a href="../api/card_check_item_state.html">CardCheckItemState</a>
+<a href="../api/card_list.html">CardList</a>
+<a href="../api/check_item.html">CheckItem</a>
+<a aria-current="page" href="../api/checklist.html">Checklist</a><div class="nav-sections"><a class="nav-section" href="#post-checklistsidcheckitems">POST /checklists/{id}/checkItems</a>
+<a class="nav-section" href="#post-checklists">POST /checklists</a>
+<a class="nav-section" href="#get-checklistsid">GET /checklists/{id}</a>
+<a class="nav-section" href="#get-cardsidchecklists">GET /cards/{id}/checklists</a>
+<a class="nav-section" href="#get-checklistsidfield">GET /checklists/{id}/{field}</a>
+<a class="nav-section" href="#get-boardsidchecklists">GET /boards/{id}/checklists</a>
+<a class="nav-section" href="#delete-cardsidchecklistsidchecklist">DELETE /cards/{id}/checklists/{idChecklist}</a>
+<a class="nav-section" href="#delete-checklistsid">DELETE /checklists/{id}</a>
+<a class="nav-section" href="#put-checklistsidfield">PUT /checklists/{id}/{field}</a>
+<a class="nav-section" href="#put-checklistsid">PUT /checklists/{id}</a></div>
+<a href="../api/claimable_organization.html">ClaimableOrganization</a>
+<a href="../api/custom_board_background.html">CustomBoardBackground</a>
+<a href="../api/custom_emoji.html">CustomEmoji</a>
+<a href="../api/custom_field.html">CustomField</a>
+<a href="../api/custom_field_item.html">CustomFieldItem</a>
+<a href="../api/custom_sticker.html">CustomSticker</a>
+<a href="../api/email_position.html">EmailPosition</a>
+<a href="../api/emoji.html">Emoji</a>
+<a href="../api/enterpris.html">Enterpris</a>
+<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
+<a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/export_download.html">ExportDownload</a>
+<a href="../api/generate.html">Generate</a>
+<a href="../api/id_email_list.html">IdEmailList</a>
+<a href="../api/id_label.html">IdLabel</a>
+<a href="../api/id_member.html">IdMember</a>
+<a href="../api/label.html">Label</a>
+<a href="../api/list.html">List</a>
+<a href="../api/member.html">Member</a>
+<a href="../api/member_privacy.html">MemberPrivacy</a>
+<a href="../api/members_voted.html">MembersVoted</a>
+<a href="../api/membership.html">Membership</a>
+<a href="../api/most_recent.html">MostRecent</a>
+<a href="../api/new_billable_guest.html">NewBillableGuest</a>
+<a href="../api/notification.html">Notification</a>
+<a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
+<a href="../api/notification_list.html">NotificationList</a>
+<a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
+<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
+<a href="../api/option.html">Option</a>
+<a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
+<a href="../api/organization.html">Organization</a>
+<a href="../api/pending_organization.html">PendingOrganization</a>
+<a href="../api/plugin.html">Plugin</a>
+<a href="../api/plugin_data.html">PluginData</a>
+<a href="../api/plugin_listing.html">PluginListing</a>
+<a href="../api/reaction.html">Reaction</a>
+<a href="../api/read.html">Read</a>
+<a href="../api/saved_search.html">SavedSearch</a>
+<a href="../api/search.html">Search</a>
+<a href="../api/show_sidebar.html">ShowSidebar</a>
+<a href="../api/show_sidebar_activity.html">ShowSidebarActivity</a>
+<a href="../api/show_sidebar_board_action.html">ShowSidebarBoardAction</a>
+<a href="../api/show_sidebar_member.html">ShowSidebarMember</a>
+<a href="../api/sticker.html">Sticker</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/token.html">Token</a>
+<a href="../api/transferrable_organization.html">TransferrableOrganization</a>
+<a href="../api/trello_list.html">TrelloList</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="checklist">Checklist</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-checklistsidcheckitems"><code>/checklists/{id}/checkItems</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-checklists"><code>/checklists</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-checklistsid"><code>/checklists/{id}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-cardsidchecklists"><code>/cards/{id}/checklists</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-checklistsidfield"><code>/checklists/{id}/{field}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-boardsidchecklists"><code>/boards/{id}/checklists</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-cardsidchecklistsidchecklist"><code>/cards/{id}/checklists/{idChecklist}</code></a></td>
+<td><code>remove</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-checklistsid"><code>/checklists/{id}</code></a></td>
+<td><code>remove</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-checklistsidfield"><code>/checklists/{id}/{field}</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-checklistsid"><code>/checklists/{id}</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-checklistsidcheckitems" class="operation" data-method="post"><code>POST</code> /checklists/{id}/checkItems</h3>
+<p>Operation ID: <code>post-checklists-id-checkitems</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of a checklist. |
+| <code>name</code> | <code>query</code> | <code>string</code> | Yes | The name of the new check item on the checklist. Should be a string of length 1 to 16384. |
+| <code>pos</code> | <code>query</code> | <code>enum: top, bottom or number (float)</code> | No | The position of the check item in the checklist. One of: <code>top</code>, <code>bottom</code>, or a positive number. |
+| <code>checked</code> | <code>query</code> | <code>boolean</code> | No | Determines whether the check item is already checked when created. |
+| <code>due</code> | <code>query</code> | <code>string (date)</code> | No | A due date for the checkitem |
+| <code>dueReminder</code> | <code>query</code> | <code>number</code> | No | A dueReminder for the due date on the checkitem |
+| <code>idMember</code> | <code>query</code> | <code>string</code> | No | An ID of a member resource. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-success" class="status" data-status="2xx">200: Success</h5>
+<h3 id="post-checklists" class="operation" data-method="post"><code>POST</code> /checklists</h3>
+<p>Operation ID: <code>post-checklists</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idCard</code> | <code>query</code> | <code>string</code> | Yes | The ID of the Card that the checklist should be added to. |
+| <code>name</code> | <code>query</code> | <code>string</code> | No | The name of the checklist. Should be a string of length 1 to 16384. |
+| <code>pos</code> | <code>query</code> | <code>enum: top, bottom or number (float)</code> | No | The position of the checklist on the card. One of: <code>top</code>, <code>bottom</code>, or a positive number. |
+| <code>idChecklistSource</code> | <code>query</code> | <code>string</code> | No | The ID of a checklist to copy into the new checklist. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-success-1" class="status" data-status="2xx">200: Success</h5>
+<h2 id="load">load</h2>
+<h3 id="get-checklistsid" class="operation" data-method="get"><code>GET</code> /checklists/{id}</h3>
+<p>Operation ID: <code>get-checklists-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of a checklist. |
+| <code>cards</code> | <code>query</code> | <code>enum: all, closed, none, open, visible</code> | No | Valid values: <code>all</code>, <code>closed</code>, <code>none</code>, <code>open</code>, <code>visible</code>. Cards is a nested resource. The additional query params available are documented at <a href="/cloud/trello/guides/rest-api/nested-resources/#cards-nested-resource">Cards Nested Resource</a>. |
+| <code>checkItems</code> | <code>query</code> | <code>enum: all, none</code> | No | The check items on the list to return. One of: <code>all</code>, <code>none</code>. |
+| <code>checkItem_fields</code> | <code>query</code> | <code>enum: all, name, nameData, pos, state, type, ...</code> | No | The fields on the checkItem to return if checkItems are being returned. <code>all</code> or a comma-separated list of: <code>name</code>, <code>nameData</code>, <code>pos</code>, <code>state</code>, <code>type</code>, <code>due</code>, <code>dueReminder</code>, <code>idMember</code> |
+| <code>fields</code> | <code>query</code> | <code>string</code> | No | <code>all</code> or a comma-separated list of checklist <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-success-2" class="status" data-status="2xx">200: Success</h5>
+<h3 id="get-cardsidchecklists" class="operation" data-method="get"><code>GET</code> /cards/{id}/checklists</h3>
+<p>Operation ID: <code>get-cards-id-checklists</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Card |
+| <code>checkItems</code> | <code>query</code> | <code>enum: all, none</code> | No | <code>all</code> or <code>none</code> |
+| <code>checkItem_fields</code> | <code>query</code> | <code>enum: name, nameData, pos, state, type, due, ...</code> | No | <code>all</code> or a comma-separated list of: <code>name,nameData,pos,state,type,due,dueReminder,idMember</code> |
+| <code>filter</code> | <code>query</code> | <code>enum: all, none</code> | No | <code>all</code> or <code>none</code> |
+| <code>fields</code> | <code>query</code> | <code>enum: all, name, nameData, pos, state, type</code> | No | <code>all</code> or a comma-separated list of: <code>idBoard,idCard,name,pos</code> |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-success-3" class="status" data-status="2xx">200: Success</h5>
+<h3 id="get-checklistsidfield" class="operation" data-method="get"><code>GET</code> /checklists/{id}/{field}</h3>
+<p>Operation ID: <code>get-checklists-id-field</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of a checklist. |
+| <code>field</code> | <code>path</code> | <code>enum: name, pos</code> | Yes | Field to update. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-success-4" class="status" data-status="2xx">200: Success</h5>
+<h3 id="get-boardsidchecklists" class="operation" data-method="get"><code>GET</code> /boards/{id}/checklists</h3>
+<p>Operation ID: <code>boards-id-checklists</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the board |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-success-5" class="status" data-status="2xx">200: Success</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-cardsidchecklistsidchecklist" class="operation" data-method="delete"><code>DELETE</code> /cards/{id}/checklists/{idChecklist}</h3>
+<p>Operation ID: <code>delete-cards-id-checklists-idchecklist</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Card |
+| <code>idChecklist</code> | <code>path</code> | <code>string</code> | Yes | The ID of the checklist to delete |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-success-6" class="status" data-status="2xx">200: Success</h5>
+<h3 id="delete-checklistsid" class="operation" data-method="delete"><code>DELETE</code> /checklists/{id}</h3>
+<p>Operation ID: <code>delete-checklists-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of a checklist. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-success-7" class="status" data-status="2xx">200: Success</h5>
+<h2 id="update">update</h2>
+<h3 id="put-checklistsidfield" class="operation" data-method="put"><code>PUT</code> /checklists/{id}/{field}</h3>
+<p>Operation ID: <code>put-checklists-id-field</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of a checklist. |
+| <code>field</code> | <code>path</code> | <code>enum: name, pos</code> | Yes | Field to update. |
+| <code>value</code> | <code>query</code> | <code>enum: top, bottom or number (float) or string</code> | Yes | The value to change the checklist name to. Should be a string of length 1 to 16384. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-success-8" class="status" data-status="2xx">200: Success</h5>
+<h3 id="put-checklistsid" class="operation" data-method="put"><code>PUT</code> /checklists/{id}</h3>
+<p>Operation ID: <code>put-checlists-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of a checklist. |
+| <code>name</code> | <code>query</code> | <code>string</code> | No | Name of the new checklist being created. Should be length of 1 to 16384. |
+| <code>pos</code> | <code>query</code> | <code>enum: top, bottom or number (float)</code> | No | Determines the position of the checklist on the card. One of: <code>top</code>, <code>bottom</code>, or a positive number. |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-success-9" class="status" data-status="2xx">200: Success</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

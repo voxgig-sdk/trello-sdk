@@ -51,5 +51,561 @@
         "status": {}
       }
     }
+  },
+  "requests": {
+    "POST /boards/{id}/exports": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-boards-id-exports",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether the export should include attachments",
+            "in": "query",
+            "name": "attachments",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Only include attachments created within this many days. `0` means no limit.",
+            "in": "query",
+            "name": "attachment_age",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "maximum": 3650,
+              "minimum": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "exportUrl": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5dced8665015383ed5ca248c",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "size": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "startedAt": {
+                      "example": "2019-11-15T16:55:02.000Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "status": {
+                      "properties": {
+                        "attempts": {
+                          "example": 0,
+                          "type": "number"
+                        },
+                        "finished": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "stage": {
+                          "example": "Export_queued",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /organizations/{id}/exports": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-organizations-id-exports",
+        "parameters": [
+          {
+            "description": "The ID or name of the Workspace",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether the CSV should include attachments or not.",
+            "in": "query",
+            "name": "attachments",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "exportUrl": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5dced8665015383ed5ca248c",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "size": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "startedAt": {
+                      "example": "2019-11-15T16:55:02.000Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "status": {
+                      "properties": {
+                        "attempts": {
+                          "example": 0,
+                          "type": "number"
+                        },
+                        "finished": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "stage": {
+                          "example": "Export_queued",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /organizations/{id}/exports": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-organizations-id-exports",
+        "parameters": [
+          {
+            "description": "The ID or name of the Workspace",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "exportUrl": {
+                        "example": null,
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "id": {
+                        "example": "5dced8665015383ed5ca248c",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "size": {
+                        "example": null,
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "startedAt": {
+                        "example": "2019-11-15T16:55:02.000Z",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "status": {
+                        "properties": {
+                          "attempts": {
+                            "example": 0,
+                            "type": "number"
+                          },
+                          "finished": {
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "stage": {
+                            "example": "Export_queued",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /boards/{id}/exports/{idExport}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-boards-id-exports-idexport",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the export",
+            "in": "path",
+            "name": "idExport",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "exportUrl": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5dced8665015383ed5ca248c",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "size": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "startedAt": {
+                      "example": "2019-11-15T16:55:02.000Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "status": {
+                      "properties": {
+                        "attempts": {
+                          "example": 0,
+                          "type": "number"
+                        },
+                        "finished": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "stage": {
+                          "example": "Export_queued",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /boards/{id}/exports/mostRecent": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-boards-id-exports-mostrecent",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "exportUrl": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "5dced8665015383ed5ca248c",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "size": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "startedAt": {
+                      "example": "2019-11-15T16:55:02.000Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "status": {
+                      "properties": {
+                        "attempts": {
+                          "example": 0,
+                          "type": "number"
+                        },
+                        "finished": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "stage": {
+                          "example": "Export_queued",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "404": {
+            "description": "Board has no export, or is not in a Workspace"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /boards/{id}/exports/{idExport}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-boards-id-exports-idexport",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the export",
+            "in": "path",
+            "name": "idExport",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

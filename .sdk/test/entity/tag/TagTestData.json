@@ -19,5 +19,134 @@
     "tag": {
       "tag_ref01": {}
     }
+  },
+  "requests": {
+    "GET /organizations/{id}/tags": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-organizations-id-tags",
+        "parameters": [
+          {
+            "description": "The ID or name of the Organization",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "id": {
+                            "example": "58dd6dcaf8b86744d3cb4cde",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "name": {
+                            "example": "My Collection",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /organizations/{id}/tags/{idTag}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-organizations-id-tags-idtag",
+        "parameters": [
+          {
+            "description": "The ID or name of the organization",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the tag to delete",
+            "in": "path",
+            "name": "idTag",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

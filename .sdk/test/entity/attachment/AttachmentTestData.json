@@ -19,5 +19,401 @@
     "attachment": {
       "attachment_ref01": {}
     }
+  },
+  "requests": {
+    "GET /cards/{id}/attachments": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-cards-id-attachments",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of attachment [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Use `cover` to restrict to just the cover attachment",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "default": "false",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "bytes": {
+                            "example": null,
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "date": {
+                            "example": "2018-10-17T19:10:14.808Z",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "edgeColor": {
+                            "enum": [
+                              "yellow",
+                              "purple",
+                              "blue",
+                              "red",
+                              "green",
+                              "orange",
+                              "black",
+                              "sky",
+                              "pink",
+                              "lime"
+                            ],
+                            "example": null,
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "5bc79d4206526d2279c1e6ea",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "idMember": {
+                            "example": "5bc79d4206526d2279c1e6eb",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "isUpload": {
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "mimeType": {
+                            "example": "",
+                            "type": "string"
+                          },
+                          "name": {
+                            "example": "Deprecation Extension Notice",
+                            "type": "string"
+                          },
+                          "pos": {
+                            "example": 1638,
+                            "format": "float",
+                            "type": "number"
+                          },
+                          "previews": {
+                            "example": [],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "url": {
+                            "example": "https://admin.typeform.com/form/RzExEM/share#/link",
+                            "format": "url",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /cards/{id}/attachments/{idAttachment}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-cards-id-attachments-idattachment",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the Attachment",
+            "in": "path",
+            "name": "idAttachment",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Attachment fields to be included in the response.",
+            "explode": false,
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": [
+                "all"
+              ],
+              "items": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "id",
+                      "bytes",
+                      "date",
+                      "edgeColor",
+                      "idMember",
+                      "isUpload",
+                      "mimeType",
+                      "name",
+                      "previews",
+                      "url",
+                      "pos"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "bytes": {
+                            "example": null,
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "date": {
+                            "example": "2018-10-17T19:10:14.808Z",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "edgeColor": {
+                            "enum": [
+                              "yellow",
+                              "purple",
+                              "blue",
+                              "red",
+                              "green",
+                              "orange",
+                              "black",
+                              "sky",
+                              "pink",
+                              "lime"
+                            ],
+                            "example": null,
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "5bc79d4206526d2279c1e6ea",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "idMember": {
+                            "example": "5bc79d4206526d2279c1e6eb",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "isUpload": {
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "mimeType": {
+                            "example": "",
+                            "type": "string"
+                          },
+                          "name": {
+                            "example": "Deprecation Extension Notice",
+                            "type": "string"
+                          },
+                          "pos": {
+                            "example": 1638,
+                            "format": "float",
+                            "type": "number"
+                          },
+                          "previews": {
+                            "example": [],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "url": {
+                            "example": "https://admin.typeform.com/form/RzExEM/share#/link",
+                            "format": "url",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /cards/{id}/attachments/{idAttachment}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleted-cards-id-attachments-idattachment",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the Attachment",
+            "in": "path",
+            "name": "idAttachment",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the attachment to delete",
+            "in": "path",
+            "name": "idAttachment",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

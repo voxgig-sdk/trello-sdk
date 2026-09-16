@@ -57,6 +57,12 @@ main: kit: entity: list: {
               }
             ]
           }
+          contract: {
+            id: "POST /lists"
+            json: "{\"operationId\":\"post-lists\",\"parameters\":[{\"description\":\"Name for the list\",\"in\":\"query\",\"name\":\"name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The long ID of the board the list should be created on\",\"in\":\"query\",\"name\":\"idBoard\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"ID of the List to copy into the new List\",\"in\":\"query\",\"name\":\"idListSource\",\"required\":false,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"Position of the list. `top`, `bottom`, or a positive floating point number\",\"in\":\"query\",\"name\":\"pos\",\"required\":false,\"schema\":{\"oneOf\":[{\"format\":\"float\",\"type\":\"number\"},{\"enum\":[\"top\",\"bottom\"],\"type\":\"string\"}]}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/lists"
           segments: [
@@ -108,6 +114,12 @@ main: kit: entity: list: {
               }
             ]
           }
+          contract: {
+            id: "POST /lists/{id}/moveAllCards"
+            json: "{\"operationId\":\"post-lists-id-moveallcards\",\"parameters\":[{\"description\":\"The ID of the list\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The ID of the board the cards should be moved to\",\"in\":\"query\",\"name\":\"idBoard\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The ID of the list that the cards should be moved to\",\"in\":\"query\",\"name\":\"idList\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/lists/{id}/moveAllCards"
           segments: [
@@ -146,6 +158,12 @@ main: kit: entity: list: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "POST /lists/{id}/archiveAllCards"
+            json: "{\"operationId\":\"post-lists-id-archiveallcards\",\"parameters\":[{\"description\":\"The ID of the list\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "POST"
           orig: "/lists/{id}/archiveAllCards"
@@ -195,6 +213,12 @@ main: kit: entity: list: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /boards/{id}/lists/{filter}"
+            json: "{\"operationId\":\"get-boards-id-lists-filter\",\"parameters\":[{\"description\":\"The ID of the board\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"One of `all`, `closed`, `none`, `open`\",\"in\":\"path\",\"name\":\"filter\",\"required\":true,\"schema\":{\"enum\":[\"all\",\"closed\",\"none\",\"open\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/boards/{id}/lists/{filter}"
@@ -250,6 +274,12 @@ main: kit: entity: list: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /lists/{id}"
+            json: "{\"operationId\":\"get-lists-id\",\"parameters\":[{\"description\":\"The ID of the list\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"`all` or a comma separated list of List field names.\",\"explode\":false,\"in\":\"query\",\"name\":\"fields\",\"required\":false,\"schema\":{\"default\":\"name,closed,idBoard,pos\",\"type\":\"string\"},\"style\":\"form\"}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/lists/{id}"
@@ -327,6 +357,12 @@ main: kit: entity: list: {
               }
             ]
           }
+          contract: {
+            id: "PUT /lists/{id}"
+            json: "{\"operationId\":\"put-lists-id\",\"parameters\":[{\"description\":\"The ID of the list\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"New name for the list\",\"in\":\"query\",\"name\":\"name\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Whether the list should be closed (archived)\",\"in\":\"query\",\"name\":\"closed\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"ID of a board the list should be moved to\",\"explode\":false,\"in\":\"query\",\"name\":\"idBoard\",\"required\":false,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"style\":\"form\"},{\"description\":\"New position for the list: `top`, `bottom`, or a positive floating point number\",\"in\":\"query\",\"name\":\"pos\",\"required\":false,\"schema\":{\"oneOf\":[{\"format\":\"float\",\"type\":\"number\"},{\"enum\":[\"top\",\"bottom\"],\"type\":\"string\"}]}},{\"description\":\"Whether the active member is subscribed to this list\",\"in\":\"query\",\"name\":\"subscribed\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "PUT"
           orig: "/lists/{id}"
           segments: [
@@ -381,6 +417,12 @@ main: kit: entity: list: {
               }
             ]
           }
+          contract: {
+            id: "PUT /lists/{id}/{field}"
+            json: "{\"operationId\":\"put-lists-id-field\",\"parameters\":[{\"description\":\"The ID of the list\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The field on the List to be updated\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"name\",\"pos\",\"subscribed\"],\"type\":\"string\"}},{\"description\":\"The new value for the field\",\"in\":\"query\",\"name\":\"value\",\"required\":false,\"schema\":{\"oneOf\":[{\"description\":\"The new name for the List\",\"type\":\"string\"},{\"description\":\"The new position for the List\",\"format\":\"float\",\"type\":\"number\"},{\"description\":\"The new position for the List\",\"enum\":[\"top\",\"bottom\"],\"type\":\"string\"},{\"type\":\"boolean\"}]}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "PUT"
           orig: "/lists/{id}/{field}"
           segments: [
@@ -429,6 +471,12 @@ main: kit: entity: list: {
               }
             ]
           }
+          contract: {
+            id: "PUT /lists/{id}/closed"
+            json: "{\"operationId\":\"put-lists-id-closed\",\"parameters\":[{\"description\":\"The ID of the list\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"Set to true to close (archive) the list\",\"in\":\"query\",\"name\":\"value\",\"required\":false,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "PUT"
           orig: "/lists/{id}/closed"
           segments: [
@@ -476,6 +524,12 @@ main: kit: entity: list: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /lists/{id}/idBoard"
+            json: "{\"operationId\":\"put-id-idboard\",\"parameters\":[{\"description\":\"The ID of the list\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"The ID of the board to move the list to\",\"in\":\"query\",\"name\":\"value\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/lists/{id}/idBoard"

@@ -55,5 +55,416 @@
         "subscribed": true
       }
     }
+  },
+  "requests": {
+    "POST /boards/{id}/lists": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-boards-id-lists",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name of the list to be created. 1 to 16384 characters long.",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines the position of the list. Valid values: `top`, `bottom`, or a positive number.",
+            "in": "query",
+            "name": "pos",
+            "required": false,
+            "schema": {
+              "default": "top",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "closed": {
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idBoard": {
+                      "type": "string"
+                    },
+                    "limits": {
+                      "properties": {
+                        "attachments": {
+                          "properties": {
+                            "perBoard": {
+                              "properties": {
+                                "disableAt": {
+                                  "example": 36000,
+                                  "type": "number"
+                                },
+                                "status": {
+                                  "enum": [
+                                    "ok",
+                                    "warning"
+                                  ],
+                                  "type": "string"
+                                },
+                                "warnAt": {
+                                  "example": 32400,
+                                  "type": "number"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "name": {
+                      "description": "The name of the list",
+                      "example": "Things to buy today",
+                      "type": "string"
+                    },
+                    "pos": {
+                      "type": "number"
+                    },
+                    "softLimit": {
+                      "type": "string"
+                    },
+                    "subscribed": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /boards/{id}/lists": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-boards-id-lists",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter to apply to Cards.",
+            "in": "query",
+            "name": "cards",
+            "required": false,
+            "schema": {
+              "enum": [
+                "all",
+                "closed",
+                "none",
+                "open"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of card [fields](/cloud/trello/guides/rest-api/object-definitions/#card-object)",
+            "in": "query",
+            "name": "card_fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter to apply to Lists",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "enum": [
+                "all",
+                "closed",
+                "none",
+                "open"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of list [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "closed": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idBoard": {
+                        "type": "string"
+                      },
+                      "limits": {
+                        "properties": {
+                          "attachments": {
+                            "properties": {
+                              "perBoard": {
+                                "properties": {
+                                  "disableAt": {
+                                    "example": 36000,
+                                    "type": "number"
+                                  },
+                                  "status": {
+                                    "enum": [
+                                      "ok",
+                                      "warning"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "warnAt": {
+                                    "example": 32400,
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "name": {
+                        "description": "The name of the list",
+                        "example": "Things to buy today",
+                        "type": "string"
+                      },
+                      "pos": {
+                        "type": "number"
+                      },
+                      "softLimit": {
+                        "type": "string"
+                      },
+                      "subscribed": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /actions/{id}/list": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-actions-id-list",
+        "parameters": [
+          {
+            "description": "The ID of the action",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of list fields",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "id"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "closed": {
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idBoard": {
+                      "type": "string"
+                    },
+                    "limits": {
+                      "properties": {
+                        "attachments": {
+                          "properties": {
+                            "perBoard": {
+                              "properties": {
+                                "disableAt": {
+                                  "example": 36000,
+                                  "type": "number"
+                                },
+                                "status": {
+                                  "enum": [
+                                    "ok",
+                                    "warning"
+                                  ],
+                                  "type": "string"
+                                },
+                                "warnAt": {
+                                  "example": 32400,
+                                  "type": "number"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "name": {
+                      "description": "The name of the list",
+                      "example": "Things to buy today",
+                      "type": "string"
+                    },
+                    "pos": {
+                      "type": "number"
+                    },
+                    "softLimit": {
+                      "type": "string"
+                    },
+                    "subscribed": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

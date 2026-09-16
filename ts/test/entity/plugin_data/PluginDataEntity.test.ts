@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { TrelloSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('PluginDataEntity', async () => {
 
     const live = 'TRUE' === process.env.TRELLO_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'plugin_data.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'plugin_data.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set TRELLO_TEST_PLUGIN_DATA_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"plugin_data","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"params":[{"active":true,"example":"5abbe4b7ddc1b351ef961414","kind":"param","name":"organization_id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /organizations/{id}/pluginData","json":"{\"operationId\":\"get-organizations-id-plugindata\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"oneOf\":[{\"properties\":{\"access\":{\"enum\":[\"private\",\"shared\"],\"example\":\"private\",\"type\":\"string\"},\"id\":{\"example\":\"5c487f39294cab6ac1d6b305\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"586e8d7b1af892b26d5b76b1\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idPlugin\":{\"example\":\"55a5d915446f517774210003\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"scope\":{\"enum\":[\"member\",\"board\",\"organization\",\"card\"],\"example\":\"organization\",\"type\":\"string\"},\"value\":{\"example\":\"{\\\"token\\\":\\\"S=s458:U=bda7cda:E=16fd2e21f55:C=1687b30f2c0:P=185:A=it-team-0604:V=2:H=3b0f3bac9c2a2af766202ebb9530a4a5\\\"}\",\"type\":\"string\"}},\"type\":\"object\"}]},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/organizations/{id}/pluginData","rename":{"param":{"id":"organization_id"}},"segments":[{"lit":"organizations"},{"var":"organization_id"},{"lit":"pluginData"}],"select":{"exist":["organization_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"5abbe4b7ddc1b351ef961414","kind":"param","name":"card_id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /cards/{id}/pluginData","json":"{\"operationId\":\"get-cards-id-plugindata\",\"parameters\":[{\"description\":\"The ID of the Card\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/cards/{id}/pluginData","rename":{"param":{"id":"card_id"}},"segments":[{"lit":"cards"},{"var":"card_id"},{"lit":"pluginData"}],"select":{"exist":["card_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[["card"],["organization"]]},"key$":"plugin_data","name__orig":"plugin_data","Name":"PluginData","name_":"plugin_data","name-":"plugin-data","NAME":"PLUGIN_DATA","index$":54}, {"active":true,"entity":"plugin_data","key$":"BasicPluginDataFlow","kind":"basic","name":"BasicPluginDataFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{"organization_id":"organization01"},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"plugin_data_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"plugin_data_ref01","srcdatavar":"plugin_data_ref01_data","suffix":"_dt0"},"match":{"id":"plugin_data01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-plugin_data_ref01"}}],"index$":1}]}, 'PluginData')
     }
     const client = setup.client
     const struct = setup.struct
@@ -111,13 +110,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['TRELLO_TEST_PLUGIN_DATA_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'TRELLO_TEST_PLUGIN_DATA_ENTID': idmap,
     'TRELLO_TEST_LIVE': 'FALSE',
@@ -129,7 +121,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.TRELLO_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['TRELLO_TEST_PLUGIN_DATA_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new TrelloSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -142,7 +140,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -155,7 +154,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.TRELLO_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

@@ -88,6 +88,12 @@ main: kit: entity: webhook: {
               }
             ]
           }
+          contract: {
+            id: "POST /webhooks/"
+            json: "{\"operationId\":\"post-webhooks\",\"parameters\":[{\"description\":\"A string with a length from `0` to `16384`.\",\"in\":\"query\",\"name\":\"description\",\"required\":false,\"schema\":{\"maxLength\":16384,\"minLength\":0,\"type\":\"string\"}},{\"description\":\"A valid URL that is reachable with a `HEAD` and `POST` request.\",\"in\":\"query\",\"name\":\"callbackURL\",\"required\":true,\"schema\":{\"format\":\"url\",\"type\":\"string\"}},{\"description\":\"ID of the model to be monitored\",\"in\":\"query\",\"name\":\"idModel\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"Determines whether the webhook is active and sending `POST` requests.\",\"in\":\"query\",\"name\":\"active\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"example\":true,\"type\":\"boolean\"},\"callbackURL\":{\"example\":\"https://mywebhookurl.com/?type=board\",\"format\":\"url\",\"type\":\"string\"},\"consecutiveFailures\":{\"example\":0,\"type\":\"number\"},\"description\":{\"example\":\"Board Webhook\",\"type\":\"string\"},\"firstConsecutiveFailDate\":{\"example\":null,\"format\":\"date\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"58dd6dcaf8b86744d3cb4cde\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"59cd149051aa57a706962996\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/webhooks/"
           segments: [
@@ -144,6 +150,12 @@ main: kit: entity: webhook: {
               }
             ]
           }
+          contract: {
+            id: "POST /tokens/{token}/webhooks"
+            json: "{\"operationId\":\"post-tokens-token-webhooks\",\"parameters\":[{\"description\":\"\",\"in\":\"path\",\"name\":\"token\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"A description to be displayed when retrieving information about the webhook.\",\"in\":\"query\",\"name\":\"description\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"The URL that the webhook should POST information to.\",\"in\":\"query\",\"name\":\"callbackURL\",\"required\":true,\"schema\":{\"format\":\"url\",\"type\":\"string\"}},{\"description\":\"ID of the object to create a webhook on.\",\"in\":\"query\",\"name\":\"idModel\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"example\":true,\"type\":\"boolean\"},\"callbackURL\":{\"example\":\"https://mywebhookurl.com/?type=board\",\"format\":\"url\",\"type\":\"string\"},\"consecutiveFailures\":{\"example\":0,\"type\":\"number\"},\"description\":{\"example\":\"Board Webhook\",\"type\":\"string\"},\"firstConsecutiveFailDate\":{\"example\":null,\"format\":\"date\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"58dd6dcaf8b86744d3cb4cde\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"59cd149051aa57a706962996\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/tokens/{token}/webhooks"
           rename: {
@@ -191,6 +203,12 @@ main: kit: entity: webhook: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /tokens/{token}/webhooks"
+            json: "{\"operationId\":\"get-tokens-token-webhooks\",\"parameters\":[{\"description\":\"\",\"in\":\"path\",\"name\":\"token\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"active\":{\"example\":true,\"type\":\"boolean\"},\"callbackURL\":{\"example\":\"https://mywebhookurl.com/?type=board\",\"format\":\"url\",\"type\":\"string\"},\"consecutiveFailures\":{\"example\":0,\"type\":\"number\"},\"description\":{\"example\":\"Board Webhook\",\"type\":\"string\"},\"firstConsecutiveFailDate\":{\"example\":null,\"format\":\"date\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"58dd6dcaf8b86744d3cb4cde\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"59cd149051aa57a706962996\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/tokens/{token}/webhooks"
@@ -245,6 +263,12 @@ main: kit: entity: webhook: {
               }
             ]
           }
+          contract: {
+            id: "GET /webhooks/{id}/{field}"
+            json: "{\"operationId\":\"webhooksidfield\",\"parameters\":[{\"description\":\"ID of the webhook.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"Field to retrieve. One of: `active`, `callbackURL`, `description`, `idModel`\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"active\",\"callbackURL\",\"description\",\"idModel\",\"consecutiveFailures\",\"firstConsecutiveFailDate\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/webhooks/{id}/{field}"
           segments: [
@@ -288,6 +312,12 @@ main: kit: entity: webhook: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /tokens/{token}/webhooks/{idWebhook}"
+            json: "{\"operationId\":\"get-tokens-token-webhooks-idwebhook\",\"parameters\":[{\"description\":\"\",\"in\":\"path\",\"name\":\"token\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"ID of the [Webhooks](ref:webhooks) to retrieve.\",\"in\":\"path\",\"name\":\"idWebhook\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"example\":true,\"type\":\"boolean\"},\"callbackURL\":{\"example\":\"https://mywebhookurl.com/?type=board\",\"format\":\"url\",\"type\":\"string\"},\"consecutiveFailures\":{\"example\":0,\"type\":\"number\"},\"description\":{\"example\":\"Board Webhook\",\"type\":\"string\"},\"firstConsecutiveFailDate\":{\"example\":null,\"format\":\"date\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"58dd6dcaf8b86744d3cb4cde\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"59cd149051aa57a706962996\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/tokens/{token}/webhooks/{idWebhook}"
@@ -334,6 +364,12 @@ main: kit: entity: webhook: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /webhooks/{id}"
+            json: "{\"operationId\":\"get-webhooks-id\",\"parameters\":[{\"description\":\"ID of the webhook to retrieve.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"example\":true,\"type\":\"boolean\"},\"callbackURL\":{\"example\":\"https://mywebhookurl.com/?type=board\",\"format\":\"url\",\"type\":\"string\"},\"consecutiveFailures\":{\"example\":0,\"type\":\"number\"},\"description\":{\"example\":\"Board Webhook\",\"type\":\"string\"},\"firstConsecutiveFailDate\":{\"example\":null,\"format\":\"date\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"58dd6dcaf8b86744d3cb4cde\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"59cd149051aa57a706962996\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/webhooks/{id}"
@@ -380,6 +416,12 @@ main: kit: entity: webhook: {
               }
             ]
           }
+          contract: {
+            id: "DELETE /tokens/{token}/webhooks/{idWebhook}"
+            json: "{\"operationId\":\"delete-tokens-token-webhooks-idwebhook\",\"parameters\":[{\"description\":\"\",\"in\":\"path\",\"name\":\"token\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"ID of the [Webhooks](ref:webhooks) to retrieve.\",\"in\":\"path\",\"name\":\"idWebhook\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "DELETE"
           orig: "/tokens/{token}/webhooks/{idWebhook}"
           rename: {
@@ -425,6 +467,12 @@ main: kit: entity: webhook: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "DELETE /webhooks/{id}"
+            json: "{\"operationId\":\"delete-webhooks-id\",\"parameters\":[{\"description\":\"ID of the webhook to retrieve.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "DELETE"
           orig: "/webhooks/{id}"
@@ -495,6 +543,12 @@ main: kit: entity: webhook: {
               }
             ]
           }
+          contract: {
+            id: "PUT /webhooks/{id}"
+            json: "{\"operationId\":\"put-webhooks-id\",\"parameters\":[{\"description\":\"ID of the webhook to retrieve.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"A string with a length from `0` to `16384`.\",\"in\":\"query\",\"name\":\"description\",\"required\":false,\"schema\":{\"maxLength\":16384,\"minLength\":0,\"type\":\"string\"}},{\"description\":\"A valid URL that is reachable with a `HEAD` and `POST` request.\",\"in\":\"query\",\"name\":\"callbackURL\",\"required\":false,\"schema\":{\"format\":\"url\",\"type\":\"string\"}},{\"description\":\"ID of the model to be monitored\",\"in\":\"query\",\"name\":\"idModel\",\"required\":false,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"Determines whether the webhook is active and sending `POST` requests.\",\"in\":\"query\",\"name\":\"active\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"example\":true,\"type\":\"boolean\"},\"callbackURL\":{\"example\":\"https://mywebhookurl.com/?type=board\",\"format\":\"url\",\"type\":\"string\"},\"consecutiveFailures\":{\"example\":0,\"type\":\"number\"},\"description\":{\"example\":\"Board Webhook\",\"type\":\"string\"},\"firstConsecutiveFailDate\":{\"example\":null,\"format\":\"date\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"58dd6dcaf8b86744d3cb4cde\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idModel\":{\"example\":\"59cd149051aa57a706962996\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "PUT"
           orig: "/webhooks/{id}"
           segments: [
@@ -562,6 +616,12 @@ main: kit: entity: webhook: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /tokens/{token}/webhooks/{idWebhook}"
+            json: "{\"operationId\":\"tokenstokenwebhooks-1\",\"parameters\":[{\"description\":\"\",\"in\":\"path\",\"name\":\"token\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"ID of the [Webhooks](ref:webhooks) to retrieve.\",\"in\":\"path\",\"name\":\"idWebhook\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"A description to be displayed when retrieving information about the webhook.\",\"in\":\"query\",\"name\":\"description\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"The URL that the webhook should `POST` information to.\",\"in\":\"query\",\"name\":\"callbackURL\",\"required\":false,\"schema\":{\"format\":\"url\",\"type\":\"string\"}},{\"description\":\"ID of the object that the webhook is on.\",\"in\":\"query\",\"name\":\"idModel\",\"required\":false,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/tokens/{token}/webhooks/{idWebhook}"

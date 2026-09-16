@@ -19,5 +19,736 @@
     "bulk": {
       "bulk_ref01": {}
     }
+  },
+  "requests": {
+    "GET /enterprises/{id}/organizations/bulk/{idOrganizations}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-enterprises-id-organizations-bulk-idOrganizations",
+        "parameters": [
+          {
+            "description": "ID of the enterprise to retrieve.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "An array of IDs of the organizations to be removed from the enterprise.",
+            "in": "path",
+            "name": "idOrganizations",
+            "required": true,
+            "schema": {
+              "items": {
+                "anyOf": [
+                  {
+                    "properties": {
+                      "dateLastActivity": {
+                        "example": "2018-10-17T19:10:14.808Z",
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "displayName": {
+                        "example": "Organization Name",
+                        "type": "string"
+                      },
+                      "id": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idBoards": {
+                        "items": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "idEnterprise": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "memberships": {
+                        "items": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "offering": {
+                        "example": "trello.enterprise",
+                        "type": "string"
+                      },
+                      "prefs": {
+                        "properties": {
+                          "attachmentRestrictions": {
+                            "items": {
+                              "enum": [
+                                "computer",
+                                "trello",
+                                "google-drive",
+                                "box",
+                                "onedrive",
+                                "link"
+                              ],
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "boardDeleteRestrict": {
+                            "type": "object"
+                          },
+                          "boardVisibilityRestrict": {
+                            "type": "object"
+                          },
+                          "permissionLevel": {
+                            "enum": [
+                              "org",
+                              "private",
+                              "public",
+                              "enterprise",
+                              "domain"
+                            ],
+                            "example": "private",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "premiumFeatures": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "url": {
+                        "example": "https://trello.com/w/<name>",
+                        "format": "url",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The specified resource was not found"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected Error"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /enterprises/{id}/transferrable/bulk/{idOrganizations}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-enterprises-id-transferrable-bulk-idOrganizations",
+        "parameters": [
+          {
+            "description": "ID of the Enterprise to retrieve.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "An array of IDs of an Organization resource.",
+            "in": "path",
+            "name": "idOrganizations",
+            "required": true,
+            "schema": {
+              "items": {
+                "anyOf": [
+                  {
+                    "properties": {
+                      "dateLastActivity": {
+                        "example": "2018-10-17T19:10:14.808Z",
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "displayName": {
+                        "example": "Organization Name",
+                        "type": "string"
+                      },
+                      "id": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idBoards": {
+                        "items": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "idEnterprise": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "memberships": {
+                        "items": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "offering": {
+                        "example": "trello.enterprise",
+                        "type": "string"
+                      },
+                      "prefs": {
+                        "properties": {
+                          "attachmentRestrictions": {
+                            "items": {
+                              "enum": [
+                                "computer",
+                                "trello",
+                                "google-drive",
+                                "box",
+                                "onedrive",
+                                "link"
+                              ],
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "boardDeleteRestrict": {
+                            "type": "object"
+                          },
+                          "boardVisibilityRestrict": {
+                            "type": "object"
+                          },
+                          "permissionLevel": {
+                            "enum": [
+                              "org",
+                              "private",
+                              "public",
+                              "enterprise",
+                              "domain"
+                            ],
+                            "example": "private",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "premiumFeatures": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "url": {
+                        "example": "https://trello.com/w/<name>",
+                        "format": "url",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "newBillableMembers": {
+                            "items": {
+                              "properties": {
+                                "avatarHash": {
+                                  "example": "fc8faaaee46666a4eb8b626c08933e16",
+                                  "type": "string"
+                                },
+                                "fullName": {
+                                  "example": "Bob Loblaw",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "example": "5ab10be237846c43015f1091",
+                                  "pattern": "^[0-9a-fA-F]{24}$",
+                                  "type": "string"
+                                },
+                                "initials": {
+                                  "example": "BL",
+                                  "type": "string"
+                                },
+                                "username": {
+                                  "example": "bobloblaw",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "restrictedMembers": {
+                            "items": {
+                              "properties": {
+                                "avatarHash": {
+                                  "example": "fc8faaaee46666a4eb8b626c08933e16",
+                                  "type": "string"
+                                },
+                                "fullName": {
+                                  "example": "Bob Loblaw",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "example": "5ab10be237846c43015f1091",
+                                  "pattern": "^[0-9a-fA-F]{24}$",
+                                  "type": "string"
+                                },
+                                "initials": {
+                                  "example": "BL",
+                                  "type": "string"
+                                },
+                                "username": {
+                                  "example": "bobloblaw",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "transferrable": {
+                            "example": true,
+                            "type": "boolean"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The specified resource was not found"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /enterprises/${id}/enterpriseJoinRequest/bulk": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-enterprises-id-enterpriseJoinRequest-bulk",
+        "parameters": [
+          {
+            "description": "ID of the Enterprise to retrieve.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "An array of IDs of an Organization resource.",
+            "in": "query",
+            "name": "idOrganizations",
+            "required": true,
+            "schema": {
+              "items": {
+                "anyOf": [
+                  {
+                    "properties": {
+                      "dateLastActivity": {
+                        "example": "2018-10-17T19:10:14.808Z",
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "displayName": {
+                        "example": "Organization Name",
+                        "type": "string"
+                      },
+                      "id": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idBoards": {
+                        "items": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "idEnterprise": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "memberships": {
+                        "items": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "offering": {
+                        "example": "trello.enterprise",
+                        "type": "string"
+                      },
+                      "prefs": {
+                        "properties": {
+                          "attachmentRestrictions": {
+                            "items": {
+                              "enum": [
+                                "computer",
+                                "trello",
+                                "google-drive",
+                                "box",
+                                "onedrive",
+                                "link"
+                              ],
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "boardDeleteRestrict": {
+                            "type": "object"
+                          },
+                          "boardVisibilityRestrict": {
+                            "type": "object"
+                          },
+                          "permissionLevel": {
+                            "enum": [
+                              "org",
+                              "private",
+                              "public",
+                              "enterprise",
+                              "domain"
+                            ],
+                            "example": "private",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "premiumFeatures": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "url": {
+                        "example": "https://trello.com/w/<name>",
+                        "format": "url",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The specified resource was not found"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

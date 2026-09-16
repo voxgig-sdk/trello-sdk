@@ -4,7 +4,14 @@ declare(strict_types=1);
 // Trello SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/DebugFeature.php';
+require_once __DIR__ . '/feature/IdempotencyFeature.php';
+require_once __DIR__ . '/feature/MetricsFeature.php';
+require_once __DIR__ . '/feature/PagingFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class TrelloFeatures
@@ -14,8 +21,22 @@ class TrelloFeatures
         switch ($name) {
             case "base":
                 return new TrelloBaseFeature();
+            case "debug":
+                return new TrelloDebugFeature();
+            case "idempotency":
+                return new TrelloIdempotencyFeature();
+            case "metrics":
+                return new TrelloMetricsFeature();
+            case "paging":
+                return new TrelloPagingFeature();
+            case "ratelimit":
+                return new TrelloRatelimitFeature();
+            case "retry":
+                return new TrelloRetryFeature();
             case "test":
                 return new TrelloTestFeature();
+            case "timeout":
+                return new TrelloTimeoutFeature();
             default:
                 return new TrelloBaseFeature();
         }
@@ -31,7 +52,14 @@ class TrelloFeatures
     {
         switch ($name) {
             case "base":
+            case "debug":
+            case "idempotency":
+            case "metrics":
+            case "paging":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

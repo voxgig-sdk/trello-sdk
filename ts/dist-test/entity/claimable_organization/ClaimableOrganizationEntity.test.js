@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.TRELLO_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'claimable_organization.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'claimable_organization.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set TRELLO_TEST_CLAIMABLE_ORGANIZATION_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "activeMembershipCount", "req": false, "type": "`$NUMBER`", "index$": 0 }, { "active": true, "format": "date", "name": "dateLastActive", "req": false, "short": "The date of the most recent activity on any of the boards in the workspace.", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "displayName", "req": false, "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "idActiveAdmins", "req": false, "type": "`$ARRAY`", "index$": 4 }, { "active": true, "name": "logoUrl", "req": false, "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "name", "req": false, "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "products", "req": false, "type": "`$ARRAY`", "index$": 7 }], "id": { "field": "id", "name": "id" }, "name": "claimable_organization", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "params": [{ "active": true, "example": "5abbe4b7ddc1b351ef961414", "kind": "param", "name": "enterpris_id", "orig": "id", "reqd": true, "type": "`$STRING`", "index$": 0 }], "query": [{ "active": true, "kind": "query", "name": "active_since", "orig": "active_since", "reqd": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "kind": "query", "name": "cursor", "orig": "cursor", "reqd": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "kind": "query", "name": "inactive_since", "orig": "inactive_since", "reqd": false, "type": "`$STRING`", "index$": 2 }, { "active": true, "kind": "query", "name": "limit", "orig": "limit", "reqd": false, "type": "`$INTEGER`", "index$": 3 }, { "active": true, "kind": "query", "name": "name", "orig": "name", "reqd": false, "type": "`$STRING`", "index$": 4 }] }, "contract": { "id": "GET /enterprises/{id}/claimableOrganizations", "json": "{\"operationId\":\"get-enterprises-id-claimableOrganizations\",\"parameters\":[{\"description\":\"ID of the enterprise to retrieve\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}},{\"description\":\"Limits the number of workspaces to be sorted\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"type\":\"integer\"}},{\"description\":\"Specifies the sort order to return matching documents\",\"in\":\"query\",\"name\":\"cursor\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Name of the enterprise to retrieve workspaces for\",\"in\":\"query\",\"name\":\"name\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Date in YYYY-MM-DD format indicating the date to search up to for activeness of workspace\",\"in\":\"query\",\"name\":\"activeSince\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Date in YYYY-MM-DD format indicating the date to search up to for inactiveness of workspace\",\"in\":\"query\",\"name\":\"inactiveSince\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"claimableCount\":{\"example\":2,\"type\":\"number\"},\"organizations\":{\"items\":{\"properties\":{\"activeMembershipCount\":{\"example\":5,\"type\":\"number\"},\"dateLastActive\":{\"description\":\"The date of the most recent activity on any of the boards in the workspace. If the workspace has no boards, or the boards have no activity, this value will be null.\",\"example\":\"2019-08-22T18:15:53.546Z\",\"format\":\"date\",\"nullable\":true,\"type\":\"string\"},\"displayName\":{\"example\":\"Organization Name\",\"type\":\"string\"},\"id\":{\"example\":\"617abd5995eae45169a11059\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"idActiveAdmins\":{\"items\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"},\"type\":\"array\"},\"logoUrl\":{\"example\":null,\"nullable\":true,\"type\":\"string\"},\"name\":{\"example\":\"organization_name\",\"type\":\"string\"},\"products\":{\"items\":{\"format\":\"integer\",\"type\":\"number\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Success\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"message\":{\"type\":\"string\"}},\"required\":[\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"message\":{\"type\":\"string\"}},\"required\":[\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"The specified resource was not found\"},\"default\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"type\":\"string\"},\"message\":{\"type\":\"string\"}},\"required\":[\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unexpected erorr\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/enterprises/{id}/claimableOrganizations", "rename": { "param": { "id": "enterpris_id" } }, "segments": [{ "lit": "enterprises" }, { "var": "enterpris_id" }, { "lit": "claimableOrganizations" }], "select": { "exist": ["active_since", "cursor", "enterpris_id", "inactive_since", "limit", "name"] }, "transform": { "req": "`reqdata`", "res": "`body.organizations`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [["enterpris"]] }, "key$": "claimable_organization", "name__orig": "claimable_organization", "Name": "ClaimableOrganization", "name_": "claimable_organization", "name-": "claimable-organization", "NAME": "CLAIMABLE_ORGANIZATION", "index$": 18 }, { "active": true, "entity": "claimable_organization", "key$": "BasicClaimableOrganizationFlow", "kind": "basic", "name": "BasicClaimableOrganizationFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": { "enterpris_id": "enterpris01" }, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "claimable_organization_ref01" } }], "index$": 0 }] }, 'ClaimableOrganization');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -102,12 +100,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['TRELLO_TEST_CLAIMABLE_ORGANIZATION_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'TRELLO_TEST_CLAIMABLE_ORGANIZATION_ENTID': idmap,
         'TRELLO_TEST_LIVE': 'FALSE',
@@ -116,7 +108,13 @@ function basicSetup(extra) {
     });
     idmap = env['TRELLO_TEST_CLAIMABLE_ORGANIZATION_ENTID'];
     const live = 'TRUE' === env.TRELLO_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['TRELLO_TEST_CLAIMABLE_ORGANIZATION_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.TrelloSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -129,7 +127,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -141,7 +140,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.TRELLO_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

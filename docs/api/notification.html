@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Notification | Trello REST API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Trello REST API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/trello-sdk">voxgig-sdk/trello-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Trello REST API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/application.html">Application</a>
+<a href="../api/application_compliance.html">ApplicationCompliance</a>
+<a href="../api/associated_domain.html">AssociatedDomain</a>
+<a href="../api/attachment.html">Attachment</a>
+<a href="../api/batch.html">Batch</a>
+<a href="../api/board.html">Board</a>
+<a href="../api/board_background.html">BoardBackground</a>
+<a href="../api/board_plugin.html">BoardPlugin</a>
+<a href="../api/board_star.html">BoardStar</a>
+<a href="../api/bulk.html">Bulk</a>
+<a href="../api/card.html">Card</a>
+<a href="../api/card_check_item_state.html">CardCheckItemState</a>
+<a href="../api/card_list.html">CardList</a>
+<a href="../api/check_item.html">CheckItem</a>
+<a href="../api/checklist.html">Checklist</a>
+<a href="../api/claimable_organization.html">ClaimableOrganization</a>
+<a href="../api/custom_board_background.html">CustomBoardBackground</a>
+<a href="../api/custom_emoji.html">CustomEmoji</a>
+<a href="../api/custom_field.html">CustomField</a>
+<a href="../api/custom_field_item.html">CustomFieldItem</a>
+<a href="../api/custom_sticker.html">CustomSticker</a>
+<a href="../api/email_position.html">EmailPosition</a>
+<a href="../api/emoji.html">Emoji</a>
+<a href="../api/enterpris.html">Enterpris</a>
+<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
+<a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/export_download.html">ExportDownload</a>
+<a href="../api/generate.html">Generate</a>
+<a href="../api/id_email_list.html">IdEmailList</a>
+<a href="../api/id_label.html">IdLabel</a>
+<a href="../api/id_member.html">IdMember</a>
+<a href="../api/label.html">Label</a>
+<a href="../api/list.html">List</a>
+<a href="../api/member.html">Member</a>
+<a href="../api/member_privacy.html">MemberPrivacy</a>
+<a href="../api/members_voted.html">MembersVoted</a>
+<a href="../api/membership.html">Membership</a>
+<a href="../api/most_recent.html">MostRecent</a>
+<a href="../api/new_billable_guest.html">NewBillableGuest</a>
+<a aria-current="page" href="../api/notification.html">Notification</a><div class="nav-sections"><a class="nav-section" href="#get-membersidnotifications">GET /members/{id}/notifications</a>
+<a class="nav-section" href="#get-notificationsid">GET /notifications/{id}</a>
+<a class="nav-section" href="#get-notificationsidfield">GET /notifications/{id}/{field}</a>
+<a class="nav-section" href="#put-notificationsid">PUT /notifications/{id}</a>
+<a class="nav-section" href="#put-notificationsidunread">PUT /notifications/{id}/unread</a></div>
+<a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
+<a href="../api/notification_list.html">NotificationList</a>
+<a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
+<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
+<a href="../api/option.html">Option</a>
+<a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
+<a href="../api/organization.html">Organization</a>
+<a href="../api/pending_organization.html">PendingOrganization</a>
+<a href="../api/plugin.html">Plugin</a>
+<a href="../api/plugin_data.html">PluginData</a>
+<a href="../api/plugin_listing.html">PluginListing</a>
+<a href="../api/reaction.html">Reaction</a>
+<a href="../api/read.html">Read</a>
+<a href="../api/saved_search.html">SavedSearch</a>
+<a href="../api/search.html">Search</a>
+<a href="../api/show_sidebar.html">ShowSidebar</a>
+<a href="../api/show_sidebar_activity.html">ShowSidebarActivity</a>
+<a href="../api/show_sidebar_board_action.html">ShowSidebarBoardAction</a>
+<a href="../api/show_sidebar_member.html">ShowSidebarMember</a>
+<a href="../api/sticker.html">Sticker</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/token.html">Token</a>
+<a href="../api/transferrable_organization.html">TransferrableOrganization</a>
+<a href="../api/trello_list.html">TrelloList</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="notification">Notification</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-membersidnotifications"><code>/members/{id}/notifications</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-notificationsid"><code>/notifications/{id}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-notificationsidfield"><code>/notifications/{id}/{field}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-notificationsid"><code>/notifications/{id}</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-notificationsidunread"><code>/notifications/{id}/unread</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>board</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>card</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dateRead</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idAction</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberCreator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reactions</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>unread</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-membersidnotifications" class="operation" data-method="get"><code>GET</code> /members/{id}/notifications</h3>
+<p>Operation ID: <code>get-members-id-notifications</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or username of the member |
+| <code>entities</code> | <code>query</code> | <code>boolean</code> | No |  |
+| <code>display</code> | <code>query</code> | <code>boolean</code> | No |  |
+| <code>filter</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>read_filter</code> | <code>query</code> | <code>string</code> | No | One of: <code>all</code>, <code>read</code>, <code>unread</code> |
+| <code>fields</code> | <code>query</code> | <code>string</code> | No | <code>all</code> or a comma-separated list of notification <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>limit</code> | <code>query</code> | <code>integer (int32)</code> | No | Max 1000 |
+| <code>page</code> | <code>query</code> | <code>integer (int32)</code> | No | Max 100 |
+| <code>before</code> | <code>query</code> | <code>string</code> | No | A notification ID |
+| <code>since</code> | <code>query</code> | <code>string</code> | No | A notification ID |
+| <code>memberCreator</code> | <code>query</code> | <code>boolean</code> | No |  |
+| <code>memberCreator_fields</code> | <code>query</code> | <code>string</code> | No | <code>all</code> or a comma-separated list of member <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-success" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].board</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.closed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.creationMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.dateLastActivity</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.dateLastView</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.datePluginDisable</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.desc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.descData</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.enterpriseOwned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.idMemberCreator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.idOrganization</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.idTags</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.ixUpdate</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.black</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.blue</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.green</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.lime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.orange</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.pink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.purple</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.red</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.sky</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.labelNames.yellow</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.limits.attachments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.limits.attachments.perBoard</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.limits.attachments.perBoard.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.limits.attachments.perBoard.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.limits.attachments.perBoard.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.memberships</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the board.</td>
+</tr>
+<tr>
+<td><code>[].board.pinned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.powerUps</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.background</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundBottomColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundBrightness</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundImage</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundImageScaled</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundImageScaled[].height</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The height of the image.</td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundImageScaled[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>The URL of the image.</td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundImageScaled[].width</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The width of the image.</td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundTile</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.backgroundTopColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.calendarFeedEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.canBeEnterprise</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.canBeOrg</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.canBePrivate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.canBePublic</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.canInvite</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.cardAging</code></td>
+<td><code>enum: pirate, regular</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.cardCovers</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.comments</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.hideVotes</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.invitations</code></td>
+<td><code>enum: admins, members</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.isTemplate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.permissionLevel</code></td>
+<td><code>enum: org, board</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.selfJoin</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.prefs.voting</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.shortLink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.shortUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.starred</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.templateGallery</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].board.url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.address</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.attachments</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.attachmentsByType</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.attachmentsByType.trello</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.attachmentsByType.trello.board</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.attachmentsByType.trello.card</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.checkItems</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.checkItemsChecked</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.comments</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.description</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.due</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.dueComplete</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.fogbugz</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.location</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.start</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.viewingMemberVoted</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.badges.votes</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.cardRole</code></td>
+<td><code>enum: separator, board, mirror, link</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.checkItemStates</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.closed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.coordinates</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.cover</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.cover.brightness</code></td>
+<td><code>enum: light, dark</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.cover.color</code></td>
+<td><code>enum: yellow, purple, blue, red, green, orange, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.cover.idAttachment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.cover.idUploadedBackground</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.cover.isTemplate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.cover.size</code></td>
+<td><code>enum: normal</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.creationMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.dateLastActivity</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.desc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.descData</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.descData.emoji</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.due</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.dueReminder</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.idAttachmentCover</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.idBoard</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.idChecklists</code></td>
+<td><code>array of object or string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.idLabels</code></td>
+<td><code>array of object or string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.idList</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.idMembers</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.idMembersVoted</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.idShort</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.labels</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.limits.attachments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.limits.attachments.perBoard</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.limits.attachments.perBoard.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.limits.attachments.perBoard.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.limits.attachments.perBoard.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.locationName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.manualCoverAttachment</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.mirrorSourceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.pos</code></td>
+<td><code>number (float)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.shortLink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.shortUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].card.url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].data</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].dateRead</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idAction</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idMemberCreator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].reactions</code></td>
+<td><code>array of any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].type</code></td>
+<td><code>enum: cardDueSoon</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].unread</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-notificationsid" class="operation" data-method="get"><code>GET</code> /notifications/{id}</h3>
+<p>Operation ID: <code>get-notifications-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the notification |
+| <code>board</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the board object |
+| <code>board_fields</code> | <code>query</code> | <code>enum: id, name, desc, descData, closed, idMemberCreator, ...</code> | No | <code>all</code> or a comma-separated list of board <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>card</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the card object |
+| <code>card_fields</code> | <code>query</code> | <code>enum: id, address, badges, checkItemStates, closed, coordinates, ...</code> | No | <code>all</code> or a comma-separated list of card <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>display</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the display object with the results |
+| <code>entities</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the entities object with the results |
+| <code>fields</code> | <code>query</code> | <code>enum: id, unread, type, date, dateRead, data, ...</code> | No | <code>all</code> or a comma-separated list of notification <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>list</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the list object |
+| <code>member</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the member object |
+| <code>member_fields</code> | <code>query</code> | <code>enum: id</code> | No | <code>all</code> or a comma-separated list of member <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>memberCreator</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the member object of the creator |
+| <code>memberCreator_fields</code> | <code>query</code> | <code>enum: id</code> | No | <code>all</code> or a comma-separated list of member <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>organization</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the organization object |
+| <code>organization_fields</code> | <code>query</code> | <code>enum: id, name</code> | No | <code>all</code> or a comma-separated list of organization <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-success-1" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h3 id="get-notificationsidfield" class="operation" data-method="get"><code>GET</code> /notifications/{id}/{field}</h3>
+<p>Operation ID: <code>get-notifications-id-field</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the notification |
+| <code>field</code> | <code>path</code> | <code>enum: id, unread, type, date, dateRead, data, ...</code> | Yes | A notification <a href="/cloud/trello/guides/rest-api/object-definitions/">field</a> |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-success-2" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h2 id="update">update</h2>
+<h3 id="put-notificationsid" class="operation" data-method="put"><code>PUT</code> /notifications/{id}</h3>
+<p>Operation ID: <code>put-notifications-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the notification |
+| <code>unread</code> | <code>query</code> | <code>boolean</code> | No | Whether the notification should be marked as read or not |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-success-3" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h3 id="put-notificationsidunread" class="operation" data-method="put"><code>PUT</code> /notifications/{id}/unread</h3>
+<p>Operation ID: <code>put-notifications-id-unread</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the notification |
+| <code>value</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-success-4" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

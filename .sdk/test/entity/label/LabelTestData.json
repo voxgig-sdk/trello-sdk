@@ -22,5 +22,424 @@
     "label": {
       "label_ref01": {}
     }
+  },
+  "requests": {
+    "POST /labels": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-labels",
+        "parameters": [
+          {
+            "description": "Name for the label",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The color for the label.",
+            "in": "query",
+            "name": "color",
+            "required": true,
+            "schema": {
+              "enum": [
+                "yellow",
+                "purple",
+                "blue",
+                "red",
+                "green",
+                "orange",
+                "black",
+                "sky",
+                "pink",
+                "lime"
+              ],
+              "nullable": true,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the Board to create the Label on.",
+            "in": "query",
+            "name": "idBoard",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /boards/{id}/labels": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-boards-id-labels",
+        "parameters": [
+          {
+            "description": "The ID of the Board.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The fields to be returned for the Labels.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "properties": {
+                "color": {
+                  "description": "The color of the label. Null means no color and the label will not be shown on the front of Cards.",
+                  "enum": [
+                    "yellow",
+                    "purple",
+                    "blue",
+                    "red",
+                    "green",
+                    "orange",
+                    "black",
+                    "sky",
+                    "pink",
+                    "lime"
+                  ],
+                  "nullable": true,
+                  "type": "string"
+                },
+                "id": {
+                  "description": "The ID of the label.",
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                "idBoard": {
+                  "description": "The ID of the board the label is on.",
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name displayed for the label.",
+                  "example": "Overdue",
+                  "maxLength": 16384,
+                  "minLength": 0,
+                  "nullable": true,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          {
+            "description": "The number of Labels to be returned.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "format": "int32",
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /labels/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-labels-id",
+        "parameters": [
+          {
+            "description": "The ID of the Label",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "all or a comma-separated list of [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /labels/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-labels-id",
+        "parameters": [
+          {
+            "description": "The ID of the Label",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /labels/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-labels-id",
+        "parameters": [
+          {
+            "description": "The ID of the Label",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The new name for the label",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The new color for the label. See: [fields](/cloud/trello/guides/rest-api/object-definitions/) for color options",
+            "in": "query",
+            "name": "color",
+            "required": false,
+            "schema": {
+              "enum": [
+                "yellow",
+                "purple",
+                "blue",
+                "red",
+                "green",
+                "orange",
+                "black",
+                "sky",
+                "pink",
+                "lime"
+              ],
+              "nullable": true,
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /labels/{id}/{field}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-labels-id-field",
+        "parameters": [
+          {
+            "description": "The id of the label",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The field on the Label to update.",
+            "in": "path",
+            "name": "field",
+            "required": true,
+            "schema": {
+              "enum": [
+                "color",
+                "name"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The new value for the field.",
+            "in": "query",
+            "name": "value",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

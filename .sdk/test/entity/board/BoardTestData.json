@@ -15,7 +15,7 @@
         "idMemberCreator": "s118",
         "idOrganization": "s119",
         "idTags": "s11a",
-        "ixUpdate": "s11b",
+        "ixUpdate": 283,
         "labelNames": {},
         "limits": {},
         "memberships": "s11e",
@@ -52,7 +52,7 @@
         "idMemberCreator": "s226",
         "idOrganization": "s227",
         "idTags": "s228",
-        "ixUpdate": "s229",
+        "ixUpdate": 553,
         "labelNames": {},
         "limits": {},
         "memberships": "s22c",
@@ -89,7 +89,7 @@
         "idMemberCreator": "s334",
         "idOrganization": "s335",
         "idTags": "s336",
-        "ixUpdate": "s337",
+        "ixUpdate": 823,
         "labelNames": {},
         "limits": {},
         "memberships": "s33a",
@@ -129,7 +129,7 @@
         "idMemberCreator": "s442",
         "idOrganization": "s443",
         "idTags": "s444",
-        "ixUpdate": "s445",
+        "ixUpdate": 1093,
         "labelNames": {},
         "limits": {},
         "memberships": "s448",
@@ -143,6 +143,3468 @@
         "subscribed": true,
         "templateGallery": "s451",
         "url": "s452"
+      }
+    }
+  },
+  "requests": {
+    "POST /boards/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-boards",
+        "parameters": [
+          {
+            "description": "The new name for the board. 1 to 16384 characters long.",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines whether to use the default set of labels.",
+            "in": "query",
+            "name": "defaultLabels",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Determines whether to add the default set of lists to a board (To Do, Doing, Done). It is ignored if `idBoardSource` is provided.",
+            "in": "query",
+            "name": "defaultLists",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "A new description for the board, 0 to 16384 characters long",
+            "in": "query",
+            "name": "desc",
+            "required": false,
+            "schema": {
+              "maxLength": 16384,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id or name of the Workspace the board should belong to.",
+            "in": "query",
+            "name": "idOrganization",
+            "required": false,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of a board to copy into the new board.",
+            "in": "query",
+            "name": "idBoardSource",
+            "required": false,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "To keep cards from the original board pass in the value `cards`",
+            "in": "query",
+            "name": "keepFromSource",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "enum": [
+                "cards",
+                "none"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Power-Ups that should be enabled on the new board. One of: `all`, `calendar`, `cardAging`, `recap`, `voting`.",
+            "in": "query",
+            "name": "powerUps",
+            "required": false,
+            "schema": {
+              "enum": [
+                "all",
+                "calendar",
+                "cardAging",
+                "recap",
+                "voting"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The permissions level of the board. One of: `org`, `private`, `public`.",
+            "in": "query",
+            "name": "prefs_permissionLevel",
+            "required": false,
+            "schema": {
+              "default": "private",
+              "enum": [
+                "org",
+                "private",
+                "public"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Who can vote on this board. One of `disabled`, `members`, `observers`, `org`, `public`.",
+            "in": "query",
+            "name": "prefs_voting",
+            "required": false,
+            "schema": {
+              "default": "disabled",
+              "enum": [
+                "disabled",
+                "members",
+                "observers",
+                "org",
+                "public"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Who can comment on cards on this board. One of: `disabled`, `members`, `observers`, `org`, `public`.",
+            "in": "query",
+            "name": "prefs_comments",
+            "required": false,
+            "schema": {
+              "default": "members",
+              "enum": [
+                "disabled",
+                "members",
+                "observers",
+                "org",
+                "public"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines what types of members can invite users to join. One of: `admins`, `members`.",
+            "in": "query",
+            "name": "prefs_invitations",
+            "required": false,
+            "schema": {
+              "default": "members",
+              "enum": [
+                "members",
+                "admins"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines whether users can join the boards themselves or whether they have to be invited.",
+            "in": "query",
+            "name": "prefs_selfJoin",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Determines whether card covers are enabled.",
+            "in": "query",
+            "name": "prefs_cardCovers",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The id of a custom background or one of: `blue`, `orange`, `green`, `red`, `purple`, `pink`, `lime`, `sky`, `grey`.",
+            "in": "query",
+            "name": "prefs_background",
+            "required": false,
+            "schema": {
+              "default": "blue",
+              "enum": [
+                "blue",
+                "orange",
+                "green",
+                "red",
+                "purple",
+                "pink",
+                "lime",
+                "sky",
+                "grey"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines the type of card aging that should take place on the board if card aging is enabled. One of: `pirate`, `regular`.",
+            "in": "query",
+            "name": "prefs_cardAging",
+            "required": false,
+            "schema": {
+              "default": "regular",
+              "enum": [
+                "pirate",
+                "regular"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /boards/{id}/labels": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-boards-id-labels",
+        "parameters": [
+          {
+            "description": "The id of the board to update",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name of the label to be created. 1 to 16384 characters long.",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sets the color of the new label. Valid values are a label color or `null`.",
+            "in": "query",
+            "name": "color",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /boards/{id}/boardPlugins": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-boards-id-boardplugins",
+        "parameters": [
+          {
+            "description": "The ID of the Board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the Power-Up to enable",
+            "in": "query",
+            "name": "idPlugin",
+            "required": false,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /boards/{id}/idTags": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-boards-id-idtags",
+        "parameters": [
+          {
+            "description": "The id of the board to update",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of a tag from the organization to which this board belongs.",
+            "in": "query",
+            "name": "value",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /boards/{id}/markedAsViewed": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-boards-id-markedasviewed",
+        "parameters": [
+          {
+            "description": "The id of the board to update",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/boards": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-boards",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of: `closed`, `members`, `open`, `organization`, `public`, `starred`",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "closed",
+                "members",
+                "open",
+                "organization",
+                "public",
+                "starred"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of board [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "id",
+                "name",
+                "desc",
+                "descData",
+                "closed",
+                "idMemberCreator",
+                "idOrganization",
+                "pinned",
+                "url",
+                "shortUrl",
+                "prefs",
+                "labelNames",
+                "starred",
+                "limits",
+                "memberships",
+                "enterpriseOwned"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Which lists to include with the boards. One of: `all`, `closed`, `none`, `open`",
+            "in": "query",
+            "name": "lists",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "enum": [
+                "all",
+                "closed",
+                "none",
+                "open"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to include the Organization object with the Boards",
+            "in": "query",
+            "name": "organization",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of organization [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "explode": false,
+            "in": "query",
+            "name": "organization_fields",
+            "required": false,
+            "schema": {
+              "default": "name,displayName",
+              "enum": [
+                "id",
+                "name"
+              ],
+              "type": "string"
+            },
+            "style": "form"
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "closed": {
+                        "example": false,
+                        "type": "boolean"
+                      },
+                      "creationMethod": {
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "dateLastActivity": {
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "dateLastView": {
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "datePluginDisable": {
+                        "format": "date",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "desc": {
+                        "example": "Track changes to Trello's Platform on this board.",
+                        "type": "string"
+                      },
+                      "descData": {
+                        "type": "string"
+                      },
+                      "enterpriseOwned": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idMemberCreator": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idOrganization": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idTags": {
+                        "type": "string"
+                      },
+                      "ixUpdate": {
+                        "type": "integer"
+                      },
+                      "labelNames": {
+                        "properties": {
+                          "black": {
+                            "example": "Capabilties",
+                            "type": "string"
+                          },
+                          "blue": {
+                            "example": "News",
+                            "type": "string"
+                          },
+                          "green": {
+                            "example": "Addition",
+                            "type": "string"
+                          },
+                          "lime": {
+                            "example": "Delight",
+                            "type": "string"
+                          },
+                          "orange": {
+                            "example": "Deprecation",
+                            "type": "string"
+                          },
+                          "pink": {
+                            "example": "REST API",
+                            "type": "string"
+                          },
+                          "purple": {
+                            "example": "Power-Ups",
+                            "type": "string"
+                          },
+                          "red": {
+                            "example": "Deletion",
+                            "type": "string"
+                          },
+                          "sky": {
+                            "example": "Announcement",
+                            "type": "string"
+                          },
+                          "yellow": {
+                            "example": "Update",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "limits": {
+                        "properties": {
+                          "attachments": {
+                            "properties": {
+                              "perBoard": {
+                                "properties": {
+                                  "disableAt": {
+                                    "example": 36000,
+                                    "type": "number"
+                                  },
+                                  "status": {
+                                    "enum": [
+                                      "ok",
+                                      "warning"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "warnAt": {
+                                    "example": 32400,
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "memberships": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "The name of the board.",
+                        "example": "Trello Platform Changes",
+                        "type": "string"
+                      },
+                      "pinned": {
+                        "example": false,
+                        "type": "boolean"
+                      },
+                      "powerUps": {
+                        "type": "string"
+                      },
+                      "prefs": {
+                        "properties": {
+                          "background": {
+                            "example": "5abbe4b7ddc1b351ef961414",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "backgroundBottomColor": {
+                            "example": "#1e2e00",
+                            "type": "string"
+                          },
+                          "backgroundBrightness": {
+                            "example": "dark",
+                            "type": "string"
+                          },
+                          "backgroundImage": {
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "backgroundImageScaled": {
+                            "items": {
+                              "properties": {
+                                "height": {
+                                  "description": "The height of the image.",
+                                  "example": 64,
+                                  "type": "integer"
+                                },
+                                "url": {
+                                  "description": "The URL of the image.",
+                                  "example": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x64/abc/photo-123.jpg",
+                                  "format": "url",
+                                  "type": "string"
+                                },
+                                "width": {
+                                  "description": "The width of the image.",
+                                  "example": 100,
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "backgroundTile": {
+                            "type": "boolean"
+                          },
+                          "backgroundTopColor": {
+                            "example": "#ffffff",
+                            "type": "string"
+                          },
+                          "calendarFeedEnabled": {
+                            "type": "boolean"
+                          },
+                          "canBeEnterprise": {
+                            "type": "boolean"
+                          },
+                          "canBeOrg": {
+                            "type": "boolean"
+                          },
+                          "canBePrivate": {
+                            "type": "boolean"
+                          },
+                          "canBePublic": {
+                            "type": "boolean"
+                          },
+                          "canInvite": {
+                            "type": "boolean"
+                          },
+                          "cardAging": {
+                            "enum": [
+                              "pirate",
+                              "regular"
+                            ],
+                            "type": "string"
+                          },
+                          "cardCovers": {
+                            "type": "boolean"
+                          },
+                          "comments": {
+                            "type": "string"
+                          },
+                          "hideVotes": {
+                            "type": "boolean"
+                          },
+                          "invitations": {
+                            "enum": [
+                              "admins",
+                              "members"
+                            ]
+                          },
+                          "isTemplate": {
+                            "type": "boolean"
+                          },
+                          "permissionLevel": {
+                            "enum": [
+                              "org",
+                              "board"
+                            ],
+                            "type": "string"
+                          },
+                          "selfJoin": {
+                            "type": "boolean"
+                          },
+                          "voting": {
+                            "enum": [
+                              "disabled",
+                              "enabled"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "shortLink": {
+                        "type": "string"
+                      },
+                      "shortUrl": {
+                        "example": "https://trello.com/b/dQHqCohZ",
+                        "format": "url",
+                        "type": "string"
+                      },
+                      "starred": {
+                        "type": "boolean"
+                      },
+                      "subscribed": {
+                        "type": "boolean"
+                      },
+                      "templateGallery": {
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "url": {
+                        "example": "https://trello.com/b/dQHqCohZ/trello-platform-changelog",
+                        "format": "url",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /organizations/{id}/boards": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-organizations-id-boards",
+        "parameters": [
+          {
+            "description": "The ID or name of the organization",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of: `open`, `closed`, `members`, `organization`, `public`",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "open",
+                "closed",
+                "members",
+                "organization",
+                "public"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of board [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "id",
+                "name",
+                "desc",
+                "descData",
+                "closed",
+                "idMemberCreator",
+                "idOrganization",
+                "pinned",
+                "url",
+                "shortUrl",
+                "prefs",
+                "labelNames",
+                "starred",
+                "limits",
+                "memberships",
+                "enterpriseOwned"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "closed": {
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "creationMethod": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "dateLastActivity": {
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "dateLastView": {
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "datePluginDisable": {
+                            "format": "date",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "desc": {
+                            "example": "Track changes to Trello's Platform on this board.",
+                            "type": "string"
+                          },
+                          "descData": {
+                            "type": "string"
+                          },
+                          "enterpriseOwned": {
+                            "type": "boolean"
+                          },
+                          "id": {
+                            "example": "5abbe4b7ddc1b351ef961414",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "idMemberCreator": {
+                            "example": "5abbe4b7ddc1b351ef961414",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "idOrganization": {
+                            "example": "5abbe4b7ddc1b351ef961414",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "idTags": {
+                            "type": "string"
+                          },
+                          "ixUpdate": {
+                            "type": "integer"
+                          },
+                          "labelNames": {
+                            "properties": {
+                              "black": {
+                                "example": "Capabilties",
+                                "type": "string"
+                              },
+                              "blue": {
+                                "example": "News",
+                                "type": "string"
+                              },
+                              "green": {
+                                "example": "Addition",
+                                "type": "string"
+                              },
+                              "lime": {
+                                "example": "Delight",
+                                "type": "string"
+                              },
+                              "orange": {
+                                "example": "Deprecation",
+                                "type": "string"
+                              },
+                              "pink": {
+                                "example": "REST API",
+                                "type": "string"
+                              },
+                              "purple": {
+                                "example": "Power-Ups",
+                                "type": "string"
+                              },
+                              "red": {
+                                "example": "Deletion",
+                                "type": "string"
+                              },
+                              "sky": {
+                                "example": "Announcement",
+                                "type": "string"
+                              },
+                              "yellow": {
+                                "example": "Update",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "limits": {
+                            "properties": {
+                              "attachments": {
+                                "properties": {
+                                  "perBoard": {
+                                    "properties": {
+                                      "disableAt": {
+                                        "example": 36000,
+                                        "type": "number"
+                                      },
+                                      "status": {
+                                        "enum": [
+                                          "ok",
+                                          "warning"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "warnAt": {
+                                        "example": 32400,
+                                        "type": "number"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "memberships": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the board.",
+                            "example": "Trello Platform Changes",
+                            "type": "string"
+                          },
+                          "pinned": {
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "powerUps": {
+                            "type": "string"
+                          },
+                          "prefs": {
+                            "properties": {
+                              "background": {
+                                "example": "5abbe4b7ddc1b351ef961414",
+                                "pattern": "^[0-9a-fA-F]{24}$",
+                                "type": "string"
+                              },
+                              "backgroundBottomColor": {
+                                "example": "#1e2e00",
+                                "type": "string"
+                              },
+                              "backgroundBrightness": {
+                                "example": "dark",
+                                "type": "string"
+                              },
+                              "backgroundImage": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "backgroundImageScaled": {
+                                "items": {
+                                  "properties": {
+                                    "height": {
+                                      "description": "The height of the image.",
+                                      "example": 64,
+                                      "type": "integer"
+                                    },
+                                    "url": {
+                                      "description": "The URL of the image.",
+                                      "example": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x64/abc/photo-123.jpg",
+                                      "format": "url",
+                                      "type": "string"
+                                    },
+                                    "width": {
+                                      "description": "The width of the image.",
+                                      "example": 100,
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "backgroundTile": {
+                                "type": "boolean"
+                              },
+                              "backgroundTopColor": {
+                                "example": "#ffffff",
+                                "type": "string"
+                              },
+                              "calendarFeedEnabled": {
+                                "type": "boolean"
+                              },
+                              "canBeEnterprise": {
+                                "type": "boolean"
+                              },
+                              "canBeOrg": {
+                                "type": "boolean"
+                              },
+                              "canBePrivate": {
+                                "type": "boolean"
+                              },
+                              "canBePublic": {
+                                "type": "boolean"
+                              },
+                              "canInvite": {
+                                "type": "boolean"
+                              },
+                              "cardAging": {
+                                "enum": [
+                                  "pirate",
+                                  "regular"
+                                ],
+                                "type": "string"
+                              },
+                              "cardCovers": {
+                                "type": "boolean"
+                              },
+                              "comments": {
+                                "type": "string"
+                              },
+                              "hideVotes": {
+                                "type": "boolean"
+                              },
+                              "invitations": {
+                                "enum": [
+                                  "admins",
+                                  "members"
+                                ]
+                              },
+                              "isTemplate": {
+                                "type": "boolean"
+                              },
+                              "permissionLevel": {
+                                "enum": [
+                                  "org",
+                                  "board"
+                                ],
+                                "type": "string"
+                              },
+                              "selfJoin": {
+                                "type": "boolean"
+                              },
+                              "voting": {
+                                "enum": [
+                                  "disabled",
+                                  "enabled"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "shortLink": {
+                            "type": "string"
+                          },
+                          "shortUrl": {
+                            "example": "https://trello.com/b/dQHqCohZ",
+                            "format": "url",
+                            "type": "string"
+                          },
+                          "starred": {
+                            "type": "boolean"
+                          },
+                          "subscribed": {
+                            "type": "boolean"
+                          },
+                          "templateGallery": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "url": {
+                            "example": "https://trello.com/b/dQHqCohZ/trello-platform-changelog",
+                            "format": "url",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id"
+                        ],
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/boardsInvited": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-boardsinvited",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of board [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "id",
+                "name",
+                "desc",
+                "descData",
+                "closed",
+                "idMemberCreator",
+                "idOrganization",
+                "pinned",
+                "url",
+                "shortUrl",
+                "prefs",
+                "labelNames",
+                "starred",
+                "limits",
+                "memberships",
+                "enterpriseOwned"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "closed": {
+                        "example": false,
+                        "type": "boolean"
+                      },
+                      "creationMethod": {
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "dateLastActivity": {
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "dateLastView": {
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "datePluginDisable": {
+                        "format": "date",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "desc": {
+                        "example": "Track changes to Trello's Platform on this board.",
+                        "type": "string"
+                      },
+                      "descData": {
+                        "type": "string"
+                      },
+                      "enterpriseOwned": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idMemberCreator": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idOrganization": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idTags": {
+                        "type": "string"
+                      },
+                      "ixUpdate": {
+                        "type": "integer"
+                      },
+                      "labelNames": {
+                        "properties": {
+                          "black": {
+                            "example": "Capabilties",
+                            "type": "string"
+                          },
+                          "blue": {
+                            "example": "News",
+                            "type": "string"
+                          },
+                          "green": {
+                            "example": "Addition",
+                            "type": "string"
+                          },
+                          "lime": {
+                            "example": "Delight",
+                            "type": "string"
+                          },
+                          "orange": {
+                            "example": "Deprecation",
+                            "type": "string"
+                          },
+                          "pink": {
+                            "example": "REST API",
+                            "type": "string"
+                          },
+                          "purple": {
+                            "example": "Power-Ups",
+                            "type": "string"
+                          },
+                          "red": {
+                            "example": "Deletion",
+                            "type": "string"
+                          },
+                          "sky": {
+                            "example": "Announcement",
+                            "type": "string"
+                          },
+                          "yellow": {
+                            "example": "Update",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "limits": {
+                        "properties": {
+                          "attachments": {
+                            "properties": {
+                              "perBoard": {
+                                "properties": {
+                                  "disableAt": {
+                                    "example": 36000,
+                                    "type": "number"
+                                  },
+                                  "status": {
+                                    "enum": [
+                                      "ok",
+                                      "warning"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "warnAt": {
+                                    "example": 32400,
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "memberships": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "The name of the board.",
+                        "example": "Trello Platform Changes",
+                        "type": "string"
+                      },
+                      "pinned": {
+                        "example": false,
+                        "type": "boolean"
+                      },
+                      "powerUps": {
+                        "type": "string"
+                      },
+                      "prefs": {
+                        "properties": {
+                          "background": {
+                            "example": "5abbe4b7ddc1b351ef961414",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "backgroundBottomColor": {
+                            "example": "#1e2e00",
+                            "type": "string"
+                          },
+                          "backgroundBrightness": {
+                            "example": "dark",
+                            "type": "string"
+                          },
+                          "backgroundImage": {
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "backgroundImageScaled": {
+                            "items": {
+                              "properties": {
+                                "height": {
+                                  "description": "The height of the image.",
+                                  "example": 64,
+                                  "type": "integer"
+                                },
+                                "url": {
+                                  "description": "The URL of the image.",
+                                  "example": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x64/abc/photo-123.jpg",
+                                  "format": "url",
+                                  "type": "string"
+                                },
+                                "width": {
+                                  "description": "The width of the image.",
+                                  "example": 100,
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "backgroundTile": {
+                            "type": "boolean"
+                          },
+                          "backgroundTopColor": {
+                            "example": "#ffffff",
+                            "type": "string"
+                          },
+                          "calendarFeedEnabled": {
+                            "type": "boolean"
+                          },
+                          "canBeEnterprise": {
+                            "type": "boolean"
+                          },
+                          "canBeOrg": {
+                            "type": "boolean"
+                          },
+                          "canBePrivate": {
+                            "type": "boolean"
+                          },
+                          "canBePublic": {
+                            "type": "boolean"
+                          },
+                          "canInvite": {
+                            "type": "boolean"
+                          },
+                          "cardAging": {
+                            "enum": [
+                              "pirate",
+                              "regular"
+                            ],
+                            "type": "string"
+                          },
+                          "cardCovers": {
+                            "type": "boolean"
+                          },
+                          "comments": {
+                            "type": "string"
+                          },
+                          "hideVotes": {
+                            "type": "boolean"
+                          },
+                          "invitations": {
+                            "enum": [
+                              "admins",
+                              "members"
+                            ]
+                          },
+                          "isTemplate": {
+                            "type": "boolean"
+                          },
+                          "permissionLevel": {
+                            "enum": [
+                              "org",
+                              "board"
+                            ],
+                            "type": "string"
+                          },
+                          "selfJoin": {
+                            "type": "boolean"
+                          },
+                          "voting": {
+                            "enum": [
+                              "disabled",
+                              "enabled"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "shortLink": {
+                        "type": "string"
+                      },
+                      "shortUrl": {
+                        "example": "https://trello.com/b/dQHqCohZ",
+                        "format": "url",
+                        "type": "string"
+                      },
+                      "starred": {
+                        "type": "boolean"
+                      },
+                      "subscribed": {
+                        "type": "boolean"
+                      },
+                      "templateGallery": {
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "url": {
+                        "example": "https://trello.com/b/dQHqCohZ/trello-platform-changelog",
+                        "format": "url",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /boards/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-boards-id",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about actions as nested resources [here](/cloud/trello/guides/rest-api/nested-resources/).",
+            "in": "query",
+            "name": "actions",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Valid values are one of: `mine` or `none`.",
+            "in": "query",
+            "name": "boardStars",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about cards as nested resources [here](/cloud/trello/guides/rest-api/nested-resources/).",
+            "in": "query",
+            "name": "cards",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Use with the `cards` param to include card pluginData with the response",
+            "in": "query",
+            "name": "card_pluginData",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about checklists as nested resources [here](/cloud/trello/guides/rest-api/nested-resources/).",
+            "in": "query",
+            "name": "checklists",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about custom fields as nested resources [here](#custom-fields-nested-resource).",
+            "in": "query",
+            "name": "customFields",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The fields of the board to be included in the response. Valid values: all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idMemberCreator, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed, url",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "name,desc,descData,closed,idOrganization,pinned,url,shortUrl,prefs,labelNames",
+              "type": "string"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about labels as nested resources [here](/cloud/trello/guides/rest-api/nested-resources/).",
+            "in": "query",
+            "name": "labels",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about lists as nested resources [here](/cloud/trello/guides/rest-api/nested-resources/).",
+            "in": "query",
+            "name": "lists",
+            "required": false,
+            "schema": {
+              "default": "open",
+              "type": "string"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about members as nested resources [here](/cloud/trello/guides/rest-api/nested-resources/).",
+            "in": "query",
+            "name": "members",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about memberships as nested resources [here](/cloud/trello/guides/rest-api/nested-resources/).",
+            "in": "query",
+            "name": "memberships",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines whether the pluginData for this board should be returned. Valid values: true or false.",
+            "in": "query",
+            "name": "pluginData",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "This is a nested resource. Read more about organizations as nested resources [here](/cloud/trello/guides/rest-api/nested-resources/).",
+            "in": "query",
+            "name": "organization",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Use with the `organization` param to include organization pluginData with the response",
+            "in": "query",
+            "name": "organization_pluginData",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "myPrefs",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Also known as collections, tags, refer to the collection(s) that a Board belongs to.",
+            "in": "query",
+            "name": "tags",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "closed": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "creationMethod": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "dateLastActivity": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "dateLastView": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "datePluginDisable": {
+                      "format": "date",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "desc": {
+                      "example": "Track changes to Trello's Platform on this board.",
+                      "type": "string"
+                    },
+                    "descData": {
+                      "type": "string"
+                    },
+                    "enterpriseOwned": {
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idMemberCreator": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idOrganization": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idTags": {
+                      "type": "string"
+                    },
+                    "ixUpdate": {
+                      "type": "integer"
+                    },
+                    "labelNames": {
+                      "properties": {
+                        "black": {
+                          "example": "Capabilties",
+                          "type": "string"
+                        },
+                        "blue": {
+                          "example": "News",
+                          "type": "string"
+                        },
+                        "green": {
+                          "example": "Addition",
+                          "type": "string"
+                        },
+                        "lime": {
+                          "example": "Delight",
+                          "type": "string"
+                        },
+                        "orange": {
+                          "example": "Deprecation",
+                          "type": "string"
+                        },
+                        "pink": {
+                          "example": "REST API",
+                          "type": "string"
+                        },
+                        "purple": {
+                          "example": "Power-Ups",
+                          "type": "string"
+                        },
+                        "red": {
+                          "example": "Deletion",
+                          "type": "string"
+                        },
+                        "sky": {
+                          "example": "Announcement",
+                          "type": "string"
+                        },
+                        "yellow": {
+                          "example": "Update",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "limits": {
+                      "properties": {
+                        "attachments": {
+                          "properties": {
+                            "perBoard": {
+                              "properties": {
+                                "disableAt": {
+                                  "example": 36000,
+                                  "type": "number"
+                                },
+                                "status": {
+                                  "enum": [
+                                    "ok",
+                                    "warning"
+                                  ],
+                                  "type": "string"
+                                },
+                                "warnAt": {
+                                  "example": 32400,
+                                  "type": "number"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "memberships": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the board.",
+                      "example": "Trello Platform Changes",
+                      "type": "string"
+                    },
+                    "pinned": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "powerUps": {
+                      "type": "string"
+                    },
+                    "prefs": {
+                      "properties": {
+                        "background": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "backgroundBottomColor": {
+                          "example": "#1e2e00",
+                          "type": "string"
+                        },
+                        "backgroundBrightness": {
+                          "example": "dark",
+                          "type": "string"
+                        },
+                        "backgroundImage": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "backgroundImageScaled": {
+                          "items": {
+                            "properties": {
+                              "height": {
+                                "description": "The height of the image.",
+                                "example": 64,
+                                "type": "integer"
+                              },
+                              "url": {
+                                "description": "The URL of the image.",
+                                "example": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x64/abc/photo-123.jpg",
+                                "format": "url",
+                                "type": "string"
+                              },
+                              "width": {
+                                "description": "The width of the image.",
+                                "example": 100,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "backgroundTile": {
+                          "type": "boolean"
+                        },
+                        "backgroundTopColor": {
+                          "example": "#ffffff",
+                          "type": "string"
+                        },
+                        "calendarFeedEnabled": {
+                          "type": "boolean"
+                        },
+                        "canBeEnterprise": {
+                          "type": "boolean"
+                        },
+                        "canBeOrg": {
+                          "type": "boolean"
+                        },
+                        "canBePrivate": {
+                          "type": "boolean"
+                        },
+                        "canBePublic": {
+                          "type": "boolean"
+                        },
+                        "canInvite": {
+                          "type": "boolean"
+                        },
+                        "cardAging": {
+                          "enum": [
+                            "pirate",
+                            "regular"
+                          ],
+                          "type": "string"
+                        },
+                        "cardCovers": {
+                          "type": "boolean"
+                        },
+                        "comments": {
+                          "type": "string"
+                        },
+                        "hideVotes": {
+                          "type": "boolean"
+                        },
+                        "invitations": {
+                          "enum": [
+                            "admins",
+                            "members"
+                          ]
+                        },
+                        "isTemplate": {
+                          "type": "boolean"
+                        },
+                        "permissionLevel": {
+                          "enum": [
+                            "org",
+                            "board"
+                          ],
+                          "type": "string"
+                        },
+                        "selfJoin": {
+                          "type": "boolean"
+                        },
+                        "voting": {
+                          "enum": [
+                            "disabled",
+                            "enabled"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "shortLink": {
+                      "type": "string"
+                    },
+                    "shortUrl": {
+                      "example": "https://trello.com/b/dQHqCohZ",
+                      "format": "url",
+                      "type": "string"
+                    },
+                    "starred": {
+                      "type": "boolean"
+                    },
+                    "subscribed": {
+                      "type": "boolean"
+                    },
+                    "templateGallery": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "url": {
+                      "example": "https://trello.com/b/dQHqCohZ/trello-platform-changelog",
+                      "format": "url",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The specified resource was not found"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /actions/{id}/board": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-actions-id-board",
+        "parameters": [
+          {
+            "description": "The ID of the action",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of board fields",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "enum": [
+                "id",
+                "name",
+                "desc",
+                "descData",
+                "closed",
+                "idMemberCreator",
+                "idOrganization",
+                "pinned",
+                "url",
+                "shortUrl",
+                "prefs",
+                "labelNames",
+                "starred",
+                "limits",
+                "memberships",
+                "enterpriseOwned"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "closed": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "creationMethod": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "dateLastActivity": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "dateLastView": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "datePluginDisable": {
+                      "format": "date",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "desc": {
+                      "example": "Track changes to Trello's Platform on this board.",
+                      "type": "string"
+                    },
+                    "descData": {
+                      "type": "string"
+                    },
+                    "enterpriseOwned": {
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idMemberCreator": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idOrganization": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    },
+                    "idTags": {
+                      "type": "string"
+                    },
+                    "ixUpdate": {
+                      "type": "integer"
+                    },
+                    "labelNames": {
+                      "properties": {
+                        "black": {
+                          "example": "Capabilties",
+                          "type": "string"
+                        },
+                        "blue": {
+                          "example": "News",
+                          "type": "string"
+                        },
+                        "green": {
+                          "example": "Addition",
+                          "type": "string"
+                        },
+                        "lime": {
+                          "example": "Delight",
+                          "type": "string"
+                        },
+                        "orange": {
+                          "example": "Deprecation",
+                          "type": "string"
+                        },
+                        "pink": {
+                          "example": "REST API",
+                          "type": "string"
+                        },
+                        "purple": {
+                          "example": "Power-Ups",
+                          "type": "string"
+                        },
+                        "red": {
+                          "example": "Deletion",
+                          "type": "string"
+                        },
+                        "sky": {
+                          "example": "Announcement",
+                          "type": "string"
+                        },
+                        "yellow": {
+                          "example": "Update",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "limits": {
+                      "properties": {
+                        "attachments": {
+                          "properties": {
+                            "perBoard": {
+                              "properties": {
+                                "disableAt": {
+                                  "example": 36000,
+                                  "type": "number"
+                                },
+                                "status": {
+                                  "enum": [
+                                    "ok",
+                                    "warning"
+                                  ],
+                                  "type": "string"
+                                },
+                                "warnAt": {
+                                  "example": 32400,
+                                  "type": "number"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "memberships": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the board.",
+                      "example": "Trello Platform Changes",
+                      "type": "string"
+                    },
+                    "pinned": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "powerUps": {
+                      "type": "string"
+                    },
+                    "prefs": {
+                      "properties": {
+                        "background": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "backgroundBottomColor": {
+                          "example": "#1e2e00",
+                          "type": "string"
+                        },
+                        "backgroundBrightness": {
+                          "example": "dark",
+                          "type": "string"
+                        },
+                        "backgroundImage": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "backgroundImageScaled": {
+                          "items": {
+                            "properties": {
+                              "height": {
+                                "description": "The height of the image.",
+                                "example": 64,
+                                "type": "integer"
+                              },
+                              "url": {
+                                "description": "The URL of the image.",
+                                "example": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x64/abc/photo-123.jpg",
+                                "format": "url",
+                                "type": "string"
+                              },
+                              "width": {
+                                "description": "The width of the image.",
+                                "example": 100,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "backgroundTile": {
+                          "type": "boolean"
+                        },
+                        "backgroundTopColor": {
+                          "example": "#ffffff",
+                          "type": "string"
+                        },
+                        "calendarFeedEnabled": {
+                          "type": "boolean"
+                        },
+                        "canBeEnterprise": {
+                          "type": "boolean"
+                        },
+                        "canBeOrg": {
+                          "type": "boolean"
+                        },
+                        "canBePrivate": {
+                          "type": "boolean"
+                        },
+                        "canBePublic": {
+                          "type": "boolean"
+                        },
+                        "canInvite": {
+                          "type": "boolean"
+                        },
+                        "cardAging": {
+                          "enum": [
+                            "pirate",
+                            "regular"
+                          ],
+                          "type": "string"
+                        },
+                        "cardCovers": {
+                          "type": "boolean"
+                        },
+                        "comments": {
+                          "type": "string"
+                        },
+                        "hideVotes": {
+                          "type": "boolean"
+                        },
+                        "invitations": {
+                          "enum": [
+                            "admins",
+                            "members"
+                          ]
+                        },
+                        "isTemplate": {
+                          "type": "boolean"
+                        },
+                        "permissionLevel": {
+                          "enum": [
+                            "org",
+                            "board"
+                          ],
+                          "type": "string"
+                        },
+                        "selfJoin": {
+                          "type": "boolean"
+                        },
+                        "voting": {
+                          "enum": [
+                            "disabled",
+                            "enabled"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "shortLink": {
+                      "type": "string"
+                    },
+                    "shortUrl": {
+                      "example": "https://trello.com/b/dQHqCohZ",
+                      "format": "url",
+                      "type": "string"
+                    },
+                    "starred": {
+                      "type": "boolean"
+                    },
+                    "subscribed": {
+                      "type": "boolean"
+                    },
+                    "templateGallery": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "url": {
+                      "example": "https://trello.com/b/dQHqCohZ/trello-platform-changelog",
+                      "format": "url",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /cards/{id}/board": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-cards-id-board",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of board [fields](/cloud/trello/guides/rest-api/object-definitions/#board-object)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /checklists/{id}/board": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-checklists-id-board",
+        "parameters": [
+          {
+            "description": "ID of a checklist.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of board [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "name"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /boards/{id}/{field}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-boards-id-field",
+        "parameters": [
+          {
+            "description": "The ID of the board.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The field you'd like to receive. Valid values: closed, dateLastActivity, dateLastView, desc, descData, idMemberCreator, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed, url.",
+            "in": "path",
+            "name": "field",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /lists/{id}/board": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-lists-id-board",
+        "parameters": [
+          {
+            "description": "The ID of the list",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of board [fields](/cloud/trello/guides/rest-api/object-definitions/#board-object)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /notifications/{id}/board": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-notifications-id-board",
+        "parameters": [
+          {
+            "description": "The ID of the notification",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of board[fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "explode": false,
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "id",
+                "name",
+                "desc",
+                "descData",
+                "closed",
+                "idMemberCreator",
+                "idOrganization",
+                "pinned",
+                "url",
+                "shortUrl",
+                "prefs",
+                "labelNames",
+                "starred",
+                "limits",
+                "memberships",
+                "enterpriseOwned"
+              ],
+              "type": "string"
+            },
+            "style": "form"
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "closed": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "creationMethod": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "dateLastActivity": {
+                          "format": "date",
+                          "type": "string"
+                        },
+                        "dateLastView": {
+                          "format": "date",
+                          "type": "string"
+                        },
+                        "datePluginDisable": {
+                          "format": "date",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "desc": {
+                          "example": "Track changes to Trello's Platform on this board.",
+                          "type": "string"
+                        },
+                        "descData": {
+                          "type": "string"
+                        },
+                        "enterpriseOwned": {
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "idMemberCreator": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "idOrganization": {
+                          "example": "5abbe4b7ddc1b351ef961414",
+                          "pattern": "^[0-9a-fA-F]{24}$",
+                          "type": "string"
+                        },
+                        "idTags": {
+                          "type": "string"
+                        },
+                        "ixUpdate": {
+                          "type": "integer"
+                        },
+                        "labelNames": {
+                          "properties": {
+                            "black": {
+                              "example": "Capabilties",
+                              "type": "string"
+                            },
+                            "blue": {
+                              "example": "News",
+                              "type": "string"
+                            },
+                            "green": {
+                              "example": "Addition",
+                              "type": "string"
+                            },
+                            "lime": {
+                              "example": "Delight",
+                              "type": "string"
+                            },
+                            "orange": {
+                              "example": "Deprecation",
+                              "type": "string"
+                            },
+                            "pink": {
+                              "example": "REST API",
+                              "type": "string"
+                            },
+                            "purple": {
+                              "example": "Power-Ups",
+                              "type": "string"
+                            },
+                            "red": {
+                              "example": "Deletion",
+                              "type": "string"
+                            },
+                            "sky": {
+                              "example": "Announcement",
+                              "type": "string"
+                            },
+                            "yellow": {
+                              "example": "Update",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "limits": {
+                          "properties": {
+                            "attachments": {
+                              "properties": {
+                                "perBoard": {
+                                  "properties": {
+                                    "disableAt": {
+                                      "example": 36000,
+                                      "type": "number"
+                                    },
+                                    "status": {
+                                      "enum": [
+                                        "ok",
+                                        "warning"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "warnAt": {
+                                      "example": 32400,
+                                      "type": "number"
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "memberships": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the board.",
+                          "example": "Trello Platform Changes",
+                          "type": "string"
+                        },
+                        "pinned": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "powerUps": {
+                          "type": "string"
+                        },
+                        "prefs": {
+                          "properties": {
+                            "background": {
+                              "example": "5abbe4b7ddc1b351ef961414",
+                              "pattern": "^[0-9a-fA-F]{24}$",
+                              "type": "string"
+                            },
+                            "backgroundBottomColor": {
+                              "example": "#1e2e00",
+                              "type": "string"
+                            },
+                            "backgroundBrightness": {
+                              "example": "dark",
+                              "type": "string"
+                            },
+                            "backgroundImage": {
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            "backgroundImageScaled": {
+                              "items": {
+                                "properties": {
+                                  "height": {
+                                    "description": "The height of the image.",
+                                    "example": 64,
+                                    "type": "integer"
+                                  },
+                                  "url": {
+                                    "description": "The URL of the image.",
+                                    "example": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x64/abc/photo-123.jpg",
+                                    "format": "url",
+                                    "type": "string"
+                                  },
+                                  "width": {
+                                    "description": "The width of the image.",
+                                    "example": 100,
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "backgroundTile": {
+                              "type": "boolean"
+                            },
+                            "backgroundTopColor": {
+                              "example": "#ffffff",
+                              "type": "string"
+                            },
+                            "calendarFeedEnabled": {
+                              "type": "boolean"
+                            },
+                            "canBeEnterprise": {
+                              "type": "boolean"
+                            },
+                            "canBeOrg": {
+                              "type": "boolean"
+                            },
+                            "canBePrivate": {
+                              "type": "boolean"
+                            },
+                            "canBePublic": {
+                              "type": "boolean"
+                            },
+                            "canInvite": {
+                              "type": "boolean"
+                            },
+                            "cardAging": {
+                              "enum": [
+                                "pirate",
+                                "regular"
+                              ],
+                              "type": "string"
+                            },
+                            "cardCovers": {
+                              "type": "boolean"
+                            },
+                            "comments": {
+                              "type": "string"
+                            },
+                            "hideVotes": {
+                              "type": "boolean"
+                            },
+                            "invitations": {
+                              "enum": [
+                                "admins",
+                                "members"
+                              ]
+                            },
+                            "isTemplate": {
+                              "type": "boolean"
+                            },
+                            "permissionLevel": {
+                              "enum": [
+                                "org",
+                                "board"
+                              ],
+                              "type": "string"
+                            },
+                            "selfJoin": {
+                              "type": "boolean"
+                            },
+                            "voting": {
+                              "enum": [
+                                "disabled",
+                                "enabled"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "shortLink": {
+                          "type": "string"
+                        },
+                        "shortUrl": {
+                          "example": "https://trello.com/b/dQHqCohZ",
+                          "format": "url",
+                          "type": "string"
+                        },
+                        "starred": {
+                          "type": "boolean"
+                        },
+                        "subscribed": {
+                          "type": "boolean"
+                        },
+                        "templateGallery": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "url": {
+                          "example": "https://trello.com/b/dQHqCohZ/trello-platform-changelog",
+                          "format": "url",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /boards/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-boards-id",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of the board to delete",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /boards/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-boards-id",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The new name for the board. 1 to 16384 characters long.",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A new description for the board, 0 to 16384 characters long",
+            "in": "query",
+            "name": "desc",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether the board is closed",
+            "in": "query",
+            "name": "closed",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Whether the acting user is subscribed to the board",
+            "explode": false,
+            "in": "query",
+            "name": "subscribed",
+            "required": false,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "description": "The id of the Workspace the board should be moved to",
+            "in": "query",
+            "name": "idOrganization",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "One of: org, private, public",
+            "in": "query",
+            "name": "prefs/permissionLevel",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether Workspace members can join the board themselves",
+            "in": "query",
+            "name": "prefs/selfJoin",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Whether card covers should be displayed on this board",
+            "in": "query",
+            "name": "prefs/cardCovers",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Determines whether the Voting Power-Up should hide who voted on cards or not.",
+            "in": "query",
+            "name": "prefs/hideVotes",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Who can invite people to this board. One of: admins, members",
+            "in": "query",
+            "name": "prefs/invitations",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Who can vote on this board. One of disabled, members, observers, org, public",
+            "in": "query",
+            "name": "prefs/voting",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Who can comment on cards on this board. One of: disabled, members, observers, org, public",
+            "in": "query",
+            "name": "prefs/comments",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of a custom background or one of: blue, orange, green, red, purple, pink, lime, sky, grey",
+            "in": "query",
+            "name": "prefs/background",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "One of: pirate, regular",
+            "in": "query",
+            "name": "prefs/cardAging",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines whether the calendar feed is enabled or not.",
+            "in": "query",
+            "name": "prefs/calendarFeedEnabled",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /boards/{id}/members": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-boards-id-members",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The email address of a user to add as a member of the board.",
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "schema": {
+              "format": "email",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Valid values: admin, normal, observer. Determines what type of member the user being added should be of the board.",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "default": "normal",
+              "enum": [
+                "admin",
+                "normal",
+                "observer"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "fullName": {
+                    "description": "The full name of the user to as a member of the board. Must have a length of at least 1 and cannot begin nor end with a space.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }

@@ -48,5 +48,256 @@
         "transferability": {}
       }
     }
+  },
+  "requests": {
+    "GET /enterprises/{id}/pendingOrganizations": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-enterprises-id-pendingOrganizations",
+        "parameters": [
+          {
+            "description": "ID of the enterprise to retrieve",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Date in YYYY-MM-DD format indicating the date to search up to for activeness of workspace",
+            "in": "query",
+            "name": "activeSince",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Date in YYYY-MM-DD format indicating the date to search up to for inactiveness of workspace",
+            "in": "query",
+            "name": "inactiveSince",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "date": {
+                        "example": "2018-10-17T19:10:14.808Z",
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "displayName": {
+                        "example": "Organization Name",
+                        "type": "string"
+                      },
+                      "id": {
+                        "example": "617ac9070293e6612650e0ca",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "idMember": {
+                        "example": "5589c3ea49b40cedc28cf70e",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      },
+                      "logoUrl": {
+                        "example": null,
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "memberRequestor": {
+                        "properties": {
+                          "fullName": {
+                            "example": "Bob Loblaw (Trello)",
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "59cd149051aa57a706962996",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "membershipCount": {
+                        "example": 2,
+                        "type": "number"
+                      },
+                      "transferability": {
+                        "properties": {
+                          "newBillableMembers": {
+                            "items": {
+                              "properties": {
+                                "avatarHash": {
+                                  "example": "fc8faaaee46666a4eb8b626c08933e16",
+                                  "type": "string"
+                                },
+                                "fullName": {
+                                  "example": "Bob Loblaw",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "example": "5ab10be237846c43015f1091",
+                                  "pattern": "^[0-9a-fA-F]{24}$",
+                                  "type": "string"
+                                },
+                                "initials": {
+                                  "example": "BL",
+                                  "type": "string"
+                                },
+                                "username": {
+                                  "example": "bobloblaw",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "restrictedMembers": {
+                            "items": {
+                              "properties": {
+                                "avatarHash": {
+                                  "example": "fc8faaaee46666a4eb8b626c08933e16",
+                                  "type": "string"
+                                },
+                                "fullName": {
+                                  "example": "Bob Loblaw",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "example": "5ab10be237846c43015f1091",
+                                  "pattern": "^[0-9a-fA-F]{24}$",
+                                  "type": "string"
+                                },
+                                "initials": {
+                                  "example": "BL",
+                                  "type": "string"
+                                },
+                                "username": {
+                                  "example": "bobloblaw",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "transferrable": {
+                            "example": true,
+                            "type": "boolean"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The specified resource was not found"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected erorr"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

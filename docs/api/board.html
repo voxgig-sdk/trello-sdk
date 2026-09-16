@@ -1,0 +1,2386 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Board | Trello REST API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Trello REST API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/trello-sdk">voxgig-sdk/trello-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Trello REST API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/application.html">Application</a>
+<a href="../api/application_compliance.html">ApplicationCompliance</a>
+<a href="../api/associated_domain.html">AssociatedDomain</a>
+<a href="../api/attachment.html">Attachment</a>
+<a href="../api/batch.html">Batch</a>
+<a aria-current="page" href="../api/board.html">Board</a><div class="nav-sections"><a class="nav-section" href="#post-boards">POST /boards/</a>
+<a class="nav-section" href="#post-boardsidlabels">POST /boards/{id}/labels</a>
+<a class="nav-section" href="#post-boardsidboardplugins">POST /boards/{id}/boardPlugins</a>
+<a class="nav-section" href="#post-boardsididtags">POST /boards/{id}/idTags</a>
+<a class="nav-section" href="#post-boardsidmarkedasviewed">POST /boards/{id}/markedAsViewed</a>
+<a class="nav-section" href="#get-membersidboards">GET /members/{id}/boards</a>
+<a class="nav-section" href="#get-organizationsidboards">GET /organizations/{id}/boards</a>
+<a class="nav-section" href="#get-membersidboardsinvited">GET /members/{id}/boardsInvited</a>
+<a class="nav-section" href="#get-boardsid">GET /boards/{id}</a>
+<a class="nav-section" href="#get-actionsidboard">GET /actions/{id}/board</a>
+<a class="nav-section" href="#get-cardsidboard">GET /cards/{id}/board</a>
+<a class="nav-section" href="#get-checklistsidboard">GET /checklists/{id}/board</a>
+<a class="nav-section" href="#get-boardsidfield">GET /boards/{id}/{field}</a>
+<a class="nav-section" href="#get-listsidboard">GET /lists/{id}/board</a>
+<a class="nav-section" href="#get-notificationsidboard">GET /notifications/{id}/board</a>
+<a class="nav-section" href="#delete-boardsid">DELETE /boards/{id}</a>
+<a class="nav-section" href="#put-boardsid">PUT /boards/{id}</a>
+<a class="nav-section" href="#put-boardsidmembers">PUT /boards/{id}/members</a></div>
+<a href="../api/board_background.html">BoardBackground</a>
+<a href="../api/board_plugin.html">BoardPlugin</a>
+<a href="../api/board_star.html">BoardStar</a>
+<a href="../api/bulk.html">Bulk</a>
+<a href="../api/card.html">Card</a>
+<a href="../api/card_check_item_state.html">CardCheckItemState</a>
+<a href="../api/card_list.html">CardList</a>
+<a href="../api/check_item.html">CheckItem</a>
+<a href="../api/checklist.html">Checklist</a>
+<a href="../api/claimable_organization.html">ClaimableOrganization</a>
+<a href="../api/custom_board_background.html">CustomBoardBackground</a>
+<a href="../api/custom_emoji.html">CustomEmoji</a>
+<a href="../api/custom_field.html">CustomField</a>
+<a href="../api/custom_field_item.html">CustomFieldItem</a>
+<a href="../api/custom_sticker.html">CustomSticker</a>
+<a href="../api/email_position.html">EmailPosition</a>
+<a href="../api/emoji.html">Emoji</a>
+<a href="../api/enterpris.html">Enterpris</a>
+<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
+<a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/export_download.html">ExportDownload</a>
+<a href="../api/generate.html">Generate</a>
+<a href="../api/id_email_list.html">IdEmailList</a>
+<a href="../api/id_label.html">IdLabel</a>
+<a href="../api/id_member.html">IdMember</a>
+<a href="../api/label.html">Label</a>
+<a href="../api/list.html">List</a>
+<a href="../api/member.html">Member</a>
+<a href="../api/member_privacy.html">MemberPrivacy</a>
+<a href="../api/members_voted.html">MembersVoted</a>
+<a href="../api/membership.html">Membership</a>
+<a href="../api/most_recent.html">MostRecent</a>
+<a href="../api/new_billable_guest.html">NewBillableGuest</a>
+<a href="../api/notification.html">Notification</a>
+<a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
+<a href="../api/notification_list.html">NotificationList</a>
+<a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
+<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
+<a href="../api/option.html">Option</a>
+<a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
+<a href="../api/organization.html">Organization</a>
+<a href="../api/pending_organization.html">PendingOrganization</a>
+<a href="../api/plugin.html">Plugin</a>
+<a href="../api/plugin_data.html">PluginData</a>
+<a href="../api/plugin_listing.html">PluginListing</a>
+<a href="../api/reaction.html">Reaction</a>
+<a href="../api/read.html">Read</a>
+<a href="../api/saved_search.html">SavedSearch</a>
+<a href="../api/search.html">Search</a>
+<a href="../api/show_sidebar.html">ShowSidebar</a>
+<a href="../api/show_sidebar_activity.html">ShowSidebarActivity</a>
+<a href="../api/show_sidebar_board_action.html">ShowSidebarBoardAction</a>
+<a href="../api/show_sidebar_member.html">ShowSidebarMember</a>
+<a href="../api/sticker.html">Sticker</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/token.html">Token</a>
+<a href="../api/transferrable_organization.html">TransferrableOrganization</a>
+<a href="../api/trello_list.html">TrelloList</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="board">Board</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-boards"><code>/boards/</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-boardsidlabels"><code>/boards/{id}/labels</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-boardsidboardplugins"><code>/boards/{id}/boardPlugins</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-boardsididtags"><code>/boards/{id}/idTags</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-boardsidmarkedasviewed"><code>/boards/{id}/markedAsViewed</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-membersidboards"><code>/members/{id}/boards</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-organizationsidboards"><code>/organizations/{id}/boards</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-membersidboardsinvited"><code>/members/{id}/boardsInvited</code></a></td>
+<td><code>list</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-boardsid"><code>/boards/{id}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-actionsidboard"><code>/actions/{id}/board</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-cardsidboard"><code>/cards/{id}/board</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-checklistsidboard"><code>/checklists/{id}/board</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-boardsidfield"><code>/boards/{id}/{field}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-listsidboard"><code>/lists/{id}/board</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-notificationsidboard"><code>/notifications/{id}/board</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-boardsid"><code>/boards/{id}</code></a></td>
+<td><code>remove</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-boardsid"><code>/boards/{id}</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-boardsidmembers"><code>/boards/{id}/members</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>closed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>creationMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dateLastActivity</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dateLastView</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datePluginDisable</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>desc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>descData</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enterpriseOwned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The full name of the user to as a member of the board.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberCreator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganization</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idTags</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberships</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the board.</td>
+</tr>
+<tr>
+<td><code>pinned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>powerUps</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>shortLink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>shortUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>starred</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>templateGallery</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-boards" class="operation" data-method="post"><code>POST</code> /boards/</h3>
+<p>Operation ID: <code>post-boards</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>name</code> | <code>query</code> | <code>string</code> | Yes | The new name for the board. 1 to 16384 characters long. |
+| <code>defaultLabels</code> | <code>query</code> | <code>boolean</code> | No | Determines whether to use the default set of labels. |
+| <code>defaultLists</code> | <code>query</code> | <code>boolean</code> | No | Determines whether to add the default set of lists to a board (To Do, Doing, Done). It is ignored if <code>idBoardSource</code> is provided. |
+| <code>desc</code> | <code>query</code> | <code>string</code> | No | A new description for the board, 0 to 16384 characters long |
+| <code>idOrganization</code> | <code>query</code> | <code>string</code> | No | The id or name of the Workspace the board should belong to. |
+| <code>idBoardSource</code> | <code>query</code> | <code>string</code> | No | The id of a board to copy into the new board. |
+| <code>keepFromSource</code> | <code>query</code> | <code>enum: cards, none</code> | No | To keep cards from the original board pass in the value <code>cards</code> |
+| <code>powerUps</code> | <code>query</code> | <code>enum: all, calendar, cardAging, recap, voting</code> | No | The Power-Ups that should be enabled on the new board. One of: <code>all</code>, <code>calendar</code>, <code>cardAging</code>, <code>recap</code>, <code>voting</code>. |
+| <code>prefs_permissionLevel</code> | <code>query</code> | <code>enum: org, private, public</code> | No | The permissions level of the board. One of: <code>org</code>, <code>private</code>, <code>public</code>. |
+| <code>prefs_voting</code> | <code>query</code> | <code>enum: disabled, members, observers, org, public</code> | No | Who can vote on this board. One of <code>disabled</code>, <code>members</code>, <code>observers</code>, <code>org</code>, <code>public</code>. |
+| <code>prefs_comments</code> | <code>query</code> | <code>enum: disabled, members, observers, org, public</code> | No | Who can comment on cards on this board. One of: <code>disabled</code>, <code>members</code>, <code>observers</code>, <code>org</code>, <code>public</code>. |
+| <code>prefs_invitations</code> | <code>query</code> | <code>enum: members, admins</code> | No | Determines what types of members can invite users to join. One of: <code>admins</code>, <code>members</code>. |
+| <code>prefs_selfJoin</code> | <code>query</code> | <code>boolean</code> | No | Determines whether users can join the boards themselves or whether they have to be invited. |
+| <code>prefs_cardCovers</code> | <code>query</code> | <code>boolean</code> | No | Determines whether card covers are enabled. |
+| <code>prefs_background</code> | <code>query</code> | <code>enum: blue, orange, green, red, purple, pink, ...</code> | No | The id of a custom background or one of: <code>blue</code>, <code>orange</code>, <code>green</code>, <code>red</code>, <code>purple</code>, <code>pink</code>, <code>lime</code>, <code>sky</code>, <code>grey</code>. |
+| <code>prefs_cardAging</code> | <code>query</code> | <code>enum: pirate, regular</code> | No | Determines the type of card aging that should take place on the board if card aging is enabled. One of: <code>pirate</code>, <code>regular</code>. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-success" class="status" data-status="2xx">200: Success</h5>
+<h3 id="post-boardsidlabels" class="operation" data-method="post"><code>POST</code> /boards/{id}/labels</h3>
+<p>Operation ID: <code>post-boards-id-labels</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The id of the board to update |
+| <code>name</code> | <code>query</code> | <code>string</code> | Yes | The name of the label to be created. 1 to 16384 characters long. |
+| <code>color</code> | <code>query</code> | <code>string</code> | Yes | Sets the color of the new label. Valid values are a label color or <code>null</code>. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-success-1" class="status" data-status="2xx">200: Success</h5>
+<h3 id="post-boardsidboardplugins" class="operation" data-method="post"><code>POST</code> /boards/{id}/boardPlugins</h3>
+<p>Operation ID: <code>post-boards-id-boardplugins</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Board |
+| <code>idPlugin</code> | <code>query</code> | <code>string</code> | No | The ID of the Power-Up to enable |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-success-2" class="status" data-status="2xx">200: Success</h5>
+<h3 id="post-boardsididtags" class="operation" data-method="post"><code>POST</code> /boards/{id}/idTags</h3>
+<p>Operation ID: <code>post-boards-id-idtags</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The id of the board to update |
+| <code>value</code> | <code>query</code> | <code>string</code> | Yes | The id of a tag from the organization to which this board belongs. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-success-3" class="status" data-status="2xx">200: Success</h5>
+<h3 id="post-boardsidmarkedasviewed" class="operation" data-method="post"><code>POST</code> /boards/{id}/markedAsViewed</h3>
+<p>Operation ID: <code>post-boards-id-markedasviewed</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The id of the board to update |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-success-4" class="status" data-status="2xx">200: Success</h5>
+<h2 id="list">list</h2>
+<h3 id="get-membersidboards" class="operation" data-method="get"><code>GET</code> /members/{id}/boards</h3>
+<p>Operation ID: <code>get-members-id-boards</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or username of the member |
+| <code>filter</code> | <code>query</code> | <code>enum: all, closed, members, open, organization, public, ...</code> | No | <code>all</code> or a comma-separated list of: <code>closed</code>, <code>members</code>, <code>open</code>, <code>organization</code>, <code>public</code>, <code>starred</code> |
+| <code>fields</code> | <code>query</code> | <code>enum: id, name, desc, descData, closed, idMemberCreator, ...</code> | No | <code>all</code> or a comma-separated list of board <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |
+| <code>lists</code> | <code>query</code> | <code>enum: all, closed, none, open</code> | No | Which lists to include with the boards. One of: <code>all</code>, <code>closed</code>, <code>none</code>, <code>open</code> |
+| <code>organization</code> | <code>query</code> | <code>boolean</code> | No | Whether to include the Organization object with the Boards |
+| <code>organization_fields</code> | <code>query</code> | <code>enum: id, name</code> | No | <code>all</code> or a comma-separated list of organization <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-success-5" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].closed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].creationMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].dateLastActivity</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].dateLastView</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].datePluginDisable</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].desc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].descData</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].enterpriseOwned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idMemberCreator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idOrganization</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idTags</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].ixUpdate</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.black</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.blue</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.green</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.lime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.orange</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.pink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.purple</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.red</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.sky</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.yellow</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments.perBoard</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments.perBoard.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments.perBoard.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments.perBoard.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].memberships</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the board.</td>
+</tr>
+<tr>
+<td><code>[].pinned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].powerUps</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.background</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundBottomColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundBrightness</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImage</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImageScaled</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImageScaled[].height</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The height of the image.</td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImageScaled[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>The URL of the image.</td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImageScaled[].width</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The width of the image.</td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundTile</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundTopColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.calendarFeedEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canBeEnterprise</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canBeOrg</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canBePrivate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canBePublic</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canInvite</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.cardAging</code></td>
+<td><code>enum: pirate, regular</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.cardCovers</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.comments</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.hideVotes</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.invitations</code></td>
+<td><code>enum: admins, members</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.isTemplate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.permissionLevel</code></td>
+<td><code>enum: org, board</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.selfJoin</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.voting</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].shortLink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].shortUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].starred</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].templateGallery</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-organizationsidboards" class="operation" data-method="get"><code>GET</code> /organizations/{id}/boards</h3>
+<p>Operation ID: <code>get-organizations-id-boards</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or name of the organization |
+| <code>filter</code> | <code>query</code> | <code>enum: all, open, closed, members, organization, public</code> | No | <code>all</code> or a comma-separated list of: <code>open</code>, <code>closed</code>, <code>members</code>, <code>organization</code>, <code>public</code> |
+| <code>fields</code> | <code>query</code> | <code>enum: id, name, desc, descData, closed, idMemberCreator, ...</code> | No | <code>all</code> or a comma-separated list of board <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-success-6" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>array of object</code>.</p>
+<h3 id="get-membersidboardsinvited" class="operation" data-method="get"><code>GET</code> /members/{id}/boardsInvited</h3>
+<p>Operation ID: <code>get-members-id-boardsinvited</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID or username of the member |
+| <code>fields</code> | <code>query</code> | <code>enum: id, name, desc, descData, closed, idMemberCreator, ...</code> | No | <code>all</code> or a comma-separated list of board <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-success-7" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].closed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].creationMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].dateLastActivity</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].dateLastView</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].datePluginDisable</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].desc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].descData</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].enterpriseOwned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idMemberCreator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idOrganization</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].idTags</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].ixUpdate</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.black</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.blue</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.green</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.lime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.orange</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.pink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.purple</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.red</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.sky</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].labelNames.yellow</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments.perBoard</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments.perBoard.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments.perBoard.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].limits.attachments.perBoard.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].memberships</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the board.</td>
+</tr>
+<tr>
+<td><code>[].pinned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].powerUps</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.background</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundBottomColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundBrightness</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImage</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImageScaled</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImageScaled[].height</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The height of the image.</td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImageScaled[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>The URL of the image.</td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundImageScaled[].width</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The width of the image.</td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundTile</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.backgroundTopColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.calendarFeedEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canBeEnterprise</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canBeOrg</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canBePrivate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canBePublic</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.canInvite</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.cardAging</code></td>
+<td><code>enum: pirate, regular</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.cardCovers</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.comments</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.hideVotes</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.invitations</code></td>
+<td><code>enum: admins, members</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.isTemplate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.permissionLevel</code></td>
+<td><code>enum: org, board</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.selfJoin</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].prefs.voting</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].shortLink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].shortUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].starred</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].templateGallery</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-boardsid" class="operation" data-method="get"><code>GET</code> /boards/{id}</h3>
+<p>Operation ID: <code>get-boards-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>actions</code> | <code>query</code> | <code>string</code> | No | This is a nested resource. Read more about actions as nested resources <a href="/cloud/trello/guides/rest-api/nested-resources/">here</a>. |
+| <code>boardStars</code> | <code>query</code> | <code>string</code> | No | Valid values are one of: <code>mine</code> or <code>none</code>. |
+| <code>cards</code> | <code>query</code> | <code>string</code> | No | This is a nested resource. Read more about cards as nested resources <a href="/cloud/trello/guides/rest-api/nested-resources/">here</a>. |
+| <code>card_pluginData</code> | <code>query</code> | <code>boolean</code> | No | Use with the <code>cards</code> param to include card pluginData with the response |
+| <code>checklists</code> | <code>query</code> | <code>string</code> | No | This is a nested resource. Read more about checklists as nested resources <a href="/cloud/trello/guides/rest-api/nested-resources/">here</a>. |
+| <code>customFields</code> | <code>query</code> | <code>boolean</code> | No | This is a nested resource. Read more about custom fields as nested resources <a href="#custom-fields-nested-resource">here</a>. |
+| <code>fields</code> | <code>query</code> | <code>string</code> | No | The fields of the board to be included in the response. Valid values: all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idMemberCreator, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed, url |
+| <code>labels</code> | <code>query</code> | <code>string</code> | No | This is a nested resource. Read more about labels as nested resources <a href="/cloud/trello/guides/rest-api/nested-resources/">here</a>. |
+| <code>lists</code> | <code>query</code> | <code>string</code> | No | This is a nested resource. Read more about lists as nested resources <a href="/cloud/trello/guides/rest-api/nested-resources/">here</a>. |
+| <code>members</code> | <code>query</code> | <code>string</code> | No | This is a nested resource. Read more about members as nested resources <a href="/cloud/trello/guides/rest-api/nested-resources/">here</a>. |
+| <code>memberships</code> | <code>query</code> | <code>string</code> | No | This is a nested resource. Read more about memberships as nested resources <a href="/cloud/trello/guides/rest-api/nested-resources/">here</a>. |
+| <code>pluginData</code> | <code>query</code> | <code>boolean</code> | No | Determines whether the pluginData for this board should be returned. Valid values: true or false. |
+| <code>organization</code> | <code>query</code> | <code>boolean</code> | No | This is a nested resource. Read more about organizations as nested resources <a href="/cloud/trello/guides/rest-api/nested-resources/">here</a>. |
+| <code>organization_pluginData</code> | <code>query</code> | <code>boolean</code> | No | Use with the <code>organization</code> param to include organization pluginData with the response |
+| <code>myPrefs</code> | <code>query</code> | <code>boolean</code> | No |  |
+| <code>tags</code> | <code>query</code> | <code>boolean</code> | No | Also known as collections, tags, refer to the collection(s) that a Board belongs to. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-success-8" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>closed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>creationMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dateLastActivity</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dateLastView</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datePluginDisable</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>desc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>descData</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enterpriseOwned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberCreator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganization</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idTags</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.black</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.blue</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.green</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.lime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.orange</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.pink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.purple</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.red</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.sky</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.yellow</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments.perBoard</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments.perBoard.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments.perBoard.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments.perBoard.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberships</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the board.</td>
+</tr>
+<tr>
+<td><code>pinned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>powerUps</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.background</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundBottomColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundBrightness</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImage</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImageScaled</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImageScaled[].height</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The height of the image.</td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImageScaled[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>The URL of the image.</td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImageScaled[].width</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The width of the image.</td>
+</tr>
+<tr>
+<td><code>prefs.backgroundTile</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundTopColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.calendarFeedEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canBeEnterprise</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canBeOrg</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canBePrivate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canBePublic</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canInvite</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.cardAging</code></td>
+<td><code>enum: pirate, regular</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.cardCovers</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.comments</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.hideVotes</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.invitations</code></td>
+<td><code>enum: admins, members</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.isTemplate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.permissionLevel</code></td>
+<td><code>enum: org, board</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.selfJoin</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.voting</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>shortLink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>shortUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>starred</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>templateGallery</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-specified-resource-was-not-found" class="status" data-status="4xx">404: The specified resource was not found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="default-unexpected-error">default: Unexpected error</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-actionsidboard" class="operation" data-method="get"><code>GET</code> /actions/{id}/board</h3>
+<p>Operation ID: <code>get-actions-id-board</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the action |
+| <code>fields</code> | <code>query</code> | <code>enum: id, name, desc, descData, closed, idMemberCreator, ...</code> | No | <code>all</code> or a comma-separated list of board fields |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-success-9" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>closed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>creationMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dateLastActivity</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dateLastView</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datePluginDisable</code></td>
+<td><code>string (date)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>desc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>descData</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enterpriseOwned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idMemberCreator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idOrganization</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>idTags</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ixUpdate</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.black</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.blue</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.green</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.lime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.orange</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.pink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.purple</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.red</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.sky</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>labelNames.yellow</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments.perBoard</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments.perBoard.disableAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments.perBoard.status</code></td>
+<td><code>enum: ok, warning</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limits.attachments.perBoard.warnAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memberships</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the board.</td>
+</tr>
+<tr>
+<td><code>pinned</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>powerUps</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.background</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundBottomColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundBrightness</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImage</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImageScaled</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImageScaled[].height</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The height of the image.</td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImageScaled[].url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td>The URL of the image.</td>
+</tr>
+<tr>
+<td><code>prefs.backgroundImageScaled[].width</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The width of the image.</td>
+</tr>
+<tr>
+<td><code>prefs.backgroundTile</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.backgroundTopColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.calendarFeedEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canBeEnterprise</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canBeOrg</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canBePrivate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canBePublic</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.canInvite</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.cardAging</code></td>
+<td><code>enum: pirate, regular</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.cardCovers</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.comments</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.hideVotes</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.invitations</code></td>
+<td><code>enum: admins, members</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.isTemplate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.permissionLevel</code></td>
+<td><code>enum: org, board</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.selfJoin</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefs.voting</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>shortLink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>shortUrl</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>starred</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>templateGallery</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (url)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-cardsidboard" class="operation" data-method="get"><code>GET</code> /cards/{id}/board</h3>
+<p>Operation ID: <code>get-cards-id-board</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the Card |
+| <code>fields</code> | <code>query</code> | <code>string</code> | No | <code>all</code> or a comma-separated list of board <a href="/cloud/trello/guides/rest-api/object-definitions/#board-object">fields</a> |</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-success-10" class="status" data-status="2xx">200: Success</h5>
+<h3 id="get-checklistsidboard" class="operation" data-method="get"><code>GET</code> /checklists/{id}/board</h3>
+<p>Operation ID: <code>get-checklists-id-board</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of a checklist. |
+| <code>fields</code> | <code>query</code> | <code>enum: all, name</code> | No | <code>all</code> or a comma-separated list of board <a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-success-11" class="status" data-status="2xx">200: Success</h5>
+<h3 id="get-boardsidfield" class="operation" data-method="get"><code>GET</code> /boards/{id}/{field}</h3>
+<p>Operation ID: <code>get-boards-id-field</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the board. |
+| <code>field</code> | <code>path</code> | <code>string</code> | Yes | The field you'd like to receive. Valid values: closed, dateLastActivity, dateLastView, desc, descData, idMemberCreator, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed, url. |</p>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-success-12" class="status" data-status="2xx">200: Success</h5>
+<h3 id="get-listsidboard" class="operation" data-method="get"><code>GET</code> /lists/{id}/board</h3>
+<p>Operation ID: <code>get-lists-id-board</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-13">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the list |
+| <code>fields</code> | <code>query</code> | <code>string</code> | No | <code>all</code> or a comma-separated list of board <a href="/cloud/trello/guides/rest-api/object-definitions/#board-object">fields</a> |</p>
+<h4 id="responses-13">Responses</h4>
+<h5 id="200-success-13" class="status" data-status="2xx">200: Success</h5>
+<h3 id="get-notificationsidboard" class="operation" data-method="get"><code>GET</code> /notifications/{id}/board</h3>
+<p>Operation ID: <code>get-notifications-id-board</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-14">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the notification |
+| <code>fields</code> | <code>query</code> | <code>enum: id, name, desc, descData, closed, idMemberCreator, ...</code> | No | <code>all</code> or a comma-separated list of board<a href="/cloud/trello/guides/rest-api/object-definitions/">fields</a> |</p>
+<h4 id="responses-14">Responses</h4>
+<h5 id="200-success-14" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h2 id="remove">remove</h2>
+<h3 id="delete-boardsid" class="operation" data-method="delete"><code>DELETE</code> /boards/{id}</h3>
+<p>Operation ID: <code>delete-boards-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-15">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The id of the board to delete |</p>
+<h4 id="responses-15">Responses</h4>
+<h5 id="200-success-15" class="status" data-status="2xx">200: Success</h5>
+<h2 id="update">update</h2>
+<h3 id="put-boardsid" class="operation" data-method="put"><code>PUT</code> /boards/{id}</h3>
+<p>Operation ID: <code>put-boards-id</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-16">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>name</code> | <code>query</code> | <code>string</code> | No | The new name for the board. 1 to 16384 characters long. |
+| <code>desc</code> | <code>query</code> | <code>string</code> | No | A new description for the board, 0 to 16384 characters long |
+| <code>closed</code> | <code>query</code> | <code>boolean</code> | No | Whether the board is closed |
+| <code>subscribed</code> | <code>query</code> | <code>string</code> | No | Whether the acting user is subscribed to the board |
+| <code>idOrganization</code> | <code>query</code> | <code>string</code> | No | The id of the Workspace the board should be moved to |
+| <code>prefs/permissionLevel</code> | <code>query</code> | <code>string</code> | No | One of: org, private, public |
+| <code>prefs/selfJoin</code> | <code>query</code> | <code>boolean</code> | No | Whether Workspace members can join the board themselves |
+| <code>prefs/cardCovers</code> | <code>query</code> | <code>boolean</code> | No | Whether card covers should be displayed on this board |
+| <code>prefs/hideVotes</code> | <code>query</code> | <code>boolean</code> | No | Determines whether the Voting Power-Up should hide who voted on cards or not. |
+| <code>prefs/invitations</code> | <code>query</code> | <code>string</code> | No | Who can invite people to this board. One of: admins, members |
+| <code>prefs/voting</code> | <code>query</code> | <code>string</code> | No | Who can vote on this board. One of disabled, members, observers, org, public |
+| <code>prefs/comments</code> | <code>query</code> | <code>string</code> | No | Who can comment on cards on this board. One of: disabled, members, observers, org, public |
+| <code>prefs/background</code> | <code>query</code> | <code>string</code> | No | The id of a custom background or one of: blue, orange, green, red, purple, pink, lime, sky, grey |
+| <code>prefs/cardAging</code> | <code>query</code> | <code>string</code> | No | One of: pirate, regular |
+| <code>prefs/calendarFeedEnabled</code> | <code>query</code> | <code>boolean</code> | No | Determines whether the calendar feed is enabled or not. |</p>
+<h4 id="responses-16">Responses</h4>
+<h5 id="200-success-16" class="status" data-status="2xx">200: Success</h5>
+<h3 id="put-boardsidmembers" class="operation" data-method="put"><code>PUT</code> /boards/{id}/members</h3>
+<p>Operation ID: <code>put-boards-id-members</code>.</p>
+<p>Authentication: API key in the query (<code>APIKey</code>) or API key in the query (<code>APIToken</code>).</p>
+<h4 id="parameters-17">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the board |
+| <code>email</code> | <code>query</code> | <code>string (email)</code> | Yes | The email address of a user to add as a member of the board. |
+| <code>type</code> | <code>query</code> | <code>enum: admin, normal, observer</code> | No | Valid values: admin, normal, observer. Determines what type of member the user being added should be of the board. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fullName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The full name of the user to as a member of the board. Must have a length of at least 1 and cannot begin nor end with a space.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-17">Responses</h4>
+<h5 id="200-success-17" class="status" data-status="2xx">200: Success</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

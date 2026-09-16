@@ -22,5 +22,626 @@
     "board_background": {
       "board_background_ref01": {}
     }
+  },
+  "requests": {
+    "POST /members/{id}/customBoardBackgrounds": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "membersidcustomboardbackgrounds-1",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "file",
+            "required": true,
+            "schema": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/boardBackgrounds": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-boardbackgrounds",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "One of: `all`, `custom`, `default`, `none`, `premium`",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "custom",
+                "default",
+                "none",
+                "premium"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "id": {
+                            "example": "5abbe4b7ddc1b351ef961414",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/customBoardBackgrounds": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-customboardbackgrounds",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "example": "5abbe4b7ddc1b351ef961414",
+                        "pattern": "^[0-9a-fA-F]{24}$",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/boardBackgrounds/{idBackground}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-boardbackgrounds-idbackground",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the board background",
+            "in": "path",
+            "name": "idBackground",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of: `brightness`, `fullSizeUrl`, `scaled`, `tile`",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "brightness",
+                "fullSizeUrl",
+                "scaled",
+                "tile"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /members/{id}/customBoardBackgrounds/{idBackground}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-members-id-customboardbackgrounds-idbackground",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "The ID of the custom background",
+            "in": "path",
+            "name": "idBackground",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /members/{id}/boardBackgrounds/{idBackground}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-members-id-boardbackgrounds-idbackground",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the board background",
+            "in": "path",
+            "name": "idBackground",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /members/{id}/boardBackgrounds/{idBackground}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-members-id-boardbackgrounds-idbackground",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the board background",
+            "in": "path",
+            "name": "idBackground",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "One of: `dark`, `light`, `unknown`",
+            "in": "query",
+            "name": "brightness",
+            "required": false,
+            "schema": {
+              "enum": [
+                "dark",
+                "light",
+                "unknown"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether the background should be tiled",
+            "in": "query",
+            "name": "tile",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /members/{id}/customBoardBackgrounds/{idBackground}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-members-id-customboardbackgrounds-idbackground",
+        "parameters": [
+          {
+            "description": "The ID or username of the member",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "The ID of the custom background",
+            "in": "path",
+            "name": "idBackground",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "One of: `dark`, `light`, `unknown`",
+            "in": "query",
+            "name": "brightness",
+            "required": false,
+            "schema": {
+              "enum": [
+                "dark",
+                "light",
+                "unknown"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to tile the background",
+            "in": "query",
+            "name": "tile",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": "5abbe4b7ddc1b351ef961414",
+                      "pattern": "^[0-9a-fA-F]{24}$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

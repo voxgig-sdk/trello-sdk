@@ -25,5 +25,796 @@
     "checklist": {
       "checklist_ref01": {}
     }
+  },
+  "requests": {
+    "POST /checklists/{id}/checkItems": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-checklists-id-checkitems",
+        "parameters": [
+          {
+            "description": "ID of a checklist.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name of the new check item on the checklist. Should be a string of length 1 to 16384.",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The position of the check item in the checklist. One of: `top`, `bottom`, or a positive number.",
+            "in": "query",
+            "name": "pos",
+            "required": false,
+            "schema": {
+              "default": "bottom",
+              "oneOf": [
+                {
+                  "enum": [
+                    "top",
+                    "bottom"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "example": 1293.5,
+                  "format": "float",
+                  "type": "number"
+                }
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines whether the check item is already checked when created.",
+            "in": "query",
+            "name": "checked",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "A due date for the checkitem",
+            "in": "query",
+            "name": "due",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "A dueReminder for the due date on the checkitem",
+            "in": "query",
+            "name": "dueReminder",
+            "required": false,
+            "schema": {
+              "nullable": true,
+              "type": "number"
+            }
+          },
+          {
+            "description": "An ID of a member resource.",
+            "in": "query",
+            "name": "idMember",
+            "required": false,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /checklists": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "post-checklists",
+        "parameters": [
+          {
+            "description": "The ID of the Card that the checklist should be added to.",
+            "in": "query",
+            "name": "idCard",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name of the checklist. Should be a string of length 1 to 16384.",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The position of the checklist on the card. One of: `top`, `bottom`, or a positive number.",
+            "in": "query",
+            "name": "pos",
+            "required": false,
+            "schema": {
+              "oneOf": [
+                {
+                  "enum": [
+                    "top",
+                    "bottom"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "example": 1293.5,
+                  "format": "float",
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          {
+            "description": "The ID of a checklist to copy into the new checklist.",
+            "in": "query",
+            "name": "idChecklistSource",
+            "required": false,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /checklists/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-checklists-id",
+        "parameters": [
+          {
+            "description": "ID of a checklist.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Valid values: `all`, `closed`, `none`, `open`, `visible`. Cards is a nested resource. The additional query params available are documented at [Cards Nested Resource](/cloud/trello/guides/rest-api/nested-resources/#cards-nested-resource).",
+            "in": "query",
+            "name": "cards",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "enum": [
+                "all",
+                "closed",
+                "none",
+                "open",
+                "visible"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The check items on the list to return. One of: `all`, `none`.",
+            "in": "query",
+            "name": "checkItems",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "none"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The fields on the checkItem to return if checkItems are being returned. `all` or a comma-separated list of: `name`, `nameData`, `pos`, `state`, `type`, `due`, `dueReminder`, `idMember`",
+            "in": "query",
+            "name": "checkItem_fields",
+            "required": false,
+            "schema": {
+              "default": "name, nameData, pos, state, due, dueReminder, idMember",
+              "enum": [
+                "all",
+                "name",
+                "nameData",
+                "pos",
+                "state",
+                "type",
+                "due",
+                "dueReminder",
+                "idMember"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of checklist [fields](/cloud/trello/guides/rest-api/object-definitions/)",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /cards/{id}/checklists": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-cards-id-checklists",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or `none`",
+            "in": "query",
+            "name": "checkItems",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "none"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of: `name,nameData,pos,state,type,due,dueReminder,idMember`",
+            "explode": false,
+            "in": "query",
+            "name": "checkItem_fields",
+            "required": false,
+            "schema": {
+              "default": "name,nameData,pos,state,due,dueReminder,idMember",
+              "enum": [
+                "name",
+                "nameData",
+                "pos",
+                "state",
+                "type",
+                "due",
+                "dueReminder",
+                "idMember"
+              ],
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "description": "`all` or `none`",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "none"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "`all` or a comma-separated list of: `idBoard,idCard,name,pos`",
+            "explode": false,
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "name",
+                "nameData",
+                "pos",
+                "state",
+                "type"
+              ],
+              "type": "string"
+            },
+            "style": "form"
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /checklists/{id}/{field}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-checklists-id-field",
+        "parameters": [
+          {
+            "description": "ID of a checklist.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Field to update.",
+            "in": "path",
+            "name": "field",
+            "required": true,
+            "schema": {
+              "enum": [
+                "name",
+                "pos"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /boards/{id}/checklists": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "boards-id-checklists",
+        "parameters": [
+          {
+            "description": "The ID of the board",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /cards/{id}/checklists/{idChecklist}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-cards-id-checklists-idchecklist",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the checklist to delete",
+            "in": "path",
+            "name": "idChecklist",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /checklists/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "delete-checklists-id",
+        "parameters": [
+          {
+            "description": "ID of a checklist.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /checklists/{id}/{field}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-checklists-id-field",
+        "parameters": [
+          {
+            "description": "ID of a checklist.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Field to update.",
+            "in": "path",
+            "name": "field",
+            "required": true,
+            "schema": {
+              "enum": [
+                "name",
+                "pos"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The value to change the checklist name to. Should be a string of length 1 to 16384.",
+            "in": "query",
+            "name": "value",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "oneOf": [
+                    {
+                      "enum": [
+                        "top",
+                        "bottom"
+                      ],
+                      "type": "string"
+                    },
+                    {
+                      "example": 1293.5,
+                      "format": "float",
+                      "type": "number"
+                    }
+                  ]
+                },
+                {
+                  "example": "5abbe4b7ddc1b351ef961414",
+                  "pattern": "^[0-9a-fA-F]{24}$",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /checklists/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "put-checlists-id",
+        "parameters": [
+          {
+            "description": "ID of a checklist.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Name of the new checklist being created. Should be length of 1 to 16384.",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines the position of the checklist on the card. One of: `top`, `bottom`, or a positive number.",
+            "in": "query",
+            "name": "pos",
+            "required": false,
+            "schema": {
+              "oneOf": [
+                {
+                  "enum": [
+                    "top",
+                    "bottom"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "example": 1293.5,
+                  "format": "float",
+                  "type": "number"
+                }
+              ]
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

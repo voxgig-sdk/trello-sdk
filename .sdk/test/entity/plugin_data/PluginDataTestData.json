@@ -22,5 +22,148 @@
     "plugin_data": {
       "plugin_data_ref01": {}
     }
+  },
+  "requests": {
+    "GET /organizations/{id}/pluginData": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-organizations-id-plugindata",
+        "parameters": [
+          {
+            "description": "The ID or name of the organization",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "access": {
+                            "enum": [
+                              "private",
+                              "shared"
+                            ],
+                            "example": "private",
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "5c487f39294cab6ac1d6b305",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "idModel": {
+                            "example": "586e8d7b1af892b26d5b76b1",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "idPlugin": {
+                            "example": "55a5d915446f517774210003",
+                            "pattern": "^[0-9a-fA-F]{24}$",
+                            "type": "string"
+                          },
+                          "scope": {
+                            "enum": [
+                              "member",
+                              "board",
+                              "organization",
+                              "card"
+                            ],
+                            "example": "organization",
+                            "type": "string"
+                          },
+                          "value": {
+                            "example": "{\"token\":\"S=s458:U=bda7cda:E=16fd2e21f55:C=1687b30f2c0:P=185:A=it-team-0604:V=2:H=3b0f3bac9c2a2af766202ebb9530a4a5\"}",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /cards/{id}/pluginData": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get-cards-id-plugindata",
+        "parameters": [
+          {
+            "description": "The ID of the Card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "5abbe4b7ddc1b351ef961414",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "APIKey": [],
+            "APIToken": []
+          }
+        ],
+        "securitySchemes": {
+          "APIKey": {
+            "in": "query",
+            "name": "key",
+            "type": "apiKey"
+          },
+          "APIToken": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }
