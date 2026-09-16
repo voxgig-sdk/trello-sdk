@@ -374,11 +374,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"idMemberCreator"` |  |
 | `"limits"` |  |
 | `"memberCreator"` |  |
-| `"native"` | The emoji to add as a native unicode emoji. |
-| `"shortName"` | The primary `shortName` of the emoji to add. |
-| `"skinVariation"` | The `skinVariation` of the emoji to add. |
 | `"type"` |  |
-| `"unified"` | The `unified` value of the emoji to add. |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -461,7 +457,6 @@ API path: `/batch`
 | `"desc"` |  |
 | `"descData"` |  |
 | `"enterpriseOwned"` |  |
-| `"fullName"` | The full name of the user to as a member of the board. |
 | `"id"` |  |
 | `"idMemberCreator"` |  |
 | `"idOrganization"` |  |
@@ -539,7 +534,6 @@ API path: `/enterprises/{id}/organizations/bulk/{idOrganizations}`
 | `"coordinates"` |  |
 | `"cover"` |  |
 | `"creationMethod"` |  |
-| `"customFieldItems"` | An array of objects containing the custom field ID, key and value, and ID of list type option. |
 | `"dateLastActivity"` |  |
 | `"desc"` |  |
 | `"descData"` |  |
@@ -1325,11 +1319,7 @@ Create an instance: `action := client.Action(nil)`
 | `idMemberCreator` | `string` |  |
 | `limits` | `map[string]any` |  |
 | `memberCreator` | `map[string]any` |  |
-| `native` | `string` | The emoji to add as a native unicode emoji. |
-| `shortName` | `string` | The primary `shortName` of the emoji to add. |
-| `skinVariation` | `string` | The `skinVariation` of the emoji to add. |
 | `type` | `string` |  |
-| `unified` | `string` | The `unified` value of the emoji to add. |
 
 #### Example: Load
 
@@ -1526,7 +1516,6 @@ Create an instance: `board := client.Board(nil)`
 | `desc` | `string` |  |
 | `descData` | `string` |  |
 | `enterpriseOwned` | `bool` |  |
-| `fullName` | `string` | The full name of the user to as a member of the board. |
 | `id` | `string` |  |
 | `idMemberCreator` | `string` |  |
 | `idOrganization` | `string` |  |
@@ -1762,7 +1751,6 @@ Create an instance: `card := client.Card(nil)`
 | `coordinates` | `string` |  |
 | `cover` | `map[string]any` |  |
 | `creationMethod` | `string` |  |
-| `customFieldItems` | `[]any` | An array of objects containing the custom field ID, key and value, and ID of list type option. |
 | `dateLastActivity` | `string` |  |
 | `desc` | `string` |  |
 | `descData` | `map[string]any` |  |

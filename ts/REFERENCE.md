@@ -952,11 +952,7 @@ const action = client.Action()
 | `idMemberCreator` | `string` | No |  |
 | `limits` | `Record<string, any>` | No |  |
 | `memberCreator` | `Record<string, any>` | No |  |
-| `native` | `string` | No | The emoji to add as a native unicode emoji. |
-| `shortName` | `string` | No | The primary `shortName` of the emoji to add. |
-| `skinVariation` | `string` | No | The `skinVariation` of the emoji to add. |
 | `type` | `string` | No |  |
-| `unified` | `string` | No | The `unified` value of the emoji to add. |
 
 ### Actions
 
@@ -1414,7 +1410,6 @@ const board = client.Board()
 | `desc` | `string` | No |  |
 | `descData` | `string` | No |  |
 | `enterpriseOwned` | `boolean` | No |  |
-| `fullName` | `string` | No | The full name of the user to as a member of the board. |
 | `id` | `string` | Yes |  |
 | `idMemberCreator` | `string` | No |  |
 | `idOrganization` | `string` | No |  |
@@ -1845,7 +1840,6 @@ const card = client.Card()
 | `coordinates` | `string` | No |  |
 | `cover` | `Record<string, any>` | No |  |
 | `creationMethod` | `string` | No |  |
-| `customFieldItems` | `any[]` | No | An array of objects containing the custom field ID, key and value, and ID of list type option. |
 | `dateLastActivity` | `string` | No |  |
 | `desc` | `string` | No |  |
 | `descData` | `Record<string, any>` | No |  |

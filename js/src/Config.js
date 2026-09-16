@@ -206,6 +206,8 @@ class Config {
 
     auth: {
       prefix: '',
+      in: 'query',
+      name: 'key',
     },
 
     headers: {
@@ -214,216 +216,216 @@ class Config {
 
     entity: {
       
-      action: {
-      },
-
-      action_reactions_summary: {
-      },
-
-      admin: {
-      },
-
-      application: {
-      },
-
-      application_compliance: {
-      },
-
-      associated_domain: {
-      },
-
-      attachment: {
-      },
-
-      batch: {
-      },
-
-      board: {
-      },
-
-      board_background: {
-      },
-
-      board_plugin: {
-      },
-
-      board_star: {
-      },
-
-      bulk: {
-      },
-
-      card: {
-      },
-
-      card_check_item_state: {
-      },
-
-      card_list: {
-      },
-
-      check_item: {
-      },
-
-      checklist: {
-      },
-
-      claimable_organization: {
-      },
-
-      custom_board_background: {
-      },
-
-      custom_emoji: {
-      },
-
-      custom_field: {
-      },
-
-      custom_field_item: {
-      },
-
-      custom_sticker: {
-      },
-
-      email_position: {
-      },
-
-      emoji: {
-      },
-
-      enterpris: {
-      },
-
-      enterpris_signup_url: {
-      },
-
-      enterprise_admin: {
-      },
-
-      enterprise_audit_log: {
-      },
-
-      export: {
-      },
-
-      export_download: {
-      },
-
-      generate: {
-      },
-
-      id_email_list: {
-      },
-
-      id_label: {
-      },
-
-      id_member: {
-      },
-
-      label: {
-      },
-
-      list: {
-      },
-
-      member: {
-      },
-
-      member_privacy: {
-      },
-
-      members_voted: {
-      },
-
-      membership: {
-      },
-
-      most_recent: {
-      },
-
-      new_billable_guest: {
-      },
-
-      notification: {
-      },
-
-      notification_channel_setting: {
-      },
-
-      notification_list: {
-      },
-
-      notification_member_creator: {
-      },
-
-      notifications_channel_setting: {
-      },
-
-      option: {
-      },
-
-      org_invite_restrict: {
-      },
-
-      organization: {
-      },
-
-      pending_organization: {
-      },
-
-      plugin: {
-      },
-
-      plugin_data: {
-      },
-
-      plugin_listing: {
-      },
-
-      reaction: {
-      },
-
-      read: {
-      },
-
-      saved_search: {
-      },
-
-      search: {
-      },
-
-      show_sidebar: {
-      },
-
-      show_sidebar_activity: {
-      },
-
-      show_sidebar_board_action: {
-      },
-
-      show_sidebar_member: {
-      },
-
-      sticker: {
-      },
-
-      tag: {
-      },
-
-      token: {
-      },
-
-      transferrable_organization: {
-      },
-
-      trello_list: {
-      },
-
-      webhook: {
-      },
-
+        action: {
+        },
+  
+        action_reactions_summary: {
+        },
+  
+        admin: {
+        },
+  
+        application: {
+        },
+  
+        application_compliance: {
+        },
+  
+        associated_domain: {
+        },
+  
+        attachment: {
+        },
+  
+        batch: {
+        },
+  
+        board: {
+        },
+  
+        board_background: {
+        },
+  
+        board_plugin: {
+        },
+  
+        board_star: {
+        },
+  
+        bulk: {
+        },
+  
+        card: {
+        },
+  
+        card_check_item_state: {
+        },
+  
+        card_list: {
+        },
+  
+        check_item: {
+        },
+  
+        checklist: {
+        },
+  
+        claimable_organization: {
+        },
+  
+        custom_board_background: {
+        },
+  
+        custom_emoji: {
+        },
+  
+        custom_field: {
+        },
+  
+        custom_field_item: {
+        },
+  
+        custom_sticker: {
+        },
+  
+        email_position: {
+        },
+  
+        emoji: {
+        },
+  
+        enterpris: {
+        },
+  
+        enterpris_signup_url: {
+        },
+  
+        enterprise_admin: {
+        },
+  
+        enterprise_audit_log: {
+        },
+  
+        export: {
+        },
+  
+        export_download: {
+        },
+  
+        generate: {
+        },
+  
+        id_email_list: {
+        },
+  
+        id_label: {
+        },
+  
+        id_member: {
+        },
+  
+        label: {
+        },
+  
+        list: {
+        },
+  
+        member: {
+        },
+  
+        member_privacy: {
+        },
+  
+        members_voted: {
+        },
+  
+        membership: {
+        },
+  
+        most_recent: {
+        },
+  
+        new_billable_guest: {
+        },
+  
+        notification: {
+        },
+  
+        notification_channel_setting: {
+        },
+  
+        notification_list: {
+        },
+  
+        notification_member_creator: {
+        },
+  
+        notifications_channel_setting: {
+        },
+  
+        option: {
+        },
+  
+        org_invite_restrict: {
+        },
+  
+        organization: {
+        },
+  
+        pending_organization: {
+        },
+  
+        plugin: {
+        },
+  
+        plugin_data: {
+        },
+  
+        plugin_listing: {
+        },
+  
+        reaction: {
+        },
+  
+        read: {
+        },
+  
+        saved_search: {
+        },
+  
+        search: {
+        },
+  
+        show_sidebar: {
+        },
+  
+        show_sidebar_activity: {
+        },
+  
+        show_sidebar_board_action: {
+        },
+  
+        show_sidebar_member: {
+        },
+  
+        sticker: {
+        },
+  
+        tag: {
+        },
+  
+        token: {
+        },
+  
+        transferrable_organization: {
+        },
+  
+        trello_list: {
+        },
+  
+        webhook: {
+        },
+  
     }
   }
 
@@ -461,27 +463,7 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
-          "name": "native",
-          "short": "The emoji to add as a native unicode emoji.",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "shortName",
-          "short": "The primary `shortName` of the emoji to add.",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "skinVariation",
-          "short": "The `skinVariation` of the emoji to add.",
-          "type": "`$STRING`"
-        },
-        {
           "name": "type",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "unified",
-          "short": "The `unified` value of the emoji to add.",
           "type": "`$STRING`"
         }
       ],
@@ -2155,11 +2137,6 @@ class Config {
         {
           "name": "enterpriseOwned",
           "type": "`$BOOLEAN`"
-        },
-        {
-          "name": "fullName",
-          "short": "The full name of the user to as a member of the board.",
-          "type": "`$STRING`"
         },
         {
           "name": "id",
@@ -4946,11 +4923,6 @@ class Config {
         {
           "name": "creationMethod",
           "type": "`$STRING`"
-        },
-        {
-          "name": "customFieldItems",
-          "short": "An array of objects containing the custom field ID, key and value, and ID of list type option.",
-          "type": "`$ARRAY`"
         },
         {
           "format": "date-time",

@@ -371,11 +371,7 @@ action = client.Action()
 | `idMemberCreator` | `str` | No |  |
 | `limits` | `dict` | No |  |
 | `memberCreator` | `dict` | No |  |
-| `native` | `str` | No | The emoji to add as a native unicode emoji. |
-| `shortName` | `str` | No | The primary `shortName` of the emoji to add. |
-| `skinVariation` | `str` | No | The `skinVariation` of the emoji to add. |
 | `type` | `str` | No |  |
-| `unified` | `str` | No | The `unified` value of the emoji to add. |
 
 ### Operations
 
@@ -821,7 +817,6 @@ board = client.Board()
 | `desc` | `str` | No |  |
 | `descData` | `str` | No |  |
 | `enterpriseOwned` | `bool` | No |  |
-| `fullName` | `str` | No | The full name of the user to as a member of the board. |
 | `id` | `str` | Yes |  |
 | `idMemberCreator` | `str` | No |  |
 | `idOrganization` | `str` | No |  |
@@ -1239,7 +1234,6 @@ card = client.Card()
 | `coordinates` | `str` | No |  |
 | `cover` | `dict` | No |  |
 | `creationMethod` | `str` | No |  |
-| `customFieldItems` | `list` | No | An array of objects containing the custom field ID, key and value, and ID of list type option. |
 | `dateLastActivity` | `str` | No |  |
 | `desc` | `str` | No |  |
 | `descData` | `dict` | No |  |

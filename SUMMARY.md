@@ -18,13 +18,6 @@ Results: Success.
 
 SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
-Key fields to recognise:
-
-- `native`: The emoji to add as a native unicode emoji.
-- `shortName`: The primary `shortName` of the emoji to add.
-- `skinVariation`: The `skinVariation` of the emoji to add.
-- `unified`: The `unified` value of the emoji to add.
-
 ### [ActionReactionsSummary](docs/api/action_reactions_summary.html)
 
 Results: Success.
@@ -73,7 +66,6 @@ SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
-- `fullName`: The full name of the user to as a member of the board.
 - `name`: The name of the board.
 
 ### [BoardBackground](docs/api/board_background.html)
@@ -105,10 +97,6 @@ SDK operations: `load`, `update`.
 Results: Success.
 
 SDK operations: `create`, `list`, `load`, `remove`, `update`.
-
-Key fields to recognise:
-
-- `customFieldItems`: An array of objects containing the custom field ID, key and value, and ID of list type option.
 
 ### [CardCheckItemState](docs/api/card_check_item_state.html)
 

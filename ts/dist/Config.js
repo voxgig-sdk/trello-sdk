@@ -182,6 +182,8 @@ class Config {
         base: "https://api.trello.com/1",
         auth: {
             prefix: '',
+            in: 'query',
+            name: 'key',
         },
         headers: {
             "content-type": "application/json"
@@ -292,27 +294,7 @@ class Config {
                     "type": "`$OBJECT`"
                 },
                 {
-                    "name": "native",
-                    "short": "The emoji to add as a native unicode emoji.",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "shortName",
-                    "short": "The primary `shortName` of the emoji to add.",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "skinVariation",
-                    "short": "The `skinVariation` of the emoji to add.",
-                    "type": "`$STRING`"
-                },
-                {
                     "name": "type",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "unified",
-                    "short": "The `unified` value of the emoji to add.",
                     "type": "`$STRING`"
                 }
             ],
@@ -1986,11 +1968,6 @@ class Config {
                 {
                     "name": "enterpriseOwned",
                     "type": "`$BOOLEAN`"
-                },
-                {
-                    "name": "fullName",
-                    "short": "The full name of the user to as a member of the board.",
-                    "type": "`$STRING`"
                 },
                 {
                     "name": "id",
@@ -4777,11 +4754,6 @@ class Config {
                 {
                     "name": "creationMethod",
                     "type": "`$STRING`"
-                },
-                {
-                    "name": "customFieldItems",
-                    "short": "An array of objects containing the custom field ID, key and value, and ID of list type option.",
-                    "type": "`$ARRAY`"
                 },
                 {
                     "format": "date-time",

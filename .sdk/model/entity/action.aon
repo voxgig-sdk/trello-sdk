@@ -42,32 +42,8 @@ main: kit: entity: action: {
       type: "`$OBJECT`"
     }
     {
-      name: "native"
-      req: false
-      short: "The emoji to add as a native unicode emoji."
-      type: "`$STRING`"
-    }
-    {
-      name: "shortName"
-      req: false
-      short: "The primary `shortName` of the emoji to add."
-      type: "`$STRING`"
-    }
-    {
-      name: "skinVariation"
-      req: false
-      short: "The `skinVariation` of the emoji to add."
-      type: "`$STRING`"
-    }
-    {
       name: "type"
       req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "unified"
-      req: false
-      short: "The `unified` value of the emoji to add."
       type: "`$STRING`"
     }
   ]

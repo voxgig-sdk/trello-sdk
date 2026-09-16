@@ -172,36 +172,8 @@
             },
             {
               "active": true,
-              "name": "native",
-              "req": false,
-              "short": "The emoji to add as a native unicode emoji.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "shortName",
-              "req": false,
-              "short": "The primary `shortName` of the emoji to add.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "skinVariation",
-              "req": false,
-              "short": "The `skinVariation` of the emoji to add.",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "name": "type",
               "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "unified",
-              "req": false,
-              "short": "The `unified` value of the emoji to add.",
               "type": "`$STRING`"
             }
           ],
@@ -2058,13 +2030,6 @@
               "name": "enterpriseOwned",
               "req": false,
               "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
-              "name": "fullName",
-              "req": false,
-              "short": "The full name of the user to as a member of the board.",
-              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -5192,13 +5157,6 @@
               "name": "creationMethod",
               "req": false,
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "customFieldItems",
-              "req": false,
-              "short": "An array of objects containing the custom field ID, key and value, and ID of list type option.",
-              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -27285,6 +27243,8 @@
         "apikey": "",
         "auth": {
           "basic": false,
+          "in": "",
+          "name": "",
           "prefix": ""
         },
         "base": "http://localhost:8000",

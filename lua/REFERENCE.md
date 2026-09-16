@@ -374,11 +374,7 @@ local action = client:Action(nil)
 | `idMemberCreator` | `string` | No |  |
 | `limits` | `table` | No |  |
 | `memberCreator` | `table` | No |  |
-| `native` | `string` | No | The emoji to add as a native unicode emoji. |
-| `shortName` | `string` | No | The primary `shortName` of the emoji to add. |
-| `skinVariation` | `string` | No | The `skinVariation` of the emoji to add. |
 | `type` | `string` | No |  |
-| `unified` | `string` | No | The `unified` value of the emoji to add. |
 
 ### Operations
 
@@ -828,7 +824,6 @@ local board = client:Board(nil)
 | `desc` | `string` | No |  |
 | `descData` | `string` | No |  |
 | `enterpriseOwned` | `boolean` | No |  |
-| `fullName` | `string` | No | The full name of the user to as a member of the board. |
 | `id` | `string` | Yes |  |
 | `idMemberCreator` | `string` | No |  |
 | `idOrganization` | `string` | No |  |
@@ -1245,7 +1240,6 @@ local card = client:Card(nil)
 | `coordinates` | `string` | No |  |
 | `cover` | `table` | No |  |
 | `creationMethod` | `string` | No |  |
-| `customFieldItems` | `table` | No | An array of objects containing the custom field ID, key and value, and ID of list type option. |
 | `dateLastActivity` | `string` | No |  |
 | `desc` | `string` | No |  |
 | `descData` | `table` | No |  |

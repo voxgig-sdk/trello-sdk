@@ -21,11 +21,7 @@ type Action struct {
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
 	Limits *map[string]any `json:"limits,omitempty"`
 	MemberCreator *map[string]any `json:"memberCreator,omitempty"`
-	Native *string `json:"native,omitempty"`
-	ShortName *string `json:"shortName,omitempty"`
-	SkinVariation *string `json:"skinVariation,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Unified *string `json:"unified,omitempty"`
 }
 
 // ActionLoadMatch is the typed request payload for Action.LoadTyped.
@@ -57,11 +53,7 @@ type ActionCreateData struct {
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
 	Limits *map[string]any `json:"limits,omitempty"`
 	MemberCreator *map[string]any `json:"memberCreator,omitempty"`
-	Native *string `json:"native,omitempty"`
-	ShortName *string `json:"shortName,omitempty"`
-	SkinVariation *string `json:"skinVariation,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Unified *string `json:"unified,omitempty"`
 }
 
 // ActionUpdateData is the typed request payload for Action.UpdateTyped.
@@ -74,11 +66,7 @@ type ActionUpdateData struct {
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
 	Limits *map[string]any `json:"limits,omitempty"`
 	MemberCreator *map[string]any `json:"memberCreator,omitempty"`
-	Native *string `json:"native,omitempty"`
-	ShortName *string `json:"shortName,omitempty"`
-	SkinVariation *string `json:"skinVariation,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Unified *string `json:"unified,omitempty"`
 }
 
 // ActionRemoveMatch is the typed request payload for Action.RemoveTyped.
@@ -178,7 +166,6 @@ type Board struct {
 	Desc *string `json:"desc,omitempty"`
 	DescData *string `json:"descData,omitempty"`
 	EnterpriseOwned *bool `json:"enterpriseOwned,omitempty"`
-	FullName *string `json:"fullName,omitempty"`
 	Id string `json:"id"`
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
 	IdOrganization *string `json:"idOrganization,omitempty"`
@@ -255,7 +242,6 @@ type BoardCreateData struct {
 	DatePluginDisable *string `json:"datePluginDisable,omitempty"`
 	DescData *string `json:"descData,omitempty"`
 	EnterpriseOwned *bool `json:"enterpriseOwned,omitempty"`
-	FullName *string `json:"fullName,omitempty"`
 	Id string `json:"id"`
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
 	IdOrganization2 *string `json:"idOrganization,omitempty"`
@@ -299,7 +285,6 @@ type BoardUpdateData struct {
 	DatePluginDisable *string `json:"datePluginDisable,omitempty"`
 	DescData *string `json:"descData,omitempty"`
 	EnterpriseOwned *bool `json:"enterpriseOwned,omitempty"`
-	FullName *string `json:"fullName,omitempty"`
 	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
 	IdOrganization2 *string `json:"idOrganization,omitempty"`
 	IdTags *string `json:"idTags,omitempty"`
@@ -443,7 +428,6 @@ type Card struct {
 	Coordinates *string `json:"coordinates,omitempty"`
 	Cover *map[string]any `json:"cover,omitempty"`
 	CreationMethod *string `json:"creationMethod,omitempty"`
-	CustomFieldItems *[]any `json:"customFieldItems,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
 	Desc *string `json:"desc,omitempty"`
 	DescData *map[string]any `json:"descData,omitempty"`
@@ -527,7 +511,6 @@ type CardCreateData struct {
 	Coordinates *string `json:"coordinates,omitempty"`
 	Cover *map[string]any `json:"cover,omitempty"`
 	CreationMethod *string `json:"creationMethod,omitempty"`
-	CustomFieldItems *[]any `json:"customFieldItems,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
 	DescData *map[string]any `json:"descData,omitempty"`
 	DueReminder *string `json:"dueReminder,omitempty"`
@@ -576,7 +559,6 @@ type CardUpdateData struct {
 	CheckItemStates *[]any `json:"checkItemStates,omitempty"`
 	Coordinates *string `json:"coordinates,omitempty"`
 	CreationMethod *string `json:"creationMethod,omitempty"`
-	CustomFieldItems *[]any `json:"customFieldItems,omitempty"`
 	DateLastActivity *string `json:"dateLastActivity,omitempty"`
 	DescData *map[string]any `json:"descData,omitempty"`
 	DueReminder *string `json:"dueReminder,omitempty"`

@@ -151,6 +151,8 @@ func MakeConfig() map[string]any {
 			"base": "https://api.trello.com/1",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "query",
+				"name": "key",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",
@@ -261,27 +263,7 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"name": "native",
-						"short": "The emoji to add as a native unicode emoji.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "shortName",
-						"short": "The primary `shortName` of the emoji to add.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "skinVariation",
-						"short": "The `skinVariation` of the emoji to add.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "type",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "unified",
-						"short": "The `unified` value of the emoji to add.",
 						"type": "`$STRING`",
 					},
 				},
@@ -1955,11 +1937,6 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "enterpriseOwned",
 						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"name": "fullName",
-						"short": "The full name of the user to as a member of the board.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
@@ -4746,11 +4723,6 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "creationMethod",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "customFieldItems",
-						"short": "An array of objects containing the custom field ID, key and value, and ID of list type option.",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"format": "date-time",

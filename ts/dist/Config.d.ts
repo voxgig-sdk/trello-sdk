@@ -120,6 +120,8 @@ declare class Config {
         base: string;
         auth: {
             prefix: string;
+            in: string;
+            name: string;
         };
         headers: {
             "content-type": string;
@@ -203,17 +205,10 @@ declare class Config {
                 name: string;
                 type: string;
                 format?: undefined;
-                short?: undefined;
             } | {
                 format: string;
                 name: string;
                 type: string;
-                short?: undefined;
-            } | {
-                name: string;
-                short: string;
-                type: string;
-                format?: undefined;
             })[];
             id: {
                 field: string;
@@ -1253,26 +1248,26 @@ declare class Config {
                 name: string;
                 type: string;
                 format?: undefined;
-                short?: undefined;
                 req?: undefined;
+                short?: undefined;
             } | {
                 format: string;
                 name: string;
                 type: string;
+                req?: undefined;
                 short?: undefined;
-                req?: undefined;
-            } | {
-                name: string;
-                short: string;
-                type: string;
-                format?: undefined;
-                req?: undefined;
             } | {
                 name: string;
                 req: boolean;
                 type: string;
                 format?: undefined;
                 short?: undefined;
+            } | {
+                name: string;
+                short: string;
+                type: string;
+                format?: undefined;
+                req?: undefined;
             })[];
             id: {
                 field: string;
@@ -2632,20 +2627,12 @@ declare class Config {
             fields: ({
                 name: string;
                 type: string;
-                short?: undefined;
-                format?: undefined;
-                union?: undefined;
-            } | {
-                name: string;
-                short: string;
-                type: string;
                 format?: undefined;
                 union?: undefined;
             } | {
                 format: string;
                 name: string;
                 type: string;
-                short?: undefined;
                 union?: undefined;
             } | {
                 name: string;
@@ -2655,7 +2642,6 @@ declare class Config {
                     count: number;
                     depth: number;
                 };
-                short?: undefined;
                 format?: undefined;
             })[];
             id: {

@@ -22,11 +22,7 @@ class Action
     public ?string $idMemberCreator = null;
     public ?array $limits = null;
     public ?array $memberCreator = null;
-    public ?string $native = null;
-    public ?string $shortName = null;
-    public ?string $skinVariation = null;
     public ?string $type = null;
-    public ?string $unified = null;
 }
 
 /** Request payload for Action#load. */
@@ -61,11 +57,7 @@ class ActionCreateData
     public ?string $idMemberCreator = null;
     public ?array $limits = null;
     public ?array $memberCreator = null;
-    public ?string $native = null;
-    public ?string $shortName = null;
-    public ?string $skinVariation = null;
     public ?string $type = null;
-    public ?string $unified = null;
 }
 
 /** Request payload for Action#update. */
@@ -79,11 +71,7 @@ class ActionUpdateData
     public ?string $idMemberCreator = null;
     public ?array $limits = null;
     public ?array $memberCreator = null;
-    public ?string $native = null;
-    public ?string $shortName = null;
-    public ?string $skinVariation = null;
     public ?string $type = null;
-    public ?string $unified = null;
 }
 
 /** Request payload for Action#remove. */
@@ -201,7 +189,6 @@ class Board
     public ?string $desc = null;
     public ?string $descData = null;
     public ?bool $enterpriseOwned = null;
-    public ?string $fullName = null;
     public string $id;
     public ?string $idMemberCreator = null;
     public ?string $idOrganization = null;
@@ -281,7 +268,6 @@ class BoardCreateData
     public ?string $datePluginDisable = null;
     public ?string $descData = null;
     public ?bool $enterpriseOwned = null;
-    public ?string $fullName = null;
     public string $id;
     public ?string $idMemberCreator = null;
     public ?string $idOrganization = null;
@@ -316,7 +302,6 @@ class BoardUpdateData
     public ?string $datePluginDisable = null;
     public ?string $descData = null;
     public ?bool $enterpriseOwned = null;
-    public ?string $fullName = null;
     public ?string $idMemberCreator = null;
     public ?string $idOrganization = null;
     public ?string $idTags = null;
@@ -479,7 +464,6 @@ class Card
     public ?string $coordinates = null;
     public ?array $cover = null;
     public ?string $creationMethod = null;
-    public ?array $customFieldItems = null;
     public ?string $dateLastActivity = null;
     public ?string $desc = null;
     public ?array $descData = null;
@@ -566,7 +550,6 @@ class CardCreateData
     public ?string $coordinates = null;
     public ?array $cover = null;
     public ?string $creationMethod = null;
-    public ?array $customFieldItems = null;
     public ?string $dateLastActivity = null;
     public ?array $descData = null;
     public ?string $dueReminder = null;
@@ -616,7 +599,6 @@ class CardUpdateData
     public ?array $checkItemStates = null;
     public ?string $coordinates = null;
     public ?string $creationMethod = null;
-    public ?array $customFieldItems = null;
     public ?string $dateLastActivity = null;
     public ?array $descData = null;
     public ?string $dueReminder = null;

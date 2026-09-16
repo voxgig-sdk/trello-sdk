@@ -24,11 +24,7 @@ class Action(TypedDict, total=False):
     idMemberCreator: str
     limits: dict
     memberCreator: dict
-    native: str
-    shortName: str
-    skinVariation: str
     type: str
-    unified: str
 
 
 class ActionLoadMatchRequired(TypedDict):
@@ -66,11 +62,7 @@ class ActionCreateData(ActionCreateDataRequired, total=False):
     idMemberCreator: str
     limits: dict
     memberCreator: dict
-    native: str
-    shortName: str
-    skinVariation: str
     type: str
-    unified: str
 
 
 class ActionUpdateDataRequired(TypedDict):
@@ -85,11 +77,7 @@ class ActionUpdateData(ActionUpdateDataRequired, total=False):
     idMemberCreator: str
     limits: dict
     memberCreator: dict
-    native: str
-    shortName: str
-    skinVariation: str
     type: str
-    unified: str
 
 
 class ActionRemoveMatch(TypedDict):
@@ -186,7 +174,6 @@ class Board(BoardRequired, total=False):
     desc: str
     descData: str
     enterpriseOwned: bool
-    fullName: str
     idMemberCreator: str
     idOrganization: str
     idTags: str
@@ -269,7 +256,6 @@ class BoardCreateData(BoardCreateDataRequired, total=False):
     datePluginDisable: str
     descData: str
     enterpriseOwned: bool
-    fullName: str
     idMemberCreator: str
     idOrganization: str
     idTags: str
@@ -304,7 +290,6 @@ class BoardUpdateData(BoardUpdateDataRequired, total=False):
     datePluginDisable: str
     descData: str
     enterpriseOwned: bool
-    fullName: str
     idMemberCreator: str
     idOrganization: str
     idTags: str
@@ -453,7 +438,6 @@ class Card(TypedDict, total=False):
     coordinates: str
     cover: dict
     creationMethod: str
-    customFieldItems: list
     dateLastActivity: str
     desc: str
     descData: dict
@@ -543,7 +527,6 @@ class CardCreateData(CardCreateDataRequired, total=False):
     coordinates: str
     cover: dict
     creationMethod: str
-    customFieldItems: list
     dateLastActivity: str
     descData: dict
     dueReminder: str
@@ -594,7 +577,6 @@ class CardUpdateData(CardUpdateDataRequired, total=False):
     checkItemStates: list
     coordinates: str
     creationMethod: str
-    customFieldItems: list
     dateLastActivity: str
     descData: dict
     dueReminder: str

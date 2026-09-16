@@ -13,11 +13,7 @@ export interface Action {
   idMemberCreator?: string
   limits?: Record<string, any>
   memberCreator?: Record<string, any>
-  native?: string
-  shortName?: string
-  skinVariation?: string
   type?: string
-  unified?: string
 }
 
 export interface ActionLoadMatch {
@@ -46,11 +42,7 @@ export interface ActionCreateData {
   idMemberCreator?: string
   limits?: Record<string, any>
   memberCreator?: Record<string, any>
-  native?: string
-  shortName?: string
-  skinVariation?: string
   type?: string
-  unified?: string
 
   // Selects a custom action instead of the plain create:
   //   'comment' | 'reaction'
@@ -68,11 +60,7 @@ export interface ActionUpdateData {
   idMemberCreator?: string
   limits?: Record<string, any>
   memberCreator?: Record<string, any>
-  native?: string
-  shortName?: string
-  skinVariation?: string
   type?: string
-  unified?: string
 
   // Selects a custom action instead of the plain update:
   //   'comment' | 'text'
@@ -166,7 +154,6 @@ export interface Board {
   desc?: string
   descData?: string
   enterpriseOwned?: boolean
-  fullName?: string
   id: string
   idMemberCreator?: string
   idOrganization?: string
@@ -240,7 +227,6 @@ export interface BoardCreateData {
   datePluginDisable?: string
   descData?: string
   enterpriseOwned?: boolean
-  fullName?: string
   id: string
   idMemberCreator?: string
   idOrganization?: string
@@ -289,7 +275,6 @@ export interface BoardUpdateData {
   datePluginDisable?: string
   descData?: string
   enterpriseOwned?: boolean
-  fullName?: string
   idMemberCreator?: string
   idOrganization?: string
   idTags?: string
@@ -420,7 +405,6 @@ export interface Card {
   coordinates?: string
   cover?: Record<string, any>
   creationMethod?: string
-  customFieldItems?: any[]
   dateLastActivity?: string
   desc?: string
   descData?: Record<string, any>
@@ -501,7 +485,6 @@ export interface CardCreateData {
   coordinates?: string
   cover?: Record<string, any>
   creationMethod?: string
-  customFieldItems?: any[]
   dateLastActivity?: string
   descData?: Record<string, any>
   dueReminder?: string
@@ -555,7 +538,6 @@ export interface CardUpdateData {
   checkItemStates?: any[]
   coordinates?: string
   creationMethod?: string
-  customFieldItems?: any[]
   dateLastActivity?: string
   descData?: Record<string, any>
   dueReminder?: string

@@ -382,11 +382,7 @@ fmt.Println(action.GetName()) // "action"
 | `idMemberCreator` | `string` | No |  |
 | `limits` | `map[string]any` | No |  |
 | `memberCreator` | `map[string]any` | No |  |
-| `native` | `string` | No | The emoji to add as a native unicode emoji. |
-| `shortName` | `string` | No | The primary `shortName` of the emoji to add. |
-| `skinVariation` | `string` | No | The `skinVariation` of the emoji to add. |
 | `type` | `string` | No |  |
-| `unified` | `string` | No | The `unified` value of the emoji to add. |
 
 ### Operations
 
@@ -852,7 +848,6 @@ fmt.Println(board.GetName()) // "board"
 | `desc` | `string` | No |  |
 | `descData` | `string` | No |  |
 | `enterpriseOwned` | `bool` | No |  |
-| `fullName` | `string` | No | The full name of the user to as a member of the board. |
 | `id` | `string` | Yes |  |
 | `idMemberCreator` | `string` | No |  |
 | `idOrganization` | `string` | No |  |
@@ -1316,7 +1311,6 @@ fmt.Println(card.GetName()) // "card"
 | `coordinates` | `string` | No |  |
 | `cover` | `map[string]any` | No |  |
 | `creationMethod` | `string` | No |  |
-| `customFieldItems` | `[]any` | No | An array of objects containing the custom field ID, key and value, and ID of list type option. |
 | `dateLastActivity` | `string` | No |  |
 | `desc` | `string` | No |  |
 | `descData` | `map[string]any` | No |  |

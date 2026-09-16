@@ -14,11 +14,7 @@
 ---@field idMemberCreator? string
 ---@field limits? table
 ---@field memberCreator? table
----@field native? string
----@field shortName? string
----@field skinVariation? string
 ---@field type? string
----@field unified? string
 
 ---@class ActionLoadMatch
 ---@field id string
@@ -44,11 +40,7 @@
 ---@field idMemberCreator? string
 ---@field limits? table
 ---@field memberCreator? table
----@field native? string
----@field shortName? string
----@field skinVariation? string
 ---@field type? string
----@field unified? string
 
 ---@class ActionUpdateData
 ---@field id string
@@ -59,11 +51,7 @@
 ---@field idMemberCreator? string
 ---@field limits? table
 ---@field memberCreator? table
----@field native? string
----@field shortName? string
----@field skinVariation? string
 ---@field type? string
----@field unified? string
 
 ---@class ActionRemoveMatch
 ---@field id string
@@ -127,7 +115,6 @@
 ---@field desc? string
 ---@field descData? string
 ---@field enterpriseOwned? boolean
----@field fullName? string
 ---@field id string
 ---@field idMemberCreator? string
 ---@field idOrganization? string
@@ -198,7 +185,6 @@
 ---@field datePluginDisable? string
 ---@field descData? string
 ---@field enterpriseOwned? boolean
----@field fullName? string
 ---@field id string
 ---@field idMemberCreator? string
 ---@field idOrganization? string
@@ -240,7 +226,6 @@
 ---@field datePluginDisable? string
 ---@field descData? string
 ---@field enterpriseOwned? boolean
----@field fullName? string
 ---@field idMemberCreator? string
 ---@field idOrganization? string
 ---@field idTags? string
@@ -346,7 +331,6 @@
 ---@field coordinates? string
 ---@field cover? table
 ---@field creationMethod? string
----@field customFieldItems? table
 ---@field dateLastActivity? string
 ---@field desc? string
 ---@field descData? table
@@ -424,7 +408,6 @@
 ---@field coordinates? string
 ---@field cover? table
 ---@field creationMethod? string
----@field customFieldItems? table
 ---@field dateLastActivity? string
 ---@field descData? table
 ---@field dueReminder? string
@@ -471,7 +454,6 @@
 ---@field checkItemStates? table
 ---@field coordinates? string
 ---@field creationMethod? string
----@field customFieldItems? table
 ---@field dateLastActivity? string
 ---@field descData? table
 ---@field dueReminder? string

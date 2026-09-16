@@ -15,11 +15,7 @@
  * @property {string} [idMemberCreator]
  * @property {Object} [limits]
  * @property {Object} [memberCreator]
- * @property {string} [native]
- * @property {string} [shortName]
- * @property {string} [skinVariation]
  * @property {string} [type]
- * @property {string} [unified]
  */
 
 /**
@@ -51,11 +47,7 @@
  * @property {string} [idMemberCreator]
  * @property {Object} [limits]
  * @property {Object} [memberCreator]
- * @property {string} [native]
- * @property {string} [shortName]
- * @property {string} [skinVariation]
  * @property {string} [type]
- * @property {string} [unified]
  */
 
 /**
@@ -68,11 +60,7 @@
  * @property {string} [idMemberCreator]
  * @property {Object} [limits]
  * @property {Object} [memberCreator]
- * @property {string} [native]
- * @property {string} [shortName]
- * @property {string} [skinVariation]
  * @property {string} [type]
- * @property {string} [unified]
  */
 
 /**
@@ -172,7 +160,6 @@
  * @property {string} [desc]
  * @property {string} [descData]
  * @property {boolean} [enterpriseOwned]
- * @property {string} [fullName]
  * @property {string} id
  * @property {string} [idMemberCreator]
  * @property {string} [idOrganization]
@@ -249,7 +236,6 @@
  * @property {string} [datePluginDisable]
  * @property {string} [descData]
  * @property {boolean} [enterpriseOwned]
- * @property {string} [fullName]
  * @property {string} id
  * @property {string} [idMemberCreator]
  * @property {string} [idOrganization]
@@ -293,7 +279,6 @@
  * @property {string} [datePluginDisable]
  * @property {string} [descData]
  * @property {boolean} [enterpriseOwned]
- * @property {string} [fullName]
  * @property {string} [idMemberCreator]
  * @property {string} [idOrganization]
  * @property {string} [idTags]
@@ -437,7 +422,6 @@
  * @property {string} [coordinates]
  * @property {Object} [cover]
  * @property {string} [creationMethod]
- * @property {Array} [customFieldItems]
  * @property {string} [dateLastActivity]
  * @property {string} [desc]
  * @property {Object} [descData]
@@ -521,7 +505,6 @@
  * @property {string} [coordinates]
  * @property {Object} [cover]
  * @property {string} [creationMethod]
- * @property {Array} [customFieldItems]
  * @property {string} [dateLastActivity]
  * @property {Object} [descData]
  * @property {string} [dueReminder]
@@ -570,7 +553,6 @@
  * @property {Array} [checkItemStates]
  * @property {string} [coordinates]
  * @property {string} [creationMethod]
- * @property {Array} [customFieldItems]
  * @property {string} [dateLastActivity]
  * @property {Object} [descData]
  * @property {string} [dueReminder]
