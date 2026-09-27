@@ -1,0 +1,167 @@
+# Entity: claimable_organization
+
+main: kit: entity: claimable_organization: {
+
+  alias: field: {}
+
+  fields: {
+    activeMembershipCount: {
+      h: "Active Membership Count"
+      n: "activeMembershipCount"
+      r: false
+      t: "`$NUMBER`"
+    }
+    dateLastActive: {
+      fo: "date"
+      h: "Date Last Active"
+      n: "dateLastActive"
+      r: false
+      sh: "The date of the most recent activity on any of the boards in the workspace."
+      t: "`$STRING`"
+    }
+    displayName: {
+      h: "Display Name"
+      n: "displayName"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idActiveAdmins: {
+      h: "Id Active Admins"
+      n: "idActiveAdmins"
+      r: false
+      t: "`$ARRAY`"
+    }
+    logoUrl: {
+      h: "Logo Url"
+      n: "logoUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    products: {
+      h: "Products"
+      n: "products"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "claimable_organization"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /enterprises/{id}/claimableOrganizations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "active_since"
+                or: "active_since"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "inactive_since"
+                or: "inactive_since"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/claimableOrganizations"
+          q: {
+            exist: [
+              "active_since"
+              "cursor"
+              "enterprise_id"
+              "inactive_since"
+              "limit"
+              "name"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "claimableOrganizations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.organizations`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.enterprise")]
+  ]
+
+}

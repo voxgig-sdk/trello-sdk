@@ -23,12 +23,12 @@ class TestEnterpriseAdminDirect:
         params = {}
         query = {}
         if setup["live"]:
-            params["enterpris_id"] = "5abbe4b7ddc1b351ef961414"
+            params["id"] = "5abbe4b7ddc1b351ef961414"
         else:
-            params["enterpris_id"] = "direct01"
+            params["id"] = "direct01"
 
         result = client.direct({
-            "path": "enterprises/{enterpris_id}/admins",
+            "path": "enterprises/{id}/admins",
             "method": "GET",
             "params": params,
             "query": query,

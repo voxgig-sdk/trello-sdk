@@ -1,0 +1,115 @@
+# BasicCardFlow
+
+main: kit: flow: BasicCardFlow:
+{
+  entity: "card",
+  kind: "basic",
+  name: "BasicCardFlow",
+  step: [
+    {
+      i: {
+        ref: "card_ref01"
+      }
+
+      m: {
+        action_id: "action01",
+        board_id: "board01",
+        list_id: "list01",
+        member_id: "member01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        list_id: "list01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "card_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "card_ref01",
+        srcdatavar: "card_ref01_data",
+        suffix: "_up0",
+        textfield: "address"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-card_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "card_ref01",
+        srcdatavar: "card_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "card01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-card_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "card_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "card01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        list_id: "list01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "card_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCardFlow"
+}

@@ -98,7 +98,7 @@ func application_complianceBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"application_compliance01", "application_compliance02", "application_compliance03", "application01", "application02", "application03"},
+		[]any{"application_compliance01", "application_compliance02", "application_compliance03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

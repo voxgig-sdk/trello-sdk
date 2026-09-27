@@ -110,7 +110,7 @@ func TestPendingOrganizationEntity(t *testing.T) {
 		// LIST
 		pendingOrganizationRef01Ent := client.PendingOrganization(nil)
 		pendingOrganizationRef01Match := map[string]any{
-			"enterpris_id": setup.idmap["enterpris01"],
+			"enterprise_id": setup.idmap["enterprise01"],
 		}
 
 		pendingOrganizationRef01ListResult, err := pendingOrganizationRef01Ent.List(pendingOrganizationRef01Match, nil)
@@ -150,7 +150,7 @@ func pending_organizationBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"pending_organization01", "pending_organization02", "pending_organization03", "enterpris01", "enterpris02", "enterpris03"},
+		[]any{"pending_organization01", "pending_organization02", "pending_organization03", "enterprise01", "enterprise02", "enterprise03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

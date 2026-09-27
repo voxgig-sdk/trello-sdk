@@ -1,0 +1,111 @@
+# Entity: enterprise_audit_log
+
+main: kit: entity: enterprise_audit_log: {
+
+  alias: field: {}
+
+  fields: {
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idAction: {
+      h: "Id Action"
+      n: "idAction"
+      r: false
+      t: "`$STRING`"
+    }
+    member: {
+      h: "Member"
+      n: "member"
+      r: false
+      t: "`$OBJECT`"
+    }
+    memberCreator: {
+      h: "Member Creator"
+      n: "memberCreator"
+      r: false
+      t: "`$OBJECT`"
+    }
+    organization: {
+      h: "Organization"
+      n: "organization"
+      r: false
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "enterprise_audit_log"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /enterprises/{id}/auditlog"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/auditlog"
+          q: {
+            "$action": "auditlog"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "auditlog"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

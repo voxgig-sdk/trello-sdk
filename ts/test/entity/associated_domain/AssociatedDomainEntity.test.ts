@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('AssociatedDomainEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"associated_domain","op":{"remove":{"input":"data","name":"remove","points":[{"active":true,"args":{"params":[{"active":true,"example":"5abbe4b7ddc1b351ef961414","kind":"param","name":"organization_id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"DELETE /organizations/{id}/prefs/associatedDomain","json":"{\"operationId\":\"delete-organizations-id-prefs-associateddomain\",\"parameters\":[{\"description\":\"The ID or name of the organization\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"5abbe4b7ddc1b351ef961414\",\"pattern\":\"^[0-9a-fA-F]{24}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"DELETE","orig":"/organizations/{id}/prefs/associatedDomain","rename":{"param":{"id":"organization_id"}},"segments":[{"lit":"organizations"},{"var":"organization_id"},{"lit":"prefs"},{"lit":"associatedDomain"}],"select":{"exist":["organization_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"remove"}},"relations":{"ancestors":[["organization"]]},"key$":"associated_domain","name__orig":"associated_domain","Name":"AssociatedDomain","name_":"associated_domain","name-":"associated-domain","NAME":"ASSOCIATED_DOMAIN","index$":5}, {"active":true,"entity":"associated_domain","key$":"BasicAssociatedDomainFlow","kind":"basic","name":"BasicAssociatedDomainFlow","param":{},"step":[]}, 'AssociatedDomain')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"associated_domain","op":{"remove":{"input":"data","name":"remove","points":[{"a":true,"co":{"id":"DELETE /organizations/{id}/prefs/associatedDomain","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"5abbe4b7ddc1b351ef961414","k":"param","n":"organization_id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"DELETE","o":"/organizations/{id}/prefs/associatedDomain","q":{"exist":["organization_id"]},"r":{"param":{"id":"organization_id"}},"s":[{"lit":"organizations"},{"var":"organization_id"},{"lit":"prefs"},{"lit":"associatedDomain"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"remove"}},"relations":{"ancestors":[["$.main.kit.entity.organization"]]},"key$":"associated_domain","name__orig":"associated_domain","Name":"AssociatedDomain","name_":"associated_domain","name-":"associated-domain","NAME":"ASSOCIATED_DOMAIN","index$":4}, {"active":true,"entity":"associated_domain","key$":"BasicAssociatedDomainFlow","kind":"basic","name":"BasicAssociatedDomainFlow","param":{},"step":[]}, 'AssociatedDomain', {"DELETE /organizations/{id}/prefs/associatedDomain":{"protocol":"http","parameters":[{"name":"id","in":"path","description":"The ID or name of the organization","required":true,"schema":{"type":"string","pattern":"^[0-9a-fA-F]{24}$","example":"5abbe4b7ddc1b351ef961414","x-ref":"#/components/schemas/TrelloID"},"index$":0}]}})
     }
     const client = setup.client
     const struct = setup.struct

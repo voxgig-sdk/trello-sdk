@@ -1,0 +1,122 @@
+# Entity: plugin_data
+
+main: kit: entity: plugin_data: {
+
+  alias: field: {}
+
+  name: "plugin_data"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /organizations/{id}/pluginData"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/organizations/{id}/pluginData"
+          q: {
+            exist: [
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "pluginData"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cards/{id}/pluginData"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "card_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/{id}/pluginData"
+          q: {
+            exist: [
+              "card_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "card_id"
+            }
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "pluginData"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.card")]
+    [path("$.main.kit.entity.organization")]
+  ]
+
+}

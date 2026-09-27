@@ -41,13 +41,13 @@ describe('PendingOrganizationDirect', async () => {
 
     const params = {}
     if (setup.live) {
-      params.enterpris_id = setup.idmap['enterpris01']
+      params.enterprise_id = setup.idmap['enterprise01']
     } else {
-      params.enterpris_id = 'direct01'
+      params.enterprise_id = 'direct01'
     }
 
     const result = await client.direct({
-      path: 'enterprises/{enterpris_id}/pendingOrganizations',
+      path: 'enterprises/{enterprise_id}/pendingOrganizations',
       method: 'GET',
       params,
     })

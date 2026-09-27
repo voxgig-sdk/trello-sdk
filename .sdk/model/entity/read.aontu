@@ -1,0 +1,70 @@
+# Entity: read
+
+main: kit: entity: read: {
+
+  alias: field: {}
+
+  name: "read"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /notifications/all/read"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "ids"
+                or: "ids"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "read"
+                or: "read"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/notifications/all/read"
+          q: {
+            exist: [
+              "ids"
+              "read"
+            ]
+          }
+          s: [
+            {
+              lit: "notifications"
+            }
+            {
+              lit: "all"
+            }
+            {
+              lit: "read"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

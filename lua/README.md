@@ -45,7 +45,7 @@ local actions, err = client:Action():list()
 if err then error(err) end
 
 for _, item in ipairs(actions) do
-  print(item["id"], item["date"])
+  print(item["id"])
 end
 ```
 
@@ -222,7 +222,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Action` | `(data) -> ActionEntity` | Create an Action entity instance. |
 | `ActionReactionsSummary` | `(data) -> ActionReactionsSummaryEntity` | Create an ActionReactionsSummary entity instance. |
 | `Admin` | `(data) -> AdminEntity` | Create an Admin entity instance. |
-| `Application` | `(data) -> ApplicationEntity` | Create an Application entity instance. |
 | `ApplicationCompliance` | `(data) -> ApplicationComplianceEntity` | Create an ApplicationCompliance entity instance. |
 | `AssociatedDomain` | `(data) -> AssociatedDomainEntity` | Create an AssociatedDomain entity instance. |
 | `Attachment` | `(data) -> AttachmentEntity` | Create an Attachment entity instance. |
@@ -245,10 +244,10 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `CustomSticker` | `(data) -> CustomStickerEntity` | Create a CustomSticker entity instance. |
 | `EmailPosition` | `(data) -> EmailPositionEntity` | Create an EmailPosition entity instance. |
 | `Emoji` | `(data) -> EmojiEntity` | Create an Emoji entity instance. |
-| `Enterpris` | `(data) -> EnterprisEntity` | Create an Enterpris entity instance. |
-| `EnterprisSignupUrl` | `(data) -> EnterprisSignupUrlEntity` | Create an EnterprisSignupUrl entity instance. |
+| `Enterprise` | `(data) -> EnterpriseEntity` | Create an Enterprise entity instance. |
 | `EnterpriseAdmin` | `(data) -> EnterpriseAdminEntity` | Create an EnterpriseAdmin entity instance. |
 | `EnterpriseAuditLog` | `(data) -> EnterpriseAuditLogEntity` | Create an EnterpriseAuditLog entity instance. |
+| `EnterpriseSignupUrl` | `(data) -> EnterpriseSignupUrlEntity` | Create an EnterpriseSignupUrl entity instance. |
 | `Export` | `(data) -> ExportEntity` | Create an Export entity instance. |
 | `ExportDownload` | `(data) -> ExportDownloadEntity` | Create an ExportDownload entity instance. |
 | `Generate` | `(data) -> GenerateEntity` | Create a Generate entity instance. |
@@ -261,13 +260,11 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `MemberPrivacy` | `(data) -> MemberPrivacyEntity` | Create a MemberPrivacy entity instance. |
 | `MembersVoted` | `(data) -> MembersVotedEntity` | Create a MembersVoted entity instance. |
 | `Membership` | `(data) -> MembershipEntity` | Create a Membership entity instance. |
-| `MostRecent` | `(data) -> MostRecentEntity` | Create a MostRecent entity instance. |
 | `NewBillableGuest` | `(data) -> NewBillableGuestEntity` | Create a NewBillableGuest entity instance. |
 | `Notification` | `(data) -> NotificationEntity` | Create a Notification entity instance. |
 | `NotificationChannelSetting` | `(data) -> NotificationChannelSettingEntity` | Create a NotificationChannelSetting entity instance. |
 | `NotificationList` | `(data) -> NotificationListEntity` | Create a NotificationList entity instance. |
 | `NotificationMemberCreator` | `(data) -> NotificationMemberCreatorEntity` | Create a NotificationMemberCreator entity instance. |
-| `NotificationsChannelSetting` | `(data) -> NotificationsChannelSettingEntity` | Create a NotificationsChannelSetting entity instance. |
 | `Option` | `(data) -> OptionEntity` | Create an Option entity instance. |
 | `OrgInviteRestrict` | `(data) -> OrgInviteRestrictEntity` | Create an OrgInviteRestrict entity instance. |
 | `Organization` | `(data) -> OrganizationEntity` | Create an Organization entity instance. |
@@ -364,15 +361,6 @@ API path: `/actions/{idAction}/reactionsSummary`
 Operations: Remove, Update.
 
 API path: `/enterprises/{id}/admins/{idMember}`
-
-#### Application
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### ApplicationCompliance
 
@@ -691,7 +679,7 @@ Operations: List.
 
 API path: `/emoji`
 
-#### Enterpris
+#### Enterprise
 
 | Field | Description |
 | --- | --- |
@@ -718,17 +706,6 @@ Operations: Create, Load, Update.
 
 API path: `/enterprises/{id}/tokens`
 
-#### EnterprisSignupUrl
-
-| Field | Description |
-| --- | --- |
-| `id` |  |
-| `signupUrl` |  |
-
-Operations: Load.
-
-API path: `/enterprises/{id}/signupUrl`
-
 #### EnterpriseAdmin
 
 | Field | Description |
@@ -746,6 +723,7 @@ API path: `/enterprises/{id}/admins`
 | Field | Description |
 | --- | --- |
 | `date` |  |
+| `id` |  |
 | `idAction` |  |
 | `member` |  |
 | `memberCreator` |  |
@@ -755,6 +733,17 @@ API path: `/enterprises/{id}/admins`
 Operations: List.
 
 API path: `/enterprises/{id}/auditlog`
+
+#### EnterpriseSignupUrl
+
+| Field | Description |
+| --- | --- |
+| `id` |  |
+| `signupUrl` |  |
+
+Operations: Load.
+
+API path: `/enterprises/{id}/signupUrl`
 
 #### Export
 
@@ -926,15 +915,6 @@ Operations: List, Load, Update.
 
 API path: `/enterprises/{id}/members/query`
 
-#### MostRecent
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### NewBillableGuest
 
 | Field | Description |
@@ -997,15 +977,6 @@ API path: `/notifications/{id}/list`
 Operations: Load.
 
 API path: `/notifications/{id}/memberCreator`
-
-#### NotificationsChannelSetting
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Option
 
@@ -1343,11 +1314,6 @@ Create an instance: `local admin = client:Admin(nil)`
 | `id` | `string` |  |
 
 
-### Application
-
-Create an instance: `local application = client:Application(nil)`
-
-
 ### ApplicationCompliance
 
 Create an instance: `local application_compliance = client:ApplicationCompliance(nil)`
@@ -1615,7 +1581,7 @@ Create an instance: `local bulk = client:Bulk(nil)`
 #### Example: Load
 
 ```lua
-local bulk, err = client:Bulk():load({ id = {}, enterpris_id = "enterpris_id" })
+local bulk, err = client:Bulk():load({ id = {}, enterprise_id = "enterprise_id" })
 ```
 
 
@@ -2061,9 +2027,9 @@ local emojis, err = client:Emoji():list()
 ```
 
 
-### Enterpris
+### Enterprise
 
-Create an instance: `local enterpris = client:Enterpris(nil)`
+Create an instance: `local enterprise = client:Enterprise(nil)`
 
 #### Operations
 
@@ -2099,39 +2065,15 @@ Create an instance: `local enterpris = client:Enterpris(nil)`
 #### Example: Load
 
 ```lua
-local enterpris, err = client:Enterpris():load({ id = "enterpris_id" })
+local enterprise, err = client:Enterprise():load({ id = "enterprise_id" })
 ```
 
 #### Example: Create
 
 ```lua
-local enterpris, err = client:Enterpris():create({
+local enterprise, err = client:Enterprise():create({
   id = "example_id", -- string
 })
-```
-
-
-### EnterprisSignupUrl
-
-Create an instance: `local enterpris_signup_url = client:EnterprisSignupUrl(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` |  |
-| `signupUrl` | `string` |  |
-
-#### Example: Load
-
-```lua
-local enterpris_signup_url, err = client:EnterprisSignupUrl():load({ id = "enterpris_signup_url_id" })
 ```
 
 
@@ -2156,7 +2098,7 @@ Create an instance: `local enterprise_admin = client:EnterpriseAdmin(nil)`
 #### Example: Load
 
 ```lua
-local enterprise_admin, err = client:EnterpriseAdmin():load({ enterpris_id = "enterpris_id" })
+local enterprise_admin, err = client:EnterpriseAdmin():load({ id = "enterprise_admin_id" })
 ```
 
 
@@ -2175,6 +2117,7 @@ Create an instance: `local enterprise_audit_log = client:EnterpriseAuditLog(nil)
 | Field | Type | Description |
 | --- | --- | --- |
 | `date` | `string` |  |
+| `id` | `string` |  |
 | `idAction` | `string` |  |
 | `member` | `table` |  |
 | `memberCreator` | `table` |  |
@@ -2185,6 +2128,30 @@ Create an instance: `local enterprise_audit_log = client:EnterpriseAuditLog(nil)
 
 ```lua
 local enterprise_audit_logs, err = client:EnterpriseAuditLog():list()
+```
+
+
+### EnterpriseSignupUrl
+
+Create an instance: `local enterprise_signup_url = client:EnterpriseSignupUrl(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+| `signupUrl` | `string` |  |
+
+#### Example: Load
+
+```lua
+local enterprise_signup_url, err = client:EnterpriseSignupUrl():load({ id = "enterprise_signup_url_id" })
 ```
 
 
@@ -2546,11 +2513,6 @@ local memberships, err = client:Membership():list()
 ```
 
 
-### MostRecent
-
-Create an instance: `local most_recent = client:MostRecent(nil)`
-
-
 ### NewBillableGuest
 
 Create an instance: `local new_billable_guest = client:NewBillableGuest(nil)`
@@ -2693,11 +2655,6 @@ Create an instance: `local notification_member_creator = client:NotificationMemb
 ```lua
 local notification_member_creator, err = client:NotificationMemberCreator():load({ id = "notification_member_creator_id" })
 ```
-
-
-### NotificationsChannelSetting
-
-Create an instance: `local notifications_channel_setting = client:NotificationsChannelSetting(nil)`
 
 
 ### Option
@@ -3158,7 +3115,7 @@ Create an instance: `local transferrable_organization = client:TransferrableOrga
 #### Example: Load
 
 ```lua
-local transferrable_organization, err = client:TransferrableOrganization():load({ id = "transferrable_organization_id", enterpris_id = "enterpris_id" })
+local transferrable_organization, err = client:TransferrableOrganization():load({ id = "transferrable_organization_id", enterprise_id = "enterprise_id" })
 ```
 
 
@@ -3268,14 +3225,14 @@ above:
 
 | Feature | What it does |
 |---|---|
-| [`debug`](#debug) | Request/response capture ring buffer for debugging |
-| [`idempotency`](#idempotency) | Idempotency keys for safe retries of mutating operations |
-| [`metrics`](#metrics) | Statistics capture: per-operation counters and latency |
-| [`paging`](#paging) | Pagination signals for list operations |
-| [`ratelimit`](#ratelimit) | Client-side rate limiting via a token bucket |
-| [`retry`](#retry) | Automatic retry of transient failures with exponential backoff |
-| [`test`](#test) | In-memory mock transport for testing without a live server |
-| [`timeout`](#timeout) | Per-request timeout with transport abort |
+| [`debug`](#debug) | Debug capture |
+| [`idempotency`](#idempotency) | Idempotency |
+| [`metrics`](#metrics) | Metrics |
+| [`paging`](#paging) | Paging |
+| [`ratelimit`](#ratelimit) | Rate limiting |
+| [`retry`](#retry) | Retry |
+| [`test`](#test) | Test transport |
+| [`timeout`](#timeout) | Timeout |
 
 > **Order matters for `ratelimit`, `retry`, `timeout`.** These wrap the
 > transport, so each one wraps whatever is already installed: the order you
@@ -3284,7 +3241,7 @@ above:
 
 ### debug
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 | Option | Default |
 |---|---|
@@ -3296,7 +3253,7 @@ Set `feature.debug.active` to enable it, then override any of the options above.
 
 ### idempotency
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 | Option | Default |
 |---|---|
@@ -3309,7 +3266,7 @@ Set `feature.idempotency.active` to enable it, then override any of the options 
 
 ### metrics
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 | Option | Default |
 |---|---|
@@ -3319,7 +3276,7 @@ Set `feature.metrics.active` to enable it, then override any of the options abov
 
 ### paging
 
-Pagination signals for list operations.
+Paging.
 
 | Option | Default |
 |---|---|
@@ -3335,7 +3292,7 @@ Set `feature.paging.active` to enable it, then override any of the options above
 
 ### ratelimit
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 | Option | Default |
 |---|---|
@@ -3351,7 +3308,7 @@ activated earlier.
 
 ### retry
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 | Option | Default |
 |---|---|
@@ -3370,7 +3327,7 @@ activated earlier.
 
 ### test
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 | Option | Default |
 |---|---|
@@ -3380,7 +3337,7 @@ Set `feature.test.active` to enable it, then override any of the options above.
 
 ### timeout
 
-Per-request timeout with transport abort.
+Timeout.
 
 | Option | Default |
 |---|---|
@@ -3432,14 +3389,14 @@ with hook methods named after pipeline stages (e.g. `PrePoint`,
 
 The SDK ships with built-in features:
 
-- **DebugFeature**: Request/response capture ring buffer for debugging
-- **IdempotencyFeature**: Idempotency keys for safe retries of mutating operations
-- **MetricsFeature**: Statistics capture: per-operation counters and latency
-- **PagingFeature**: Pagination signals for list operations
-- **RatelimitFeature**: Client-side rate limiting via a token bucket
-- **RetryFeature**: Automatic retry of transient failures with exponential backoff
-- **TestFeature**: In-memory mock transport for testing without a live server
-- **TimeoutFeature**: Per-request timeout with transport abort
+- **DebugFeature**: Debug capture
+- **IdempotencyFeature**: Idempotency
+- **MetricsFeature**: Metrics
+- **PagingFeature**: Paging
+- **RatelimitFeature**: Rate limiting
+- **RetryFeature**: Retry
+- **TestFeature**: Test transport
+- **TimeoutFeature**: Timeout
 
 Features are initialized in order. Hooks fire in the order features
 were added, so later features can override earlier ones.
@@ -3459,6 +3416,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── trello_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations

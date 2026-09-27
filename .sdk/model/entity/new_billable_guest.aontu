@@ -1,0 +1,94 @@
+# Entity: new_billable_guest
+
+main: kit: entity: new_billable_guest: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "new_billable_guest"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /organizations/{id}/newBillableGuests/{idBoard}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_board"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/organizations/{id}/newBillableGuests/{idBoard}"
+          q: {
+            exist: [
+              "id"
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+              idBoard: "id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "newBillableGuests"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.organization")]
+  ]
+
+}

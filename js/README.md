@@ -26,7 +26,7 @@ loading a specific record.
 ### Create a Client
 
 ```js
-const { TrelloSDK } = require('@voxgig-sdk/trello-js')
+const { TrelloSDK } = require('@voxgig-sdk/trello-sdk-js')
 
 const client = new TrelloSDK({
   apikey: process.env.TRELLO_APIKEY,
@@ -261,7 +261,6 @@ new TrelloSDK(options?)
 | `Action(data?)` | `ActionEntity` | Create an Action entity instance. |
 | `ActionReactionsSummary(data?)` | `ActionReactionsSummaryEntity` | Create an ActionReactionsSummary entity instance. |
 | `Admin(data?)` | `AdminEntity` | Create an Admin entity instance. |
-| `Application(data?)` | `ApplicationEntity` | Create an Application entity instance. |
 | `ApplicationCompliance(data?)` | `ApplicationComplianceEntity` | Create an ApplicationCompliance entity instance. |
 | `AssociatedDomain(data?)` | `AssociatedDomainEntity` | Create an AssociatedDomain entity instance. |
 | `Attachment(data?)` | `AttachmentEntity` | Create an Attachment entity instance. |
@@ -284,10 +283,10 @@ new TrelloSDK(options?)
 | `CustomSticker(data?)` | `CustomStickerEntity` | Create a CustomSticker entity instance. |
 | `EmailPosition(data?)` | `EmailPositionEntity` | Create an EmailPosition entity instance. |
 | `Emoji(data?)` | `EmojiEntity` | Create an Emoji entity instance. |
-| `Enterpris(data?)` | `EnterprisEntity` | Create an Enterpris entity instance. |
-| `EnterprisSignupUrl(data?)` | `EnterprisSignupUrlEntity` | Create an EnterprisSignupUrl entity instance. |
+| `Enterprise(data?)` | `EnterpriseEntity` | Create an Enterprise entity instance. |
 | `EnterpriseAdmin(data?)` | `EnterpriseAdminEntity` | Create an EnterpriseAdmin entity instance. |
 | `EnterpriseAuditLog(data?)` | `EnterpriseAuditLogEntity` | Create an EnterpriseAuditLog entity instance. |
+| `EnterpriseSignupUrl(data?)` | `EnterpriseSignupUrlEntity` | Create an EnterpriseSignupUrl entity instance. |
 | `Export(data?)` | `ExportEntity` | Create an Export entity instance. |
 | `ExportDownload(data?)` | `ExportDownloadEntity` | Create an ExportDownload entity instance. |
 | `Generate(data?)` | `GenerateEntity` | Create a Generate entity instance. |
@@ -300,13 +299,11 @@ new TrelloSDK(options?)
 | `MemberPrivacy(data?)` | `MemberPrivacyEntity` | Create a MemberPrivacy entity instance. |
 | `MembersVoted(data?)` | `MembersVotedEntity` | Create a MembersVoted entity instance. |
 | `Membership(data?)` | `MembershipEntity` | Create a Membership entity instance. |
-| `MostRecent(data?)` | `MostRecentEntity` | Create a MostRecent entity instance. |
 | `NewBillableGuest(data?)` | `NewBillableGuestEntity` | Create a NewBillableGuest entity instance. |
 | `Notification(data?)` | `NotificationEntity` | Create a Notification entity instance. |
 | `NotificationChannelSetting(data?)` | `NotificationChannelSettingEntity` | Create a NotificationChannelSetting entity instance. |
 | `NotificationList(data?)` | `NotificationListEntity` | Create a NotificationList entity instance. |
 | `NotificationMemberCreator(data?)` | `NotificationMemberCreatorEntity` | Create a NotificationMemberCreator entity instance. |
-| `NotificationsChannelSetting(data?)` | `NotificationsChannelSettingEntity` | Create a NotificationsChannelSetting entity instance. |
 | `Option(data?)` | `OptionEntity` | Create an Option entity instance. |
 | `OrgInviteRestrict(data?)` | `OrgInviteRestrictEntity` | Create an OrgInviteRestrict entity instance. |
 | `Organization(data?)` | `OrganizationEntity` | Create an Organization entity instance. |
@@ -434,15 +431,6 @@ API path: `/actions/{idAction}/reactionsSummary`
 Operations: remove, update.
 
 API path: `/enterprises/{id}/admins/{idMember}`
-
-#### Application
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### ApplicationCompliance
 
@@ -761,7 +749,7 @@ Operations: list.
 
 API path: `/emoji`
 
-#### Enterpris
+#### Enterprise
 
 | Field | Description |
 | --- | --- |
@@ -788,17 +776,6 @@ Operations: create, load, update.
 
 API path: `/enterprises/{id}/tokens`
 
-#### EnterprisSignupUrl
-
-| Field | Description |
-| --- | --- |
-| `id` |  |
-| `signupUrl` |  |
-
-Operations: load.
-
-API path: `/enterprises/{id}/signupUrl`
-
 #### EnterpriseAdmin
 
 | Field | Description |
@@ -816,6 +793,7 @@ API path: `/enterprises/{id}/admins`
 | Field | Description |
 | --- | --- |
 | `date` |  |
+| `id` |  |
 | `idAction` |  |
 | `member` |  |
 | `memberCreator` |  |
@@ -825,6 +803,17 @@ API path: `/enterprises/{id}/admins`
 Operations: list.
 
 API path: `/enterprises/{id}/auditlog`
+
+#### EnterpriseSignupUrl
+
+| Field | Description |
+| --- | --- |
+| `id` |  |
+| `signupUrl` |  |
+
+Operations: load.
+
+API path: `/enterprises/{id}/signupUrl`
 
 #### Export
 
@@ -996,15 +985,6 @@ Operations: list, load, update.
 
 API path: `/enterprises/{id}/members/query`
 
-#### MostRecent
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### NewBillableGuest
 
 | Field | Description |
@@ -1067,15 +1047,6 @@ API path: `/notifications/{id}/list`
 Operations: load.
 
 API path: `/notifications/{id}/memberCreator`
-
-#### NotificationsChannelSetting
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Option
 
@@ -1413,11 +1384,6 @@ Create an instance: `const admin = client.Admin()`
 | `id` | `string` |  |
 
 
-### Application
-
-Create an instance: `const application = client.Application()`
-
-
 ### ApplicationCompliance
 
 Create an instance: `const application_compliance = client.ApplicationCompliance()`
@@ -1685,7 +1651,7 @@ Create an instance: `const bulk = client.Bulk()`
 #### Example: Load
 
 ```ts
-const bulk = await client.Bulk().load({ id: [], enterpris_id: 'enterpris_id' })
+const bulk = await client.Bulk().load({ id: [], enterprise_id: 'enterprise_id' })
 ```
 
 
@@ -1898,7 +1864,7 @@ Create an instance: `const claimable_organization = client.ClaimableOrganization
 #### Example: List
 
 ```ts
-const claimable_organizations = await client.ClaimableOrganization().list({ enterpris_id: "example" })
+const claimable_organizations = await client.ClaimableOrganization().list({ enterprise_id: "example" })
 ```
 
 
@@ -2131,9 +2097,9 @@ const emojis = await client.Emoji().list()
 ```
 
 
-### Enterpris
+### Enterprise
 
-Create an instance: `const enterpris = client.Enterpris()`
+Create an instance: `const enterprise = client.Enterprise()`
 
 #### Operations
 
@@ -2169,39 +2135,15 @@ Create an instance: `const enterpris = client.Enterpris()`
 #### Example: Load
 
 ```ts
-const enterpris = await client.Enterpris().load({ id: 'enterpris_id' })
+const enterprise = await client.Enterprise().load({ id: 'enterprise_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const enterpris = await client.Enterpris().create({
+const enterprise = await client.Enterprise().create({
   id: 'example_id',
 })
-```
-
-
-### EnterprisSignupUrl
-
-Create an instance: `const enterpris_signup_url = client.EnterprisSignupUrl()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` |  |
-| `signupUrl` | `string` |  |
-
-#### Example: Load
-
-```ts
-const enterpris_signup_url = await client.EnterprisSignupUrl().load({ id: 'enterpris_signup_url_id' })
 ```
 
 
@@ -2226,7 +2168,7 @@ Create an instance: `const enterprise_admin = client.EnterpriseAdmin()`
 #### Example: Load
 
 ```ts
-const enterprise_admin = await client.EnterpriseAdmin().load({ enterpris_id: 'enterpris_id' })
+const enterprise_admin = await client.EnterpriseAdmin().load({ id: 'enterprise_admin_id' })
 ```
 
 
@@ -2245,6 +2187,7 @@ Create an instance: `const enterprise_audit_log = client.EnterpriseAuditLog()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `date` | `string` |  |
+| `id` | `string` |  |
 | `idAction` | `string` |  |
 | `member` | `Object` |  |
 | `memberCreator` | `Object` |  |
@@ -2254,7 +2197,31 @@ Create an instance: `const enterprise_audit_log = client.EnterpriseAuditLog()`
 #### Example: List
 
 ```ts
-const enterprise_audit_logs = await client.EnterpriseAuditLog().list({ enterpris_id: "example" })
+const enterprise_audit_logs = await client.EnterpriseAuditLog().list({ id: "example" })
+```
+
+
+### EnterpriseSignupUrl
+
+Create an instance: `const enterprise_signup_url = client.EnterpriseSignupUrl()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+| `signupUrl` | `string` |  |
+
+#### Example: Load
+
+```ts
+const enterprise_signup_url = await client.EnterpriseSignupUrl().load({ id: 'enterprise_signup_url_id' })
 ```
 
 
@@ -2616,11 +2583,6 @@ const memberships = await client.Membership().list({ organization_id: "example" 
 ```
 
 
-### MostRecent
-
-Create an instance: `const most_recent = client.MostRecent()`
-
-
 ### NewBillableGuest
 
 Create an instance: `const new_billable_guest = client.NewBillableGuest()`
@@ -2765,11 +2727,6 @@ const notification_member_creator = await client.NotificationMemberCreator().loa
 ```
 
 
-### NotificationsChannelSetting
-
-Create an instance: `const notifications_channel_setting = client.NotificationsChannelSetting()`
-
-
 ### Option
 
 Create an instance: `const option = client.Option()`
@@ -2844,7 +2801,7 @@ const organization = await client.Organization().load({ id: 'organization_id' })
 #### Example: List
 
 ```ts
-const organizations = await client.Organization().list({ enterpris_id: "example" })
+const organizations = await client.Organization().list({ enterprise_id: "example" })
 ```
 
 #### Example: Create
@@ -2882,7 +2839,7 @@ Create an instance: `const pending_organization = client.PendingOrganization()`
 #### Example: List
 
 ```ts
-const pending_organizations = await client.PendingOrganization().list({ enterpris_id: "example" })
+const pending_organizations = await client.PendingOrganization().list({ enterprise_id: "example" })
 ```
 
 
@@ -3228,7 +3185,7 @@ Create an instance: `const transferrable_organization = client.TransferrableOrga
 #### Example: Load
 
 ```ts
-const transferrable_organization = await client.TransferrableOrganization().load({ id: 'transferrable_organization_id', enterpris_id: 'enterpris_id' })
+const transferrable_organization = await client.TransferrableOrganization().load({ id: 'transferrable_organization_id', enterprise_id: 'enterprise_id' })
 ```
 
 
@@ -3338,14 +3295,14 @@ above:
 
 | Feature | What it does |
 |---|---|
-| [`debug`](#debug) | Request/response capture ring buffer for debugging |
-| [`idempotency`](#idempotency) | Idempotency keys for safe retries of mutating operations |
-| [`metrics`](#metrics) | Statistics capture: per-operation counters and latency |
-| [`paging`](#paging) | Pagination signals for list operations |
-| [`ratelimit`](#ratelimit) | Client-side rate limiting via a token bucket |
-| [`retry`](#retry) | Automatic retry of transient failures with exponential backoff |
-| [`test`](#test) | In-memory mock transport for testing without a live server |
-| [`timeout`](#timeout) | Per-request timeout with transport abort |
+| [`debug`](#debug) | Debug capture |
+| [`idempotency`](#idempotency) | Idempotency |
+| [`metrics`](#metrics) | Metrics |
+| [`paging`](#paging) | Paging |
+| [`ratelimit`](#ratelimit) | Rate limiting |
+| [`retry`](#retry) | Retry |
+| [`test`](#test) | Test transport |
+| [`timeout`](#timeout) | Timeout |
 
 > **Order matters for `ratelimit`, `retry`, `timeout`.** These wrap the
 > transport, so each one wraps whatever is already installed: the order you
@@ -3354,7 +3311,7 @@ above:
 
 ### debug
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 | Option | Default |
 |---|---|
@@ -3366,7 +3323,7 @@ Set `feature.debug.active` to enable it, then override any of the options above.
 
 ### idempotency
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 | Option | Default |
 |---|---|
@@ -3379,7 +3336,7 @@ Set `feature.idempotency.active` to enable it, then override any of the options 
 
 ### metrics
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 | Option | Default |
 |---|---|
@@ -3389,7 +3346,7 @@ Set `feature.metrics.active` to enable it, then override any of the options abov
 
 ### paging
 
-Pagination signals for list operations.
+Paging.
 
 | Option | Default |
 |---|---|
@@ -3405,7 +3362,7 @@ Set `feature.paging.active` to enable it, then override any of the options above
 
 ### ratelimit
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 | Option | Default |
 |---|---|
@@ -3421,7 +3378,7 @@ activated earlier.
 
 ### retry
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 | Option | Default |
 |---|---|
@@ -3440,7 +3397,7 @@ activated earlier.
 
 ### test
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 | Option | Default |
 |---|---|
@@ -3450,7 +3407,7 @@ Set `feature.test.active` to enable it, then override any of the options above.
 
 ### timeout
 
-Per-request timeout with transport abort.
+Timeout.
 
 | Option | Default |
 |---|---|
@@ -3502,14 +3459,14 @@ a function that receives the context.
 
 The SDK ships with built-in features:
 
-- **DebugFeature**: Request/response capture ring buffer for debugging
-- **IdempotencyFeature**: Idempotency keys for safe retries of mutating operations
-- **MetricsFeature**: Statistics capture: per-operation counters and latency
-- **PagingFeature**: Pagination signals for list operations
-- **RatelimitFeature**: Client-side rate limiting via a token bucket
-- **RetryFeature**: Automatic retry of transient failures with exponential backoff
-- **TestFeature**: In-memory mock transport for testing without a live server
-- **TimeoutFeature**: Per-request timeout with transport abort
+- **DebugFeature**: Debug capture
+- **IdempotencyFeature**: Idempotency
+- **MetricsFeature**: Metrics
+- **PagingFeature**: Paging
+- **RatelimitFeature**: Rate limiting
+- **RetryFeature**: Retry
+- **TestFeature**: Test transport
+- **TimeoutFeature**: Timeout
 
 Features are initialized in order. Hooks fire in the order features
 were added, so later features can override earlier ones.
@@ -3529,7 +3486,7 @@ trello/
 Import the SDK from the package root:
 
 ```js
-const { TrelloSDK } = require('@voxgig-sdk/trello-js')
+const { TrelloSDK } = require('@voxgig-sdk/trello-sdk-js')
 ```
 
 ### Entity state

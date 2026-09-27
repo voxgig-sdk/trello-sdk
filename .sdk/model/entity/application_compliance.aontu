@@ -1,0 +1,61 @@
+# Entity: application_compliance
+
+main: kit: entity: application_compliance: {
+
+  alias: field: {}
+
+  name: "application_compliance"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /applications/{key}/compliance"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "key"
+                or: "key"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/applications/{key}/compliance"
+          q: {
+            exist: [
+              "key"
+            ]
+          }
+          s: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "key"
+            }
+            {
+              lit: "compliance"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

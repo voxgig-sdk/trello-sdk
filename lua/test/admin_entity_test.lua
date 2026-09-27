@@ -46,7 +46,7 @@ describe("AdminEntity", function()
     local admin_ref01_ent = client:Admin(nil)
     local admin_ref01_data_up0_up = {
       id = admin_ref01_data["id"],
-      ["enterpris_id"] = setup.idmap["enterpris_id"],
+      ["enterprise_id"] = setup.idmap["enterprise_id"],
     }
 
     local admin_ref01_resdata_up0_result, err = admin_ref01_ent:update(admin_ref01_data_up0_up, nil)
@@ -78,7 +78,7 @@ function admin_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "admin01", "admin02", "admin03", "enterpris01", "enterpris02", "enterpris03" },
+    { "admin01", "admin02", "admin03", "enterprise01", "enterprise02", "enterprise03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",
@@ -105,8 +105,8 @@ function admin_basic_setup(extra)
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
-  if idmap_resolved["enterpris_id"] == nil then
-    idmap_resolved["enterpris_id"] = idmap_resolved["enterpris01"]
+  if idmap_resolved["enterprise_id"] == nil then
+    idmap_resolved["enterprise_id"] = idmap_resolved["enterprise01"]
   end
 
   if env["TRELLO_TEST_LIVE"] == "TRUE" then

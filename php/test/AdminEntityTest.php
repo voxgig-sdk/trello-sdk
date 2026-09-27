@@ -50,7 +50,7 @@ class AdminEntityTest extends TestCase
         $admin_ref01_ent = $client->Admin(null);
         $admin_ref01_data_up0_up = [
             "id" => $admin_ref01_data["id"],
-            "enterpris_id" => $setup["idmap"]["enterpris_id"],
+            "enterprise_id" => $setup["idmap"]["enterprise_id"],
         ];
 
         $admin_ref01_resdata_up0_result = $admin_ref01_ent->update($admin_ref01_data_up0_up, null);
@@ -76,7 +76,7 @@ function admin_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["admin01", "admin02", "admin03", "enterpris01", "enterpris02", "enterpris03"] as $k) {
+    foreach (["admin01", "admin02", "admin03", "enterprise01", "enterprise02", "enterprise03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 
@@ -98,8 +98,8 @@ function admin_basic_setup($extra)
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
-    if (!isset($idmap_resolved["enterpris_id"])) {
-        $idmap_resolved["enterpris_id"] = $idmap_resolved["enterpris01"];
+    if (!isset($idmap_resolved["enterprise_id"])) {
+        $idmap_resolved["enterprise_id"] = $idmap_resolved["enterprise01"];
     }
 
     if ($env["TRELLO_TEST_LIVE"] === "TRUE") {

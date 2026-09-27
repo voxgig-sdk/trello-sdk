@@ -1,0 +1,522 @@
+# Entity: membership
+
+main: kit: entity: membership: {
+
+  alias: field: {}
+
+  fields: {
+    admin: {
+      h: "Admin"
+      n: "admin"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    collaborator: {
+      h: "Collaborator"
+      n: "collaborator"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    deactivated: {
+      h: "Deactivated"
+      n: "deactivated"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    licensed: {
+      h: "Licensed"
+      n: "licensed"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    managed: {
+      h: "Managed"
+      n: "managed"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    member: {
+      h: "Member"
+      n: "member"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "membership"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /enterprises/{id}/members/query"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "none"
+                k: "query"
+                n: "active_since"
+                or: "active_since"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "admin"
+                or: "admin"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "collaborator"
+                or: "collaborator"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "deactivated"
+                or: "deactivated"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "inactive_since"
+                or: "inactive_since"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "licensed"
+                or: "licensed"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "managed"
+                or: "managed"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "search"
+                or: "search"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/members/query"
+          q: {
+            exist: [
+              "active_since"
+              "admin"
+              "collaborator"
+              "cursor"
+              "deactivated"
+              "enterprise_id"
+              "inactive_since"
+              "licensed"
+              "managed"
+              "search"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              lit: "query"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /organizations/{id}/memberships"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "member"
+                or: "member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/organizations/{id}/memberships"
+          q: {
+            exist: [
+              "filter"
+              "member"
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "memberships"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /boards/{id}/memberships"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "activity"
+                or: "activity"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "member"
+                or: "member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "fullname,username"
+                k: "query"
+                n: "member_field"
+                or: "member_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "org_member_type"
+                or: "org_member_type"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/memberships"
+          q: {
+            exist: [
+              "activity"
+              "board_id"
+              "filter"
+              "member"
+              "member_field"
+              "org_member_type"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "memberships"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /organizations/{id}/memberships/{idMembership}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_membership"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "member"
+                or: "member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/organizations/{id}/memberships/{idMembership}"
+          q: {
+            exist: [
+              "id"
+              "member"
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+              idMembership: "id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "memberships"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /boards/{id}/memberships/{idMembership}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_membership"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "fullName, username"
+                k: "query"
+                n: "member_field"
+                or: "member_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/boards/{id}/memberships/{idMembership}"
+          q: {
+            exist: [
+              "board_id"
+              "id"
+              "member_field"
+              "type"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+              idMembership: "id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "memberships"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.board")]
+    [path("$.main.kit.entity.enterprise")]
+    [path("$.main.kit.entity.organization")]
+  ]
+
+}

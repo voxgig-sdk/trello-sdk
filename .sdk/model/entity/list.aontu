@@ -1,0 +1,560 @@
+# Entity: list
+
+main: kit: entity: list: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "list"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /lists"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_board"
+                or: "id_board"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_list_source"
+                or: "id_list_source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "pos"
+                or: "pos"
+                r: false
+                t: "`$ANY`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/lists"
+          q: {
+            exist: [
+              "id_board"
+              "id_list_source"
+              "name"
+              "pos"
+            ]
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /lists/{id}/moveAllCards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_board"
+                or: "id_board"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_list"
+                or: "id_list"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/lists/{id}/moveAllCards"
+          q: {
+            "$action": "move_all_card"
+            exist: [
+              "id"
+              "id_board"
+              "id_list"
+            ]
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "moveAllCards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /lists/{id}/archiveAllCards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/lists/{id}/archiveAllCards"
+          q: {
+            "$action": "archive_all_card"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "archiveAllCards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /boards/{id}/lists/{filter}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "filter"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/lists/{filter}"
+          q: {
+            exist: [
+              "board_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              filter: "id"
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /lists/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "name,closed,idBoard,pos"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/lists/{id}"
+          q: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /lists/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "closed"
+                or: "closed"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_board"
+                or: "id_board"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "pos"
+                or: "pos"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "subscribed"
+                or: "subscribed"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/lists/{id}"
+          q: {
+            exist: [
+              "closed"
+              "id"
+              "id_board"
+              "name"
+              "pos"
+              "subscribed"
+            ]
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /lists/{id}/{field}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "field"
+                or: "field"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "value"
+                or: "value"
+                r: false
+                t: "`$ANY`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/lists/{id}/{field}"
+          q: {
+            exist: [
+              "field"
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /lists/{id}/closed"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "value"
+                or: "value"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/lists/{id}/closed"
+          q: {
+            "$action": "closed"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "closed"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /lists/{id}/idBoard"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "value"
+                or: "value"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/lists/{id}/idBoard"
+          q: {
+            "$action": "id_board"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "idBoard"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.board")]
+  ]
+
+}

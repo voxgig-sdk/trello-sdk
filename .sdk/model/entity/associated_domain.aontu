@@ -1,0 +1,73 @@
+# Entity: associated_domain
+
+main: kit: entity: associated_domain: {
+
+  alias: field: {}
+
+  name: "associated_domain"
+  op: {
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /organizations/{id}/prefs/associatedDomain"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/organizations/{id}/prefs/associatedDomain"
+          q: {
+            exist: [
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "prefs"
+            }
+            {
+              lit: "associatedDomain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.organization")]
+  ]
+
+}

@@ -83,7 +83,7 @@ def _bulk_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["bulk01", "bulk02", "bulk03", "enterpris01", "enterpris02", "enterpris03"],
+        ["bulk01", "bulk02", "bulk03", "enterprise01", "enterprise02", "enterprise03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

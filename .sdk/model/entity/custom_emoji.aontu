@@ -1,0 +1,238 @@
+# Entity: custom_emoji
+
+main: kit: entity: custom_emoji: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    url: {
+      fo: "url"
+      h: "Url"
+      n: "url"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "custom_emoji"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /members/{id}/customEmoji"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "file"
+                or: "file"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/members/{id}/customEmoji"
+          q: {
+            exist: [
+              "file"
+              "member_id"
+              "name"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customEmoji"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}/customEmoji"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/customEmoji"
+          q: {
+            exist: [
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customEmoji"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}/customEmoji/{idEmoji}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_emoji"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/customEmoji/{idEmoji}"
+          q: {
+            exist: [
+              "field"
+              "id"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+              idEmoji: "id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customEmoji"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.member")]
+  ]
+
+}

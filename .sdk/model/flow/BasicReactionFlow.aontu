@@ -1,0 +1,32 @@
+# BasicReactionFlow
+
+main: kit: flow: BasicReactionFlow:
+{
+  entity: "reaction",
+  kind: "basic",
+  name: "BasicReactionFlow",
+  step: [
+    {
+      i: {
+        ref: "reaction_ref01",
+        srcdatavar: "reaction_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "reaction01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-reaction_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReactionFlow"
+}

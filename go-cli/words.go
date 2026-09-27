@@ -9,18 +9,6 @@ import (
 	sdk "github.com/voxgig-sdk/trello-sdk/go"
 )
 
-// registerSDKWords installs three native boru words bound to the SDK:
-// list / load / update. Each is declared with two overloads matching
-// the signature  [query?:(Node or Scalar) entity:atom]:
-//
-//   [entity:Atom]            — no query (e.g. `list book`)
-//   [query:Any entity:Atom]  — query is any Node or Scalar (e.g.
-//                              `load {id:1} book`, `load 1 book`)
-//
-// The entity slot is /q-quoted so a bareword `book` parses as the
-// Atom "book" rather than dispatching as an undefined word. Both
-// overloads are all-forward (BarrierAllForward), so args are collected
-// from the tokens following the word.
 func registerSDKWords(r *eng.Registry, client *sdk.TrelloSDK) {
 	for _, op := range []string{"list", "load", "update"} {
 		op := op
@@ -95,8 +83,6 @@ func entityFor(client *sdk.TrelloSDK, name string) (sdk.TrelloEntity, error) {
 		return client.ActionReactionsSummary(nil), nil
 	case "admin":
 		return client.Admin(nil), nil
-	case "application":
-		return client.Application(nil), nil
 	case "application_compliance":
 		return client.ApplicationCompliance(nil), nil
 	case "associated_domain":
@@ -141,14 +127,14 @@ func entityFor(client *sdk.TrelloSDK, name string) (sdk.TrelloEntity, error) {
 		return client.EmailPosition(nil), nil
 	case "emoji":
 		return client.Emoji(nil), nil
-	case "enterpris":
-		return client.Enterpris(nil), nil
-	case "enterpris_signup_url":
-		return client.EnterprisSignupUrl(nil), nil
+	case "enterprise":
+		return client.Enterprise(nil), nil
 	case "enterprise_admin":
 		return client.EnterpriseAdmin(nil), nil
 	case "enterprise_audit_log":
 		return client.EnterpriseAuditLog(nil), nil
+	case "enterprise_signup_url":
+		return client.EnterpriseSignupUrl(nil), nil
 	case "export":
 		return client.Export(nil), nil
 	case "export_download":
@@ -173,8 +159,6 @@ func entityFor(client *sdk.TrelloSDK, name string) (sdk.TrelloEntity, error) {
 		return client.MembersVoted(nil), nil
 	case "membership":
 		return client.Membership(nil), nil
-	case "most_recent":
-		return client.MostRecent(nil), nil
 	case "new_billable_guest":
 		return client.NewBillableGuest(nil), nil
 	case "notification":
@@ -185,8 +169,6 @@ func entityFor(client *sdk.TrelloSDK, name string) (sdk.TrelloEntity, error) {
 		return client.NotificationList(nil), nil
 	case "notification_member_creator":
 		return client.NotificationMemberCreator(nil), nil
-	case "notifications_channel_setting":
-		return client.NotificationsChannelSetting(nil), nil
 	case "option":
 		return client.Option(nil), nil
 	case "org_invite_restrict":

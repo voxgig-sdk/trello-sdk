@@ -27,12 +27,12 @@ class BulkDirectTest extends TestCase
         $params = [];
         $query = [];
         if (!$setup["live"]) {
-            $params["enterpris_id"] = "direct01";
+            $params["enterprise_id"] = "direct01";
             $params["id"] = "direct02";
         }
 
         $result = $client->direct([
-            "path" => "enterprises/{enterpris_id}/organizations/bulk/{id}",
+            "path" => "enterprises/{enterprise_id}/organizations/bulk/{id}",
             "method" => "GET",
             "params" => $params,
             "query" => $query,

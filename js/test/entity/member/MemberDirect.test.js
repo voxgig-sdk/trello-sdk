@@ -42,10 +42,10 @@ describe('MemberDirect', async () => {
     const params = {}
     if (setup.live) {
       const listResult = await client.direct({
-        path: 'enterprises/{enterpris_id}/members',
+        path: 'enterprises/{enterprise_id}/members',
         method: 'GET',
         params: {
-        enterpris_id: setup.idmap['enterpris01'],
+        enterprise_id: setup.idmap['enterprise01'],
         },
       })
       assert(listResult.ok === true)
@@ -84,13 +84,13 @@ describe('MemberDirect', async () => {
 
     const params = {}
     if (setup.live) {
-      params.enterpris_id = setup.idmap['enterpris01']
+      params.enterprise_id = setup.idmap['enterprise01']
     } else {
-      params.enterpris_id = 'direct01'
+      params.enterprise_id = 'direct01'
     }
 
     const result = await client.direct({
-      path: 'enterprises/{enterpris_id}/members',
+      path: 'enterprises/{enterprise_id}/members',
       method: 'GET',
       params,
     })

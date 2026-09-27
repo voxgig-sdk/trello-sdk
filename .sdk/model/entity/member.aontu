@@ -1,0 +1,2072 @@
+# Entity: member
+
+main: kit: entity: member: {
+
+  alias: field: {}
+
+  fields: {
+    aaEmail: {
+      fo: "email"
+      h: "Aa Email"
+      n: "aaEmail"
+      r: false
+      t: "`$STRING`"
+    }
+    aaEnrolledDate: {
+      h: "Aa Enrolled Date"
+      n: "aaEnrolledDate"
+      r: false
+      t: "`$STRING`"
+    }
+    aaId: {
+      h: "Aa Id"
+      n: "aaId"
+      r: false
+      t: "`$STRING`"
+    }
+    activityBlocked: {
+      h: "Activity Blocked"
+      n: "activityBlocked"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    avatarHash: {
+      h: "Avatar Hash"
+      n: "avatarHash"
+      r: false
+      t: "`$STRING`"
+    }
+    avatarSource: {
+      h: "Avatar Source"
+      n: "avatarSource"
+      r: false
+      t: "`$STRING`"
+    }
+    avatarUrl: {
+      fo: "url"
+      h: "Avatar Url"
+      n: "avatarUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    bio: {
+      h: "Bio"
+      n: "bio"
+      r: false
+      t: "`$STRING`"
+    }
+    bioData: {
+      h: "Bio Data"
+      n: "bioData"
+      r: false
+      t: "`$OBJECT`"
+    }
+    confirmed: {
+      h: "Confirmed"
+      n: "confirmed"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: false
+      t: "`$STRING`"
+    }
+    fullName: {
+      h: "Full Name"
+      n: "fullName"
+      r: false
+      t: "`$STRING`"
+    }
+    gravatarHash: {
+      h: "Gravatar Hash"
+      n: "gravatarHash"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idBoards: {
+      h: "Id Boards"
+      n: "idBoards"
+      r: false
+      t: "`$ARRAY`"
+    }
+    idBoardsPinned: {
+      h: "Id Boards Pinned"
+      n: "idBoardsPinned"
+      r: false
+      t: "`$ARRAY`"
+    }
+    idEnterprise: {
+      h: "Id Enterprise"
+      n: "idEnterprise"
+      r: false
+      t: "`$STRING`"
+    }
+    idEnterprisesAdmin: {
+      h: "Id Enterprises Admin"
+      n: "idEnterprisesAdmin"
+      r: false
+      t: "`$ARRAY`"
+    }
+    idEnterprisesDeactivated: {
+      h: "Id Enterprises Deactivated"
+      n: "idEnterprisesDeactivated"
+      r: false
+      t: "`$ARRAY`"
+    }
+    idMemberReferrer: {
+      h: "Id Member Referrer"
+      n: "idMemberReferrer"
+      r: false
+      t: "`$STRING`"
+    }
+    idOrganizations: {
+      h: "Id Organizations"
+      n: "idOrganizations"
+      r: false
+      t: "`$ARRAY`"
+    }
+    idPremOrgsAdmin: {
+      h: "Id Prem Orgs Admin"
+      n: "idPremOrgsAdmin"
+      r: false
+      t: "`$ARRAY`"
+    }
+    initials: {
+      h: "Initials"
+      n: "initials"
+      r: false
+      t: "`$STRING`"
+    }
+    isAaMastered: {
+      h: "Is Aa Mastered"
+      n: "isAaMastered"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    ixUpdate: {
+      h: "Ix Update"
+      n: "ixUpdate"
+      r: false
+      t: "`$NUMBER`"
+    }
+    limits: {
+      h: "Limits"
+      n: "limits"
+      r: false
+      t: "`$OBJECT`"
+    }
+    loginTypes: {
+      h: "Login Types"
+      n: "loginTypes"
+      r: false
+      t: "`$ARRAY`"
+    }
+    marketingOptIn: {
+      h: "Marketing Opt In"
+      n: "marketingOptIn"
+      r: false
+      t: "`$OBJECT`"
+    }
+    memberType: {
+      h: "Member Type"
+      n: "memberType"
+      r: false
+      t: "`$STRING`"
+    }
+    messagesDismissed: {
+      h: "Messages Dismissed"
+      n: "messagesDismissed"
+      r: false
+      t: "`$OBJECT`"
+    }
+    nonPublic: {
+      h: "Non Public"
+      n: "nonPublic"
+      r: false
+      sh: "Profile data with restricted visibility."
+      t: "`$OBJECT`"
+    }
+    nonPublicAvailable: {
+      h: "Non Public Available"
+      n: "nonPublicAvailable"
+      r: false
+      sh: "Whether the response contains non-public profile data for the member"
+      t: "`$BOOLEAN`"
+    }
+    oneTimeMessagesDismissed: {
+      h: "One Time Messages Dismissed"
+      n: "oneTimeMessagesDismissed"
+      r: false
+      t: "`$ARRAY`"
+    }
+    prefs: {
+      h: "Prefs"
+      n: "prefs"
+      r: false
+      t: "`$OBJECT`"
+    }
+    premiumFeatures: {
+      h: "Premium Features"
+      n: "premiumFeatures"
+      r: false
+      t: "`$ARRAY`"
+    }
+    products: {
+      h: "Products"
+      n: "products"
+      r: false
+      t: "`$ARRAY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      t: "`$STRING`"
+    }
+    trophies: {
+      h: "Trophies"
+      n: "trophies"
+      r: false
+      t: "`$ARRAY`"
+    }
+    uploadedAvatarHash: {
+      h: "Uploaded Avatar Hash"
+      n: "uploadedAvatarHash"
+      r: false
+      t: "`$STRING`"
+    }
+    uploadedAvatarUrl: {
+      fo: "url"
+      h: "Uploaded Avatar Url"
+      n: "uploadedAvatarUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    url: {
+      fo: "url"
+      h: "Url"
+      n: "url"
+      r: false
+      t: "`$STRING`"
+    }
+    username: {
+      h: "Username"
+      n: "username"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "member"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /members/{id}/avatar"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "file"
+                or: "file"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/members/{id}/avatar"
+          q: {
+            "$action": "avatar"
+            exist: [
+              "file"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "avatar"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /members/{id}/boardBackgrounds"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "file"
+                or: "file"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/members/{id}/boardBackgrounds"
+          q: {
+            "$action": "board_background"
+            exist: [
+              "file"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /members/{id}/oneTimeMessagesDismissed"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "value"
+                or: "value"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/members/{id}/oneTimeMessagesDismissed"
+          q: {
+            "$action": "one_time_messages_dismissed"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "oneTimeMessagesDismissed"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /enterprises/{id}/members"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "name"
+                k: "query"
+                n: "board_field"
+                or: "board_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "avatarHash, fullName, initials, username"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "displayName"
+                k: "query"
+                n: "organization_field"
+                or: "organization_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: null
+                k: "query"
+                n: "sort_order"
+                or: "sort_order"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "start_index"
+                or: "start_index"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/members"
+          q: {
+            exist: [
+              "board_field"
+              "count"
+              "enterprise_id"
+              "field"
+              "filter"
+              "organization_field"
+              "sort"
+              "sort_by"
+              "sort_order"
+              "start_index"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /search/members/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_board"
+                or: "id_board"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_organization"
+                or: "id_organization"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 8
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "only_org_member"
+                or: "only_org_member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/search/members/"
+          q: {
+            exist: [
+              "id_board"
+              "id_organization"
+              "limit"
+              "only_org_member"
+              "query"
+            ]
+          }
+          s: [
+            {
+              lit: "search"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /actions/{id}/member"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "action_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/actions/{id}/member"
+          q: {
+            exist: [
+              "action_id"
+              "field"
+            ]
+          }
+          r: {
+            param: {
+              id: "action_id"
+            }
+          }
+          s: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "member"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /actions/{id}/memberCreator"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "action_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/actions/{id}/memberCreator"
+          q: {
+            exist: [
+              "action_id"
+              "field"
+            ]
+          }
+          r: {
+            param: {
+              id: "action_id"
+            }
+          }
+          s: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "memberCreator"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /tokens/{token}/member"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "token_id"
+                or: "token"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tokens/{token}/member"
+          q: {
+            exist: [
+              "field"
+              "token_id"
+            ]
+          }
+          r: {
+            param: {
+              token: "token_id"
+            }
+          }
+          s: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "member"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /organizations/{id}/members"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/organizations/{id}/members"
+          q: {
+            exist: [
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "action"
+                or: "action"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "board"
+                or: "board"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "board_background"
+                or: "board_background"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "board_star"
+                or: "board_star"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "boards_invited"
+                or: "boards_invited"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "name,closed,idOrganization,pinned"
+                k: "query"
+                n: "boards_invited_field"
+                or: "boards_invited_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "card"
+                or: "card"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "custom_board_background"
+                or: "custom_board_background"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "custom_emoji"
+                or: "custom_emoji"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "custom_sticker"
+                or: "custom_sticker"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "notification"
+                or: "notification"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "organization"
+                or: "organization"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "organization_field"
+                or: "organization_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "organization_paid_account"
+                or: "organization_paid_account"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "organizations_invited"
+                or: "organizations_invited"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "organizations_invited_field"
+                or: "organizations_invited_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "paid_account"
+                or: "paid_account"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "saved_search"
+                or: "saved_search"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "token"
+                or: "token"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}"
+          q: {
+            exist: [
+              "action"
+              "board"
+              "board_background"
+              "board_star"
+              "boards_invited"
+              "boards_invited_field"
+              "card"
+              "custom_board_background"
+              "custom_emoji"
+              "custom_sticker"
+              "field"
+              "id"
+              "notification"
+              "organization"
+              "organization_field"
+              "organization_paid_account"
+              "organizations_invited"
+              "organizations_invited_field"
+              "paid_account"
+              "saved_search"
+              "token"
+            ]
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /enterprises/{id}/members/{idMember}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_member"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "name"
+                k: "query"
+                n: "board_field"
+                or: "board_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "avatarHash, fullName, initials, username"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "displayName"
+                k: "query"
+                n: "organization_field"
+                or: "organization_field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/members/{idMember}"
+          q: {
+            exist: [
+              "board_field"
+              "enterprise_id"
+              "field"
+              "id"
+              "organization_field"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+              idMember: "id"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /cards/{id}/members"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "card_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "avatarHash,fullName,initials,username"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/{id}/members"
+          q: {
+            exist: [
+              "card_id"
+              "field"
+            ]
+          }
+          r: {
+            param: {
+              id: "card_id"
+            }
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /members/{id}/{field}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "field"
+                or: "field"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/{field}"
+          q: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /notifications/{id}/member"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "notification_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/notifications/{id}/member"
+          q: {
+            exist: [
+              "field"
+              "notification_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "notification_id"
+            }
+          }
+          s: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "notification_id"
+            }
+            {
+              lit: "member"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /boards/{id}/members"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/members"
+          q: {
+            exist: [
+              "board_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /boards/{id}/members/{idMember}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_member"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/boards/{id}/members/{idMember}"
+          q: {
+            exist: [
+              "board_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+              idMember: "id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /organizations/{id}/members/{idMember}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_member"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/organizations/{id}/members/{idMember}"
+          q: {
+            exist: [
+              "id"
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+              idMember: "id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /organizations/{id}/members/{idMember}/all"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_member"
+                or: "id_member"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/organizations/{id}/members/{idMember}/all"
+          q: {
+            "$action": "all"
+            exist: [
+              "id_member"
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+              idMember: "id_member"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id_member"
+            }
+            {
+              lit: "all"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /members/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "avatar_source"
+                or: "avatar_source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "bio"
+                or: "bio"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "full_name"
+                or: "full_name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "initial"
+                or: "initial"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prefs/color_blind"
+                or: "prefs/color_blind"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "prefs/locale"
+                or: "prefs/locale"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prefs/minutes_between_summary"
+                or: "prefs/minutes_between_summary"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "username"
+                or: "username"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/members/{id}"
+          q: {
+            exist: [
+              "avatar_source"
+              "bio"
+              "full_name"
+              "id"
+              "initial"
+              "prefs/color_blind"
+              "prefs/locale"
+              "prefs/minutes_between_summary"
+              "username"
+            ]
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /enterprises/{id}/members/{idMember}/deactivated"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_member"
+                or: "id_member"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "name"
+                k: "query"
+                n: "board_field"
+                or: "board_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "avatarHash, fullName, initials, username"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "displayName"
+                k: "query"
+                n: "organization_field"
+                or: "organization_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "value"
+                or: "value"
+                r: true
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/enterprises/{id}/members/{idMember}/deactivated"
+          q: {
+            "$action": "deactivated"
+            exist: [
+              "board_field"
+              "enterprise_id"
+              "field"
+              "id_member"
+              "organization_field"
+              "value"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+              idMember: "id_member"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id_member"
+            }
+            {
+              lit: "deactivated"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /boards/{id}/members/{idMember}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_member"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "allow_billable_guest"
+                or: "allow_billable_guest"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/boards/{id}/members/{idMember}"
+          q: {
+            exist: [
+              "allow_billable_guest"
+              "board_id"
+              "id"
+              "type"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+              idMember: "id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /enterprises/{id}/members/{idMember}/licensed"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_member"
+                or: "id_member"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "value"
+                or: "value"
+                r: true
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/enterprises/{id}/members/{idMember}/licensed"
+          q: {
+            "$action": "licensed"
+            exist: [
+              "enterprise_id"
+              "id_member"
+              "value"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+              idMember: "id_member"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id_member"
+            }
+            {
+              lit: "licensed"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /organizations/{id}/members/{idMember}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id_member"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/organizations/{id}/members/{idMember}"
+          q: {
+            exist: [
+              "id"
+              "organization_id"
+              "type"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+              idMember: "id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /organizations/{id}/members/{idMember}/deactivated"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id_member"
+                or: "id_member"
+                r: true
+                t: "`$ANY`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "value"
+                or: "value"
+                r: true
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/organizations/{id}/members/{idMember}/deactivated"
+          q: {
+            "$action": "deactivated"
+            exist: [
+              "id_member"
+              "organization_id"
+              "value"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+              idMember: "id_member"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id_member"
+            }
+            {
+              lit: "deactivated"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.action")]
+    [path("$.main.kit.entity.board")]
+    [path("$.main.kit.entity.card")]
+    [path("$.main.kit.entity.enterprise")]
+    [path("$.main.kit.entity.notification")]
+    [path("$.main.kit.entity.organization")]
+    [path("$.main.kit.entity.token")]
+    [path("$.main.kit.entity.enterprise")]
+    [path("$.main.kit.entity.organization")]
+  ]
+
+}

@@ -60,10 +60,6 @@ Create a new `ActionReactionsSummary` entity instance. Pass `nil` for no initial
 
 Create a new `Admin` entity instance. Pass `nil` for no initial data.
 
-#### `Application(data map[string]any) TrelloEntity`
-
-Create a new `Application` entity instance. Pass `nil` for no initial data.
-
 #### `ApplicationCompliance(data map[string]any) TrelloEntity`
 
 Create a new `ApplicationCompliance` entity instance. Pass `nil` for no initial data.
@@ -152,13 +148,9 @@ Create a new `EmailPosition` entity instance. Pass `nil` for no initial data.
 
 Create a new `Emoji` entity instance. Pass `nil` for no initial data.
 
-#### `Enterpris(data map[string]any) TrelloEntity`
+#### `Enterprise(data map[string]any) TrelloEntity`
 
-Create a new `Enterpris` entity instance. Pass `nil` for no initial data.
-
-#### `EnterprisSignupUrl(data map[string]any) TrelloEntity`
-
-Create a new `EnterprisSignupUrl` entity instance. Pass `nil` for no initial data.
+Create a new `Enterprise` entity instance. Pass `nil` for no initial data.
 
 #### `EnterpriseAdmin(data map[string]any) TrelloEntity`
 
@@ -167,6 +159,10 @@ Create a new `EnterpriseAdmin` entity instance. Pass `nil` for no initial data.
 #### `EnterpriseAuditLog(data map[string]any) TrelloEntity`
 
 Create a new `EnterpriseAuditLog` entity instance. Pass `nil` for no initial data.
+
+#### `EnterpriseSignupUrl(data map[string]any) TrelloEntity`
+
+Create a new `EnterpriseSignupUrl` entity instance. Pass `nil` for no initial data.
 
 #### `Export(data map[string]any) TrelloEntity`
 
@@ -216,10 +212,6 @@ Create a new `MembersVoted` entity instance. Pass `nil` for no initial data.
 
 Create a new `Membership` entity instance. Pass `nil` for no initial data.
 
-#### `MostRecent(data map[string]any) TrelloEntity`
-
-Create a new `MostRecent` entity instance. Pass `nil` for no initial data.
-
 #### `NewBillableGuest(data map[string]any) TrelloEntity`
 
 Create a new `NewBillableGuest` entity instance. Pass `nil` for no initial data.
@@ -239,10 +231,6 @@ Create a new `NotificationList` entity instance. Pass `nil` for no initial data.
 #### `NotificationMemberCreator(data map[string]any) TrelloEntity`
 
 Create a new `NotificationMemberCreator` entity instance. Pass `nil` for no initial data.
-
-#### `NotificationsChannelSetting(data map[string]any) TrelloEntity`
-
-Create a new `NotificationsChannelSetting` entity instance. Pass `nil` for no initial data.
 
 #### `Option(data map[string]any) TrelloEntity`
 
@@ -542,7 +530,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```go
 result, err := client.Admin(nil).Update(map[string]any{
-    "enterpris_id": "enterpris_id",
+    "enterprise_id": "enterprise_id",
     "id": "id",
     // Fields to update
 }, nil)
@@ -557,7 +545,7 @@ fmt.Println(result)
 Remove the entity matching the given criteria.
 
 ```go
-result, err := client.Admin(nil).Remove(map[string]any{"enterpris_id": "enterpris_id", "id": "id"}, nil)
+result, err := client.Admin(nil).Remove(map[string]any{"enterprise_id": "enterprise_id", "id": "id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -579,37 +567,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `AdminEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ApplicationEntity
-
-```go
-application := client.Application(nil)
-fmt.Println(application.GetName()) // "application"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ApplicationEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -1245,7 +1202,7 @@ fmt.Println(bulk.GetName()) // "bulk"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Bulk(nil).Load(map[string]any{"id": []any{}, "enterpris_id": "enterpris_id"}, nil)
+result, err := client.Bulk(nil).Load(map[string]any{"id": []any{}, "enterprise_id": "enterprise_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -2287,11 +2244,11 @@ Return the entity name.
 
 ---
 
-## EnterprisEntity
+## EnterpriseEntity
 
 ```go
-enterpris := client.Enterpris(nil)
-fmt.Println(enterpris.GetName()) // "enterpris"
+enterprise := client.Enterprise(nil)
+fmt.Println(enterprise.GetName()) // "enterprise"
 ```
 
 ### Fields
@@ -2324,7 +2281,7 @@ fmt.Println(enterpris.GetName()) // "enterpris"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Enterpris(nil).Load(map[string]any{"id": "enterpris_id"}, nil)
+result, err := client.Enterprise(nil).Load(map[string]any{"id": "enterprise_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -2336,7 +2293,7 @@ fmt.Println(result)
 Create a new entity with the given data.
 
 ```go
-result, err := client.Enterpris(nil).Create(map[string]any{
+result, err := client.Enterprise(nil).Create(map[string]any{
     "id": "example_id",
 }, nil)
 if err != nil {
@@ -2350,8 +2307,8 @@ fmt.Println(result)
 Update an existing entity. The data must include the entity `id`.
 
 ```go
-result, err := client.Enterpris(nil).Update(map[string]any{
-    "id": "enterpris_id",
+result, err := client.Enterprise(nil).Update(map[string]any{
+    "id": "enterprise_id",
     "id_organization": "id_organization",
     // Fields to update
 }, nil)
@@ -2375,59 +2332,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `EnterprisEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## EnterprisSignupUrlEntity
-
-```go
-enterprisSignupUrl := client.EnterprisSignupUrl(nil)
-fmt.Println(enterprisSignupUrl.GetName()) // "enterpris_signup_url"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `string` | No |  |
-| `signupUrl` | `string` | No |  |
-
-### Operations
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria.
-
-```go
-result, err := client.EnterprisSignupUrl(nil).Load(map[string]any{"id": "enterpris_signup_url_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `EnterprisSignupUrlEntity` instance with the same client and
+Create a new `EnterpriseEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -2459,7 +2364,7 @@ fmt.Println(enterpriseAdmin.GetName()) // "enterprise_admin"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.EnterpriseAdmin(nil).Load(map[string]any{"enterpris_id": "enterpris_id"}, nil)
+result, err := client.EnterpriseAdmin(nil).Load(map[string]any{"id": "enterprise_admin_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -2502,6 +2407,7 @@ fmt.Println(enterpriseAuditLog.GetName()) // "enterprise_audit_log"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `date` | `string` | No |  |
+| `id` | `string` | No |  |
 | `idAction` | `string` | No |  |
 | `member` | `map[string]any` | No |  |
 | `memberCreator` | `map[string]any` | No |  |
@@ -2537,6 +2443,58 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `EnterpriseAuditLogEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## EnterpriseSignupUrlEntity
+
+```go
+enterpriseSignupUrl := client.EnterpriseSignupUrl(nil)
+fmt.Println(enterpriseSignupUrl.GetName()) // "enterprise_signup_url"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+| `signupUrl` | `string` | No |  |
+
+### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.EnterpriseSignupUrl(nil).Load(map[string]any{"id": "enterprise_signup_url_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `EnterpriseSignupUrlEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -3399,37 +3357,6 @@ Return the entity name.
 
 ---
 
-## MostRecentEntity
-
-```go
-mostRecent := client.MostRecent(nil)
-fmt.Println(mostRecent.GetName()) // "most_recent"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `MostRecentEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## NewBillableGuestEntity
 
 ```go
@@ -3753,37 +3680,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `NotificationMemberCreatorEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## NotificationsChannelSettingEntity
-
-```go
-notificationsChannelSetting := client.NotificationsChannelSetting(nil)
-fmt.Println(notificationsChannelSetting.GetName()) // "notifications_channel_setting"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `NotificationsChannelSettingEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -4990,7 +4886,7 @@ fmt.Println(transferrableOrganization.GetName()) // "transferrable_organization"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.TransferrableOrganization(nil).Load(map[string]any{"id": "transferrable_organization_id", "enterpris_id": "enterpris_id"}, nil)
+result, err := client.TransferrableOrganization(nil).Load(map[string]any{"id": "transferrable_organization_id", "enterprise_id": "enterprise_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -5222,14 +5118,14 @@ Return the entity name.
 
 | Feature | Version | Description |
 | --- | --- | --- |
-| `debug` | 0.0.1 | Request/response capture ring buffer for debugging |
-| `idempotency` | 0.0.1 | Idempotency keys for safe retries of mutating operations |
-| `metrics` | 0.0.1 | Statistics capture: per-operation counters and latency |
-| `paging` | 0.0.1 | Pagination signals for list operations |
-| `ratelimit` | 0.0.1 | Client-side rate limiting via a token bucket |
-| `retry` | 0.0.1 | Automatic retry of transient failures with exponential backoff |
-| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
-| `timeout` | 0.0.1 | Per-request timeout with transport abort |
+| `debug` | 0.0.1 | Debug capture |
+| `idempotency` | 0.0.1 | Idempotency |
+| `metrics` | 0.0.1 | Metrics |
+| `paging` | 0.0.1 | Paging |
+| `ratelimit` | 0.0.1 | Rate limiting |
+| `retry` | 0.0.1 | Retry |
+| `test` | 0.0.1 | Test transport |
+| `timeout` | 0.0.1 | Timeout |
 
 
 Features are activated via the `feature` option:
@@ -5275,7 +5171,7 @@ rather than the transport, so their order does not affect what they observe.
 
 #### `debug`
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 **Configuration**
 
@@ -5306,7 +5202,7 @@ its default unless you name it.
 
 #### `idempotency`
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 **Configuration**
 
@@ -5337,7 +5233,7 @@ its default unless you name it.
 
 #### `metrics`
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 **Configuration**
 
@@ -5365,7 +5261,7 @@ its default unless you name it.
 
 #### `paging`
 
-Pagination signals for list operations.
+Paging.
 
 **Configuration**
 
@@ -5400,7 +5296,7 @@ its default unless you name it.
 
 #### `ratelimit`
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 **Configuration**
 
@@ -5431,7 +5327,7 @@ its default unless you name it.
 
 #### `retry`
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 **Configuration**
 
@@ -5465,7 +5361,7 @@ its default unless you name it.
 
 #### `test`
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 **Configuration**
 
@@ -5496,7 +5392,7 @@ its default unless you name it.
 
 #### `timeout`
 
-Per-request timeout with transport abort.
+Timeout.
 
 **Configuration**
 

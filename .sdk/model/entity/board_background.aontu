@@ -1,0 +1,555 @@
+# Entity: board_background
+
+main: kit: entity: board_background: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "board_background"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /members/{id}/customBoardBackgrounds"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "file"
+                or: "file"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/members/{id}/customBoardBackgrounds"
+          q: {
+            exist: [
+              "file"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}/boardBackgrounds"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/boardBackgrounds"
+          q: {
+            exist: [
+              "filter"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /members/{id}/customBoardBackgrounds"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/customBoardBackgrounds"
+          q: {
+            exist: [
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}/boardBackgrounds/{idBackground}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_background"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/boardBackgrounds/{idBackground}"
+          q: {
+            exist: [
+              "field"
+              "id"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+              idBackground: "id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /members/{id}/customBoardBackgrounds/{idBackground}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_background"
+                or: "id_background"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/customBoardBackgrounds/{idBackground}"
+          q: {
+            exist: [
+              "id_background"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+              idBackground: "id_background"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+            {
+              var: "id_background"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /members/{id}/boardBackgrounds/{idBackground}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_background"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/members/{id}/boardBackgrounds/{idBackground}"
+          q: {
+            exist: [
+              "id"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+              idBackground: "id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /members/{id}/boardBackgrounds/{idBackground}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_background"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "brightness"
+                or: "brightness"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "tile"
+                or: "tile"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/members/{id}/boardBackgrounds/{idBackground}"
+          q: {
+            exist: [
+              "brightness"
+              "id"
+              "member_id"
+              "tile"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+              idBackground: "id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardBackgrounds"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /members/{id}/customBoardBackgrounds/{idBackground}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_background"
+                or: "id_background"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "brightness"
+                or: "brightness"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "tile"
+                or: "tile"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/members/{id}/customBoardBackgrounds/{idBackground}"
+          q: {
+            exist: [
+              "brightness"
+              "id_background"
+              "member_id"
+              "tile"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+              idBackground: "id_background"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+            {
+              var: "id_background"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.member")]
+    [path("$.main.kit.entity.member") path("$.main.kit.entity.custom_board_background")]
+  ]
+
+}

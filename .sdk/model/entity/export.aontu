@@ -1,0 +1,431 @@
+# Entity: export
+
+main: kit: entity: export: {
+
+  alias: field: {}
+
+  fields: {
+    attempts: {
+      h: "Attempts"
+      n: "attempts"
+      r: false
+      t: "`$NUMBER`"
+    }
+    exportUrl: {
+      h: "Export Url"
+      n: "exportUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    finished: {
+      h: "Finished"
+      n: "finished"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      r: false
+      t: "`$STRING`"
+    }
+    stage: {
+      h: "Stage"
+      n: "stage"
+      r: false
+      t: "`$STRING`"
+    }
+    startedAt: {
+      fo: "date-time"
+      h: "Started At"
+      n: "startedAt"
+      r: false
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "export"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /boards/{id}/exports"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "attachment"
+                or: "attachment"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "attachment_age"
+                or: "attachment_age"
+                r: false
+                t: "`$NUMBER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/boards/{id}/exports"
+          q: {
+            exist: [
+              "attachment"
+              "attachment_age"
+              "board_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.status`"
+          }
+        }
+        {
+          co: {
+            id: "POST /organizations/{id}/exports"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: true
+                k: "query"
+                n: "attachment"
+                or: "attachment"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/organizations/{id}/exports"
+          q: {
+            exist: [
+              "attachment"
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "exports"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.status`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /organizations/{id}/exports"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/organizations/{id}/exports"
+          q: {
+            exist: [
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "exports"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /boards/{id}/exports/{idExport}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_export"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/exports/{idExport}"
+          q: {
+            exist: [
+              "board_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+              idExport: "id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.status`"
+          }
+        }
+        {
+          co: {
+            id: "GET /boards/{id}/exports/mostRecent"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/exports/mostRecent"
+          q: {
+            "$action": "most_recent"
+            exist: [
+              "board_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              lit: "mostRecent"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.status`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /boards/{id}/exports/{idExport}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_export"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/boards/{id}/exports/{idExport}"
+          q: {
+            exist: [
+              "board_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+              idExport: "id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.board")]
+    [path("$.main.kit.entity.organization")]
+  ]
+
+}

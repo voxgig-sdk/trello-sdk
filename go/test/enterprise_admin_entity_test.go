@@ -104,7 +104,7 @@ func enterprise_adminBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"enterprise_admin01", "enterprise_admin02", "enterprise_admin03", "enterpris01", "enterpris02", "enterpris03"},
+		[]any{"enterprise_admin01", "enterprise_admin02", "enterprise_admin03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

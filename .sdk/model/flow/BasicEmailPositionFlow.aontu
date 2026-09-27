@@ -1,0 +1,28 @@
+# BasicEmailPositionFlow
+
+main: kit: flow: BasicEmailPositionFlow:
+{
+  entity: "email_position",
+  kind: "basic",
+  name: "BasicEmailPositionFlow",
+  step: [
+    {
+      i: {
+        ref: "email_position_ref01",
+        srcdatavar: "email_position_ref01_data",
+        suffix: "_up0"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-email_position_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailPositionFlow"
+}

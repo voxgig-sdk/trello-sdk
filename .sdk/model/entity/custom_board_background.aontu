@@ -1,0 +1,93 @@
+# Entity: custom_board_background
+
+main: kit: entity: custom_board_background: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "custom_board_background"
+  op: {
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /members/{id}/customBoardBackgrounds/{idBackground}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_background"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/members/{id}/customBoardBackgrounds/{idBackground}"
+          q: {
+            exist: [
+              "id"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+              idBackground: "id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "customBoardBackgrounds"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.member")]
+  ]
+
+}

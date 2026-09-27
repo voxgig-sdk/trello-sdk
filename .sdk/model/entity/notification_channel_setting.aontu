@@ -1,0 +1,358 @@
+# Entity: notification_channel_setting
+
+main: kit: entity: notification_channel_setting: {
+
+  alias: field: {}
+
+  fields: {
+    blockedKeys: {
+      h: "Blocked Keys"
+      n: "blockedKeys"
+      op: {
+        update: {
+          req: true
+          type: "`$ANY`"
+        }
+      }
+      r: false
+      sh: "Singular key or array of notification keys"
+      t: "`$ARRAY`"
+    }
+    channel: {
+      h: "Channel"
+      n: "channel"
+      op: {
+        update: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idMember: {
+      h: "Id Member"
+      n: "idMember"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    from: {
+      channel: "channel"
+    }
+    name: "id"
+    parts: [
+      "channel"
+      "blocked_key"
+    ]
+    sep: "/"
+  }
+
+  name: "notification_channel_setting"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}/notificationsChannelSettings"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/notificationsChannelSettings"
+          q: {
+            exist: [
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}/notificationsChannelSettings/{channel}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "email"
+                k: "param"
+                n: "channel"
+                or: "channel"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/notificationsChannelSettings/{channel}"
+          q: {
+            exist: [
+              "channel"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+            {
+              var: "channel"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "notification_comment_card"
+                k: "param"
+                n: "blocked_key"
+                or: "blocked_key"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "email"
+                k: "param"
+                n: "channel"
+                or: "channel"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}"
+          q: {
+            exist: [
+              "blocked_key"
+              "channel"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              blockedKeys: "blocked_key"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+            {
+              var: "channel"
+            }
+            {
+              var: "blocked_key"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /members/{id}/notificationsChannelSettings/{channel}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "email"
+                k: "param"
+                n: "channel"
+                or: "channel"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/members/{id}/notificationsChannelSettings/{channel}"
+          q: {
+            exist: [
+              "channel"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+            {
+              var: "channel"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /members/{id}/notificationsChannelSettings"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/members/{id}/notificationsChannelSettings"
+          q: {
+            exist: [
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notificationsChannelSettings"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.member")]
+    [path("$.main.kit.entity.member")]
+  ]
+
+}

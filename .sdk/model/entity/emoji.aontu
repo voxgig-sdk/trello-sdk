@@ -1,0 +1,136 @@
+# Entity: emoji
+
+main: kit: entity: emoji: {
+
+  alias: field: {}
+
+  fields: {
+    category: {
+      h: "Category"
+      n: "category"
+      r: false
+      t: "`$STRING`"
+    }
+    keywords: {
+      h: "Keywords"
+      n: "keywords"
+      r: false
+      t: "`$ARRAY`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    native: {
+      h: "Native"
+      n: "native"
+      r: false
+      t: "`$STRING`"
+    }
+    sheetX: {
+      h: "Sheet X"
+      n: "sheetX"
+      r: false
+      t: "`$NUMBER`"
+    }
+    sheetY: {
+      h: "Sheet Y"
+      n: "sheetY"
+      r: false
+      t: "`$NUMBER`"
+    }
+    shortName: {
+      h: "Short Name"
+      n: "shortName"
+      r: false
+      t: "`$STRING`"
+    }
+    shortNames: {
+      h: "Short Names"
+      n: "shortNames"
+      r: false
+      t: "`$ARRAY`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      t: "`$STRING`"
+    }
+    texts: {
+      h: "Texts"
+      n: "texts"
+      r: false
+      t: "`$STRING`"
+    }
+    tts: {
+      h: "Tts"
+      n: "tts"
+      r: false
+      t: "`$STRING`"
+    }
+    unified: {
+      h: "Unified"
+      n: "unified"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "emoji"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /emoji"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "spritesheet"
+                or: "spritesheet"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/emoji"
+          q: {
+            exist: [
+              "locale"
+              "spritesheet"
+            ]
+          }
+          s: [
+            {
+              lit: "emoji"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.trello`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

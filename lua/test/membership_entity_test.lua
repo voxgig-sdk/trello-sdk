@@ -138,7 +138,7 @@ function membership_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "membership01", "membership02", "membership03", "board01", "board02", "board03", "enterpris01", "enterpris02", "enterpris03", "organization01", "organization02", "organization03" },
+    { "membership01", "membership02", "membership03", "board01", "board02", "board03", "enterprise01", "enterprise02", "enterprise03", "organization01", "organization02", "organization03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

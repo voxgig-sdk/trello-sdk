@@ -1,0 +1,22 @@
+# BasicEmojiFlow
+
+main: kit: flow: BasicEmojiFlow:
+{
+  entity: "emoji",
+  kind: "basic",
+  name: "BasicEmojiFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "emoji_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmojiFlow"
+}

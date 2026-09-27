@@ -29,13 +29,13 @@ func TestEnterpriseAdminDirect(t *testing.T) {
 		params := map[string]any{}
 		query := map[string]any{}
 		if setup.live {
-			params["enterpris_id"] = "5abbe4b7ddc1b351ef961414"
+			params["id"] = "5abbe4b7ddc1b351ef961414"
 		} else {
-			params["enterpris_id"] = "direct01"
+			params["id"] = "direct01"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "enterprises/{enterpris_id}/admins",
+			"path":   "enterprises/{id}/admins",
 			"method": "GET",
 			"params": params,
 			"query":  query,

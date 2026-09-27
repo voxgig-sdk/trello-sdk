@@ -1,0 +1,83 @@
+# Entity: email_position
+
+main: kit: entity: email_position: {
+
+  alias: field: {}
+
+  name: "email_position"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /boards/{id}/myPrefs/emailPosition"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "value"
+                or: "value"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/boards/{id}/myPrefs/emailPosition"
+          q: {
+            exist: [
+              "board_id"
+              "value"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "myPrefs"
+            }
+            {
+              lit: "emailPosition"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.board")]
+  ]
+
+}

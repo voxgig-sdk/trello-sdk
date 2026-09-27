@@ -1,7 +1,7 @@
 // Typed models for the Trello SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,14 +14,6 @@ import (
 
 // Action is the typed data model for the action entity.
 type Action struct {
-	Data *map[string]any `json:"data,omitempty"`
-	Date *string `json:"date,omitempty"`
-	Display *map[string]any `json:"display,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
-	Limits *map[string]any `json:"limits,omitempty"`
-	MemberCreator *map[string]any `json:"memberCreator,omitempty"`
-	Type *string `json:"type,omitempty"`
 }
 
 // ActionLoadMatch is the typed request payload for Action.LoadTyped.
@@ -85,23 +77,18 @@ type ActionReactionsSummaryLoadMatch struct {
 
 // Admin is the typed data model for the admin entity.
 type Admin struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // AdminUpdateData is the typed request payload for Admin.UpdateTyped.
 type AdminUpdateData struct {
-	EnterprisId string `json:"enterpris_id"`
+	EnterpriseId string `json:"enterprise_id"`
 	Id string `json:"id"`
 }
 
 // AdminRemoveMatch is the typed request payload for Admin.RemoveTyped.
 type AdminRemoveMatch struct {
-	EnterprisId string `json:"enterpris_id"`
+	EnterpriseId string `json:"enterprise_id"`
 	Id string `json:"id"`
-}
-
-// Application is the typed data model for the application entity.
-type Application struct {
 }
 
 // ApplicationCompliance is the typed data model for the application_compliance entity.
@@ -124,7 +111,6 @@ type AssociatedDomainRemoveMatch struct {
 
 // Attachment is the typed data model for the attachment entity.
 type Attachment struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // AttachmentLoadMatch is the typed request payload for Attachment.LoadTyped.
@@ -158,32 +144,6 @@ type BatchLoadMatch struct {
 
 // Board is the typed data model for the board entity.
 type Board struct {
-	Closed *bool `json:"closed,omitempty"`
-	CreationMethod *string `json:"creationMethod,omitempty"`
-	DateLastActivity *string `json:"dateLastActivity,omitempty"`
-	DateLastView *string `json:"dateLastView,omitempty"`
-	DatePluginDisable *string `json:"datePluginDisable,omitempty"`
-	Desc *string `json:"desc,omitempty"`
-	DescData *string `json:"descData,omitempty"`
-	EnterpriseOwned *bool `json:"enterpriseOwned,omitempty"`
-	Id string `json:"id"`
-	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
-	IdOrganization *string `json:"idOrganization,omitempty"`
-	IdTags *string `json:"idTags,omitempty"`
-	IxUpdate *int `json:"ixUpdate,omitempty"`
-	LabelNames *map[string]any `json:"labelNames,omitempty"`
-	Limits *map[string]any `json:"limits,omitempty"`
-	Memberships *string `json:"memberships,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Pinned *bool `json:"pinned,omitempty"`
-	PowerUps *string `json:"powerUps,omitempty"`
-	Prefs *map[string]any `json:"prefs,omitempty"`
-	ShortLink *string `json:"shortLink,omitempty"`
-	ShortUrl *string `json:"shortUrl,omitempty"`
-	Starred *bool `json:"starred,omitempty"`
-	Subscribed *bool `json:"subscribed,omitempty"`
-	TemplateGallery *string `json:"templateGallery,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // BoardLoadMatch is the typed request payload for Board.LoadTyped.
@@ -309,7 +269,6 @@ type BoardRemoveMatch struct {
 
 // BoardBackground is the typed data model for the board_background entity.
 type BoardBackground struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // BoardBackgroundLoadMatch is the typed request payload for BoardBackground.LoadTyped.
@@ -350,7 +309,6 @@ type BoardBackgroundRemoveMatch struct {
 
 // BoardPlugin is the typed data model for the board_plugin entity.
 type BoardPlugin struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // BoardPluginRemoveMatch is the typed request payload for BoardPlugin.RemoveTyped.
@@ -361,9 +319,6 @@ type BoardPluginRemoveMatch struct {
 
 // BoardStar is the typed data model for the board_star entity.
 type BoardStar struct {
-	Id *string `json:"id,omitempty"`
-	IdBoard *string `json:"idBoard,omitempty"`
-	Pos *int `json:"pos,omitempty"`
 }
 
 // BoardStarLoadMatch is the typed request payload for BoardStar.LoadTyped.
@@ -403,12 +358,11 @@ type BoardStarRemoveMatch struct {
 
 // Bulk is the typed data model for the bulk entity.
 type Bulk struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // BulkLoadMatch is the typed request payload for Bulk.LoadTyped.
 type BulkLoadMatch struct {
-	EnterprisId string `json:"enterpris_id"`
+	EnterpriseId string `json:"enterprise_id"`
 	Id []any `json:"id"`
 }
 
@@ -420,39 +374,6 @@ type BulkUpdateData struct {
 
 // Card is the typed data model for the card entity.
 type Card struct {
-	Address *string `json:"address,omitempty"`
-	Badges *map[string]any `json:"badges,omitempty"`
-	CardRole *string `json:"cardRole,omitempty"`
-	CheckItemStates *[]any `json:"checkItemStates,omitempty"`
-	Closed *bool `json:"closed,omitempty"`
-	Coordinates *string `json:"coordinates,omitempty"`
-	Cover *map[string]any `json:"cover,omitempty"`
-	CreationMethod *string `json:"creationMethod,omitempty"`
-	DateLastActivity *string `json:"dateLastActivity,omitempty"`
-	Desc *string `json:"desc,omitempty"`
-	DescData *map[string]any `json:"descData,omitempty"`
-	Due *string `json:"due,omitempty"`
-	DueReminder *string `json:"dueReminder,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdAttachmentCover *string `json:"idAttachmentCover,omitempty"`
-	IdBoard *string `json:"idBoard,omitempty"`
-	IdChecklists *[]any `json:"idChecklists,omitempty"`
-	IdLabels *[]any `json:"idLabels,omitempty"`
-	IdList *string `json:"idList,omitempty"`
-	IdMembers *[]any `json:"idMembers,omitempty"`
-	IdMembersVoted *[]any `json:"idMembersVoted,omitempty"`
-	IdShort *int `json:"idShort,omitempty"`
-	Labels *[]any `json:"labels,omitempty"`
-	Limits *map[string]any `json:"limits,omitempty"`
-	LocationName *string `json:"locationName,omitempty"`
-	ManualCoverAttachment *bool `json:"manualCoverAttachment,omitempty"`
-	MirrorSourceId *string `json:"mirrorSourceId,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Pos *float64 `json:"pos,omitempty"`
-	ShortLink *string `json:"shortLink,omitempty"`
-	ShortUrl *string `json:"shortUrl,omitempty"`
-	Subscribed *bool `json:"subscribed,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // CardLoadMatch is the typed request payload for Card.LoadTyped.
@@ -587,7 +508,6 @@ type CardRemoveMatch struct {
 
 // CardCheckItemState is the typed data model for the card_check_item_state entity.
 type CardCheckItemState struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // CardCheckItemStateLoadMatch is the typed request payload for CardCheckItemState.LoadTyped.
@@ -598,7 +518,6 @@ type CardCheckItemStateLoadMatch struct {
 
 // CardList is the typed data model for the card_list entity.
 type CardList struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // CardListLoadMatch is the typed request payload for CardList.LoadTyped.
@@ -609,12 +528,6 @@ type CardListLoadMatch struct {
 
 // CheckItem is the typed data model for the check_item entity.
 type CheckItem struct {
-	Id *string `json:"id,omitempty"`
-	IdChecklist *string `json:"idChecklist,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NameData *string `json:"nameData,omitempty"`
-	Pos *string `json:"pos,omitempty"`
-	State *string `json:"state,omitempty"`
 }
 
 // CheckItemLoadMatch is the typed request payload for CheckItem.LoadTyped.
@@ -650,7 +563,6 @@ type CheckItemRemoveMatch struct {
 
 // Checklist is the typed data model for the checklist entity.
 type Checklist struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // ChecklistLoadMatch is the typed request payload for Checklist.LoadTyped.
@@ -688,19 +600,11 @@ type ChecklistRemoveMatch struct {
 
 // ClaimableOrganization is the typed data model for the claimable_organization entity.
 type ClaimableOrganization struct {
-	ActiveMembershipCount *float64 `json:"activeMembershipCount,omitempty"`
-	DateLastActive *string `json:"dateLastActive,omitempty"`
-	DisplayName *string `json:"displayName,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdActiveAdmins *[]any `json:"idActiveAdmins,omitempty"`
-	LogoUrl *string `json:"logoUrl,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Products *[]any `json:"products,omitempty"`
 }
 
 // ClaimableOrganizationListMatch is the typed request payload for ClaimableOrganization.ListTyped.
 type ClaimableOrganizationListMatch struct {
-	EnterprisId string `json:"enterpris_id"`
+	EnterpriseId string `json:"enterprise_id"`
 	ActiveSince *string `json:"active_since,omitempty"`
 	Cursor *string `json:"cursor,omitempty"`
 	InactiveSince *string `json:"inactive_since,omitempty"`
@@ -710,7 +614,6 @@ type ClaimableOrganizationListMatch struct {
 
 // CustomBoardBackground is the typed data model for the custom_board_background entity.
 type CustomBoardBackground struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // CustomBoardBackgroundRemoveMatch is the typed request payload for CustomBoardBackground.RemoveTyped.
@@ -721,9 +624,6 @@ type CustomBoardBackgroundRemoveMatch struct {
 
 // CustomEmoji is the typed data model for the custom_emoji entity.
 type CustomEmoji struct {
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // CustomEmojiLoadMatch is the typed request payload for CustomEmoji.LoadTyped.
@@ -749,18 +649,6 @@ type CustomEmojiCreateData struct {
 
 // CustomField is the typed data model for the custom_field entity.
 type CustomField struct {
-	CardFront *bool `json:"cardFront,omitempty"`
-	Display *map[string]any `json:"display,omitempty"`
-	DisplayCardFront *bool `json:"display_cardFront,omitempty"`
-	DisplaycardFront *bool `json:"displaycardFront,omitempty"`
-	FieldGroup *string `json:"fieldGroup,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdModel string `json:"idModel"`
-	ModelType string `json:"modelType"`
-	Name *string `json:"name,omitempty"`
-	Options *[]any `json:"options,omitempty"`
-	Pos *string `json:"pos,omitempty"`
-	Type string `json:"type"`
 }
 
 // CustomFieldLoadMatch is the typed request payload for CustomField.LoadTyped.
@@ -812,11 +700,6 @@ type CustomFieldRemoveMatch struct {
 
 // CustomFieldItem is the typed data model for the custom_field_item entity.
 type CustomFieldItem struct {
-	Id *string `json:"id,omitempty"`
-	IdCustomField *string `json:"idCustomField,omitempty"`
-	IdModel *string `json:"idModel,omitempty"`
-	ModelType *string `json:"modelType,omitempty"`
-	Value *map[string]any `json:"value,omitempty"`
 }
 
 // CustomFieldItemListMatch is the typed request payload for CustomFieldItem.ListTyped.
@@ -826,9 +709,6 @@ type CustomFieldItemListMatch struct {
 
 // CustomSticker is the typed data model for the custom_sticker entity.
 type CustomSticker struct {
-	Id *string `json:"id,omitempty"`
-	Scaled *[]any `json:"scaled,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // CustomStickerLoadMatch is the typed request payload for CustomSticker.LoadTyped.
@@ -870,18 +750,6 @@ type EmailPositionUpdateData struct {
 
 // Emoji is the typed data model for the emoji entity.
 type Emoji struct {
-	Category *string `json:"category,omitempty"`
-	Keywords *[]any `json:"keywords,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Native *string `json:"native,omitempty"`
-	SheetX *float64 `json:"sheetX,omitempty"`
-	SheetY *float64 `json:"sheetY,omitempty"`
-	ShortName *string `json:"shortName,omitempty"`
-	ShortNames *[]any `json:"shortNames,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Texts *string `json:"texts,omitempty"`
-	Tts *string `json:"tts,omitempty"`
-	Unified *string `json:"unified,omitempty"`
 }
 
 // EmojiListMatch is the typed request payload for Emoji.ListTyped.
@@ -890,30 +758,12 @@ type EmojiListMatch struct {
 	Spritesheet *bool `json:"spritesheet,omitempty"`
 }
 
-// Enterpris is the typed data model for the enterpris entity.
-type Enterpris struct {
-	DateOrganizationPrefsLastUpdated *string `json:"dateOrganizationPrefsLastUpdated,omitempty"`
-	DisplayName *string `json:"displayName,omitempty"`
-	Domains *[]any `json:"domains,omitempty"`
-	EnterpriseDomains *[]any `json:"enterpriseDomains,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdAdmins *[]any `json:"idAdmins,omitempty"`
-	IdOrganizations *[]any `json:"idOrganizations,omitempty"`
-	Idp *map[string]any `json:"idp,omitempty"`
-	IsRealEnterprise *bool `json:"isRealEnterprise,omitempty"`
-	Licenses *map[string]any `json:"licenses,omitempty"`
-	LogoHash *string `json:"logoHash,omitempty"`
-	LogoUrl *string `json:"logoUrl,omitempty"`
-	Name *string `json:"name,omitempty"`
-	OrganizationPrefs *map[string]any `json:"organizationPrefs,omitempty"`
-	PluginWhitelistingEnabled *[]any `json:"pluginWhitelistingEnabled,omitempty"`
-	Prefs *map[string]any `json:"prefs,omitempty"`
-	Products *[]any `json:"products,omitempty"`
-	SsoActivationFailed *bool `json:"ssoActivationFailed,omitempty"`
+// Enterprise is the typed data model for the enterprise entity.
+type Enterprise struct {
 }
 
-// EnterprisLoadMatch is the typed request payload for Enterpris.LoadTyped.
-type EnterprisLoadMatch struct {
+// EnterpriseLoadMatch is the typed request payload for Enterprise.LoadTyped.
+type EnterpriseLoadMatch struct {
 	Id string `json:"id"`
 	Field *string `json:"field,omitempty"`
 	Member *string `json:"member,omitempty"`
@@ -930,8 +780,8 @@ type EnterprisLoadMatch struct {
 	OrganizationPaidAccount *bool `json:"organization_paid_account,omitempty"`
 }
 
-// EnterprisCreateData is the typed request payload for Enterpris.CreateTyped.
-type EnterprisCreateData struct {
+// EnterpriseCreateData is the typed request payload for Enterprise.CreateTyped.
+type EnterpriseCreateData struct {
 	Id string `json:"id"`
 	Expiration *string `json:"expiration,omitempty"`
 	DateOrganizationPrefsLastUpdated *string `json:"dateOrganizationPrefsLastUpdated,omitempty"`
@@ -953,8 +803,8 @@ type EnterprisCreateData struct {
 	SsoActivationFailed *bool `json:"ssoActivationFailed,omitempty"`
 }
 
-// EnterprisUpdateData is the typed request payload for Enterpris.UpdateTyped.
-type EnterprisUpdateData struct {
+// EnterpriseUpdateData is the typed request payload for Enterprise.UpdateTyped.
+type EnterpriseUpdateData struct {
 	Id string `json:"id"`
 	IdOrganization string `json:"id_organization"`
 	DateOrganizationPrefsLastUpdated *string `json:"dateOrganizationPrefsLastUpdated,omitempty"`
@@ -976,14 +826,31 @@ type EnterprisUpdateData struct {
 	SsoActivationFailed *bool `json:"ssoActivationFailed,omitempty"`
 }
 
-// EnterprisSignupUrl is the typed data model for the enterpris_signup_url entity.
-type EnterprisSignupUrl struct {
-	Id *string `json:"id,omitempty"`
-	SignupUrl *string `json:"signupUrl,omitempty"`
+// EnterpriseAdmin is the typed data model for the enterprise_admin entity.
+type EnterpriseAdmin struct {
 }
 
-// EnterprisSignupUrlLoadMatch is the typed request payload for EnterprisSignupUrl.LoadTyped.
-type EnterprisSignupUrlLoadMatch struct {
+// EnterpriseAdminLoadMatch is the typed request payload for EnterpriseAdmin.LoadTyped.
+type EnterpriseAdminLoadMatch struct {
+	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
+}
+
+// EnterpriseAuditLog is the typed data model for the enterprise_audit_log entity.
+type EnterpriseAuditLog struct {
+}
+
+// EnterpriseAuditLogListMatch is the typed request payload for EnterpriseAuditLog.ListTyped.
+type EnterpriseAuditLogListMatch struct {
+	Id string `json:"id"`
+}
+
+// EnterpriseSignupUrl is the typed data model for the enterprise_signup_url entity.
+type EnterpriseSignupUrl struct {
+}
+
+// EnterpriseSignupUrlLoadMatch is the typed request payload for EnterpriseSignupUrl.LoadTyped.
+type EnterpriseSignupUrlLoadMatch struct {
 	Id string `json:"id"`
 	Authenticate *bool `json:"authenticate,omitempty"`
 	ConfirmationAccepted *bool `json:"confirmation_accepted,omitempty"`
@@ -991,44 +858,8 @@ type EnterprisSignupUrlLoadMatch struct {
 	TosAccepted *bool `json:"tos_accepted,omitempty"`
 }
 
-// EnterpriseAdmin is the typed data model for the enterprise_admin entity.
-type EnterpriseAdmin struct {
-	FullName *string `json:"fullName,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Username *string `json:"username,omitempty"`
-}
-
-// EnterpriseAdminLoadMatch is the typed request payload for EnterpriseAdmin.LoadTyped.
-type EnterpriseAdminLoadMatch struct {
-	EnterprisId string `json:"enterpris_id"`
-	Field *string `json:"field,omitempty"`
-}
-
-// EnterpriseAuditLog is the typed data model for the enterprise_audit_log entity.
-type EnterpriseAuditLog struct {
-	Date *string `json:"date,omitempty"`
-	IdAction *string `json:"idAction,omitempty"`
-	Member *map[string]any `json:"member,omitempty"`
-	MemberCreator *map[string]any `json:"memberCreator,omitempty"`
-	Organization *map[string]any `json:"organization,omitempty"`
-	Type *string `json:"type,omitempty"`
-}
-
-// EnterpriseAuditLogListMatch is the typed request payload for EnterpriseAuditLog.ListTyped.
-type EnterpriseAuditLogListMatch struct {
-	EnterprisId string `json:"enterpris_id"`
-}
-
 // Export is the typed data model for the export entity.
 type Export struct {
-	Attempts *float64 `json:"attempts,omitempty"`
-	ExportUrl *string `json:"exportUrl,omitempty"`
-	Finished *bool `json:"finished,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Size *string `json:"size,omitempty"`
-	Stage *string `json:"stage,omitempty"`
-	StartedAt *string `json:"startedAt,omitempty"`
-	Status *map[string]any `json:"status,omitempty"`
 }
 
 // ExportLoadMatch is the typed request payload for Export.LoadTyped.
@@ -1094,7 +925,6 @@ type IdEmailListUpdateData struct {
 
 // IdLabel is the typed data model for the id_label entity.
 type IdLabel struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // IdLabelRemoveMatch is the typed request payload for IdLabel.RemoveTyped.
@@ -1105,7 +935,6 @@ type IdLabelRemoveMatch struct {
 
 // IdMember is the typed data model for the id_member entity.
 type IdMember struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // IdMemberRemoveMatch is the typed request payload for IdMember.RemoveTyped.
@@ -1116,7 +945,6 @@ type IdMemberRemoveMatch struct {
 
 // Label is the typed data model for the label entity.
 type Label struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // LabelLoadMatch is the typed request payload for Label.LoadTyped.
@@ -1149,7 +977,6 @@ type LabelRemoveMatch struct {
 
 // List is the typed data model for the list entity.
 type List struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // ListLoadMatch is the typed request payload for List.LoadTyped.
@@ -1182,48 +1009,6 @@ type ListUpdateData struct {
 
 // Member is the typed data model for the member entity.
 type Member struct {
-	AaEmail *string `json:"aaEmail,omitempty"`
-	AaEnrolledDate *string `json:"aaEnrolledDate,omitempty"`
-	AaId *string `json:"aaId,omitempty"`
-	ActivityBlocked *bool `json:"activityBlocked,omitempty"`
-	AvatarHash *string `json:"avatarHash,omitempty"`
-	AvatarSource *string `json:"avatarSource,omitempty"`
-	AvatarUrl *string `json:"avatarUrl,omitempty"`
-	Bio *string `json:"bio,omitempty"`
-	BioData *map[string]any `json:"bioData,omitempty"`
-	Confirmed *bool `json:"confirmed,omitempty"`
-	Email *string `json:"email,omitempty"`
-	FullName *string `json:"fullName,omitempty"`
-	GravatarHash *string `json:"gravatarHash,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdBoards *[]any `json:"idBoards,omitempty"`
-	IdBoardsPinned *[]any `json:"idBoardsPinned,omitempty"`
-	IdEnterprise *string `json:"idEnterprise,omitempty"`
-	IdEnterprisesAdmin *[]any `json:"idEnterprisesAdmin,omitempty"`
-	IdEnterprisesDeactivated *[]any `json:"idEnterprisesDeactivated,omitempty"`
-	IdMemberReferrer *string `json:"idMemberReferrer,omitempty"`
-	IdOrganizations *[]any `json:"idOrganizations,omitempty"`
-	IdPremOrgsAdmin *[]any `json:"idPremOrgsAdmin,omitempty"`
-	Initials *string `json:"initials,omitempty"`
-	IsAaMastered *bool `json:"isAaMastered,omitempty"`
-	IxUpdate *float64 `json:"ixUpdate,omitempty"`
-	Limits *map[string]any `json:"limits,omitempty"`
-	LoginTypes *[]any `json:"loginTypes,omitempty"`
-	MarketingOptIn *map[string]any `json:"marketingOptIn,omitempty"`
-	MemberType *string `json:"memberType,omitempty"`
-	MessagesDismissed *map[string]any `json:"messagesDismissed,omitempty"`
-	NonPublic *map[string]any `json:"nonPublic,omitempty"`
-	NonPublicAvailable *bool `json:"nonPublicAvailable,omitempty"`
-	OneTimeMessagesDismissed *[]any `json:"oneTimeMessagesDismissed,omitempty"`
-	Prefs *map[string]any `json:"prefs,omitempty"`
-	PremiumFeatures *[]any `json:"premiumFeatures,omitempty"`
-	Products *[]any `json:"products,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Trophies *[]any `json:"trophies,omitempty"`
-	UploadedAvatarHash *string `json:"uploadedAvatarHash,omitempty"`
-	UploadedAvatarUrl *string `json:"uploadedAvatarUrl,omitempty"`
-	Url *string `json:"url,omitempty"`
-	Username *string `json:"username,omitempty"`
 }
 
 // MemberLoadMatch is the typed request payload for Member.LoadTyped.
@@ -1382,7 +1167,6 @@ type MemberPrivacyLoadMatch struct {
 
 // MembersVoted is the typed data model for the members_voted entity.
 type MembersVoted struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // MembersVotedLoadMatch is the typed request payload for MembersVoted.LoadTyped.
@@ -1399,13 +1183,6 @@ type MembersVotedRemoveMatch struct {
 
 // Membership is the typed data model for the membership entity.
 type Membership struct {
-	Admin *bool `json:"admin,omitempty"`
-	Collaborator *bool `json:"collaborator,omitempty"`
-	Deactivated *bool `json:"deactivated,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Licensed *bool `json:"licensed,omitempty"`
-	Managed *bool `json:"managed,omitempty"`
-	Member *map[string]any `json:"member,omitempty"`
 }
 
 // MembershipLoadMatch is the typed request payload for Membership.LoadTyped.
@@ -1436,13 +1213,8 @@ type MembershipUpdateData struct {
 	Member *map[string]any `json:"member,omitempty"`
 }
 
-// MostRecent is the typed data model for the most_recent entity.
-type MostRecent struct {
-}
-
 // NewBillableGuest is the typed data model for the new_billable_guest entity.
 type NewBillableGuest struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // NewBillableGuestLoadMatch is the typed request payload for NewBillableGuest.LoadTyped.
@@ -1453,17 +1225,6 @@ type NewBillableGuestLoadMatch struct {
 
 // Notification is the typed data model for the notification entity.
 type Notification struct {
-	Board map[string]any `json:"board"`
-	Card *map[string]any `json:"card,omitempty"`
-	Data *string `json:"data,omitempty"`
-	Date *string `json:"date,omitempty"`
-	DateRead *string `json:"dateRead,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdAction *string `json:"idAction,omitempty"`
-	IdMemberCreator *string `json:"idMemberCreator,omitempty"`
-	Reactions *[]any `json:"reactions,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Unread *bool `json:"unread,omitempty"`
 }
 
 // NotificationLoadMatch is the typed request payload for Notification.LoadTyped.
@@ -1518,10 +1279,6 @@ type NotificationUpdateData struct {
 
 // NotificationChannelSetting is the typed data model for the notification_channel_setting entity.
 type NotificationChannelSetting struct {
-	BlockedKeys *[]any `json:"blockedKeys,omitempty"`
-	Channel *string `json:"channel,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdMember *string `json:"idMember,omitempty"`
 }
 
 // NotificationChannelSettingLoadMatch is the typed request payload for NotificationChannelSetting.LoadTyped.
@@ -1546,7 +1303,6 @@ type NotificationChannelSettingUpdateData struct {
 
 // NotificationList is the typed data model for the notification_list entity.
 type NotificationList struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // NotificationListLoadMatch is the typed request payload for NotificationList.LoadTyped.
@@ -1557,7 +1313,6 @@ type NotificationListLoadMatch struct {
 
 // NotificationMemberCreator is the typed data model for the notification_member_creator entity.
 type NotificationMemberCreator struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // NotificationMemberCreatorLoadMatch is the typed request payload for NotificationMemberCreator.LoadTyped.
@@ -1566,13 +1321,8 @@ type NotificationMemberCreatorLoadMatch struct {
 	Field *string `json:"field,omitempty"`
 }
 
-// NotificationsChannelSetting is the typed data model for the notifications_channel_setting entity.
-type NotificationsChannelSetting struct {
-}
-
 // Option is the typed data model for the option entity.
 type Option struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // OptionLoadMatch is the typed request payload for Option.LoadTyped.
@@ -1598,17 +1348,6 @@ type OrgInviteRestrictRemoveMatch struct {
 
 // Organization is the typed data model for the organization entity.
 type Organization struct {
-	DateLastActivity *string `json:"dateLastActivity,omitempty"`
-	DisplayName *string `json:"displayName,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdBoards *[]any `json:"idBoards,omitempty"`
-	IdEnterprise *string `json:"idEnterprise,omitempty"`
-	Memberships *[]any `json:"memberships,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Offering *string `json:"offering,omitempty"`
-	Prefs *map[string]any `json:"prefs,omitempty"`
-	PremiumFeatures *[]any `json:"premiumFeatures,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // OrganizationLoadMatch is the typed request payload for Organization.LoadTyped.
@@ -1618,7 +1357,7 @@ type OrganizationLoadMatch struct {
 
 // OrganizationListMatch is the typed request payload for Organization.ListTyped.
 type OrganizationListMatch struct {
-	EnterprisId string `json:"enterpris_id"`
+	EnterpriseId string `json:"enterprise_id"`
 	Count *int `json:"count,omitempty"`
 	Field *string `json:"field,omitempty"`
 	Filter *string `json:"filter,omitempty"`
@@ -1671,32 +1410,23 @@ type OrganizationUpdateData struct {
 
 // OrganizationRemoveMatch is the typed request payload for Organization.RemoveTyped.
 type OrganizationRemoveMatch struct {
-	EnterprisId *string `json:"enterpris_id,omitempty"`
+	EnterpriseId *string `json:"enterprise_id,omitempty"`
 	Id string `json:"id"`
 }
 
 // PendingOrganization is the typed data model for the pending_organization entity.
 type PendingOrganization struct {
-	Date *string `json:"date,omitempty"`
-	DisplayName *string `json:"displayName,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdMember *string `json:"idMember,omitempty"`
-	LogoUrl *string `json:"logoUrl,omitempty"`
-	MemberRequestor *map[string]any `json:"memberRequestor,omitempty"`
-	MembershipCount *float64 `json:"membershipCount,omitempty"`
-	Transferability *map[string]any `json:"transferability,omitempty"`
 }
 
 // PendingOrganizationListMatch is the typed request payload for PendingOrganization.ListTyped.
 type PendingOrganizationListMatch struct {
-	EnterprisId string `json:"enterpris_id"`
+	EnterpriseId string `json:"enterprise_id"`
 	ActiveSince *string `json:"active_since,omitempty"`
 	InactiveSince *string `json:"inactive_since,omitempty"`
 }
 
 // Plugin is the typed data model for the plugin entity.
 type Plugin struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // PluginLoadMatch is the typed request payload for Plugin.LoadTyped.
@@ -1730,11 +1460,6 @@ type PluginDataListMatch struct {
 
 // PluginListing is the typed data model for the plugin_listing entity.
 type PluginListing struct {
-	Description *string `json:"description,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Locale *string `json:"locale,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Overview *string `json:"overview,omitempty"`
 }
 
 // PluginListingCreateData is the typed request payload for PluginListing.CreateTyped.
@@ -1759,7 +1484,6 @@ type PluginListingUpdateData struct {
 
 // Reaction is the typed data model for the reaction entity.
 type Reaction struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // ReactionLoadMatch is the typed request payload for Reaction.LoadTyped.
@@ -1788,10 +1512,6 @@ type ReadCreateData struct {
 
 // SavedSearch is the typed data model for the saved_search entity.
 type SavedSearch struct {
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Pos *any `json:"pos,omitempty"`
-	Query *string `json:"query,omitempty"`
 }
 
 // SavedSearchLoadMatch is the typed request payload for SavedSearch.LoadTyped.
@@ -1900,7 +1620,6 @@ type ShowSidebarMemberUpdateData struct {
 
 // Sticker is the typed data model for the sticker entity.
 type Sticker struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // StickerLoadMatch is the typed request payload for Sticker.LoadTyped.
@@ -1928,7 +1647,6 @@ type StickerRemoveMatch struct {
 
 // Tag is the typed data model for the tag entity.
 type Tag struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // TagListMatch is the typed request payload for Tag.ListTyped.
@@ -1944,12 +1662,6 @@ type TagRemoveMatch struct {
 
 // Token is the typed data model for the token entity.
 type Token struct {
-	DateCreated *string `json:"dateCreated,omitempty"`
-	DateExpires *string `json:"dateExpires,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdMember *string `json:"idMember,omitempty"`
-	Identifier *string `json:"identifier,omitempty"`
-	Permissions *[]any `json:"permissions,omitempty"`
 }
 
 // TokenLoadMatch is the typed request payload for Token.LoadTyped.
@@ -1972,29 +1684,16 @@ type TokenRemoveMatch struct {
 
 // TransferrableOrganization is the typed data model for the transferrable_organization entity.
 type TransferrableOrganization struct {
-	Id *string `json:"id,omitempty"`
-	NewBillableMembers *[]any `json:"newBillableMembers,omitempty"`
-	RestrictedMembers *[]any `json:"restrictedMembers,omitempty"`
-	Transferrable *bool `json:"transferrable,omitempty"`
 }
 
 // TransferrableOrganizationLoadMatch is the typed request payload for TransferrableOrganization.LoadTyped.
 type TransferrableOrganizationLoadMatch struct {
-	EnterprisId string `json:"enterpris_id"`
+	EnterpriseId string `json:"enterprise_id"`
 	Id string `json:"id"`
 }
 
 // TrelloList is the typed data model for the trello_list entity.
 type TrelloList struct {
-	Attachments *map[string]any `json:"attachments,omitempty"`
-	Closed *bool `json:"closed,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdBoard *string `json:"idBoard,omitempty"`
-	Limits *map[string]any `json:"limits,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Pos *float64 `json:"pos,omitempty"`
-	SoftLimit *string `json:"softLimit,omitempty"`
-	Subscribed *bool `json:"subscribed,omitempty"`
 }
 
 // TrelloListLoadMatch is the typed request payload for TrelloList.LoadTyped.
@@ -2028,13 +1727,6 @@ type TrelloListCreateData struct {
 
 // Webhook is the typed data model for the webhook entity.
 type Webhook struct {
-	Active *bool `json:"active,omitempty"`
-	CallbackURL *string `json:"callbackURL,omitempty"`
-	ConsecutiveFailures *float64 `json:"consecutiveFailures,omitempty"`
-	Description *string `json:"description,omitempty"`
-	FirstConsecutiveFailDate *string `json:"firstConsecutiveFailDate,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IdModel *string `json:"idModel,omitempty"`
 }
 
 // WebhookLoadMatch is the typed request payload for Webhook.LoadTyped.

@@ -85,9 +85,7 @@ describe("EnterpriseAuditLogEntity", function()
 
     -- LIST
     local enterprise_audit_log_ref01_ent = client:EnterpriseAuditLog(nil)
-    local enterprise_audit_log_ref01_match = {
-      ["enterpris_id"] = setup.idmap["enterpris01"],
-    }
+    local enterprise_audit_log_ref01_match = {}
 
     local enterprise_audit_log_ref01_list_result, err = enterprise_audit_log_ref01_ent:list(enterprise_audit_log_ref01_match, nil)
     assert.is_nil(err)
@@ -116,7 +114,7 @@ function enterprise_audit_log_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03", "enterpris01", "enterpris02", "enterpris03" },
+    { "enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

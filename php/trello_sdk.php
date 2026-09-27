@@ -395,24 +395,6 @@ class TrelloSDK
     }
 
 
-    private $_application = null;
-
-    // Canonical facade: $client->Application()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->application()
-    // resolves here too.
-    public function Application($data = null)
-    {
-        require_once __DIR__ . '/entity/application_entity.php';
-        if ($data === null) {
-            if ($this->_application === null) {
-                $this->_application = new ApplicationEntity($this, null);
-            }
-            return $this->_application;
-        }
-        return new ApplicationEntity($this, $data);
-    }
-
-
     private $_application_compliance = null;
 
     // Canonical facade: $client->ApplicationCompliance()->list() / ->load(["id" => ...]).
@@ -809,39 +791,21 @@ class TrelloSDK
     }
 
 
-    private $_enterpris = null;
+    private $_enterprise = null;
 
-    // Canonical facade: $client->Enterpris()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->enterpris()
+    // Canonical facade: $client->Enterprise()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->enterprise()
     // resolves here too.
-    public function Enterpris($data = null)
+    public function Enterprise($data = null)
     {
-        require_once __DIR__ . '/entity/enterpris_entity.php';
+        require_once __DIR__ . '/entity/enterprise_entity.php';
         if ($data === null) {
-            if ($this->_enterpris === null) {
-                $this->_enterpris = new EnterprisEntity($this, null);
+            if ($this->_enterprise === null) {
+                $this->_enterprise = new EnterpriseEntity($this, null);
             }
-            return $this->_enterpris;
+            return $this->_enterprise;
         }
-        return new EnterprisEntity($this, $data);
-    }
-
-
-    private $_enterpris_signup_url = null;
-
-    // Canonical facade: $client->EnterprisSignupUrl()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->enterpris_signup_url()
-    // resolves here too.
-    public function EnterprisSignupUrl($data = null)
-    {
-        require_once __DIR__ . '/entity/enterpris_signup_url_entity.php';
-        if ($data === null) {
-            if ($this->_enterpris_signup_url === null) {
-                $this->_enterpris_signup_url = new EnterprisSignupUrlEntity($this, null);
-            }
-            return $this->_enterpris_signup_url;
-        }
-        return new EnterprisSignupUrlEntity($this, $data);
+        return new EnterpriseEntity($this, $data);
     }
 
 
@@ -878,6 +842,24 @@ class TrelloSDK
             return $this->_enterprise_audit_log;
         }
         return new EnterpriseAuditLogEntity($this, $data);
+    }
+
+
+    private $_enterprise_signup_url = null;
+
+    // Canonical facade: $client->EnterpriseSignupUrl()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->enterprise_signup_url()
+    // resolves here too.
+    public function EnterpriseSignupUrl($data = null)
+    {
+        require_once __DIR__ . '/entity/enterprise_signup_url_entity.php';
+        if ($data === null) {
+            if ($this->_enterprise_signup_url === null) {
+                $this->_enterprise_signup_url = new EnterpriseSignupUrlEntity($this, null);
+            }
+            return $this->_enterprise_signup_url;
+        }
+        return new EnterpriseSignupUrlEntity($this, $data);
     }
 
 
@@ -1097,24 +1079,6 @@ class TrelloSDK
     }
 
 
-    private $_most_recent = null;
-
-    // Canonical facade: $client->MostRecent()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->most_recent()
-    // resolves here too.
-    public function MostRecent($data = null)
-    {
-        require_once __DIR__ . '/entity/most_recent_entity.php';
-        if ($data === null) {
-            if ($this->_most_recent === null) {
-                $this->_most_recent = new MostRecentEntity($this, null);
-            }
-            return $this->_most_recent;
-        }
-        return new MostRecentEntity($this, $data);
-    }
-
-
     private $_new_billable_guest = null;
 
     // Canonical facade: $client->NewBillableGuest()->list() / ->load(["id" => ...]).
@@ -1202,24 +1166,6 @@ class TrelloSDK
             return $this->_notification_member_creator;
         }
         return new NotificationMemberCreatorEntity($this, $data);
-    }
-
-
-    private $_notifications_channel_setting = null;
-
-    // Canonical facade: $client->NotificationsChannelSetting()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->notifications_channel_setting()
-    // resolves here too.
-    public function NotificationsChannelSetting($data = null)
-    {
-        require_once __DIR__ . '/entity/notifications_channel_setting_entity.php';
-        if ($data === null) {
-            if ($this->_notifications_channel_setting === null) {
-                $this->_notifications_channel_setting = new NotificationsChannelSettingEntity($this, null);
-            }
-            return $this->_notifications_channel_setting;
-        }
-        return new NotificationsChannelSettingEntity($this, $data);
     }
 
 

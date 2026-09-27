@@ -1,0 +1,117 @@
+# BasicBoardBackgroundFlow
+
+main: kit: flow: BasicBoardBackgroundFlow:
+{
+  entity: "board_background",
+  kind: "basic",
+  name: "BasicBoardBackgroundFlow",
+  step: [
+    {
+      i: {
+        ref: "board_background_ref01"
+      }
+
+      m: {
+        member_id: "member01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        member_id: "member01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "board_background_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      d: {
+        member_id: "member01"
+      }
+
+      i: {
+        ref: "board_background_ref01",
+        srcdatavar: "board_background_ref01_data",
+        suffix: "_up0"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-board_background_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "board_background_ref01",
+        srcdatavar: "board_background_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "board_background01",
+        member_id: "member01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-board_background_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "board_background_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "board_background01",
+        member_id: "member01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        member_id: "member01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "board_background_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBoardBackgroundFlow"
+}

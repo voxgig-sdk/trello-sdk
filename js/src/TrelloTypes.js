@@ -1,7 +1,7 @@
 // Typed models for the Trello SDK (JSDoc typedefs).
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 // edit by hand.
@@ -84,18 +84,14 @@
 
 /**
  * @typedef {Object} AdminUpdateData
- * @property {string} enterpris_id
+ * @property {string} enterprise_id
  * @property {string} id
  */
 
 /**
  * @typedef {Object} AdminRemoveMatch
- * @property {string} enterpris_id
+ * @property {string} enterprise_id
  * @property {string} id
- */
-
-/**
- * @typedef {Object} Application
  */
 
 /**
@@ -402,7 +398,7 @@
 
 /**
  * @typedef {Object} BulkLoadMatch
- * @property {string} enterpris_id
+ * @property {string} enterprise_id
  * @property {Array} id
  */
 
@@ -694,7 +690,7 @@
 
 /**
  * @typedef {Object} ClaimableOrganizationListMatch
- * @property {string} enterpris_id
+ * @property {string} enterprise_id
  * @property {string} [active_since]
  * @property {string} [cursor]
  * @property {string} [inactive_since]
@@ -885,7 +881,7 @@
  */
 
 /**
- * @typedef {Object} Enterpris
+ * @typedef {Object} Enterprise
  * @property {string} [dateOrganizationPrefsLastUpdated]
  * @property {string} [displayName]
  * @property {Array} [domains]
@@ -907,7 +903,7 @@
  */
 
 /**
- * @typedef {Object} EnterprisLoadMatch
+ * @typedef {Object} EnterpriseLoadMatch
  * @property {string} id
  * @property {string} [field]
  * @property {string} [member]
@@ -925,7 +921,7 @@
  */
 
 /**
- * @typedef {Object} EnterprisCreateData
+ * @typedef {Object} EnterpriseCreateData
  * @property {string} id
  * @property {string} [expiration]
  * @property {string} [dateOrganizationPrefsLastUpdated]
@@ -948,7 +944,7 @@
  */
 
 /**
- * @typedef {Object} EnterprisUpdateData
+ * @typedef {Object} EnterpriseUpdateData
  * @property {string} id
  * @property {string} id_organization
  * @property {string} [dateOrganizationPrefsLastUpdated]
@@ -971,21 +967,6 @@
  */
 
 /**
- * @typedef {Object} EnterprisSignupUrl
- * @property {string} [id]
- * @property {string} [signupUrl]
- */
-
-/**
- * @typedef {Object} EnterprisSignupUrlLoadMatch
- * @property {string} id
- * @property {boolean} [authenticate]
- * @property {boolean} [confirmation_accepted]
- * @property {string} [return_url]
- * @property {boolean} [tos_accepted]
- */
-
-/**
  * @typedef {Object} EnterpriseAdmin
  * @property {string} [fullName]
  * @property {string} [id]
@@ -994,13 +975,14 @@
 
 /**
  * @typedef {Object} EnterpriseAdminLoadMatch
- * @property {string} enterpris_id
+ * @property {string} id
  * @property {string} [field]
  */
 
 /**
  * @typedef {Object} EnterpriseAuditLog
  * @property {string} [date]
+ * @property {string} [id]
  * @property {string} [idAction]
  * @property {Object} [member]
  * @property {Object} [memberCreator]
@@ -1010,7 +992,22 @@
 
 /**
  * @typedef {Object} EnterpriseAuditLogListMatch
- * @property {string} enterpris_id
+ * @property {string} id
+ */
+
+/**
+ * @typedef {Object} EnterpriseSignupUrl
+ * @property {string} [id]
+ * @property {string} [signupUrl]
+ */
+
+/**
+ * @typedef {Object} EnterpriseSignupUrlLoadMatch
+ * @property {string} id
+ * @property {boolean} [authenticate]
+ * @property {boolean} [confirmation_accepted]
+ * @property {string} [return_url]
+ * @property {boolean} [tos_accepted]
  */
 
 /**
@@ -1431,10 +1428,6 @@
  */
 
 /**
- * @typedef {Object} MostRecent
- */
-
-/**
  * @typedef {Object} NewBillableGuest
  * @property {string} [id]
  */
@@ -1561,10 +1554,6 @@
  */
 
 /**
- * @typedef {Object} NotificationsChannelSetting
- */
-
-/**
  * @typedef {Object} Option
  * @property {string} [id]
  */
@@ -1612,7 +1601,7 @@
 
 /**
  * @typedef {Object} OrganizationListMatch
- * @property {string} enterpris_id
+ * @property {string} enterprise_id
  * @property {number} [count]
  * @property {string} [field]
  * @property {string} [filter]
@@ -1665,7 +1654,7 @@
 
 /**
  * @typedef {Object} OrganizationRemoveMatch
- * @property {string} [enterpris_id]
+ * @property {string} [enterprise_id]
  * @property {string} id
  */
 
@@ -1683,7 +1672,7 @@
 
 /**
  * @typedef {Object} PendingOrganizationListMatch
- * @property {string} enterpris_id
+ * @property {string} enterprise_id
  * @property {string} [active_since]
  * @property {string} [inactive_since]
  */
@@ -1974,7 +1963,7 @@
 
 /**
  * @typedef {Object} TransferrableOrganizationLoadMatch
- * @property {string} enterpris_id
+ * @property {string} enterprise_id
  * @property {string} id
  */
 

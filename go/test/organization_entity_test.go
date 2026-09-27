@@ -103,7 +103,7 @@ func TestOrganizationEntity(t *testing.T) {
 		organizationRef01Data := core.ToMapAny(vs.GetProp(
 			vs.GetPath(setup.data, []any{"new", "organization"}), "organization_ref01"))
 		organizationRef01Data["action_id"] = setup.idmap["action01"]
-		organizationRef01Data["enterpris_id"] = setup.idmap["enterpris01"]
+		organizationRef01Data["enterprise_id"] = setup.idmap["enterprise01"]
 		organizationRef01Data["member_id"] = setup.idmap["member01"]
 
 		organizationRef01DataResult, err := organizationRef01Ent.Create(organizationRef01Data, nil)
@@ -233,7 +233,7 @@ func organizationBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"organization01", "organization02", "organization03", "action01", "action02", "action03", "enterpris01", "enterpris02", "enterpris03", "member01", "member02", "member03", "notification01", "notification02", "notification03"},
+		[]any{"organization01", "organization02", "organization03", "action01", "action02", "action03", "enterprise01", "enterprise02", "enterprise03", "member01", "member02", "member03", "notification01", "notification02", "notification03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

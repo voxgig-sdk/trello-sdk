@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "enterprise_signup_url": {
+      "ENTERPRISE_SIGNUP_URL00": {
+        "id": "ENTERPRISE_SIGNUP_URL00",
+        "signupUrl": "s15"
+      },
+      "ENTERPRISE_SIGNUP_URL01": {
+        "id": "ENTERPRISE_SIGNUP_URL01",
+        "signupUrl": "s29"
+      },
+      "ENTERPRISE_SIGNUP_URL02": {
+        "id": "ENTERPRISE_SIGNUP_URL02",
+        "signupUrl": "s3d"
+      }
+    }
+  },
+  "new": {
+    "enterprise_signup_url": {
+      "enterprise_signup_url_ref01": {
+        "signupUrl": "s51"
+      }
+    }
+  },
+  "requests": {
+    "GET /enterprises/{id}/signupUrl": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

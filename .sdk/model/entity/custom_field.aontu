@@ -1,0 +1,442 @@
+# Entity: custom_field
+
+main: kit: entity: custom_field: {
+
+  alias: field: {}
+
+  fields: {
+    cardFront: {
+      h: "Card Front"
+      n: "cardFront"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    display: {
+      h: "Display"
+      n: "display"
+      r: false
+      t: "`$OBJECT`"
+    }
+    display_cardFront: {
+      h: "Display Card Front"
+      n: "display_cardFront"
+      r: false
+      sh: "Whether this Custom Field should be shown on the front of Cards"
+      t: "`$BOOLEAN`"
+    }
+    displaycardFront: {
+      h: "Displaycard Front"
+      n: "displaycardFront"
+      r: false
+      sh: "Whether to display this custom field on the front of cards"
+      t: "`$BOOLEAN`"
+    }
+    fieldGroup: {
+      h: "Field Group"
+      n: "fieldGroup"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idModel: {
+      h: "Id Model"
+      n: "idModel"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The ID of the model for which the Custom Field is being defined."
+      t: "`$STRING`"
+    }
+    modelType: {
+      h: "Model Type"
+      n: "modelType"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The type of model that the Custom Field is being defined on."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The name of the Custom Field"
+      t: "`$STRING`"
+    }
+    options: {
+      h: "Options"
+      n: "options"
+      r: false
+      sh: "If the type is `checkbox`"
+      t: "`$ARRAY`"
+    }
+    pos: {
+      h: "Pos"
+      n: "pos"
+      op: {
+        create: {
+          req: true
+          type: "`$ANY`"
+        }
+      }
+      r: false
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The type of Custom Field to create."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "custom_field"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /customFields/{id}/options"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/customFields/{id}/options"
+          q: {
+            "$action": "option"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "options"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /customFields"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/customFields"
+          s: [
+            {
+              lit: "customFields"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.display`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /boards/{id}/customFields"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/customFields"
+          q: {
+            exist: [
+              "board_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "customFields"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /customFields/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/customFields/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.display`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /customFields/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/customFields/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /cards/{idCard}/customField/{idCustomField}/item"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_card"
+                or: "id_card"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_custom_field"
+                or: "id_custom_field"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/cards/{idCard}/customField/{idCustomField}/item"
+          q: {
+            "$action": "item"
+            exist: [
+              "id_card"
+              "id_custom_field"
+            ]
+          }
+          r: {
+            param: {
+              idCard: "id_card"
+              idCustomField: "id_custom_field"
+            }
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id_card"
+            }
+            {
+              lit: "customField"
+            }
+            {
+              var: "id_custom_field"
+            }
+            {
+              lit: "item"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /customFields/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/customFields/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.display`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.board")]
+    [path("$.main.kit.entity.card")]
+  ]
+
+}

@@ -1,0 +1,57 @@
+# BasicCheckItemFlow
+
+main: kit: flow: BasicCheckItemFlow:
+{
+  entity: "check_item",
+  kind: "basic",
+  name: "BasicCheckItemFlow",
+  step: [
+    {
+      d: {
+        checklist_id: "checklist01",
+        id_card: "id_card01"
+      }
+
+      i: {
+        ref: "check_item_ref01",
+        srcdatavar: "check_item_ref01_data",
+        suffix: "_up0",
+        textfield: "idChecklist"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-check_item_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "check_item_ref01",
+        srcdatavar: "check_item_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        checklist_id: "checklist01",
+        id: "check_item01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-check_item_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCheckItemFlow"
+}

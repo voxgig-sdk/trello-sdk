@@ -17,10 +17,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -32,9 +28,6 @@ describe('BulkDirect', async () => {
 
   test('direct-exists', async () => {
     const sdk = new TrelloSDK({
-      // Concrete base: a live construction must satisfy any server
-      // variables a templated base URL declares; overriding base with a
-      // literal (as the direct flow tests do) sidesteps the requirement.
       base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
@@ -47,7 +40,7 @@ describe('BulkDirect', async () => {
     if (liveScenariosActive()) { t.skip('Covered by live operation scenarios'); return }
     const setup = directSetup({ id: 'direct01' })
     if (maybeSkipControl(t, 'direct', 'direct-load-bulk', setup.live)) return
-    if (skipIfMissingIds(t, setup, ["enterpris_id01","id01"])) return
+    if (skipIfMissingIds(t, setup, ["enterprise_id01","id01"])) return
     const { client, calls } = setup
 
     const params: any = {}
@@ -55,12 +48,12 @@ describe('BulkDirect', async () => {
     if (setup.live) {
 
     } else {
-      params.enterpris_id = 'direct01'
+      params.enterprise_id = 'direct01'
       params.id = 'direct02'
     }
 
     const result: any = await client.direct({
-      path: 'enterprises/{enterpris_id}/organizations/bulk/{id}',
+      path: 'enterprises/{enterprise_id}/organizations/bulk/{id}',
       method: 'GET',
       params,
       query,

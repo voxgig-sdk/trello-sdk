@@ -50,7 +50,7 @@ class TestAdminEntity:
         admin_ref01_ent = client.Admin(None)
         admin_ref01_data_up0_up = {
             "id": admin_ref01_data["id"],
-            "enterpris_id": setup["idmap"]["enterpris_id"],
+            "enterprise_id": setup["idmap"]["enterprise_id"],
         }
 
         admin_ref01_resdata_up0 = helpers.to_map(runner.entity_data(admin_ref01_ent.update(admin_ref01_data_up0_up, None)))
@@ -75,7 +75,7 @@ def _admin_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["admin01", "admin02", "admin03", "enterpris01", "enterpris02", "enterpris03"],
+        ["admin01", "admin02", "admin03", "enterprise01", "enterprise02", "enterprise03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",
@@ -102,8 +102,8 @@ def _admin_basic_setup(extra):
         env.get("TRELLO_TEST_ADMIN_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
-    if idmap_resolved.get("enterpris_id") is None:
-        idmap_resolved["enterpris_id"] = idmap_resolved.get("enterpris01")
+    if idmap_resolved.get("enterprise_id") is None:
+        idmap_resolved["enterprise_id"] = idmap_resolved.get("enterprise01")
 
     if env.get("TRELLO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([

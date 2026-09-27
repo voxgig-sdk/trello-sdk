@@ -82,9 +82,7 @@ class TestEnterpriseAuditLogEntity:
 
         # LIST
         enterprise_audit_log_ref01_ent = client.EnterpriseAuditLog(None)
-        enterprise_audit_log_ref01_match = {
-            "enterpris_id": setup["idmap"]["enterpris01"],
-        }
+        enterprise_audit_log_ref01_match = {}
 
         enterprise_audit_log_ref01_list_result = enterprise_audit_log_ref01_ent.list(enterprise_audit_log_ref01_match, None)
         assert isinstance(enterprise_audit_log_ref01_list_result, list)
@@ -107,7 +105,7 @@ def _enterprise_audit_log_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03", "enterpris01", "enterpris02", "enterpris03"],
+        ["enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

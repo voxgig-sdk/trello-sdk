@@ -82,7 +82,7 @@ class OrganizationEntityTest extends TestCase
         $organization_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.organization"), "organization_ref01"));
         $organization_ref01_data["action_id"] = $setup["idmap"]["action01"];
-        $organization_ref01_data["enterpris_id"] = $setup["idmap"]["enterpris01"];
+        $organization_ref01_data["enterprise_id"] = $setup["idmap"]["enterprise01"];
         $organization_ref01_data["member_id"] = $setup["idmap"]["member01"];
 
         $organization_ref01_data_result = $organization_ref01_ent->create($organization_ref01_data, null);
@@ -164,7 +164,7 @@ function organization_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["organization01", "organization02", "organization03", "action01", "action02", "action03", "enterpris01", "enterpris02", "enterpris03", "member01", "member02", "member03", "notification01", "notification02", "notification03"] as $k) {
+    foreach (["organization01", "organization02", "organization03", "action01", "action02", "action03", "enterprise01", "enterprise02", "enterprise03", "member01", "member02", "member03", "notification01", "notification02", "notification03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

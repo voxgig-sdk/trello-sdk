@@ -1,0 +1,59 @@
+# BasicEnterpriseFlow
+
+main: kit: flow: BasicEnterpriseFlow:
+{
+  entity: "enterprise",
+  kind: "basic",
+  name: "BasicEnterpriseFlow",
+  step: [
+    {
+      i: {
+        ref: "enterprise_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "enterprise_ref01",
+        srcdatavar: "enterprise_ref01_data",
+        suffix: "_up0",
+        textfield: "dateOrganizationPrefsLastUpdated"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-enterprise_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "enterprise_ref01",
+        srcdatavar: "enterprise_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "enterprise01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-enterprise_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEnterpriseFlow"
+}

@@ -191,7 +191,7 @@ func notification_channel_settingBasicSetup(extra map[string]any) *entityTestSet
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"notification_channel_setting01", "notification_channel_setting02", "notification_channel_setting03", "member01", "member02", "member03", "notifications_channel_setting01", "notifications_channel_setting02", "notifications_channel_setting03"},
+		[]any{"notification_channel_setting01", "notification_channel_setting02", "notification_channel_setting03", "member01", "member02", "member03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

@@ -25,7 +25,7 @@ func TestBulkDirect(t *testing.T) {
 			return
 		}
 		if setup.live {
-			for _, _liveKey := range []string{"enterpris_id01", "id01"} {
+			for _, _liveKey := range []string{"enterprise_id01", "id01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
 					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
 					return
@@ -38,12 +38,12 @@ func TestBulkDirect(t *testing.T) {
 		query := map[string]any{}
 		if setup.live {
 		} else {
-			params["enterpris_id"] = "direct01"
+			params["enterprise_id"] = "direct01"
 			params["id"] = "direct02"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "enterprises/{enterpris_id}/organizations/bulk/{id}",
+			"path":   "enterprises/{enterprise_id}/organizations/bulk/{id}",
 			"method": "GET",
 			"params": params,
 			"query":  query,

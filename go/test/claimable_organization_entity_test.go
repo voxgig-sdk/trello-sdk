@@ -110,7 +110,7 @@ func TestClaimableOrganizationEntity(t *testing.T) {
 		// LIST
 		claimableOrganizationRef01Ent := client.ClaimableOrganization(nil)
 		claimableOrganizationRef01Match := map[string]any{
-			"enterpris_id": setup.idmap["enterpris01"],
+			"enterprise_id": setup.idmap["enterprise01"],
 		}
 
 		claimableOrganizationRef01ListResult, err := claimableOrganizationRef01Ent.List(claimableOrganizationRef01Match, nil)
@@ -150,7 +150,7 @@ func claimable_organizationBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"claimable_organization01", "claimable_organization02", "claimable_organization03", "enterpris01", "enterpris02", "enterpris03"},
+		[]any{"claimable_organization01", "claimable_organization02", "claimable_organization03", "enterprise01", "enterprise02", "enterprise03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

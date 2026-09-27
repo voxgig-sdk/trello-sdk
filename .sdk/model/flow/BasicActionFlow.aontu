@@ -1,0 +1,115 @@
+# BasicActionFlow
+
+main: kit: flow: BasicActionFlow:
+{
+  entity: "action",
+  kind: "basic",
+  name: "BasicActionFlow",
+  step: [
+    {
+      i: {
+        ref: "action_ref01"
+      }
+
+      m: {
+        card_id: "card01",
+        id_action: "id_action01",
+        member_id: "member01",
+        organization_id: "organization01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        organization_id: "organization01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "action_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "action_ref01",
+        srcdatavar: "action_ref01_data",
+        suffix: "_up0",
+        textfield: "date"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-action_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "action_ref01",
+        srcdatavar: "action_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "action01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-action_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "action_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "action01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        organization_id: "organization01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "action_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicActionFlow"
+}

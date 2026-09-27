@@ -1,0 +1,45 @@
+# BasicPluginListingFlow
+
+main: kit: flow: BasicPluginListingFlow:
+{
+  entity: "plugin_listing",
+  kind: "basic",
+  name: "BasicPluginListingFlow",
+  step: [
+    {
+      i: {
+        ref: "plugin_listing_ref01"
+      }
+
+      m: {
+        id_plugin: "id_plugin01"
+      }
+
+      o: "create"
+    }
+
+    {
+      d: {
+        id_plugin: "id_plugin01"
+      }
+
+      i: {
+        ref: "plugin_listing_ref01",
+        srcdatavar: "plugin_listing_ref01_data",
+        suffix: "_up0",
+        textfield: "description"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-plugin_listing_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPluginListingFlow"
+}

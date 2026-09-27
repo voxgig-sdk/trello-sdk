@@ -63,7 +63,7 @@ func TestAdminEntity(t *testing.T) {
 		adminRef01Ent := client.Admin(nil)
 		adminRef01DataUp0Up := map[string]any{
 			"id": adminRef01Data["id"],
-			"enterpris_id": setup.idmap["enterpris_id"],
+			"enterprise_id": setup.idmap["enterprise_id"],
 		}
 
 		adminRef01ResdataUp0Result, err := adminRef01Ent.Update(adminRef01DataUp0Up, nil)
@@ -106,7 +106,7 @@ func adminBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"admin01", "admin02", "admin03", "enterpris01", "enterpris02", "enterpris03"},
+		[]any{"admin01", "admin02", "admin03", "enterprise01", "enterprise02", "enterprise03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",
@@ -132,9 +132,9 @@ func adminBasicSetup(extra map[string]any) *entityTestSetup {
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
-	// Add enterpris_id alias for update test.
-	if idmapResolved["enterpris_id"] == nil {
-		idmapResolved["enterpris_id"] = idmapResolved["enterpris01"]
+	// Add enterprise_id alias for update test.
+	if idmapResolved["enterprise_id"] == nil {
+		idmapResolved["enterprise_id"] = idmapResolved["enterprise01"]
 	}
 
 	if env["TRELLO_TEST_LIVE"] == "TRUE" {

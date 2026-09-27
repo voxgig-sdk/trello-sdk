@@ -264,7 +264,6 @@ func (sdk *TrelloSDK) rawRequest(fetchargs map[string]any) (map[string]any, erro
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
-					// f() returns nil on parse error in our fetcher.
 					jsonData = f()
 				}
 			}
@@ -281,17 +280,6 @@ func (sdk *TrelloSDK) rawRequest(fetchargs map[string]any) (map[string]any, erro
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
 }
 
-// Raw GraphQL access: the pressure valve that makes the generated surface's
-// deliberate omissions (per-call selection sets, typed filter builders,
-// batching, subscriptions) livable — the whole schema stays reachable.
-//
-// Thin wrapper over the same prepare/fetch path Direct uses, with the one
-// thing raw Direct cannot do for GraphQL: a GraphQL failure rides HTTP 200
-// as a top-level `errors` array, so status alone would report a failed query
-// as ok.
-//
-// NOTE: like Direct, this bypasses the feature pipeline — no retry,
-// ratelimit or paging features apply.
 func (sdk *TrelloSDK) Graphql(
 	query string, variables map[string]any, ctrl map[string]any,
 ) (map[string]any, error) {
@@ -359,14 +347,6 @@ func (sdk *TrelloSDK) ActionReactionsSummary(data map[string]any) TrelloEntity {
 // client.Admin(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TrelloSDK) Admin(data map[string]any) TrelloEntity {
 	return NewAdminEntityFunc(sdk, data)
-}
-
-
-// Application returns a Application entity bound to this client.
-// Idiomatic usage: client.Application(nil).List(nil, nil) or
-// client.Application(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TrelloSDK) Application(data map[string]any) TrelloEntity {
-	return NewApplicationEntityFunc(sdk, data)
 }
 
 
@@ -546,19 +526,11 @@ func (sdk *TrelloSDK) Emoji(data map[string]any) TrelloEntity {
 }
 
 
-// Enterpris returns a Enterpris entity bound to this client.
-// Idiomatic usage: client.Enterpris(nil).List(nil, nil) or
-// client.Enterpris(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TrelloSDK) Enterpris(data map[string]any) TrelloEntity {
-	return NewEnterprisEntityFunc(sdk, data)
-}
-
-
-// EnterprisSignupUrl returns a EnterprisSignupUrl entity bound to this client.
-// Idiomatic usage: client.EnterprisSignupUrl(nil).List(nil, nil) or
-// client.EnterprisSignupUrl(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TrelloSDK) EnterprisSignupUrl(data map[string]any) TrelloEntity {
-	return NewEnterprisSignupUrlEntityFunc(sdk, data)
+// Enterprise returns a Enterprise entity bound to this client.
+// Idiomatic usage: client.Enterprise(nil).List(nil, nil) or
+// client.Enterprise(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TrelloSDK) Enterprise(data map[string]any) TrelloEntity {
+	return NewEnterpriseEntityFunc(sdk, data)
 }
 
 
@@ -575,6 +547,14 @@ func (sdk *TrelloSDK) EnterpriseAdmin(data map[string]any) TrelloEntity {
 // client.EnterpriseAuditLog(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TrelloSDK) EnterpriseAuditLog(data map[string]any) TrelloEntity {
 	return NewEnterpriseAuditLogEntityFunc(sdk, data)
+}
+
+
+// EnterpriseSignupUrl returns a EnterpriseSignupUrl entity bound to this client.
+// Idiomatic usage: client.EnterpriseSignupUrl(nil).List(nil, nil) or
+// client.EnterpriseSignupUrl(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TrelloSDK) EnterpriseSignupUrl(data map[string]any) TrelloEntity {
+	return NewEnterpriseSignupUrlEntityFunc(sdk, data)
 }
 
 
@@ -674,14 +654,6 @@ func (sdk *TrelloSDK) Membership(data map[string]any) TrelloEntity {
 }
 
 
-// MostRecent returns a MostRecent entity bound to this client.
-// Idiomatic usage: client.MostRecent(nil).List(nil, nil) or
-// client.MostRecent(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TrelloSDK) MostRecent(data map[string]any) TrelloEntity {
-	return NewMostRecentEntityFunc(sdk, data)
-}
-
-
 // NewBillableGuest returns a NewBillableGuest entity bound to this client.
 // Idiomatic usage: client.NewBillableGuest(nil).List(nil, nil) or
 // client.NewBillableGuest(nil).Load(map[string]any{"id": ...}, nil).
@@ -719,14 +691,6 @@ func (sdk *TrelloSDK) NotificationList(data map[string]any) TrelloEntity {
 // client.NotificationMemberCreator(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TrelloSDK) NotificationMemberCreator(data map[string]any) TrelloEntity {
 	return NewNotificationMemberCreatorEntityFunc(sdk, data)
-}
-
-
-// NotificationsChannelSetting returns a NotificationsChannelSetting entity bound to this client.
-// Idiomatic usage: client.NotificationsChannelSetting(nil).List(nil, nil) or
-// client.NotificationsChannelSetting(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TrelloSDK) NotificationsChannelSetting(data map[string]any) TrelloEntity {
-	return NewNotificationsChannelSettingEntityFunc(sdk, data)
 }
 
 

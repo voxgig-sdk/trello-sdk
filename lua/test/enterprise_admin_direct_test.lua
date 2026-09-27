@@ -19,13 +19,13 @@ describe("EnterpriseAdminDirect", function()
     local params = {}
     local query = {}
     if setup.live then
-      params["enterpris_id"] = "5abbe4b7ddc1b351ef961414"
+      params["id"] = "5abbe4b7ddc1b351ef961414"
     else
-      params["enterpris_id"] = "direct01"
+      params["id"] = "direct01"
     end
 
     local result, err = client:direct({
-      path = "enterprises/{enterpris_id}/admins",
+      path = "enterprises/{id}/admins",
       method = "GET",
       params = params,
       query = query,

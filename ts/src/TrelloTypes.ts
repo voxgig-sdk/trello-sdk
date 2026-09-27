@@ -1,7 +1,7 @@
 // Typed models for the Trello SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
@@ -91,16 +91,13 @@ export interface Admin {
 }
 
 export interface AdminUpdateData {
-  enterpris_id: string
+  enterprise_id: string
   id: string
 }
 
 export interface AdminRemoveMatch {
-  enterpris_id: string
+  enterprise_id: string
   id: string
-}
-
-export interface Application {
 }
 
 export interface ApplicationCompliance {
@@ -387,7 +384,7 @@ export interface Bulk {
 }
 
 export interface BulkLoadMatch {
-  enterpris_id: string
+  enterprise_id: string
   id: any[]
 }
 
@@ -675,7 +672,7 @@ export interface ClaimableOrganization {
 }
 
 export interface ClaimableOrganizationListMatch {
-  enterpris_id: string
+  enterprise_id: string
   active_since?: string
   cursor?: string
   inactive_since?: string
@@ -854,7 +851,7 @@ export interface EmojiListMatch {
   spritesheet?: boolean
 }
 
-export interface Enterpris {
+export interface Enterprise {
   dateOrganizationPrefsLastUpdated?: string
   displayName?: string
   domains?: any[]
@@ -875,7 +872,7 @@ export interface Enterpris {
   ssoActivationFailed?: boolean
 }
 
-export interface EnterprisLoadMatch {
+export interface EnterpriseLoadMatch {
   id: string
   field?: string
   member?: string
@@ -892,7 +889,7 @@ export interface EnterprisLoadMatch {
   organization_paid_account?: boolean
 }
 
-export interface EnterprisCreateData {
+export interface EnterpriseCreateData {
   id: string
   expiration?: string
   dateOrganizationPrefsLastUpdated?: string
@@ -920,7 +917,7 @@ export interface EnterprisCreateData {
   [action: string]: any
 }
 
-export interface EnterprisUpdateData {
+export interface EnterpriseUpdateData {
   id: string
   id_organization: string
   dateOrganizationPrefsLastUpdated?: string
@@ -948,19 +945,6 @@ export interface EnterprisUpdateData {
   [action: string]: any
 }
 
-export interface EnterprisSignupUrl {
-  id?: string
-  signupUrl?: string
-}
-
-export interface EnterprisSignupUrlLoadMatch {
-  id: string
-  authenticate?: boolean
-  confirmation_accepted?: boolean
-  return_url?: string
-  tos_accepted?: boolean
-}
-
 export interface EnterpriseAdmin {
   fullName?: string
   id?: string
@@ -968,12 +952,13 @@ export interface EnterpriseAdmin {
 }
 
 export interface EnterpriseAdminLoadMatch {
-  enterpris_id: string
+  id: string
   field?: string
 }
 
 export interface EnterpriseAuditLog {
   date?: string
+  id?: string
   idAction?: string
   member?: Record<string, any>
   memberCreator?: Record<string, any>
@@ -982,7 +967,26 @@ export interface EnterpriseAuditLog {
 }
 
 export interface EnterpriseAuditLogListMatch {
-  enterpris_id: string
+  id: string
+
+  // Selects a custom action instead of the plain list:
+  //   'auditlog'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
+}
+
+export interface EnterpriseSignupUrl {
+  id?: string
+  signupUrl?: string
+}
+
+export interface EnterpriseSignupUrlLoadMatch {
+  id: string
+  authenticate?: boolean
+  confirmation_accepted?: boolean
+  return_url?: string
+  tos_accepted?: boolean
 }
 
 export interface Export {
@@ -1399,9 +1403,6 @@ export interface MembershipUpdateData {
   member?: Record<string, any>
 }
 
-export interface MostRecent {
-}
-
 export interface NewBillableGuest {
   id?: string
 }
@@ -1520,9 +1521,6 @@ export interface NotificationMemberCreatorLoadMatch {
   field?: string
 }
 
-export interface NotificationsChannelSetting {
-}
-
 export interface Option {
   id?: string
 }
@@ -1563,7 +1561,7 @@ export interface OrganizationLoadMatch {
 }
 
 export interface OrganizationListMatch {
-  enterpris_id: string
+  enterprise_id: string
   count?: number
   field?: string
   filter?: string
@@ -1625,7 +1623,7 @@ export interface OrganizationUpdateData {
 }
 
 export interface OrganizationRemoveMatch {
-  enterpris_id?: string
+  enterprise_id?: string
   id: string
 
   // Selects a custom action instead of the plain remove:
@@ -1647,7 +1645,7 @@ export interface PendingOrganization {
 }
 
 export interface PendingOrganizationListMatch {
-  enterpris_id: string
+  enterprise_id: string
   active_since?: string
   inactive_since?: string
 }
@@ -1894,7 +1892,7 @@ export interface TransferrableOrganization {
 }
 
 export interface TransferrableOrganizationLoadMatch {
-  enterpris_id: string
+  enterprise_id: string
   id: string
 }
 

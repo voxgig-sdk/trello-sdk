@@ -19,7 +19,6 @@ import type {
   ClaimableOrganizationListMatch,
 } from '../TrelloTypes'
 
-// TODO: needs Entity superclass
 class ClaimableOrganizationEntity extends TrelloEntityBase<ClaimableOrganization> {
 
   constructor(client: TrelloSDK, entopts: any) {

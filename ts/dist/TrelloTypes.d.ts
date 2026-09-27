@@ -63,14 +63,12 @@ export interface Admin {
     id?: string;
 }
 export interface AdminUpdateData {
-    enterpris_id: string;
+    enterprise_id: string;
     id: string;
 }
 export interface AdminRemoveMatch {
-    enterpris_id: string;
+    enterprise_id: string;
     id: string;
-}
-export interface Application {
 }
 export interface ApplicationCompliance {
 }
@@ -317,7 +315,7 @@ export interface Bulk {
     id?: string;
 }
 export interface BulkLoadMatch {
-    enterpris_id: string;
+    enterprise_id: string;
     id: any[];
 }
 export interface BulkUpdateData {
@@ -571,7 +569,7 @@ export interface ClaimableOrganization {
     products?: any[];
 }
 export interface ClaimableOrganizationListMatch {
-    enterpris_id: string;
+    enterprise_id: string;
     active_since?: string;
     cursor?: string;
     inactive_since?: string;
@@ -718,7 +716,7 @@ export interface EmojiListMatch {
     locale?: string;
     spritesheet?: boolean;
 }
-export interface Enterpris {
+export interface Enterprise {
     dateOrganizationPrefsLastUpdated?: string;
     displayName?: string;
     domains?: any[];
@@ -738,7 +736,7 @@ export interface Enterpris {
     products?: any[];
     ssoActivationFailed?: boolean;
 }
-export interface EnterprisLoadMatch {
+export interface EnterpriseLoadMatch {
     id: string;
     field?: string;
     member?: string;
@@ -754,7 +752,7 @@ export interface EnterprisLoadMatch {
     organization_membership?: string;
     organization_paid_account?: boolean;
 }
-export interface EnterprisCreateData {
+export interface EnterpriseCreateData {
     id: string;
     expiration?: string;
     dateOrganizationPrefsLastUpdated?: string;
@@ -777,7 +775,7 @@ export interface EnterprisCreateData {
     $action?: string;
     [action: string]: any;
 }
-export interface EnterprisUpdateData {
+export interface EnterpriseUpdateData {
     id: string;
     id_organization: string;
     dateOrganizationPrefsLastUpdated?: string;
@@ -800,28 +798,18 @@ export interface EnterprisUpdateData {
     $action?: string;
     [action: string]: any;
 }
-export interface EnterprisSignupUrl {
-    id?: string;
-    signupUrl?: string;
-}
-export interface EnterprisSignupUrlLoadMatch {
-    id: string;
-    authenticate?: boolean;
-    confirmation_accepted?: boolean;
-    return_url?: string;
-    tos_accepted?: boolean;
-}
 export interface EnterpriseAdmin {
     fullName?: string;
     id?: string;
     username?: string;
 }
 export interface EnterpriseAdminLoadMatch {
-    enterpris_id: string;
+    id: string;
     field?: string;
 }
 export interface EnterpriseAuditLog {
     date?: string;
+    id?: string;
     idAction?: string;
     member?: Record<string, any>;
     memberCreator?: Record<string, any>;
@@ -829,7 +817,20 @@ export interface EnterpriseAuditLog {
     type?: string;
 }
 export interface EnterpriseAuditLogListMatch {
-    enterpris_id: string;
+    id: string;
+    $action?: string;
+    [action: string]: any;
+}
+export interface EnterpriseSignupUrl {
+    id?: string;
+    signupUrl?: string;
+}
+export interface EnterpriseSignupUrlLoadMatch {
+    id: string;
+    authenticate?: boolean;
+    confirmation_accepted?: boolean;
+    return_url?: string;
+    tos_accepted?: boolean;
 }
 export interface Export {
     attempts?: number;
@@ -1182,8 +1183,6 @@ export interface MembershipUpdateData {
     managed?: boolean;
     member?: Record<string, any>;
 }
-export interface MostRecent {
-}
 export interface NewBillableGuest {
     id?: string;
 }
@@ -1284,8 +1283,6 @@ export interface NotificationMemberCreatorLoadMatch {
     id: string;
     field?: string;
 }
-export interface NotificationsChannelSetting {
-}
 export interface Option {
     id?: string;
 }
@@ -1319,7 +1316,7 @@ export interface OrganizationLoadMatch {
     id: string;
 }
 export interface OrganizationListMatch {
-    enterpris_id: string;
+    enterprise_id: string;
     count?: number;
     field?: string;
     filter?: string;
@@ -1370,7 +1367,7 @@ export interface OrganizationUpdateData {
     [action: string]: any;
 }
 export interface OrganizationRemoveMatch {
-    enterpris_id?: string;
+    enterprise_id?: string;
     id: string;
     $action?: string;
     [action: string]: any;
@@ -1386,7 +1383,7 @@ export interface PendingOrganization {
     transferability?: Record<string, any>;
 }
 export interface PendingOrganizationListMatch {
-    enterpris_id: string;
+    enterprise_id: string;
     active_since?: string;
     inactive_since?: string;
 }
@@ -1589,7 +1586,7 @@ export interface TransferrableOrganization {
     transferrable?: boolean;
 }
 export interface TransferrableOrganizationLoadMatch {
-    enterpris_id: string;
+    enterprise_id: string;
     id: string;
 }
 export interface TrelloList {

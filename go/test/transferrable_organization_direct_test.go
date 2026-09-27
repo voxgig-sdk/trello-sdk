@@ -29,15 +29,15 @@ func TestTransferrableOrganizationDirect(t *testing.T) {
 		params := map[string]any{}
 		query := map[string]any{}
 		if setup.live {
-			params["enterpris_id"] = "5abbe4b7ddc1b351ef961414"
+			params["enterprise_id"] = "5abbe4b7ddc1b351ef961414"
 			params["id"] = "5abbe4b7ddc1b351ef961414"
 		} else {
-			params["enterpris_id"] = "direct01"
+			params["enterprise_id"] = "direct01"
 			params["id"] = "direct02"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "enterprises/{enterpris_id}/transferrable/organization/{id}",
+			"path":   "enterprises/{enterprise_id}/transferrable/organization/{id}",
 			"method": "GET",
 			"params": params,
 			"query":  query,

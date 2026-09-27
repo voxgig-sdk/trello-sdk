@@ -129,7 +129,7 @@ Both tools take the same argument object:
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `entity` | string | One of the 70 supported entities (see below). |
+| `entity` | string | One of the 67 supported entities (see below). |
 | `query` | object | Optional match map. `{"id":N}` for load; omit or `{}` for list. |
 
 JSON schemas are emitted by the SDK from the `Args` struct's `json` /
@@ -151,9 +151,9 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 ### Entities
 
-The 70 entities valid as the `entity` argument:
+The 67 entities valid as the `entity` argument:
 
-action | action_reactions_summary | admin | application | application_compliance | associated_domain | attachment | batch | board | board_background | board_plugin | board_star | bulk | card | card_check_item_state | card_list | check_item | checklist | claimable_organization | custom_board_background | custom_emoji | custom_field | custom_field_item | custom_sticker | email_position | emoji | enterpris | enterpris_signup_url | enterprise_admin | enterprise_audit_log | export | export_download | generate | id_email_list | id_label | id_member | label | list | member | member_privacy | members_voted | membership | most_recent | new_billable_guest | notification | notification_channel_setting | notification_list | notification_member_creator | notifications_channel_setting | option | org_invite_restrict | organization | pending_organization | plugin | plugin_data | plugin_listing | reaction | read | saved_search | search | show_sidebar | show_sidebar_activity | show_sidebar_board_action | show_sidebar_member | sticker | tag | token | transferrable_organization | trello_list | webhook
+action | action_reactions_summary | admin | application_compliance | associated_domain | attachment | batch | board | board_background | board_plugin | board_star | bulk | card | card_check_item_state | card_list | check_item | checklist | claimable_organization | custom_board_background | custom_emoji | custom_field | custom_field_item | custom_sticker | email_position | emoji | enterprise | enterprise_admin | enterprise_audit_log | enterprise_signup_url | export | export_download | generate | id_email_list | id_label | id_member | label | list | member | member_privacy | members_voted | membership | new_billable_guest | notification | notification_channel_setting | notification_list | notification_member_creator | option | org_invite_restrict | organization | pending_organization | plugin | plugin_data | plugin_listing | reaction | read | saved_search | search | show_sidebar | show_sidebar_activity | show_sidebar_board_action | show_sidebar_member | sticker | tag | token | transferrable_organization | trello_list | webhook
 
 ### Smoke test via HTTP (raw JSON-RPC)
 

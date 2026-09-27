@@ -1,0 +1,142 @@
+# Entity: pending_organization
+
+main: kit: entity: pending_organization: {
+
+  alias: field: {}
+
+  fields: {
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: false
+      t: "`$STRING`"
+    }
+    displayName: {
+      h: "Display Name"
+      n: "displayName"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idMember: {
+      h: "Id Member"
+      n: "idMember"
+      r: false
+      t: "`$STRING`"
+    }
+    logoUrl: {
+      h: "Logo Url"
+      n: "logoUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    memberRequestor: {
+      h: "Member Requestor"
+      n: "memberRequestor"
+      r: false
+      t: "`$OBJECT`"
+    }
+    membershipCount: {
+      h: "Membership Count"
+      n: "membershipCount"
+      r: false
+      t: "`$NUMBER`"
+    }
+    transferability: {
+      h: "Transferability"
+      n: "transferability"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "pending_organization"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /enterprises/{id}/pendingOrganizations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "active_since"
+                or: "active_since"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "inactive_since"
+                or: "inactive_since"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/pendingOrganizations"
+          q: {
+            exist: [
+              "active_since"
+              "enterprise_id"
+              "inactive_since"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "pendingOrganizations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.enterprise")]
+  ]
+
+}

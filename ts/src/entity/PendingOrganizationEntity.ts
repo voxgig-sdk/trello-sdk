@@ -19,7 +19,6 @@ import type {
   PendingOrganizationListMatch,
 } from '../TrelloTypes'
 
-// TODO: needs Entity superclass
 class PendingOrganizationEntity extends TrelloEntityBase<PendingOrganization> {
 
   constructor(client: TrelloSDK, entopts: any) {

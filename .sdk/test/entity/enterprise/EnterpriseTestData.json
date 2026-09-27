@@ -1,0 +1,106 @@
+{
+  "existing": {
+    "enterprise": {
+      "ENTERPRISE00": {
+        "dateOrganizationPrefsLastUpdated": "sb4",
+        "displayName": "sb5",
+        "domains": [],
+        "enterpriseDomains": [],
+        "id": "ENTERPRISE00",
+        "idAdmins": [],
+        "idOrganizations": [],
+        "idp": {},
+        "isRealEnterprise": true,
+        "licenses": {},
+        "logoHash": "sbe",
+        "logoUrl": "sbf",
+        "name": "sc0",
+        "organizationPrefs": {},
+        "pluginWhitelistingEnabled": [],
+        "prefs": {},
+        "products": [],
+        "ssoActivationFailed": false
+      },
+      "ENTERPRISE01": {
+        "dateOrganizationPrefsLastUpdated": "s168",
+        "displayName": "s169",
+        "domains": [],
+        "enterpriseDomains": [],
+        "id": "ENTERPRISE01",
+        "idAdmins": [],
+        "idOrganizations": [],
+        "idp": {},
+        "isRealEnterprise": true,
+        "licenses": {},
+        "logoHash": "s172",
+        "logoUrl": "s173",
+        "name": "s174",
+        "organizationPrefs": {},
+        "pluginWhitelistingEnabled": [],
+        "prefs": {},
+        "products": [],
+        "ssoActivationFailed": false
+      },
+      "ENTERPRISE02": {
+        "dateOrganizationPrefsLastUpdated": "s21c",
+        "displayName": "s21d",
+        "domains": [],
+        "enterpriseDomains": [],
+        "id": "ENTERPRISE02",
+        "idAdmins": [],
+        "idOrganizations": [],
+        "idp": {},
+        "isRealEnterprise": true,
+        "licenses": {},
+        "logoHash": "s226",
+        "logoUrl": "s227",
+        "name": "s228",
+        "organizationPrefs": {},
+        "pluginWhitelistingEnabled": [],
+        "prefs": {},
+        "products": [],
+        "ssoActivationFailed": false
+      }
+    }
+  },
+  "new": {
+    "enterprise": {
+      "enterprise_ref01": {
+        "dateOrganizationPrefsLastUpdated": "s2d0",
+        "displayName": "s2d1",
+        "domains": [],
+        "enterpriseDomains": [],
+        "idAdmins": [],
+        "idOrganizations": [],
+        "idp": {},
+        "isRealEnterprise": true,
+        "licenses": {},
+        "logoHash": "s2da",
+        "logoUrl": "s2db",
+        "name": "s2dc",
+        "organizationPrefs": {},
+        "pluginWhitelistingEnabled": [],
+        "prefs": {},
+        "products": [],
+        "ssoActivationFailed": false
+      }
+    }
+  },
+  "requests": {
+    "POST /enterprises/{id}/tokens": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /enterprises/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /enterprises/{id}/organizations": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

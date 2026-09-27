@@ -42,10 +42,10 @@ describe('OrganizationDirect', async () => {
     const params = {}
     if (setup.live) {
       const listResult = await client.direct({
-        path: 'enterprises/{enterpris_id}/organizations',
+        path: 'enterprises/{enterprise_id}/organizations',
         method: 'GET',
         params: {
-        enterpris_id: setup.idmap['enterpris01'],
+        enterprise_id: setup.idmap['enterprise01'],
         },
       })
       assert(listResult.ok === true)
@@ -86,13 +86,13 @@ describe('OrganizationDirect', async () => {
 
     const params = {}
     if (setup.live) {
-      params.enterpris_id = setup.idmap['enterpris01']
+      params.enterprise_id = setup.idmap['enterprise01']
     } else {
-      params.enterpris_id = 'direct01'
+      params.enterprise_id = 'direct01'
     }
 
     const result = await client.direct({
-      path: 'enterprises/{enterpris_id}/organizations',
+      path: 'enterprises/{enterprise_id}/organizations',
       method: 'GET',
       params,
     })

@@ -26,8 +26,6 @@ var NewActionReactionsSummaryEntityFunc func(client *TrelloSDK, entopts map[stri
 
 var NewAdminEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
-var NewApplicationEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
-
 var NewApplicationComplianceEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
 var NewAssociatedDomainEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
@@ -72,13 +70,13 @@ var NewEmailPositionEntityFunc func(client *TrelloSDK, entopts map[string]any) T
 
 var NewEmojiEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
-var NewEnterprisEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
-
-var NewEnterprisSignupUrlEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
+var NewEnterpriseEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
 var NewEnterpriseAdminEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
 var NewEnterpriseAuditLogEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
+
+var NewEnterpriseSignupUrlEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
 var NewExportEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
@@ -104,8 +102,6 @@ var NewMembersVotedEntityFunc func(client *TrelloSDK, entopts map[string]any) Tr
 
 var NewMembershipEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
-var NewMostRecentEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
-
 var NewNewBillableGuestEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
 var NewNotificationEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
@@ -115,8 +111,6 @@ var NewNotificationChannelSettingEntityFunc func(client *TrelloSDK, entopts map[
 var NewNotificationListEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
 var NewNotificationMemberCreatorEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
-
-var NewNotificationsChannelSettingEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 
 var NewOptionEntityFunc func(client *TrelloSDK, entopts map[string]any) TrelloEntity
 

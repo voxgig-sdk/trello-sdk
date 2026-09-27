@@ -1,0 +1,48 @@
+# BasicPluginDataFlow
+
+main: kit: flow: BasicPluginDataFlow:
+{
+  entity: "plugin_data",
+  kind: "basic",
+  name: "BasicPluginDataFlow",
+  step: [
+    {
+      m: {
+        organization_id: "organization01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "plugin_data_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "plugin_data_ref01",
+        srcdatavar: "plugin_data_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "plugin_data01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-plugin_data_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPluginDataFlow"
+}

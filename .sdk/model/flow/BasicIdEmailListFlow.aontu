@@ -1,0 +1,28 @@
+# BasicIdEmailListFlow
+
+main: kit: flow: BasicIdEmailListFlow:
+{
+  entity: "id_email_list",
+  kind: "basic",
+  name: "BasicIdEmailListFlow",
+  step: [
+    {
+      i: {
+        ref: "id_email_list_ref01",
+        srcdatavar: "id_email_list_ref01_data",
+        suffix: "_up0"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-id_email_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIdEmailListFlow"
+}

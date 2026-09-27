@@ -1,0 +1,105 @@
+# Entity: custom_field_item
+
+main: kit: entity: custom_field_item: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idCustomField: {
+      h: "Id Custom Field"
+      n: "idCustomField"
+      r: false
+      t: "`$STRING`"
+    }
+    idModel: {
+      h: "Id Model"
+      n: "idModel"
+      r: false
+      t: "`$STRING`"
+    }
+    modelType: {
+      h: "Model Type"
+      n: "modelType"
+      r: false
+      t: "`$STRING`"
+    }
+    value: {
+      h: "Value"
+      n: "value"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "custom_field_item"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /cards/{id}/customFieldItems"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "card_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/{id}/customFieldItems"
+          q: {
+            exist: [
+              "card_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "card_id"
+            }
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "customFieldItems"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.card")]
+  ]
+
+}

@@ -88,7 +88,7 @@ class ClaimableOrganizationEntityTest extends TestCase
         // LIST
         $claimable_organization_ref01_ent = $client->ClaimableOrganization(null);
         $claimable_organization_ref01_match = [
-            "enterpris_id" => $setup["idmap"]["enterpris01"],
+            "enterprise_id" => $setup["idmap"]["enterprise01"],
         ];
 
         $claimable_organization_ref01_list_result = $claimable_organization_ref01_ent->list($claimable_organization_ref01_match, null);
@@ -112,7 +112,7 @@ function claimable_organization_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["claimable_organization01", "claimable_organization02", "claimable_organization03", "enterpris01", "enterpris02", "enterpris03"] as $k) {
+    foreach (["claimable_organization01", "claimable_organization02", "claimable_organization03", "enterprise01", "enterprise02", "enterprise03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

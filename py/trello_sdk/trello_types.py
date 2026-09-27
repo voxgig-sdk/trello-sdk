@@ -1,7 +1,7 @@
 # Typed models for the Trello SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -97,17 +97,13 @@ class Admin(TypedDict, total=False):
 
 
 class AdminUpdateData(TypedDict):
-    enterpris_id: str
+    enterprise_id: str
     id: str
 
 
 class AdminRemoveMatch(TypedDict):
-    enterpris_id: str
+    enterprise_id: str
     id: str
-
-
-class Application(TypedDict):
-    pass
 
 
 class ApplicationCompliance(TypedDict):
@@ -420,7 +416,7 @@ class Bulk(TypedDict, total=False):
 
 
 class BulkLoadMatch(TypedDict):
-    enterpris_id: str
+    enterprise_id: str
     id: list
 
 
@@ -729,7 +725,7 @@ class ClaimableOrganization(TypedDict, total=False):
 
 
 class ClaimableOrganizationListMatchRequired(TypedDict):
-    enterpris_id: str
+    enterprise_id: str
 
 
 class ClaimableOrganizationListMatch(ClaimableOrganizationListMatchRequired, total=False):
@@ -921,7 +917,7 @@ class EmojiListMatch(TypedDict, total=False):
     spritesheet: bool
 
 
-class Enterpris(TypedDict, total=False):
+class Enterprise(TypedDict, total=False):
     dateOrganizationPrefsLastUpdated: str
     displayName: str
     domains: list
@@ -942,11 +938,11 @@ class Enterpris(TypedDict, total=False):
     ssoActivationFailed: bool
 
 
-class EnterprisLoadMatchRequired(TypedDict):
+class EnterpriseLoadMatchRequired(TypedDict):
     id: str
 
 
-class EnterprisLoadMatch(EnterprisLoadMatchRequired, total=False):
+class EnterpriseLoadMatch(EnterpriseLoadMatchRequired, total=False):
     field: str
     member: str
     member_count: int
@@ -962,11 +958,11 @@ class EnterprisLoadMatch(EnterprisLoadMatchRequired, total=False):
     organization_paid_account: bool
 
 
-class EnterprisCreateDataRequired(TypedDict):
+class EnterpriseCreateDataRequired(TypedDict):
     id: str
 
 
-class EnterprisCreateData(EnterprisCreateDataRequired, total=False):
+class EnterpriseCreateData(EnterpriseCreateDataRequired, total=False):
     expiration: str
     dateOrganizationPrefsLastUpdated: str
     displayName: str
@@ -987,12 +983,12 @@ class EnterprisCreateData(EnterprisCreateDataRequired, total=False):
     ssoActivationFailed: bool
 
 
-class EnterprisUpdateDataRequired(TypedDict):
+class EnterpriseUpdateDataRequired(TypedDict):
     id: str
     id_organization: str
 
 
-class EnterprisUpdateData(EnterprisUpdateDataRequired, total=False):
+class EnterpriseUpdateData(EnterpriseUpdateDataRequired, total=False):
     dateOrganizationPrefsLastUpdated: str
     displayName: str
     domains: list
@@ -1012,22 +1008,6 @@ class EnterprisUpdateData(EnterprisUpdateDataRequired, total=False):
     ssoActivationFailed: bool
 
 
-class EnterprisSignupUrl(TypedDict, total=False):
-    id: str
-    signupUrl: str
-
-
-class EnterprisSignupUrlLoadMatchRequired(TypedDict):
-    id: str
-
-
-class EnterprisSignupUrlLoadMatch(EnterprisSignupUrlLoadMatchRequired, total=False):
-    authenticate: bool
-    confirmation_accepted: bool
-    return_url: str
-    tos_accepted: bool
-
-
 class EnterpriseAdmin(TypedDict, total=False):
     fullName: str
     id: str
@@ -1035,7 +1015,7 @@ class EnterpriseAdmin(TypedDict, total=False):
 
 
 class EnterpriseAdminLoadMatchRequired(TypedDict):
-    enterpris_id: str
+    id: str
 
 
 class EnterpriseAdminLoadMatch(EnterpriseAdminLoadMatchRequired, total=False):
@@ -1044,6 +1024,7 @@ class EnterpriseAdminLoadMatch(EnterpriseAdminLoadMatchRequired, total=False):
 
 class EnterpriseAuditLog(TypedDict, total=False):
     date: str
+    id: str
     idAction: str
     member: dict
     memberCreator: dict
@@ -1052,7 +1033,23 @@ class EnterpriseAuditLog(TypedDict, total=False):
 
 
 class EnterpriseAuditLogListMatch(TypedDict):
-    enterpris_id: str
+    id: str
+
+
+class EnterpriseSignupUrl(TypedDict, total=False):
+    id: str
+    signupUrl: str
+
+
+class EnterpriseSignupUrlLoadMatchRequired(TypedDict):
+    id: str
+
+
+class EnterpriseSignupUrlLoadMatch(EnterpriseSignupUrlLoadMatchRequired, total=False):
+    authenticate: bool
+    confirmation_accepted: bool
+    return_url: str
+    tos_accepted: bool
 
 
 class Export(TypedDict, total=False):
@@ -1482,10 +1479,6 @@ class MembershipUpdateData(MembershipUpdateDataRequired, total=False):
     member: dict
 
 
-class MostRecent(TypedDict):
-    pass
-
-
 class NewBillableGuest(TypedDict, total=False):
     id: str
 
@@ -1619,10 +1612,6 @@ class NotificationMemberCreatorLoadMatch(NotificationMemberCreatorLoadMatchRequi
     field: str
 
 
-class NotificationsChannelSetting(TypedDict):
-    pass
-
-
 class Option(TypedDict, total=False):
     id: str
 
@@ -1667,7 +1656,7 @@ class OrganizationLoadMatch(TypedDict):
 
 
 class OrganizationListMatchRequired(TypedDict):
-    enterpris_id: str
+    enterprise_id: str
 
 
 class OrganizationListMatch(OrganizationListMatchRequired, total=False):
@@ -1722,7 +1711,7 @@ class OrganizationRemoveMatchRequired(TypedDict):
 
 
 class OrganizationRemoveMatch(OrganizationRemoveMatchRequired, total=False):
-    enterpris_id: str
+    enterprise_id: str
 
 
 class PendingOrganization(TypedDict, total=False):
@@ -1737,7 +1726,7 @@ class PendingOrganization(TypedDict, total=False):
 
 
 class PendingOrganizationListMatchRequired(TypedDict):
-    enterpris_id: str
+    enterprise_id: str
 
 
 class PendingOrganizationListMatch(PendingOrganizationListMatchRequired, total=False):
@@ -2024,7 +2013,7 @@ class TransferrableOrganization(TypedDict, total=False):
 
 
 class TransferrableOrganizationLoadMatch(TypedDict):
-    enterpris_id: str
+    enterprise_id: str
     id: str
 
 

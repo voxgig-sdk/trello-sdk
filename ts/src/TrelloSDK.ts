@@ -3,7 +3,6 @@
 import { ActionEntity } from './entity/ActionEntity'
 import { ActionReactionsSummaryEntity } from './entity/ActionReactionsSummaryEntity'
 import { AdminEntity } from './entity/AdminEntity'
-import { ApplicationEntity } from './entity/ApplicationEntity'
 import { ApplicationComplianceEntity } from './entity/ApplicationComplianceEntity'
 import { AssociatedDomainEntity } from './entity/AssociatedDomainEntity'
 import { AttachmentEntity } from './entity/AttachmentEntity'
@@ -26,10 +25,10 @@ import { CustomFieldItemEntity } from './entity/CustomFieldItemEntity'
 import { CustomStickerEntity } from './entity/CustomStickerEntity'
 import { EmailPositionEntity } from './entity/EmailPositionEntity'
 import { EmojiEntity } from './entity/EmojiEntity'
-import { EnterprisEntity } from './entity/EnterprisEntity'
-import { EnterprisSignupUrlEntity } from './entity/EnterprisSignupUrlEntity'
+import { EnterpriseEntity } from './entity/EnterpriseEntity'
 import { EnterpriseAdminEntity } from './entity/EnterpriseAdminEntity'
 import { EnterpriseAuditLogEntity } from './entity/EnterpriseAuditLogEntity'
+import { EnterpriseSignupUrlEntity } from './entity/EnterpriseSignupUrlEntity'
 import { ExportEntity } from './entity/ExportEntity'
 import { ExportDownloadEntity } from './entity/ExportDownloadEntity'
 import { GenerateEntity } from './entity/GenerateEntity'
@@ -42,13 +41,11 @@ import { MemberEntity } from './entity/MemberEntity'
 import { MemberPrivacyEntity } from './entity/MemberPrivacyEntity'
 import { MembersVotedEntity } from './entity/MembersVotedEntity'
 import { MembershipEntity } from './entity/MembershipEntity'
-import { MostRecentEntity } from './entity/MostRecentEntity'
 import { NewBillableGuestEntity } from './entity/NewBillableGuestEntity'
 import { NotificationEntity } from './entity/NotificationEntity'
 import { NotificationChannelSettingEntity } from './entity/NotificationChannelSettingEntity'
 import { NotificationListEntity } from './entity/NotificationListEntity'
 import { NotificationMemberCreatorEntity } from './entity/NotificationMemberCreatorEntity'
-import { NotificationsChannelSettingEntity } from './entity/NotificationsChannelSettingEntity'
 import { OptionEntity } from './entity/OptionEntity'
 import { OrgInviteRestrictEntity } from './entity/OrgInviteRestrictEntity'
 import { OrganizationEntity } from './entity/OrganizationEntity'
@@ -193,7 +190,6 @@ class TrelloSDK {
 
     const options = this._options
 
-    // Build spec directly from SDK options + user-provided fetch args.
     const spec: any = {
       base: options.base,
       prefix: options.prefix,
@@ -209,7 +205,6 @@ class TrelloSDK {
 
     ctx.spec = spec
 
-    // Merge user-provided headers over SDK defaults.
     if (fetchargs.headers) {
       const uheaders = fetchargs.headers
       for (let key in uheaders) {
@@ -219,7 +214,6 @@ class TrelloSDK {
 
     
 
-    // Apply SDK auth (apikey, auth prefix, etc.)
     const authResult = prepareAuth(ctx)
     if (authResult instanceof Error) {
       return authResult
@@ -312,18 +306,6 @@ class TrelloSDK {
 
 
 
-  // Raw GraphQL access: the pressure valve that makes the generated
-  // surface's deliberate omissions (per-call selection sets, typed filter
-  // builders, batching, subscriptions) livable — the whole schema stays
-  // reachable.
-  //
-  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-  // HTTP 200 as a top-level `errors` array, so status alone would report a
-  // failed query as ok.
-  //
-  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-  // ratelimit or paging features apply.
   async graphql(query: string, variables?: any, ctrl?: any) {
     const options = this._options
 
@@ -390,15 +372,6 @@ class TrelloSDK {
   Admin(entopts?: Record<string, any>) {
     const self = this
     return new AdminEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Application().list()` / `client.Application().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Application(entopts?: Record<string, any>) {
-    const self = this
-    return new ApplicationEntity(self, entopts)
   }
 
 
@@ -600,21 +573,12 @@ class TrelloSDK {
   }
 
 
-  // Entity access: `client.Enterpris().list()` / `client.Enterpris().load({ id })`.
+  // Entity access: `client.Enterprise().list()` / `client.Enterprise().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  Enterpris(entopts?: Record<string, any>) {
+  Enterprise(entopts?: Record<string, any>) {
     const self = this
-    return new EnterprisEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.EnterprisSignupUrl().list()` / `client.EnterprisSignupUrl().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  EnterprisSignupUrl(entopts?: Record<string, any>) {
-    const self = this
-    return new EnterprisSignupUrlEntity(self, entopts)
+    return new EnterpriseEntity(self, entopts)
   }
 
 
@@ -633,6 +597,15 @@ class TrelloSDK {
   EnterpriseAuditLog(entopts?: Record<string, any>) {
     const self = this
     return new EnterpriseAuditLogEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.EnterpriseSignupUrl().list()` / `client.EnterpriseSignupUrl().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  EnterpriseSignupUrl(entopts?: Record<string, any>) {
+    const self = this
+    return new EnterpriseSignupUrlEntity(self, entopts)
   }
 
 
@@ -744,15 +717,6 @@ class TrelloSDK {
   }
 
 
-  // Entity access: `client.MostRecent().list()` / `client.MostRecent().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  MostRecent(entopts?: Record<string, any>) {
-    const self = this
-    return new MostRecentEntity(self, entopts)
-  }
-
-
   // Entity access: `client.NewBillableGuest().list()` / `client.NewBillableGuest().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
@@ -795,15 +759,6 @@ class TrelloSDK {
   NotificationMemberCreator(entopts?: Record<string, any>) {
     const self = this
     return new NotificationMemberCreatorEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.NotificationsChannelSetting().list()` / `client.NotificationsChannelSetting().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  NotificationsChannelSetting(entopts?: Record<string, any>) {
-    const self = this
-    return new NotificationsChannelSettingEntity(self, entopts)
   }
 
 

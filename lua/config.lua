@@ -157,7 +157,6 @@ local function make_config()
         ["action"] = {},
         ["action_reactions_summary"] = {},
         ["admin"] = {},
-        ["application"] = {},
         ["application_compliance"] = {},
         ["associated_domain"] = {},
         ["attachment"] = {},
@@ -180,10 +179,10 @@ local function make_config()
         ["custom_sticker"] = {},
         ["email_position"] = {},
         ["emoji"] = {},
-        ["enterpris"] = {},
-        ["enterpris_signup_url"] = {},
+        ["enterprise"] = {},
         ["enterprise_admin"] = {},
         ["enterprise_audit_log"] = {},
+        ["enterprise_signup_url"] = {},
         ["export"] = {},
         ["export_download"] = {},
         ["generate"] = {},
@@ -196,13 +195,11 @@ local function make_config()
         ["member_privacy"] = {},
         ["members_voted"] = {},
         ["membership"] = {},
-        ["most_recent"] = {},
         ["new_billable_guest"] = {},
         ["notification"] = {},
         ["notification_channel_setting"] = {},
         ["notification_list"] = {},
         ["notification_member_creator"] = {},
-        ["notifications_channel_setting"] = {},
         ["option"] = {},
         ["org_invite_restrict"] = {},
         ["organization"] = {},
@@ -231,35 +228,43 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "data",
+            ["title"] = "Data",
             ["type"] = "`$OBJECT`",
           },
           {
-            ["format"] = "date-time",
             ["name"] = "date",
+            ["title"] = "Date",
             ["type"] = "`$STRING`",
+            ["format"] = "date-time",
           },
           {
             ["name"] = "display",
+            ["title"] = "Display",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idMemberCreator",
+            ["title"] = "Id Member Creator",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "limits",
+            ["title"] = "Limits",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "memberCreator",
+            ["title"] = "Member Creator",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "type",
+            ["title"] = "Type",
             ["type"] = "`$STRING`",
           },
         },
@@ -274,35 +279,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "text",
-                      ["orig"] = "text",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/actions/comments",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -317,6 +296,42 @@ local function make_config()
                     ["lit"] = "comments",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "actions",
+                  "comments",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "text",
+                      ["orig"] = "text",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "comment",
                   ["exist"] = {
@@ -324,38 +339,11 @@ local function make_config()
                     "text",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "actions",
-                  "comments",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_action",
-                      ["orig"] = "id_action",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/actions/{idAction}/reactions",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idAction"] = "id_action",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -367,20 +355,37 @@ local function make_config()
                     ["lit"] = "reactions",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "reaction",
-                  ["exist"] = {
-                    "id_action",
+                ["parts"] = {
+                  "actions",
+                  "{id_action}",
+                  "reactions",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idAction"] = "id_action",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{id_action}",
-                  "reactions",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id_action",
+                      ["orig"] = "id_action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["$action"] = "reaction",
+                  ["exist"] = {
+                    "id_action",
+                  },
                 },
               },
             },
@@ -390,42 +395,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "commentCard, updateCard:idList",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = 0,
-                      ["kind"] = "query",
-                      ["name"] = "page",
-                      ["orig"] = "page",
-                      ["type"] = "`$NUMBER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/actions",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -437,6 +409,48 @@ local function make_config()
                     ["lit"] = "actions",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "actions",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "commentCard, updateCard:idList",
+                    },
+                    {
+                      ["name"] = "page",
+                      ["orig"] = "page",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["example"] = 0,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "card_id",
@@ -444,45 +458,11 @@ local function make_config()
                     "page",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "actions",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/actions",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -494,43 +474,51 @@ local function make_config()
                     ["lit"] = "actions",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "filter",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "actions",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "actions",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
+                      ["name"] = "member_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "filter",
+                    "member_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/actions",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -542,19 +530,36 @@ local function make_config()
                     ["lit"] = "actions",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "actions",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "actions",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -564,112 +569,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "board_id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "before",
-                      ["orig"] = "before",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$OBJECT`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "list",
-                      ["kind"] = "query",
-                      ["name"] = "format",
-                      ["orig"] = "format",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_model",
-                      ["orig"] = "id_model",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = 50,
-                      ["kind"] = "query",
-                      ["name"] = "limit",
-                      ["orig"] = "limit",
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member_creator",
-                      ["orig"] = "member_creator",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username",
-                      ["kind"] = "query",
-                      ["name"] = "member_creator_field",
-                      ["orig"] = "member_creator_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username",
-                      ["kind"] = "query",
-                      ["name"] = "member_field",
-                      ["orig"] = "member_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = 0,
-                      ["kind"] = "query",
-                      ["name"] = "page",
-                      ["orig"] = "page",
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "reaction",
-                      ["orig"] = "reaction",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "since",
-                      ["orig"] = "since",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{boardId}/actions",
-                ["rename"] = {
-                  ["param"] = {
-                    ["boardId"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -679,6 +581,118 @@ local function make_config()
                   },
                   {
                     ["lit"] = "actions",
+                  },
+                },
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "actions",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["boardId"] = "board_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "board_id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "before",
+                      ["orig"] = "before",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$OBJECT`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "format",
+                      ["orig"] = "format",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "list",
+                    },
+                    {
+                      ["name"] = "id_model",
+                      ["orig"] = "id_model",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "limit",
+                      ["orig"] = "limit",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["example"] = 50,
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member_creator",
+                      ["orig"] = "member_creator",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member_creator_field",
+                      ["orig"] = "member_creator_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username",
+                    },
+                    {
+                      ["name"] = "member_field",
+                      ["orig"] = "member_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username",
+                    },
+                    {
+                      ["name"] = "page",
+                      ["orig"] = "page",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["example"] = 0,
+                    },
+                    {
+                      ["name"] = "reaction",
+                      ["orig"] = "reaction",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "since",
+                      ["orig"] = "since",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -699,80 +713,8 @@ local function make_config()
                     "since",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "actions",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "display",
-                      ["orig"] = "display",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "entity",
-                      ["orig"] = "entity",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member_creator",
-                      ["orig"] = "member_creator",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "avatarHash,fullName,initials,username",
-                      ["kind"] = "query",
-                      ["name"] = "member_creator_field",
-                      ["orig"] = "member_creator_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "avatarHash,fullName,initials,username",
-                      ["kind"] = "query",
-                      ["name"] = "member_field",
-                      ["orig"] = "member_field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{id}",
@@ -782,6 +724,78 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "actions",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "display",
+                      ["orig"] = "display",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "entity",
+                      ["orig"] = "entity",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member_creator",
+                      ["orig"] = "member_creator",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member_creator_field",
+                      ["orig"] = "member_creator_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash,fullName,initials,username",
+                    },
+                    {
+                      ["name"] = "member_field",
+                      ["orig"] = "member_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash,fullName,initials,username",
+                    },
                   },
                 },
                 ["select"] = {
@@ -796,35 +810,8 @@ local function make_config()
                     "member_field",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "actions",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{id}/{field}",
@@ -839,50 +826,46 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "actions",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "actions",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "list_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lists/{id}/actions",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "list_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "lists",
@@ -894,20 +877,44 @@ local function make_config()
                     ["lit"] = "actions",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "filter",
-                    "list_id",
+                ["parts"] = {
+                  "lists",
+                  "{list_id}",
+                  "actions",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "list_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "lists",
-                  "{list_id}",
-                  "actions",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "list_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "filter",
+                    "list_id",
+                  },
                 },
               },
             },
@@ -917,35 +924,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_action",
-                      ["orig"] = "id_action",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}/actions/{idAction}/comments",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idAction"] = "id_action",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -963,17 +944,6 @@ local function make_config()
                     ["lit"] = "comments",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "comment",
-                  ["exist"] = {
-                    "card_id",
-                    "id_action",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "cards",
                   "{card_id}",
@@ -981,20 +951,45 @@ local function make_config()
                   "{id_action}",
                   "comments",
                 },
-              },
-              {
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idAction"] = "id_action",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
+                      ["name"] = "card_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_action",
+                      ["orig"] = "id_action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                 },
+                ["select"] = {
+                  ["$action"] = "comment",
+                  ["exist"] = {
+                    "card_id",
+                    "id_action",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/actions/{id}",
@@ -1006,18 +1001,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "actions",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1027,44 +1035,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_action",
-                      ["orig"] = "id_action",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "text",
-                      ["orig"] = "text",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/cards/{id}/actions/{idAction}/comments",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idAction"] = "id_action",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -1082,6 +1055,52 @@ local function make_config()
                     ["lit"] = "comments",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "actions",
+                  "{id_action}",
+                  "comments",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idAction"] = "id_action",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_action",
+                      ["orig"] = "id_action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "text",
+                      ["orig"] = "text",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "comment",
                   ["exist"] = {
@@ -1090,40 +1109,8 @@ local function make_config()
                     "text",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "actions",
-                  "{id_action}",
-                  "comments",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "text",
-                      ["orig"] = "text",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/actions/{id}",
@@ -1135,43 +1122,44 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "actions",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "text",
+                      ["orig"] = "text",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "id",
                     "text",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "actions",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/actions/{id}/text",
@@ -1186,21 +1174,43 @@ local function make_config()
                     ["lit"] = "text",
                   },
                 },
+                ["parts"] = {
+                  "actions",
+                  "{id}",
+                  "text",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "text",
                   ["exist"] = {
                     "id",
                     "value",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "actions",
-                  "{id}",
-                  "text",
                 },
               },
             },
@@ -1209,23 +1219,22 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
             {
-              "card",
+              "$.main.kit.entity.card",
             },
             {
-              "list",
+              "$.main.kit.entity.list",
             },
             {
-              "member",
+              "$.main.kit.entity.member",
             },
             {
-              "organization",
+              "$.main.kit.entity.organization",
             },
             {
-              "card",
-              "action",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -1239,26 +1248,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_action",
-                      ["orig"] = "id_action",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{idAction}/reactionsSummary",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idAction"] = "id_action",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -1270,19 +1262,36 @@ local function make_config()
                     ["lit"] = "reactionsSummary",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id_action",
+                ["parts"] = {
+                  "actions",
+                  "{id_action}",
+                  "reactionsSummary",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idAction"] = "id_action",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{id_action}",
-                  "reactionsSummary",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id_action",
+                      ["orig"] = "id_action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id_action",
+                  },
                 },
               },
             },
@@ -1291,7 +1300,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "action",
+              "$.main.kit.entity.action",
             },
           },
         },
@@ -1300,6 +1309,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -1314,41 +1324,15 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/enterprises/{id}/admins/{idMember}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idMember"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "admins",
@@ -1357,21 +1341,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "enterpris_id",
-                    "id",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "admins",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idMember"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "admins",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "enterprise_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -1381,41 +1391,15 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/enterprises/{id}/admins/{idMember}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idMember"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "admins",
@@ -1424,21 +1408,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "enterpris_id",
-                    "id",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "admins",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idMember"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "admins",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "enterprise_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -1447,19 +1457,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "enterpris",
-            },
-          },
-        },
-      },
-      ["application"] = {
-        ["fields"] = {},
-        ["name"] = "application",
-        ["op"] = {},
-        ["relations"] = {
-          ["ancestors"] = {
-            {
-              "application",
+              "$.main.kit.entity.enterprise",
             },
           },
         },
@@ -1473,17 +1471,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "key",
-                      ["orig"] = "key",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/applications/{key}/compliance",
@@ -1498,30 +1485,38 @@ local function make_config()
                     ["lit"] = "compliance",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "key",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "applications",
                   "{key}",
                   "compliance",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "key",
+                      ["orig"] = "key",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "key",
+                  },
                 },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "application",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["associated_domain"] = {
@@ -1533,26 +1528,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/organizations/{id}/prefs/associatedDomain",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -1567,20 +1545,37 @@ local function make_config()
                     ["lit"] = "associatedDomain",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "prefs",
+                  "associatedDomain",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "prefs",
-                  "associatedDomain",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -1589,7 +1584,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "organization",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -1598,6 +1593,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -1612,42 +1608,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "false",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/attachments",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -1657,6 +1620,48 @@ local function make_config()
                   },
                   {
                     ["lit"] = "attachments",
+                  },
+                },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "attachments",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "false",
+                    },
                   },
                 },
                 ["select"] = {
@@ -1666,15 +1671,6 @@ local function make_config()
                     "filter",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "attachments",
-                },
               },
             },
           },
@@ -1683,46 +1679,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_attachment",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = {
-                        "all",
-                      },
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$ARRAY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/attachments/{idAttachment}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idAttachment"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -1735,6 +1694,53 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "attachments",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idAttachment"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_attachment",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$ARRAY`",
+                      ["kind"] = "query",
+                      ["example"] = {
+                        "all",
+                      },
+                    },
                   },
                 },
                 ["select"] = {
@@ -1744,16 +1750,6 @@ local function make_config()
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "attachments",
-                  "{id}",
-                },
               },
             },
           },
@@ -1762,51 +1758,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_attachment",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_attachment",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}/attachments/{idAttachment}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idAttachment"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -1821,21 +1775,63 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "id",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "attachments",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idAttachment"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "attachments",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_attachment",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_attachment",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -1844,7 +1840,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "card",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -1858,17 +1854,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "url",
-                      ["orig"] = "url",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/batch",
@@ -1877,17 +1862,29 @@ local function make_config()
                     ["lit"] = "batch",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "url",
-                  },
+                ["parts"] = {
+                  "batch",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "batch",
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "url",
+                      ["orig"] = "url",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "url",
+                  },
                 },
               },
             },
@@ -1901,114 +1898,140 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "closed",
+            ["title"] = "Closed",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "creationMethod",
+            ["title"] = "Creation Method",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "date",
             ["name"] = "dateLastActivity",
+            ["title"] = "Date Last Activity",
             ["type"] = "`$STRING`",
+            ["format"] = "date",
           },
           {
-            ["format"] = "date",
             ["name"] = "dateLastView",
+            ["title"] = "Date Last View",
             ["type"] = "`$STRING`",
+            ["format"] = "date",
           },
           {
-            ["format"] = "date",
             ["name"] = "datePluginDisable",
+            ["title"] = "Date Plugin Disable",
             ["type"] = "`$STRING`",
+            ["format"] = "date",
           },
           {
             ["name"] = "desc",
+            ["title"] = "Desc",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "descData",
+            ["title"] = "Desc Data",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "enterpriseOwned",
+            ["title"] = "Enterprise Owned",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "id",
-            ["req"] = true,
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "idMemberCreator",
+            ["title"] = "Id Member Creator",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idOrganization",
+            ["title"] = "Id Organization",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idTags",
+            ["title"] = "Id Tags",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ixUpdate",
+            ["title"] = "Ix Update",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "labelNames",
+            ["title"] = "Label Names",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "limits",
+            ["title"] = "Limits",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "memberships",
+            ["title"] = "Memberships",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
-            ["short"] = "The name of the board.",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of the board.",
           },
           {
             ["name"] = "pinned",
+            ["title"] = "Pinned",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "powerUps",
+            ["title"] = "Power Ups",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "prefs",
+            ["title"] = "Prefs",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "shortLink",
+            ["title"] = "Short Link",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "url",
             ["name"] = "shortUrl",
+            ["title"] = "Short Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
           {
             ["name"] = "starred",
+            ["title"] = "Starred",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "subscribed",
+            ["title"] = "Subscribed",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "templateGallery",
+            ["title"] = "Template Gallery",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "url",
             ["name"] = "url",
+            ["title"] = "Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
         },
         ["id"] = {
@@ -2022,126 +2045,134 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "default_label",
-                      ["orig"] = "default_label",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "default_list",
-                      ["orig"] = "default_list",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "desc",
-                      ["orig"] = "desc",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_board_source",
-                      ["orig"] = "id_board_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_organization",
-                      ["orig"] = "id_organization",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "keep_from_source",
-                      ["orig"] = "keep_from_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "power_up",
-                      ["orig"] = "power_up",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "blue",
-                      ["kind"] = "query",
-                      ["name"] = "prefs_background",
-                      ["orig"] = "prefs_background",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "regular",
-                      ["kind"] = "query",
-                      ["name"] = "prefs_card_aging",
-                      ["orig"] = "prefs_card_aging",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "prefs_card_cover",
-                      ["orig"] = "prefs_card_cover",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "members",
-                      ["kind"] = "query",
-                      ["name"] = "prefs_comment",
-                      ["orig"] = "prefs_comment",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "members",
-                      ["kind"] = "query",
-                      ["name"] = "prefs_invitation",
-                      ["orig"] = "prefs_invitation",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "private",
-                      ["kind"] = "query",
-                      ["name"] = "prefs_permission_level",
-                      ["orig"] = "prefs_permission_level",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "prefs_self_join",
-                      ["orig"] = "prefs_self_join",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "disabled",
-                      ["kind"] = "query",
-                      ["name"] = "prefs_voting",
-                      ["orig"] = "prefs_voting",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/boards/",
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
+                  },
+                },
+                ["parts"] = {
+                  "boards",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "default_label",
+                      ["orig"] = "default_label",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "default_list",
+                      ["orig"] = "default_list",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "desc",
+                      ["orig"] = "desc",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_board_source",
+                      ["orig"] = "id_board_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_organization",
+                      ["orig"] = "id_organization",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "keep_from_source",
+                      ["orig"] = "keep_from_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "power_up",
+                      ["orig"] = "power_up",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs_background",
+                      ["orig"] = "prefs_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "blue",
+                    },
+                    {
+                      ["name"] = "prefs_card_aging",
+                      ["orig"] = "prefs_card_aging",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "regular",
+                    },
+                    {
+                      ["name"] = "prefs_card_cover",
+                      ["orig"] = "prefs_card_cover",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "prefs_comment",
+                      ["orig"] = "prefs_comment",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "members",
+                    },
+                    {
+                      ["name"] = "prefs_invitation",
+                      ["orig"] = "prefs_invitation",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "members",
+                    },
+                    {
+                      ["name"] = "prefs_permission_level",
+                      ["orig"] = "prefs_permission_level",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "private",
+                    },
+                    {
+                      ["name"] = "prefs_self_join",
+                      ["orig"] = "prefs_self_join",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "prefs_voting",
+                      ["orig"] = "prefs_voting",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "disabled",
+                    },
                   },
                 },
                 ["select"] = {
@@ -2164,42 +2195,8 @@ local function make_config()
                     "prefs_voting",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "color",
-                      ["orig"] = "color",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/boards/{id}/labels",
@@ -2214,6 +2211,43 @@ local function make_config()
                     ["lit"] = "labels",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                  "labels",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "color",
+                      ["orig"] = "color",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "label",
                   ["exist"] = {
@@ -2222,38 +2256,8 @@ local function make_config()
                     "name",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                  "labels",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_plugin",
-                      ["orig"] = "id_plugin",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/boards/{id}/boardPlugins",
@@ -2268,6 +2272,37 @@ local function make_config()
                     ["lit"] = "boardPlugins",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                  "boardPlugins",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "id_plugin",
+                      ["orig"] = "id_plugin",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "board_plugin",
                   ["exist"] = {
@@ -2275,39 +2310,8 @@ local function make_config()
                     "id_plugin",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                  "boardPlugins",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/boards/{id}/idTags",
@@ -2322,6 +2326,38 @@ local function make_config()
                     ["lit"] = "idTags",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                  "idTags",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "id_tag",
                   ["exist"] = {
@@ -2329,29 +2365,8 @@ local function make_config()
                     "value",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                  "idTags",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/boards/{id}/markedAsViewed",
@@ -2366,20 +2381,33 @@ local function make_config()
                     ["lit"] = "markedAsViewed",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                  "markedAsViewed",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "marked_as_viewed",
                   ["exist"] = {
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                  "markedAsViewed",
                 },
               },
             },
@@ -2389,63 +2417,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "list",
-                      ["orig"] = "list",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "organization",
-                      ["orig"] = "organization",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "name,displayName",
-                      ["kind"] = "query",
-                      ["name"] = "organization_field",
-                      ["orig"] = "organization_field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/boards",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -2455,6 +2429,69 @@ local function make_config()
                   },
                   {
                     ["lit"] = "boards",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boards",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "list",
+                      ["orig"] = "list",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "organization",
+                      ["orig"] = "organization",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "organization_field",
+                      ["orig"] = "organization_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name,displayName",
+                    },
                   },
                 },
                 ["select"] = {
@@ -2467,53 +2504,11 @@ local function make_config()
                     "organization_field",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boards",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/boards",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -2525,6 +2520,48 @@ local function make_config()
                     ["lit"] = "boards",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "boards",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
@@ -2532,46 +2569,11 @@ local function make_config()
                     "organization_id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "boards",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/boardsInvited",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -2583,20 +2585,46 @@ local function make_config()
                     ["lit"] = "boardsInvited",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardsInvited",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardsInvited",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -2606,131 +2634,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "action",
-                      ["orig"] = "action",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "board_star",
-                      ["orig"] = "board_star",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "card",
-                      ["orig"] = "card",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "card_plugin_data",
-                      ["orig"] = "card_plugin_data",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "checklist",
-                      ["orig"] = "checklist",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "custom_field",
-                      ["orig"] = "custom_field",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "name,desc,descData,closed,idOrganization,pinned,url,shortUrl,prefs,labelNames",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "label",
-                      ["orig"] = "label",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "open",
-                      ["kind"] = "query",
-                      ["name"] = "list",
-                      ["orig"] = "list",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "membership",
-                      ["orig"] = "membership",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "my_pref",
-                      ["orig"] = "my_pref",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "organization",
-                      ["orig"] = "organization",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "organization_plugin_data",
-                      ["orig"] = "organization_plugin_data",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "plugin_data",
-                      ["orig"] = "plugin_data",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "tag",
-                      ["orig"] = "tag",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}",
@@ -2740,6 +2643,140 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "action",
+                      ["orig"] = "action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "board_star",
+                      ["orig"] = "board_star",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "card",
+                      ["orig"] = "card",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "card_plugin_data",
+                      ["orig"] = "card_plugin_data",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "checklist",
+                      ["orig"] = "checklist",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "custom_field",
+                      ["orig"] = "custom_field",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name,desc,descData,closed,idOrganization,pinned,url,shortUrl,prefs,labelNames",
+                    },
+                    {
+                      ["name"] = "label",
+                      ["orig"] = "label",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "list",
+                      ["orig"] = "list",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "open",
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "membership",
+                      ["orig"] = "membership",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "my_pref",
+                      ["orig"] = "my_pref",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "organization",
+                      ["orig"] = "organization",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "organization_plugin_data",
+                      ["orig"] = "organization_plugin_data",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "plugin_data",
+                      ["orig"] = "plugin_data",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "tag",
+                      ["orig"] = "tag",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
                   },
                 },
                 ["select"] = {
@@ -2763,44 +2800,11 @@ local function make_config()
                     "tag",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "action_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{id}/board",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "action_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -2812,52 +2816,51 @@ local function make_config()
                     ["lit"] = "board",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "action_id",
-                    "field",
+                ["parts"] = {
+                  "actions",
+                  "{action_id}",
+                  "board",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "action_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{action_id}",
-                  "board",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
+                      ["name"] = "action_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "all",
-                      ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "action_id",
+                    "field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/board",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -2869,52 +2872,52 @@ local function make_config()
                     ["lit"] = "board",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "field",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "board",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "board",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "checklist_id",
+                      ["name"] = "card_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "all",
-                      ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/checklists/{id}/board",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "checklist_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "checklists",
@@ -2926,41 +2929,49 @@ local function make_config()
                     ["lit"] = "board",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "checklist_id",
-                    "field",
+                ["parts"] = {
+                  "checklists",
+                  "{checklist_id}",
+                  "board",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "checklist_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "checklists",
-                  "{checklist_id}",
-                  "board",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
+                      ["name"] = "checklist_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
                       ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
                       ["name"] = "field",
                       ["orig"] = "field",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "checklist_id",
+                    "field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/{field}",
@@ -2975,51 +2986,45 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "list_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lists/{id}/board",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "list_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "lists",
@@ -3031,52 +3036,51 @@ local function make_config()
                     ["lit"] = "board",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "list_id",
+                ["parts"] = {
+                  "lists",
+                  "{list_id}",
+                  "board",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "list_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "lists",
-                  "{list_id}",
-                  "board",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "notification_id",
+                      ["name"] = "list_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "all",
-                      ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "list_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/notifications/{id}/board",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "notification_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "notifications",
@@ -3088,20 +3092,46 @@ local function make_config()
                     ["lit"] = "board",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "notification_id",
+                ["parts"] = {
+                  "notifications",
+                  "{notification_id}",
+                  "board",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "notification_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "notifications",
-                  "{notification_id}",
-                  "board",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "notification_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "notification_id",
+                  },
                 },
               },
             },
@@ -3111,25 +3141,6 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/boards/{id}",
@@ -3141,18 +3152,38 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -3162,111 +3193,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "closed",
-                      ["orig"] = "closed",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "desc",
-                      ["orig"] = "desc",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_organization",
-                      ["orig"] = "id_organization",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/background",
-                      ["orig"] = "prefs/background",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/calendar_feed_enabled",
-                      ["orig"] = "prefs/calendar_feed_enabled",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/card_aging",
-                      ["orig"] = "prefs/card_aging",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/card_cover",
-                      ["orig"] = "prefs/card_cover",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/comment",
-                      ["orig"] = "prefs/comment",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/hide_vote",
-                      ["orig"] = "prefs/hide_vote",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/invitation",
-                      ["orig"] = "prefs/invitation",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/permission_level",
-                      ["orig"] = "prefs/permission_level",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/self_join",
-                      ["orig"] = "prefs/self_join",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/voting",
-                      ["orig"] = "prefs/voting",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "subscribed",
-                      ["orig"] = "subscribed",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}",
@@ -3276,6 +3202,120 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "closed",
+                      ["orig"] = "closed",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "desc",
+                      ["orig"] = "desc",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_organization",
+                      ["orig"] = "id_organization",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/background",
+                      ["orig"] = "prefs/background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/calendar_feed_enabled",
+                      ["orig"] = "prefs/calendar_feed_enabled",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/card_aging",
+                      ["orig"] = "prefs/card_aging",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/card_cover",
+                      ["orig"] = "prefs/card_cover",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/comment",
+                      ["orig"] = "prefs/comment",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/hide_vote",
+                      ["orig"] = "prefs/hide_vote",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/invitation",
+                      ["orig"] = "prefs/invitation",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/permission_level",
+                      ["orig"] = "prefs/permission_level",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/self_join",
+                      ["orig"] = "prefs/self_join",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/voting",
+                      ["orig"] = "prefs/voting",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "subscribed",
+                      ["orig"] = "subscribed",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
                   },
                 },
                 ["select"] = {
@@ -3298,44 +3338,8 @@ local function make_config()
                     "subscribed",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "email",
-                      ["orig"] = "email",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "normal",
-                      ["kind"] = "query",
-                      ["name"] = "type",
-                      ["orig"] = "type",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/members",
@@ -3350,6 +3354,44 @@ local function make_config()
                     ["lit"] = "members",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                  "members",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "email",
+                      ["orig"] = "email",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "type",
+                      ["orig"] = "type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "normal",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "member",
                   ["exist"] = {
@@ -3358,15 +3400,6 @@ local function make_config()
                     "type",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                  "members",
-                },
               },
             },
           },
@@ -3374,25 +3407,25 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "action",
+              "$.main.kit.entity.action",
             },
             {
-              "card",
+              "$.main.kit.entity.card",
             },
             {
-              "checklist",
+              "$.main.kit.entity.checklist",
             },
             {
-              "list",
+              "$.main.kit.entity.list",
             },
             {
-              "member",
+              "$.main.kit.entity.member",
             },
             {
-              "notification",
+              "$.main.kit.entity.notification",
             },
             {
-              "organization",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -3401,6 +3434,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -3415,35 +3449,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "file",
-                      ["orig"] = "file",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/members/{id}/customBoardBackgrounds",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -3455,20 +3463,46 @@ local function make_config()
                     ["lit"] = "customBoardBackgrounds",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "file",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customBoardBackgrounds",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customBoardBackgrounds",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "file",
+                      ["orig"] = "file",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "file",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -3478,35 +3512,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/boardBackgrounds",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -3518,43 +3526,52 @@ local function make_config()
                     ["lit"] = "boardBackgrounds",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "filter",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardBackgrounds",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardBackgrounds",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
                       ["name"] = "member_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "filter",
+                    "member_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/customBoardBackgrounds",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -3566,19 +3583,36 @@ local function make_config()
                     ["lit"] = "customBoardBackgrounds",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customBoardBackgrounds",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customBoardBackgrounds",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "member_id",
+                  },
                 },
               },
             },
@@ -3588,44 +3622,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_background",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/boardBackgrounds/{idBackground}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idBackground"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -3638,6 +3637,51 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardBackgrounds",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idBackground"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
                   },
                 },
                 ["select"] = {
@@ -3647,46 +3691,11 @@ local function make_config()
                     "member_id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardBackgrounds",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_background",
-                      ["orig"] = "id_background",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/customBoardBackgrounds/{idBackground}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idBackground"] = "id_background",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -3701,21 +3710,46 @@ local function make_config()
                     ["var"] = "id_background",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id_background",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customBoardBackgrounds",
+                  "{id_background}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idBackground"] = "id_background",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customBoardBackgrounds",
-                  "{id_background}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id_background",
+                      ["orig"] = "id_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id_background",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -3725,35 +3759,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_background",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/members/{id}/boardBackgrounds/{idBackground}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idBackground"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -3768,21 +3776,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardBackgrounds",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idBackground"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardBackgrounds",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -3792,49 +3826,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_background",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "brightness",
-                      ["orig"] = "brightness",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "tile",
-                      ["orig"] = "tile",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/members/{id}/boardBackgrounds/{idBackground}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idBackground"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -3847,6 +3841,56 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardBackgrounds",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idBackground"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "brightness",
+                      ["orig"] = "brightness",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "tile",
+                      ["orig"] = "tile",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -3857,60 +3901,11 @@ local function make_config()
                     "tile",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardBackgrounds",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_background",
-                      ["orig"] = "id_background",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "brightness",
-                      ["orig"] = "brightness",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "tile",
-                      ["orig"] = "tile",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/members/{id}/customBoardBackgrounds/{idBackground}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idBackground"] = "id_background",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -3925,6 +3920,55 @@ local function make_config()
                     ["var"] = "id_background",
                   },
                 },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customBoardBackgrounds",
+                  "{id_background}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idBackground"] = "id_background",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id_background",
+                      ["orig"] = "id_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "brightness",
+                      ["orig"] = "brightness",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "tile",
+                      ["orig"] = "tile",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "brightness",
@@ -3933,16 +3977,6 @@ local function make_config()
                     "tile",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customBoardBackgrounds",
-                  "{id_background}",
-                },
               },
             },
           },
@@ -3950,11 +3984,11 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
             {
-              "member",
-              "custom_board_background",
+              "$.main.kit.entity.member",
+              "$.main.kit.entity.custom_board_background",
             },
           },
         },
@@ -3963,6 +3997,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -3977,35 +4012,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_plugin",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/boards/{id}/boardPlugins/{idPlugin}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                    ["idPlugin"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -4020,21 +4029,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "boardPlugins",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                    ["idPlugin"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "boardPlugins",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_plugin",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -4043,7 +4078,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -4052,14 +4087,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idBoard",
+            ["title"] = "Id Board",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "pos",
+            ["title"] = "Pos",
             ["type"] = "`$INTEGER`",
           },
         },
@@ -4074,42 +4112,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_board",
-                      ["orig"] = "id_board",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["reqd"] = true,
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/members/{id}/boardStars",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -4121,21 +4126,54 @@ local function make_config()
                     ["lit"] = "boardStars",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id_board",
-                    "member_id",
-                    "pos",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardStars",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardStars",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "id_board",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id_board",
+                    "member_id",
+                    "pos",
+                  },
                 },
               },
             },
@@ -4145,34 +4183,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "board_id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "mine",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{boardId}/boardStars",
-                ["rename"] = {
-                  ["param"] = {
-                    ["boardId"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -4184,20 +4197,45 @@ local function make_config()
                     ["lit"] = "boardStars",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "filter",
-                    "id",
+                ["parts"] = {
+                  "boards",
+                  "{id}",
+                  "boardStars",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["boardId"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{id}",
-                  "boardStars",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "board_id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "mine",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "filter",
+                    "id",
+                  },
                 },
               },
             },
@@ -4207,35 +4245,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_star",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/boardStars/{idStar}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idStar"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -4250,44 +4262,53 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member_id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "members",
                   "{member_id}",
                   "boardStars",
                   "{id}",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "GET",
-                ["orig"] = "/members/{id}/boardStars",
                 ["rename"] = {
                   ["param"] = {
                     ["id"] = "member_id",
+                    ["idStar"] = "id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_star",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member_id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "GET",
+                ["orig"] = "/members/{id}/boardStars",
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -4299,19 +4320,36 @@ local function make_config()
                     ["lit"] = "boardStars",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardStars",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardStars",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "member_id",
+                  },
                 },
               },
             },
@@ -4321,35 +4359,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_star",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/members/{id}/boardStars/{idStar}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idStar"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -4364,21 +4376,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardStars",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idStar"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardStars",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_star",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -4388,43 +4426,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_star",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/members/{id}/boardStars/{idStar}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idStar"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -4439,22 +4443,56 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member_id",
-                    "pos",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "boardStars",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idStar"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "boardStars",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_star",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member_id",
+                    "pos",
+                  },
                 },
               },
             },
@@ -4463,7 +4501,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
           },
         },
@@ -4472,6 +4510,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -4486,40 +4525,15 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_organization",
-                      ["reqd"] = true,
-                      ["type"] = "`$ARRAY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/organizations/bulk/{idOrganizations}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idOrganizations"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "organizations",
@@ -4531,59 +4545,59 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "enterpris_id",
-                    "id",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "organizations",
+                  "bulk",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idOrganizations"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "organizations",
-                  "bulk",
-                  "{id}",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
+                      ["name"] = "enterprise_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                     {
-                      ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "id_organization",
-                      ["reqd"] = true,
                       ["type"] = "`$ARRAY`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "enterprise_id",
+                    "id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/transferrable/bulk/{idOrganizations}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idOrganizations"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "transferrable",
@@ -4595,22 +4609,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "enterpris_id",
-                    "id",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "transferrable",
+                  "bulk",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idOrganizations"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "transferrable",
-                  "bulk",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_organization",
+                      ["type"] = "`$ARRAY`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "enterprise_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -4620,27 +4659,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_organization",
-                      ["orig"] = "id_organization",
-                      ["reqd"] = true,
-                      ["type"] = "`$ARRAY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/enterprises/${id}/enterpriseJoinRequest/bulk",
@@ -4658,21 +4676,43 @@ local function make_config()
                     ["lit"] = "bulk",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "id_organization",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "enterprises",
                   "${id}",
                   "enterpriseJoinRequest",
                   "bulk",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "id_organization",
+                      ["orig"] = "id_organization",
+                      ["type"] = "`$ARRAY`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "id_organization",
+                  },
                 },
               },
             },
@@ -4681,7 +4721,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             },
           },
         },
@@ -4690,150 +4730,173 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "address",
+            ["title"] = "Address",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "badges",
+            ["title"] = "Badges",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "cardRole",
+            ["title"] = "Card Role",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "checkItemStates",
+            ["title"] = "Check Item States",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "closed",
+            ["title"] = "Closed",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "coordinates",
+            ["title"] = "Coordinates",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "cover",
+            ["title"] = "Cover",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "creationMethod",
+            ["title"] = "Creation Method",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "date-time",
             ["name"] = "dateLastActivity",
+            ["title"] = "Date Last Activity",
             ["type"] = "`$STRING`",
+            ["format"] = "date-time",
           },
           {
             ["name"] = "desc",
+            ["title"] = "Desc",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "descData",
+            ["title"] = "Desc Data",
             ["type"] = "`$OBJECT`",
           },
           {
-            ["format"] = "date",
             ["name"] = "due",
+            ["title"] = "Due",
             ["type"] = "`$STRING`",
+            ["format"] = "date",
           },
           {
             ["name"] = "dueReminder",
+            ["title"] = "Due Reminder",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idAttachmentCover",
+            ["title"] = "Id Attachment Cover",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idBoard",
+            ["title"] = "Id Board",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idChecklists",
+            ["title"] = "Id Checklists",
             ["type"] = "`$ARRAY`",
-            ["union"] = {
-              ["branches"] = 2,
-              ["count"] = 1,
-              ["depth"] = 1,
-            },
           },
           {
             ["name"] = "idLabels",
+            ["title"] = "Id Labels",
             ["type"] = "`$ARRAY`",
-            ["union"] = {
-              ["branches"] = 2,
-              ["count"] = 1,
-              ["depth"] = 1,
-            },
           },
           {
             ["name"] = "idList",
+            ["title"] = "Id List",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idMembers",
+            ["title"] = "Id Members",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idMembersVoted",
+            ["title"] = "Id Members Voted",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idShort",
+            ["title"] = "Id Short",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "labels",
+            ["title"] = "Labels",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "limits",
+            ["title"] = "Limits",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "locationName",
+            ["title"] = "Location Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "manualCoverAttachment",
+            ["title"] = "Manual Cover Attachment",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "mirrorSourceId",
+            ["title"] = "Mirror Source Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "float",
             ["name"] = "pos",
+            ["title"] = "Pos",
             ["type"] = "`$NUMBER`",
+            ["format"] = "float",
           },
           {
             ["name"] = "shortLink",
+            ["title"] = "Short Link",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "url",
             ["name"] = "shortUrl",
+            ["title"] = "Short Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
           {
             ["name"] = "subscribed",
+            ["title"] = "Subscribed",
             ["type"] = "`$BOOLEAN`",
           },
           {
-            ["format"] = "url",
             ["name"] = "url",
+            ["title"] = "Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
         },
         ["id"] = {
@@ -4847,128 +4910,136 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "address",
-                      ["orig"] = "address",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "card_role",
-                      ["orig"] = "card_role",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "coordinate",
-                      ["orig"] = "coordinate",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "desc",
-                      ["orig"] = "desc",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "due",
-                      ["orig"] = "due",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "due_complete",
-                      ["orig"] = "due_complete",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "file_source",
-                      ["orig"] = "file_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_card_source",
-                      ["orig"] = "id_card_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_label",
-                      ["orig"] = "id_label",
-                      ["type"] = "`$ARRAY`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_list",
-                      ["orig"] = "id_list",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_member",
-                      ["orig"] = "id_member",
-                      ["type"] = "`$ARRAY`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "keep_from_source",
-                      ["orig"] = "keep_from_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "location_name",
-                      ["orig"] = "location_name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "mime_type",
-                      ["orig"] = "mime_type",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "start",
-                      ["orig"] = "start",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "url_source",
-                      ["orig"] = "url_source",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards",
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
+                  },
+                },
+                ["parts"] = {
+                  "cards",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "address",
+                      ["orig"] = "address",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "card_role",
+                      ["orig"] = "card_role",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "coordinate",
+                      ["orig"] = "coordinate",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "desc",
+                      ["orig"] = "desc",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "due",
+                      ["orig"] = "due",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "due_complete",
+                      ["orig"] = "due_complete",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "file_source",
+                      ["orig"] = "file_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_card_source",
+                      ["orig"] = "id_card_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_label",
+                      ["orig"] = "id_label",
+                      ["type"] = "`$ARRAY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_list",
+                      ["orig"] = "id_list",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_member",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$ARRAY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "keep_from_source",
+                      ["orig"] = "keep_from_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "location_name",
+                      ["orig"] = "location_name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "mime_type",
+                      ["orig"] = "mime_type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "start",
+                      ["orig"] = "start",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "url_source",
+                      ["orig"] = "url_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -4993,60 +5064,8 @@ local function make_config()
                     "url_source",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "file",
-                      ["orig"] = "file",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "mime_type",
-                      ["orig"] = "mime_type",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "set_cover",
-                      ["orig"] = "set_cover",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "url",
-                      ["orig"] = "url",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/attachments",
@@ -5061,6 +5080,61 @@ local function make_config()
                     ["lit"] = "attachments",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "attachments",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "file",
+                      ["orig"] = "file",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "mime_type",
+                      ["orig"] = "mime_type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "set_cover",
+                      ["orig"] = "set_cover",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "url",
+                      ["orig"] = "url",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "attachment",
                   ["exist"] = {
@@ -5072,66 +5146,8 @@ local function make_config()
                     "url",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "attachments",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "image",
-                      ["orig"] = "image",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "left",
-                      ["orig"] = "left",
-                      ["reqd"] = true,
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["example"] = 0,
-                      ["kind"] = "query",
-                      ["name"] = "rotate",
-                      ["orig"] = "rotate",
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "top",
-                      ["orig"] = "top",
-                      ["reqd"] = true,
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "z_index",
-                      ["orig"] = "z_index",
-                      ["reqd"] = true,
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/stickers",
@@ -5146,6 +5162,65 @@ local function make_config()
                     ["lit"] = "stickers",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "stickers",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "image",
+                      ["orig"] = "image",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "left",
+                      ["orig"] = "left",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "rotate",
+                      ["orig"] = "rotate",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["example"] = 0,
+                    },
+                    {
+                      ["name"] = "top",
+                      ["orig"] = "top",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "z_index",
+                      ["orig"] = "z_index",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "sticker",
                   ["exist"] = {
@@ -5157,50 +5232,8 @@ local function make_config()
                     "z_index",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "stickers",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_checklist_source",
-                      ["orig"] = "id_checklist_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/checklists",
@@ -5215,6 +5248,49 @@ local function make_config()
                     ["lit"] = "checklists",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "checklists",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "id_checklist_source",
+                      ["orig"] = "id_checklist_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "checklist",
                   ["exist"] = {
@@ -5224,44 +5300,8 @@ local function make_config()
                     "pos",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "checklists",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "color",
-                      ["orig"] = "color",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/labels",
@@ -5276,6 +5316,43 @@ local function make_config()
                     ["lit"] = "labels",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "labels",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "color",
+                      ["orig"] = "color",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "label",
                   ["exist"] = {
@@ -5284,38 +5361,8 @@ local function make_config()
                     "name",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "labels",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/idLabels",
@@ -5330,6 +5377,37 @@ local function make_config()
                     ["lit"] = "idLabels",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "idLabels",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "id_label",
                   ["exist"] = {
@@ -5337,38 +5415,8 @@ local function make_config()
                     "value",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "idLabels",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/idMembers",
@@ -5383,6 +5431,37 @@ local function make_config()
                     ["lit"] = "idMembers",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "idMembers",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "id_member",
                   ["exist"] = {
@@ -5390,39 +5469,8 @@ local function make_config()
                     "value",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "idMembers",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/membersVoted",
@@ -5437,6 +5485,38 @@ local function make_config()
                     ["lit"] = "membersVoted",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "membersVoted",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "members_voted",
                   ["exist"] = {
@@ -5444,29 +5524,8 @@ local function make_config()
                     "value",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "membersVoted",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/{id}/markAssociatedNotificationsRead",
@@ -5481,20 +5540,33 @@ local function make_config()
                     ["lit"] = "markAssociatedNotificationsRead",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "markAssociatedNotificationsRead",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "mark_associated_notifications_read",
                   ["exist"] = {
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "markAssociatedNotificationsRead",
                 },
               },
             },
@@ -5504,35 +5576,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "action_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{id}/card",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "action_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -5544,52 +5590,52 @@ local function make_config()
                     ["lit"] = "card",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "action_id",
-                    "field",
+                ["parts"] = {
+                  "actions",
+                  "{action_id}",
+                  "card",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "action_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{action_id}",
-                  "card",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
+                      ["name"] = "action_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "visible",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
+                      ["name"] = "field",
+                      ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "action_id",
+                    "field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/cards",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -5601,43 +5647,52 @@ local function make_config()
                     ["lit"] = "cards",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "filter",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "cards",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "cards",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "list_id",
+                      ["name"] = "member_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "visible",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "filter",
+                    "member_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lists/{id}/cards",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "list_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "lists",
@@ -5649,19 +5704,36 @@ local function make_config()
                     ["lit"] = "cards",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "list_id",
+                ["parts"] = {
+                  "lists",
+                  "{list_id}",
+                  "cards",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "list_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "lists",
-                  "{list_id}",
-                  "cards",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "list_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "list_id",
+                  },
                 },
               },
             },
@@ -5671,141 +5743,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "action",
-                      ["orig"] = "action",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "attachment",
-                      ["orig"] = "attachment",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "attachment_field",
-                      ["orig"] = "attachment_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "board",
-                      ["orig"] = "board",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "board_field",
-                      ["orig"] = "board_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "check_item_state",
-                      ["orig"] = "check_item_state",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "checklist",
-                      ["orig"] = "checklist",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "checklist_field",
-                      ["orig"] = "checklist_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "custom_field_item",
-                      ["orig"] = "custom_field_item",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "list",
-                      ["orig"] = "list",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "member_field",
-                      ["orig"] = "member_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "member_voted_field",
-                      ["orig"] = "member_voted_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "members_voted",
-                      ["orig"] = "members_voted",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "plugin_data",
-                      ["orig"] = "plugin_data",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "sticker",
-                      ["orig"] = "sticker",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "sticker_field",
-                      ["orig"] = "sticker_field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}",
@@ -5815,6 +5752,150 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "action",
+                      ["orig"] = "action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "attachment",
+                      ["orig"] = "attachment",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "attachment_field",
+                      ["orig"] = "attachment_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "board",
+                      ["orig"] = "board",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "board_field",
+                      ["orig"] = "board_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "check_item_state",
+                      ["orig"] = "check_item_state",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "checklist",
+                      ["orig"] = "checklist",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "checklist_field",
+                      ["orig"] = "checklist_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "custom_field_item",
+                      ["orig"] = "custom_field_item",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "list",
+                      ["orig"] = "list",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "member_field",
+                      ["orig"] = "member_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "member_voted_field",
+                      ["orig"] = "member_voted_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "members_voted",
+                      ["orig"] = "members_voted",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "plugin_data",
+                      ["orig"] = "plugin_data",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "sticker",
+                      ["orig"] = "sticker",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "sticker_field",
+                      ["orig"] = "sticker_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
                   },
                 },
                 ["select"] = {
@@ -5840,43 +5921,11 @@ local function make_config()
                     "sticker_field",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "filter",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/cards/{filter}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["filter"] = "id",
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -5891,43 +5940,48 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "boards",
                   "{board_id}",
                   "cards",
                   "{id}",
                 },
-              },
-              {
+                ["rename"] = {
+                  ["param"] = {
+                    ["filter"] = "id",
+                    ["id"] = "board_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
                       ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
+                      ["orig"] = "filter",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/{field}",
@@ -5942,52 +5996,46 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "notification_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/notifications/{id}/card",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "notification_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "notifications",
@@ -5999,42 +6047,52 @@ local function make_config()
                     ["lit"] = "card",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "notification_id",
+                ["parts"] = {
+                  "notifications",
+                  "{notification_id}",
+                  "card",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "notification_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "notifications",
-                  "{notification_id}",
-                  "card",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
+                      ["name"] = "notification_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "notification_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/cards",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -6046,42 +6104,41 @@ local function make_config()
                     ["lit"] = "cards",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "cards",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "cards",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "checklist_id",
+                      ["name"] = "board_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/checklists/{id}/cards",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "checklist_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "checklists",
@@ -6093,19 +6150,36 @@ local function make_config()
                     ["lit"] = "cards",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "checklist_id",
+                ["parts"] = {
+                  "checklists",
+                  "{checklist_id}",
+                  "cards",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "checklist_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "checklists",
-                  "{checklist_id}",
-                  "cards",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "checklist_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "checklist_id",
+                  },
                 },
               },
             },
@@ -6115,18 +6189,6 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}",
@@ -6138,18 +6200,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -6159,127 +6234,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "address",
-                      ["orig"] = "address",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "closed",
-                      ["orig"] = "closed",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "coordinate",
-                      ["orig"] = "coordinate",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "cover",
-                      ["orig"] = "cover",
-                      ["type"] = "`$OBJECT`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "desc",
-                      ["orig"] = "desc",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "due",
-                      ["orig"] = "due",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "due_complete",
-                      ["orig"] = "due_complete",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_attachment_cover",
-                      ["orig"] = "id_attachment_cover",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_board",
-                      ["orig"] = "id_board",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_label",
-                      ["orig"] = "id_label",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_list",
-                      ["orig"] = "id_list",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_member",
-                      ["orig"] = "id_member",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "location_name",
-                      ["orig"] = "location_name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "start",
-                      ["orig"] = "start",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "subscribed",
-                      ["orig"] = "subscribed",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/cards/{id}",
@@ -6289,6 +6243,136 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "address",
+                      ["orig"] = "address",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "closed",
+                      ["orig"] = "closed",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "coordinate",
+                      ["orig"] = "coordinate",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "cover",
+                      ["orig"] = "cover",
+                      ["type"] = "`$OBJECT`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "desc",
+                      ["orig"] = "desc",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "due",
+                      ["orig"] = "due",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "due_complete",
+                      ["orig"] = "due_complete",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_attachment_cover",
+                      ["orig"] = "id_attachment_cover",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_board",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_label",
+                      ["orig"] = "id_label",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_list",
+                      ["orig"] = "id_list",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_member",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "location_name",
+                      ["orig"] = "location_name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "start",
+                      ["orig"] = "start",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "subscribed",
+                      ["orig"] = "subscribed",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -6313,25 +6397,11 @@ local function make_config()
                     "subscribed",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/cards/{idCard}/customFields",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idCard"] = "id_card",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -6343,17 +6413,23 @@ local function make_config()
                     ["lit"] = "customFields",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "custom_field",
+                ["parts"] = {
+                  "cards",
+                  "{id_card}",
+                  "customFields",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idCard"] = "id_card",
+                  },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{id_card}",
-                  "customFields",
+                ["args"] = {},
+                ["select"] = {
+                  ["$action"] = "custom_field",
                 },
               },
             },
@@ -6362,25 +6438,22 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "action",
+              "$.main.kit.entity.action",
             },
             {
-              "board",
+              "$.main.kit.entity.board",
             },
             {
-              "card",
+              "$.main.kit.entity.checklist",
             },
             {
-              "checklist",
+              "$.main.kit.entity.list",
             },
             {
-              "list",
+              "$.main.kit.entity.member",
             },
             {
-              "member",
-            },
-            {
-              "notification",
+              "$.main.kit.entity.notification",
             },
           },
         },
@@ -6389,6 +6462,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -6403,27 +6477,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/checkItemStates",
@@ -6438,20 +6491,42 @@ local function make_config()
                     ["lit"] = "checkItemStates",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "checkItemStates",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "checkItemStates",
                 },
               },
             },
@@ -6465,6 +6540,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -6479,27 +6555,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/list",
@@ -6514,20 +6569,42 @@ local function make_config()
                     ["lit"] = "list",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
+                  "list",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{id}",
-                  "list",
                 },
               },
             },
@@ -6541,26 +6618,32 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idChecklist",
+            ["title"] = "Id Checklist",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "nameData",
+            ["title"] = "Name Data",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "pos",
+            ["title"] = "Pos",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "state",
+            ["title"] = "State",
             ["type"] = "`$STRING`",
           },
         },
@@ -6575,44 +6658,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_check_item",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "name,nameData,pos,state,due,dueReminder,idMember",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/checkItem/{idCheckItem}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idCheckItem"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -6627,6 +6675,51 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "checkItem",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idCheckItem"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_check_item",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name,nameData,pos,state,due,dueReminder,idMember",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "card_id",
@@ -6634,54 +6727,11 @@ local function make_config()
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "checkItem",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "checklist_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "name, nameData, pos, state, due, dueReminder, idMember",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/checklists/{id}/checkItems",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "checklist_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "checklists",
@@ -6691,6 +6741,48 @@ local function make_config()
                   },
                   {
                     ["lit"] = "checkItems",
+                  },
+                },
+                ["parts"] = {
+                  "checklists",
+                  "{checklist_id}",
+                  "checkItems",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "checklist_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "checklist_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name, nameData, pos, state, due, dueReminder, idMember",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
                   },
                 },
                 ["select"] = {
@@ -6700,55 +6792,11 @@ local function make_config()
                     "filter",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "checklists",
-                  "{checklist_id}",
-                  "checkItems",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "checklist_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_check_item",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "name, nameData, pos, state, due, dueReminder, idMember",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/checklists/{id}/checkItems/{idCheckItem}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "checklist_id",
-                    ["idCheckItem"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "checklists",
@@ -6761,6 +6809,51 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "checklists",
+                  "{checklist_id}",
+                  "checkItems",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "checklist_id",
+                    ["idCheckItem"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "checklist_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_check_item",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name, nameData, pos, state, due, dueReminder, idMember",
+                    },
                   },
                 },
                 ["select"] = {
@@ -6770,16 +6863,6 @@ local function make_config()
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "checklists",
-                  "{checklist_id}",
-                  "checkItems",
-                  "{id}",
-                },
               },
             },
           },
@@ -6788,35 +6871,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_check_item",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}/checkItem/{idCheckItem}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idCheckItem"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -6831,53 +6888,53 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "cards",
                   "{card_id}",
                   "checkItem",
                   "{id}",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "checklist_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_check_item",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "DELETE",
-                ["orig"] = "/checklists/{id}/checkItems/{idCheckItem}",
                 ["rename"] = {
                   ["param"] = {
-                    ["id"] = "checklist_id",
+                    ["id"] = "card_id",
                     ["idCheckItem"] = "id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_check_item",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "DELETE",
+                ["orig"] = "/checklists/{id}/checkItems/{idCheckItem}",
                 ["segments"] = {
                   {
                     ["lit"] = "checklists",
@@ -6892,21 +6949,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "checklist_id",
-                    "id",
+                ["parts"] = {
+                  "checklists",
+                  "{checklist_id}",
+                  "checkItems",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "checklist_id",
+                    ["idCheckItem"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "checklists",
-                  "{checklist_id}",
-                  "checkItems",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "checklist_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_check_item",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "checklist_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -6916,81 +6999,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_check_item",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "due",
-                      ["orig"] = "due",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "due_reminder",
-                      ["orig"] = "due_reminder",
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_checklist",
-                      ["orig"] = "id_checklist",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_member",
-                      ["orig"] = "id_member",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "state",
-                      ["orig"] = "state",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/cards/{id}/checkItem/{idCheckItem}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idCheckItem"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -7003,6 +7014,88 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "checkItem",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idCheckItem"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_check_item",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "due",
+                      ["orig"] = "due",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "due_reminder",
+                      ["orig"] = "due_reminder",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_checklist",
+                      ["orig"] = "id_checklist",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_member",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "state",
+                      ["orig"] = "state",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -7018,64 +7111,11 @@ local function make_config()
                     "state",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "checkItem",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "checklist_id",
-                      ["orig"] = "id_checklist",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_check_item",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_card",
-                      ["orig"] = "id_card",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/cards/{idCard}/checklist/{idChecklist}/checkItem/{idCheckItem}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idCard"] = "id_card",
-                    ["idCheckItem"] = "id",
-                    ["idChecklist"] = "checklist_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -7096,18 +7136,6 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "checklist_id",
-                    "id",
-                    "id_card",
-                    "pos",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "cards",
                   "{id_card}",
@@ -7116,6 +7144,61 @@ local function make_config()
                   "checkItem",
                   "{id}",
                 },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idCard"] = "id_card",
+                    ["idCheckItem"] = "id",
+                    ["idChecklist"] = "checklist_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "checklist_id",
+                      ["orig"] = "id_checklist",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_check_item",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_card",
+                      ["orig"] = "id_card",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "checklist_id",
+                    "id",
+                    "id_card",
+                    "pos",
+                  },
+                },
               },
             },
           },
@@ -7123,11 +7206,11 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "card",
+              "$.main.kit.entity.card",
             },
             {
-              "card",
-              "checklist",
+              "$.main.kit.entity.card",
+              "$.main.kit.entity.checklist",
             },
           },
         },
@@ -7136,6 +7219,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -7150,60 +7234,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "checked",
-                      ["orig"] = "checked",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "due",
-                      ["orig"] = "due",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "due_reminder",
-                      ["orig"] = "due_reminder",
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_member",
-                      ["orig"] = "id_member",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "bottom",
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/checklists/{id}/checkItems",
@@ -7218,6 +7248,70 @@ local function make_config()
                     ["lit"] = "checkItems",
                   },
                 },
+                ["parts"] = {
+                  "checklists",
+                  "{id}",
+                  "checkItems",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "checked",
+                      ["orig"] = "checked",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "due",
+                      ["orig"] = "due",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "due_reminder",
+                      ["orig"] = "due_reminder",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_member",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "bottom",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "check_item",
                   ["exist"] = {
@@ -7230,54 +7324,53 @@ local function make_config()
                     "pos",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "checklists",
-                  "{id}",
-                  "checkItems",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_card",
-                      ["orig"] = "id_card",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_checklist_source",
-                      ["orig"] = "id_checklist_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/checklists",
                 ["segments"] = {
                   {
                     ["lit"] = "checklists",
+                  },
+                },
+                ["parts"] = {
+                  "checklists",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "id_card",
+                      ["orig"] = "id_card",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_checklist_source",
+                      ["orig"] = "id_checklist_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -7288,13 +7381,6 @@ local function make_config()
                     "pos",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "checklists",
-                },
               },
             },
           },
@@ -7303,48 +7389,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "card",
-                      ["orig"] = "card",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "check_item",
-                      ["orig"] = "check_item",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "name, nameData, pos, state, due, dueReminder, idMember",
-                      ["kind"] = "query",
-                      ["name"] = "check_item_field",
-                      ["orig"] = "check_item_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/checklists/{id}",
@@ -7354,6 +7398,57 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "checklists",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "card",
+                      ["orig"] = "card",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "check_item",
+                      ["orig"] = "check_item",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "check_item_field",
+                      ["orig"] = "check_item_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name, nameData, pos, state, due, dueReminder, idMember",
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
                   },
                 },
                 ["select"] = {
@@ -7365,66 +7460,11 @@ local function make_config()
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "checklists",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "check_item",
-                      ["orig"] = "check_item",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "name,nameData,pos,state,due,dueReminder,idMember",
-                      ["kind"] = "query",
-                      ["name"] = "check_item_field",
-                      ["orig"] = "check_item_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/checklists",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -7434,6 +7474,62 @@ local function make_config()
                   },
                   {
                     ["lit"] = "checklists",
+                  },
+                },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "checklists",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "check_item",
+                      ["orig"] = "check_item",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "check_item_field",
+                      ["orig"] = "check_item_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name,nameData,pos,state,due,dueReminder,idMember",
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
                   },
                 },
                 ["select"] = {
@@ -7445,36 +7541,8 @@ local function make_config()
                     "filter",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "checklists",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/checklists/{id}/{field}",
@@ -7489,42 +7557,46 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "checklists",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "checklists",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/checklists",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -7536,19 +7608,35 @@ local function make_config()
                     ["lit"] = "checklists",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "checklists",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "checklists",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                  },
                 },
               },
             },
@@ -7558,35 +7646,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_checklist",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}/checklists/{idChecklist}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idChecklist"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -7601,36 +7663,50 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "cards",
                   "{card_id}",
                   "checklists",
                   "{id}",
                 },
-              },
-              {
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idChecklist"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
+                      ["name"] = "card_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_checklist",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/checklists/{id}",
@@ -7642,18 +7718,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "checklists",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "checklists",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -7663,34 +7752,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/checklists/{id}/{field}",
@@ -7705,6 +7766,44 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "checklists",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
@@ -7712,43 +7811,8 @@ local function make_config()
                     "value",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "checklists",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/checklists/{id}",
@@ -7760,20 +7824,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "checklists",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "id",
                     "name",
                     "pos",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "checklists",
-                  "{id}",
                 },
               },
             },
@@ -7782,10 +7873,10 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
             {
-              "card",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -7794,36 +7885,44 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "activeMembershipCount",
+            ["title"] = "Active Membership Count",
             ["type"] = "`$NUMBER`",
           },
           {
-            ["format"] = "date",
             ["name"] = "dateLastActive",
-            ["short"] = "The date of the most recent activity on any of the boards in the workspace.",
+            ["title"] = "Date Last Active",
             ["type"] = "`$STRING`",
+            ["short"] = "The date of the most recent activity on any of the boards in the workspace.",
+            ["format"] = "date",
           },
           {
             ["name"] = "displayName",
+            ["title"] = "Display Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idActiveAdmins",
+            ["title"] = "Id Active Admins",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "logoUrl",
+            ["title"] = "Logo Url",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "products",
+            ["title"] = "Products",
             ["type"] = "`$ARRAY`",
           },
         },
@@ -7838,87 +7937,87 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "active_since",
-                      ["orig"] = "active_since",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "cursor",
-                      ["orig"] = "cursor",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "inactive_since",
-                      ["orig"] = "inactive_since",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "limit",
-                      ["orig"] = "limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/claimableOrganizations",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "claimableOrganizations",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "active_since",
-                    "cursor",
-                    "enterpris_id",
-                    "inactive_since",
-                    "limit",
-                    "name",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "claimableOrganizations",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.organizations`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "claimableOrganizations",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "active_since",
+                      ["orig"] = "active_since",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "cursor",
+                      ["orig"] = "cursor",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "inactive_since",
+                      ["orig"] = "inactive_since",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "limit",
+                      ["orig"] = "limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "active_since",
+                    "cursor",
+                    "enterprise_id",
+                    "inactive_since",
+                    "limit",
+                    "name",
+                  },
                 },
               },
             },
@@ -7927,7 +8026,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             },
           },
         },
@@ -7936,6 +8035,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -7950,34 +8050,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_background",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/members/{id}/customBoardBackgrounds/{idBackground}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idBackground"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -7992,21 +8067,46 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customBoardBackgrounds",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idBackground"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customBoardBackgrounds",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -8015,7 +8115,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
           },
         },
@@ -8024,16 +8124,19 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "url",
             ["name"] = "url",
+            ["title"] = "Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
         },
         ["id"] = {
@@ -8047,42 +8150,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "file",
-                      ["orig"] = "file",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/members/{id}/customEmoji",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -8092,6 +8162,48 @@ local function make_config()
                   },
                   {
                     ["lit"] = "customEmoji",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customEmoji",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "file",
+                      ["orig"] = "file",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
                   },
                 },
                 ["select"] = {
@@ -8101,15 +8213,6 @@ local function make_config()
                     "name",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customEmoji",
-                },
               },
             },
           },
@@ -8118,26 +8221,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/customEmoji",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -8149,19 +8235,36 @@ local function make_config()
                     ["lit"] = "customEmoji",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customEmoji",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customEmoji",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "member_id",
+                  },
                 },
               },
             },
@@ -8171,44 +8274,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_emoji",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/customEmoji/{idEmoji}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idEmoji"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -8223,22 +8291,57 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "id",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customEmoji",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idEmoji"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customEmoji",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_emoji",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "id",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -8247,7 +8350,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
           },
         },
@@ -8256,54 +8359,64 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "cardFront",
+            ["title"] = "Card Front",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "display",
+            ["title"] = "Display",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "display_cardFront",
-            ["short"] = "Whether this Custom Field should be shown on the front of Cards",
+            ["title"] = "Display Card Front",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this Custom Field should be shown on the front of Cards",
           },
           {
             ["name"] = "displaycardFront",
-            ["short"] = "Whether to display this custom field on the front of cards",
+            ["title"] = "Displaycard Front",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether to display this custom field on the front of cards",
           },
           {
             ["name"] = "fieldGroup",
+            ["title"] = "Field Group",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idModel",
+            ["title"] = "Id Model",
+            ["type"] = "`$STRING`",
+            ["req"] = true,
             ["op"] = {
               ["list"] = {
                 ["type"] = "`$STRING`",
               },
             },
-            ["req"] = true,
             ["short"] = "The ID of the model for which the Custom Field is being defined.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "modelType",
+            ["title"] = "Model Type",
+            ["type"] = "`$STRING`",
+            ["req"] = true,
             ["op"] = {
               ["list"] = {
                 ["type"] = "`$STRING`",
               },
             },
-            ["req"] = true,
             ["short"] = "The type of model that the Custom Field is being defined on.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
+            ["type"] = "`$STRING`",
             ["op"] = {
               ["create"] = {
                 ["req"] = true,
@@ -8311,33 +8424,35 @@ local function make_config()
               },
             },
             ["short"] = "The name of the Custom Field",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "options",
-            ["short"] = "If the type is `checkbox`",
+            ["title"] = "Options",
             ["type"] = "`$ARRAY`",
+            ["short"] = "If the type is `checkbox`",
           },
           {
             ["name"] = "pos",
+            ["title"] = "Pos",
+            ["type"] = "`$STRING`",
             ["op"] = {
               ["create"] = {
                 ["req"] = true,
                 ["type"] = "`$ANY`",
               },
             },
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "type",
+            ["title"] = "Type",
+            ["type"] = "`$STRING`",
+            ["req"] = true,
             ["op"] = {
               ["list"] = {
                 ["type"] = "`$STRING`",
               },
             },
-            ["req"] = true,
             ["short"] = "The type of Custom Field to create.",
-            ["type"] = "`$STRING`",
           },
         },
         ["id"] = {
@@ -8351,18 +8466,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/customFields/{id}/options",
@@ -8377,24 +8480,36 @@ local function make_config()
                     ["lit"] = "options",
                   },
                 },
+                ["parts"] = {
+                  "customFields",
+                  "{id}",
+                  "options",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "option",
                   ["exist"] = {
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "customFields",
-                  "{id}",
-                  "options",
-                },
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/customFields",
@@ -8403,14 +8518,16 @@ local function make_config()
                     ["lit"] = "customFields",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "customFields",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.display`",
                 },
-                ["parts"] = {
-                  "customFields",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -8419,26 +8536,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/customFields",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -8450,19 +8550,36 @@ local function make_config()
                     ["lit"] = "customFields",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "customFields",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "customFields",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                  },
                 },
               },
             },
@@ -8472,18 +8589,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/customFields/{id}",
@@ -8495,18 +8600,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "customFields",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.display`",
                 },
-                ["parts"] = {
-                  "customFields",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -8516,18 +8634,6 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/customFields/{id}",
@@ -8539,18 +8645,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "customFields",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "customFields",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -8560,35 +8679,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_card",
-                      ["orig"] = "id_card",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_custom_field",
-                      ["orig"] = "id_custom_field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/cards/{idCard}/customField/{idCustomField}/item",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idCard"] = "id_card",
-                    ["idCustomField"] = "id_custom_field",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -8606,17 +8699,6 @@ local function make_config()
                     ["lit"] = "item",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "item",
-                  ["exist"] = {
-                    "id_card",
-                    "id_custom_field",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "cards",
                   "{id_card}",
@@ -8624,20 +8706,45 @@ local function make_config()
                   "{id_custom_field}",
                   "item",
                 },
-              },
-              {
+                ["rename"] = {
+                  ["param"] = {
+                    ["idCard"] = "id_card",
+                    ["idCustomField"] = "id_custom_field",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
+                      ["name"] = "id_card",
+                      ["orig"] = "id_card",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_custom_field",
+                      ["orig"] = "id_custom_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                 },
+                ["select"] = {
+                  ["$action"] = "item",
+                  ["exist"] = {
+                    "id_card",
+                    "id_custom_field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/customFields/{id}",
@@ -8649,18 +8756,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "customFields",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.display`",
                 },
-                ["parts"] = {
-                  "customFields",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -8669,11 +8789,10 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
             {
-              "card",
-              "custom_field",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -8682,22 +8801,27 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idCustomField",
+            ["title"] = "Id Custom Field",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idModel",
+            ["title"] = "Id Model",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "modelType",
+            ["title"] = "Model Type",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "value",
+            ["title"] = "Value",
             ["type"] = "`$OBJECT`",
           },
         },
@@ -8712,26 +8836,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/customFieldItems",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -8743,19 +8850,36 @@ local function make_config()
                     ["lit"] = "customFieldItems",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "customFieldItems",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "customFieldItems",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                  },
                 },
               },
             },
@@ -8764,7 +8888,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "card",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -8773,16 +8897,19 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "scaled",
+            ["title"] = "Scaled",
             ["type"] = "`$ARRAY`",
           },
           {
-            ["format"] = "url",
             ["name"] = "url",
+            ["title"] = "Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
         },
         ["id"] = {
@@ -8796,35 +8923,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "file",
-                      ["orig"] = "file",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/members/{id}/customStickers",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -8836,20 +8937,46 @@ local function make_config()
                     ["lit"] = "customStickers",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "file",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customStickers",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customStickers",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "file",
+                      ["orig"] = "file",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "file",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -8859,26 +8986,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/customStickers",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -8890,19 +9000,36 @@ local function make_config()
                     ["lit"] = "customStickers",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customStickers",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customStickers",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "member_id",
+                  },
                 },
               },
             },
@@ -8912,44 +9039,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_sticker",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/customStickers/{idSticker}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idSticker"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -8962,6 +9054,51 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customStickers",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idSticker"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_sticker",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
                   },
                 },
                 ["select"] = {
@@ -8971,16 +9108,6 @@ local function make_config()
                     "member_id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customStickers",
-                  "{id}",
-                },
               },
             },
           },
@@ -8989,35 +9116,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_sticker",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/members/{id}/customStickers/{idSticker}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idSticker"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -9032,21 +9133,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "customStickers",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idSticker"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "customStickers",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_sticker",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -9055,7 +9182,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
           },
         },
@@ -9069,35 +9196,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/myPrefs/emailPosition",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -9112,21 +9213,47 @@ local function make_config()
                     ["lit"] = "emailPosition",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "value",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "myPrefs",
+                  "emailPosition",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "myPrefs",
-                  "emailPosition",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "value",
+                  },
                 },
               },
             },
@@ -9135,7 +9262,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -9144,50 +9271,62 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "category",
+            ["title"] = "Category",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "keywords",
+            ["title"] = "Keywords",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "native",
+            ["title"] = "Native",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "sheetX",
+            ["title"] = "Sheet X",
             ["type"] = "`$NUMBER`",
           },
           {
             ["name"] = "sheetY",
+            ["title"] = "Sheet Y",
             ["type"] = "`$NUMBER`",
           },
           {
             ["name"] = "shortName",
+            ["title"] = "Short Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "shortNames",
+            ["title"] = "Short Names",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "text",
+            ["title"] = "Text",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "texts",
+            ["title"] = "Texts",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "tts",
+            ["title"] = "Tts",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "unified",
+            ["title"] = "Unified",
             ["type"] = "`$STRING`",
           },
         },
@@ -9198,23 +9337,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "locale",
-                      ["orig"] = "locale",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "spritesheet",
-                      ["orig"] = "spritesheet",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/emoji",
@@ -9223,18 +9345,36 @@ local function make_config()
                     ["lit"] = "emoji",
                   },
                 },
+                ["parts"] = {
+                  "emoji",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.trello`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "locale",
+                      ["orig"] = "locale",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "spritesheet",
+                      ["orig"] = "spritesheet",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "locale",
                     "spritesheet",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.trello`",
-                },
-                ["parts"] = {
-                  "emoji",
                 },
               },
             },
@@ -9244,79 +9384,97 @@ local function make_config()
           ["ancestors"] = {},
         },
       },
-      ["enterpris"] = {
+      ["enterprise"] = {
         ["fields"] = {
           {
-            ["format"] = "date",
             ["name"] = "dateOrganizationPrefsLastUpdated",
+            ["title"] = "Date Organization Prefs Last Updated",
             ["type"] = "`$STRING`",
+            ["format"] = "date",
           },
           {
             ["name"] = "displayName",
+            ["title"] = "Display Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "domains",
+            ["title"] = "Domains",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "enterpriseDomains",
+            ["title"] = "Enterprise Domains",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idAdmins",
+            ["title"] = "Id Admins",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idOrganizations",
+            ["title"] = "Id Organizations",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idp",
+            ["title"] = "Idp",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "isRealEnterprise",
+            ["title"] = "Is Real Enterprise",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "licenses",
+            ["title"] = "Licenses",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "logoHash",
+            ["title"] = "Logo Hash",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "logoUrl",
+            ["title"] = "Logo Url",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "organizationPrefs",
+            ["title"] = "Organization Prefs",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "pluginWhitelistingEnabled",
+            ["title"] = "Plugin Whitelisting Enabled",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "prefs",
+            ["title"] = "Prefs",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "products",
+            ["title"] = "Products",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "ssoActivationFailed",
+            ["title"] = "Sso Activation Failed",
             ["type"] = "`$BOOLEAN`",
           },
         },
@@ -9324,33 +9482,13 @@ local function make_config()
           ["field"] = "id",
           ["name"] = "id",
         },
-        ["name"] = "enterpris",
+        ["name"] = "enterprise",
         ["op"] = {
           ["create"] = {
             ["input"] = "data",
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "expiration",
-                      ["orig"] = "expiration",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/enterprises/{id}/tokens",
@@ -9365,21 +9503,42 @@ local function make_config()
                     ["lit"] = "tokens",
                   },
                 },
+                ["parts"] = {
+                  "enterprises",
+                  "{id}",
+                  "tokens",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "expiration",
+                      ["orig"] = "expiration",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "token",
                   ["exist"] = {
                     "expiration",
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "enterprises",
-                  "{id}",
-                  "tokens",
                 },
               },
             },
@@ -9389,110 +9548,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "10",
-                      ["kind"] = "query",
-                      ["name"] = "member_count",
-                      ["orig"] = "member_count",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = "avatarHash, fullName, initials, username",
-                      ["kind"] = "query",
-                      ["name"] = "member_field",
-                      ["orig"] = "member_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "member_filter",
-                      ["orig"] = "member_filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "member_sort",
-                      ["orig"] = "member_sort",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "member_sort_by",
-                      ["orig"] = "member_sort_by",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "id",
-                      ["kind"] = "query",
-                      ["name"] = "member_sort_order",
-                      ["orig"] = "member_sort_order",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "1",
-                      ["kind"] = "query",
-                      ["name"] = "member_start_index",
-                      ["orig"] = "member_start_index",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "organization",
-                      ["orig"] = "organization",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "organization_field",
-                      ["orig"] = "organization_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "organization_membership",
-                      ["orig"] = "organization_membership",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "organization_paid_account",
-                      ["orig"] = "organization_paid_account",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}",
@@ -9502,6 +9557,119 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "enterprises",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "member_count",
+                      ["orig"] = "member_count",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = "10",
+                    },
+                    {
+                      ["name"] = "member_field",
+                      ["orig"] = "member_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash, fullName, initials, username",
+                    },
+                    {
+                      ["name"] = "member_filter",
+                      ["orig"] = "member_filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "member_sort",
+                      ["orig"] = "member_sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "member_sort_by",
+                      ["orig"] = "member_sort_by",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "member_sort_order",
+                      ["orig"] = "member_sort_order",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "id",
+                    },
+                    {
+                      ["name"] = "member_start_index",
+                      ["orig"] = "member_start_index",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = "1",
+                    },
+                    {
+                      ["name"] = "organization",
+                      ["orig"] = "organization",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "organization_field",
+                      ["orig"] = "organization_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "organization_membership",
+                      ["orig"] = "organization_membership",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "organization_paid_account",
+                      ["orig"] = "organization_paid_account",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
                   },
                 },
                 ["select"] = {
@@ -9522,14 +9690,6 @@ local function make_config()
                     "organization_paid_account",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "enterprises",
-                  "{id}",
-                },
               },
             },
           },
@@ -9538,27 +9698,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_organization",
-                      ["orig"] = "id_organization",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/enterprises/{id}/organizations",
@@ -9573,125 +9712,43 @@ local function make_config()
                     ["lit"] = "organizations",
                   },
                 },
+                ["parts"] = {
+                  "enterprises",
+                  "{id}",
+                  "organizations",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "id_organization",
+                      ["orig"] = "id_organization",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "organization",
                   ["exist"] = {
                     "id",
                     "id_organization",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "enterprises",
-                  "{id}",
-                  "organizations",
-                },
-              },
-            },
-          },
-        },
-        ["relations"] = {
-          ["ancestors"] = {},
-        },
-      },
-      ["enterpris_signup_url"] = {
-        ["fields"] = {
-          {
-            ["name"] = "id",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "signupUrl",
-            ["type"] = "`$STRING`",
-          },
-        },
-        ["id"] = {
-          ["field"] = "id",
-          ["name"] = "id",
-        },
-        ["name"] = "enterpris_signup_url",
-        ["op"] = {
-          ["load"] = {
-            ["input"] = "data",
-            ["name"] = "load",
-            ["points"] = {
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "authenticate",
-                      ["orig"] = "authenticate",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "confirmation_accepted",
-                      ["orig"] = "confirmation_accepted",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = nil,
-                      ["kind"] = "query",
-                      ["name"] = "return_url",
-                      ["orig"] = "return_url",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "tos_accepted",
-                      ["orig"] = "tos_accepted",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "GET",
-                ["orig"] = "/enterprises/{id}/signupUrl",
-                ["segments"] = {
-                  {
-                    ["lit"] = "enterprises",
-                  },
-                  {
-                    ["var"] = "id",
-                  },
-                  {
-                    ["lit"] = "signupUrl",
-                  },
-                },
-                ["select"] = {
-                  ["exist"] = {
-                    "authenticate",
-                    "confirmation_accepted",
-                    "id",
-                    "return_url",
-                    "tos_accepted",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "enterprises",
-                  "{id}",
-                  "signupUrl",
                 },
               },
             },
@@ -9705,14 +9762,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "fullName",
+            ["title"] = "Full Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "username",
+            ["title"] = "Username",
             ["type"] = "`$STRING`",
           },
         },
@@ -9727,100 +9787,107 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "fullName, userName",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/admins",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "id",
                   },
                   {
                     ["lit"] = "admins",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "enterpris_id",
-                    "field",
-                  },
+                ["parts"] = {
+                  "enterprises",
+                  "{id}",
+                  "admins",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "admins",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "fullName, userName",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "id",
+                  },
                 },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "enterpris",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["enterprise_audit_log"] = {
         ["fields"] = {
           {
-            ["format"] = "date",
             ["name"] = "date",
+            ["title"] = "Date",
+            ["type"] = "`$STRING`",
+            ["format"] = "date",
+          },
+          {
+            ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idAction",
+            ["title"] = "Id Action",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "member",
+            ["title"] = "Member",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "memberCreator",
+            ["title"] = "Member Creator",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "organization",
+            ["title"] = "Organization",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "type",
+            ["title"] = "Type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "enterprise_audit_log",
         ["op"] = {
@@ -9829,96 +9896,204 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/auditlog",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "id",
                   },
                   {
                     ["lit"] = "auditlog",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "enterpris_id",
-                  },
+                ["parts"] = {
+                  "enterprises",
+                  "{id}",
+                  "auditlog",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "auditlog",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["$action"] = "auditlog",
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "enterpris",
+          ["ancestors"] = {},
+        },
+      },
+      ["enterprise_signup_url"] = {
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["title"] = "Id",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "signupUrl",
+            ["title"] = "Signup Url",
+            ["type"] = "`$STRING`",
+          },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
+        ["name"] = "enterprise_signup_url",
+        ["op"] = {
+          ["load"] = {
+            ["input"] = "data",
+            ["name"] = "load",
+            ["points"] = {
+              {
+                ["kind"] = "http",
+                ["method"] = "GET",
+                ["orig"] = "/enterprises/{id}/signupUrl",
+                ["segments"] = {
+                  {
+                    ["lit"] = "enterprises",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
+                  {
+                    ["lit"] = "signupUrl",
+                  },
+                },
+                ["parts"] = {
+                  "enterprises",
+                  "{id}",
+                  "signupUrl",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "authenticate",
+                      ["orig"] = "authenticate",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "confirmation_accepted",
+                      ["orig"] = "confirmation_accepted",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "return_url",
+                      ["orig"] = "return_url",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = nil,
+                    },
+                    {
+                      ["name"] = "tos_accepted",
+                      ["orig"] = "tos_accepted",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "authenticate",
+                    "confirmation_accepted",
+                    "id",
+                    "return_url",
+                    "tos_accepted",
+                  },
+                },
+              },
             },
           },
+        },
+        ["relations"] = {
+          ["ancestors"] = {},
         },
       },
       ["export"] = {
         ["fields"] = {
           {
             ["name"] = "attempts",
+            ["title"] = "Attempts",
             ["type"] = "`$NUMBER`",
           },
           {
             ["name"] = "exportUrl",
+            ["title"] = "Export Url",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "finished",
+            ["title"] = "Finished",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "size",
+            ["title"] = "Size",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "stage",
+            ["title"] = "Stage",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "date-time",
             ["name"] = "startedAt",
+            ["title"] = "Started At",
             ["type"] = "`$STRING`",
+            ["format"] = "date-time",
           },
           {
             ["name"] = "status",
+            ["title"] = "Status",
             ["type"] = "`$OBJECT`",
           },
         },
@@ -9933,42 +10108,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "attachment",
-                      ["orig"] = "attachment",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = 0,
-                      ["kind"] = "query",
-                      ["name"] = "attachment_age",
-                      ["orig"] = "attachment_age",
-                      ["type"] = "`$NUMBER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/boards/{id}/exports",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -9980,6 +10122,48 @@ local function make_config()
                     ["lit"] = "exports",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "exports",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.status`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "attachment",
+                      ["orig"] = "attachment",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "attachment_age",
+                      ["orig"] = "attachment_age",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["example"] = 0,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "attachment",
@@ -9987,46 +10171,11 @@ local function make_config()
                     "board_id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.status`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "exports",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "attachment",
-                      ["orig"] = "attachment",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/organizations/{id}/exports",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -10038,20 +10187,46 @@ local function make_config()
                     ["lit"] = "exports",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "attachment",
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "exports",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.status`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "exports",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "attachment",
+                      ["orig"] = "attachment",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "attachment",
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -10061,26 +10236,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/exports",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -10092,19 +10250,36 @@ local function make_config()
                     ["lit"] = "exports",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "exports",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "exports",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -10114,35 +10289,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_export",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/exports/{idExport}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                    ["idExport"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -10157,44 +10306,53 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.status`",
-                },
                 ["parts"] = {
                   "boards",
                   "{board_id}",
                   "exports",
                   "{id}",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "GET",
-                ["orig"] = "/boards/{id}/exports/mostRecent",
                 ["rename"] = {
                   ["param"] = {
                     ["id"] = "board_id",
+                    ["idExport"] = "id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.status`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_export",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "GET",
+                ["orig"] = "/boards/{id}/exports/mostRecent",
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -10209,21 +10367,38 @@ local function make_config()
                     ["lit"] = "mostRecent",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "most_recent",
-                  ["exist"] = {
-                    "board_id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "exports",
+                  "mostRecent",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.status`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "exports",
-                  "mostRecent",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["$action"] = "most_recent",
+                  ["exist"] = {
+                    "board_id",
+                  },
                 },
               },
             },
@@ -10233,35 +10408,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_export",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/boards/{id}/exports/{idExport}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                    ["idExport"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -10276,21 +10425,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "exports",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                    ["idExport"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "exports",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_export",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -10299,14 +10474,10 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
             {
-              "organization",
-            },
-            {
-              "board",
-              "export",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -10320,35 +10491,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_export",
-                      ["orig"] = "id_export",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/exports/{idExport}/download",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                    ["idExport"] = "id_export",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -10366,22 +10511,48 @@ local function make_config()
                     ["lit"] = "download",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "id_export",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "boards",
                   "{board_id}",
                   "exports",
                   "{id_export}",
                   "download",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                    ["idExport"] = "id_export",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_export",
+                      ["orig"] = "id_export",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "id_export",
+                  },
                 },
               },
             },
@@ -10390,8 +10561,8 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
-              "export",
+              "$.main.kit.entity.board",
+              "$.main.kit.entity.export",
             },
           },
         },
@@ -10405,26 +10576,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/boards/{id}/calendarKey/generate",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -10439,43 +10593,43 @@ local function make_config()
                     ["lit"] = "generate",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "boards",
                   "{board_id}",
                   "calendarKey",
                   "generate",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "POST",
-                ["orig"] = "/boards/{id}/emailKey/generate",
                 ["rename"] = {
                   ["param"] = {
                     ["id"] = "board_id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "POST",
+                ["orig"] = "/boards/{id}/emailKey/generate",
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -10490,20 +10644,37 @@ local function make_config()
                     ["lit"] = "generate",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "emailKey",
+                  "generate",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "emailKey",
-                  "generate",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                  },
                 },
               },
             },
@@ -10512,7 +10683,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -10526,36 +10697,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/myPrefs/idEmailList",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -10570,21 +10714,48 @@ local function make_config()
                     ["lit"] = "idEmailList",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "value",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "myPrefs",
+                  "idEmailList",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "myPrefs",
-                  "idEmailList",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "value",
+                  },
                 },
               },
             },
@@ -10593,7 +10764,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -10602,6 +10773,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -10616,35 +10788,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_label",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}/idLabels/{idLabel}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idLabel"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -10659,21 +10805,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "id",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "idLabels",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idLabel"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "idLabels",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_label",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -10682,7 +10854,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "card",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -10691,6 +10863,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -10705,35 +10878,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}/idMembers/{idMember}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idMember"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -10748,21 +10895,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "id",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "idMembers",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idMember"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "idMembers",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -10771,7 +10944,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "card",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -10780,6 +10953,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -10794,37 +10968,45 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "color",
-                      ["orig"] = "color",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_board",
-                      ["orig"] = "id_board",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/labels",
                 ["segments"] = {
                   {
                     ["lit"] = "labels",
+                  },
+                },
+                ["parts"] = {
+                  "labels",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "color",
+                      ["orig"] = "color",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id_board",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
                   },
                 },
                 ["select"] = {
@@ -10834,13 +11016,6 @@ local function make_config()
                     "name",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "labels",
-                },
               },
             },
           },
@@ -10849,41 +11024,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$OBJECT`",
-                    },
-                    {
-                      ["example"] = 50,
-                      ["kind"] = "query",
-                      ["name"] = "limit",
-                      ["orig"] = "limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/labels",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -10895,6 +11038,47 @@ local function make_config()
                     ["lit"] = "labels",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "labels",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$OBJECT`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "limit",
+                      ["orig"] = "limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 50,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "board_id",
@@ -10902,38 +11086,8 @@ local function make_config()
                     "limit",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "labels",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/labels/{id}",
@@ -10945,19 +11099,41 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "labels",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "labels",
-                  "{id}",
                 },
               },
             },
@@ -10967,18 +11143,6 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/labels/{id}",
@@ -10990,18 +11154,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "labels",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "labels",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -11011,32 +11188,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "color",
-                      ["orig"] = "color",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/labels/{id}",
@@ -11048,6 +11199,41 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "labels",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "color",
+                      ["orig"] = "color",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "color",
@@ -11055,44 +11241,8 @@ local function make_config()
                     "name",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "labels",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/labels/{id}/{field}",
@@ -11107,21 +11257,50 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "labels",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                     "value",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "labels",
-                  "{id}",
-                  "{field}",
                 },
               },
             },
@@ -11130,7 +11309,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -11139,6 +11318,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -11153,44 +11333,52 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_board",
-                      ["orig"] = "id_board",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_list_source",
-                      ["orig"] = "id_list_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/lists",
                 ["segments"] = {
                   {
                     ["lit"] = "lists",
+                  },
+                },
+                ["parts"] = {
+                  "lists",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "id_board",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_list_source",
+                      ["orig"] = "id_list_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -11201,45 +11389,8 @@ local function make_config()
                     "pos",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "lists",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_board",
-                      ["orig"] = "id_board",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_list",
-                      ["orig"] = "id_list",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/lists/{id}/moveAllCards",
@@ -11254,6 +11405,46 @@ local function make_config()
                     ["lit"] = "moveAllCards",
                   },
                 },
+                ["parts"] = {
+                  "lists",
+                  "{id}",
+                  "moveAllCards",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "id_board",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_list",
+                      ["orig"] = "id_list",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "move_all_card",
                   ["exist"] = {
@@ -11262,29 +11453,8 @@ local function make_config()
                     "id_list",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "lists",
-                  "{id}",
-                  "moveAllCards",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/lists/{id}/archiveAllCards",
@@ -11299,20 +11469,33 @@ local function make_config()
                     ["lit"] = "archiveAllCards",
                   },
                 },
+                ["parts"] = {
+                  "lists",
+                  "{id}",
+                  "archiveAllCards",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "archive_all_card",
                   ["exist"] = {
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "lists",
-                  "{id}",
-                  "archiveAllCards",
                 },
               },
             },
@@ -11322,34 +11505,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "filter",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/lists/{filter}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["filter"] = "id",
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -11364,44 +11522,49 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "boards",
                   "{board_id}",
                   "lists",
                   "{id}",
                 },
-              },
-              {
+                ["rename"] = {
+                  ["param"] = {
+                    ["filter"] = "id",
+                    ["id"] = "board_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["kind"] = "param",
-                      ["name"] = "id",
+                      ["name"] = "board_id",
                       ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
                       ["reqd"] = true,
-                      ["type"] = "`$STRING`",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
-                  },
-                  ["query"] = {
                     {
-                      ["example"] = "name,closed,idBoard,pos",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
+                      ["name"] = "id",
+                      ["orig"] = "filter",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lists/{id}",
@@ -11413,19 +11576,40 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "lists",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name,closed,idBoard,pos",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "lists",
-                  "{id}",
                 },
               },
             },
@@ -11435,50 +11619,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "closed",
-                      ["orig"] = "closed",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_board",
-                      ["orig"] = "id_board",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "subscribed",
-                      ["orig"] = "subscribed",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/lists/{id}",
@@ -11488,6 +11628,59 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "lists",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "closed",
+                      ["orig"] = "closed",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_board",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "subscribed",
+                      ["orig"] = "subscribed",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -11500,43 +11693,8 @@ local function make_config()
                     "subscribed",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "lists",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/lists/{id}/{field}",
@@ -11551,6 +11709,43 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "lists",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
@@ -11558,38 +11753,8 @@ local function make_config()
                     "value",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "lists",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/lists/{id}/closed",
@@ -11604,6 +11769,37 @@ local function make_config()
                     ["lit"] = "closed",
                   },
                 },
+                ["parts"] = {
+                  "lists",
+                  "{id}",
+                  "closed",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "closed",
                   ["exist"] = {
@@ -11611,39 +11807,8 @@ local function make_config()
                     "value",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "lists",
-                  "{id}",
-                  "closed",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/lists/{id}/idBoard",
@@ -11658,21 +11823,44 @@ local function make_config()
                     ["lit"] = "idBoard",
                   },
                 },
+                ["parts"] = {
+                  "lists",
+                  "{id}",
+                  "idBoard",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "id_board",
                   ["exist"] = {
                     "id",
                     "value",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "lists",
-                  "{id}",
-                  "idBoard",
                 },
               },
             },
@@ -11681,7 +11869,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -11689,177 +11877,219 @@ local function make_config()
       ["member"] = {
         ["fields"] = {
           {
-            ["format"] = "email",
             ["name"] = "aaEmail",
+            ["title"] = "Aa Email",
             ["type"] = "`$STRING`",
+            ["format"] = "email",
           },
           {
             ["name"] = "aaEnrolledDate",
+            ["title"] = "Aa Enrolled Date",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "aaId",
+            ["title"] = "Aa Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "activityBlocked",
+            ["title"] = "Activity Blocked",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "avatarHash",
+            ["title"] = "Avatar Hash",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "avatarSource",
+            ["title"] = "Avatar Source",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "url",
             ["name"] = "avatarUrl",
+            ["title"] = "Avatar Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
           {
             ["name"] = "bio",
+            ["title"] = "Bio",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "bioData",
+            ["title"] = "Bio Data",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "confirmed",
+            ["title"] = "Confirmed",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "email",
+            ["title"] = "Email",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "fullName",
+            ["title"] = "Full Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "gravatarHash",
+            ["title"] = "Gravatar Hash",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idBoards",
+            ["title"] = "Id Boards",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idBoardsPinned",
+            ["title"] = "Id Boards Pinned",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idEnterprise",
+            ["title"] = "Id Enterprise",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idEnterprisesAdmin",
+            ["title"] = "Id Enterprises Admin",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idEnterprisesDeactivated",
+            ["title"] = "Id Enterprises Deactivated",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idMemberReferrer",
+            ["title"] = "Id Member Referrer",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idOrganizations",
+            ["title"] = "Id Organizations",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idPremOrgsAdmin",
+            ["title"] = "Id Prem Orgs Admin",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "initials",
+            ["title"] = "Initials",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "isAaMastered",
+            ["title"] = "Is Aa Mastered",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "ixUpdate",
+            ["title"] = "Ix Update",
             ["type"] = "`$NUMBER`",
           },
           {
             ["name"] = "limits",
+            ["title"] = "Limits",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "loginTypes",
+            ["title"] = "Login Types",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "marketingOptIn",
+            ["title"] = "Marketing Opt In",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "memberType",
+            ["title"] = "Member Type",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "messagesDismissed",
+            ["title"] = "Messages Dismissed",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "nonPublic",
-            ["short"] = "Profile data with restricted visibility.",
+            ["title"] = "Non Public",
             ["type"] = "`$OBJECT`",
+            ["short"] = "Profile data with restricted visibility.",
           },
           {
             ["name"] = "nonPublicAvailable",
-            ["short"] = "Whether the response contains non-public profile data for the member",
+            ["title"] = "Non Public Available",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the response contains non-public profile data for the member",
           },
           {
             ["name"] = "oneTimeMessagesDismissed",
+            ["title"] = "One Time Messages Dismissed",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "prefs",
+            ["title"] = "Prefs",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "premiumFeatures",
+            ["title"] = "Premium Features",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "products",
+            ["title"] = "Products",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "status",
+            ["title"] = "Status",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "trophies",
+            ["title"] = "Trophies",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "uploadedAvatarHash",
+            ["title"] = "Uploaded Avatar Hash",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "url",
             ["name"] = "uploadedAvatarUrl",
+            ["title"] = "Uploaded Avatar Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
           {
-            ["format"] = "url",
             ["name"] = "url",
+            ["title"] = "Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
           {
             ["name"] = "username",
+            ["title"] = "Username",
             ["type"] = "`$STRING`",
           },
         },
@@ -11874,26 +12104,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "file",
-                      ["orig"] = "file",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/members/{id}/avatar",
@@ -11908,6 +12118,36 @@ local function make_config()
                     ["lit"] = "avatar",
                   },
                 },
+                ["parts"] = {
+                  "members",
+                  "{id}",
+                  "avatar",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "file",
+                      ["orig"] = "file",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "avatar",
                   ["exist"] = {
@@ -11915,38 +12155,8 @@ local function make_config()
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{id}",
-                  "avatar",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "file",
-                      ["orig"] = "file",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/members/{id}/boardBackgrounds",
@@ -11961,6 +12171,37 @@ local function make_config()
                     ["lit"] = "boardBackgrounds",
                   },
                 },
+                ["parts"] = {
+                  "members",
+                  "{id}",
+                  "boardBackgrounds",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "file",
+                      ["orig"] = "file",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "board_background",
                   ["exist"] = {
@@ -11968,39 +12209,8 @@ local function make_config()
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{id}",
-                  "boardBackgrounds",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/members/{id}/oneTimeMessagesDismissed",
@@ -12015,21 +12225,44 @@ local function make_config()
                     ["lit"] = "oneTimeMessagesDismissed",
                   },
                 },
+                ["parts"] = {
+                  "members",
+                  "{id}",
+                  "oneTimeMessagesDismissed",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "one_time_messages_dismissed",
                   ["exist"] = {
                     "id",
                     "value",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{id}",
-                  "oneTimeMessagesDismissed",
                 },
               },
             },
@@ -12039,103 +12272,112 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "name",
-                      ["kind"] = "query",
-                      ["name"] = "board_field",
-                      ["orig"] = "board_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "count",
-                      ["orig"] = "count",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "avatarHash, fullName, initials, username",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "displayName",
-                      ["kind"] = "query",
-                      ["name"] = "organization_field",
-                      ["orig"] = "organization_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort_by",
-                      ["orig"] = "sort_by",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = nil,
-                      ["kind"] = "query",
-                      ["name"] = "sort_order",
-                      ["orig"] = "sort_order",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "start_index",
-                      ["orig"] = "start_index",
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/members",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "members",
+                  },
+                },
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "board_field",
+                      ["orig"] = "board_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name",
+                    },
+                    {
+                      ["name"] = "count",
+                      ["orig"] = "count",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash, fullName, initials, username",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "organization_field",
+                      ["orig"] = "organization_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "displayName",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort_by",
+                      ["orig"] = "sort_by",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort_order",
+                      ["orig"] = "sort_order",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = nil,
+                    },
+                    {
+                      ["name"] = "start_index",
+                      ["orig"] = "start_index",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
                   ["exist"] = {
                     "board_field",
                     "count",
-                    "enterpris_id",
+                    "enterprise_id",
                     "field",
                     "filter",
                     "organization_field",
@@ -12145,56 +12387,8 @@ local function make_config()
                     "start_index",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_board",
-                      ["orig"] = "id_board",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_organization",
-                      ["orig"] = "id_organization",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = 8,
-                      ["kind"] = "query",
-                      ["name"] = "limit",
-                      ["orig"] = "limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "only_org_member",
-                      ["orig"] = "only_org_member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/search/members/",
@@ -12206,6 +12400,54 @@ local function make_config()
                     ["lit"] = "members",
                   },
                 },
+                ["parts"] = {
+                  "search",
+                  "members",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "id_board",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_organization",
+                      ["orig"] = "id_organization",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "limit",
+                      ["orig"] = "limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 8,
+                    },
+                    {
+                      ["name"] = "only_org_member",
+                      ["orig"] = "only_org_member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "id_board",
@@ -12215,45 +12457,11 @@ local function make_config()
                     "query",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "search",
-                  "members",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "action_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{id}/member",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "action_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -12265,52 +12473,52 @@ local function make_config()
                     ["lit"] = "member",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "action_id",
-                    "field",
+                ["parts"] = {
+                  "actions",
+                  "{action_id}",
+                  "member",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "action_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{action_id}",
-                  "member",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
                       ["name"] = "action_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "all",
-                      ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "action_id",
+                    "field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{id}/memberCreator",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "action_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -12322,51 +12530,52 @@ local function make_config()
                     ["lit"] = "memberCreator",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "action_id",
-                    "field",
+                ["parts"] = {
+                  "actions",
+                  "{action_id}",
+                  "memberCreator",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "action_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{action_id}",
-                  "memberCreator",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["kind"] = "param",
-                      ["name"] = "token_id",
-                      ["orig"] = "token",
-                      ["reqd"] = true,
+                      ["name"] = "action_id",
+                      ["orig"] = "id",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "all",
-                      ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "action_id",
+                    "field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tokens/{token}/member",
-                ["rename"] = {
-                  ["param"] = {
-                    ["token"] = "token_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tokens",
@@ -12378,43 +12587,51 @@ local function make_config()
                     ["lit"] = "member",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "token_id",
+                ["parts"] = {
+                  "tokens",
+                  "{token_id}",
+                  "member",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["token"] = "token_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "tokens",
-                  "{token_id}",
-                  "member",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
+                      ["name"] = "token_id",
+                      ["orig"] = "token",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "token_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/members",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -12426,19 +12643,36 @@ local function make_config()
                     ["lit"] = "members",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "members",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "members",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -12448,155 +12682,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "action",
-                      ["orig"] = "action",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "board",
-                      ["orig"] = "board",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "board_background",
-                      ["orig"] = "board_background",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "board_star",
-                      ["orig"] = "board_star",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "boards_invited",
-                      ["orig"] = "boards_invited",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "name,closed,idOrganization,pinned",
-                      ["kind"] = "query",
-                      ["name"] = "boards_invited_field",
-                      ["orig"] = "boards_invited_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "card",
-                      ["orig"] = "card",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "custom_board_background",
-                      ["orig"] = "custom_board_background",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "custom_emoji",
-                      ["orig"] = "custom_emoji",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "custom_sticker",
-                      ["orig"] = "custom_sticker",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "notification",
-                      ["orig"] = "notification",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "organization",
-                      ["orig"] = "organization",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "organization_field",
-                      ["orig"] = "organization_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "organization_paid_account",
-                      ["orig"] = "organization_paid_account",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "organizations_invited",
-                      ["orig"] = "organizations_invited",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "organizations_invited_field",
-                      ["orig"] = "organizations_invited_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "paid_account",
-                      ["orig"] = "paid_account",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "saved_search",
-                      ["orig"] = "saved_search",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "token",
-                      ["orig"] = "token",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}",
@@ -12606,6 +12691,164 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "action",
+                      ["orig"] = "action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "board",
+                      ["orig"] = "board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "board_background",
+                      ["orig"] = "board_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "board_star",
+                      ["orig"] = "board_star",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "boards_invited",
+                      ["orig"] = "boards_invited",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "boards_invited_field",
+                      ["orig"] = "boards_invited_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name,closed,idOrganization,pinned",
+                    },
+                    {
+                      ["name"] = "card",
+                      ["orig"] = "card",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "custom_board_background",
+                      ["orig"] = "custom_board_background",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "custom_emoji",
+                      ["orig"] = "custom_emoji",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "custom_sticker",
+                      ["orig"] = "custom_sticker",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "notification",
+                      ["orig"] = "notification",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "organization",
+                      ["orig"] = "organization",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "organization_field",
+                      ["orig"] = "organization_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "organization_paid_account",
+                      ["orig"] = "organization_paid_account",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "organizations_invited",
+                      ["orig"] = "organizations_invited",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "organizations_invited_field",
+                      ["orig"] = "organizations_invited_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "paid_account",
+                      ["orig"] = "paid_account",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "saved_search",
+                      ["orig"] = "saved_search",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "token",
+                      ["orig"] = "token",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
                   },
                 },
                 ["select"] = {
@@ -12633,74 +12876,17 @@ local function make_config()
                     "token",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "name",
-                      ["kind"] = "query",
-                      ["name"] = "board_field",
-                      ["orig"] = "board_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "avatarHash, fullName, initials, username",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "displayName",
-                      ["kind"] = "query",
-                      ["name"] = "organization_field",
-                      ["orig"] = "organization_field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/members/{idMember}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idMember"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "members",
@@ -12709,56 +12895,79 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_field",
-                    "enterpris_id",
-                    "field",
-                    "id",
-                    "organization_field",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idMember"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                  "{id}",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
+                      ["name"] = "enterprise_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "avatarHash,fullName,initials,username",
+                      ["name"] = "board_field",
+                      ["orig"] = "board_field",
+                      ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["example"] = "name",
+                    },
+                    {
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash, fullName, initials, username",
+                    },
+                    {
+                      ["name"] = "organization_field",
+                      ["orig"] = "organization_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "displayName",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_field",
+                    "enterprise_id",
+                    "field",
+                    "id",
+                    "organization_field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/members",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -12770,42 +12979,49 @@ local function make_config()
                     ["lit"] = "members",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "field",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "members",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "members",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
                       ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
                       ["name"] = "field",
                       ["orig"] = "field",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash,fullName,initials,username",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/{field}",
@@ -12820,52 +13036,46 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "members",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "notification_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/notifications/{id}/member",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "notification_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "notifications",
@@ -12877,43 +13087,52 @@ local function make_config()
                     ["lit"] = "member",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "notification_id",
+                ["parts"] = {
+                  "notifications",
+                  "{notification_id}",
+                  "member",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "notification_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "notifications",
-                  "{notification_id}",
-                  "member",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
+                      ["name"] = "notification_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "notification_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/members",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -12925,19 +13144,36 @@ local function make_config()
                     ["lit"] = "members",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "members",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "members",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                  },
                 },
               },
             },
@@ -12947,35 +13183,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/boards/{id}/members/{idMember}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                    ["idMember"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -12990,52 +13200,53 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "boards",
                   "{board_id}",
                   "members",
                   "{id}",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "DELETE",
-                ["orig"] = "/organizations/{id}/members/{idMember}",
                 ["rename"] = {
                   ["param"] = {
-                    ["id"] = "organization_id",
+                    ["id"] = "board_id",
                     ["idMember"] = "id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "DELETE",
+                ["orig"] = "/organizations/{id}/members/{idMember}",
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -13050,53 +13261,52 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "organization_id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "organizations",
                   "{organization_id}",
                   "members",
                   "{id}",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_member",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "DELETE",
-                ["orig"] = "/organizations/{id}/members/{idMember}/all",
                 ["rename"] = {
                   ["param"] = {
                     ["id"] = "organization_id",
-                    ["idMember"] = "id_member",
+                    ["idMember"] = "id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "organization_id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "DELETE",
+                ["orig"] = "/organizations/{id}/members/{idMember}/all",
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -13114,23 +13324,49 @@ local function make_config()
                     ["lit"] = "all",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "all",
-                  ["exist"] = {
-                    "id_member",
-                    "organization_id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "organizations",
                   "{organization_id}",
                   "members",
                   "{id_member}",
                   "all",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
+                    ["idMember"] = "id_member",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id_member",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["$action"] = "all",
+                  ["exist"] = {
+                    "id_member",
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -13140,68 +13376,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "avatar_source",
-                      ["orig"] = "avatar_source",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "bio",
-                      ["orig"] = "bio",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "full_name",
-                      ["orig"] = "full_name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "initial",
-                      ["orig"] = "initial",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/color_blind",
-                      ["orig"] = "prefs/color_blind",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/locale",
-                      ["orig"] = "prefs/locale",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/minutes_between_summary",
-                      ["orig"] = "prefs/minutes_between_summary",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "username",
-                      ["orig"] = "username",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/members/{id}",
@@ -13211,6 +13385,77 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "avatar_source",
+                      ["orig"] = "avatar_source",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "bio",
+                      ["orig"] = "bio",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "full_name",
+                      ["orig"] = "full_name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "initial",
+                      ["orig"] = "initial",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/color_blind",
+                      ["orig"] = "prefs/color_blind",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/locale",
+                      ["orig"] = "prefs/locale",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/minutes_between_summary",
+                      ["orig"] = "prefs/minutes_between_summary",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "username",
+                      ["orig"] = "username",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -13226,81 +13471,17 @@ local function make_config()
                     "username",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_member",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "name",
-                      ["kind"] = "query",
-                      ["name"] = "board_field",
-                      ["orig"] = "board_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "avatarHash, fullName, initials, username",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "displayName",
-                      ["kind"] = "query",
-                      ["name"] = "organization_field",
-                      ["orig"] = "organization_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/enterprises/{id}/members/{idMember}/deactivated",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idMember"] = "id_member",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "members",
@@ -13312,75 +13493,89 @@ local function make_config()
                     ["lit"] = "deactivated",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "deactivated",
-                  ["exist"] = {
-                    "board_field",
-                    "enterpris_id",
-                    "field",
-                    "id_member",
-                    "organization_field",
-                    "value",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                  "{id_member}",
+                  "deactivated",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idMember"] = "id_member",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                  "{id_member}",
-                  "deactivated",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
+                      ["name"] = "enterprise_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
+                      ["name"] = "id_member",
                       ["orig"] = "id_member",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = false,
+                      ["name"] = "board_field",
+                      ["orig"] = "board_field",
+                      ["type"] = "`$STRING`",
                       ["kind"] = "query",
-                      ["name"] = "allow_billable_guest",
-                      ["orig"] = "allow_billable_guest",
-                      ["type"] = "`$BOOLEAN`",
+                      ["example"] = "name",
                     },
                     {
-                      ["kind"] = "query",
-                      ["name"] = "type",
-                      ["orig"] = "type",
-                      ["reqd"] = true,
+                      ["name"] = "field",
+                      ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash, fullName, initials, username",
+                    },
+                    {
+                      ["name"] = "organization_field",
+                      ["orig"] = "organization_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "displayName",
+                    },
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["$action"] = "deactivated",
+                  ["exist"] = {
+                    "board_field",
+                    "enterprise_id",
+                    "field",
+                    "id_member",
+                    "organization_field",
+                    "value",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/members/{idMember}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                    ["idMember"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -13395,6 +13590,58 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "members",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                    ["idMember"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "allow_billable_guest",
+                      ["orig"] = "allow_billable_guest",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "type",
+                      ["orig"] = "type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "allow_billable_guest",
@@ -13403,62 +13650,17 @@ local function make_config()
                     "type",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "members",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_member",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/enterprises/{id}/members/{idMember}/licensed",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idMember"] = "id_member",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "members",
@@ -13470,64 +13672,65 @@ local function make_config()
                     ["lit"] = "licensed",
                   },
                 },
-                ["select"] = {
-                  ["$action"] = "licensed",
-                  ["exist"] = {
-                    "enterpris_id",
-                    "id_member",
-                    "value",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                  "{id_member}",
+                  "licensed",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idMember"] = "id_member",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                  "{id_member}",
-                  "licensed",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
+                      ["name"] = "id_member",
+                      ["orig"] = "id_member",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
-                      ["name"] = "type",
-                      ["orig"] = "type",
                       ["reqd"] = true,
-                      ["type"] = "`$STRING`",
                     },
                   },
                 },
+                ["select"] = {
+                  ["$action"] = "licensed",
+                  ["exist"] = {
+                    "enterprise_id",
+                    "id_member",
+                    "value",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/organizations/{id}/members/{idMember}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                    ["idMember"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -13542,6 +13745,50 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "members",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
+                    ["idMember"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "type",
+                      ["orig"] = "type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "id",
@@ -13549,55 +13796,11 @@ local function make_config()
                     "type",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "members",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id_member",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/organizations/{id}/members/{idMember}/deactivated",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                    ["idMember"] = "id_member",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -13615,6 +13818,51 @@ local function make_config()
                     ["lit"] = "deactivated",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "members",
+                  "{id_member}",
+                  "deactivated",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
+                    ["idMember"] = "id_member",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id_member",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "deactivated",
                   ["exist"] = {
@@ -13623,17 +13871,6 @@ local function make_config()
                     "value",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "members",
-                  "{id_member}",
-                  "deactivated",
-                },
               },
             },
           },
@@ -13641,33 +13878,31 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "action",
+              "$.main.kit.entity.action",
             },
             {
-              "board",
+              "$.main.kit.entity.board",
             },
             {
-              "card",
+              "$.main.kit.entity.card",
             },
             {
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             },
             {
-              "notification",
+              "$.main.kit.entity.notification",
             },
             {
-              "organization",
+              "$.main.kit.entity.organization",
             },
             {
-              "token",
+              "$.main.kit.entity.token",
             },
             {
-              "enterpris",
-              "member",
+              "$.main.kit.entity.enterprise",
             },
             {
-              "organization",
-              "member",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -13681,26 +13916,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "plugin_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plugins/{id}/compliance/memberPrivacy",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "plugin_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "plugins",
@@ -13715,20 +13933,37 @@ local function make_config()
                     ["lit"] = "memberPrivacy",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "plugin_id",
+                ["parts"] = {
+                  "plugins",
+                  "{plugin_id}",
+                  "compliance",
+                  "memberPrivacy",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "plugin_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "plugins",
-                  "{plugin_id}",
-                  "compliance",
-                  "memberPrivacy",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "plugin_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "plugin_id",
+                  },
                 },
               },
             },
@@ -13737,7 +13972,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "plugin",
+              "$.main.kit.entity.plugin",
             },
           },
         },
@@ -13746,6 +13981,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -13760,35 +13996,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "avatarHash,fullName,initials,username",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/membersVoted",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -13800,20 +14010,46 @@ local function make_config()
                     ["lit"] = "membersVoted",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "field",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "membersVoted",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "membersVoted",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash,fullName,initials,username",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "field",
+                  },
                 },
               },
             },
@@ -13823,35 +14059,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_member",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}/membersVoted/{idMember}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idMember"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -13866,21 +14076,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "id",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "membersVoted",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idMember"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "membersVoted",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_member",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -13889,7 +14125,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "card",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -13898,30 +14134,37 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "admin",
+            ["title"] = "Admin",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "collaborator",
+            ["title"] = "Collaborator",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "deactivated",
+            ["title"] = "Deactivated",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "licensed",
+            ["title"] = "Licensed",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "managed",
+            ["title"] = "Managed",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "member",
+            ["title"] = "Member",
             ["type"] = "`$OBJECT`",
           },
         },
@@ -13936,103 +14179,113 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "active_since",
-                      ["orig"] = "active_since",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "admin",
-                      ["orig"] = "admin",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "collaborator",
-                      ["orig"] = "collaborator",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "cursor",
-                      ["orig"] = "cursor",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "deactivated",
-                      ["orig"] = "deactivated",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "inactive_since",
-                      ["orig"] = "inactive_since",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "licensed",
-                      ["orig"] = "licensed",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "managed",
-                      ["orig"] = "managed",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "none",
-                      ["kind"] = "query",
-                      ["name"] = "search",
-                      ["orig"] = "search",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/members/query",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "members",
                   },
                   {
                     ["lit"] = "query",
+                  },
+                },
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                  "query",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "active_since",
+                      ["orig"] = "active_since",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "admin",
+                      ["orig"] = "admin",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "collaborator",
+                      ["orig"] = "collaborator",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "cursor",
+                      ["orig"] = "cursor",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "deactivated",
+                      ["orig"] = "deactivated",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "inactive_since",
+                      ["orig"] = "inactive_since",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "licensed",
+                      ["orig"] = "licensed",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "managed",
+                      ["orig"] = "managed",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
+                    {
+                      ["name"] = "search",
+                      ["orig"] = "search",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "none",
+                    },
                   },
                 },
                 ["select"] = {
@@ -14042,61 +14295,18 @@ local function make_config()
                     "collaborator",
                     "cursor",
                     "deactivated",
-                    "enterpris_id",
+                    "enterprise_id",
                     "inactive_since",
                     "licensed",
                     "managed",
                     "search",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                  "query",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/memberships",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -14108,21 +14318,54 @@ local function make_config()
                     ["lit"] = "memberships",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "filter",
-                    "member",
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "memberships",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "memberships",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "filter",
+                    "member",
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -14132,63 +14375,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "activity",
-                      ["orig"] = "activity",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "fullname,username",
-                      ["kind"] = "query",
-                      ["name"] = "member_field",
-                      ["orig"] = "member_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "org_member_type",
-                      ["orig"] = "org_member_type",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/memberships",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -14198,6 +14387,69 @@ local function make_config()
                   },
                   {
                     ["lit"] = "memberships",
+                  },
+                },
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "memberships",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "activity",
+                      ["orig"] = "activity",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "member_field",
+                      ["orig"] = "member_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "fullname,username",
+                    },
+                    {
+                      ["name"] = "org_member_type",
+                      ["orig"] = "org_member_type",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
                   },
                 },
                 ["select"] = {
@@ -14210,55 +14462,11 @@ local function make_config()
                     "org_member_type",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "memberships",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_membership",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/memberships/{idMembership}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                    ["idMembership"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -14273,22 +14481,57 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member",
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "memberships",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
+                    ["idMembership"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "memberships",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_membership",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member",
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -14298,51 +14541,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_membership",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "fullName, username",
-                      ["kind"] = "query",
-                      ["name"] = "member_field",
-                      ["orig"] = "member_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "type",
-                      ["orig"] = "type",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/memberships/{idMembership}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                    ["idMembership"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -14357,6 +14558,58 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "memberships",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                    ["idMembership"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_membership",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "member_field",
+                      ["orig"] = "member_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "fullName, username",
+                    },
+                    {
+                      ["name"] = "type",
+                      ["orig"] = "type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "board_id",
@@ -14365,16 +14618,6 @@ local function make_config()
                     "type",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "memberships",
-                  "{id}",
-                },
               },
             },
           },
@@ -14382,25 +14625,13 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
             {
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             },
             {
-              "organization",
-            },
-          },
-        },
-      },
-      ["most_recent"] = {
-        ["fields"] = {},
-        ["name"] = "most_recent",
-        ["op"] = {},
-        ["relations"] = {
-          ["ancestors"] = {
-            {
-              "board",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -14409,6 +14640,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -14423,35 +14655,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_board",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/newBillableGuests/{idBoard}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                    ["idBoard"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -14466,21 +14672,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "newBillableGuests",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
+                    ["idBoard"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "newBillableGuests",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -14489,7 +14721,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "organization",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -14498,52 +14730,58 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "board",
-            ["req"] = true,
+            ["title"] = "Board",
             ["type"] = "`$OBJECT`",
+            ["req"] = true,
           },
           {
             ["name"] = "card",
+            ["title"] = "Card",
             ["type"] = "`$OBJECT`",
-            ["union"] = {
-              ["branches"] = 2,
-              ["count"] = 2,
-              ["depth"] = 3,
-            },
           },
           {
             ["name"] = "data",
+            ["title"] = "Data",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "date",
+            ["title"] = "Date",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "dateRead",
+            ["title"] = "Date Read",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idAction",
+            ["title"] = "Id Action",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idMemberCreator",
+            ["title"] = "Id Member Creator",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "reactions",
+            ["title"] = "Reactions",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "type",
+            ["title"] = "Type",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "unread",
+            ["title"] = "Unread",
             ["type"] = "`$BOOLEAN`",
           },
         },
@@ -14558,103 +14796,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "before",
-                      ["orig"] = "before",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "display",
-                      ["orig"] = "display",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "entity",
-                      ["orig"] = "entity",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "50",
-                      ["kind"] = "query",
-                      ["name"] = "limit",
-                      ["orig"] = "limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member_creator",
-                      ["orig"] = "member_creator",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "avatarHash,fullName,initials,username",
-                      ["kind"] = "query",
-                      ["name"] = "member_creator_field",
-                      ["orig"] = "member_creator_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "0",
-                      ["kind"] = "query",
-                      ["name"] = "page",
-                      ["orig"] = "page",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "read_filter",
-                      ["orig"] = "read_filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "since",
-                      ["orig"] = "since",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/notifications",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -14664,6 +14808,109 @@ local function make_config()
                   },
                   {
                     ["lit"] = "notifications",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "notifications",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "before",
+                      ["orig"] = "before",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "display",
+                      ["orig"] = "display",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "entity",
+                      ["orig"] = "entity",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "limit",
+                      ["orig"] = "limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = "50",
+                    },
+                    {
+                      ["name"] = "member_creator",
+                      ["orig"] = "member_creator",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member_creator_field",
+                      ["orig"] = "member_creator_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash,fullName,initials,username",
+                    },
+                    {
+                      ["name"] = "page",
+                      ["orig"] = "page",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = "0",
+                    },
+                    {
+                      ["name"] = "read_filter",
+                      ["orig"] = "read_filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "since",
+                      ["orig"] = "since",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -14682,15 +14929,6 @@ local function make_config()
                     "since",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "notifications",
-                },
               },
             },
           },
@@ -14699,118 +14937,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "board",
-                      ["orig"] = "board",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "name",
-                      ["kind"] = "query",
-                      ["name"] = "board_field",
-                      ["orig"] = "board_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "card",
-                      ["orig"] = "card",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "name",
-                      ["kind"] = "query",
-                      ["name"] = "card_field",
-                      ["orig"] = "card_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "display",
-                      ["orig"] = "display",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "entity",
-                      ["orig"] = "entity",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "list",
-                      ["orig"] = "list",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member_creator",
-                      ["orig"] = "member_creator",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "avatarHash,fullName,initials,username",
-                      ["kind"] = "query",
-                      ["name"] = "member_creator_field",
-                      ["orig"] = "member_creator_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "avatarHash,fullName,initials,username",
-                      ["kind"] = "query",
-                      ["name"] = "member_field",
-                      ["orig"] = "member_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "organization",
-                      ["orig"] = "organization",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "displayName",
-                      ["kind"] = "query",
-                      ["name"] = "organization_field",
-                      ["orig"] = "organization_field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/notifications/{id}",
@@ -14820,6 +14946,127 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "notifications",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "board",
+                      ["orig"] = "board",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "board_field",
+                      ["orig"] = "board_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name",
+                    },
+                    {
+                      ["name"] = "card",
+                      ["orig"] = "card",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "card_field",
+                      ["orig"] = "card_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name",
+                    },
+                    {
+                      ["name"] = "display",
+                      ["orig"] = "display",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "entity",
+                      ["orig"] = "entity",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "list",
+                      ["orig"] = "list",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member_creator",
+                      ["orig"] = "member_creator",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member_creator_field",
+                      ["orig"] = "member_creator_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash,fullName,initials,username",
+                    },
+                    {
+                      ["name"] = "member_field",
+                      ["orig"] = "member_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash,fullName,initials,username",
+                    },
+                    {
+                      ["name"] = "organization",
+                      ["orig"] = "organization",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "organization_field",
+                      ["orig"] = "organization_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "displayName",
+                    },
                   },
                 },
                 ["select"] = {
@@ -14841,35 +15088,8 @@ local function make_config()
                     "organization_field",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "notifications",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/notifications/{id}/{field}",
@@ -14884,20 +15104,40 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "notifications",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "notifications",
-                  "{id}",
-                  "{field}",
                 },
               },
             },
@@ -14907,26 +15147,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "unread",
-                      ["orig"] = "unread",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/notifications/{id}",
@@ -14938,42 +15158,43 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "notifications",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "unread",
+                      ["orig"] = "unread",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "id",
                     "unread",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "notifications",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/notifications/{id}/unread",
@@ -14988,21 +15209,42 @@ local function make_config()
                     ["lit"] = "unread",
                   },
                 },
+                ["parts"] = {
+                  "notifications",
+                  "{id}",
+                  "unread",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "unread",
                   ["exist"] = {
                     "id",
                     "value",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "notifications",
-                  "{id}",
-                  "unread",
                 },
               },
             },
@@ -15011,7 +15253,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
           },
         },
@@ -15020,6 +15262,8 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "blockedKeys",
+            ["title"] = "Blocked Keys",
+            ["type"] = "`$ARRAY`",
             ["op"] = {
               ["update"] = {
                 ["req"] = true,
@@ -15027,24 +15271,26 @@ local function make_config()
               },
             },
             ["short"] = "Singular key or array of notification keys",
-            ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "channel",
+            ["title"] = "Channel",
+            ["type"] = "`$STRING`",
             ["op"] = {
               ["update"] = {
                 ["req"] = true,
                 ["type"] = "`$STRING`",
               },
             },
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idMember",
+            ["title"] = "Id Member",
             ["type"] = "`$STRING`",
           },
         },
@@ -15067,25 +15313,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/notificationsChannelSettings",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -15097,19 +15327,35 @@ local function make_config()
                     ["lit"] = "notificationsChannelSettings",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "notificationsChannelSettings",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "notificationsChannelSettings",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "member_id",
+                  },
                 },
               },
             },
@@ -15119,33 +15365,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "email",
-                      ["kind"] = "param",
-                      ["name"] = "channel",
-                      ["orig"] = "channel",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/notificationsChannelSettings/{channel}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -15160,21 +15382,45 @@ local function make_config()
                     ["var"] = "channel",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "channel",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "notificationsChannelSettings",
+                  "{channel}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "notificationsChannelSettings",
-                  "{channel}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "channel",
+                      ["orig"] = "channel",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "email",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "channel",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -15184,41 +15430,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "notification_comment_card",
-                      ["kind"] = "param",
-                      ["name"] = "blocked_key",
-                      ["orig"] = "blocked_key",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "email",
-                      ["kind"] = "param",
-                      ["name"] = "channel",
-                      ["orig"] = "channel",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["blockedKeys"] = "blocked_key",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -15236,17 +15450,6 @@ local function make_config()
                     ["var"] = "blocked_key",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "blocked_key",
-                    "channel",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "members",
                   "{id}",
@@ -15254,35 +15457,54 @@ local function make_config()
                   "{channel}",
                   "{blocked_key}",
                 },
-              },
-              {
+                ["rename"] = {
+                  ["param"] = {
+                    ["blockedKeys"] = "blocked_key",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "email",
-                      ["kind"] = "param",
-                      ["name"] = "channel",
-                      ["orig"] = "channel",
-                      ["reqd"] = true,
+                      ["name"] = "blocked_key",
+                      ["orig"] = "blocked_key",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "notification_comment_card",
                     },
                     {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
+                      ["name"] = "channel",
+                      ["orig"] = "channel",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "email",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "blocked_key",
+                    "channel",
+                    "id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/members/{id}/notificationsChannelSettings/{channel}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -15297,43 +15519,51 @@ local function make_config()
                     ["var"] = "channel",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "channel",
-                    "member_id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "members",
                   "{member_id}",
                   "notificationsChannelSettings",
                   "{channel}",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "PUT",
-                ["orig"] = "/members/{id}/notificationsChannelSettings",
                 ["rename"] = {
                   ["param"] = {
                     ["id"] = "member_id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "channel",
+                      ["orig"] = "channel",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "email",
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "channel",
+                    "member_id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "PUT",
+                ["orig"] = "/members/{id}/notificationsChannelSettings",
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -15345,19 +15575,35 @@ local function make_config()
                     ["lit"] = "notificationsChannelSettings",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "notificationsChannelSettings",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "notificationsChannelSettings",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "member_id",
+                  },
                 },
               },
             },
@@ -15366,11 +15612,10 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
             {
-              "member",
-              "notifications_channel_setting",
+              "$.main.kit.entity.member",
             },
           },
         },
@@ -15379,6 +15624,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -15393,27 +15639,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/notifications/{id}/list",
@@ -15428,20 +15653,42 @@ local function make_config()
                     ["lit"] = "list",
                   },
                 },
+                ["parts"] = {
+                  "notifications",
+                  "{id}",
+                  "list",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "notifications",
-                  "{id}",
-                  "list",
                 },
               },
             },
@@ -15455,6 +15702,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -15469,27 +15717,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/notifications/{id}/memberCreator",
@@ -15504,20 +15731,42 @@ local function make_config()
                     ["lit"] = "memberCreator",
                   },
                 },
+                ["parts"] = {
+                  "notifications",
+                  "{id}",
+                  "memberCreator",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "notifications",
-                  "{id}",
-                  "memberCreator",
                 },
               },
             },
@@ -15527,25 +15776,11 @@ local function make_config()
           ["ancestors"] = {},
         },
       },
-      ["notifications_channel_setting"] = {
-        ["fields"] = {},
-        ["name"] = "notifications_channel_setting",
-        ["op"] = {},
-        ["relations"] = {
-          ["ancestors"] = {
-            {
-              "member",
-            },
-            {
-              "notifications_channel_setting",
-            },
-          },
-        },
-      },
       ["option"] = {
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -15560,35 +15795,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "custom_field_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_custom_field_option",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/customFields/{id}/options/{idCustomFieldOption}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "custom_field_id",
-                    ["idCustomFieldOption"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "customFields",
@@ -15603,44 +15812,53 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "custom_field_id",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "customFields",
                   "{custom_field_id}",
                   "options",
                   "{id}",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "custom_field_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "GET",
-                ["orig"] = "/customFields/{id}/options",
                 ["rename"] = {
                   ["param"] = {
                     ["id"] = "custom_field_id",
+                    ["idCustomFieldOption"] = "id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "custom_field_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_custom_field_option",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "custom_field_id",
+                    "id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "GET",
+                ["orig"] = "/customFields/{id}/options",
                 ["segments"] = {
                   {
                     ["lit"] = "customFields",
@@ -15652,19 +15870,36 @@ local function make_config()
                     ["lit"] = "options",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "custom_field_id",
+                ["parts"] = {
+                  "customFields",
+                  "{custom_field_id}",
+                  "options",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "custom_field_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "customFields",
-                  "{custom_field_id}",
-                  "options",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "custom_field_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "custom_field_id",
+                  },
                 },
               },
             },
@@ -15674,35 +15909,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "custom_field_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_custom_field_option",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/customFields/{id}/options/{idCustomFieldOption}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "custom_field_id",
-                    ["idCustomFieldOption"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "customFields",
@@ -15717,21 +15926,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "custom_field_id",
-                    "id",
+                ["parts"] = {
+                  "customFields",
+                  "{custom_field_id}",
+                  "options",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "custom_field_id",
+                    ["idCustomFieldOption"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "customFields",
-                  "{custom_field_id}",
-                  "options",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "custom_field_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_custom_field_option",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "custom_field_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -15740,7 +15975,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "custom_field",
+              "$.main.kit.entity.custom_field",
             },
           },
         },
@@ -15754,26 +15989,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/organizations/{id}/prefs/orgInviteRestrict",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -15788,20 +16006,37 @@ local function make_config()
                     ["lit"] = "orgInviteRestrict",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "prefs",
+                  "orgInviteRestrict",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "prefs",
-                  "orgInviteRestrict",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -15810,7 +16045,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "organization",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -15818,50 +16053,61 @@ local function make_config()
       ["organization"] = {
         ["fields"] = {
           {
-            ["format"] = "date",
             ["name"] = "dateLastActivity",
+            ["title"] = "Date Last Activity",
             ["type"] = "`$STRING`",
+            ["format"] = "date",
           },
           {
             ["name"] = "displayName",
+            ["title"] = "Display Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idBoards",
+            ["title"] = "Id Boards",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "idEnterprise",
+            ["title"] = "Id Enterprise",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "memberships",
+            ["title"] = "Memberships",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "offering",
+            ["title"] = "Offering",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "prefs",
+            ["title"] = "Prefs",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "premiumFeatures",
+            ["title"] = "Premium Features",
             ["type"] = "`$ARRAY`",
           },
           {
-            ["format"] = "url",
             ["name"] = "url",
+            ["title"] = "Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
         },
         ["id"] = {
@@ -15875,41 +16121,49 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "desc",
-                      ["orig"] = "desc",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "display_name",
-                      ["orig"] = "display_name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "website",
-                      ["orig"] = "website",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/organizations",
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
+                  },
+                },
+                ["parts"] = {
+                  "organizations",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "desc",
+                      ["orig"] = "desc",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "display_name",
+                      ["orig"] = "display_name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "website",
+                      ["orig"] = "website",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -15920,35 +16174,8 @@ local function make_config()
                     "website",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "file",
-                      ["orig"] = "file",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/organizations/{id}/logo",
@@ -15963,6 +16190,36 @@ local function make_config()
                     ["lit"] = "logo",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{id}",
+                  "logo",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "file",
+                      ["orig"] = "file",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "logo",
                   ["exist"] = {
@@ -15970,28 +16227,8 @@ local function make_config()
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{id}",
-                  "logo",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/organizations/{id}/tags",
@@ -16006,20 +16243,32 @@ local function make_config()
                     ["lit"] = "tags",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{id}",
+                  "tags",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "tag",
                   ["exist"] = {
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{id}",
-                  "tags",
                 },
               },
             },
@@ -16029,128 +16278,88 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "count",
-                      ["orig"] = "count",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "start_index",
-                      ["orig"] = "start_index",
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/organizations",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "organizations",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "count",
-                    "enterpris_id",
-                    "field",
-                    "filter",
-                    "start_index",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "organizations",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "organizations",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
+                      ["name"] = "enterprise_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "all",
+                      ["name"] = "count",
+                      ["orig"] = "count",
+                      ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
+                    },
+                    {
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                     {
-                      ["example"] = "all",
-                      ["kind"] = "query",
                       ["name"] = "filter",
                       ["orig"] = "filter",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                     {
-                      ["example"] = false,
+                      ["name"] = "start_index",
+                      ["orig"] = "start_index",
+                      ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
-                      ["name"] = "paid_account",
-                      ["orig"] = "paid_account",
-                      ["type"] = "`$BOOLEAN`",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "count",
+                    "enterprise_id",
+                    "field",
+                    "filter",
+                    "start_index",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/organizations",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -16162,6 +16371,55 @@ local function make_config()
                     ["lit"] = "organizations",
                   },
                 },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "organizations",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "paid_account",
+                      ["orig"] = "paid_account",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
@@ -16170,46 +16428,11 @@ local function make_config()
                     "paid_account",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "organizations",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "action_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{id}/organization",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "action_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -16221,52 +16444,52 @@ local function make_config()
                     ["lit"] = "organization",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "action_id",
-                    "field",
+                ["parts"] = {
+                  "actions",
+                  "{action_id}",
+                  "organization",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "action_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{action_id}",
-                  "organization",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
+                      ["name"] = "action_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                   ["query"] = {
                     {
-                      ["example"] = "all",
-                      ["kind"] = "query",
                       ["name"] = "field",
                       ["orig"] = "field",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "action_id",
+                    "field",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/organizationsInvited",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -16278,20 +16501,46 @@ local function make_config()
                     ["lit"] = "organizationsInvited",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "organizationsInvited",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "organizationsInvited",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -16301,25 +16550,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/{field}",
@@ -16334,52 +16564,46 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "notification_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/notifications/{id}/organization",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "notification_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "notifications",
@@ -16391,35 +16615,49 @@ local function make_config()
                     ["lit"] = "organization",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "field",
-                    "notification_id",
+                ["parts"] = {
+                  "notifications",
+                  "{notification_id}",
+                  "organization",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "notification_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "notifications",
-                  "{notification_id}",
-                  "organization",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
+                      ["name"] = "notification_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "field",
+                    "notification_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}",
@@ -16431,18 +16669,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "organizations",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -16452,41 +16703,15 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_org",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/enterprises/{id}/organizations/{idOrg}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idOrg"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "organizations",
@@ -16495,36 +16720,50 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "enterpris_id",
-                    "id",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "organizations",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idOrg"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "organizations",
-                  "{id}",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
+                      ["name"] = "enterprise_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_org",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "enterprise_id",
+                    "id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/organizations/{id}",
@@ -16536,33 +16775,34 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/organizations/{id}/logo",
@@ -16577,20 +16817,33 @@ local function make_config()
                     ["lit"] = "logo",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{id}",
+                  "logo",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "logo",
                   ["exist"] = {
                     "id",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{id}",
-                  "logo",
                 },
               },
             },
@@ -16600,92 +16853,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "desc",
-                      ["orig"] = "desc",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "display_name",
-                      ["orig"] = "display_name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/associated_domain",
-                      ["orig"] = "prefs/associated_domain",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/board_visibility_restrict/org",
-                      ["orig"] = "prefs/board_visibility_restrict/org",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/board_visibility_restrict/private",
-                      ["orig"] = "prefs/board_visibility_restrict/private",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/board_visibility_restrict/public",
-                      ["orig"] = "prefs/board_visibility_restrict/public",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/external_members_disabled",
-                      ["orig"] = "prefs/external_members_disabled",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/google_apps_version",
-                      ["orig"] = "prefs/google_apps_version",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/org_invite_restrict",
-                      ["orig"] = "prefs/org_invite_restrict",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "prefs/permission_level",
-                      ["orig"] = "prefs/permission_level",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "website",
-                      ["orig"] = "website",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/organizations/{id}",
@@ -16695,6 +16862,101 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "organizations",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "desc",
+                      ["orig"] = "desc",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "display_name",
+                      ["orig"] = "display_name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/associated_domain",
+                      ["orig"] = "prefs/associated_domain",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/board_visibility_restrict/org",
+                      ["orig"] = "prefs/board_visibility_restrict/org",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/board_visibility_restrict/private",
+                      ["orig"] = "prefs/board_visibility_restrict/private",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/board_visibility_restrict/public",
+                      ["orig"] = "prefs/board_visibility_restrict/public",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/external_members_disabled",
+                      ["orig"] = "prefs/external_members_disabled",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/google_apps_version",
+                      ["orig"] = "prefs/google_apps_version",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/org_invite_restrict",
+                      ["orig"] = "prefs/org_invite_restrict",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "prefs/permission_level",
+                      ["orig"] = "prefs/permission_level",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "website",
+                      ["orig"] = "website",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -16714,51 +16976,8 @@ local function make_config()
                     "website",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "email",
-                      ["orig"] = "email",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "full_name",
-                      ["orig"] = "full_name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "normal",
-                      ["kind"] = "query",
-                      ["name"] = "type",
-                      ["orig"] = "type",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/organizations/{id}/members",
@@ -16773,6 +16992,51 @@ local function make_config()
                     ["lit"] = "members",
                   },
                 },
+                ["parts"] = {
+                  "organizations",
+                  "{id}",
+                  "members",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "email",
+                      ["orig"] = "email",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "full_name",
+                      ["orig"] = "full_name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "type",
+                      ["orig"] = "type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "normal",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["$action"] = "member",
                   ["exist"] = {
@@ -16782,15 +17046,6 @@ local function make_config()
                     "type",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "organizations",
-                  "{id}",
-                  "members",
-                },
               },
             },
           },
@@ -16798,16 +17053,16 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "action",
+              "$.main.kit.entity.action",
             },
             {
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             },
             {
-              "member",
+              "$.main.kit.entity.member",
             },
             {
-              "notification",
+              "$.main.kit.entity.notification",
             },
           },
         },
@@ -16815,36 +17070,44 @@ local function make_config()
       ["pending_organization"] = {
         ["fields"] = {
           {
-            ["format"] = "date",
             ["name"] = "date",
+            ["title"] = "Date",
             ["type"] = "`$STRING`",
+            ["format"] = "date",
           },
           {
             ["name"] = "displayName",
+            ["title"] = "Display Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idMember",
+            ["title"] = "Id Member",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "logoUrl",
+            ["title"] = "Logo Url",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "memberRequestor",
+            ["title"] = "Member Requestor",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "membershipCount",
+            ["title"] = "Membership Count",
             ["type"] = "`$NUMBER`",
           },
           {
             ["name"] = "transferability",
+            ["title"] = "Transferability",
             ["type"] = "`$OBJECT`",
           },
         },
@@ -16859,66 +17122,66 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "active_since",
-                      ["orig"] = "active_since",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "inactive_since",
-                      ["orig"] = "inactive_since",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/pendingOrganizations",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "pendingOrganizations",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "active_since",
-                    "enterpris_id",
-                    "inactive_since",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "pendingOrganizations",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "pendingOrganizations",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "active_since",
+                      ["orig"] = "active_since",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "inactive_since",
+                      ["orig"] = "inactive_since",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "active_since",
+                    "enterprise_id",
+                    "inactive_since",
+                  },
                 },
               },
             },
@@ -16927,7 +17190,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             },
           },
         },
@@ -16936,6 +17199,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -16950,26 +17214,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/boardPlugins",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -16981,19 +17228,36 @@ local function make_config()
                     ["lit"] = "boardPlugins",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "boardPlugins",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "boardPlugins",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                  },
                 },
               },
             },
@@ -17003,35 +17267,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "enabled",
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/plugins",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -17043,35 +17281,49 @@ local function make_config()
                     ["lit"] = "plugins",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "filter",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "plugins",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "plugins",
-                },
-              },
-              {
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
+                      ["name"] = "board_id",
                       ["orig"] = "id",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "enabled",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "filter",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plugins/{id}/",
@@ -17083,18 +17335,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "plugins",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "plugins",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -17104,18 +17369,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/plugins/{id}/",
@@ -17127,18 +17380,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "plugins",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "plugins",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -17147,7 +17413,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -17161,26 +17427,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/pluginData",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -17192,19 +17441,36 @@ local function make_config()
                     ["lit"] = "pluginData",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "pluginData",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "pluginData",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -17214,26 +17480,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/pluginData",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -17245,19 +17494,36 @@ local function make_config()
                     ["lit"] = "pluginData",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "pluginData",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "pluginData",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                  },
                 },
               },
             },
@@ -17266,10 +17532,10 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "card",
+              "$.main.kit.entity.card",
             },
             {
-              "organization",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -17278,27 +17544,32 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "description",
-            ["short"] = "The description to show for the given locale",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
+            ["short"] = "The description to show for the given locale",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "locale",
-            ["short"] = "The locale that this listing should be displayed for.",
+            ["title"] = "Locale",
             ["type"] = "`$STRING`",
+            ["short"] = "The locale that this listing should be displayed for.",
           },
           {
             ["name"] = "name",
-            ["short"] = "The name to use for the given locale.",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
+            ["short"] = "The name to use for the given locale.",
           },
           {
             ["name"] = "overview",
-            ["short"] = "The overview to show for the given locale.",
+            ["title"] = "Overview",
             ["type"] = "`$STRING`",
+            ["short"] = "The overview to show for the given locale.",
           },
         },
         ["id"] = {
@@ -17312,26 +17583,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_plugin",
-                      ["orig"] = "id_plugin",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/plugins/{idPlugin}/listing",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idPlugin"] = "id_plugin",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "plugins",
@@ -17343,19 +17597,36 @@ local function make_config()
                     ["lit"] = "listing",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id_plugin",
+                ["parts"] = {
+                  "plugins",
+                  "{id_plugin}",
+                  "listing",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idPlugin"] = "id_plugin",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "plugins",
-                  "{id_plugin}",
-                  "listing",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id_plugin",
+                      ["orig"] = "id_plugin",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id_plugin",
+                  },
                 },
               },
             },
@@ -17365,35 +17636,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_listing",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_plugin",
-                      ["orig"] = "id_plugin",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/plugins/{idPlugin}/listings/{idListing}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idListing"] = "id",
-                    ["idPlugin"] = "id_plugin",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "plugins",
@@ -17408,21 +17653,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "id_plugin",
+                ["parts"] = {
+                  "plugins",
+                  "{id_plugin}",
+                  "listings",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idListing"] = "id",
+                    ["idPlugin"] = "id_plugin",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "plugins",
-                  "{id_plugin}",
-                  "listings",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_listing",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_plugin",
+                      ["orig"] = "id_plugin",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "id_plugin",
+                  },
                 },
               },
             },
@@ -17431,7 +17702,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "plugin",
+              "$.main.kit.entity.plugin",
             },
           },
         },
@@ -17440,6 +17711,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -17454,50 +17726,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_action",
-                      ["orig"] = "id_action",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "emoji",
-                      ["orig"] = "emoji",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{idAction}/reactions/{id}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idAction"] = "id_action",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -17512,6 +17743,57 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "actions",
+                  "{id_action}",
+                  "reactions",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idAction"] = "id_action",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_action",
+                      ["orig"] = "id_action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "emoji",
+                      ["orig"] = "emoji",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "emoji",
@@ -17520,54 +17802,11 @@ local function make_config()
                     "member",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "actions",
-                  "{id_action}",
-                  "reactions",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_action",
-                      ["orig"] = "id_action",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "emoji",
-                      ["orig"] = "emoji",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "member",
-                      ["orig"] = "member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{idAction}/reactions",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idAction"] = "id_action",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -17579,21 +17818,54 @@ local function make_config()
                     ["lit"] = "reactions",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "emoji",
-                    "id_action",
-                    "member",
+                ["parts"] = {
+                  "actions",
+                  "{id_action}",
+                  "reactions",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idAction"] = "id_action",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{id_action}",
-                  "reactions",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id_action",
+                      ["orig"] = "id_action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "emoji",
+                      ["orig"] = "emoji",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                    {
+                      ["name"] = "member",
+                      ["orig"] = "member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "emoji",
+                    "id_action",
+                    "member",
+                  },
                 },
               },
             },
@@ -17603,34 +17875,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id_action",
-                      ["orig"] = "id_action",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/actions/{idAction}/reactions/{id}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idAction"] = "id_action",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -17645,21 +17892,46 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "id_action",
+                ["parts"] = {
+                  "actions",
+                  "{id_action}",
+                  "reactions",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idAction"] = "id_action",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{id_action}",
-                  "reactions",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id_action",
+                      ["orig"] = "id_action",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "id_action",
+                  },
                 },
               },
             },
@@ -17668,7 +17940,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "action",
+              "$.main.kit.entity.action",
             },
           },
         },
@@ -17682,23 +17954,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "ids",
-                      ["orig"] = "ids",
-                      ["type"] = "`$ARRAY`",
-                    },
-                    {
-                      ["example"] = true,
-                      ["kind"] = "query",
-                      ["name"] = "read",
-                      ["orig"] = "read",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/notifications/all/read",
@@ -17713,20 +17968,38 @@ local function make_config()
                     ["lit"] = "read",
                   },
                 },
+                ["parts"] = {
+                  "notifications",
+                  "all",
+                  "read",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "ids",
+                      ["orig"] = "ids",
+                      ["type"] = "`$ARRAY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "read",
+                      ["orig"] = "read",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "ids",
                     "read",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "notifications",
-                  "all",
-                  "read",
                 },
               },
             },
@@ -17740,23 +18013,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "pos",
+            ["title"] = "Pos",
             ["type"] = "`$ANY`",
-            ["union"] = {
-              ["branches"] = 2,
-              ["count"] = 1,
-              ["depth"] = 0,
-            },
           },
           {
             ["name"] = "query",
+            ["title"] = "Query",
             ["type"] = "`$STRING`",
           },
         },
@@ -17771,49 +18043,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["reqd"] = true,
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/members/{id}/savedSearches",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -17825,6 +18057,55 @@ local function make_config()
                     ["lit"] = "savedSearches",
                   },
                 },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "savedSearches",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.pos`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "member_id",
@@ -17832,15 +18113,6 @@ local function make_config()
                     "pos",
                     "query",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.pos`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "savedSearches",
                 },
               },
             },
@@ -17850,26 +18122,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/savedSearches",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -17881,19 +18136,36 @@ local function make_config()
                     ["lit"] = "savedSearches",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "savedSearches",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "savedSearches",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "member_id",
+                  },
                 },
               },
             },
@@ -17903,33 +18175,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_search",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/savedSearches/{idSearch}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idSearch"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -17944,21 +18192,45 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "savedSearches",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idSearch"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.pos`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "savedSearches",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_search",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -17968,33 +18240,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_search",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/members/{id}/savedSearches/{idSearch}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idSearch"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -18009,21 +18257,45 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "member_id",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "savedSearches",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idSearch"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "savedSearches",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_search",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "member_id",
+                  },
                 },
               },
             },
@@ -18033,53 +18305,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_search",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/members/{id}/savedSearches/{idSearch}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                    ["idSearch"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -18092,6 +18320,60 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "savedSearches",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
+                    ["idSearch"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.pos`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_search",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -18103,16 +18385,6 @@ local function make_config()
                     "query",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.pos`",
-                },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "savedSearches",
-                  "{id}",
-                },
               },
             },
           },
@@ -18120,7 +18392,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
           },
         },
@@ -18134,160 +18406,168 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = "name,idOrganization",
-                      ["kind"] = "query",
-                      ["name"] = "board_field",
-                      ["orig"] = "board_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "board_organization",
-                      ["orig"] = "board_organization",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = 10,
-                      ["kind"] = "query",
-                      ["name"] = "boards_limit",
-                      ["orig"] = "boards_limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = "false",
-                      ["kind"] = "query",
-                      ["name"] = "card_attachment",
-                      ["orig"] = "card_attachment",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "card_board",
-                      ["orig"] = "card_board",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "card_field",
-                      ["orig"] = "card_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "card_list",
-                      ["orig"] = "card_list",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "card_member",
-                      ["orig"] = "card_member",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "card_sticker",
-                      ["orig"] = "card_sticker",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["example"] = 10,
-                      ["kind"] = "query",
-                      ["name"] = "cards_limit",
-                      ["orig"] = "cards_limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = 0,
-                      ["kind"] = "query",
-                      ["name"] = "cards_page",
-                      ["orig"] = "cards_page",
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_board",
-                      ["orig"] = "id_board",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_card",
-                      ["orig"] = "id_card",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id_organization",
-                      ["orig"] = "id_organization",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "avatarHash,fullName,initials,username,confirmed",
-                      ["kind"] = "query",
-                      ["name"] = "member_field",
-                      ["orig"] = "member_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "10",
-                      ["kind"] = "query",
-                      ["name"] = "members_limit",
-                      ["orig"] = "members_limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "model_type",
-                      ["orig"] = "model_type",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "name,displayName",
-                      ["kind"] = "query",
-                      ["name"] = "organization_field",
-                      ["orig"] = "organization_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "10",
-                      ["kind"] = "query",
-                      ["name"] = "organizations_limit",
-                      ["orig"] = "organizations_limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "partial",
-                      ["orig"] = "partial",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/search",
                 ["segments"] = {
                   {
                     ["lit"] = "search",
+                  },
+                },
+                ["parts"] = {
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "board_field",
+                      ["orig"] = "board_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name,idOrganization",
+                    },
+                    {
+                      ["name"] = "board_organization",
+                      ["orig"] = "board_organization",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "boards_limit",
+                      ["orig"] = "boards_limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 10,
+                    },
+                    {
+                      ["name"] = "card_attachment",
+                      ["orig"] = "card_attachment",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "false",
+                    },
+                    {
+                      ["name"] = "card_board",
+                      ["orig"] = "card_board",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "card_field",
+                      ["orig"] = "card_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "card_list",
+                      ["orig"] = "card_list",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "card_member",
+                      ["orig"] = "card_member",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "card_sticker",
+                      ["orig"] = "card_sticker",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "cards_limit",
+                      ["orig"] = "cards_limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = 10,
+                    },
+                    {
+                      ["name"] = "cards_page",
+                      ["orig"] = "cards_page",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["example"] = 0,
+                    },
+                    {
+                      ["name"] = "id_board",
+                      ["orig"] = "id_board",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_card",
+                      ["orig"] = "id_card",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_organization",
+                      ["orig"] = "id_organization",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "member_field",
+                      ["orig"] = "member_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "avatarHash,fullName,initials,username,confirmed",
+                    },
+                    {
+                      ["name"] = "members_limit",
+                      ["orig"] = "members_limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = "10",
+                    },
+                    {
+                      ["name"] = "model_type",
+                      ["orig"] = "model_type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "organization_field",
+                      ["orig"] = "organization_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "name,displayName",
+                    },
+                    {
+                      ["name"] = "organizations_limit",
+                      ["orig"] = "organizations_limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["example"] = "10",
+                    },
+                    {
+                      ["name"] = "partial",
+                      ["orig"] = "partial",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
                   },
                 },
                 ["select"] = {
@@ -18315,13 +18595,6 @@ local function make_config()
                     "query",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "search",
-                },
               },
             },
           },
@@ -18339,35 +18612,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/myPrefs/showSidebar",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -18382,21 +18629,47 @@ local function make_config()
                     ["lit"] = "showSidebar",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "value",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "myPrefs",
+                  "showSidebar",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "myPrefs",
-                  "showSidebar",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "value",
+                  },
                 },
               },
             },
@@ -18405,7 +18678,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -18419,35 +18692,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/myPrefs/showSidebarActivity",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -18462,21 +18709,47 @@ local function make_config()
                     ["lit"] = "showSidebarActivity",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "value",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "myPrefs",
+                  "showSidebarActivity",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "myPrefs",
-                  "showSidebarActivity",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "value",
+                  },
                 },
               },
             },
@@ -18485,7 +18758,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -18499,35 +18772,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/myPrefs/showSidebarBoardActions",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -18542,21 +18789,47 @@ local function make_config()
                     ["lit"] = "showSidebarBoardActions",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "value",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "myPrefs",
+                  "showSidebarBoardActions",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "myPrefs",
-                  "showSidebarBoardActions",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "value",
+                  },
                 },
               },
             },
@@ -18565,7 +18838,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -18579,35 +18852,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "value",
-                      ["orig"] = "value",
-                      ["reqd"] = true,
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/boards/{id}/myPrefs/showSidebarMembers",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -18622,21 +18869,47 @@ local function make_config()
                     ["lit"] = "showSidebarMembers",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "board_id",
-                    "value",
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "myPrefs",
+                  "showSidebarMembers",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "myPrefs",
-                  "showSidebarMembers",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "value",
+                      ["orig"] = "value",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "board_id",
+                    "value",
+                  },
                 },
               },
             },
@@ -18645,7 +18918,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -18654,6 +18927,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -18668,44 +18942,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_sticker",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/stickers/{idSticker}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idSticker"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -18720,6 +18959,51 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "stickers",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idSticker"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_sticker",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "card_id",
@@ -18727,55 +19011,11 @@ local function make_config()
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "stickers",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/stickers",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -18787,20 +19027,54 @@ local function make_config()
                     ["lit"] = "stickers",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "field",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "stickers",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "stickers",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "field",
+                  },
                 },
               },
             },
@@ -18810,35 +19084,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_sticker",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/cards/{id}/stickers/{idSticker}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idSticker"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -18853,21 +19101,47 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "card_id",
-                    "id",
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "stickers",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idSticker"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "stickers",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_sticker",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "card_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -18877,65 +19151,9 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "card_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_sticker",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "left",
-                      ["orig"] = "left",
-                      ["reqd"] = true,
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["example"] = 0,
-                      ["kind"] = "query",
-                      ["name"] = "rotate",
-                      ["orig"] = "rotate",
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "top",
-                      ["orig"] = "top",
-                      ["reqd"] = true,
-                      ["type"] = "`$NUMBER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "z_index",
-                      ["orig"] = "z_index",
-                      ["reqd"] = true,
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/cards/{id}/stickers/{idSticker}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "card_id",
-                    ["idSticker"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cards",
@@ -18948,6 +19166,72 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "stickers",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "card_id",
+                    ["idSticker"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "card_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_sticker",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "left",
+                      ["orig"] = "left",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "rotate",
+                      ["orig"] = "rotate",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["example"] = 0,
+                    },
+                    {
+                      ["name"] = "top",
+                      ["orig"] = "top",
+                      ["type"] = "`$NUMBER`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "z_index",
+                      ["orig"] = "z_index",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
                   },
                 },
                 ["select"] = {
@@ -18960,16 +19244,6 @@ local function make_config()
                     "z_index",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "stickers",
-                  "{id}",
-                },
               },
             },
           },
@@ -18977,7 +19251,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "card",
+              "$.main.kit.entity.card",
             },
           },
         },
@@ -18986,6 +19260,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -19000,25 +19275,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organizations/{id}/tags",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -19030,19 +19289,35 @@ local function make_config()
                     ["lit"] = "tags",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "tags",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "tags",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -19052,33 +19327,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_tag",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "organization_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/organizations/{id}/tags/{idTag}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "organization_id",
-                    ["idTag"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "organizations",
@@ -19093,21 +19344,45 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "organization_id",
+                ["parts"] = {
+                  "organizations",
+                  "{organization_id}",
+                  "tags",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "organization_id",
+                    ["idTag"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "organizations",
-                  "{organization_id}",
-                  "tags",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_tag",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "organization_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "organization_id",
+                  },
                 },
               },
             },
@@ -19116,7 +19391,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "organization",
+              "$.main.kit.entity.organization",
             },
           },
         },
@@ -19124,35 +19399,36 @@ local function make_config()
       ["token"] = {
         ["fields"] = {
           {
-            ["format"] = "date-time",
             ["name"] = "dateCreated",
+            ["title"] = "Date Created",
             ["type"] = "`$STRING`",
+            ["format"] = "date-time",
           },
           {
-            ["format"] = "date-time",
             ["name"] = "dateExpires",
+            ["title"] = "Date Expires",
             ["type"] = "`$STRING`",
+            ["format"] = "date-time",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idMember",
+            ["title"] = "Id Member",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "identifier",
+            ["title"] = "Identifier",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "permissions",
+            ["title"] = "Permissions",
             ["type"] = "`$ARRAY`",
-            ["union"] = {
-              ["branches"] = 2,
-              ["count"] = 1,
-              ["depth"] = 3,
-            },
           },
         },
         ["id"] = {
@@ -19166,35 +19442,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "member_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "webhook",
-                      ["orig"] = "webhook",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/members/{id}/tokens",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "member_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "members",
@@ -19206,20 +19456,46 @@ local function make_config()
                     ["lit"] = "tokens",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "member_id",
-                    "webhook",
+                ["parts"] = {
+                  "members",
+                  "{member_id}",
+                  "tokens",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "member_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "members",
-                  "{member_id}",
-                  "tokens",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "member_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "webhook",
+                      ["orig"] = "webhook",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "member_id",
+                    "webhook",
+                  },
                 },
               },
             },
@@ -19229,47 +19505,55 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "token",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = false,
-                      ["kind"] = "query",
-                      ["name"] = "webhook",
-                      ["orig"] = "webhook",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tokens/{token}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["token"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tokens",
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "tokens",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["token"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "token",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "webhook",
+                      ["orig"] = "webhook",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                      ["example"] = false,
+                    },
                   },
                 },
                 ["select"] = {
@@ -19279,14 +19563,6 @@ local function make_config()
                     "webhook",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "tokens",
-                  "{id}",
-                },
               },
             },
           },
@@ -19295,25 +19571,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "token",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/tokens/{token}/",
-                ["rename"] = {
-                  ["param"] = {
-                    ["token"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tokens",
@@ -19322,18 +19582,34 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
+                ["parts"] = {
+                  "tokens",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["token"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "tokens",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "token",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -19342,7 +19618,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "member",
+              "$.main.kit.entity.member",
             },
           },
         },
@@ -19351,18 +19627,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "newBillableMembers",
+            ["title"] = "New Billable Members",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "restrictedMembers",
+            ["title"] = "Restricted Members",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "transferrable",
+            ["title"] = "Transferrable",
             ["type"] = "`$BOOLEAN`",
           },
         },
@@ -19377,41 +19657,15 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "enterpris_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_organization",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enterprises/{id}/transferrable/organization/{idOrganization}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "enterpris_id",
-                    ["idOrganization"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "enterprises",
                   },
                   {
-                    ["var"] = "enterpris_id",
+                    ["var"] = "enterprise_id",
                   },
                   {
                     ["lit"] = "transferrable",
@@ -19423,22 +19677,48 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "enterpris_id",
-                    "id",
+                ["parts"] = {
+                  "enterprises",
+                  "{enterprise_id}",
+                  "transferrable",
+                  "organization",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "enterprise_id",
+                    ["idOrganization"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "enterprises",
-                  "{enterpris_id}",
-                  "transferrable",
-                  "organization",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "enterprise_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_organization",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "enterprise_id",
+                    "id",
+                  },
                 },
               },
             },
@@ -19447,7 +19727,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             },
           },
         },
@@ -19456,39 +19736,48 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "attachments",
+            ["title"] = "Attachments",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "closed",
+            ["title"] = "Closed",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idBoard",
+            ["title"] = "Id Board",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "limits",
+            ["title"] = "Limits",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "name",
-            ["short"] = "The name of the list",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of the list",
           },
           {
             ["name"] = "pos",
+            ["title"] = "Pos",
             ["type"] = "`$NUMBER`",
           },
           {
             ["name"] = "softLimit",
+            ["title"] = "Soft Limit",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "subscribed",
+            ["title"] = "Subscribed",
             ["type"] = "`$BOOLEAN`",
           },
         },
@@ -19503,42 +19792,9 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "top",
-                      ["kind"] = "query",
-                      ["name"] = "pos",
-                      ["orig"] = "pos",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/boards/{id}/lists",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -19548,6 +19804,48 @@ local function make_config()
                   },
                   {
                     ["lit"] = "lists",
+                  },
+                },
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "lists",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.limits`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "pos",
+                      ["orig"] = "pos",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "top",
+                    },
                   },
                 },
                 ["select"] = {
@@ -19557,15 +19855,6 @@ local function make_config()
                     "pos",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.limits`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "lists",
-                },
               },
             },
           },
@@ -19574,54 +19863,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "board_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "card",
-                      ["orig"] = "card",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "card_field",
-                      ["orig"] = "card_field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "filter",
-                      ["orig"] = "filter",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards/{id}/lists",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "board_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "boards",
@@ -19631,6 +19875,60 @@ local function make_config()
                   },
                   {
                     ["lit"] = "lists",
+                  },
+                },
+                ["parts"] = {
+                  "boards",
+                  "{board_id}",
+                  "lists",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "board_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "board_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "card",
+                      ["orig"] = "card",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "card_field",
+                      ["orig"] = "card_field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                    {
+                      ["name"] = "filter",
+                      ["orig"] = "filter",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -19642,15 +19940,6 @@ local function make_config()
                     "filter",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "boards",
-                  "{board_id}",
-                  "lists",
-                },
               },
             },
           },
@@ -19659,35 +19948,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "action_id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "all",
-                      ["kind"] = "query",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/actions/{id}/list",
-                ["rename"] = {
-                  ["param"] = {
-                    ["id"] = "action_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "actions",
@@ -19699,20 +19962,46 @@ local function make_config()
                     ["lit"] = "list",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "action_id",
-                    "field",
+                ["parts"] = {
+                  "actions",
+                  "{action_id}",
+                  "list",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["id"] = "action_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.limits`",
                 },
-                ["parts"] = {
-                  "actions",
-                  "{action_id}",
-                  "list",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "action_id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "all",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "action_id",
+                    "field",
+                  },
                 },
               },
             },
@@ -19721,10 +20010,10 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "action",
+              "$.main.kit.entity.action",
             },
             {
-              "board",
+              "$.main.kit.entity.board",
             },
           },
         },
@@ -19733,32 +20022,39 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "active",
+            ["title"] = "Active",
             ["type"] = "`$BOOLEAN`",
           },
           {
-            ["format"] = "url",
             ["name"] = "callbackURL",
+            ["title"] = "Callback Url",
             ["type"] = "`$STRING`",
+            ["format"] = "url",
           },
           {
             ["name"] = "consecutiveFailures",
+            ["title"] = "Consecutive Failures",
             ["type"] = "`$NUMBER`",
           },
           {
             ["name"] = "description",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "date",
             ["name"] = "firstConsecutiveFailDate",
+            ["title"] = "First Consecutive Fail Date",
             ["type"] = "`$STRING`",
+            ["format"] = "date",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "idModel",
+            ["title"] = "Id Model",
             ["type"] = "`$STRING`",
           },
         },
@@ -19773,43 +20069,51 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "active",
-                      ["orig"] = "active",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "callback_url",
-                      ["orig"] = "callback_url",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "description",
-                      ["orig"] = "description",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_model",
-                      ["orig"] = "id_model",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/webhooks/",
                 ["segments"] = {
                   {
                     ["lit"] = "webhooks",
+                  },
+                },
+                ["parts"] = {
+                  "webhooks",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "active",
+                      ["orig"] = "active",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "callback_url",
+                      ["orig"] = "callback_url",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "description",
+                      ["orig"] = "description",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_model",
+                      ["orig"] = "id_model",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
                   },
                 },
                 ["select"] = {
@@ -19820,57 +20124,11 @@ local function make_config()
                     "id_model",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "webhooks",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "token_id",
-                      ["orig"] = "token",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "callback_url",
-                      ["orig"] = "callback_url",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "description",
-                      ["orig"] = "description",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_model",
-                      ["orig"] = "id_model",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/tokens/{token}/webhooks",
-                ["rename"] = {
-                  ["param"] = {
-                    ["token"] = "token_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tokens",
@@ -19880,6 +20138,54 @@ local function make_config()
                   },
                   {
                     ["lit"] = "webhooks",
+                  },
+                },
+                ["parts"] = {
+                  "tokens",
+                  "{token_id}",
+                  "webhooks",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["token"] = "token_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "token_id",
+                      ["orig"] = "token",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "callback_url",
+                      ["orig"] = "callback_url",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "description",
+                      ["orig"] = "description",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_model",
+                      ["orig"] = "id_model",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
                   },
                 },
                 ["select"] = {
@@ -19890,15 +20196,6 @@ local function make_config()
                     "token_id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "tokens",
-                  "{token_id}",
-                  "webhooks",
-                },
               },
             },
           },
@@ -19907,25 +20204,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "token_id",
-                      ["orig"] = "token",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tokens/{token}/webhooks",
-                ["rename"] = {
-                  ["param"] = {
-                    ["token"] = "token_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tokens",
@@ -19937,19 +20218,35 @@ local function make_config()
                     ["lit"] = "webhooks",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "token_id",
+                ["parts"] = {
+                  "tokens",
+                  "{token_id}",
+                  "webhooks",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["token"] = "token_id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "tokens",
-                  "{token_id}",
-                  "webhooks",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "token_id",
+                      ["orig"] = "token",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "token_id",
+                  },
                 },
               },
             },
@@ -19959,25 +20256,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "field",
-                      ["orig"] = "field",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/webhooks/{id}/{field}",
@@ -19992,51 +20270,46 @@ local function make_config()
                     ["var"] = "field",
                   },
                 },
+                ["parts"] = {
+                  "webhooks",
+                  "{id}",
+                  "{field}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "field",
+                      ["orig"] = "field",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "field",
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "webhooks",
-                  "{id}",
-                  "{field}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_webhook",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "token_id",
-                      ["orig"] = "token",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tokens/{token}/webhooks/{idWebhook}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idWebhook"] = "id",
-                    ["token"] = "token_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tokens",
@@ -20051,36 +20324,49 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "token_id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "tokens",
                   "{token_id}",
                   "webhooks",
                   "{id}",
                 },
-              },
-              {
+                ["rename"] = {
+                  ["param"] = {
+                    ["idWebhook"] = "id",
+                    ["token"] = "token_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
                       ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
+                      ["orig"] = "id_webhook",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "token_id",
+                      ["orig"] = "token",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "token_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/webhooks/{id}",
@@ -20092,18 +20378,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "webhooks",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "webhooks",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -20113,34 +20412,9 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_webhook",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "token_id",
-                      ["orig"] = "token",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/tokens/{token}/webhooks/{idWebhook}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idWebhook"] = "id",
-                    ["token"] = "token_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tokens",
@@ -20155,36 +20429,49 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "token_id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "tokens",
                   "{token_id}",
                   "webhooks",
                   "{id}",
                 },
-              },
-              {
+                ["rename"] = {
+                  ["param"] = {
+                    ["idWebhook"] = "id",
+                    ["token"] = "token_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
                       ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
+                      ["orig"] = "id_webhook",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "token_id",
+                      ["orig"] = "token",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "token_id",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/webhooks/{id}",
@@ -20196,18 +20483,31 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "webhooks",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "webhooks",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -20217,45 +20517,6 @@ local function make_config()
             ["name"] = "update",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "active",
-                      ["orig"] = "active",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "callback_url",
-                      ["orig"] = "callback_url",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "description",
-                      ["orig"] = "description",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_model",
-                      ["orig"] = "id_model",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/webhooks/{id}",
@@ -20265,6 +20526,54 @@ local function make_config()
                   },
                   {
                     ["var"] = "id",
+                  },
+                },
+                ["parts"] = {
+                  "webhooks",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "active",
+                      ["orig"] = "active",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "callback_url",
+                      ["orig"] = "callback_url",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "description",
+                      ["orig"] = "description",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_model",
+                      ["orig"] = "id_model",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
                   },
                 },
                 ["select"] = {
@@ -20276,65 +20585,11 @@ local function make_config()
                     "id_model",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "webhooks",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id_webhook",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "token_id",
-                      ["orig"] = "token",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "callback_url",
-                      ["orig"] = "callback_url",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "description",
-                      ["orig"] = "description",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "5abbe4b7ddc1b351ef961414",
-                      ["kind"] = "query",
-                      ["name"] = "id_model",
-                      ["orig"] = "id_model",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/tokens/{token}/webhooks/{idWebhook}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["idWebhook"] = "id",
-                    ["token"] = "token_id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tokens",
@@ -20349,6 +20604,62 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "tokens",
+                  "{token_id}",
+                  "webhooks",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["idWebhook"] = "id",
+                    ["token"] = "token_id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id_webhook",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      ["name"] = "token_id",
+                      ["orig"] = "token",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "callback_url",
+                      ["orig"] = "callback_url",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "description",
+                      ["orig"] = "description",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id_model",
+                      ["orig"] = "id_model",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "5abbe4b7ddc1b351ef961414",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "callback_url",
@@ -20358,16 +20669,6 @@ local function make_config()
                     "token_id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "tokens",
-                  "{token_id}",
-                  "webhooks",
-                  "{id}",
-                },
               },
             },
           },
@@ -20375,7 +20676,7 @@ local function make_config()
         ["relations"] = {
           ["ancestors"] = {
             {
-              "token",
+              "$.main.kit.entity.token",
             },
           },
         },

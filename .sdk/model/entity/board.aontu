@@ -1,0 +1,1588 @@
+# Entity: board
+
+main: kit: entity: board: {
+
+  alias: field: {}
+
+  fields: {
+    closed: {
+      h: "Closed"
+      n: "closed"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    creationMethod: {
+      h: "Creation Method"
+      n: "creationMethod"
+      r: false
+      t: "`$STRING`"
+    }
+    dateLastActivity: {
+      fo: "date"
+      h: "Date Last Activity"
+      n: "dateLastActivity"
+      r: false
+      t: "`$STRING`"
+    }
+    dateLastView: {
+      fo: "date"
+      h: "Date Last View"
+      n: "dateLastView"
+      r: false
+      t: "`$STRING`"
+    }
+    datePluginDisable: {
+      fo: "date"
+      h: "Date Plugin Disable"
+      n: "datePluginDisable"
+      r: false
+      t: "`$STRING`"
+    }
+    desc: {
+      h: "Desc"
+      n: "desc"
+      r: false
+      t: "`$STRING`"
+    }
+    descData: {
+      h: "Desc Data"
+      n: "descData"
+      r: false
+      t: "`$STRING`"
+    }
+    enterpriseOwned: {
+      h: "Enterprise Owned"
+      n: "enterpriseOwned"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    idMemberCreator: {
+      h: "Id Member Creator"
+      n: "idMemberCreator"
+      r: false
+      t: "`$STRING`"
+    }
+    idOrganization: {
+      h: "Id Organization"
+      n: "idOrganization"
+      r: false
+      t: "`$STRING`"
+    }
+    idTags: {
+      h: "Id Tags"
+      n: "idTags"
+      r: false
+      t: "`$STRING`"
+    }
+    ixUpdate: {
+      h: "Ix Update"
+      n: "ixUpdate"
+      r: false
+      t: "`$INTEGER`"
+    }
+    labelNames: {
+      h: "Label Names"
+      n: "labelNames"
+      r: false
+      t: "`$OBJECT`"
+    }
+    limits: {
+      h: "Limits"
+      n: "limits"
+      r: false
+      t: "`$OBJECT`"
+    }
+    memberships: {
+      h: "Memberships"
+      n: "memberships"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the board."
+      t: "`$STRING`"
+    }
+    pinned: {
+      h: "Pinned"
+      n: "pinned"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    powerUps: {
+      h: "Power Ups"
+      n: "powerUps"
+      r: false
+      t: "`$STRING`"
+    }
+    prefs: {
+      h: "Prefs"
+      n: "prefs"
+      r: false
+      t: "`$OBJECT`"
+    }
+    shortLink: {
+      h: "Short Link"
+      n: "shortLink"
+      r: false
+      t: "`$STRING`"
+    }
+    shortUrl: {
+      fo: "url"
+      h: "Short Url"
+      n: "shortUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    starred: {
+      h: "Starred"
+      n: "starred"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    subscribed: {
+      h: "Subscribed"
+      n: "subscribed"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    templateGallery: {
+      h: "Template Gallery"
+      n: "templateGallery"
+      r: false
+      t: "`$STRING`"
+    }
+    url: {
+      fo: "url"
+      h: "Url"
+      n: "url"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "board"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /boards/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: true
+                k: "query"
+                n: "default_label"
+                or: "default_label"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "default_list"
+                or: "default_list"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "desc"
+                or: "desc"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_board_source"
+                or: "id_board_source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_organization"
+                or: "id_organization"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "keep_from_source"
+                or: "keep_from_source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "power_up"
+                or: "power_up"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "blue"
+                k: "query"
+                n: "prefs_background"
+                or: "prefs_background"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "regular"
+                k: "query"
+                n: "prefs_card_aging"
+                or: "prefs_card_aging"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "prefs_card_cover"
+                or: "prefs_card_cover"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "members"
+                k: "query"
+                n: "prefs_comment"
+                or: "prefs_comment"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "members"
+                k: "query"
+                n: "prefs_invitation"
+                or: "prefs_invitation"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "private"
+                k: "query"
+                n: "prefs_permission_level"
+                or: "prefs_permission_level"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "prefs_self_join"
+                or: "prefs_self_join"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "disabled"
+                k: "query"
+                n: "prefs_voting"
+                or: "prefs_voting"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/boards/"
+          q: {
+            exist: [
+              "default_label"
+              "default_list"
+              "desc"
+              "id_board_source"
+              "id_organization"
+              "keep_from_source"
+              "name"
+              "power_up"
+              "prefs_background"
+              "prefs_card_aging"
+              "prefs_card_cover"
+              "prefs_comment"
+              "prefs_invitation"
+              "prefs_permission_level"
+              "prefs_self_join"
+              "prefs_voting"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /boards/{id}/labels"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "color"
+                or: "color"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/boards/{id}/labels"
+          q: {
+            "$action": "label"
+            exist: [
+              "color"
+              "id"
+              "name"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "labels"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /boards/{id}/boardPlugins"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_plugin"
+                or: "id_plugin"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/boards/{id}/boardPlugins"
+          q: {
+            "$action": "board_plugin"
+            exist: [
+              "id"
+              "id_plugin"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "boardPlugins"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /boards/{id}/idTags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "value"
+                or: "value"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/boards/{id}/idTags"
+          q: {
+            "$action": "id_tag"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "idTags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /boards/{id}/markedAsViewed"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/boards/{id}/markedAsViewed"
+          q: {
+            "$action": "marked_as_viewed"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "markedAsViewed"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}/boards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "list"
+                or: "list"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "organization"
+                or: "organization"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "name,displayName"
+                k: "query"
+                n: "organization_field"
+                or: "organization_field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/boards"
+          q: {
+            exist: [
+              "field"
+              "filter"
+              "list"
+              "member_id"
+              "organization"
+              "organization_field"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /organizations/{id}/boards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "organization_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/organizations/{id}/boards"
+          q: {
+            exist: [
+              "field"
+              "filter"
+              "organization_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "organization_id"
+            }
+          }
+          s: [
+            {
+              lit: "organizations"
+            }
+            {
+              var: "organization_id"
+            }
+            {
+              lit: "boards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /members/{id}/boardsInvited"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/boardsInvited"
+          q: {
+            exist: [
+              "field"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "boardsInvited"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /boards/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "action"
+                or: "action"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "board_star"
+                or: "board_star"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "card"
+                or: "card"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "card_plugin_data"
+                or: "card_plugin_data"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "checklist"
+                or: "checklist"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "custom_field"
+                or: "custom_field"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "name,desc,descData,closed,idOrganization,pinned,url,shortUrl,prefs,labelNames"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "label"
+                or: "label"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "open"
+                k: "query"
+                n: "list"
+                or: "list"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "member"
+                or: "member"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "membership"
+                or: "membership"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "my_pref"
+                or: "my_pref"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "organization"
+                or: "organization"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "organization_plugin_data"
+                or: "organization_plugin_data"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "plugin_data"
+                or: "plugin_data"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "tag"
+                or: "tag"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}"
+          q: {
+            exist: [
+              "action"
+              "board_star"
+              "card"
+              "card_plugin_data"
+              "checklist"
+              "custom_field"
+              "field"
+              "id"
+              "label"
+              "list"
+              "member"
+              "membership"
+              "my_pref"
+              "organization"
+              "organization_plugin_data"
+              "plugin_data"
+              "tag"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /actions/{id}/board"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "action_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/actions/{id}/board"
+          q: {
+            exist: [
+              "action_id"
+              "field"
+            ]
+          }
+          r: {
+            param: {
+              id: "action_id"
+            }
+          }
+          s: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /cards/{id}/board"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "card_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/{id}/board"
+          q: {
+            exist: [
+              "card_id"
+              "field"
+            ]
+          }
+          r: {
+            param: {
+              id: "card_id"
+            }
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /checklists/{id}/board"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "checklist_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/checklists/{id}/board"
+          q: {
+            exist: [
+              "checklist_id"
+              "field"
+            ]
+          }
+          r: {
+            param: {
+              id: "checklist_id"
+            }
+          }
+          s: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "checklist_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /boards/{id}/{field}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "field"
+                or: "field"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/{field}"
+          q: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /lists/{id}/board"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "list_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/lists/{id}/board"
+          q: {
+            exist: [
+              "field"
+              "list_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "list_id"
+            }
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "list_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /notifications/{id}/board"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "notification_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/notifications/{id}/board"
+          q: {
+            exist: [
+              "field"
+              "notification_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "notification_id"
+            }
+          }
+          s: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "notification_id"
+            }
+            {
+              lit: "board"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /boards/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/boards/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /boards/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "closed"
+                or: "closed"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "desc"
+                or: "desc"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "id_organization"
+                or: "id_organization"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prefs/background"
+                or: "prefs/background"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prefs/calendar_feed_enabled"
+                or: "prefs/calendar_feed_enabled"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "prefs/card_aging"
+                or: "prefs/card_aging"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prefs/card_cover"
+                or: "prefs/card_cover"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "prefs/comment"
+                or: "prefs/comment"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prefs/hide_vote"
+                or: "prefs/hide_vote"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "prefs/invitation"
+                or: "prefs/invitation"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prefs/permission_level"
+                or: "prefs/permission_level"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prefs/self_join"
+                or: "prefs/self_join"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "prefs/voting"
+                or: "prefs/voting"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "subscribed"
+                or: "subscribed"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/boards/{id}"
+          q: {
+            exist: [
+              "closed"
+              "desc"
+              "id"
+              "id_organization"
+              "name"
+              "prefs/background"
+              "prefs/calendar_feed_enabled"
+              "prefs/card_aging"
+              "prefs/card_cover"
+              "prefs/comment"
+              "prefs/hide_vote"
+              "prefs/invitation"
+              "prefs/permission_level"
+              "prefs/self_join"
+              "prefs/voting"
+              "subscribed"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /boards/{id}/members"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "email"
+                or: "email"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "normal"
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/boards/{id}/members"
+          q: {
+            "$action": "member"
+            exist: [
+              "email"
+              "id"
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.action")]
+    [path("$.main.kit.entity.card")]
+    [path("$.main.kit.entity.checklist")]
+    [path("$.main.kit.entity.list")]
+    [path("$.main.kit.entity.member")]
+    [path("$.main.kit.entity.notification")]
+    [path("$.main.kit.entity.organization")]
+  ]
+
+}

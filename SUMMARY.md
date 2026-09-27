@@ -6,7 +6,7 @@ The Trello REST API.
 
 This guide introduces the API, the client libraries, and the companion tools in this repository. Start with the API capabilities, choose a client for your application, and use the linked reference when you need exact request and response details.
 
-The selected API surface contains 70 entities and 261 HTTP routes. There are 6 SDK targets and 2 companion tools.
+The selected API surface contains 67 entities and 261 HTTP routes. There are 6 SDK targets and 2 companion tools.
 
 An entity groups related API operations. An operation can have several routes with different inputs or authentication requirements. The SDK exposes the entity and its operations using the conventions of the selected language.
 
@@ -29,10 +29,6 @@ SDK operations: `load`.
 Results: Success.
 
 SDK operations: `remove`, `update`.
-
-### [Application](docs/api/application.html)
-
-SDK operations: .
 
 ### [ApplicationCompliance](docs/api/application_compliance.html)
 
@@ -67,6 +63,7 @@ SDK operations: `create`, `list`, `load`, `remove`, `update`.
 Key fields to recognise:
 
 - `name`: The name of the board.
+- `url`: The URL of the image.
 
 ### [BoardBackground](docs/api/board_background.html)
 
@@ -97,6 +94,12 @@ SDK operations: `load`, `update`.
 Results: Success.
 
 SDK operations: `create`, `list`, `load`, `remove`, `update`.
+
+Key fields to recognise:
+
+- `id`: The ID of the label.
+- `idBoard`: The ID of the board the label is on.
+- `name`: The name displayed for the label.
 
 ### [CardCheckItemState](docs/api/card_check_item_state.html)
 
@@ -182,17 +185,11 @@ Results: Success.
 
 SDK operations: `list`.
 
-### [Enterpris](docs/api/enterpris.html)
+### [Enterprise](docs/api/enterprise.html)
 
 Results: Success.
 
 SDK operations: `create`, `load`, `update`.
-
-### [EnterprisSignupUrl](docs/api/enterpris_signup_url.html)
-
-Results: Success.
-
-SDK operations: `load`.
 
 ### [EnterpriseAdmin](docs/api/enterprise_admin.html)
 
@@ -205,6 +202,12 @@ SDK operations: `load`.
 Results: Success.
 
 SDK operations: `list`.
+
+### [EnterpriseSignupUrl](docs/api/enterprise_signup_url.html)
+
+Results: Success.
+
+SDK operations: `load`.
 
 ### [Export](docs/api/export.html)
 
@@ -260,6 +263,7 @@ SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
+- `avatarUrl`: A URL that references the non-public avatar for the member
 - `nonPublic`: Profile data with restricted visibility. These fields are visible only to members of the same organization. The values here (full name, for example) may differ from the values at the top level of the response.
 - `nonPublicAvailable`: Whether the response contains non-public profile data for the member
 
@@ -281,10 +285,6 @@ Results: Success.
 
 SDK operations: `list`, `load`, `update`.
 
-### [MostRecent](docs/api/most_recent.html)
-
-SDK operations: .
-
 ### [NewBillableGuest](docs/api/new_billable_guest.html)
 
 Results: Success.
@@ -296,6 +296,10 @@ SDK operations: `load`.
 Results: Success.
 
 SDK operations: `list`, `load`, `update`.
+
+Key fields to recognise:
+
+- `id`: The ID of the label.
 
 ### [NotificationChannelSetting](docs/api/notification_channel_setting.html)
 
@@ -318,10 +322,6 @@ SDK operations: `load`.
 Results: Success.
 
 SDK operations: `load`.
-
-### [NotificationsChannelSetting](docs/api/notifications_channel_setting.html)
-
-SDK operations: .
 
 ### [Option](docs/api/option.html)
 
@@ -584,12 +584,12 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | [CustomSticker](docs/api/custom_sticker.html) | `remove` | `DELETE /members/{id}/customStickers/{idSticker}` | Required |
 | [EmailPosition](docs/api/email_position.html) | `update` | `PUT /boards/{id}/myPrefs/emailPosition` | Required |
 | [Emoji](docs/api/emoji.html) | `list` | `GET /emoji` | Not required |
-| [Enterpris](docs/api/enterpris.html) | `create` | `POST /enterprises/{id}/tokens` | Required |
-| [Enterpris](docs/api/enterpris.html) | `load` | `GET /enterprises/{id}` | Required |
-| [Enterpris](docs/api/enterpris.html) | `update` | `PUT /enterprises/{id}/organizations` | Required |
-| [EnterprisSignupUrl](docs/api/enterpris_signup_url.html) | `load` | `GET /enterprises/{id}/signupUrl` | Required |
+| [Enterprise](docs/api/enterprise.html) | `create` | `POST /enterprises/{id}/tokens` | Required |
+| [Enterprise](docs/api/enterprise.html) | `load` | `GET /enterprises/{id}` | Required |
+| [Enterprise](docs/api/enterprise.html) | `update` | `PUT /enterprises/{id}/organizations` | Required |
 | [EnterpriseAdmin](docs/api/enterprise_admin.html) | `load` | `GET /enterprises/{id}/admins` | Required |
 | [EnterpriseAuditLog](docs/api/enterprise_audit_log.html) | `list` | `GET /enterprises/{id}/auditlog` | Required |
+| [EnterpriseSignupUrl](docs/api/enterprise_signup_url.html) | `load` | `GET /enterprises/{id}/signupUrl` | Required |
 | [Export](docs/api/export.html) | `create` | `POST /boards/{id}/exports` | Required |
 | [Export](docs/api/export.html) | `create` | `POST /organizations/{id}/exports` | Required |
 | [Export](docs/api/export.html) | `list` | `GET /organizations/{id}/exports` | Required |
@@ -785,7 +785,7 @@ Use the MCP server to expose supported API operations to an MCP client.
 Repository directory: `go-mcp/`. Not published. Build from the go-mcp directory.
 
 - `trello_list`: List records for an entity. Supported entities: `action`, `attachment`, `board`, `board_background`, `board_star`, `card`, `claimable_organization`, `custom_emoji`, `custom_field`, `custom_field_item`, `custom_sticker`, `emoji`, `enterprise_audit_log`, `export`, `member`, `membership`, `notification`, `notification_channel_setting`, `organization`, `pending_organization`, `plugin`, `plugin_data`, `saved_search`, `search`, `tag`, `token`, `trello_list`, `webhook`.
-- `trello_load`: Load one record for an entity. Supported entities: `action`, `action_reactions_summary`, `application_compliance`, `attachment`, `batch`, `board`, `board_background`, `board_star`, `bulk`, `card`, `card_check_item_state`, `card_list`, `check_item`, `checklist`, `custom_emoji`, `custom_field`, `custom_sticker`, `enterpris`, `enterpris_signup_url`, `enterprise_admin`, `export`, `export_download`, `label`, `list`, `member`, `member_privacy`, `members_voted`, `membership`, `new_billable_guest`, `notification`, `notification_channel_setting`, `notification_list`, `notification_member_creator`, `option`, `organization`, `plugin`, `plugin_data`, `reaction`, `saved_search`, `sticker`, `token`, `transferrable_organization`, `trello_list`, `webhook`.
+- `trello_load`: Load one record for an entity. Supported entities: `action`, `action_reactions_summary`, `application_compliance`, `attachment`, `batch`, `board`, `board_background`, `board_star`, `bulk`, `card`, `card_check_item_state`, `card_list`, `check_item`, `checklist`, `custom_emoji`, `custom_field`, `custom_sticker`, `enterprise`, `enterprise_admin`, `enterprise_signup_url`, `export`, `export_download`, `label`, `list`, `member`, `member_privacy`, `members_voted`, `membership`, `new_billable_guest`, `notification`, `notification_channel_setting`, `notification_list`, `notification_member_creator`, `option`, `organization`, `plugin`, `plugin_data`, `reaction`, `saved_search`, `sticker`, `token`, `transferrable_organization`, `trello_list`, `webhook`.
 
 ## Operational features
 

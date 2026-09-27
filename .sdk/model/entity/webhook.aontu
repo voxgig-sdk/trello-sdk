@@ -1,0 +1,668 @@
+# Entity: webhook
+
+main: kit: entity: webhook: {
+
+  alias: field: {}
+
+  fields: {
+    active: {
+      h: "Active"
+      n: "active"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    callbackURL: {
+      fo: "url"
+      h: "Callback Url"
+      n: "callbackURL"
+      r: false
+      t: "`$STRING`"
+    }
+    consecutiveFailures: {
+      h: "Consecutive Failures"
+      n: "consecutiveFailures"
+      r: false
+      t: "`$NUMBER`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      t: "`$STRING`"
+    }
+    firstConsecutiveFailDate: {
+      fo: "date"
+      h: "First Consecutive Fail Date"
+      n: "firstConsecutiveFailDate"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idModel: {
+      h: "Id Model"
+      n: "idModel"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "webhook"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /webhooks/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "active"
+                or: "active"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "callback_url"
+                or: "callback_url"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "description"
+                or: "description"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_model"
+                or: "id_model"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/webhooks/"
+          q: {
+            exist: [
+              "active"
+              "callback_url"
+              "description"
+              "id_model"
+            ]
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /tokens/{token}/webhooks"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "token_id"
+                or: "token"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "callback_url"
+                or: "callback_url"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "description"
+                or: "description"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_model"
+                or: "id_model"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tokens/{token}/webhooks"
+          q: {
+            exist: [
+              "callback_url"
+              "description"
+              "id_model"
+              "token_id"
+            ]
+          }
+          r: {
+            param: {
+              token: "token_id"
+            }
+          }
+          s: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /tokens/{token}/webhooks"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "token_id"
+                or: "token"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tokens/{token}/webhooks"
+          q: {
+            exist: [
+              "token_id"
+            ]
+          }
+          r: {
+            param: {
+              token: "token_id"
+            }
+          }
+          s: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /webhooks/{id}/{field}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "field"
+                or: "field"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/webhooks/{id}/{field}"
+          q: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /tokens/{token}/webhooks/{idWebhook}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_webhook"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "token_id"
+                or: "token"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tokens/{token}/webhooks/{idWebhook}"
+          q: {
+            exist: [
+              "id"
+              "token_id"
+            ]
+          }
+          r: {
+            param: {
+              idWebhook: "id"
+              token: "token_id"
+            }
+          }
+          s: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /webhooks/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/webhooks/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /tokens/{token}/webhooks/{idWebhook}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_webhook"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "token_id"
+                or: "token"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/tokens/{token}/webhooks/{idWebhook}"
+          q: {
+            exist: [
+              "id"
+              "token_id"
+            ]
+          }
+          r: {
+            param: {
+              idWebhook: "id"
+              token: "token_id"
+            }
+          }
+          s: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /webhooks/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/webhooks/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /webhooks/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "active"
+                or: "active"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "callback_url"
+                or: "callback_url"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "description"
+                or: "description"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_model"
+                or: "id_model"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/webhooks/{id}"
+          q: {
+            exist: [
+              "active"
+              "callback_url"
+              "description"
+              "id"
+              "id_model"
+            ]
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /tokens/{token}/webhooks/{idWebhook}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_webhook"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "token_id"
+                or: "token"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "callback_url"
+                or: "callback_url"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "description"
+                or: "description"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_model"
+                or: "id_model"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/tokens/{token}/webhooks/{idWebhook}"
+          q: {
+            exist: [
+              "callback_url"
+              "description"
+              "id"
+              "id_model"
+              "token_id"
+            ]
+          }
+          r: {
+            param: {
+              idWebhook: "id"
+              token: "token_id"
+            }
+          }
+          s: [
+            {
+              lit: "tokens"
+            }
+            {
+              var: "token_id"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.token")]
+  ]
+
+}

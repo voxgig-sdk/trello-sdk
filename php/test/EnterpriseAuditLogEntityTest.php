@@ -87,9 +87,7 @@ class EnterpriseAuditLogEntityTest extends TestCase
 
         // LIST
         $enterprise_audit_log_ref01_ent = $client->EnterpriseAuditLog(null);
-        $enterprise_audit_log_ref01_match = [
-            "enterpris_id" => $setup["idmap"]["enterpris01"],
-        ];
+        $enterprise_audit_log_ref01_match = [];
 
         $enterprise_audit_log_ref01_list_result = $enterprise_audit_log_ref01_ent->list($enterprise_audit_log_ref01_match, null);
         $this->assertIsArray($enterprise_audit_log_ref01_list_result);
@@ -112,7 +110,7 @@ function enterprise_audit_log_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03", "enterpris01", "enterpris02", "enterpris03"] as $k) {
+    foreach (["enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

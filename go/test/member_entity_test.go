@@ -104,7 +104,7 @@ func TestMemberEntity(t *testing.T) {
 			vs.GetPath(setup.data, []any{"new", "member"}), "member_ref01"))
 		memberRef01Data["action_id"] = setup.idmap["action01"]
 		memberRef01Data["board_id"] = setup.idmap["board01"]
-		memberRef01Data["enterpris_id"] = setup.idmap["enterpris01"]
+		memberRef01Data["enterprise_id"] = setup.idmap["enterprise01"]
 		memberRef01Data["organization_id"] = setup.idmap["organization01"]
 		memberRef01Data["token_id"] = setup.idmap["token01"]
 
@@ -236,7 +236,7 @@ func memberBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"member01", "member02", "member03", "action01", "action02", "action03", "board01", "board02", "board03", "card01", "card02", "card03", "enterpris01", "enterpris02", "enterpris03", "notification01", "notification02", "notification03", "organization01", "organization02", "organization03", "token01", "token02", "token03"},
+		[]any{"member01", "member02", "member03", "action01", "action02", "action03", "board01", "board02", "board03", "card01", "card02", "card03", "enterprise01", "enterprise02", "enterprise03", "notification01", "notification02", "notification03", "organization01", "organization02", "organization03", "token01", "token02", "token03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

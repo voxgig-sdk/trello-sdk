@@ -86,7 +86,7 @@ describe("PendingOrganizationEntity", function()
     -- LIST
     local pending_organization_ref01_ent = client:PendingOrganization(nil)
     local pending_organization_ref01_match = {
-      ["enterpris_id"] = setup.idmap["enterpris01"],
+      ["enterprise_id"] = setup.idmap["enterprise01"],
     }
 
     local pending_organization_ref01_list_result, err = pending_organization_ref01_ent:list(pending_organization_ref01_match, nil)
@@ -116,7 +116,7 @@ function pending_organization_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "pending_organization01", "pending_organization02", "pending_organization03", "enterpris01", "enterpris02", "enterpris03" },
+    { "pending_organization01", "pending_organization02", "pending_organization03", "enterprise01", "enterprise02", "enterprise03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

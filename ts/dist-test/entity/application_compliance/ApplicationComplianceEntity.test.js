@@ -44,10 +44,6 @@ const live_runner_1 = require("../../live-runner");
 const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 (0, utility_1.loadEnvLocal)(__dirname + '/../../../.env.local');
 (0, node_test_1.describe)('ApplicationComplianceEntity', async () => {
     // Per-test live pacing. Delay is read from sdk-test-control.json's
@@ -66,7 +62,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [], "name": "application_compliance", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "key", "orig": "key", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /applications/{key}/compliance", "json": "{\"operationId\":\"applications-key-compliance\",\"parameters\":[{\"in\":\"path\",\"name\":\"key\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Success\"}},\"security\":[{\"APIKey\":[],\"APIToken\":[]}],\"securitySchemes\":{\"APIKey\":{\"in\":\"query\",\"name\":\"key\",\"type\":\"apiKey\"},\"APIToken\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/applications/{key}/compliance", "segments": [{ "lit": "applications" }, { "var": "key" }, { "lit": "compliance" }], "select": { "exist": ["key"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [["application"]] }, "key$": "application_compliance", "name__orig": "application_compliance", "Name": "ApplicationCompliance", "name_": "application_compliance", "name-": "application-compliance", "NAME": "APPLICATION_COMPLIANCE", "index$": 4 }, { "active": true, "entity": "application_compliance", "key$": "BasicApplicationComplianceFlow", "kind": "basic", "name": "BasicApplicationComplianceFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "application_compliance_ref01", "srcdatavar": "application_compliance_ref01_data", "suffix": "_dt0" }, "match": { "id": "application_compliance01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-application_compliance_ref01" } }], "index$": 0 }] }, 'ApplicationCompliance');
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "application_compliance", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /applications/{key}/compliance", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "key", "or": "key", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/applications/{key}/compliance", "q": { "exist": ["key"] }, "r": {}, "s": [{ "lit": "applications" }, { "var": "key" }, { "lit": "compliance" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "application_compliance", "name__orig": "application_compliance", "Name": "ApplicationCompliance", "name_": "application_compliance", "name-": "application-compliance", "NAME": "APPLICATION_COMPLIANCE", "index$": 3 }, { "active": true, "entity": "application_compliance", "key$": "BasicApplicationComplianceFlow", "kind": "basic", "name": "BasicApplicationComplianceFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "application_compliance_ref01", "srcdatavar": "application_compliance_ref01_data", "suffix": "_dt0" }, "m": { "id": "application_compliance01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-application_compliance_ref01" } }], "index$": 0 }] }, 'ApplicationCompliance', { "GET /applications/{key}/compliance": { "protocol": "http", "parameters": [{ "name": "key", "in": "path", "required": true, "schema": { "type": "string" }, "index$": 0 }] } });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -92,7 +88,7 @@ function basicSetup(extra) {
     const struct = client.utility().struct;
     const merge = struct.merge;
     const transform = struct.transform;
-    let idmap = transform(['application_compliance01', 'application_compliance02', 'application_compliance03', 'application01', 'application02', 'application03'], {
+    let idmap = transform(['application_compliance01', 'application_compliance02', 'application_compliance03'], {
         '`$PACK`': ['', {
                 '`$KEY`': '`$COPY`',
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']

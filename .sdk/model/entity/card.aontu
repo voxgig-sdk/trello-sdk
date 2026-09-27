@@ -1,0 +1,1802 @@
+# Entity: card
+
+main: kit: entity: card: {
+
+  alias: field: {}
+
+  fields: {
+    address: {
+      h: "Address"
+      n: "address"
+      r: false
+      t: "`$STRING`"
+    }
+    badges: {
+      h: "Badges"
+      n: "badges"
+      r: false
+      t: "`$OBJECT`"
+    }
+    cardRole: {
+      h: "Card Role"
+      n: "cardRole"
+      r: false
+      t: "`$STRING`"
+    }
+    checkItemStates: {
+      h: "Check Item States"
+      n: "checkItemStates"
+      r: false
+      t: "`$ARRAY`"
+    }
+    closed: {
+      h: "Closed"
+      n: "closed"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    coordinates: {
+      h: "Coordinates"
+      n: "coordinates"
+      r: false
+      t: "`$STRING`"
+    }
+    cover: {
+      h: "Cover"
+      n: "cover"
+      r: false
+      t: "`$OBJECT`"
+    }
+    creationMethod: {
+      h: "Creation Method"
+      n: "creationMethod"
+      r: false
+      t: "`$STRING`"
+    }
+    dateLastActivity: {
+      fo: "date-time"
+      h: "Date Last Activity"
+      n: "dateLastActivity"
+      r: false
+      t: "`$STRING`"
+    }
+    desc: {
+      h: "Desc"
+      n: "desc"
+      r: false
+      t: "`$STRING`"
+    }
+    descData: {
+      h: "Desc Data"
+      n: "descData"
+      r: false
+      t: "`$OBJECT`"
+    }
+    due: {
+      fo: "date"
+      h: "Due"
+      n: "due"
+      r: false
+      t: "`$STRING`"
+    }
+    dueReminder: {
+      h: "Due Reminder"
+      n: "dueReminder"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idAttachmentCover: {
+      h: "Id Attachment Cover"
+      n: "idAttachmentCover"
+      r: false
+      t: "`$STRING`"
+    }
+    idBoard: {
+      h: "Id Board"
+      n: "idBoard"
+      r: false
+      t: "`$STRING`"
+    }
+    idChecklists: {
+      h: "Id Checklists"
+      n: "idChecklists"
+      r: false
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
+    }
+    idLabels: {
+      h: "Id Labels"
+      n: "idLabels"
+      r: false
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
+    }
+    idList: {
+      h: "Id List"
+      n: "idList"
+      r: false
+      t: "`$STRING`"
+    }
+    idMembers: {
+      h: "Id Members"
+      n: "idMembers"
+      r: false
+      t: "`$ARRAY`"
+    }
+    idMembersVoted: {
+      h: "Id Members Voted"
+      n: "idMembersVoted"
+      r: false
+      t: "`$ARRAY`"
+    }
+    idShort: {
+      h: "Id Short"
+      n: "idShort"
+      r: false
+      t: "`$INTEGER`"
+    }
+    labels: {
+      h: "Labels"
+      n: "labels"
+      r: false
+      t: "`$ARRAY`"
+    }
+    limits: {
+      h: "Limits"
+      n: "limits"
+      r: false
+      t: "`$OBJECT`"
+    }
+    locationName: {
+      h: "Location Name"
+      n: "locationName"
+      r: false
+      t: "`$STRING`"
+    }
+    manualCoverAttachment: {
+      h: "Manual Cover Attachment"
+      n: "manualCoverAttachment"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    mirrorSourceId: {
+      h: "Mirror Source Id"
+      n: "mirrorSourceId"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    pos: {
+      fo: "float"
+      h: "Pos"
+      n: "pos"
+      r: false
+      t: "`$NUMBER`"
+    }
+    shortLink: {
+      h: "Short Link"
+      n: "shortLink"
+      r: false
+      t: "`$STRING`"
+    }
+    shortUrl: {
+      fo: "url"
+      h: "Short Url"
+      n: "shortUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    subscribed: {
+      h: "Subscribed"
+      n: "subscribed"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    url: {
+      fo: "url"
+      h: "Url"
+      n: "url"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "card"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /cards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "address"
+                or: "address"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "card_role"
+                or: "card_role"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "coordinate"
+                or: "coordinate"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "desc"
+                or: "desc"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "due"
+                or: "due"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "due_complete"
+                or: "due_complete"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "file_source"
+                or: "file_source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_card_source"
+                or: "id_card_source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "id_label"
+                or: "id_label"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_list"
+                or: "id_list"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "id_member"
+                or: "id_member"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "keep_from_source"
+                or: "keep_from_source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "location_name"
+                or: "location_name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "mime_type"
+                or: "mime_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "pos"
+                or: "pos"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "url_source"
+                or: "url_source"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards"
+          q: {
+            exist: [
+              "address"
+              "card_role"
+              "coordinate"
+              "desc"
+              "due"
+              "due_complete"
+              "file_source"
+              "id_card_source"
+              "id_label"
+              "id_list"
+              "id_member"
+              "keep_from_source"
+              "location_name"
+              "mime_type"
+              "name"
+              "pos"
+              "start"
+              "url_source"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /cards/{id}/attachments"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "file"
+                or: "file"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "mime_type"
+                or: "mime_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "set_cover"
+                or: "set_cover"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "url"
+                or: "url"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards/{id}/attachments"
+          q: {
+            "$action": "attachment"
+            exist: [
+              "file"
+              "id"
+              "mime_type"
+              "name"
+              "set_cover"
+              "url"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "attachments"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /cards/{id}/stickers"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "image"
+                or: "image"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "left"
+                or: "left"
+                r: true
+                t: "`$NUMBER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "rotate"
+                or: "rotate"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "top"
+                or: "top"
+                r: true
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "z_index"
+                or: "z_index"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards/{id}/stickers"
+          q: {
+            "$action": "sticker"
+            exist: [
+              "id"
+              "image"
+              "left"
+              "rotate"
+              "top"
+              "z_index"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "stickers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /cards/{id}/checklists"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_checklist_source"
+                or: "id_checklist_source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "pos"
+                or: "pos"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards/{id}/checklists"
+          q: {
+            "$action": "checklist"
+            exist: [
+              "id"
+              "id_checklist_source"
+              "name"
+              "pos"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "checklists"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /cards/{id}/labels"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "color"
+                or: "color"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards/{id}/labels"
+          q: {
+            "$action": "label"
+            exist: [
+              "color"
+              "id"
+              "name"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "labels"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /cards/{id}/idLabels"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "value"
+                or: "value"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards/{id}/idLabels"
+          q: {
+            "$action": "id_label"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "idLabels"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /cards/{id}/idMembers"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "value"
+                or: "value"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards/{id}/idMembers"
+          q: {
+            "$action": "id_member"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "idMembers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /cards/{id}/membersVoted"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "value"
+                or: "value"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards/{id}/membersVoted"
+          q: {
+            "$action": "members_voted"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "membersVoted"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /cards/{id}/markAssociatedNotificationsRead"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/cards/{id}/markAssociatedNotificationsRead"
+          q: {
+            "$action": "mark_associated_notifications_read"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "markAssociatedNotificationsRead"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /actions/{id}/card"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "action_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/actions/{id}/card"
+          q: {
+            exist: [
+              "action_id"
+              "field"
+            ]
+          }
+          r: {
+            param: {
+              id: "action_id"
+            }
+          }
+          s: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "action_id"
+            }
+            {
+              lit: "card"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /members/{id}/cards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "visible"
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/cards"
+          q: {
+            exist: [
+              "filter"
+              "member_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "cards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /lists/{id}/cards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "list_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/lists/{id}/cards"
+          q: {
+            exist: [
+              "list_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "list_id"
+            }
+          }
+          s: [
+            {
+              lit: "lists"
+            }
+            {
+              var: "list_id"
+            }
+            {
+              lit: "cards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cards/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "action"
+                or: "action"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "attachment"
+                or: "attachment"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "attachment_field"
+                or: "attachment_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "board"
+                or: "board"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "board_field"
+                or: "board_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "check_item_state"
+                or: "check_item_state"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "none"
+                k: "query"
+                n: "checklist"
+                or: "checklist"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "checklist_field"
+                or: "checklist_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "custom_field_item"
+                or: "custom_field_item"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "list"
+                or: "list"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "member"
+                or: "member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "member_field"
+                or: "member_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "member_voted_field"
+                or: "member_voted_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "members_voted"
+                or: "members_voted"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "plugin_data"
+                or: "plugin_data"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "sticker"
+                or: "sticker"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "sticker_field"
+                or: "sticker_field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/{id}"
+          q: {
+            exist: [
+              "action"
+              "attachment"
+              "attachment_field"
+              "board"
+              "board_field"
+              "check_item_state"
+              "checklist"
+              "checklist_field"
+              "custom_field_item"
+              "field"
+              "id"
+              "list"
+              "member"
+              "member_field"
+              "member_voted_field"
+              "members_voted"
+              "plugin_data"
+              "sticker"
+              "sticker_field"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /boards/{id}/cards/{filter}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "filter"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/cards/{filter}"
+          q: {
+            exist: [
+              "board_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              filter: "id"
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /cards/{id}/{field}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "field"
+                or: "field"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/{id}/{field}"
+          q: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /notifications/{id}/card"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "notification_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/notifications/{id}/card"
+          q: {
+            exist: [
+              "field"
+              "notification_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "notification_id"
+            }
+          }
+          s: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "notification_id"
+            }
+            {
+              lit: "card"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /boards/{id}/cards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/cards"
+          q: {
+            exist: [
+              "board_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "cards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /checklists/{id}/cards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "checklist_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/checklists/{id}/cards"
+          q: {
+            exist: [
+              "checklist_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "checklist_id"
+            }
+          }
+          s: [
+            {
+              lit: "checklists"
+            }
+            {
+              var: "checklist_id"
+            }
+            {
+              lit: "cards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /cards/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/cards/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /cards/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "address"
+                or: "address"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "closed"
+                or: "closed"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "coordinate"
+                or: "coordinate"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "cover"
+                or: "cover"
+                r: false
+                t: "`$OBJECT`"
+              }
+              {
+                k: "query"
+                n: "desc"
+                or: "desc"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "due"
+                or: "due"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "due_complete"
+                or: "due_complete"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_attachment_cover"
+                or: "id_attachment_cover"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_board"
+                or: "id_board"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_label"
+                or: "id_label"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_list"
+                or: "id_list"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "query"
+                n: "id_member"
+                or: "id_member"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "location_name"
+                or: "location_name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "pos"
+                or: "pos"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "subscribed"
+                or: "subscribed"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/cards/{id}"
+          q: {
+            exist: [
+              "address"
+              "closed"
+              "coordinate"
+              "cover"
+              "desc"
+              "due"
+              "due_complete"
+              "id"
+              "id_attachment_cover"
+              "id_board"
+              "id_label"
+              "id_list"
+              "id_member"
+              "location_name"
+              "name"
+              "pos"
+              "start"
+              "subscribed"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /cards/{idCard}/customFields"
+            source: "openapi3"
+            version: 2
+          }
+          m: "PUT"
+          o: "/cards/{idCard}/customFields"
+          q: {
+            "$action": "custom_field"
+          }
+          r: {
+            param: {
+              idCard: "id_card"
+            }
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id_card"
+            }
+            {
+              lit: "customFields"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.action")]
+    [path("$.main.kit.entity.board")]
+    [path("$.main.kit.entity.checklist")]
+    [path("$.main.kit.entity.list")]
+    [path("$.main.kit.entity.member")]
+    [path("$.main.kit.entity.notification")]
+  ]
+
+}

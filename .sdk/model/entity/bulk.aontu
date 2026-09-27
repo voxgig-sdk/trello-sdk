@@ -1,0 +1,216 @@
+# Entity: bulk
+
+main: kit: entity: bulk: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "bulk"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /enterprises/{id}/organizations/bulk/{idOrganizations}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id_organization"
+                r: true
+                t: "`$ARRAY`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/organizations/bulk/{idOrganizations}"
+          q: {
+            exist: [
+              "enterprise_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+              idOrganizations: "id"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "organizations"
+            }
+            {
+              lit: "bulk"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /enterprises/{id}/transferrable/bulk/{idOrganizations}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id_organization"
+                r: true
+                t: "`$ARRAY`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/transferrable/bulk/{idOrganizations}"
+          q: {
+            exist: [
+              "enterprise_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+              idOrganizations: "id"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "transferrable"
+            }
+            {
+              lit: "bulk"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /enterprises/${id}/enterpriseJoinRequest/bulk"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "id_organization"
+                or: "id_organization"
+                r: true
+                t: "`$ARRAY`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/enterprises/${id}/enterpriseJoinRequest/bulk"
+          q: {
+            exist: [
+              "id"
+              "id_organization"
+            ]
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              lit: "${id}"
+            }
+            {
+              lit: "enterpriseJoinRequest"
+            }
+            {
+              lit: "bulk"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.enterprise")]
+  ]
+
+}

@@ -1,0 +1,22 @@
+# BasicEnterpriseAuditLogFlow
+
+main: kit: flow: BasicEnterpriseAuditLogFlow:
+{
+  entity: "enterprise_audit_log",
+  kind: "basic",
+  name: "BasicEnterpriseAuditLogFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "enterprise_audit_log_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEnterpriseAuditLogFlow"
+}

@@ -88,7 +88,7 @@ class PendingOrganizationEntityTest extends TestCase
         // LIST
         $pending_organization_ref01_ent = $client->PendingOrganization(null);
         $pending_organization_ref01_match = [
-            "enterpris_id" => $setup["idmap"]["enterpris01"],
+            "enterprise_id" => $setup["idmap"]["enterprise01"],
         ];
 
         $pending_organization_ref01_list_result = $pending_organization_ref01_ent->list($pending_organization_ref01_match, null);
@@ -112,7 +112,7 @@ function pending_organization_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["pending_organization01", "pending_organization02", "pending_organization03", "enterpris01", "enterpris02", "enterpris03"] as $k) {
+    foreach (["pending_organization01", "pending_organization02", "pending_organization03", "enterprise01", "enterprise02", "enterprise03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

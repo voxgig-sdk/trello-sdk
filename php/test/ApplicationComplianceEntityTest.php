@@ -70,7 +70,7 @@ function application_compliance_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["application_compliance01", "application_compliance02", "application_compliance03", "application01", "application02", "application03"] as $k) {
+    foreach (["application_compliance01", "application_compliance02", "application_compliance03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

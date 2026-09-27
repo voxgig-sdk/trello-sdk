@@ -81,7 +81,7 @@ describe("MemberEntity", function()
       vs.getpath(setup.data, "new.member"), "member_ref01"))
     member_ref01_data["action_id"] = setup.idmap["action01"]
     member_ref01_data["board_id"] = setup.idmap["board01"]
-    member_ref01_data["enterpris_id"] = setup.idmap["enterpris01"]
+    member_ref01_data["enterprise_id"] = setup.idmap["enterprise01"]
     member_ref01_data["organization_id"] = setup.idmap["organization01"]
     member_ref01_data["token_id"] = setup.idmap["token01"]
 
@@ -176,7 +176,7 @@ function member_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "member01", "member02", "member03", "action01", "action02", "action03", "board01", "board02", "board03", "card01", "card02", "card03", "enterpris01", "enterpris02", "enterpris03", "notification01", "notification02", "notification03", "organization01", "organization02", "organization03", "token01", "token02", "token03" },
+    { "member01", "member02", "member03", "action01", "action02", "action03", "board01", "board02", "board03", "card01", "card02", "card03", "enterprise01", "enterprise02", "enterprise03", "notification01", "notification02", "notification03", "organization01", "organization02", "organization03", "token01", "token02", "token03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

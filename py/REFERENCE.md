@@ -54,10 +54,6 @@ Create a new `ActionReactionsSummaryEntity` instance. Pass `None` for no initial
 
 Create a new `AdminEntity` instance. Pass `None` for no initial data.
 
-#### `Application(data=None)`
-
-Create a new `ApplicationEntity` instance. Pass `None` for no initial data.
-
 #### `ApplicationCompliance(data=None)`
 
 Create a new `ApplicationComplianceEntity` instance. Pass `None` for no initial data.
@@ -146,13 +142,9 @@ Create a new `EmailPositionEntity` instance. Pass `None` for no initial data.
 
 Create a new `EmojiEntity` instance. Pass `None` for no initial data.
 
-#### `Enterpris(data=None)`
+#### `Enterprise(data=None)`
 
-Create a new `EnterprisEntity` instance. Pass `None` for no initial data.
-
-#### `EnterprisSignupUrl(data=None)`
-
-Create a new `EnterprisSignupUrlEntity` instance. Pass `None` for no initial data.
+Create a new `EnterpriseEntity` instance. Pass `None` for no initial data.
 
 #### `EnterpriseAdmin(data=None)`
 
@@ -161,6 +153,10 @@ Create a new `EnterpriseAdminEntity` instance. Pass `None` for no initial data.
 #### `EnterpriseAuditLog(data=None)`
 
 Create a new `EnterpriseAuditLogEntity` instance. Pass `None` for no initial data.
+
+#### `EnterpriseSignupUrl(data=None)`
+
+Create a new `EnterpriseSignupUrlEntity` instance. Pass `None` for no initial data.
 
 #### `Export(data=None)`
 
@@ -210,10 +206,6 @@ Create a new `MembersVotedEntity` instance. Pass `None` for no initial data.
 
 Create a new `MembershipEntity` instance. Pass `None` for no initial data.
 
-#### `MostRecent(data=None)`
-
-Create a new `MostRecentEntity` instance. Pass `None` for no initial data.
-
 #### `NewBillableGuest(data=None)`
 
 Create a new `NewBillableGuestEntity` instance. Pass `None` for no initial data.
@@ -233,10 +225,6 @@ Create a new `NotificationListEntity` instance. Pass `None` for no initial data.
 #### `NotificationMemberCreator(data=None)`
 
 Create a new `NotificationMemberCreatorEntity` instance. Pass `None` for no initial data.
-
-#### `NotificationsChannelSetting(data=None)`
-
-Create a new `NotificationsChannelSettingEntity` instance. Pass `None` for no initial data.
 
 #### `Option(data=None)`
 
@@ -516,7 +504,7 @@ admin = client.Admin()
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.Admin().remove({"enterpris_id": "enterpris_id", "id": "id"})
+result = client.Admin().remove({"enterprise_id": "enterprise_id", "id": "id"})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -525,7 +513,7 @@ Update an existing entity. The data must include the entity `id`. Returns the up
 
 ```python
 result = client.Admin().update({
-    "enterpris_id": "enterpris_id",
+    "enterprise_id": "enterprise_id",
     "id": "id",
     # Fields to update
 })
@@ -552,41 +540,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `AdminEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ApplicationEntity
-
-```python
-application = client.Application()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ApplicationEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -1172,7 +1125,7 @@ bulk = client.Bulk()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Bulk().load({"id": [], "enterpris_id": "enterpris_id"})
+result = client.Bulk().load({"id": [], "enterprise_id": "enterprise_id"})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -1621,7 +1574,7 @@ claimable_organization = client.ClaimableOrganization()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ClaimableOrganization().list({"enterpris_id": "example"})
+results = client.ClaimableOrganization().list({"enterprise_id": "example"})
 for claimable_organization in results:
     print(claimable_organization)
 ```
@@ -2153,10 +2106,10 @@ Return the entity name.
 
 ---
 
-## EnterprisEntity
+## EnterpriseEntity
 
 ```python
-enterpris = client.Enterpris()
+enterprise = client.Enterprise()
 ```
 
 ### Fields
@@ -2189,7 +2142,7 @@ enterpris = client.Enterpris()
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.Enterpris().create({
+result = client.Enterprise().create({
     "id": "example_id",  # str
 })
 ```
@@ -2199,7 +2152,7 @@ result = client.Enterpris().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Enterpris().load({"id": "enterpris_id"})
+result = client.Enterprise().load({"id": "enterprise_id"})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -2207,8 +2160,8 @@ result = client.Enterpris().load({"id": "enterpris_id"})
 Update an existing entity. The data must include the entity `id`. Returns the updated entity data and raises on error.
 
 ```python
-result = client.Enterpris().update({
-    "id": "enterpris_id",
+result = client.Enterprise().update({
+    "id": "enterprise_id",
     "id_organization": "id_organization",
     # Fields to update
 })
@@ -2234,59 +2187,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `EnterprisEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## EnterprisSignupUrlEntity
-
-```python
-enterpris_signup_url = client.EnterprisSignupUrl()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `str` | No |  |
-| `signupUrl` | `str` | No |  |
-
-### Operations
-
-#### `load(reqmatch, ctrl=None) -> dict`
-
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
-
-```python
-result = client.EnterprisSignupUrl().load({"id": "enterpris_signup_url_id"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `EnterprisSignupUrlEntity` instance with the same options.
+Create a new `EnterpriseEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2316,7 +2217,7 @@ enterprise_admin = client.EnterpriseAdmin()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.EnterpriseAdmin().load({"enterpris_id": "enterpris_id"})
+result = client.EnterpriseAdmin().load({"id": "enterprise_admin_id"})
 ```
 
 ### Common Methods
@@ -2359,6 +2260,7 @@ enterprise_audit_log = client.EnterpriseAuditLog()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `date` | `str` | No |  |
+| `id` | `str` | No |  |
 | `idAction` | `str` | No |  |
 | `member` | `dict` | No |  |
 | `memberCreator` | `dict` | No |  |
@@ -2372,7 +2274,7 @@ enterprise_audit_log = client.EnterpriseAuditLog()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.EnterpriseAuditLog().list({"enterpris_id": "example"})
+results = client.EnterpriseAuditLog().list({"id": "example"})
 for enterprise_audit_log in results:
     print(enterprise_audit_log)
 ```
@@ -2398,6 +2300,58 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `EnterpriseAuditLogEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## EnterpriseSignupUrlEntity
+
+```python
+enterprise_signup_url = client.EnterpriseSignupUrl()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+| `signupUrl` | `str` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl=None) -> dict`
+
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
+
+```python
+result = client.EnterpriseSignupUrl().load({"id": "enterprise_signup_url_id"})
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `EnterpriseSignupUrlEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -3205,41 +3159,6 @@ Return the entity name.
 
 ---
 
-## MostRecentEntity
-
-```python
-most_recent = client.MostRecent()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `MostRecentEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## NewBillableGuestEntity
 
 ```python
@@ -3560,41 +3479,6 @@ Return the entity name.
 
 ---
 
-## NotificationsChannelSettingEntity
-
-```python
-notifications_channel_setting = client.NotificationsChannelSetting()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `NotificationsChannelSettingEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## OptionEntity
 
 ```python
@@ -3738,7 +3622,7 @@ result = client.Organization().create({
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Organization().list({"enterpris_id": "example"})
+results = client.Organization().list({"enterprise_id": "example"})
 for organization in results:
     print(organization)
 ```
@@ -3825,7 +3709,7 @@ pending_organization = client.PendingOrganization()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PendingOrganization().list({"enterpris_id": "example"})
+results = client.PendingOrganization().list({"enterprise_id": "example"})
 for pending_organization in results:
     print(pending_organization)
 ```
@@ -4731,7 +4615,7 @@ transferrable_organization = client.TransferrableOrganization()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.TransferrableOrganization().load({"id": "transferrable_organization_id", "enterpris_id": "enterpris_id"})
+result = client.TransferrableOrganization().load({"id": "transferrable_organization_id", "enterprise_id": "enterprise_id"})
 ```
 
 ### Common Methods
@@ -4944,14 +4828,14 @@ Return the entity name.
 
 | Feature | Version | Description |
 | --- | --- | --- |
-| `debug` | 0.0.1 | Request/response capture ring buffer for debugging |
-| `idempotency` | 0.0.1 | Idempotency keys for safe retries of mutating operations |
-| `metrics` | 0.0.1 | Statistics capture: per-operation counters and latency |
-| `paging` | 0.0.1 | Pagination signals for list operations |
-| `ratelimit` | 0.0.1 | Client-side rate limiting via a token bucket |
-| `retry` | 0.0.1 | Automatic retry of transient failures with exponential backoff |
-| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
-| `timeout` | 0.0.1 | Per-request timeout with transport abort |
+| `debug` | 0.0.1 | Debug capture |
+| `idempotency` | 0.0.1 | Idempotency |
+| `metrics` | 0.0.1 | Metrics |
+| `paging` | 0.0.1 | Paging |
+| `ratelimit` | 0.0.1 | Rate limiting |
+| `retry` | 0.0.1 | Retry |
+| `test` | 0.0.1 | Test transport |
+| `timeout` | 0.0.1 | Timeout |
 
 
 Features are activated via the `feature` option:
@@ -4997,7 +4881,7 @@ rather than the transport, so their order does not affect what they observe.
 
 #### `debug`
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 **Configuration**
 
@@ -5028,7 +4912,7 @@ its default unless you name it.
 
 #### `idempotency`
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 **Configuration**
 
@@ -5059,7 +4943,7 @@ its default unless you name it.
 
 #### `metrics`
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 **Configuration**
 
@@ -5087,7 +4971,7 @@ its default unless you name it.
 
 #### `paging`
 
-Pagination signals for list operations.
+Paging.
 
 **Configuration**
 
@@ -5122,7 +5006,7 @@ its default unless you name it.
 
 #### `ratelimit`
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 **Configuration**
 
@@ -5153,7 +5037,7 @@ its default unless you name it.
 
 #### `retry`
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 **Configuration**
 
@@ -5187,7 +5071,7 @@ its default unless you name it.
 
 #### `test`
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 **Configuration**
 
@@ -5218,7 +5102,7 @@ its default unless you name it.
 
 #### `timeout`
 
-Per-request timeout with transport abort.
+Timeout.
 
 **Configuration**
 

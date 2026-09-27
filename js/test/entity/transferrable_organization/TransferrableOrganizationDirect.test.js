@@ -41,12 +41,12 @@ describe('TransferrableOrganizationDirect', async () => {
 
     const params = {}
     if (!setup.live) {
-      params.enterpris_id = 'direct01'
+      params.enterprise_id = 'direct01'
       params.id = 'direct02'
     }
 
     const result = await client.direct({
-      path: 'enterprises/{enterpris_id}/transferrable/organization/{id}',
+      path: 'enterprises/{enterprise_id}/transferrable/organization/{id}',
       method: 'GET',
       params,
     })

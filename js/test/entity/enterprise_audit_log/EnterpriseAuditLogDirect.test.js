@@ -41,13 +41,13 @@ describe('EnterpriseAuditLogDirect', async () => {
 
     const params = {}
     if (setup.live) {
-      params.enterpris_id = setup.idmap['enterpris01']
+      params.id = setup.idmap['enterprise_audit_log01']
     } else {
-      params.enterpris_id = 'direct01'
+      params.id = 'direct01'
     }
 
     const result = await client.direct({
-      path: 'enterprises/{enterpris_id}/auditlog',
+      path: 'enterprises/{id}/auditlog',
       method: 'GET',
       params,
     })

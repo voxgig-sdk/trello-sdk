@@ -85,18 +85,6 @@ Create a new `Admin` entity instance.
 
 **Returns:** `AdminEntity` instance.
 
-#### `Application(data?: object)`
-
-Create a new `Application` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ApplicationEntity` instance.
-
 #### `ApplicationCompliance(data?: object)`
 
 Create a new `ApplicationCompliance` entity instance.
@@ -361,21 +349,9 @@ Create a new `Emoji` entity instance.
 
 **Returns:** `EmojiEntity` instance.
 
-#### `Enterpris(data?: object)`
+#### `Enterprise(data?: object)`
 
-Create a new `Enterpris` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `EnterprisEntity` instance.
-
-#### `EnterprisSignupUrl(data?: object)`
-
-Create a new `EnterprisSignupUrl` entity instance.
+Create a new `Enterprise` entity instance.
 
 **Parameters:**
 
@@ -383,7 +359,7 @@ Create a new `EnterprisSignupUrl` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `EnterprisSignupUrlEntity` instance.
+**Returns:** `EnterpriseEntity` instance.
 
 #### `EnterpriseAdmin(data?: object)`
 
@@ -408,6 +384,18 @@ Create a new `EnterpriseAuditLog` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `EnterpriseAuditLogEntity` instance.
+
+#### `EnterpriseSignupUrl(data?: object)`
+
+Create a new `EnterpriseSignupUrl` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `EnterpriseSignupUrlEntity` instance.
 
 #### `Export(data?: object)`
 
@@ -553,18 +541,6 @@ Create a new `Membership` entity instance.
 
 **Returns:** `MembershipEntity` instance.
 
-#### `MostRecent(data?: object)`
-
-Create a new `MostRecent` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `MostRecentEntity` instance.
-
 #### `NewBillableGuest(data?: object)`
 
 Create a new `NewBillableGuest` entity instance.
@@ -624,18 +600,6 @@ Create a new `NotificationMemberCreator` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `NotificationMemberCreatorEntity` instance.
-
-#### `NotificationsChannelSetting(data?: object)`
-
-Create a new `NotificationsChannelSetting` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `NotificationsChannelSettingEntity` instance.
 
 #### `Option(data?: object)`
 
@@ -1117,7 +1081,7 @@ const admin = client.Admin()
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.Admin().remove({ enterpris_id: 'enterpris_id', id: 'id' })
+const result = await client.Admin().remove({ enterprise_id: 'enterprise_id', id: 'id' })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -1126,7 +1090,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```ts
 const result = await client.Admin().update({
-  enterpris_id: 'enterpris_id',
+  enterprise_id: 'enterprise_id',
   id: 'id',
   // Fields to update
 })
@@ -1147,40 +1111,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `AdminEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TrelloSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ApplicationEntity
-
-```ts
-const application = client.Application()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ApplicationEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -1779,7 +1709,7 @@ const bulk = client.Bulk()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Bulk().load({ id: [], enterpris_id: 'enterpris_id' })
+const result = await client.Bulk().load({ id: [], enterprise_id: 'enterprise_id' })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -2268,7 +2198,7 @@ const claimable_organization = client.ClaimableOrganization()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ClaimableOrganization().list({ enterpris_id: "example" })
+const results = await client.ClaimableOrganization().list({ enterprise_id: "example" })
 ```
 
 ### Common Methods
@@ -2801,10 +2731,10 @@ Return a copy of the entity options.
 
 ---
 
-## EnterprisEntity
+## EnterpriseEntity
 
 ```ts
-const enterpris = client.Enterpris()
+const enterprise = client.Enterprise()
 ```
 
 ### Fields
@@ -2838,14 +2768,14 @@ remaining keys are sent as that action's payload.
 
 | Action | Route | Call |
 | --- | --- | --- |
-| `token` | `/enterprises/{id}/tokens` | `client.Enterpris().create({ $action: 'token', ... })` |
-| `organization` | `/enterprises/{id}/organizations` | `client.Enterpris().update({ $action: 'organization', ... })` |
+| `token` | `/enterprises/{id}/tokens` | `client.Enterprise().create({ $action: 'token', ... })` |
+| `organization` | `/enterprises/{id}/organizations` | `client.Enterprise().update({ $action: 'organization', ... })` |
 
 An action returns that action's OWN response, which is not necessarily a
-Enterpris record — check the API definition for its shape.
+Enterprise record — check the API definition for its shape.
 
 ```ts
-const result = await client.Enterpris().create({
+const result = await client.Enterprise().create({
   $action: 'token',
   /* ...the action's own arguments */
 })
@@ -2858,7 +2788,7 @@ const result = await client.Enterpris().create({
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Enterpris().create({
+const result = await client.Enterprise().create({
   id: 'example_id',
 })
 ```
@@ -2868,7 +2798,7 @@ const result = await client.Enterpris().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Enterpris().load({ id: 'enterpris_id' })
+const result = await client.Enterprise().load({ id: 'enterprise_id' })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -2876,8 +2806,8 @@ const result = await client.Enterpris().load({ id: 'enterpris_id' })
 Update an existing entity. The data must include the entity `id`.
 
 ```ts
-const result = await client.Enterpris().update({
-  id: 'enterpris_id',
+const result = await client.Enterprise().update({
+  id: 'enterprise_id',
   id_organization: 'id_organization',
   // Fields to update
 })
@@ -2897,58 +2827,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `EnterprisEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TrelloSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## EnterprisSignupUrlEntity
-
-```ts
-const enterpris_signup_url = client.EnterprisSignupUrl()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `string` | No |  |
-| `signupUrl` | `string` | No |  |
-
-### Operations
-
-#### `load(match: object, ctrl?: object)`
-
-Load a single entity matching the given criteria.
-
-```ts
-const result = await client.EnterprisSignupUrl().load({ id: 'enterpris_signup_url_id' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `EnterprisSignupUrlEntity` instance with the same client and
+Create a new `EnterpriseEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -2983,7 +2862,7 @@ const enterprise_admin = client.EnterpriseAdmin()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.EnterpriseAdmin().load({ enterpris_id: 'enterpris_id' })
+const result = await client.EnterpriseAdmin().load({ id: 'enterprise_admin_id' })
 ```
 
 ### Common Methods
@@ -3025,11 +2904,32 @@ const enterprise_audit_log = client.EnterpriseAuditLog()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `date` | `string` | No |  |
+| `id` | `string` | No |  |
 | `idAction` | `string` | No |  |
 | `member` | `Record<string, any>` | No |  |
 | `memberCreator` | `Record<string, any>` | No |  |
 | `organization` | `Record<string, any>` | No |  |
 | `type` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `auditlog` | `/enterprises/{id}/auditlog` | `client.EnterpriseAuditLog().list({ $action: 'auditlog', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+EnterpriseAuditLog record — check the API definition for its shape.
+
+```ts
+const result = await client.EnterpriseAuditLog().list({
+  $action: 'auditlog',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -3038,7 +2938,7 @@ const enterprise_audit_log = client.EnterpriseAuditLog()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.EnterpriseAuditLog().list({ enterpris_id: "example" })
+const results = await client.EnterpriseAuditLog().list({ id: "example" })
 ```
 
 ### Common Methods
@@ -3056,6 +2956,57 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `EnterpriseAuditLogEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `TrelloSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## EnterpriseSignupUrlEntity
+
+```ts
+const enterprise_signup_url = client.EnterpriseSignupUrl()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+| `signupUrl` | `string` | No |  |
+
+### Operations
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria.
+
+```ts
+const result = await client.EnterpriseSignupUrl().load({ id: 'enterprise_signup_url_id' })
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `EnterpriseSignupUrlEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3919,40 +3870,6 @@ Return a copy of the entity options.
 
 ---
 
-## MostRecentEntity
-
-```ts
-const most_recent = client.MostRecent()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `MostRecentEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TrelloSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## NewBillableGuestEntity
 
 ```ts
@@ -4284,40 +4201,6 @@ Return a copy of the entity options.
 
 ---
 
-## NotificationsChannelSettingEntity
-
-```ts
-const notifications_channel_setting = client.NotificationsChannelSetting()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `NotificationsChannelSettingEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TrelloSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## OptionEntity
 
 ```ts
@@ -4482,7 +4365,7 @@ const result = await client.Organization().create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Organization().list({ enterpris_id: "example" })
+const results = await client.Organization().list({ enterprise_id: "example" })
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -4566,7 +4449,7 @@ const pending_organization = client.PendingOrganization()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.PendingOrganization().list({ enterpris_id: "example" })
+const results = await client.PendingOrganization().list({ enterprise_id: "example" })
 ```
 
 ### Common Methods
@@ -5443,7 +5326,7 @@ const transferrable_organization = client.TransferrableOrganization()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.TransferrableOrganization().load({ id: 'transferrable_organization_id', enterpris_id: 'enterpris_id' })
+const result = await client.TransferrableOrganization().load({ id: 'transferrable_organization_id', enterprise_id: 'enterprise_id' })
 ```
 
 ### Common Methods
@@ -5649,14 +5532,14 @@ Return a copy of the entity options.
 
 | Feature | Version | Description |
 | --- | --- | --- |
-| `debug` | 0.0.1 | Request/response capture ring buffer for debugging |
-| `idempotency` | 0.0.1 | Idempotency keys for safe retries of mutating operations |
-| `metrics` | 0.0.1 | Statistics capture: per-operation counters and latency |
-| `paging` | 0.0.1 | Pagination signals for list operations |
-| `ratelimit` | 0.0.1 | Client-side rate limiting via a token bucket |
-| `retry` | 0.0.1 | Automatic retry of transient failures with exponential backoff |
-| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
-| `timeout` | 0.0.1 | Per-request timeout with transport abort |
+| `debug` | 0.0.1 | Debug capture |
+| `idempotency` | 0.0.1 | Idempotency |
+| `metrics` | 0.0.1 | Metrics |
+| `paging` | 0.0.1 | Paging |
+| `ratelimit` | 0.0.1 | Rate limiting |
+| `retry` | 0.0.1 | Retry |
+| `test` | 0.0.1 | Test transport |
+| `timeout` | 0.0.1 | Timeout |
 
 
 Features are activated via the `feature` option:
@@ -5702,7 +5585,7 @@ rather than the transport, so their order does not affect what they observe.
 
 #### `debug`
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 **Configuration**
 
@@ -5733,7 +5616,7 @@ its default unless you name it.
 
 #### `idempotency`
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 **Configuration**
 
@@ -5764,7 +5647,7 @@ its default unless you name it.
 
 #### `metrics`
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 **Configuration**
 
@@ -5792,7 +5675,7 @@ its default unless you name it.
 
 #### `paging`
 
-Pagination signals for list operations.
+Paging.
 
 **Configuration**
 
@@ -5827,7 +5710,7 @@ its default unless you name it.
 
 #### `ratelimit`
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 **Configuration**
 
@@ -5858,7 +5741,7 @@ its default unless you name it.
 
 #### `retry`
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 **Configuration**
 
@@ -5892,7 +5775,7 @@ its default unless you name it.
 
 #### `test`
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 **Configuration**
 
@@ -5923,7 +5806,7 @@ its default unless you name it.
 
 #### `timeout`
 
-Per-request timeout with transport abort.
+Timeout.
 
 **Configuration**
 

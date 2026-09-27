@@ -23,12 +23,12 @@ describe("BulkDirect", function()
     local params = {}
     local query = {}
     if not setup.live then
-      params["enterpris_id"] = "direct01"
+      params["enterprise_id"] = "direct01"
       params["id"] = "direct02"
     end
 
     local result, err = client:direct({
-      path = "enterprises/{enterpris_id}/organizations/bulk/{id}",
+      path = "enterprises/{enterprise_id}/organizations/bulk/{id}",
       method = "GET",
       params = params,
       query = query,

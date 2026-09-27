@@ -74,7 +74,7 @@ function enterprise_admin_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["enterprise_admin01", "enterprise_admin02", "enterprise_admin03", "enterpris01", "enterpris02", "enterpris03"] as $k) {
+    foreach (["enterprise_admin01", "enterprise_admin02", "enterprise_admin03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

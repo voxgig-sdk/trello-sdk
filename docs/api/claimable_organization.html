@@ -9,7 +9,6 @@
 <a href="../api/action.html">Action</a>
 <a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
 <a href="../api/admin.html">Admin</a>
-<a href="../api/application.html">Application</a>
 <a href="../api/application_compliance.html">ApplicationCompliance</a>
 <a href="../api/associated_domain.html">AssociatedDomain</a>
 <a href="../api/attachment.html">Attachment</a>
@@ -32,10 +31,10 @@
 <a href="../api/custom_sticker.html">CustomSticker</a>
 <a href="../api/email_position.html">EmailPosition</a>
 <a href="../api/emoji.html">Emoji</a>
-<a href="../api/enterpris.html">Enterpris</a>
-<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise.html">Enterprise</a>
 <a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
 <a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/enterprise_signup_url.html">EnterpriseSignupUrl</a>
 <a href="../api/export.html">Export</a>
 <a href="../api/export_download.html">ExportDownload</a>
 <a href="../api/generate.html">Generate</a>
@@ -48,13 +47,11 @@
 <a href="../api/member_privacy.html">MemberPrivacy</a>
 <a href="../api/members_voted.html">MembersVoted</a>
 <a href="../api/membership.html">Membership</a>
-<a href="../api/most_recent.html">MostRecent</a>
 <a href="../api/new_billable_guest.html">NewBillableGuest</a>
 <a href="../api/notification.html">Notification</a>
 <a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
 <a href="../api/notification_list.html">NotificationList</a>
 <a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
-<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
 <a href="../api/option.html">Option</a>
 <a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
 <a href="../api/organization.html">Organization</a>
@@ -88,14 +85,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="claimableorganization">ClaimableOrganization</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="claimableorganization">ClaimableOrganization</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -116,6 +113,36 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">claimable_organizations, err := client.ClaimableOrganization(nil).List(map[string]any{&quot;enterprise_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(claimable_organizations)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const claimable_organizations = await client.ClaimableOrganization().list({ enterprise_id: &quot;example&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local claimable_organizations, err = client:ClaimableOrganization():list({ enterprise_id = &quot;example&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$claimable_organizations = $client-&gt;ClaimableOrganization()-&gt;list([&quot;enterprise_id&quot; =&gt; &quot;example&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">claimable_organizations = client.ClaimableOrganization().list({&quot;enterprise_id&quot;: &quot;example&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const claimable_organizations = await client.ClaimableOrganization().list({ enterprise_id: &quot;example&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -131,7 +158,7 @@
 <td><code>activeMembershipCount</code></td>
 <td><code>number</code></td>
 <td>No</td>
-<td></td>
+<td>Active Membership Count</td>
 </tr>
 <tr>
 <td><code>dateLastActive</code></td>
@@ -143,37 +170,37 @@
 <td><code>displayName</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Display Name</td>
 </tr>
 <tr>
 <td><code>id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id</td>
 </tr>
 <tr>
 <td><code>idActiveAdmins</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Active Admins</td>
 </tr>
 <tr>
 <td><code>logoUrl</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Logo Url</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Name</td>
 </tr>
 <tr>
 <td><code>products</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Products</td>
 </tr>
 </tbody>
 </table>

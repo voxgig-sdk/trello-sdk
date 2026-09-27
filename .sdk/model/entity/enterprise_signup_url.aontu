@@ -1,0 +1,117 @@
+# Entity: enterprise_signup_url
+
+main: kit: entity: enterprise_signup_url: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    signupUrl: {
+      h: "Signup Url"
+      n: "signupUrl"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "enterprise_signup_url"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /enterprises/{id}/signupUrl"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "authenticate"
+                or: "authenticate"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "confirmation_accepted"
+                or: "confirmation_accepted"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: null
+                k: "query"
+                n: "return_url"
+                or: "return_url"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "tos_accepted"
+                or: "tos_accepted"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/signupUrl"
+          q: {
+            exist: [
+              "authenticate"
+              "confirmation_accepted"
+              "id"
+              "return_url"
+              "tos_accepted"
+            ]
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "signupUrl"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

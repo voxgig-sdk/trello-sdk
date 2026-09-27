@@ -1,0 +1,232 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  name: "search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "name,idOrganization"
+                k: "query"
+                n: "board_field"
+                or: "board_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "board_organization"
+                or: "board_organization"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "boards_limit"
+                or: "boards_limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "false"
+                k: "query"
+                n: "card_attachment"
+                or: "card_attachment"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "card_board"
+                or: "card_board"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "card_field"
+                or: "card_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "card_list"
+                or: "card_list"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "card_member"
+                or: "card_member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "card_sticker"
+                or: "card_sticker"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "cards_limit"
+                or: "cards_limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "cards_page"
+                or: "cards_page"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "id_board"
+                or: "id_board"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "id_card"
+                or: "id_card"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "id_organization"
+                or: "id_organization"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "avatarHash,fullName,initials,username,confirmed"
+                k: "query"
+                n: "member_field"
+                or: "member_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "10"
+                k: "query"
+                n: "members_limit"
+                or: "members_limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "model_type"
+                or: "model_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "name,displayName"
+                k: "query"
+                n: "organization_field"
+                or: "organization_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "10"
+                k: "query"
+                n: "organizations_limit"
+                or: "organizations_limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "partial"
+                or: "partial"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/search"
+          q: {
+            exist: [
+              "board_field"
+              "board_organization"
+              "boards_limit"
+              "card_attachment"
+              "card_board"
+              "card_field"
+              "card_list"
+              "card_member"
+              "card_sticker"
+              "cards_limit"
+              "cards_page"
+              "id_board"
+              "id_card"
+              "id_organization"
+              "member_field"
+              "members_limit"
+              "model_type"
+              "organization_field"
+              "organizations_limit"
+              "partial"
+              "query"
+            ]
+          }
+          s: [
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

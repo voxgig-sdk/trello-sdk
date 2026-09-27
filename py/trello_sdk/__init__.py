@@ -325,12 +325,6 @@ class TrelloSDK:
         return AdminEntity(self, data)
 
 
-    def Application(self, data=None) -> "ApplicationEntity":
-        """Entity factory: client.Application().list() / client.Application().load({"id": ...})."""
-        from trello_sdk.entity.application_entity import ApplicationEntity
-        return ApplicationEntity(self, data)
-
-
     def ApplicationCompliance(self, data=None) -> "ApplicationComplianceEntity":
         """Entity factory: client.ApplicationCompliance().list() / client.ApplicationCompliance().load({"id": ...})."""
         from trello_sdk.entity.application_compliance_entity import ApplicationComplianceEntity
@@ -463,16 +457,10 @@ class TrelloSDK:
         return EmojiEntity(self, data)
 
 
-    def Enterpris(self, data=None) -> "EnterprisEntity":
-        """Entity factory: client.Enterpris().list() / client.Enterpris().load({"id": ...})."""
-        from trello_sdk.entity.enterpris_entity import EnterprisEntity
-        return EnterprisEntity(self, data)
-
-
-    def EnterprisSignupUrl(self, data=None) -> "EnterprisSignupUrlEntity":
-        """Entity factory: client.EnterprisSignupUrl().list() / client.EnterprisSignupUrl().load({"id": ...})."""
-        from trello_sdk.entity.enterpris_signup_url_entity import EnterprisSignupUrlEntity
-        return EnterprisSignupUrlEntity(self, data)
+    def Enterprise(self, data=None) -> "EnterpriseEntity":
+        """Entity factory: client.Enterprise().list() / client.Enterprise().load({"id": ...})."""
+        from trello_sdk.entity.enterprise_entity import EnterpriseEntity
+        return EnterpriseEntity(self, data)
 
 
     def EnterpriseAdmin(self, data=None) -> "EnterpriseAdminEntity":
@@ -485,6 +473,12 @@ class TrelloSDK:
         """Entity factory: client.EnterpriseAuditLog().list() / client.EnterpriseAuditLog().load({"id": ...})."""
         from trello_sdk.entity.enterprise_audit_log_entity import EnterpriseAuditLogEntity
         return EnterpriseAuditLogEntity(self, data)
+
+
+    def EnterpriseSignupUrl(self, data=None) -> "EnterpriseSignupUrlEntity":
+        """Entity factory: client.EnterpriseSignupUrl().list() / client.EnterpriseSignupUrl().load({"id": ...})."""
+        from trello_sdk.entity.enterprise_signup_url_entity import EnterpriseSignupUrlEntity
+        return EnterpriseSignupUrlEntity(self, data)
 
 
     def Export(self, data=None) -> "ExportEntity":
@@ -559,12 +553,6 @@ class TrelloSDK:
         return MembershipEntity(self, data)
 
 
-    def MostRecent(self, data=None) -> "MostRecentEntity":
-        """Entity factory: client.MostRecent().list() / client.MostRecent().load({"id": ...})."""
-        from trello_sdk.entity.most_recent_entity import MostRecentEntity
-        return MostRecentEntity(self, data)
-
-
     def NewBillableGuest(self, data=None) -> "NewBillableGuestEntity":
         """Entity factory: client.NewBillableGuest().list() / client.NewBillableGuest().load({"id": ...})."""
         from trello_sdk.entity.new_billable_guest_entity import NewBillableGuestEntity
@@ -593,12 +581,6 @@ class TrelloSDK:
         """Entity factory: client.NotificationMemberCreator().list() / client.NotificationMemberCreator().load({"id": ...})."""
         from trello_sdk.entity.notification_member_creator_entity import NotificationMemberCreatorEntity
         return NotificationMemberCreatorEntity(self, data)
-
-
-    def NotificationsChannelSetting(self, data=None) -> "NotificationsChannelSettingEntity":
-        """Entity factory: client.NotificationsChannelSetting().list() / client.NotificationsChannelSetting().load({"id": ...})."""
-        from trello_sdk.entity.notifications_channel_setting_entity import NotificationsChannelSettingEntity
-        return NotificationsChannelSettingEntity(self, data)
 
 
     def Option(self, data=None) -> "OptionEntity":
@@ -757,7 +739,6 @@ if TYPE_CHECKING:
     from trello_sdk.entity.action_entity import ActionEntity
     from trello_sdk.entity.action_reactions_summary_entity import ActionReactionsSummaryEntity
     from trello_sdk.entity.admin_entity import AdminEntity
-    from trello_sdk.entity.application_entity import ApplicationEntity
     from trello_sdk.entity.application_compliance_entity import ApplicationComplianceEntity
     from trello_sdk.entity.associated_domain_entity import AssociatedDomainEntity
     from trello_sdk.entity.attachment_entity import AttachmentEntity
@@ -780,10 +761,10 @@ if TYPE_CHECKING:
     from trello_sdk.entity.custom_sticker_entity import CustomStickerEntity
     from trello_sdk.entity.email_position_entity import EmailPositionEntity
     from trello_sdk.entity.emoji_entity import EmojiEntity
-    from trello_sdk.entity.enterpris_entity import EnterprisEntity
-    from trello_sdk.entity.enterpris_signup_url_entity import EnterprisSignupUrlEntity
+    from trello_sdk.entity.enterprise_entity import EnterpriseEntity
     from trello_sdk.entity.enterprise_admin_entity import EnterpriseAdminEntity
     from trello_sdk.entity.enterprise_audit_log_entity import EnterpriseAuditLogEntity
+    from trello_sdk.entity.enterprise_signup_url_entity import EnterpriseSignupUrlEntity
     from trello_sdk.entity.export_entity import ExportEntity
     from trello_sdk.entity.export_download_entity import ExportDownloadEntity
     from trello_sdk.entity.generate_entity import GenerateEntity
@@ -796,13 +777,11 @@ if TYPE_CHECKING:
     from trello_sdk.entity.member_privacy_entity import MemberPrivacyEntity
     from trello_sdk.entity.members_voted_entity import MembersVotedEntity
     from trello_sdk.entity.membership_entity import MembershipEntity
-    from trello_sdk.entity.most_recent_entity import MostRecentEntity
     from trello_sdk.entity.new_billable_guest_entity import NewBillableGuestEntity
     from trello_sdk.entity.notification_entity import NotificationEntity
     from trello_sdk.entity.notification_channel_setting_entity import NotificationChannelSettingEntity
     from trello_sdk.entity.notification_list_entity import NotificationListEntity
     from trello_sdk.entity.notification_member_creator_entity import NotificationMemberCreatorEntity
-    from trello_sdk.entity.notifications_channel_setting_entity import NotificationsChannelSettingEntity
     from trello_sdk.entity.option_entity import OptionEntity
     from trello_sdk.entity.org_invite_restrict_entity import OrgInviteRestrictEntity
     from trello_sdk.entity.organization_entity import OrganizationEntity

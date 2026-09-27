@@ -41,11 +41,11 @@ describe('EnterpriseAdminDirect', async () => {
 
     const params = {}
     if (!setup.live) {
-      params.enterpris_id = 'direct01'
+      params.id = 'direct01'
     }
 
     const result = await client.direct({
-      path: 'enterprises/{enterpris_id}/admins',
+      path: 'enterprises/{id}/admins',
       method: 'GET',
       params,
     })

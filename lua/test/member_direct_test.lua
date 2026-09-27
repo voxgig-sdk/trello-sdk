@@ -18,7 +18,7 @@ describe("MemberDirect", function()
       return
     end
     if setup.live then
-      for _, _live_key in ipairs({"enterpris01"}) do
+      for _, _live_key in ipairs({"enterprise01"}) do
         if setup.idmap[_live_key] == nil then
           pending("live test needs " .. _live_key .. " via *_ENTID env var (synthetic IDs only)")
           return
@@ -29,13 +29,13 @@ describe("MemberDirect", function()
 
     local params = {}
     if setup.live then
-      params["enterpris_id"] = setup.idmap["enterpris01"]
+      params["enterprise_id"] = setup.idmap["enterprise01"]
     else
-      params["enterpris_id"] = "direct01"
+      params["enterprise_id"] = "direct01"
     end
 
     local result, err = client:direct({
-      path = "enterprises/{enterpris_id}/members",
+      path = "enterprises/{enterprise_id}/members",
       method = "GET",
       params = params,
     })

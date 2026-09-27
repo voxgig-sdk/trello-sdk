@@ -9,7 +9,6 @@
 <a href="../api/action.html">Action</a>
 <a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
 <a href="../api/admin.html">Admin</a>
-<a href="../api/application.html">Application</a>
 <a href="../api/application_compliance.html">ApplicationCompliance</a>
 <a href="../api/associated_domain.html">AssociatedDomain</a>
 <a href="../api/attachment.html">Attachment</a>
@@ -32,10 +31,10 @@
 <a href="../api/custom_sticker.html">CustomSticker</a>
 <a href="../api/email_position.html">EmailPosition</a>
 <a href="../api/emoji.html">Emoji</a>
-<a href="../api/enterpris.html">Enterpris</a>
-<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise.html">Enterprise</a>
 <a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
 <a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/enterprise_signup_url.html">EnterpriseSignupUrl</a>
 <a href="../api/export.html">Export</a>
 <a href="../api/export_download.html">ExportDownload</a>
 <a href="../api/generate.html">Generate</a>
@@ -71,13 +70,11 @@
 <a href="../api/member_privacy.html">MemberPrivacy</a>
 <a href="../api/members_voted.html">MembersVoted</a>
 <a href="../api/membership.html">Membership</a>
-<a href="../api/most_recent.html">MostRecent</a>
 <a href="../api/new_billable_guest.html">NewBillableGuest</a>
 <a href="../api/notification.html">Notification</a>
 <a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
 <a href="../api/notification_list.html">NotificationList</a>
 <a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
-<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
 <a href="../api/option.html">Option</a>
 <a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
 <a href="../api/organization.html">Organization</a>
@@ -111,14 +108,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="member">Member</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="member">Member</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -277,6 +274,76 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">members, err := client.Member(nil).List(map[string]any{&quot;query&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(members)
+member, err := client.Member(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(member)
+created, err := client.Member(nil).Create(map[string]any{&quot;id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.Member(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;avatar_source&quot;: &quot;example&quot;, &quot;bio&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.Member(nil).Remove(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const members = await client.Member().list({ query: &quot;example&quot; })
+const member = await client.Member().load({ id: &quot;example_id&quot; })
+const created = await client.Member().create({ id: &quot;example&quot; })
+const updated = await client.Member().update({ id: &quot;example_id&quot;, avatar_source: &quot;example&quot;, bio: &quot;example&quot; })
+await client.Member().remove({ id: &quot;example_id&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local members, err = client:Member():list({ query = &quot;example&quot; })
+local member, err = client:Member():load({ id = &quot;example_id&quot; })
+local created, err = client:Member():create({ id = &quot;example&quot; })
+local updated, err = client:Member():update({ id = &quot;example_id&quot;, avatar_source = &quot;example&quot;, bio = &quot;example&quot; })
+local removed, err = client:Member():remove({ id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$members = $client-&gt;Member()-&gt;list([&quot;query&quot; =&gt; &quot;example&quot;]);
+$member = $client-&gt;Member()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;Member()-&gt;create([&quot;id&quot; =&gt; &quot;example&quot;]);
+$updated = $client-&gt;Member()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;avatar_source&quot; =&gt; &quot;example&quot;, &quot;bio&quot; =&gt; &quot;example&quot;]);
+$client-&gt;Member()-&gt;remove([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">members = client.Member().list({&quot;query&quot;: &quot;example&quot;})
+member = client.Member().load({&quot;id&quot;: &quot;example_id&quot;})
+created = client.Member().create({ &quot;id&quot;: &quot;example&quot; })
+updated = client.Member().update({&quot;id&quot;: &quot;example_id&quot;, &quot;avatar_source&quot;: &quot;example&quot;, &quot;bio&quot;: &quot;example&quot;})
+client.Member().remove({&quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const members = await client.Member().list({ query: &quot;example&quot; })
+const member = await client.Member().load({ id: &quot;example_id&quot; })
+const created = await client.Member().create({ id: &quot;example&quot; })
+const updated = await client.Member().update({ id: &quot;example_id&quot;, avatar_source: &quot;example&quot;, bio: &quot;example&quot; })
+await client.Member().remove({ id: &quot;example_id&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -292,181 +359,181 @@
 <td><code>aaEmail</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Aa Email</td>
 </tr>
 <tr>
 <td><code>aaEnrolledDate</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Aa Enrolled Date</td>
 </tr>
 <tr>
 <td><code>aaId</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Aa Id</td>
 </tr>
 <tr>
 <td><code>activityBlocked</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>Activity Blocked</td>
 </tr>
 <tr>
 <td><code>avatarHash</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Avatar Hash</td>
 </tr>
 <tr>
 <td><code>avatarSource</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Avatar Source</td>
 </tr>
 <tr>
 <td><code>avatarUrl</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Avatar Url</td>
 </tr>
 <tr>
 <td><code>bio</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Bio</td>
 </tr>
 <tr>
 <td><code>bioData</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Bio Data</td>
 </tr>
 <tr>
 <td><code>confirmed</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>Confirmed</td>
 </tr>
 <tr>
 <td><code>email</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Email</td>
 </tr>
 <tr>
 <td><code>fullName</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Full Name</td>
 </tr>
 <tr>
 <td><code>gravatarHash</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Gravatar Hash</td>
 </tr>
 <tr>
 <td><code>id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id</td>
 </tr>
 <tr>
 <td><code>idBoards</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Boards</td>
 </tr>
 <tr>
 <td><code>idBoardsPinned</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Boards Pinned</td>
 </tr>
 <tr>
 <td><code>idEnterprise</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id Enterprise</td>
 </tr>
 <tr>
 <td><code>idEnterprisesAdmin</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Enterprises Admin</td>
 </tr>
 <tr>
 <td><code>idEnterprisesDeactivated</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Enterprises Deactivated</td>
 </tr>
 <tr>
 <td><code>idMemberReferrer</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id Member Referrer</td>
 </tr>
 <tr>
 <td><code>idOrganizations</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Organizations</td>
 </tr>
 <tr>
 <td><code>idPremOrgsAdmin</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Prem Orgs Admin</td>
 </tr>
 <tr>
 <td><code>initials</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Initials</td>
 </tr>
 <tr>
 <td><code>isAaMastered</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>Is Aa Mastered</td>
 </tr>
 <tr>
 <td><code>ixUpdate</code></td>
 <td><code>number</code></td>
 <td>No</td>
-<td></td>
+<td>Ix Update</td>
 </tr>
 <tr>
 <td><code>limits</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Limits</td>
 </tr>
 <tr>
 <td><code>loginTypes</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Login Types</td>
 </tr>
 <tr>
 <td><code>marketingOptIn</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Marketing Opt In</td>
 </tr>
 <tr>
 <td><code>memberType</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Member Type</td>
 </tr>
 <tr>
 <td><code>messagesDismissed</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Messages Dismissed</td>
 </tr>
 <tr>
 <td><code>nonPublic</code></td>
@@ -484,61 +551,61 @@
 <td><code>oneTimeMessagesDismissed</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>One Time Messages Dismissed</td>
 </tr>
 <tr>
 <td><code>prefs</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Prefs</td>
 </tr>
 <tr>
 <td><code>premiumFeatures</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Premium Features</td>
 </tr>
 <tr>
 <td><code>products</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Products</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Status</td>
 </tr>
 <tr>
 <td><code>trophies</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Trophies</td>
 </tr>
 <tr>
 <td><code>uploadedAvatarHash</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Uploaded Avatar Hash</td>
 </tr>
 <tr>
 <td><code>uploadedAvatarUrl</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Uploaded Avatar Url</td>
 </tr>
 <tr>
 <td><code>url</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Url</td>
 </tr>
 <tr>
 <td><code>username</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Username</td>
 </tr>
 </tbody>
 </table>
@@ -585,8 +652,8 @@
 | <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of the Enterprise to retrieve. |
 | <code>fields</code> | <code>query</code> | <code>string</code> | No | A comma-seperated list of valid <a href="/cloud/trello/guides/rest-api/object-definitions/#member-object">member fields</a>. |
 | <code>filter</code> | <code>query</code> | <code>string</code> | No | Pass a SCIM-style query to filter members. This takes precedence over the all/normal/admins value of members. If any of the below member_* args are set, the member array will be paginated. |
-| <code>sort</code> | <code>query</code> | <code>string</code> | No | This parameter expects a SCIM-style sorting value prefixed by a <code>-</code> to sort descending. If no <code>-</code> is prefixed, it will be sorted ascending. Note that the members array returned will be paginated if <code>members</code> is 'normal' or 'admins'. Pagination can be controlled with member_startIndex, etc, but the API response will not contain the total available result count or pagination status data. |
-| <code>sortBy</code> | <code>query</code> | <code>string</code> | No | Deprecated: Please use <code>sort</code> instead. This parameter expects a SCIM-style sorting value. Note that the members array returned will be paginated if <code>members</code> is 'normal' or 'admins'. Pagination can be controlled with member_startIndex, etc, but the API response will not contain the total available result count or pagination status data. |
+| <code>sort</code> | <code>query</code> | <code>string</code> | No | This parameter expects a SCIM-style sorting value prefixed by a <code>-</code> to sort descending. If no <code>-</code> is prefixed, it will be sorted ascending. Note that the members array returned will be paginated if <code>members</code> is 'normal' or 'admins'. Pagination can be controlled with <code>member_startIndex</code>, etc, but the API response will not contain the total available result count or pagination status data. |
+| <code>sortBy</code> | <code>query</code> | <code>string</code> | No | Deprecated: Please use <code>sort</code> instead. This parameter expects a SCIM-style sorting value. Note that the members array returned will be paginated if <code>members</code> is 'normal' or 'admins'. Pagination can be controlled with <code>member_startIndex</code>, etc, but the API response will not contain the total available result count or pagination status data. |
 | <code>sortOrder</code> | <code>query</code> | <code>enum: ascending, descending, asc, desc, null</code> | No | Deprecated: Please use <code>sort</code> instead. One of: <code>ascending</code>, <code>descending</code>, <code>asc</code>, <code>desc</code>. |
 | <code>startIndex</code> | <code>query</code> | <code>integer (int32)</code> | No | Any integer between 0 and 9999. |
 | <code>count</code> | <code>query</code> | <code>string</code> | No | SCIM-style filter. |

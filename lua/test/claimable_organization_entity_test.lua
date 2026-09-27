@@ -86,7 +86,7 @@ describe("ClaimableOrganizationEntity", function()
     -- LIST
     local claimable_organization_ref01_ent = client:ClaimableOrganization(nil)
     local claimable_organization_ref01_match = {
-      ["enterpris_id"] = setup.idmap["enterpris01"],
+      ["enterprise_id"] = setup.idmap["enterprise01"],
     }
 
     local claimable_organization_ref01_list_result, err = claimable_organization_ref01_ent:list(claimable_organization_ref01_match, nil)
@@ -116,7 +116,7 @@ function claimable_organization_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "claimable_organization01", "claimable_organization02", "claimable_organization03", "enterpris01", "enterpris02", "enterpris03" },
+    { "claimable_organization01", "claimable_organization02", "claimable_organization03", "enterprise01", "enterprise02", "enterprise03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

@@ -70,7 +70,7 @@ def _application_compliance_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["application_compliance01", "application_compliance02", "application_compliance03", "application01", "application02", "application03"],
+        ["application_compliance01", "application_compliance02", "application_compliance03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

@@ -8,10 +8,6 @@ const node_assert_1 = __importDefault(require("node:assert"));
 const live_runner_1 = require("../../live-runner");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 (0, utility_1.loadEnvLocal)(__dirname + '/../../../.env.local');
 (0, node_test_1.describe)('OrganizationDirect', async () => {
     // Per-test live pacing. Delay is read from sdk-test-control.json's
@@ -19,9 +15,6 @@ const utility_1 = require("../../utility");
     (0, node_test_1.afterEach)((0, utility_1.liveDelay)('TRELLO_TEST_LIVE'));
     (0, node_test_1.test)('direct-exists', async () => {
         const sdk = new __1.TrelloSDK({
-            // Concrete base: a live construction must satisfy any server
-            // variables a templated base URL declares; overriding base with a
-            // literal (as the direct flow tests do) sidesteps the requirement.
             base: 'http://localhost:8080',
             system: { fetch: async () => ({}) }
         });
@@ -43,10 +36,10 @@ const utility_1 = require("../../utility");
         const query = {};
         if (setup.live) {
             const listResult = await client.direct({
-                path: 'enterprises/{enterpris_id}/organizations',
+                path: 'enterprises/{enterprise_id}/organizations',
                 method: 'GET',
                 params: {
-                    enterpris_id: setup.idmap['enterpris01'],
+                    enterprise_id: setup.idmap['enterprise01'],
                 },
             });
             (0, node_assert_1.default)(listResult.ok && listResult.status >= 200 && listResult.status < 300, 'Live list discovery failed');
@@ -103,19 +96,19 @@ const utility_1 = require("../../utility");
         const setup = directSetup([{ id: 'direct01' }, { id: 'direct02' }]);
         if ((0, utility_1.maybeSkipControl)(t, 'direct', 'direct-list-organization', setup.live))
             return;
-        if ((0, utility_1.skipIfMissingIds)(t, setup, ["enterpris01"]))
+        if ((0, utility_1.skipIfMissingIds)(t, setup, ["enterprise01"]))
             return;
         const { client, calls } = setup;
         const params = {};
         const query = {};
         if (setup.live) {
-            params.enterpris_id = setup.idmap['enterpris01'];
+            params.enterprise_id = setup.idmap['enterprise01'];
         }
         else {
-            params.enterpris_id = 'direct01';
+            params.enterprise_id = 'direct01';
         }
         const result = await client.direct({
-            path: 'enterprises/{enterpris_id}/organizations',
+            path: 'enterprises/{enterprise_id}/organizations',
             method: 'GET',
             params,
             query,

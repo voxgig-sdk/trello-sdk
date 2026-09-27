@@ -19,7 +19,6 @@ import type {
   SearchListMatch,
 } from '../TrelloTypes'
 
-// TODO: needs Entity superclass
 class SearchEntity extends TrelloEntityBase<Search> {
 
   constructor(client: TrelloSDK, entopts: any) {

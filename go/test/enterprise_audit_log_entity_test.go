@@ -109,9 +109,7 @@ func TestEnterpriseAuditLogEntity(t *testing.T) {
 
 		// LIST
 		enterpriseAuditLogRef01Ent := client.EnterpriseAuditLog(nil)
-		enterpriseAuditLogRef01Match := map[string]any{
-			"enterpris_id": setup.idmap["enterpris01"],
-		}
+		enterpriseAuditLogRef01Match := map[string]any{}
 
 		enterpriseAuditLogRef01ListResult, err := enterpriseAuditLogRef01Ent.List(enterpriseAuditLogRef01Match, nil)
 		if err != nil {
@@ -150,7 +148,7 @@ func enterprise_audit_logBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03", "enterpris01", "enterpris02", "enterpris03"},
+		[]any{"enterprise_audit_log01", "enterprise_audit_log02", "enterprise_audit_log03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

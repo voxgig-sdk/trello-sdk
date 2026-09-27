@@ -1,0 +1,28 @@
+# BasicShowSidebarActivityFlow
+
+main: kit: flow: BasicShowSidebarActivityFlow:
+{
+  entity: "show_sidebar_activity",
+  kind: "basic",
+  name: "BasicShowSidebarActivityFlow",
+  step: [
+    {
+      i: {
+        ref: "show_sidebar_activity_ref01",
+        srcdatavar: "show_sidebar_activity_ref01_data",
+        suffix: "_up0"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-show_sidebar_activity_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicShowSidebarActivityFlow"
+}

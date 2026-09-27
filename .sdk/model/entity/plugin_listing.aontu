@@ -1,0 +1,173 @@
+# Entity: plugin_listing
+
+main: kit: entity: plugin_listing: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description to show for the given locale"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    locale: {
+      h: "Locale"
+      n: "locale"
+      r: false
+      sh: "The locale that this listing should be displayed for."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name to use for the given locale."
+      t: "`$STRING`"
+    }
+    overview: {
+      h: "Overview"
+      n: "overview"
+      r: false
+      sh: "The overview to show for the given locale."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "plugin_listing"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /plugins/{idPlugin}/listing"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_plugin"
+                or: "id_plugin"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/plugins/{idPlugin}/listing"
+          q: {
+            exist: [
+              "id_plugin"
+            ]
+          }
+          r: {
+            param: {
+              idPlugin: "id_plugin"
+            }
+          }
+          s: [
+            {
+              lit: "plugins"
+            }
+            {
+              var: "id_plugin"
+            }
+            {
+              lit: "listing"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /plugins/{idPlugin}/listings/{idListing}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_listing"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_plugin"
+                or: "id_plugin"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/plugins/{idPlugin}/listings/{idListing}"
+          q: {
+            exist: [
+              "id"
+              "id_plugin"
+            ]
+          }
+          r: {
+            param: {
+              idListing: "id"
+              idPlugin: "id_plugin"
+            }
+          }
+          s: [
+            {
+              lit: "plugins"
+            }
+            {
+              var: "id_plugin"
+            }
+            {
+              lit: "listings"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.plugin")]
+  ]
+
+}

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // Typed models for the Trello SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 //
@@ -100,20 +100,15 @@ class Admin
 /** Request payload for Admin#update. */
 class AdminUpdateData
 {
-    public string $enterpris_id;
+    public string $enterprise_id;
     public string $id;
 }
 
 /** Request payload for Admin#remove. */
 class AdminRemoveMatch
 {
-    public string $enterpris_id;
+    public string $enterprise_id;
     public string $id;
-}
-
-/** Application entity data model. */
-class Application
-{
 }
 
 /** ApplicationCompliance entity data model. */
@@ -442,7 +437,7 @@ class Bulk
 /** Request payload for Bulk#load. */
 class BulkLoadMatch
 {
-    public string $enterpris_id;
+    public string $enterprise_id;
     public array $id;
 }
 
@@ -756,7 +751,7 @@ class ClaimableOrganization
 /** Request payload for ClaimableOrganization#list. */
 class ClaimableOrganizationListMatch
 {
-    public string $enterpris_id;
+    public string $enterprise_id;
     public ?string $active_since = null;
     public ?string $cursor = null;
     public ?string $inactive_since = null;
@@ -969,8 +964,8 @@ class EmojiListMatch
     public ?bool $spritesheet = null;
 }
 
-/** Enterpris entity data model. */
-class Enterpris
+/** Enterprise entity data model. */
+class Enterprise
 {
     public ?string $dateOrganizationPrefsLastUpdated = null;
     public ?string $displayName = null;
@@ -992,8 +987,8 @@ class Enterpris
     public ?bool $ssoActivationFailed = null;
 }
 
-/** Request payload for Enterpris#load. */
-class EnterprisLoadMatch
+/** Request payload for Enterprise#load. */
+class EnterpriseLoadMatch
 {
     public string $id;
     public ?string $field = null;
@@ -1011,8 +1006,8 @@ class EnterprisLoadMatch
     public ?bool $organization_paid_account = null;
 }
 
-/** Request payload for Enterpris#create. */
-class EnterprisCreateData
+/** Request payload for Enterprise#create. */
+class EnterpriseCreateData
 {
     public string $id;
     public ?string $expiration = null;
@@ -1035,8 +1030,8 @@ class EnterprisCreateData
     public ?bool $ssoActivationFailed = null;
 }
 
-/** Request payload for Enterpris#update. */
-class EnterprisUpdateData
+/** Request payload for Enterprise#update. */
+class EnterpriseUpdateData
 {
     public string $id;
     public string $id_organization;
@@ -1059,23 +1054,6 @@ class EnterprisUpdateData
     public ?bool $ssoActivationFailed = null;
 }
 
-/** EnterprisSignupUrl entity data model. */
-class EnterprisSignupUrl
-{
-    public ?string $id = null;
-    public ?string $signupUrl = null;
-}
-
-/** Request payload for EnterprisSignupUrl#load. */
-class EnterprisSignupUrlLoadMatch
-{
-    public string $id;
-    public ?bool $authenticate = null;
-    public ?bool $confirmation_accepted = null;
-    public ?string $return_url = null;
-    public ?bool $tos_accepted = null;
-}
-
 /** EnterpriseAdmin entity data model. */
 class EnterpriseAdmin
 {
@@ -1087,7 +1065,7 @@ class EnterpriseAdmin
 /** Request payload for EnterpriseAdmin#load. */
 class EnterpriseAdminLoadMatch
 {
-    public string $enterpris_id;
+    public string $id;
     public ?string $field = null;
 }
 
@@ -1095,6 +1073,7 @@ class EnterpriseAdminLoadMatch
 class EnterpriseAuditLog
 {
     public ?string $date = null;
+    public ?string $id = null;
     public ?string $idAction = null;
     public ?array $member = null;
     public ?array $memberCreator = null;
@@ -1105,7 +1084,24 @@ class EnterpriseAuditLog
 /** Request payload for EnterpriseAuditLog#list. */
 class EnterpriseAuditLogListMatch
 {
-    public string $enterpris_id;
+    public string $id;
+}
+
+/** EnterpriseSignupUrl entity data model. */
+class EnterpriseSignupUrl
+{
+    public ?string $id = null;
+    public ?string $signupUrl = null;
+}
+
+/** Request payload for EnterpriseSignupUrl#load. */
+class EnterpriseSignupUrlLoadMatch
+{
+    public string $id;
+    public ?bool $authenticate = null;
+    public ?bool $confirmation_accepted = null;
+    public ?string $return_url = null;
+    public ?bool $tos_accepted = null;
 }
 
 /** Export entity data model. */
@@ -1561,11 +1557,6 @@ class MembershipUpdateData
     public ?array $member = null;
 }
 
-/** MostRecent entity data model. */
-class MostRecent
-{
-}
-
 /** NewBillableGuest entity data model. */
 class NewBillableGuest
 {
@@ -1706,11 +1697,6 @@ class NotificationMemberCreatorLoadMatch
     public ?string $field = null;
 }
 
-/** NotificationsChannelSetting entity data model. */
-class NotificationsChannelSetting
-{
-}
-
 /** Option entity data model. */
 class Option
 {
@@ -1767,7 +1753,7 @@ class OrganizationLoadMatch
 /** Request payload for Organization#list. */
 class OrganizationListMatch
 {
-    public string $enterpris_id;
+    public string $enterprise_id;
     public ?int $count = null;
     public ?string $field = null;
     public ?string $filter = null;
@@ -1815,7 +1801,7 @@ class OrganizationUpdateData
 /** Request payload for Organization#remove. */
 class OrganizationRemoveMatch
 {
-    public ?string $enterpris_id = null;
+    public ?string $enterprise_id = null;
     public string $id;
 }
 
@@ -1835,7 +1821,7 @@ class PendingOrganization
 /** Request payload for PendingOrganization#list. */
 class PendingOrganizationListMatch
 {
-    public string $enterpris_id;
+    public string $enterprise_id;
     public ?string $active_since = null;
     public ?string $inactive_since = null;
 }
@@ -2170,7 +2156,7 @@ class TransferrableOrganization
 /** Request payload for TransferrableOrganization#load. */
 class TransferrableOrganizationLoadMatch
 {
-    public string $enterpris_id;
+    public string $enterprise_id;
     public string $id;
 }
 

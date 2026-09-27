@@ -28,7 +28,7 @@ func TestClaimableOrganizationDirect(t *testing.T) {
 			return
 		}
 		if setup.live {
-			for _, _liveKey := range []string{"enterpris01"} {
+			for _, _liveKey := range []string{"enterprise01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
 					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
 					return
@@ -39,13 +39,13 @@ func TestClaimableOrganizationDirect(t *testing.T) {
 
 		params := map[string]any{}
 		if setup.live {
-			params["enterpris_id"] = setup.idmap["enterpris01"]
+			params["enterprise_id"] = setup.idmap["enterprise01"]
 		} else {
-			params["enterpris_id"] = "direct01"
+			params["enterprise_id"] = "direct01"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "enterprises/{enterpris_id}/claimableOrganizations",
+			"path":   "enterprises/{enterprise_id}/claimableOrganizations",
 			"method": "GET",
 			"params": params,
 		})

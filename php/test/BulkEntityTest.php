@@ -84,7 +84,7 @@ function bulk_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["bulk01", "bulk02", "bulk03", "enterpris01", "enterpris02", "enterpris03"] as $k) {
+    foreach (["bulk01", "bulk02", "bulk03", "enterprise01", "enterprise02", "enterprise03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

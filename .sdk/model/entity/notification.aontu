@@ -1,0 +1,570 @@
+# Entity: notification
+
+main: kit: entity: notification: {
+
+  alias: field: {}
+
+  fields: {
+    board: {
+      h: "Board"
+      n: "board"
+      r: true
+      t: "`$OBJECT`"
+    }
+    card: {
+      h: "Card"
+      n: "card"
+      r: false
+      t: "`$OBJECT`"
+      union: {
+        branches: 2
+        count: 2
+        depth: 3
+      }
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      t: "`$STRING`"
+    }
+    date: {
+      h: "Date"
+      n: "date"
+      r: false
+      t: "`$STRING`"
+    }
+    dateRead: {
+      h: "Date Read"
+      n: "dateRead"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    idAction: {
+      h: "Id Action"
+      n: "idAction"
+      r: false
+      t: "`$STRING`"
+    }
+    idMemberCreator: {
+      h: "Id Member Creator"
+      n: "idMemberCreator"
+      r: false
+      t: "`$STRING`"
+    }
+    reactions: {
+      h: "Reactions"
+      n: "reactions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      t: "`$STRING`"
+    }
+    unread: {
+      h: "Unread"
+      n: "unread"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "notification"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /members/{id}/notifications"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "member_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "display"
+                or: "display"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "entity"
+                or: "entity"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "50"
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "member_creator"
+                or: "member_creator"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "avatarHash,fullName,initials,username"
+                k: "query"
+                n: "member_creator_field"
+                or: "member_creator_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "0"
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "read_filter"
+                or: "read_filter"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "since"
+                or: "since"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/members/{id}/notifications"
+          q: {
+            exist: [
+              "before"
+              "display"
+              "entity"
+              "field"
+              "filter"
+              "limit"
+              "member_creator"
+              "member_creator_field"
+              "member_id"
+              "page"
+              "read_filter"
+              "since"
+            ]
+          }
+          r: {
+            param: {
+              id: "member_id"
+            }
+          }
+          s: [
+            {
+              lit: "members"
+            }
+            {
+              var: "member_id"
+            }
+            {
+              lit: "notifications"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /notifications/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "board"
+                or: "board"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "name"
+                k: "query"
+                n: "board_field"
+                or: "board_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "card"
+                or: "card"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "name"
+                k: "query"
+                n: "card_field"
+                or: "card_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "display"
+                or: "display"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "entity"
+                or: "entity"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "list"
+                or: "list"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "member"
+                or: "member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "member_creator"
+                or: "member_creator"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "avatarHash,fullName,initials,username"
+                k: "query"
+                n: "member_creator_field"
+                or: "member_creator_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "avatarHash,fullName,initials,username"
+                k: "query"
+                n: "member_field"
+                or: "member_field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "organization"
+                or: "organization"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "displayName"
+                k: "query"
+                n: "organization_field"
+                or: "organization_field"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/notifications/{id}"
+          q: {
+            exist: [
+              "board"
+              "board_field"
+              "card"
+              "card_field"
+              "display"
+              "entity"
+              "field"
+              "id"
+              "list"
+              "member"
+              "member_creator"
+              "member_creator_field"
+              "member_field"
+              "organization"
+              "organization_field"
+            ]
+          }
+          s: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /notifications/{id}/{field}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "field"
+                or: "field"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/notifications/{id}/{field}"
+          q: {
+            exist: [
+              "field"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
+            {
+              var: "field"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /notifications/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "unread"
+                or: "unread"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/notifications/{id}"
+          q: {
+            exist: [
+              "id"
+              "unread"
+            ]
+          }
+          s: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /notifications/{id}/unread"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "value"
+                or: "value"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/notifications/{id}/unread"
+          q: {
+            "$action": "unread"
+            exist: [
+              "id"
+              "value"
+            ]
+          }
+          s: [
+            {
+              lit: "notifications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "unread"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.member")]
+  ]
+
+}

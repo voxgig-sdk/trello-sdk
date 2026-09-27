@@ -28,7 +28,7 @@ func TestMemberDirect(t *testing.T) {
 			return
 		}
 		if setup.live {
-			for _, _liveKey := range []string{"enterpris01"} {
+			for _, _liveKey := range []string{"enterprise01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
 					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
 					return
@@ -39,13 +39,13 @@ func TestMemberDirect(t *testing.T) {
 
 		params := map[string]any{}
 		if setup.live {
-			params["enterpris_id"] = setup.idmap["enterpris01"]
+			params["enterprise_id"] = setup.idmap["enterprise01"]
 		} else {
-			params["enterpris_id"] = "direct01"
+			params["enterprise_id"] = "direct01"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "enterprises/{enterpris_id}/members",
+			"path":   "enterprises/{enterprise_id}/members",
 			"method": "GET",
 			"params": params,
 		})
@@ -116,7 +116,7 @@ func TestMemberDirect(t *testing.T) {
 			return
 		}
 		if setup.live {
-			for _, _liveKey := range []string{"enterpris01"} {
+			for _, _liveKey := range []string{"enterprise01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
 					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
 					return
@@ -129,9 +129,9 @@ func TestMemberDirect(t *testing.T) {
 		query := map[string]any{}
 		if setup.live {
 			listParams := map[string]any{}
-			listParams["enterpris_id"] = setup.idmap["enterpris01"]
+			listParams["enterprise_id"] = setup.idmap["enterprise01"]
 			listResult, listErr := client.Direct(map[string]any{
-				"path":   "enterprises/{enterpris_id}/members",
+				"path":   "enterprises/{enterprise_id}/members",
 				"method": "GET",
 				"params": listParams,
 			})

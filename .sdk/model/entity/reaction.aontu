@@ -1,0 +1,242 @@
+# Entity: reaction
+
+main: kit: entity: reaction: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "reaction"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /actions/{idAction}/reactions/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_action"
+                or: "id_action"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: true
+                k: "query"
+                n: "emoji"
+                or: "emoji"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "member"
+                or: "member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/actions/{idAction}/reactions/{id}"
+          q: {
+            exist: [
+              "emoji"
+              "id"
+              "id_action"
+              "member"
+            ]
+          }
+          r: {
+            param: {
+              idAction: "id_action"
+            }
+          }
+          s: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /actions/{idAction}/reactions"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_action"
+                or: "id_action"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: true
+                k: "query"
+                n: "emoji"
+                or: "emoji"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "member"
+                or: "member"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/actions/{idAction}/reactions"
+          q: {
+            exist: [
+              "emoji"
+              "id_action"
+              "member"
+            ]
+          }
+          r: {
+            param: {
+              idAction: "id_action"
+            }
+          }
+          s: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /actions/{idAction}/reactions/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_action"
+                or: "id_action"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/actions/{idAction}/reactions/{id}"
+          q: {
+            exist: [
+              "id"
+              "id_action"
+            ]
+          }
+          r: {
+            param: {
+              idAction: "id_action"
+            }
+          }
+          s: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.action")]
+  ]
+
+}

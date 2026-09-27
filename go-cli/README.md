@@ -128,7 +128,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 70 entities.
+below — this SDK exposes 67 entities.
 
 ## Reference
 
@@ -183,9 +183,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 70 entities this SDK exposes (any is valid as `<entity>`):
+The 67 entities this SDK exposes (any is valid as `<entity>`):
 
-action action_reactions_summary admin application application_compliance associated_domain attachment batch board board_background board_plugin board_star bulk card card_check_item_state card_list check_item checklist claimable_organization custom_board_background custom_emoji custom_field custom_field_item custom_sticker email_position emoji enterpris enterpris_signup_url enterprise_admin enterprise_audit_log export export_download generate id_email_list id_label id_member label list member member_privacy members_voted membership most_recent new_billable_guest notification notification_channel_setting notification_list notification_member_creator notifications_channel_setting option org_invite_restrict organization pending_organization plugin plugin_data plugin_listing reaction read saved_search search show_sidebar show_sidebar_activity show_sidebar_board_action show_sidebar_member sticker tag token transferrable_organization trello_list webhook
+action action_reactions_summary admin application_compliance associated_domain attachment batch board board_background board_plugin board_star bulk card card_check_item_state card_list check_item checklist claimable_organization custom_board_background custom_emoji custom_field custom_field_item custom_sticker email_position emoji enterprise enterprise_admin enterprise_audit_log enterprise_signup_url export export_download generate id_email_list id_label id_member label list member member_privacy members_voted membership new_billable_guest notification notification_channel_setting notification_list notification_member_creator option org_invite_restrict organization pending_organization plugin plugin_data plugin_listing reaction read saved_search search show_sidebar show_sidebar_activity show_sidebar_board_action show_sidebar_member sticker tag token transferrable_organization trello_list webhook
 
 ## Explanation
 

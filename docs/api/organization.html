@@ -9,7 +9,6 @@
 <a href="../api/action.html">Action</a>
 <a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
 <a href="../api/admin.html">Admin</a>
-<a href="../api/application.html">Application</a>
 <a href="../api/application_compliance.html">ApplicationCompliance</a>
 <a href="../api/associated_domain.html">AssociatedDomain</a>
 <a href="../api/attachment.html">Attachment</a>
@@ -32,10 +31,10 @@
 <a href="../api/custom_sticker.html">CustomSticker</a>
 <a href="../api/email_position.html">EmailPosition</a>
 <a href="../api/emoji.html">Emoji</a>
-<a href="../api/enterpris.html">Enterpris</a>
-<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise.html">Enterprise</a>
 <a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
 <a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/enterprise_signup_url.html">EnterpriseSignupUrl</a>
 <a href="../api/export.html">Export</a>
 <a href="../api/export_download.html">ExportDownload</a>
 <a href="../api/generate.html">Generate</a>
@@ -48,13 +47,11 @@
 <a href="../api/member_privacy.html">MemberPrivacy</a>
 <a href="../api/members_voted.html">MembersVoted</a>
 <a href="../api/membership.html">Membership</a>
-<a href="../api/most_recent.html">MostRecent</a>
 <a href="../api/new_billable_guest.html">NewBillableGuest</a>
 <a href="../api/notification.html">Notification</a>
 <a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
 <a href="../api/notification_list.html">NotificationList</a>
 <a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
-<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
 <a href="../api/option.html">Option</a>
 <a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
 <a aria-current="page" href="../api/organization.html">Organization</a><div class="nav-sections"><a class="nav-section" href="#post-organizations">POST /organizations</a>
@@ -102,14 +99,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="organization">Organization</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="organization">Organization</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -214,6 +211,76 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">organizations, err := client.Organization(nil).List(map[string]any{&quot;enterprise_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(organizations)
+organization, err := client.Organization(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(organization)
+created, err := client.Organization(nil).Create(map[string]any{&quot;display_name&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.Organization(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;desc&quot;: &quot;example&quot;, &quot;display_name&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.Organization(nil).Remove(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const organizations = await client.Organization().list({ enterprise_id: &quot;example&quot; })
+const organization = await client.Organization().load({ id: &quot;example_id&quot; })
+const created = await client.Organization().create({ display_name: &quot;example&quot; })
+const updated = await client.Organization().update({ id: &quot;example_id&quot;, desc: &quot;example&quot;, display_name: &quot;example&quot; })
+await client.Organization().remove({ id: &quot;example_id&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local organizations, err = client:Organization():list({ enterprise_id = &quot;example&quot; })
+local organization, err = client:Organization():load({ id = &quot;example_id&quot; })
+local created, err = client:Organization():create({ display_name = &quot;example&quot; })
+local updated, err = client:Organization():update({ id = &quot;example_id&quot;, desc = &quot;example&quot;, display_name = &quot;example&quot; })
+local removed, err = client:Organization():remove({ id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$organizations = $client-&gt;Organization()-&gt;list([&quot;enterprise_id&quot; =&gt; &quot;example&quot;]);
+$organization = $client-&gt;Organization()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;Organization()-&gt;create([&quot;display_name&quot; =&gt; &quot;example&quot;]);
+$updated = $client-&gt;Organization()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;desc&quot; =&gt; &quot;example&quot;, &quot;display_name&quot; =&gt; &quot;example&quot;]);
+$client-&gt;Organization()-&gt;remove([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">organizations = client.Organization().list({&quot;enterprise_id&quot;: &quot;example&quot;})
+organization = client.Organization().load({&quot;id&quot;: &quot;example_id&quot;})
+created = client.Organization().create({ &quot;display_name&quot;: &quot;example&quot; })
+updated = client.Organization().update({&quot;id&quot;: &quot;example_id&quot;, &quot;desc&quot;: &quot;example&quot;, &quot;display_name&quot;: &quot;example&quot;})
+client.Organization().remove({&quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const organizations = await client.Organization().list({ enterprise_id: &quot;example&quot; })
+const organization = await client.Organization().load({ id: &quot;example_id&quot; })
+const created = await client.Organization().create({ display_name: &quot;example&quot; })
+const updated = await client.Organization().update({ id: &quot;example_id&quot;, desc: &quot;example&quot;, display_name: &quot;example&quot; })
+await client.Organization().remove({ id: &quot;example_id&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -229,67 +296,67 @@
 <td><code>dateLastActivity</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Date Last Activity</td>
 </tr>
 <tr>
 <td><code>displayName</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Display Name</td>
 </tr>
 <tr>
 <td><code>id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id</td>
 </tr>
 <tr>
 <td><code>idBoards</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Boards</td>
 </tr>
 <tr>
 <td><code>idEnterprise</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id Enterprise</td>
 </tr>
 <tr>
 <td><code>memberships</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Memberships</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Name</td>
 </tr>
 <tr>
 <td><code>offering</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Offering</td>
 </tr>
 <tr>
 <td><code>prefs</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Prefs</td>
 </tr>
 <tr>
 <td><code>premiumFeatures</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Premium Features</td>
 </tr>
 <tr>
 <td><code>url</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Url</td>
 </tr>
 </tbody>
 </table>

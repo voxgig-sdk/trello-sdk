@@ -74,7 +74,7 @@ function transferrable_organization_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["transferrable_organization01", "transferrable_organization02", "transferrable_organization03", "enterpris01", "enterpris02", "enterpris03"] as $k) {
+    foreach (["transferrable_organization01", "transferrable_organization02", "transferrable_organization03", "enterprise01", "enterprise02", "enterprise03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

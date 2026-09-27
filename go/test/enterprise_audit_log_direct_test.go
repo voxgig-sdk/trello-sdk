@@ -28,7 +28,7 @@ func TestEnterpriseAuditLogDirect(t *testing.T) {
 			return
 		}
 		if setup.live {
-			for _, _liveKey := range []string{"enterpris01"} {
+			for _, _liveKey := range []string{"enterprise_audit_log01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
 					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
 					return
@@ -39,13 +39,13 @@ func TestEnterpriseAuditLogDirect(t *testing.T) {
 
 		params := map[string]any{}
 		if setup.live {
-			params["enterpris_id"] = setup.idmap["enterpris01"]
+			params["id"] = setup.idmap["enterprise_audit_log01"]
 		} else {
-			params["enterpris_id"] = "direct01"
+			params["id"] = "direct01"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "enterprises/{enterpris_id}/auditlog",
+			"path":   "enterprises/{id}/auditlog",
 			"method": "GET",
 			"params": params,
 		})

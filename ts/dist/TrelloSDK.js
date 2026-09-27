@@ -5,7 +5,6 @@ exports.SDK = exports.TrelloSDK = exports.TrelloEntityBase = exports.BaseFeature
 const ActionEntity_1 = require("./entity/ActionEntity");
 const ActionReactionsSummaryEntity_1 = require("./entity/ActionReactionsSummaryEntity");
 const AdminEntity_1 = require("./entity/AdminEntity");
-const ApplicationEntity_1 = require("./entity/ApplicationEntity");
 const ApplicationComplianceEntity_1 = require("./entity/ApplicationComplianceEntity");
 const AssociatedDomainEntity_1 = require("./entity/AssociatedDomainEntity");
 const AttachmentEntity_1 = require("./entity/AttachmentEntity");
@@ -28,10 +27,10 @@ const CustomFieldItemEntity_1 = require("./entity/CustomFieldItemEntity");
 const CustomStickerEntity_1 = require("./entity/CustomStickerEntity");
 const EmailPositionEntity_1 = require("./entity/EmailPositionEntity");
 const EmojiEntity_1 = require("./entity/EmojiEntity");
-const EnterprisEntity_1 = require("./entity/EnterprisEntity");
-const EnterprisSignupUrlEntity_1 = require("./entity/EnterprisSignupUrlEntity");
+const EnterpriseEntity_1 = require("./entity/EnterpriseEntity");
 const EnterpriseAdminEntity_1 = require("./entity/EnterpriseAdminEntity");
 const EnterpriseAuditLogEntity_1 = require("./entity/EnterpriseAuditLogEntity");
+const EnterpriseSignupUrlEntity_1 = require("./entity/EnterpriseSignupUrlEntity");
 const ExportEntity_1 = require("./entity/ExportEntity");
 const ExportDownloadEntity_1 = require("./entity/ExportDownloadEntity");
 const GenerateEntity_1 = require("./entity/GenerateEntity");
@@ -44,13 +43,11 @@ const MemberEntity_1 = require("./entity/MemberEntity");
 const MemberPrivacyEntity_1 = require("./entity/MemberPrivacyEntity");
 const MembersVotedEntity_1 = require("./entity/MembersVotedEntity");
 const MembershipEntity_1 = require("./entity/MembershipEntity");
-const MostRecentEntity_1 = require("./entity/MostRecentEntity");
 const NewBillableGuestEntity_1 = require("./entity/NewBillableGuestEntity");
 const NotificationEntity_1 = require("./entity/NotificationEntity");
 const NotificationChannelSettingEntity_1 = require("./entity/NotificationChannelSettingEntity");
 const NotificationListEntity_1 = require("./entity/NotificationListEntity");
 const NotificationMemberCreatorEntity_1 = require("./entity/NotificationMemberCreatorEntity");
-const NotificationsChannelSettingEntity_1 = require("./entity/NotificationsChannelSettingEntity");
 const OptionEntity_1 = require("./entity/OptionEntity");
 const OrgInviteRestrictEntity_1 = require("./entity/OrgInviteRestrictEntity");
 const OrganizationEntity_1 = require("./entity/OrganizationEntity");
@@ -153,7 +150,6 @@ class TrelloSDK {
             ctrl: fetchargs.ctrl || {},
         }, this._rootctx);
         const options = this._options;
-        // Build spec directly from SDK options + user-provided fetch args.
         const spec = {
             base: options.base,
             prefix: options.prefix,
@@ -167,14 +163,12 @@ class TrelloSDK {
             step: 'start',
         };
         ctx.spec = spec;
-        // Merge user-provided headers over SDK defaults.
         if (fetchargs.headers) {
             const uheaders = fetchargs.headers;
             for (let key in uheaders) {
                 spec.headers[key] = uheaders[key];
             }
         }
-        // Apply SDK auth (apikey, auth prefix, etc.)
         const authResult = prepareAuth(ctx);
         if (authResult instanceof Error) {
             return authResult;
@@ -249,18 +243,6 @@ class TrelloSDK {
             return { ok: false, err };
         }
     }
-    // Raw GraphQL access: the pressure valve that makes the generated
-    // surface's deliberate omissions (per-call selection sets, typed filter
-    // builders, batching, subscriptions) livable — the whole schema stays
-    // reachable.
-    //
-    // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-    // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-    // HTTP 200 as a top-level `errors` array, so status alone would report a
-    // failed query as ok.
-    //
-    // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-    // ratelimit or paging features apply.
     async graphql(query, variables, ctrl) {
         const options = this._options;
         if (!options.allow.op.includes('graphql')) {
@@ -314,13 +296,6 @@ class TrelloSDK {
     Admin(entopts) {
         const self = this;
         return new AdminEntity_1.AdminEntity(self, entopts);
-    }
-    // Entity access: `client.Application().list()` / `client.Application().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    Application(entopts) {
-        const self = this;
-        return new ApplicationEntity_1.ApplicationEntity(self, entopts);
     }
     // Entity access: `client.ApplicationCompliance().list()` / `client.ApplicationCompliance().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -476,19 +451,12 @@ class TrelloSDK {
         const self = this;
         return new EmojiEntity_1.EmojiEntity(self, entopts);
     }
-    // Entity access: `client.Enterpris().list()` / `client.Enterpris().load({ id })`.
+    // Entity access: `client.Enterprise().list()` / `client.Enterprise().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Enterpris(entopts) {
+    Enterprise(entopts) {
         const self = this;
-        return new EnterprisEntity_1.EnterprisEntity(self, entopts);
-    }
-    // Entity access: `client.EnterprisSignupUrl().list()` / `client.EnterprisSignupUrl().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    EnterprisSignupUrl(entopts) {
-        const self = this;
-        return new EnterprisSignupUrlEntity_1.EnterprisSignupUrlEntity(self, entopts);
+        return new EnterpriseEntity_1.EnterpriseEntity(self, entopts);
     }
     // Entity access: `client.EnterpriseAdmin().list()` / `client.EnterpriseAdmin().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -503,6 +471,13 @@ class TrelloSDK {
     EnterpriseAuditLog(entopts) {
         const self = this;
         return new EnterpriseAuditLogEntity_1.EnterpriseAuditLogEntity(self, entopts);
+    }
+    // Entity access: `client.EnterpriseSignupUrl().list()` / `client.EnterpriseSignupUrl().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    EnterpriseSignupUrl(entopts) {
+        const self = this;
+        return new EnterpriseSignupUrlEntity_1.EnterpriseSignupUrlEntity(self, entopts);
     }
     // Entity access: `client.Export().list()` / `client.Export().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -588,13 +563,6 @@ class TrelloSDK {
         const self = this;
         return new MembershipEntity_1.MembershipEntity(self, entopts);
     }
-    // Entity access: `client.MostRecent().list()` / `client.MostRecent().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    MostRecent(entopts) {
-        const self = this;
-        return new MostRecentEntity_1.MostRecentEntity(self, entopts);
-    }
     // Entity access: `client.NewBillableGuest().list()` / `client.NewBillableGuest().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
@@ -629,13 +597,6 @@ class TrelloSDK {
     NotificationMemberCreator(entopts) {
         const self = this;
         return new NotificationMemberCreatorEntity_1.NotificationMemberCreatorEntity(self, entopts);
-    }
-    // Entity access: `client.NotificationsChannelSetting().list()` / `client.NotificationsChannelSetting().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    NotificationsChannelSetting(entopts) {
-        const self = this;
-        return new NotificationsChannelSettingEntity_1.NotificationsChannelSettingEntity(self, entopts);
     }
     // Entity access: `client.Option().list()` / `client.Option().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

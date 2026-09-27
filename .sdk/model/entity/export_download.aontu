@@ -1,0 +1,86 @@
+# Entity: export_download
+
+main: kit: entity: export_download: {
+
+  alias: field: {}
+
+  name: "export_download"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /boards/{id}/exports/{idExport}/download"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "board_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_export"
+                or: "id_export"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards/{id}/exports/{idExport}/download"
+          q: {
+            exist: [
+              "board_id"
+              "id_export"
+            ]
+          }
+          r: {
+            param: {
+              id: "board_id"
+              idExport: "id_export"
+            }
+          }
+          s: [
+            {
+              lit: "boards"
+            }
+            {
+              var: "board_id"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              var: "id_export"
+            }
+            {
+              lit: "download"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.board") path("$.main.kit.entity.export")]
+  ]
+
+}

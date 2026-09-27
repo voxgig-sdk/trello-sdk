@@ -121,7 +121,7 @@ func bulkBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"bulk01", "bulk02", "bulk03", "enterpris01", "enterpris02", "enterpris03"},
+		[]any{"bulk01", "bulk02", "bulk03", "enterprise01", "enterprise02", "enterprise03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

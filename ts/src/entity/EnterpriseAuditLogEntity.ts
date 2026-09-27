@@ -19,7 +19,6 @@ import type {
   EnterpriseAuditLogListMatch,
 } from '../TrelloTypes'
 
-// TODO: needs Entity superclass
 class EnterpriseAuditLogEntity extends TrelloEntityBase<EnterpriseAuditLog> {
 
   constructor(client: TrelloSDK, entopts: any) {

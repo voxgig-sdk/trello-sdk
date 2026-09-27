@@ -62,9 +62,6 @@ func init() {
 	core.NewAdminEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewAdminEntity(client, entopts)
 	}
-	core.NewApplicationEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
-		return entity.NewApplicationEntity(client, entopts)
-	}
 	core.NewApplicationComplianceEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewApplicationComplianceEntity(client, entopts)
 	}
@@ -131,17 +128,17 @@ func init() {
 	core.NewEmojiEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewEmojiEntity(client, entopts)
 	}
-	core.NewEnterprisEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
-		return entity.NewEnterprisEntity(client, entopts)
-	}
-	core.NewEnterprisSignupUrlEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
-		return entity.NewEnterprisSignupUrlEntity(client, entopts)
+	core.NewEnterpriseEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
+		return entity.NewEnterpriseEntity(client, entopts)
 	}
 	core.NewEnterpriseAdminEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewEnterpriseAdminEntity(client, entopts)
 	}
 	core.NewEnterpriseAuditLogEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewEnterpriseAuditLogEntity(client, entopts)
+	}
+	core.NewEnterpriseSignupUrlEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
+		return entity.NewEnterpriseSignupUrlEntity(client, entopts)
 	}
 	core.NewExportEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewExportEntity(client, entopts)
@@ -179,9 +176,6 @@ func init() {
 	core.NewMembershipEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewMembershipEntity(client, entopts)
 	}
-	core.NewMostRecentEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
-		return entity.NewMostRecentEntity(client, entopts)
-	}
 	core.NewNewBillableGuestEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewNewBillableGuestEntity(client, entopts)
 	}
@@ -196,9 +190,6 @@ func init() {
 	}
 	core.NewNotificationMemberCreatorEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewNotificationMemberCreatorEntity(client, entopts)
-	}
-	core.NewNotificationsChannelSettingEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
-		return entity.NewNotificationsChannelSettingEntity(client, entopts)
 	}
 	core.NewOptionEntityFunc = func(client *core.TrelloSDK, entopts map[string]any) core.TrelloEntity {
 		return entity.NewOptionEntity(client, entopts)

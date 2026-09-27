@@ -1,0 +1,73 @@
+# Entity: member_privacy
+
+main: kit: entity: member_privacy: {
+
+  alias: field: {}
+
+  name: "member_privacy"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /plugins/{id}/compliance/memberPrivacy"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "plugin_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/plugins/{id}/compliance/memberPrivacy"
+          q: {
+            exist: [
+              "plugin_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "plugin_id"
+            }
+          }
+          s: [
+            {
+              lit: "plugins"
+            }
+            {
+              var: "plugin_id"
+            }
+            {
+              lit: "compliance"
+            }
+            {
+              lit: "memberPrivacy"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.plugin")]
+  ]
+
+}

@@ -1,0 +1,204 @@
+# Entity: option
+
+main: kit: entity: option: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "option"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /customFields/{id}/options/{idCustomFieldOption}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "custom_field_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_custom_field_option"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/customFields/{id}/options/{idCustomFieldOption}"
+          q: {
+            exist: [
+              "custom_field_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              id: "custom_field_id"
+              idCustomFieldOption: "id"
+            }
+          }
+          s: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "custom_field_id"
+            }
+            {
+              lit: "options"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /customFields/{id}/options"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "custom_field_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/customFields/{id}/options"
+          q: {
+            exist: [
+              "custom_field_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "custom_field_id"
+            }
+          }
+          s: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "custom_field_id"
+            }
+            {
+              lit: "options"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /customFields/{id}/options/{idCustomFieldOption}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "custom_field_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_custom_field_option"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/customFields/{id}/options/{idCustomFieldOption}"
+          q: {
+            exist: [
+              "custom_field_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              id: "custom_field_id"
+              idCustomFieldOption: "id"
+            }
+          }
+          s: [
+            {
+              lit: "customFields"
+            }
+            {
+              var: "custom_field_id"
+            }
+            {
+              lit: "options"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.custom_field")]
+  ]
+
+}

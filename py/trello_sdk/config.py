@@ -186,7 +186,6 @@ def make_config():
                 "action": {},
                 "action_reactions_summary": {},
                 "admin": {},
-                "application": {},
                 "application_compliance": {},
                 "associated_domain": {},
                 "attachment": {},
@@ -209,10 +208,10 @@ def make_config():
                 "custom_sticker": {},
                 "email_position": {},
                 "emoji": {},
-                "enterpris": {},
-                "enterpris_signup_url": {},
+                "enterprise": {},
                 "enterprise_admin": {},
                 "enterprise_audit_log": {},
+                "enterprise_signup_url": {},
                 "export": {},
                 "export_download": {},
                 "generate": {},
@@ -225,13 +224,11 @@ def make_config():
                 "member_privacy": {},
                 "members_voted": {},
                 "membership": {},
-                "most_recent": {},
                 "new_billable_guest": {},
                 "notification": {},
                 "notification_channel_setting": {},
                 "notification_list": {},
                 "notification_member_creator": {},
-                "notifications_channel_setting": {},
                 "option": {},
                 "org_invite_restrict": {},
                 "organization": {},
@@ -260,35 +257,43 @@ def make_config():
         "fields": [
           {
             "name": "data",
+            "title": "Data",
             "type": "`$OBJECT`",
           },
           {
-            "format": "date-time",
             "name": "date",
+            "title": "Date",
             "type": "`$STRING`",
+            "format": "date-time",
           },
           {
             "name": "display",
+            "title": "Display",
             "type": "`$OBJECT`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idMemberCreator",
+            "title": "Id Member Creator",
             "type": "`$STRING`",
           },
           {
             "name": "limits",
+            "title": "Limits",
             "type": "`$OBJECT`",
           },
           {
             "name": "memberCreator",
+            "title": "Member Creator",
             "type": "`$OBJECT`",
           },
           {
             "name": "type",
+            "title": "Type",
             "type": "`$STRING`",
           },
         ],
@@ -303,35 +308,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "text",
-                      "orig": "text",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/actions/comments",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -346,6 +325,42 @@ def make_config():
                     "lit": "comments",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "actions",
+                  "comments",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "text",
+                      "orig": "text",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "comment",
                   "exist": [
@@ -353,38 +368,11 @@ def make_config():
                     "text",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "actions",
-                  "comments",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_action",
-                      "orig": "id_action",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/actions/{idAction}/reactions",
-                "rename": {
-                  "param": {
-                    "idAction": "id_action",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -396,21 +384,38 @@ def make_config():
                     "lit": "reactions",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{id_action}",
+                  "reactions",
+                ],
+                "rename": {
+                  "param": {
+                    "idAction": "id_action",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id_action",
+                      "orig": "id_action",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "reaction",
                   "exist": [
                     "id_action",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{id_action}",
-                  "reactions",
-                ],
               },
             ],
           },
@@ -419,42 +424,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "commentCard, updateCard:idList",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$NUMBER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/actions",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -466,6 +438,48 @@ def make_config():
                     "lit": "actions",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "actions",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "commentCard, updateCard:idList",
+                    },
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
@@ -473,45 +487,11 @@ def make_config():
                     "page",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "actions",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/actions",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -523,43 +503,51 @@ def make_config():
                     "lit": "actions",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "actions",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "filter",
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "actions",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/actions",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -571,20 +559,37 @@ def make_config():
                     "lit": "actions",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "actions",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -593,112 +598,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "board_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "before",
-                      "orig": "before",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$OBJECT`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "list",
-                      "kind": "query",
-                      "name": "format",
-                      "orig": "format",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "id_model",
-                      "orig": "id_model",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member_creator",
-                      "orig": "member_creator",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username",
-                      "kind": "query",
-                      "name": "member_creator_field",
-                      "orig": "member_creator_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username",
-                      "kind": "query",
-                      "name": "member_field",
-                      "orig": "member_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "reaction",
-                      "orig": "reaction",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "since",
-                      "orig": "since",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{boardId}/actions",
-                "rename": {
-                  "param": {
-                    "boardId": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -710,6 +612,118 @@ def make_config():
                     "lit": "actions",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "actions",
+                ],
+                "rename": {
+                  "param": {
+                    "boardId": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "board_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "before",
+                      "orig": "before",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$OBJECT`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "format",
+                      "orig": "format",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "list",
+                    },
+                    {
+                      "name": "id_model",
+                      "orig": "id_model",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member_creator",
+                      "orig": "member_creator",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member_creator_field",
+                      "orig": "member_creator_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username",
+                    },
+                    {
+                      "name": "member_field",
+                      "orig": "member_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "activityBlocked,avatarHash,avatarUrl,fullName,idMemberReferrer,initials,nonPublic,nonPublicAvailable,username",
+                    },
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "example": 0,
+                    },
+                    {
+                      "name": "reaction",
+                      "orig": "reaction",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "since",
+                      "orig": "since",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "before",
@@ -728,80 +742,8 @@ def make_config():
                     "since",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "actions",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "display",
-                      "orig": "display",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "entity",
-                      "orig": "entity",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member_creator",
-                      "orig": "member_creator",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "avatarHash,fullName,initials,username",
-                      "kind": "query",
-                      "name": "member_creator_field",
-                      "orig": "member_creator_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "avatarHash,fullName,initials,username",
-                      "kind": "query",
-                      "name": "member_field",
-                      "orig": "member_field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{id}",
@@ -813,6 +755,78 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "display",
+                      "orig": "display",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "entity",
+                      "orig": "entity",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member_creator",
+                      "orig": "member_creator",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member_creator_field",
+                      "orig": "member_creator_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash,fullName,initials,username",
+                    },
+                    {
+                      "name": "member_field",
+                      "orig": "member_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash,fullName,initials,username",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "display",
@@ -825,35 +839,8 @@ def make_config():
                     "member_field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{id}/{field}",
@@ -868,50 +855,46 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "list_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lists/{id}/actions",
-                "rename": {
-                  "param": {
-                    "id": "list_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "lists",
@@ -923,21 +906,45 @@ def make_config():
                     "lit": "actions",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{list_id}",
+                  "actions",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "list_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "list_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "filter",
                     "list_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{list_id}",
-                  "actions",
-                ],
               },
             ],
           },
@@ -946,35 +953,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_action",
-                      "orig": "id_action",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}/actions/{idAction}/comments",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idAction": "id_action",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -992,17 +973,6 @@ def make_config():
                     "lit": "comments",
                   },
                 ],
-                "select": {
-                  "$action": "comment",
-                  "exist": [
-                    "card_id",
-                    "id_action",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
@@ -1010,20 +980,45 @@ def make_config():
                   "{id_action}",
                   "comments",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idAction": "id_action",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
+                      "name": "card_id",
                       "orig": "id",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_action",
+                      "orig": "id_action",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                   ],
                 },
+                "select": {
+                  "$action": "comment",
+                  "exist": [
+                    "card_id",
+                    "id_action",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/actions/{id}",
@@ -1035,19 +1030,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -1056,44 +1064,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_action",
-                      "orig": "id_action",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "text",
-                      "orig": "text",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/cards/{id}/actions/{idAction}/comments",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idAction": "id_action",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -1111,6 +1084,52 @@ def make_config():
                     "lit": "comments",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "actions",
+                  "{id_action}",
+                  "comments",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idAction": "id_action",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_action",
+                      "orig": "id_action",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "text",
+                      "orig": "text",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "comment",
                   "exist": [
@@ -1119,40 +1138,8 @@ def make_config():
                     "text",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "actions",
-                  "{id_action}",
-                  "comments",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "text",
-                      "orig": "text",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/actions/{id}",
@@ -1164,43 +1151,44 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "text",
+                      "orig": "text",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                     "text",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/actions/{id}/text",
@@ -1215,6 +1203,37 @@ def make_config():
                     "lit": "text",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{id}",
+                  "text",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "text",
                   "exist": [
@@ -1222,15 +1241,6 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{id}",
-                  "text",
-                ],
               },
             ],
           },
@@ -1238,23 +1248,22 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
             [
-              "list",
+              "$.main.kit.entity.list",
             ],
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
             [
-              "organization",
+              "$.main.kit.entity.organization",
             ],
             [
-              "card",
-              "action",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -1268,26 +1277,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_action",
-                      "orig": "id_action",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{idAction}/reactionsSummary",
-                "rename": {
-                  "param": {
-                    "idAction": "id_action",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -1299,20 +1291,37 @@ def make_config():
                     "lit": "reactionsSummary",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id_action",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "actions",
                   "{id_action}",
                   "reactionsSummary",
                 ],
+                "rename": {
+                  "param": {
+                    "idAction": "id_action",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id_action",
+                      "orig": "id_action",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id_action",
+                  ],
+                },
               },
             ],
           },
@@ -1320,7 +1329,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "action",
+              "$.main.kit.entity.action",
             ],
           ],
         },
@@ -1329,6 +1338,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -1343,41 +1353,15 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/enterprises/{id}/admins/{idMember}",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idMember": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "admins",
@@ -1386,22 +1370,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "enterpris_id",
-                    "id",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "admins",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idMember": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "admins",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "enterprise_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1410,41 +1420,15 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/enterprises/{id}/admins/{idMember}",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idMember": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "admins",
@@ -1453,22 +1437,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "enterpris_id",
-                    "id",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "admins",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idMember": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "admins",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "enterprise_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1476,19 +1486,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "enterpris",
-            ],
-          ],
-        },
-      },
-      "application": {
-        "fields": [],
-        "name": "application",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "application",
+              "$.main.kit.entity.enterprise",
             ],
           ],
         },
@@ -1502,17 +1500,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "key",
-                      "orig": "key",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/applications/{key}/compliance",
@@ -1527,30 +1514,38 @@ def make_config():
                     "lit": "compliance",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "key",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "applications",
                   "{key}",
                   "compliance",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "key",
+                      "orig": "key",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "key",
+                  ],
+                },
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "application",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "associated_domain": {
@@ -1562,26 +1557,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/organizations/{id}/prefs/associatedDomain",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -1596,21 +1574,38 @@ def make_config():
                     "lit": "associatedDomain",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "prefs",
                   "associatedDomain",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -1618,7 +1613,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "organization",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -1627,6 +1622,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -1641,42 +1637,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "false",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/attachments",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -1688,6 +1651,48 @@ def make_config():
                     "lit": "attachments",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "attachments",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "false",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
@@ -1695,15 +1700,6 @@ def make_config():
                     "filter",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "attachments",
-                ],
               },
             ],
           },
@@ -1712,46 +1708,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_attachment",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": [
-                        "all",
-                      ],
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$ARRAY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/attachments/{idAttachment}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idAttachment": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -1766,6 +1725,53 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "attachments",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idAttachment": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_attachment",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$ARRAY`",
+                      "kind": "query",
+                      "example": [
+                        "all",
+                      ],
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
@@ -1773,16 +1779,6 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "attachments",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -1791,51 +1787,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_attachment",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_attachment",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}/attachments/{idAttachment}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idAttachment": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -1850,22 +1804,64 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "attachments",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idAttachment": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_attachment",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_attachment",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1873,7 +1869,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -1887,17 +1883,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "url",
-                      "orig": "url",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/batch",
@@ -1906,18 +1891,30 @@ def make_config():
                     "lit": "batch",
                   },
                 ],
+                "parts": [
+                  "batch",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "url",
+                      "orig": "url",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "url",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "batch",
-                ],
               },
             ],
           },
@@ -1930,114 +1927,140 @@ def make_config():
         "fields": [
           {
             "name": "closed",
+            "title": "Closed",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "creationMethod",
+            "title": "Creation Method",
             "type": "`$STRING`",
           },
           {
-            "format": "date",
             "name": "dateLastActivity",
+            "title": "Date Last Activity",
             "type": "`$STRING`",
+            "format": "date",
           },
           {
-            "format": "date",
             "name": "dateLastView",
+            "title": "Date Last View",
             "type": "`$STRING`",
+            "format": "date",
           },
           {
-            "format": "date",
             "name": "datePluginDisable",
+            "title": "Date Plugin Disable",
             "type": "`$STRING`",
+            "format": "date",
           },
           {
             "name": "desc",
+            "title": "Desc",
             "type": "`$STRING`",
           },
           {
             "name": "descData",
+            "title": "Desc Data",
             "type": "`$STRING`",
           },
           {
             "name": "enterpriseOwned",
+            "title": "Enterprise Owned",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "id",
-            "req": True,
+            "title": "Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "idMemberCreator",
+            "title": "Id Member Creator",
             "type": "`$STRING`",
           },
           {
             "name": "idOrganization",
+            "title": "Id Organization",
             "type": "`$STRING`",
           },
           {
             "name": "idTags",
+            "title": "Id Tags",
             "type": "`$STRING`",
           },
           {
             "name": "ixUpdate",
+            "title": "Ix Update",
             "type": "`$INTEGER`",
           },
           {
             "name": "labelNames",
+            "title": "Label Names",
             "type": "`$OBJECT`",
           },
           {
             "name": "limits",
+            "title": "Limits",
             "type": "`$OBJECT`",
           },
           {
             "name": "memberships",
+            "title": "Memberships",
             "type": "`$STRING`",
           },
           {
             "name": "name",
-            "short": "The name of the board.",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "The name of the board.",
           },
           {
             "name": "pinned",
+            "title": "Pinned",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "powerUps",
+            "title": "Power Ups",
             "type": "`$STRING`",
           },
           {
             "name": "prefs",
+            "title": "Prefs",
             "type": "`$OBJECT`",
           },
           {
             "name": "shortLink",
+            "title": "Short Link",
             "type": "`$STRING`",
           },
           {
-            "format": "url",
             "name": "shortUrl",
+            "title": "Short Url",
             "type": "`$STRING`",
+            "format": "url",
           },
           {
             "name": "starred",
+            "title": "Starred",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "subscribed",
+            "title": "Subscribed",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "templateGallery",
+            "title": "Template Gallery",
             "type": "`$STRING`",
           },
           {
-            "format": "url",
             "name": "url",
+            "title": "Url",
             "type": "`$STRING`",
+            "format": "url",
           },
         ],
         "id": {
@@ -2051,120 +2074,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "default_label",
-                      "orig": "default_label",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "default_list",
-                      "orig": "default_list",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "desc",
-                      "orig": "desc",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_board_source",
-                      "orig": "id_board_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_organization",
-                      "orig": "id_organization",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "keep_from_source",
-                      "orig": "keep_from_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "power_up",
-                      "orig": "power_up",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "blue",
-                      "kind": "query",
-                      "name": "prefs_background",
-                      "orig": "prefs_background",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "regular",
-                      "kind": "query",
-                      "name": "prefs_card_aging",
-                      "orig": "prefs_card_aging",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "prefs_card_cover",
-                      "orig": "prefs_card_cover",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "members",
-                      "kind": "query",
-                      "name": "prefs_comment",
-                      "orig": "prefs_comment",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "members",
-                      "kind": "query",
-                      "name": "prefs_invitation",
-                      "orig": "prefs_invitation",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "private",
-                      "kind": "query",
-                      "name": "prefs_permission_level",
-                      "orig": "prefs_permission_level",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "prefs_self_join",
-                      "orig": "prefs_self_join",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "disabled",
-                      "kind": "query",
-                      "name": "prefs_voting",
-                      "orig": "prefs_voting",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/boards/",
@@ -2173,6 +2082,128 @@ def make_config():
                     "lit": "boards",
                   },
                 ],
+                "parts": [
+                  "boards",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "default_label",
+                      "orig": "default_label",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "default_list",
+                      "orig": "default_list",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "desc",
+                      "orig": "desc",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_board_source",
+                      "orig": "id_board_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_organization",
+                      "orig": "id_organization",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "keep_from_source",
+                      "orig": "keep_from_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "power_up",
+                      "orig": "power_up",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs_background",
+                      "orig": "prefs_background",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "blue",
+                    },
+                    {
+                      "name": "prefs_card_aging",
+                      "orig": "prefs_card_aging",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "regular",
+                    },
+                    {
+                      "name": "prefs_card_cover",
+                      "orig": "prefs_card_cover",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "prefs_comment",
+                      "orig": "prefs_comment",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "members",
+                    },
+                    {
+                      "name": "prefs_invitation",
+                      "orig": "prefs_invitation",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "members",
+                    },
+                    {
+                      "name": "prefs_permission_level",
+                      "orig": "prefs_permission_level",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "private",
+                    },
+                    {
+                      "name": "prefs_self_join",
+                      "orig": "prefs_self_join",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "prefs_voting",
+                      "orig": "prefs_voting",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "disabled",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "default_label",
@@ -2193,42 +2224,8 @@ def make_config():
                     "prefs_voting",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "color",
-                      "orig": "color",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/boards/{id}/labels",
@@ -2243,6 +2240,43 @@ def make_config():
                     "lit": "labels",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                  "labels",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "color",
+                      "orig": "color",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "label",
                   "exist": [
@@ -2251,38 +2285,8 @@ def make_config():
                     "name",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                  "labels",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_plugin",
-                      "orig": "id_plugin",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/boards/{id}/boardPlugins",
@@ -2297,6 +2301,37 @@ def make_config():
                     "lit": "boardPlugins",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                  "boardPlugins",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "id_plugin",
+                      "orig": "id_plugin",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "board_plugin",
                   "exist": [
@@ -2304,39 +2339,8 @@ def make_config():
                     "id_plugin",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                  "boardPlugins",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/boards/{id}/idTags",
@@ -2351,6 +2355,38 @@ def make_config():
                     "lit": "idTags",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                  "idTags",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "id_tag",
                   "exist": [
@@ -2358,29 +2394,8 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                  "idTags",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/boards/{id}/markedAsViewed",
@@ -2395,21 +2410,34 @@ def make_config():
                     "lit": "markedAsViewed",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                  "markedAsViewed",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "marked_as_viewed",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                  "markedAsViewed",
-                ],
               },
             ],
           },
@@ -2418,63 +2446,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "list",
-                      "orig": "list",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "organization",
-                      "orig": "organization",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "name,displayName",
-                      "kind": "query",
-                      "name": "organization_field",
-                      "orig": "organization_field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/boards",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -2486,6 +2460,69 @@ def make_config():
                     "lit": "boards",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "boards",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "list",
+                      "orig": "list",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "organization",
+                      "orig": "organization",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "organization_field",
+                      "orig": "organization_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name,displayName",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -2496,53 +2533,11 @@ def make_config():
                     "organization_field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "boards",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/boards",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -2554,6 +2549,48 @@ def make_config():
                     "lit": "boards",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{organization_id}",
+                  "boards",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -2561,46 +2598,11 @@ def make_config():
                     "organization_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{organization_id}",
-                  "boards",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/boardsInvited",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -2612,21 +2614,47 @@ def make_config():
                     "lit": "boardsInvited",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "boardsInvited",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "boardsInvited",
-                ],
               },
             ],
           },
@@ -2635,131 +2663,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "action",
-                      "orig": "action",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "board_star",
-                      "orig": "board_star",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "card",
-                      "orig": "card",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "card_plugin_data",
-                      "orig": "card_plugin_data",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "checklist",
-                      "orig": "checklist",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "custom_field",
-                      "orig": "custom_field",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "name,desc,descData,closed,idOrganization,pinned,url,shortUrl,prefs,labelNames",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "label",
-                      "orig": "label",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "open",
-                      "kind": "query",
-                      "name": "list",
-                      "orig": "list",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "membership",
-                      "orig": "membership",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "my_pref",
-                      "orig": "my_pref",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "organization",
-                      "orig": "organization",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "organization_plugin_data",
-                      "orig": "organization_plugin_data",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "plugin_data",
-                      "orig": "plugin_data",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "tag",
-                      "orig": "tag",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}",
@@ -2771,6 +2674,140 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "action",
+                      "orig": "action",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "board_star",
+                      "orig": "board_star",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "card",
+                      "orig": "card",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "card_plugin_data",
+                      "orig": "card_plugin_data",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "checklist",
+                      "orig": "checklist",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "custom_field",
+                      "orig": "custom_field",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name,desc,descData,closed,idOrganization,pinned,url,shortUrl,prefs,labelNames",
+                    },
+                    {
+                      "name": "label",
+                      "orig": "label",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "list",
+                      "orig": "list",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "open",
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "membership",
+                      "orig": "membership",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "my_pref",
+                      "orig": "my_pref",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "organization",
+                      "orig": "organization",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "organization_plugin_data",
+                      "orig": "organization_plugin_data",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "plugin_data",
+                      "orig": "plugin_data",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "tag",
+                      "orig": "tag",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action",
@@ -2792,44 +2829,11 @@ def make_config():
                     "tag",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "action_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{id}/board",
-                "rename": {
-                  "param": {
-                    "id": "action_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -2841,52 +2845,51 @@ def make_config():
                     "lit": "board",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{action_id}",
+                  "board",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "action_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "action_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{action_id}",
-                  "board",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/board",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -2898,52 +2901,52 @@ def make_config():
                     "lit": "board",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "board",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "board",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "checklist_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/checklists/{id}/board",
-                "rename": {
-                  "param": {
-                    "id": "checklist_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "checklists",
@@ -2955,41 +2958,49 @@ def make_config():
                     "lit": "board",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{checklist_id}",
+                  "board",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "checklist_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "checklist_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "checklist_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{checklist_id}",
-                  "board",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/{field}",
@@ -3004,51 +3015,45 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "list_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lists/{id}/board",
-                "rename": {
-                  "param": {
-                    "id": "list_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "lists",
@@ -3060,52 +3065,51 @@ def make_config():
                     "lit": "board",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{list_id}",
+                  "board",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "list_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "list_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "list_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{list_id}",
-                  "board",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "notification_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/notifications/{id}/board",
-                "rename": {
-                  "param": {
-                    "id": "notification_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "notifications",
@@ -3117,21 +3121,47 @@ def make_config():
                     "lit": "board",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{notification_id}",
+                  "board",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "notification_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "notification_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "notification_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{notification_id}",
-                  "board",
-                ],
               },
             ],
           },
@@ -3140,25 +3170,6 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/boards/{id}",
@@ -3170,19 +3181,39 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -3191,111 +3222,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "closed",
-                      "orig": "closed",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "desc",
-                      "orig": "desc",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "id_organization",
-                      "orig": "id_organization",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/background",
-                      "orig": "prefs/background",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/calendar_feed_enabled",
-                      "orig": "prefs/calendar_feed_enabled",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/card_aging",
-                      "orig": "prefs/card_aging",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/card_cover",
-                      "orig": "prefs/card_cover",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/comment",
-                      "orig": "prefs/comment",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/hide_vote",
-                      "orig": "prefs/hide_vote",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/invitation",
-                      "orig": "prefs/invitation",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/permission_level",
-                      "orig": "prefs/permission_level",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/self_join",
-                      "orig": "prefs/self_join",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/voting",
-                      "orig": "prefs/voting",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "subscribed",
-                      "orig": "subscribed",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}",
@@ -3307,6 +3233,120 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "closed",
+                      "orig": "closed",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "desc",
+                      "orig": "desc",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_organization",
+                      "orig": "id_organization",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/background",
+                      "orig": "prefs/background",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/calendar_feed_enabled",
+                      "orig": "prefs/calendar_feed_enabled",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/card_aging",
+                      "orig": "prefs/card_aging",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/card_cover",
+                      "orig": "prefs/card_cover",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/comment",
+                      "orig": "prefs/comment",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/hide_vote",
+                      "orig": "prefs/hide_vote",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/invitation",
+                      "orig": "prefs/invitation",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/permission_level",
+                      "orig": "prefs/permission_level",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/self_join",
+                      "orig": "prefs/self_join",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/voting",
+                      "orig": "prefs/voting",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "subscribed",
+                      "orig": "subscribed",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "closed",
@@ -3327,44 +3367,8 @@ def make_config():
                     "subscribed",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "email",
-                      "orig": "email",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "normal",
-                      "kind": "query",
-                      "name": "type",
-                      "orig": "type",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/members",
@@ -3379,6 +3383,44 @@ def make_config():
                     "lit": "members",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                  "members",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "email",
+                      "orig": "email",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "normal",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "member",
                   "exist": [
@@ -3387,15 +3429,6 @@ def make_config():
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                  "members",
-                ],
               },
             ],
           },
@@ -3403,25 +3436,25 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "action",
+              "$.main.kit.entity.action",
             ],
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
             [
-              "checklist",
+              "$.main.kit.entity.checklist",
             ],
             [
-              "list",
+              "$.main.kit.entity.list",
             ],
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
             [
-              "notification",
+              "$.main.kit.entity.notification",
             ],
             [
-              "organization",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -3430,6 +3463,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -3444,35 +3478,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "file",
-                      "orig": "file",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/members/{id}/customBoardBackgrounds",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -3484,21 +3492,47 @@ def make_config():
                     "lit": "customBoardBackgrounds",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "customBoardBackgrounds",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "file",
+                      "orig": "file",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "file",
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "customBoardBackgrounds",
-                ],
               },
             ],
           },
@@ -3507,35 +3541,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/boardBackgrounds",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -3547,43 +3555,52 @@ def make_config():
                     "lit": "boardBackgrounds",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "boardBackgrounds",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "filter",
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "boardBackgrounds",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/customBoardBackgrounds",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -3595,20 +3612,37 @@ def make_config():
                     "lit": "customBoardBackgrounds",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "customBoardBackgrounds",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -3617,44 +3651,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_background",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/boardBackgrounds/{idBackground}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idBackground": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -3669,6 +3668,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "boardBackgrounds",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idBackground": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_background",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -3676,46 +3720,11 @@ def make_config():
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "boardBackgrounds",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_background",
-                      "orig": "id_background",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/customBoardBackgrounds/{idBackground}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idBackground": "id_background",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -3730,22 +3739,47 @@ def make_config():
                     "var": "id_background",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id_background",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "customBoardBackgrounds",
                   "{id_background}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idBackground": "id_background",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id_background",
+                      "orig": "id_background",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id_background",
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -3754,35 +3788,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_background",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/members/{id}/boardBackgrounds/{idBackground}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idBackground": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -3797,22 +3805,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "boardBackgrounds",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idBackground": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_background",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -3821,49 +3855,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_background",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "brightness",
-                      "orig": "brightness",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "tile",
-                      "orig": "tile",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/members/{id}/boardBackgrounds/{idBackground}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idBackground": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -3878,6 +3872,56 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "boardBackgrounds",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idBackground": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_background",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "brightness",
+                      "orig": "brightness",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "tile",
+                      "orig": "tile",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "brightness",
@@ -3886,60 +3930,11 @@ def make_config():
                     "tile",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "boardBackgrounds",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_background",
-                      "orig": "id_background",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "brightness",
-                      "orig": "brightness",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "tile",
-                      "orig": "tile",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/members/{id}/customBoardBackgrounds/{idBackground}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idBackground": "id_background",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -3954,6 +3949,55 @@ def make_config():
                     "var": "id_background",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "customBoardBackgrounds",
+                  "{id_background}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idBackground": "id_background",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id_background",
+                      "orig": "id_background",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "brightness",
+                      "orig": "brightness",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "tile",
+                      "orig": "tile",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "brightness",
@@ -3962,16 +4006,6 @@ def make_config():
                     "tile",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "customBoardBackgrounds",
-                  "{id_background}",
-                ],
               },
             ],
           },
@@ -3979,11 +4013,11 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
             [
-              "member",
-              "custom_board_background",
+              "$.main.kit.entity.member",
+              "$.main.kit.entity.custom_board_background",
             ],
           ],
         },
@@ -3992,6 +4026,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -4006,35 +4041,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_plugin",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/boards/{id}/boardPlugins/{idPlugin}",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                    "idPlugin": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -4049,22 +4058,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "boardPlugins",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                    "idPlugin": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_plugin",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -4072,7 +4107,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -4081,14 +4116,17 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idBoard",
+            "title": "Id Board",
             "type": "`$STRING`",
           },
           {
             "name": "pos",
+            "title": "Pos",
             "type": "`$INTEGER`",
           },
         ],
@@ -4103,42 +4141,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_board",
-                      "orig": "id_board",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "reqd": True,
-                      "type": "`$ANY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/members/{id}/boardStars",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -4150,6 +4155,48 @@ def make_config():
                     "lit": "boardStars",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "boardStars",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "id_board",
+                      "orig": "id_board",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id_board",
@@ -4157,15 +4204,6 @@ def make_config():
                     "pos",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "boardStars",
-                ],
               },
             ],
           },
@@ -4174,34 +4212,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "board_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "mine",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{boardId}/boardStars",
-                "rename": {
-                  "param": {
-                    "boardId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -4213,21 +4226,46 @@ def make_config():
                     "lit": "boardStars",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{id}",
+                  "boardStars",
+                ],
+                "rename": {
+                  "param": {
+                    "boardId": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "board_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "mine",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "filter",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{id}",
-                  "boardStars",
-                ],
               },
             ],
           },
@@ -4236,35 +4274,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_star",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/boardStars/{idStar}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idStar": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -4279,44 +4291,53 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "boardStars",
                   "{id}",
                 ],
-              },
-              {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/members/{id}/boardStars",
                 "rename": {
                   "param": {
                     "id": "member_id",
+                    "idStar": "id",
                   },
                 },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_star",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "member_id",
+                  ],
+                },
+              },
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/members/{id}/boardStars",
                 "segments": [
                   {
                     "lit": "members",
@@ -4328,20 +4349,37 @@ def make_config():
                     "lit": "boardStars",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "boardStars",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -4350,35 +4388,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_star",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/members/{id}/boardStars/{idStar}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idStar": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -4393,22 +4405,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "boardStars",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idStar": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_star",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -4417,43 +4455,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_star",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/members/{id}/boardStars/{idStar}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idStar": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -4468,6 +4472,50 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "boardStars",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idStar": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_star",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
@@ -4475,16 +4523,6 @@ def make_config():
                     "pos",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "boardStars",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -4492,7 +4530,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
           ],
         },
@@ -4501,6 +4539,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -4515,40 +4554,15 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_organization",
-                      "reqd": True,
-                      "type": "`$ARRAY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/organizations/bulk/{idOrganizations}",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idOrganizations": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "organizations",
@@ -4560,59 +4574,59 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "enterpris_id",
-                    "id",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "organizations",
+                  "bulk",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idOrganizations": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "organizations",
-                  "bulk",
-                  "{id}",
-                ],
-              },
-              {
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
+                      "name": "enterprise_id",
                       "orig": "id",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                     {
-                      "kind": "param",
                       "name": "id",
                       "orig": "id_organization",
-                      "reqd": True,
                       "type": "`$ARRAY`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "enterprise_id",
+                    "id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/transferrable/bulk/{idOrganizations}",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idOrganizations": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "transferrable",
@@ -4624,23 +4638,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "enterpris_id",
-                    "id",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "transferrable",
+                  "bulk",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idOrganizations": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "transferrable",
-                  "bulk",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_organization",
+                      "type": "`$ARRAY`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "enterprise_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -4649,27 +4688,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "id_organization",
-                      "orig": "id_organization",
-                      "reqd": True,
-                      "type": "`$ARRAY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/enterprises/${id}/enterpriseJoinRequest/bulk",
@@ -4687,22 +4705,44 @@ def make_config():
                     "lit": "bulk",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "id_organization",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "enterprises",
                   "${id}",
                   "enterpriseJoinRequest",
                   "bulk",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "id_organization",
+                      "orig": "id_organization",
+                      "type": "`$ARRAY`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "id_organization",
+                  ],
+                },
               },
             ],
           },
@@ -4710,7 +4750,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             ],
           ],
         },
@@ -4719,150 +4759,173 @@ def make_config():
         "fields": [
           {
             "name": "address",
+            "title": "Address",
             "type": "`$STRING`",
           },
           {
             "name": "badges",
+            "title": "Badges",
             "type": "`$OBJECT`",
           },
           {
             "name": "cardRole",
+            "title": "Card Role",
             "type": "`$STRING`",
           },
           {
             "name": "checkItemStates",
+            "title": "Check Item States",
             "type": "`$ARRAY`",
           },
           {
             "name": "closed",
+            "title": "Closed",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "coordinates",
+            "title": "Coordinates",
             "type": "`$STRING`",
           },
           {
             "name": "cover",
+            "title": "Cover",
             "type": "`$OBJECT`",
           },
           {
             "name": "creationMethod",
+            "title": "Creation Method",
             "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "dateLastActivity",
+            "title": "Date Last Activity",
             "type": "`$STRING`",
+            "format": "date-time",
           },
           {
             "name": "desc",
+            "title": "Desc",
             "type": "`$STRING`",
           },
           {
             "name": "descData",
+            "title": "Desc Data",
             "type": "`$OBJECT`",
           },
           {
-            "format": "date",
             "name": "due",
+            "title": "Due",
             "type": "`$STRING`",
+            "format": "date",
           },
           {
             "name": "dueReminder",
+            "title": "Due Reminder",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idAttachmentCover",
+            "title": "Id Attachment Cover",
             "type": "`$STRING`",
           },
           {
             "name": "idBoard",
+            "title": "Id Board",
             "type": "`$STRING`",
           },
           {
             "name": "idChecklists",
+            "title": "Id Checklists",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 1,
-            },
           },
           {
             "name": "idLabels",
+            "title": "Id Labels",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 1,
-            },
           },
           {
             "name": "idList",
+            "title": "Id List",
             "type": "`$STRING`",
           },
           {
             "name": "idMembers",
+            "title": "Id Members",
             "type": "`$ARRAY`",
           },
           {
             "name": "idMembersVoted",
+            "title": "Id Members Voted",
             "type": "`$ARRAY`",
           },
           {
             "name": "idShort",
+            "title": "Id Short",
             "type": "`$INTEGER`",
           },
           {
             "name": "labels",
+            "title": "Labels",
             "type": "`$ARRAY`",
           },
           {
             "name": "limits",
+            "title": "Limits",
             "type": "`$OBJECT`",
           },
           {
             "name": "locationName",
+            "title": "Location Name",
             "type": "`$STRING`",
           },
           {
             "name": "manualCoverAttachment",
+            "title": "Manual Cover Attachment",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "mirrorSourceId",
+            "title": "Mirror Source Id",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
-            "format": "float",
             "name": "pos",
+            "title": "Pos",
             "type": "`$NUMBER`",
+            "format": "float",
           },
           {
             "name": "shortLink",
+            "title": "Short Link",
             "type": "`$STRING`",
           },
           {
-            "format": "url",
             "name": "shortUrl",
+            "title": "Short Url",
             "type": "`$STRING`",
+            "format": "url",
           },
           {
             "name": "subscribed",
+            "title": "Subscribed",
             "type": "`$BOOLEAN`",
           },
           {
-            "format": "url",
             "name": "url",
+            "title": "Url",
             "type": "`$STRING`",
+            "format": "url",
           },
         ],
         "id": {
@@ -4876,122 +4939,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "address",
-                      "orig": "address",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "card_role",
-                      "orig": "card_role",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "coordinate",
-                      "orig": "coordinate",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "desc",
-                      "orig": "desc",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "due",
-                      "orig": "due",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "due_complete",
-                      "orig": "due_complete",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "file_source",
-                      "orig": "file_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_card_source",
-                      "orig": "id_card_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "id_label",
-                      "orig": "id_label",
-                      "type": "`$ARRAY`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_list",
-                      "orig": "id_list",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "id_member",
-                      "orig": "id_member",
-                      "type": "`$ARRAY`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "keep_from_source",
-                      "orig": "keep_from_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "location_name",
-                      "orig": "location_name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "mime_type",
-                      "orig": "mime_type",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "start",
-                      "orig": "start",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "url_source",
-                      "orig": "url_source",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards",
@@ -5000,6 +4947,130 @@ def make_config():
                     "lit": "cards",
                   },
                 ],
+                "parts": [
+                  "cards",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "address",
+                      "orig": "address",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "card_role",
+                      "orig": "card_role",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "coordinate",
+                      "orig": "coordinate",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "desc",
+                      "orig": "desc",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "due",
+                      "orig": "due",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "due_complete",
+                      "orig": "due_complete",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "file_source",
+                      "orig": "file_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_card_source",
+                      "orig": "id_card_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_label",
+                      "orig": "id_label",
+                      "type": "`$ARRAY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_list",
+                      "orig": "id_list",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_member",
+                      "orig": "id_member",
+                      "type": "`$ARRAY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "keep_from_source",
+                      "orig": "keep_from_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "location_name",
+                      "orig": "location_name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "mime_type",
+                      "orig": "mime_type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "start",
+                      "orig": "start",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "url_source",
+                      "orig": "url_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "address",
@@ -5022,60 +5093,8 @@ def make_config():
                     "url_source",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "file",
-                      "orig": "file",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "mime_type",
-                      "orig": "mime_type",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "set_cover",
-                      "orig": "set_cover",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "url",
-                      "orig": "url",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/attachments",
@@ -5090,6 +5109,61 @@ def make_config():
                     "lit": "attachments",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "attachments",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "file",
+                      "orig": "file",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "mime_type",
+                      "orig": "mime_type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "set_cover",
+                      "orig": "set_cover",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "url",
+                      "orig": "url",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "attachment",
                   "exist": [
@@ -5101,66 +5175,8 @@ def make_config():
                     "url",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "attachments",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "image",
-                      "orig": "image",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "left",
-                      "orig": "left",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "rotate",
-                      "orig": "rotate",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "top",
-                      "orig": "top",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "z_index",
-                      "orig": "z_index",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/stickers",
@@ -5175,6 +5191,65 @@ def make_config():
                     "lit": "stickers",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "stickers",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "image",
+                      "orig": "image",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "left",
+                      "orig": "left",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "rotate",
+                      "orig": "rotate",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "example": 0,
+                    },
+                    {
+                      "name": "top",
+                      "orig": "top",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "z_index",
+                      "orig": "z_index",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "sticker",
                   "exist": [
@@ -5186,50 +5261,8 @@ def make_config():
                     "z_index",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "stickers",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_checklist_source",
-                      "orig": "id_checklist_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/checklists",
@@ -5244,6 +5277,49 @@ def make_config():
                     "lit": "checklists",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "checklists",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "id_checklist_source",
+                      "orig": "id_checklist_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "checklist",
                   "exist": [
@@ -5253,44 +5329,8 @@ def make_config():
                     "pos",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "checklists",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "color",
-                      "orig": "color",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/labels",
@@ -5305,6 +5345,43 @@ def make_config():
                     "lit": "labels",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "labels",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "color",
+                      "orig": "color",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "label",
                   "exist": [
@@ -5313,38 +5390,8 @@ def make_config():
                     "name",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "labels",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/idLabels",
@@ -5359,6 +5406,37 @@ def make_config():
                     "lit": "idLabels",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "idLabels",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "id_label",
                   "exist": [
@@ -5366,38 +5444,8 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "idLabels",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/idMembers",
@@ -5412,6 +5460,37 @@ def make_config():
                     "lit": "idMembers",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "idMembers",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "id_member",
                   "exist": [
@@ -5419,39 +5498,8 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "idMembers",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/membersVoted",
@@ -5466,6 +5514,38 @@ def make_config():
                     "lit": "membersVoted",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "membersVoted",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "members_voted",
                   "exist": [
@@ -5473,29 +5553,8 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "membersVoted",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/{id}/markAssociatedNotificationsRead",
@@ -5510,21 +5569,34 @@ def make_config():
                     "lit": "markAssociatedNotificationsRead",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "markAssociatedNotificationsRead",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "mark_associated_notifications_read",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "markAssociatedNotificationsRead",
-                ],
               },
             ],
           },
@@ -5533,35 +5605,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "action_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{id}/card",
-                "rename": {
-                  "param": {
-                    "id": "action_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -5573,52 +5619,52 @@ def make_config():
                     "lit": "card",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{action_id}",
+                  "card",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "action_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "action_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{action_id}",
-                  "card",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "visible",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/cards",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -5630,43 +5676,52 @@ def make_config():
                     "lit": "cards",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "cards",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "visible",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "filter",
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "cards",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "list_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lists/{id}/cards",
-                "rename": {
-                  "param": {
-                    "id": "list_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "lists",
@@ -5678,20 +5733,37 @@ def make_config():
                     "lit": "cards",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "list_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "lists",
                   "{list_id}",
                   "cards",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "list_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "list_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "list_id",
+                  ],
+                },
               },
             ],
           },
@@ -5700,141 +5772,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "action",
-                      "orig": "action",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "attachment",
-                      "orig": "attachment",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "attachment_field",
-                      "orig": "attachment_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "board",
-                      "orig": "board",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "board_field",
-                      "orig": "board_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "check_item_state",
-                      "orig": "check_item_state",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "checklist",
-                      "orig": "checklist",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "checklist_field",
-                      "orig": "checklist_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "custom_field_item",
-                      "orig": "custom_field_item",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "list",
-                      "orig": "list",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "member_field",
-                      "orig": "member_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "member_voted_field",
-                      "orig": "member_voted_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "members_voted",
-                      "orig": "members_voted",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "plugin_data",
-                      "orig": "plugin_data",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "sticker",
-                      "orig": "sticker",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "sticker_field",
-                      "orig": "sticker_field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}",
@@ -5846,6 +5783,150 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "action",
+                      "orig": "action",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "attachment",
+                      "orig": "attachment",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "attachment_field",
+                      "orig": "attachment_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "board",
+                      "orig": "board",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "board_field",
+                      "orig": "board_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "check_item_state",
+                      "orig": "check_item_state",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "checklist",
+                      "orig": "checklist",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "checklist_field",
+                      "orig": "checklist_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "custom_field_item",
+                      "orig": "custom_field_item",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "list",
+                      "orig": "list",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "member_field",
+                      "orig": "member_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "member_voted_field",
+                      "orig": "member_voted_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "members_voted",
+                      "orig": "members_voted",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "plugin_data",
+                      "orig": "plugin_data",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "sticker",
+                      "orig": "sticker",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "sticker_field",
+                      "orig": "sticker_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action",
@@ -5869,43 +5950,11 @@ def make_config():
                     "sticker_field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "filter",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/cards/{filter}",
-                "rename": {
-                  "param": {
-                    "filter": "id",
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -5920,43 +5969,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "cards",
                   "{id}",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "filter": "id",
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
+                      "name": "board_id",
+                      "orig": "id",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
                       "name": "id",
-                      "orig": "id",
-                      "reqd": True,
+                      "orig": "filter",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/{field}",
@@ -5971,52 +6025,46 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "notification_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/notifications/{id}/card",
-                "rename": {
-                  "param": {
-                    "id": "notification_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "notifications",
@@ -6028,42 +6076,52 @@ def make_config():
                     "lit": "card",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{notification_id}",
+                  "card",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "notification_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "notification_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "notification_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{notification_id}",
-                  "card",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/cards",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -6075,42 +6133,41 @@ def make_config():
                     "lit": "cards",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "cards",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "checklist_id",
+                      "name": "board_id",
                       "orig": "id",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "board_id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/checklists/{id}/cards",
-                "rename": {
-                  "param": {
-                    "id": "checklist_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "checklists",
@@ -6122,20 +6179,37 @@ def make_config():
                     "lit": "cards",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "checklist_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "checklists",
                   "{checklist_id}",
                   "cards",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "checklist_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "checklist_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "checklist_id",
+                  ],
+                },
               },
             ],
           },
@@ -6144,18 +6218,6 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}",
@@ -6167,19 +6229,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -6188,127 +6263,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "address",
-                      "orig": "address",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "closed",
-                      "orig": "closed",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "coordinate",
-                      "orig": "coordinate",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "cover",
-                      "orig": "cover",
-                      "type": "`$OBJECT`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "desc",
-                      "orig": "desc",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "due",
-                      "orig": "due",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "due_complete",
-                      "orig": "due_complete",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_attachment_cover",
-                      "orig": "id_attachment_cover",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_board",
-                      "orig": "id_board",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_label",
-                      "orig": "id_label",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_list",
-                      "orig": "id_list",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_member",
-                      "orig": "id_member",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "location_name",
-                      "orig": "location_name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "start",
-                      "orig": "start",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "subscribed",
-                      "orig": "subscribed",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/cards/{id}",
@@ -6320,6 +6274,136 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "address",
+                      "orig": "address",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "closed",
+                      "orig": "closed",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "coordinate",
+                      "orig": "coordinate",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "cover",
+                      "orig": "cover",
+                      "type": "`$OBJECT`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "desc",
+                      "orig": "desc",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "due",
+                      "orig": "due",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "due_complete",
+                      "orig": "due_complete",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_attachment_cover",
+                      "orig": "id_attachment_cover",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_board",
+                      "orig": "id_board",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_label",
+                      "orig": "id_label",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_list",
+                      "orig": "id_list",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_member",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "location_name",
+                      "orig": "location_name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "start",
+                      "orig": "start",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "subscribed",
+                      "orig": "subscribed",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "address",
@@ -6342,25 +6426,11 @@ def make_config():
                     "subscribed",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                ],
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/cards/{idCard}/customFields",
-                "rename": {
-                  "param": {
-                    "idCard": "id_card",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -6372,18 +6442,24 @@ def make_config():
                     "lit": "customFields",
                   },
                 ],
-                "select": {
-                  "$action": "custom_field",
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{id_card}",
                   "customFields",
                 ],
+                "rename": {
+                  "param": {
+                    "idCard": "id_card",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {
+                  "$action": "custom_field",
+                },
               },
             ],
           },
@@ -6391,25 +6467,22 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "action",
+              "$.main.kit.entity.action",
             ],
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
             [
-              "card",
+              "$.main.kit.entity.checklist",
             ],
             [
-              "checklist",
+              "$.main.kit.entity.list",
             ],
             [
-              "list",
+              "$.main.kit.entity.member",
             ],
             [
-              "member",
-            ],
-            [
-              "notification",
+              "$.main.kit.entity.notification",
             ],
           ],
         },
@@ -6418,6 +6491,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -6432,27 +6506,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/checkItemStates",
@@ -6467,21 +6520,43 @@ def make_config():
                     "lit": "checkItemStates",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "checkItemStates",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "checkItemStates",
-                ],
               },
             ],
           },
@@ -6494,6 +6569,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -6508,27 +6584,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/list",
@@ -6543,21 +6598,43 @@ def make_config():
                     "lit": "list",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                  "list",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                  "list",
-                ],
               },
             ],
           },
@@ -6570,26 +6647,32 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idChecklist",
+            "title": "Id Checklist",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
             "name": "nameData",
+            "title": "Name Data",
             "type": "`$STRING`",
           },
           {
             "name": "pos",
+            "title": "Pos",
             "type": "`$STRING`",
           },
           {
             "name": "state",
+            "title": "State",
             "type": "`$STRING`",
           },
         ],
@@ -6604,44 +6687,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_check_item",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "name,nameData,pos,state,due,dueReminder,idMember",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/checkItem/{idCheckItem}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idCheckItem": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -6656,6 +6704,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "checkItem",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idCheckItem": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_check_item",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name,nameData,pos,state,due,dueReminder,idMember",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
@@ -6663,54 +6756,11 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "checkItem",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "checklist_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "name, nameData, pos, state, due, dueReminder, idMember",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/checklists/{id}/checkItems",
-                "rename": {
-                  "param": {
-                    "id": "checklist_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "checklists",
@@ -6722,6 +6772,48 @@ def make_config():
                     "lit": "checkItems",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{checklist_id}",
+                  "checkItems",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "checklist_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "checklist_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name, nameData, pos, state, due, dueReminder, idMember",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "checklist_id",
@@ -6729,55 +6821,11 @@ def make_config():
                     "filter",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{checklist_id}",
-                  "checkItems",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "checklist_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_check_item",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "name, nameData, pos, state, due, dueReminder, idMember",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/checklists/{id}/checkItems/{idCheckItem}",
-                "rename": {
-                  "param": {
-                    "id": "checklist_id",
-                    "idCheckItem": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "checklists",
@@ -6792,6 +6840,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{checklist_id}",
+                  "checkItems",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "checklist_id",
+                    "idCheckItem": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "checklist_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_check_item",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name, nameData, pos, state, due, dueReminder, idMember",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "checklist_id",
@@ -6799,16 +6892,6 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{checklist_id}",
-                  "checkItems",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -6817,35 +6900,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_check_item",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}/checkItem/{idCheckItem}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idCheckItem": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -6860,53 +6917,53 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "checkItem",
                   "{id}",
                 ],
-              },
-              {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "checklist_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_check_item",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "DELETE",
-                "orig": "/checklists/{id}/checkItems/{idCheckItem}",
                 "rename": {
                   "param": {
-                    "id": "checklist_id",
+                    "id": "card_id",
                     "idCheckItem": "id",
                   },
                 },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_check_item",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                    "id",
+                  ],
+                },
+              },
+              {
+                "kind": "http",
+                "method": "DELETE",
+                "orig": "/checklists/{id}/checkItems/{idCheckItem}",
                 "segments": [
                   {
                     "lit": "checklists",
@@ -6921,22 +6978,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "checklist_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "checklists",
                   "{checklist_id}",
                   "checkItems",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "checklist_id",
+                    "idCheckItem": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "checklist_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_check_item",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "checklist_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -6945,81 +7028,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_check_item",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "due",
-                      "orig": "due",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "due_reminder",
-                      "orig": "due_reminder",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_checklist",
-                      "orig": "id_checklist",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_member",
-                      "orig": "id_member",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "state",
-                      "orig": "state",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/cards/{id}/checkItem/{idCheckItem}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idCheckItem": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -7034,6 +7045,88 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "checkItem",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idCheckItem": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_check_item",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "due",
+                      "orig": "due",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "due_reminder",
+                      "orig": "due_reminder",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_checklist",
+                      "orig": "id_checklist",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_member",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "state",
+                      "orig": "state",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
@@ -7047,64 +7140,11 @@ def make_config():
                     "state",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "checkItem",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "checklist_id",
-                      "orig": "id_checklist",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_check_item",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_card",
-                      "orig": "id_card",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/cards/{idCard}/checklist/{idChecklist}/checkItem/{idCheckItem}",
-                "rename": {
-                  "param": {
-                    "idCard": "id_card",
-                    "idCheckItem": "id",
-                    "idChecklist": "checklist_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -7125,18 +7165,6 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "checklist_id",
-                    "id",
-                    "id_card",
-                    "pos",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{id_card}",
@@ -7145,6 +7173,61 @@ def make_config():
                   "checkItem",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "idCard": "id_card",
+                    "idCheckItem": "id",
+                    "idChecklist": "checklist_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "checklist_id",
+                      "orig": "id_checklist",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_check_item",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_card",
+                      "orig": "id_card",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "checklist_id",
+                    "id",
+                    "id_card",
+                    "pos",
+                  ],
+                },
               },
             ],
           },
@@ -7152,11 +7235,11 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
             [
-              "card",
-              "checklist",
+              "$.main.kit.entity.card",
+              "$.main.kit.entity.checklist",
             ],
           ],
         },
@@ -7165,6 +7248,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -7179,60 +7263,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "checked",
-                      "orig": "checked",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "due",
-                      "orig": "due",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "due_reminder",
-                      "orig": "due_reminder",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_member",
-                      "orig": "id_member",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "bottom",
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/checklists/{id}/checkItems",
@@ -7247,6 +7277,70 @@ def make_config():
                     "lit": "checkItems",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{id}",
+                  "checkItems",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "checked",
+                      "orig": "checked",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "due",
+                      "orig": "due",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "due_reminder",
+                      "orig": "due_reminder",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_member",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "bottom",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "check_item",
                   "exist": [
@@ -7259,48 +7353,8 @@ def make_config():
                     "pos",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{id}",
-                  "checkItems",
-                ],
               },
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_card",
-                      "orig": "id_card",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_checklist_source",
-                      "orig": "id_checklist_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/checklists",
@@ -7309,6 +7363,45 @@ def make_config():
                     "lit": "checklists",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "id_card",
+                      "orig": "id_card",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_checklist_source",
+                      "orig": "id_checklist_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id_card",
@@ -7317,13 +7410,6 @@ def make_config():
                     "pos",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                ],
               },
             ],
           },
@@ -7332,48 +7418,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "card",
-                      "orig": "card",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "check_item",
-                      "orig": "check_item",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "name, nameData, pos, state, due, dueReminder, idMember",
-                      "kind": "query",
-                      "name": "check_item_field",
-                      "orig": "check_item_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/checklists/{id}",
@@ -7385,6 +7429,57 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "card",
+                      "orig": "card",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "check_item",
+                      "orig": "check_item",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "check_item_field",
+                      "orig": "check_item_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name, nameData, pos, state, due, dueReminder, idMember",
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card",
@@ -7394,66 +7489,11 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "check_item",
-                      "orig": "check_item",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "name,nameData,pos,state,due,dueReminder,idMember",
-                      "kind": "query",
-                      "name": "check_item_field",
-                      "orig": "check_item_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/checklists",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -7465,6 +7505,62 @@ def make_config():
                     "lit": "checklists",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "checklists",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "check_item",
+                      "orig": "check_item",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "check_item_field",
+                      "orig": "check_item_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name,nameData,pos,state,due,dueReminder,idMember",
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
@@ -7474,36 +7570,8 @@ def make_config():
                     "filter",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "checklists",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/checklists/{id}/{field}",
@@ -7518,42 +7586,46 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/checklists",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -7565,20 +7637,36 @@ def make_config():
                     "lit": "checklists",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "checklists",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                  ],
+                },
               },
             ],
           },
@@ -7587,35 +7675,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_checklist",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}/checklists/{idChecklist}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idChecklist": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -7630,36 +7692,50 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "checklists",
                   "{id}",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idChecklist": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
+                      "name": "card_id",
                       "orig": "id",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_checklist",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "card_id",
+                    "id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/checklists/{id}",
@@ -7671,19 +7747,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -7692,34 +7781,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$ANY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/checklists/{id}/{field}",
@@ -7734,6 +7795,44 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -7741,43 +7840,8 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/checklists/{id}",
@@ -7789,6 +7853,41 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "checklists",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
@@ -7796,14 +7895,6 @@ def make_config():
                     "pos",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "checklists",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -7811,10 +7902,10 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -7823,36 +7914,44 @@ def make_config():
         "fields": [
           {
             "name": "activeMembershipCount",
+            "title": "Active Membership Count",
             "type": "`$NUMBER`",
           },
           {
-            "format": "date",
             "name": "dateLastActive",
-            "short": "The date of the most recent activity on any of the boards in the workspace.",
+            "title": "Date Last Active",
             "type": "`$STRING`",
+            "short": "The date of the most recent activity on any of the boards in the workspace.",
+            "format": "date",
           },
           {
             "name": "displayName",
+            "title": "Display Name",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idActiveAdmins",
+            "title": "Id Active Admins",
             "type": "`$ARRAY`",
           },
           {
             "name": "logoUrl",
+            "title": "Logo Url",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
             "name": "products",
+            "title": "Products",
             "type": "`$ARRAY`",
           },
         ],
@@ -7867,88 +7966,88 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "active_since",
-                      "orig": "active_since",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "inactive_since",
-                      "orig": "inactive_since",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/claimableOrganizations",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "claimableOrganizations",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "active_since",
-                    "cursor",
-                    "enterpris_id",
-                    "inactive_since",
-                    "limit",
-                    "name",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "claimableOrganizations",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.organizations`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "claimableOrganizations",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "active_since",
+                      "orig": "active_since",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "inactive_since",
+                      "orig": "inactive_since",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "active_since",
+                    "cursor",
+                    "enterprise_id",
+                    "inactive_since",
+                    "limit",
+                    "name",
+                  ],
+                },
               },
             ],
           },
@@ -7956,7 +8055,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             ],
           ],
         },
@@ -7965,6 +8064,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -7979,34 +8079,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_background",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/members/{id}/customBoardBackgrounds/{idBackground}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idBackground": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -8021,22 +8096,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "customBoardBackgrounds",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idBackground": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_background",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -8044,7 +8144,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
           ],
         },
@@ -8053,16 +8153,19 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
-            "format": "url",
             "name": "url",
+            "title": "Url",
             "type": "`$STRING`",
+            "format": "url",
           },
         ],
         "id": {
@@ -8076,42 +8179,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "file",
-                      "orig": "file",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/members/{id}/customEmoji",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -8123,6 +8193,48 @@ def make_config():
                     "lit": "customEmoji",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "customEmoji",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "file",
+                      "orig": "file",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "file",
@@ -8130,15 +8242,6 @@ def make_config():
                     "name",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "customEmoji",
-                ],
               },
             ],
           },
@@ -8147,26 +8250,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/customEmoji",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -8178,20 +8264,37 @@ def make_config():
                     "lit": "customEmoji",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "customEmoji",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -8200,44 +8303,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_emoji",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/customEmoji/{idEmoji}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idEmoji": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -8252,6 +8320,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "customEmoji",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idEmoji": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_emoji",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -8259,16 +8372,6 @@ def make_config():
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "customEmoji",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -8276,7 +8379,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
           ],
         },
@@ -8285,54 +8388,64 @@ def make_config():
         "fields": [
           {
             "name": "cardFront",
+            "title": "Card Front",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "display",
+            "title": "Display",
             "type": "`$OBJECT`",
           },
           {
             "name": "display_cardFront",
-            "short": "Whether this Custom Field should be shown on the front of Cards",
+            "title": "Display Card Front",
             "type": "`$BOOLEAN`",
+            "short": "Whether this Custom Field should be shown on the front of Cards",
           },
           {
             "name": "displaycardFront",
-            "short": "Whether to display this custom field on the front of cards",
+            "title": "Displaycard Front",
             "type": "`$BOOLEAN`",
+            "short": "Whether to display this custom field on the front of cards",
           },
           {
             "name": "fieldGroup",
+            "title": "Field Group",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idModel",
+            "title": "Id Model",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "list": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "The ID of the model for which the Custom Field is being defined.",
-            "type": "`$STRING`",
           },
           {
             "name": "modelType",
+            "title": "Model Type",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "list": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "The type of model that the Custom Field is being defined on.",
-            "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "op": {
               "create": {
                 "req": True,
@@ -8340,33 +8453,35 @@ def make_config():
               },
             },
             "short": "The name of the Custom Field",
-            "type": "`$STRING`",
           },
           {
             "name": "options",
-            "short": "If the type is `checkbox`",
+            "title": "Options",
             "type": "`$ARRAY`",
+            "short": "If the type is `checkbox`",
           },
           {
             "name": "pos",
+            "title": "Pos",
+            "type": "`$STRING`",
             "op": {
               "create": {
                 "req": True,
                 "type": "`$ANY`",
               },
             },
-            "type": "`$STRING`",
           },
           {
             "name": "type",
+            "title": "Type",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "list": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "The type of Custom Field to create.",
-            "type": "`$STRING`",
           },
         ],
         "id": {
@@ -8380,18 +8495,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/customFields/{id}/options",
@@ -8406,24 +8509,36 @@ def make_config():
                     "lit": "options",
                   },
                 ],
+                "parts": [
+                  "customFields",
+                  "{id}",
+                  "options",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "option",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "customFields",
-                  "{id}",
-                  "options",
-                ],
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/customFields",
@@ -8432,14 +8547,16 @@ def make_config():
                     "lit": "customFields",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "customFields",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.display`",
                 },
-                "parts": [
-                  "customFields",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -8448,26 +8565,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/customFields",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -8479,20 +8579,37 @@ def make_config():
                     "lit": "customFields",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "customFields",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                  ],
+                },
               },
             ],
           },
@@ -8501,18 +8618,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/customFields/{id}",
@@ -8524,19 +8629,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "customFields",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.display`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.display`",
-                },
-                "parts": [
-                  "customFields",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -8545,18 +8663,6 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/customFields/{id}",
@@ -8568,19 +8674,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "customFields",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "customFields",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -8589,35 +8708,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_card",
-                      "orig": "id_card",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_custom_field",
-                      "orig": "id_custom_field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/cards/{idCard}/customField/{idCustomField}/item",
-                "rename": {
-                  "param": {
-                    "idCard": "id_card",
-                    "idCustomField": "id_custom_field",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -8635,17 +8728,6 @@ def make_config():
                     "lit": "item",
                   },
                 ],
-                "select": {
-                  "$action": "item",
-                  "exist": [
-                    "id_card",
-                    "id_custom_field",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{id_card}",
@@ -8653,20 +8735,45 @@ def make_config():
                   "{id_custom_field}",
                   "item",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "idCard": "id_card",
+                    "idCustomField": "id_custom_field",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
+                      "name": "id_card",
+                      "orig": "id_card",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_custom_field",
+                      "orig": "id_custom_field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                   ],
                 },
+                "select": {
+                  "$action": "item",
+                  "exist": [
+                    "id_card",
+                    "id_custom_field",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/customFields/{id}",
@@ -8678,19 +8785,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "customFields",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.display`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.display`",
-                },
-                "parts": [
-                  "customFields",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -8698,11 +8818,10 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
             [
-              "card",
-              "custom_field",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -8711,22 +8830,27 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idCustomField",
+            "title": "Id Custom Field",
             "type": "`$STRING`",
           },
           {
             "name": "idModel",
+            "title": "Id Model",
             "type": "`$STRING`",
           },
           {
             "name": "modelType",
+            "title": "Model Type",
             "type": "`$STRING`",
           },
           {
             "name": "value",
+            "title": "Value",
             "type": "`$OBJECT`",
           },
         ],
@@ -8741,26 +8865,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/customFieldItems",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -8772,20 +8879,37 @@ def make_config():
                     "lit": "customFieldItems",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "customFieldItems",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                  ],
+                },
               },
             ],
           },
@@ -8793,7 +8917,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -8802,16 +8926,19 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "scaled",
+            "title": "Scaled",
             "type": "`$ARRAY`",
           },
           {
-            "format": "url",
             "name": "url",
+            "title": "Url",
             "type": "`$STRING`",
+            "format": "url",
           },
         ],
         "id": {
@@ -8825,35 +8952,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "file",
-                      "orig": "file",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/members/{id}/customStickers",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -8865,21 +8966,47 @@ def make_config():
                     "lit": "customStickers",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "customStickers",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "file",
+                      "orig": "file",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "file",
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "customStickers",
-                ],
               },
             ],
           },
@@ -8888,26 +9015,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/customStickers",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -8919,20 +9029,37 @@ def make_config():
                     "lit": "customStickers",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "customStickers",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -8941,44 +9068,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_sticker",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/customStickers/{idSticker}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idSticker": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -8993,6 +9085,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "customStickers",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idSticker": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_sticker",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -9000,16 +9137,6 @@ def make_config():
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "customStickers",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -9018,35 +9145,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_sticker",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/members/{id}/customStickers/{idSticker}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idSticker": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -9061,22 +9162,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "customStickers",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idSticker": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_sticker",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -9084,7 +9211,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
           ],
         },
@@ -9098,35 +9225,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/myPrefs/emailPosition",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -9141,22 +9242,48 @@ def make_config():
                     "lit": "emailPosition",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "value",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "myPrefs",
                   "emailPosition",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "value",
+                  ],
+                },
               },
             ],
           },
@@ -9164,7 +9291,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -9173,50 +9300,62 @@ def make_config():
         "fields": [
           {
             "name": "category",
+            "title": "Category",
             "type": "`$STRING`",
           },
           {
             "name": "keywords",
+            "title": "Keywords",
             "type": "`$ARRAY`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
             "name": "native",
+            "title": "Native",
             "type": "`$STRING`",
           },
           {
             "name": "sheetX",
+            "title": "Sheet X",
             "type": "`$NUMBER`",
           },
           {
             "name": "sheetY",
+            "title": "Sheet Y",
             "type": "`$NUMBER`",
           },
           {
             "name": "shortName",
+            "title": "Short Name",
             "type": "`$STRING`",
           },
           {
             "name": "shortNames",
+            "title": "Short Names",
             "type": "`$ARRAY`",
           },
           {
             "name": "text",
+            "title": "Text",
             "type": "`$STRING`",
           },
           {
             "name": "texts",
+            "title": "Texts",
             "type": "`$STRING`",
           },
           {
             "name": "tts",
+            "title": "Tts",
             "type": "`$STRING`",
           },
           {
             "name": "unified",
+            "title": "Unified",
             "type": "`$STRING`",
           },
         ],
@@ -9227,23 +9366,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "locale",
-                      "orig": "locale",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "spritesheet",
-                      "orig": "spritesheet",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/emoji",
@@ -9252,19 +9374,37 @@ def make_config():
                     "lit": "emoji",
                   },
                 ],
+                "parts": [
+                  "emoji",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.trello`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "locale",
+                      "orig": "locale",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "spritesheet",
+                      "orig": "spritesheet",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "locale",
                     "spritesheet",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.trello`",
-                },
-                "parts": [
-                  "emoji",
-                ],
               },
             ],
           },
@@ -9273,79 +9413,97 @@ def make_config():
           "ancestors": [],
         },
       },
-      "enterpris": {
+      "enterprise": {
         "fields": [
           {
-            "format": "date",
             "name": "dateOrganizationPrefsLastUpdated",
+            "title": "Date Organization Prefs Last Updated",
             "type": "`$STRING`",
+            "format": "date",
           },
           {
             "name": "displayName",
+            "title": "Display Name",
             "type": "`$STRING`",
           },
           {
             "name": "domains",
+            "title": "Domains",
             "type": "`$ARRAY`",
           },
           {
             "name": "enterpriseDomains",
+            "title": "Enterprise Domains",
             "type": "`$ARRAY`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idAdmins",
+            "title": "Id Admins",
             "type": "`$ARRAY`",
           },
           {
             "name": "idOrganizations",
+            "title": "Id Organizations",
             "type": "`$ARRAY`",
           },
           {
             "name": "idp",
+            "title": "Idp",
             "type": "`$OBJECT`",
           },
           {
             "name": "isRealEnterprise",
+            "title": "Is Real Enterprise",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "licenses",
+            "title": "Licenses",
             "type": "`$OBJECT`",
           },
           {
             "name": "logoHash",
+            "title": "Logo Hash",
             "type": "`$STRING`",
           },
           {
             "name": "logoUrl",
+            "title": "Logo Url",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
             "name": "organizationPrefs",
+            "title": "Organization Prefs",
             "type": "`$OBJECT`",
           },
           {
             "name": "pluginWhitelistingEnabled",
+            "title": "Plugin Whitelisting Enabled",
             "type": "`$ARRAY`",
           },
           {
             "name": "prefs",
+            "title": "Prefs",
             "type": "`$OBJECT`",
           },
           {
             "name": "products",
+            "title": "Products",
             "type": "`$ARRAY`",
           },
           {
             "name": "ssoActivationFailed",
+            "title": "Sso Activation Failed",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -9353,33 +9511,13 @@ def make_config():
           "field": "id",
           "name": "id",
         },
-        "name": "enterpris",
+        "name": "enterprise",
         "op": {
           "create": {
             "input": "data",
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "expiration",
-                      "orig": "expiration",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/enterprises/{id}/tokens",
@@ -9394,6 +9532,36 @@ def make_config():
                     "lit": "tokens",
                   },
                 ],
+                "parts": [
+                  "enterprises",
+                  "{id}",
+                  "tokens",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "expiration",
+                      "orig": "expiration",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "token",
                   "exist": [
@@ -9401,15 +9569,6 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "enterprises",
-                  "{id}",
-                  "tokens",
-                ],
               },
             ],
           },
@@ -9418,110 +9577,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "10",
-                      "kind": "query",
-                      "name": "member_count",
-                      "orig": "member_count",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "avatarHash, fullName, initials, username",
-                      "kind": "query",
-                      "name": "member_field",
-                      "orig": "member_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "member_filter",
-                      "orig": "member_filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "member_sort",
-                      "orig": "member_sort",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "member_sort_by",
-                      "orig": "member_sort_by",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "id",
-                      "kind": "query",
-                      "name": "member_sort_order",
-                      "orig": "member_sort_order",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "1",
-                      "kind": "query",
-                      "name": "member_start_index",
-                      "orig": "member_start_index",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "organization",
-                      "orig": "organization",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "organization_field",
-                      "orig": "organization_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "organization_membership",
-                      "orig": "organization_membership",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "organization_paid_account",
-                      "orig": "organization_paid_account",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}",
@@ -9533,6 +9588,119 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "enterprises",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "member_count",
+                      "orig": "member_count",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": "10",
+                    },
+                    {
+                      "name": "member_field",
+                      "orig": "member_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash, fullName, initials, username",
+                    },
+                    {
+                      "name": "member_filter",
+                      "orig": "member_filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "member_sort",
+                      "orig": "member_sort",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "member_sort_by",
+                      "orig": "member_sort_by",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "member_sort_order",
+                      "orig": "member_sort_order",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "id",
+                    },
+                    {
+                      "name": "member_start_index",
+                      "orig": "member_start_index",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": "1",
+                    },
+                    {
+                      "name": "organization",
+                      "orig": "organization",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "organization_field",
+                      "orig": "organization_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "organization_membership",
+                      "orig": "organization_membership",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "organization_paid_account",
+                      "orig": "organization_paid_account",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -9551,14 +9719,6 @@ def make_config():
                     "organization_paid_account",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "enterprises",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -9567,27 +9727,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "id_organization",
-                      "orig": "id_organization",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/enterprises/{id}/organizations",
@@ -9602,6 +9741,37 @@ def make_config():
                     "lit": "organizations",
                   },
                 ],
+                "parts": [
+                  "enterprises",
+                  "{id}",
+                  "organizations",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "id_organization",
+                      "orig": "id_organization",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "organization",
                   "exist": [
@@ -9609,119 +9779,6 @@ def make_config():
                     "id_organization",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "enterprises",
-                  "{id}",
-                  "organizations",
-                ],
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "enterpris_signup_url": {
-        "fields": [
-          {
-            "name": "id",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "signupUrl",
-            "type": "`$STRING`",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "enterpris_signup_url",
-        "op": {
-          "load": {
-            "input": "data",
-            "name": "load",
-            "points": [
-              {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "authenticate",
-                      "orig": "authenticate",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "confirmation_accepted",
-                      "orig": "confirmation_accepted",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": None,
-                      "kind": "query",
-                      "name": "return_url",
-                      "orig": "return_url",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "tos_accepted",
-                      "orig": "tos_accepted",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/enterprises/{id}/signupUrl",
-                "segments": [
-                  {
-                    "lit": "enterprises",
-                  },
-                  {
-                    "var": "id",
-                  },
-                  {
-                    "lit": "signupUrl",
-                  },
-                ],
-                "select": {
-                  "exist": [
-                    "authenticate",
-                    "confirmation_accepted",
-                    "id",
-                    "return_url",
-                    "tos_accepted",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "enterprises",
-                  "{id}",
-                  "signupUrl",
-                ],
               },
             ],
           },
@@ -9734,14 +9791,17 @@ def make_config():
         "fields": [
           {
             "name": "fullName",
+            "title": "Full Name",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "username",
+            "title": "Username",
             "type": "`$STRING`",
           },
         ],
@@ -9756,101 +9816,108 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "fullName, userName",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/admins",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "id",
                   },
                   {
                     "lit": "admins",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "enterpris_id",
-                    "field",
-                  ],
-                },
+                "parts": [
+                  "enterprises",
+                  "{id}",
+                  "admins",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "admins",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "fullName, userName",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "field",
+                    "id",
+                  ],
+                },
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "enterpris",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "enterprise_audit_log": {
         "fields": [
           {
-            "format": "date",
             "name": "date",
+            "title": "Date",
+            "type": "`$STRING`",
+            "format": "date",
+          },
+          {
+            "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idAction",
+            "title": "Id Action",
             "type": "`$STRING`",
           },
           {
             "name": "member",
+            "title": "Member",
             "type": "`$OBJECT`",
           },
           {
             "name": "memberCreator",
+            "title": "Member Creator",
             "type": "`$OBJECT`",
           },
           {
             "name": "organization",
+            "title": "Organization",
             "type": "`$OBJECT`",
           },
           {
             "name": "type",
+            "title": "Type",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "enterprise_audit_log",
         "op": {
           "list": {
@@ -9858,96 +9925,204 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/auditlog",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "id",
                   },
                   {
                     "lit": "auditlog",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "enterpris_id",
-                  ],
-                },
+                "parts": [
+                  "enterprises",
+                  "{id}",
+                  "auditlog",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "auditlog",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "auditlog",
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "enterpris",
+          "ancestors": [],
+        },
+      },
+      "enterprise_signup_url": {
+        "fields": [
+          {
+            "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "signupUrl",
+            "title": "Signup Url",
+            "type": "`$STRING`",
+          },
+        ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
+        "name": "enterprise_signup_url",
+        "op": {
+          "load": {
+            "input": "data",
+            "name": "load",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/enterprises/{id}/signupUrl",
+                "segments": [
+                  {
+                    "lit": "enterprises",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "signupUrl",
+                  },
+                ],
+                "parts": [
+                  "enterprises",
+                  "{id}",
+                  "signupUrl",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "authenticate",
+                      "orig": "authenticate",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "confirmation_accepted",
+                      "orig": "confirmation_accepted",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "return_url",
+                      "orig": "return_url",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": None,
+                    },
+                    {
+                      "name": "tos_accepted",
+                      "orig": "tos_accepted",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "authenticate",
+                    "confirmation_accepted",
+                    "id",
+                    "return_url",
+                    "tos_accepted",
+                  ],
+                },
+              },
             ],
-          ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
         },
       },
       "export": {
         "fields": [
           {
             "name": "attempts",
+            "title": "Attempts",
             "type": "`$NUMBER`",
           },
           {
             "name": "exportUrl",
+            "title": "Export Url",
             "type": "`$STRING`",
           },
           {
             "name": "finished",
+            "title": "Finished",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "size",
+            "title": "Size",
             "type": "`$STRING`",
           },
           {
             "name": "stage",
+            "title": "Stage",
             "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "startedAt",
+            "title": "Started At",
             "type": "`$STRING`",
+            "format": "date-time",
           },
           {
             "name": "status",
+            "title": "Status",
             "type": "`$OBJECT`",
           },
         ],
@@ -9962,42 +10137,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "attachment",
-                      "orig": "attachment",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "attachment_age",
-                      "orig": "attachment_age",
-                      "type": "`$NUMBER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/boards/{id}/exports",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -10009,6 +10151,48 @@ def make_config():
                     "lit": "exports",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "exports",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.status`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "attachment",
+                      "orig": "attachment",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "attachment_age",
+                      "orig": "attachment_age",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "attachment",
@@ -10016,46 +10200,11 @@ def make_config():
                     "board_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.status`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "exports",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "attachment",
-                      "orig": "attachment",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/organizations/{id}/exports",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -10067,21 +10216,47 @@ def make_config():
                     "lit": "exports",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{organization_id}",
+                  "exports",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.status`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "attachment",
+                      "orig": "attachment",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "attachment",
                     "organization_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.status`",
-                },
-                "parts": [
-                  "organizations",
-                  "{organization_id}",
-                  "exports",
-                ],
               },
             ],
           },
@@ -10090,26 +10265,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/exports",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -10121,20 +10279,37 @@ def make_config():
                     "lit": "exports",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "exports",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -10143,35 +10318,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_export",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/exports/{idExport}",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                    "idExport": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -10186,44 +10335,53 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.status`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "exports",
                   "{id}",
                 ],
-              },
-              {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/boards/{id}/exports/mostRecent",
                 "rename": {
                   "param": {
                     "id": "board_id",
+                    "idExport": "id",
                   },
                 },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.status`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_export",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "id",
+                  ],
+                },
+              },
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/boards/{id}/exports/mostRecent",
                 "segments": [
                   {
                     "lit": "boards",
@@ -10238,22 +10396,39 @@ def make_config():
                     "lit": "mostRecent",
                   },
                 ],
-                "select": {
-                  "$action": "most_recent",
-                  "exist": [
-                    "board_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.status`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "exports",
                   "mostRecent",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.status`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "most_recent",
+                  "exist": [
+                    "board_id",
+                  ],
+                },
               },
             ],
           },
@@ -10262,35 +10437,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_export",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/boards/{id}/exports/{idExport}",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                    "idExport": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -10305,22 +10454,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "exports",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                    "idExport": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_export",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -10328,14 +10503,10 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
             [
-              "organization",
-            ],
-            [
-              "board",
-              "export",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -10349,35 +10520,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_export",
-                      "orig": "id_export",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/exports/{idExport}/download",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                    "idExport": "id_export",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -10395,16 +10540,6 @@ def make_config():
                     "lit": "download",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "id_export",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
@@ -10412,6 +10547,42 @@ def make_config():
                   "{id_export}",
                   "download",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                    "idExport": "id_export",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_export",
+                      "orig": "id_export",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "id_export",
+                  ],
+                },
               },
             ],
           },
@@ -10419,8 +10590,8 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
-              "export",
+              "$.main.kit.entity.board",
+              "$.main.kit.entity.export",
             ],
           ],
         },
@@ -10434,26 +10605,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/boards/{id}/calendarKey/generate",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -10468,43 +10622,43 @@ def make_config():
                     "lit": "generate",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "calendarKey",
                   "generate",
                 ],
-              },
-              {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "POST",
-                "orig": "/boards/{id}/emailKey/generate",
                 "rename": {
                   "param": {
                     "id": "board_id",
                   },
                 },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                  ],
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/boards/{id}/emailKey/generate",
                 "segments": [
                   {
                     "lit": "boards",
@@ -10519,21 +10673,38 @@ def make_config():
                     "lit": "generate",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "emailKey",
                   "generate",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                  ],
+                },
               },
             ],
           },
@@ -10541,7 +10712,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -10555,36 +10726,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/myPrefs/idEmailList",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -10599,22 +10743,49 @@ def make_config():
                     "lit": "idEmailList",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "value",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "myPrefs",
                   "idEmailList",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "value",
+                  ],
+                },
               },
             ],
           },
@@ -10622,7 +10793,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -10631,6 +10802,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -10645,35 +10817,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_label",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}/idLabels/{idLabel}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idLabel": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -10688,22 +10834,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "idLabels",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idLabel": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_label",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -10711,7 +10883,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -10720,6 +10892,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -10734,35 +10907,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}/idMembers/{idMember}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idMember": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -10777,22 +10924,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "idMembers",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idMember": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -10800,7 +10973,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -10809,6 +10982,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -10823,31 +10997,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "color",
-                      "orig": "color",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "id_board",
-                      "orig": "id_board",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/labels",
@@ -10856,6 +11005,39 @@ def make_config():
                     "lit": "labels",
                   },
                 ],
+                "parts": [
+                  "labels",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "color",
+                      "orig": "color",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id_board",
+                      "orig": "id_board",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "color",
@@ -10863,13 +11045,6 @@ def make_config():
                     "name",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "labels",
-                ],
               },
             ],
           },
@@ -10878,41 +11053,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$OBJECT`",
-                    },
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/labels",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -10924,6 +11067,47 @@ def make_config():
                     "lit": "labels",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "labels",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$OBJECT`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "board_id",
@@ -10931,38 +11115,8 @@ def make_config():
                     "limit",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "labels",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/labels/{id}",
@@ -10974,20 +11128,42 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "labels",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "labels",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -10996,18 +11172,6 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/labels/{id}",
@@ -11019,19 +11183,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "labels",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "labels",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -11040,32 +11217,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "color",
-                      "orig": "color",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/labels/{id}",
@@ -11077,6 +11228,41 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "labels",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "color",
+                      "orig": "color",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "color",
@@ -11084,44 +11270,8 @@ def make_config():
                     "name",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "labels",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/labels/{id}/{field}",
@@ -11136,6 +11286,44 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "labels",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -11143,15 +11331,6 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "labels",
-                  "{id}",
-                  "{field}",
-                ],
               },
             ],
           },
@@ -11159,7 +11338,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -11168,6 +11347,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -11182,38 +11362,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_board",
-                      "orig": "id_board",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_list_source",
-                      "orig": "id_list_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/lists",
@@ -11222,6 +11370,46 @@ def make_config():
                     "lit": "lists",
                   },
                 ],
+                "parts": [
+                  "lists",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "id_board",
+                      "orig": "id_board",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_list_source",
+                      "orig": "id_list_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id_board",
@@ -11230,45 +11418,8 @@ def make_config():
                     "pos",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_board",
-                      "orig": "id_board",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_list",
-                      "orig": "id_list",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/lists/{id}/moveAllCards",
@@ -11283,6 +11434,46 @@ def make_config():
                     "lit": "moveAllCards",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{id}",
+                  "moveAllCards",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "id_board",
+                      "orig": "id_board",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_list",
+                      "orig": "id_list",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "move_all_card",
                   "exist": [
@@ -11291,29 +11482,8 @@ def make_config():
                     "id_list",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{id}",
-                  "moveAllCards",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/lists/{id}/archiveAllCards",
@@ -11328,21 +11498,34 @@ def make_config():
                     "lit": "archiveAllCards",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{id}",
+                  "archiveAllCards",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "archive_all_card",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{id}",
-                  "archiveAllCards",
-                ],
               },
             ],
           },
@@ -11351,34 +11534,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "filter",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/lists/{filter}",
-                "rename": {
-                  "param": {
-                    "filter": "id",
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -11393,44 +11551,49 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "lists",
                   "{id}",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "filter": "id",
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "kind": "param",
-                      "name": "id",
+                      "name": "board_id",
                       "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
                       "reqd": True,
-                      "type": "`$STRING`",
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
-                  ],
-                  "query": [
                     {
-                      "example": "name,closed,idBoard,pos",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
+                      "name": "id",
+                      "orig": "filter",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lists/{id}",
@@ -11442,20 +11605,41 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name,closed,idBoard,pos",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -11464,50 +11648,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "closed",
-                      "orig": "closed",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_board",
-                      "orig": "id_board",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$ANY`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "subscribed",
-                      "orig": "subscribed",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/lists/{id}",
@@ -11519,6 +11659,59 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "closed",
+                      "orig": "closed",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_board",
+                      "orig": "id_board",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "subscribed",
+                      "orig": "subscribed",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "closed",
@@ -11529,43 +11722,8 @@ def make_config():
                     "subscribed",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "type": "`$ANY`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/lists/{id}/{field}",
@@ -11580,6 +11738,43 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -11587,38 +11782,8 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/lists/{id}/closed",
@@ -11633,6 +11798,37 @@ def make_config():
                     "lit": "closed",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{id}",
+                  "closed",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "closed",
                   "exist": [
@@ -11640,39 +11836,8 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{id}",
-                  "closed",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/lists/{id}/idBoard",
@@ -11687,6 +11852,38 @@ def make_config():
                     "lit": "idBoard",
                   },
                 ],
+                "parts": [
+                  "lists",
+                  "{id}",
+                  "idBoard",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "id_board",
                   "exist": [
@@ -11694,15 +11891,6 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lists",
-                  "{id}",
-                  "idBoard",
-                ],
               },
             ],
           },
@@ -11710,7 +11898,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -11718,177 +11906,219 @@ def make_config():
       "member": {
         "fields": [
           {
-            "format": "email",
             "name": "aaEmail",
+            "title": "Aa Email",
             "type": "`$STRING`",
+            "format": "email",
           },
           {
             "name": "aaEnrolledDate",
+            "title": "Aa Enrolled Date",
             "type": "`$STRING`",
           },
           {
             "name": "aaId",
+            "title": "Aa Id",
             "type": "`$STRING`",
           },
           {
             "name": "activityBlocked",
+            "title": "Activity Blocked",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "avatarHash",
+            "title": "Avatar Hash",
             "type": "`$STRING`",
           },
           {
             "name": "avatarSource",
+            "title": "Avatar Source",
             "type": "`$STRING`",
           },
           {
-            "format": "url",
             "name": "avatarUrl",
+            "title": "Avatar Url",
             "type": "`$STRING`",
+            "format": "url",
           },
           {
             "name": "bio",
+            "title": "Bio",
             "type": "`$STRING`",
           },
           {
             "name": "bioData",
+            "title": "Bio Data",
             "type": "`$OBJECT`",
           },
           {
             "name": "confirmed",
+            "title": "Confirmed",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "email",
+            "title": "Email",
             "type": "`$STRING`",
           },
           {
             "name": "fullName",
+            "title": "Full Name",
             "type": "`$STRING`",
           },
           {
             "name": "gravatarHash",
+            "title": "Gravatar Hash",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idBoards",
+            "title": "Id Boards",
             "type": "`$ARRAY`",
           },
           {
             "name": "idBoardsPinned",
+            "title": "Id Boards Pinned",
             "type": "`$ARRAY`",
           },
           {
             "name": "idEnterprise",
+            "title": "Id Enterprise",
             "type": "`$STRING`",
           },
           {
             "name": "idEnterprisesAdmin",
+            "title": "Id Enterprises Admin",
             "type": "`$ARRAY`",
           },
           {
             "name": "idEnterprisesDeactivated",
+            "title": "Id Enterprises Deactivated",
             "type": "`$ARRAY`",
           },
           {
             "name": "idMemberReferrer",
+            "title": "Id Member Referrer",
             "type": "`$STRING`",
           },
           {
             "name": "idOrganizations",
+            "title": "Id Organizations",
             "type": "`$ARRAY`",
           },
           {
             "name": "idPremOrgsAdmin",
+            "title": "Id Prem Orgs Admin",
             "type": "`$ARRAY`",
           },
           {
             "name": "initials",
+            "title": "Initials",
             "type": "`$STRING`",
           },
           {
             "name": "isAaMastered",
+            "title": "Is Aa Mastered",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "ixUpdate",
+            "title": "Ix Update",
             "type": "`$NUMBER`",
           },
           {
             "name": "limits",
+            "title": "Limits",
             "type": "`$OBJECT`",
           },
           {
             "name": "loginTypes",
+            "title": "Login Types",
             "type": "`$ARRAY`",
           },
           {
             "name": "marketingOptIn",
+            "title": "Marketing Opt In",
             "type": "`$OBJECT`",
           },
           {
             "name": "memberType",
+            "title": "Member Type",
             "type": "`$STRING`",
           },
           {
             "name": "messagesDismissed",
+            "title": "Messages Dismissed",
             "type": "`$OBJECT`",
           },
           {
             "name": "nonPublic",
-            "short": "Profile data with restricted visibility.",
+            "title": "Non Public",
             "type": "`$OBJECT`",
+            "short": "Profile data with restricted visibility.",
           },
           {
             "name": "nonPublicAvailable",
-            "short": "Whether the response contains non-public profile data for the member",
+            "title": "Non Public Available",
             "type": "`$BOOLEAN`",
+            "short": "Whether the response contains non-public profile data for the member",
           },
           {
             "name": "oneTimeMessagesDismissed",
+            "title": "One Time Messages Dismissed",
             "type": "`$ARRAY`",
           },
           {
             "name": "prefs",
+            "title": "Prefs",
             "type": "`$OBJECT`",
           },
           {
             "name": "premiumFeatures",
+            "title": "Premium Features",
             "type": "`$ARRAY`",
           },
           {
             "name": "products",
+            "title": "Products",
             "type": "`$ARRAY`",
           },
           {
             "name": "status",
+            "title": "Status",
             "type": "`$STRING`",
           },
           {
             "name": "trophies",
+            "title": "Trophies",
             "type": "`$ARRAY`",
           },
           {
             "name": "uploadedAvatarHash",
+            "title": "Uploaded Avatar Hash",
             "type": "`$STRING`",
           },
           {
-            "format": "url",
             "name": "uploadedAvatarUrl",
+            "title": "Uploaded Avatar Url",
             "type": "`$STRING`",
+            "format": "url",
           },
           {
-            "format": "url",
             "name": "url",
+            "title": "Url",
             "type": "`$STRING`",
+            "format": "url",
           },
           {
             "name": "username",
+            "title": "Username",
             "type": "`$STRING`",
           },
         ],
@@ -11903,26 +12133,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "file",
-                      "orig": "file",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/members/{id}/avatar",
@@ -11937,6 +12147,36 @@ def make_config():
                     "lit": "avatar",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{id}",
+                  "avatar",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "file",
+                      "orig": "file",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "avatar",
                   "exist": [
@@ -11944,38 +12184,8 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{id}",
-                  "avatar",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "file",
-                      "orig": "file",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/members/{id}/boardBackgrounds",
@@ -11990,6 +12200,37 @@ def make_config():
                     "lit": "boardBackgrounds",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{id}",
+                  "boardBackgrounds",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "file",
+                      "orig": "file",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "board_background",
                   "exist": [
@@ -11997,39 +12238,8 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{id}",
-                  "boardBackgrounds",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/members/{id}/oneTimeMessagesDismissed",
@@ -12044,6 +12254,38 @@ def make_config():
                     "lit": "oneTimeMessagesDismissed",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{id}",
+                  "oneTimeMessagesDismissed",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "one_time_messages_dismissed",
                   "exist": [
@@ -12051,15 +12293,6 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{id}",
-                  "oneTimeMessagesDismissed",
-                ],
               },
             ],
           },
@@ -12068,103 +12301,112 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "name",
-                      "kind": "query",
-                      "name": "board_field",
-                      "orig": "board_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "count",
-                      "orig": "count",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "avatarHash, fullName, initials, username",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "displayName",
-                      "kind": "query",
-                      "name": "organization_field",
-                      "orig": "organization_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "sort",
-                      "orig": "sort",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "sort_by",
-                      "orig": "sort_by",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": None,
-                      "kind": "query",
-                      "name": "sort_order",
-                      "orig": "sort_order",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "start_index",
-                      "orig": "start_index",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/members",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "members",
                   },
                 ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "board_field",
+                      "orig": "board_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name",
+                    },
+                    {
+                      "name": "count",
+                      "orig": "count",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash, fullName, initials, username",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "organization_field",
+                      "orig": "organization_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "displayName",
+                    },
+                    {
+                      "name": "sort",
+                      "orig": "sort",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "sort_by",
+                      "orig": "sort_by",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "sort_order",
+                      "orig": "sort_order",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": None,
+                    },
+                    {
+                      "name": "start_index",
+                      "orig": "start_index",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "board_field",
                     "count",
-                    "enterpris_id",
+                    "enterprise_id",
                     "field",
                     "filter",
                     "organization_field",
@@ -12174,56 +12416,8 @@ def make_config():
                     "start_index",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                ],
               },
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_board",
-                      "orig": "id_board",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_organization",
-                      "orig": "id_organization",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 8,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "only_org_member",
-                      "orig": "only_org_member",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "query",
-                      "orig": "query",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search/members/",
@@ -12235,6 +12429,54 @@ def make_config():
                     "lit": "members",
                   },
                 ],
+                "parts": [
+                  "search",
+                  "members",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "id_board",
+                      "orig": "id_board",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_organization",
+                      "orig": "id_organization",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 8,
+                    },
+                    {
+                      "name": "only_org_member",
+                      "orig": "only_org_member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id_board",
@@ -12244,45 +12486,11 @@ def make_config():
                     "query",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "search",
-                  "members",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "action_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{id}/member",
-                "rename": {
-                  "param": {
-                    "id": "action_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -12294,52 +12502,52 @@ def make_config():
                     "lit": "member",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{action_id}",
+                  "member",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "action_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "action_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{action_id}",
-                  "member",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "action_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{id}/memberCreator",
-                "rename": {
-                  "param": {
-                    "id": "action_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -12351,51 +12559,52 @@ def make_config():
                     "lit": "memberCreator",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{action_id}",
+                  "memberCreator",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "action_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "action_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{action_id}",
-                  "memberCreator",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "token_id",
-                      "orig": "token",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tokens/{token}/member",
-                "rename": {
-                  "param": {
-                    "token": "token_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "tokens",
@@ -12407,43 +12616,51 @@ def make_config():
                     "lit": "member",
                   },
                 ],
+                "parts": [
+                  "tokens",
+                  "{token_id}",
+                  "member",
+                ],
+                "rename": {
+                  "param": {
+                    "token": "token_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "token_id",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "token_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "tokens",
-                  "{token_id}",
-                  "member",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/members",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -12455,20 +12672,37 @@ def make_config():
                     "lit": "members",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "members",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -12477,155 +12711,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "action",
-                      "orig": "action",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "board",
-                      "orig": "board",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "board_background",
-                      "orig": "board_background",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "board_star",
-                      "orig": "board_star",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "boards_invited",
-                      "orig": "boards_invited",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "name,closed,idOrganization,pinned",
-                      "kind": "query",
-                      "name": "boards_invited_field",
-                      "orig": "boards_invited_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "card",
-                      "orig": "card",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "custom_board_background",
-                      "orig": "custom_board_background",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "custom_emoji",
-                      "orig": "custom_emoji",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "custom_sticker",
-                      "orig": "custom_sticker",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "notification",
-                      "orig": "notification",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "organization",
-                      "orig": "organization",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "organization_field",
-                      "orig": "organization_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "organization_paid_account",
-                      "orig": "organization_paid_account",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "organizations_invited",
-                      "orig": "organizations_invited",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "organizations_invited_field",
-                      "orig": "organizations_invited_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "paid_account",
-                      "orig": "paid_account",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "saved_search",
-                      "orig": "saved_search",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "token",
-                      "orig": "token",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}",
@@ -12637,6 +12722,164 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "action",
+                      "orig": "action",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "board",
+                      "orig": "board",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "board_background",
+                      "orig": "board_background",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "board_star",
+                      "orig": "board_star",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "boards_invited",
+                      "orig": "boards_invited",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "boards_invited_field",
+                      "orig": "boards_invited_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name,closed,idOrganization,pinned",
+                    },
+                    {
+                      "name": "card",
+                      "orig": "card",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "custom_board_background",
+                      "orig": "custom_board_background",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "custom_emoji",
+                      "orig": "custom_emoji",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "custom_sticker",
+                      "orig": "custom_sticker",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "notification",
+                      "orig": "notification",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "organization",
+                      "orig": "organization",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "organization_field",
+                      "orig": "organization_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "organization_paid_account",
+                      "orig": "organization_paid_account",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "organizations_invited",
+                      "orig": "organizations_invited",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "organizations_invited_field",
+                      "orig": "organizations_invited_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "paid_account",
+                      "orig": "paid_account",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "saved_search",
+                      "orig": "saved_search",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "token",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action",
@@ -12662,74 +12905,17 @@ def make_config():
                     "token",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "name",
-                      "kind": "query",
-                      "name": "board_field",
-                      "orig": "board_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "avatarHash, fullName, initials, username",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "displayName",
-                      "kind": "query",
-                      "name": "organization_field",
-                      "orig": "organization_field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/members/{idMember}",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idMember": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "members",
@@ -12738,56 +12924,79 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_field",
-                    "enterpris_id",
-                    "field",
-                    "id",
-                    "organization_field",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idMember": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                  "{id}",
-                ],
-              },
-              {
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
+                      "name": "enterprise_id",
                       "orig": "id",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                   ],
                   "query": [
                     {
-                      "example": "avatarHash,fullName,initials,username",
+                      "name": "board_field",
+                      "orig": "board_field",
+                      "type": "`$STRING`",
                       "kind": "query",
+                      "example": "name",
+                    },
+                    {
                       "name": "field",
                       "orig": "field",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash, fullName, initials, username",
+                    },
+                    {
+                      "name": "organization_field",
+                      "orig": "organization_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "displayName",
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "board_field",
+                    "enterprise_id",
+                    "field",
+                    "id",
+                    "organization_field",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/members",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -12799,42 +13008,49 @@ def make_config():
                     "lit": "members",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "members",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash,fullName,initials,username",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "members",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/{field}",
@@ -12849,52 +13065,46 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "notification_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/notifications/{id}/member",
-                "rename": {
-                  "param": {
-                    "id": "notification_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "notifications",
@@ -12906,43 +13116,52 @@ def make_config():
                     "lit": "member",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{notification_id}",
+                  "member",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "notification_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "notification_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "notification_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{notification_id}",
-                  "member",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/members",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -12954,20 +13173,37 @@ def make_config():
                     "lit": "members",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "members",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                  ],
+                },
               },
             ],
           },
@@ -12976,35 +13212,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/boards/{id}/members/{idMember}",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                    "idMember": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -13019,52 +13229,53 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "members",
                   "{id}",
                 ],
-              },
-              {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "DELETE",
-                "orig": "/organizations/{id}/members/{idMember}",
                 "rename": {
                   "param": {
-                    "id": "organization_id",
+                    "id": "board_id",
                     "idMember": "id",
                   },
                 },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "id",
+                  ],
+                },
+              },
+              {
+                "kind": "http",
+                "method": "DELETE",
+                "orig": "/organizations/{id}/members/{idMember}",
                 "segments": [
                   {
                     "lit": "organizations",
@@ -13079,53 +13290,52 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "members",
                   "{id}",
                 ],
-              },
-              {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_member",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "DELETE",
-                "orig": "/organizations/{id}/members/{idMember}/all",
                 "rename": {
                   "param": {
                     "id": "organization_id",
-                    "idMember": "id_member",
+                    "idMember": "id",
                   },
                 },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "organization_id",
+                  ],
+                },
+              },
+              {
+                "kind": "http",
+                "method": "DELETE",
+                "orig": "/organizations/{id}/members/{idMember}/all",
                 "segments": [
                   {
                     "lit": "organizations",
@@ -13143,17 +13353,6 @@ def make_config():
                     "lit": "all",
                   },
                 ],
-                "select": {
-                  "$action": "all",
-                  "exist": [
-                    "id_member",
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
@@ -13161,6 +13360,43 @@ def make_config():
                   "{id_member}",
                   "all",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                    "idMember": "id_member",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id_member",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "all",
+                  "exist": [
+                    "id_member",
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -13169,68 +13405,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "avatar_source",
-                      "orig": "avatar_source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "bio",
-                      "orig": "bio",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "full_name",
-                      "orig": "full_name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "initial",
-                      "orig": "initial",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/color_blind",
-                      "orig": "prefs/color_blind",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/locale",
-                      "orig": "prefs/locale",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/minutes_between_summary",
-                      "orig": "prefs/minutes_between_summary",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "username",
-                      "orig": "username",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/members/{id}",
@@ -13242,6 +13416,77 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "avatar_source",
+                      "orig": "avatar_source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "bio",
+                      "orig": "bio",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "full_name",
+                      "orig": "full_name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "initial",
+                      "orig": "initial",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/color_blind",
+                      "orig": "prefs/color_blind",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/locale",
+                      "orig": "prefs/locale",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/minutes_between_summary",
+                      "orig": "prefs/minutes_between_summary",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "username",
+                      "orig": "username",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "avatar_source",
@@ -13255,81 +13500,17 @@ def make_config():
                     "username",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_member",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "name",
-                      "kind": "query",
-                      "name": "board_field",
-                      "orig": "board_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "avatarHash, fullName, initials, username",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "displayName",
-                      "kind": "query",
-                      "name": "organization_field",
-                      "orig": "organization_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/enterprises/{id}/members/{idMember}/deactivated",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idMember": "id_member",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "members",
@@ -13341,75 +13522,89 @@ def make_config():
                     "lit": "deactivated",
                   },
                 ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                  "{id_member}",
+                  "deactivated",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idMember": "id_member",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_member",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "board_field",
+                      "orig": "board_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name",
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash, fullName, initials, username",
+                    },
+                    {
+                      "name": "organization_field",
+                      "orig": "organization_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "displayName",
+                    },
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "deactivated",
                   "exist": [
                     "board_field",
-                    "enterpris_id",
+                    "enterprise_id",
                     "field",
                     "id_member",
                     "organization_field",
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                  "{id_member}",
-                  "deactivated",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "allow_billable_guest",
-                      "orig": "allow_billable_guest",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "type",
-                      "orig": "type",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/members/{idMember}",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                    "idMember": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -13424,6 +13619,58 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "members",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                    "idMember": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "allow_billable_guest",
+                      "orig": "allow_billable_guest",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "allow_billable_guest",
@@ -13432,62 +13679,17 @@ def make_config():
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "members",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_member",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/enterprises/{id}/members/{idMember}/licensed",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idMember": "id_member",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "members",
@@ -13499,64 +13701,65 @@ def make_config():
                     "lit": "licensed",
                   },
                 ],
-                "select": {
-                  "$action": "licensed",
-                  "exist": [
-                    "enterpris_id",
-                    "id_member",
-                    "value",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                  "{id_member}",
+                  "licensed",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idMember": "id_member",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                  "{id_member}",
-                  "licensed",
-                ],
-              },
-              {
                 "args": {
                   "params": [
                     {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
+                      "name": "enterprise_id",
+                      "orig": "id",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
+                      "name": "id_member",
+                      "orig": "id_member",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                   ],
                   "query": [
                     {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$BOOLEAN`",
                       "kind": "query",
-                      "name": "type",
-                      "orig": "type",
                       "reqd": True,
-                      "type": "`$STRING`",
                     },
                   ],
                 },
+                "select": {
+                  "$action": "licensed",
+                  "exist": [
+                    "enterprise_id",
+                    "id_member",
+                    "value",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/organizations/{id}/members/{idMember}",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                    "idMember": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -13571,6 +13774,50 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{organization_id}",
+                  "members",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                    "idMember": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
@@ -13578,55 +13825,11 @@ def make_config():
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{organization_id}",
-                  "members",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id_member",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$ANY`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/organizations/{id}/members/{idMember}/deactivated",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                    "idMember": "id_member",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -13644,6 +13847,51 @@ def make_config():
                     "lit": "deactivated",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{organization_id}",
+                  "members",
+                  "{id_member}",
+                  "deactivated",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                    "idMember": "id_member",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id_member",
+                      "orig": "id_member",
+                      "type": "`$ANY`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "deactivated",
                   "exist": [
@@ -13652,17 +13900,6 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{organization_id}",
-                  "members",
-                  "{id_member}",
-                  "deactivated",
-                ],
               },
             ],
           },
@@ -13670,33 +13907,31 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "action",
+              "$.main.kit.entity.action",
             ],
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
             [
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             ],
             [
-              "notification",
+              "$.main.kit.entity.notification",
             ],
             [
-              "organization",
+              "$.main.kit.entity.organization",
             ],
             [
-              "token",
+              "$.main.kit.entity.token",
             ],
             [
-              "enterpris",
-              "member",
+              "$.main.kit.entity.enterprise",
             ],
             [
-              "organization",
-              "member",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -13710,26 +13945,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "plugin_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/plugins/{id}/compliance/memberPrivacy",
-                "rename": {
-                  "param": {
-                    "id": "plugin_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "plugins",
@@ -13744,21 +13962,38 @@ def make_config():
                     "lit": "memberPrivacy",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "plugin_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "plugins",
                   "{plugin_id}",
                   "compliance",
                   "memberPrivacy",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "plugin_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "plugin_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "plugin_id",
+                  ],
+                },
               },
             ],
           },
@@ -13766,7 +14001,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "plugin",
+              "$.main.kit.entity.plugin",
             ],
           ],
         },
@@ -13775,6 +14010,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -13789,35 +14025,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "avatarHash,fullName,initials,username",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/membersVoted",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -13829,21 +14039,47 @@ def make_config():
                     "lit": "membersVoted",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "membersVoted",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash,fullName,initials,username",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "membersVoted",
-                ],
               },
             ],
           },
@@ -13852,35 +14088,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_member",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}/membersVoted/{idMember}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idMember": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -13895,22 +14105,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "membersVoted",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idMember": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_member",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -13918,7 +14154,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -13927,30 +14163,37 @@ def make_config():
         "fields": [
           {
             "name": "admin",
+            "title": "Admin",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "collaborator",
+            "title": "Collaborator",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "deactivated",
+            "title": "Deactivated",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "licensed",
+            "title": "Licensed",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "managed",
+            "title": "Managed",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "member",
+            "title": "Member",
             "type": "`$OBJECT`",
           },
         ],
@@ -13965,97 +14208,15 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "active_since",
-                      "orig": "active_since",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "admin",
-                      "orig": "admin",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "collaborator",
-                      "orig": "collaborator",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "deactivated",
-                      "orig": "deactivated",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "inactive_since",
-                      "orig": "inactive_since",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "licensed",
-                      "orig": "licensed",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "managed",
-                      "orig": "managed",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "none",
-                      "kind": "query",
-                      "name": "search",
-                      "orig": "search",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/members/query",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "members",
@@ -14064,6 +14225,98 @@ def make_config():
                     "lit": "query",
                   },
                 ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "members",
+                  "query",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "active_since",
+                      "orig": "active_since",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "admin",
+                      "orig": "admin",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "collaborator",
+                      "orig": "collaborator",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "deactivated",
+                      "orig": "deactivated",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "inactive_since",
+                      "orig": "inactive_since",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "licensed",
+                      "orig": "licensed",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "managed",
+                      "orig": "managed",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                    {
+                      "name": "search",
+                      "orig": "search",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "none",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "active_since",
@@ -14071,61 +14324,18 @@ def make_config():
                     "collaborator",
                     "cursor",
                     "deactivated",
-                    "enterpris_id",
+                    "enterprise_id",
                     "inactive_since",
                     "licensed",
                     "managed",
                     "search",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "members",
-                  "query",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/memberships",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -14137,6 +14347,48 @@ def make_config():
                     "lit": "memberships",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{organization_id}",
+                  "memberships",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "filter",
@@ -14144,15 +14396,6 @@ def make_config():
                     "organization_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{organization_id}",
-                  "memberships",
-                ],
               },
             ],
           },
@@ -14161,63 +14404,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "activity",
-                      "orig": "activity",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "fullname,username",
-                      "kind": "query",
-                      "name": "member_field",
-                      "orig": "member_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "org_member_type",
-                      "orig": "org_member_type",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/memberships",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -14229,6 +14418,69 @@ def make_config():
                     "lit": "memberships",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "memberships",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "activity",
+                      "orig": "activity",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "member_field",
+                      "orig": "member_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "fullname,username",
+                    },
+                    {
+                      "name": "org_member_type",
+                      "orig": "org_member_type",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "activity",
@@ -14239,55 +14491,11 @@ def make_config():
                     "org_member_type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "memberships",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_membership",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/memberships/{idMembership}",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                    "idMembership": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -14302,6 +14510,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{organization_id}",
+                  "memberships",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                    "idMembership": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_membership",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
@@ -14309,16 +14562,6 @@ def make_config():
                     "organization_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{organization_id}",
-                  "memberships",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -14327,51 +14570,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_membership",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "fullName, username",
-                      "kind": "query",
-                      "name": "member_field",
-                      "orig": "member_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "type",
-                      "orig": "type",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/memberships/{idMembership}",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                    "idMembership": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -14386,6 +14587,58 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "memberships",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                    "idMembership": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_membership",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "member_field",
+                      "orig": "member_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "fullName, username",
+                    },
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "board_id",
@@ -14394,16 +14647,6 @@ def make_config():
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "memberships",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -14411,25 +14654,13 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
             [
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             ],
             [
-              "organization",
-            ],
-          ],
-        },
-      },
-      "most_recent": {
-        "fields": [],
-        "name": "most_recent",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "board",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -14438,6 +14669,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -14452,35 +14684,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_board",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/newBillableGuests/{idBoard}",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                    "idBoard": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -14495,22 +14701,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "newBillableGuests",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                    "idBoard": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_board",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -14518,7 +14750,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "organization",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -14527,52 +14759,58 @@ def make_config():
         "fields": [
           {
             "name": "board",
-            "req": True,
+            "title": "Board",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "card",
+            "title": "Card",
             "type": "`$OBJECT`",
-            "union": {
-              "branches": 2,
-              "count": 2,
-              "depth": 3,
-            },
           },
           {
             "name": "data",
+            "title": "Data",
             "type": "`$STRING`",
           },
           {
             "name": "date",
+            "title": "Date",
             "type": "`$STRING`",
           },
           {
             "name": "dateRead",
+            "title": "Date Read",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idAction",
+            "title": "Id Action",
             "type": "`$STRING`",
           },
           {
             "name": "idMemberCreator",
+            "title": "Id Member Creator",
             "type": "`$STRING`",
           },
           {
             "name": "reactions",
+            "title": "Reactions",
             "type": "`$ARRAY`",
           },
           {
             "name": "type",
+            "title": "Type",
             "type": "`$STRING`",
           },
           {
             "name": "unread",
+            "title": "Unread",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -14587,103 +14825,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "before",
-                      "orig": "before",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "display",
-                      "orig": "display",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "entity",
-                      "orig": "entity",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "50",
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member_creator",
-                      "orig": "member_creator",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "avatarHash,fullName,initials,username",
-                      "kind": "query",
-                      "name": "member_creator_field",
-                      "orig": "member_creator_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "0",
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "read_filter",
-                      "orig": "read_filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "since",
-                      "orig": "since",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/notifications",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -14695,6 +14839,109 @@ def make_config():
                     "lit": "notifications",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "notifications",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "before",
+                      "orig": "before",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "display",
+                      "orig": "display",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "entity",
+                      "orig": "entity",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": "50",
+                    },
+                    {
+                      "name": "member_creator",
+                      "orig": "member_creator",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member_creator_field",
+                      "orig": "member_creator_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash,fullName,initials,username",
+                    },
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": "0",
+                    },
+                    {
+                      "name": "read_filter",
+                      "orig": "read_filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "since",
+                      "orig": "since",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "before",
@@ -14711,15 +14958,6 @@ def make_config():
                     "since",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "notifications",
-                ],
               },
             ],
           },
@@ -14728,118 +14966,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "board",
-                      "orig": "board",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "name",
-                      "kind": "query",
-                      "name": "board_field",
-                      "orig": "board_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "card",
-                      "orig": "card",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "name",
-                      "kind": "query",
-                      "name": "card_field",
-                      "orig": "card_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "display",
-                      "orig": "display",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "entity",
-                      "orig": "entity",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "list",
-                      "orig": "list",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member_creator",
-                      "orig": "member_creator",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "avatarHash,fullName,initials,username",
-                      "kind": "query",
-                      "name": "member_creator_field",
-                      "orig": "member_creator_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "avatarHash,fullName,initials,username",
-                      "kind": "query",
-                      "name": "member_field",
-                      "orig": "member_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "organization",
-                      "orig": "organization",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "displayName",
-                      "kind": "query",
-                      "name": "organization_field",
-                      "orig": "organization_field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/notifications/{id}",
@@ -14851,6 +14977,127 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "board",
+                      "orig": "board",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "board_field",
+                      "orig": "board_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name",
+                    },
+                    {
+                      "name": "card",
+                      "orig": "card",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "card_field",
+                      "orig": "card_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name",
+                    },
+                    {
+                      "name": "display",
+                      "orig": "display",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "entity",
+                      "orig": "entity",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "list",
+                      "orig": "list",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member_creator",
+                      "orig": "member_creator",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member_creator_field",
+                      "orig": "member_creator_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash,fullName,initials,username",
+                    },
+                    {
+                      "name": "member_field",
+                      "orig": "member_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash,fullName,initials,username",
+                    },
+                    {
+                      "name": "organization",
+                      "orig": "organization",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "organization_field",
+                      "orig": "organization_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "displayName",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "board",
@@ -14870,35 +15117,8 @@ def make_config():
                     "organization_field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/notifications/{id}/{field}",
@@ -14913,21 +15133,41 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{id}",
-                  "{field}",
-                ],
               },
             ],
           },
@@ -14936,26 +15176,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "unread",
-                      "orig": "unread",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/notifications/{id}",
@@ -14967,42 +15187,43 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "unread",
+                      "orig": "unread",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                     "unread",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/notifications/{id}/unread",
@@ -15017,6 +15238,36 @@ def make_config():
                     "lit": "unread",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{id}",
+                  "unread",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "unread",
                   "exist": [
@@ -15024,15 +15275,6 @@ def make_config():
                     "value",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{id}",
-                  "unread",
-                ],
               },
             ],
           },
@@ -15040,7 +15282,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
           ],
         },
@@ -15049,6 +15291,8 @@ def make_config():
         "fields": [
           {
             "name": "blockedKeys",
+            "title": "Blocked Keys",
+            "type": "`$ARRAY`",
             "op": {
               "update": {
                 "req": True,
@@ -15056,24 +15300,26 @@ def make_config():
               },
             },
             "short": "Singular key or array of notification keys",
-            "type": "`$ARRAY`",
           },
           {
             "name": "channel",
+            "title": "Channel",
+            "type": "`$STRING`",
             "op": {
               "update": {
                 "req": True,
                 "type": "`$STRING`",
               },
             },
-            "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idMember",
+            "title": "Id Member",
             "type": "`$STRING`",
           },
         ],
@@ -15096,25 +15342,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/notificationsChannelSettings",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -15126,20 +15356,36 @@ def make_config():
                     "lit": "notificationsChannelSettings",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "notificationsChannelSettings",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -15148,33 +15394,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "email",
-                      "kind": "param",
-                      "name": "channel",
-                      "orig": "channel",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/notificationsChannelSettings/{channel}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -15189,22 +15411,46 @@ def make_config():
                     "var": "channel",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "channel",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "notificationsChannelSettings",
                   "{channel}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "channel",
+                      "orig": "channel",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "email",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "channel",
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -15213,41 +15459,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "notification_comment_card",
-                      "kind": "param",
-                      "name": "blocked_key",
-                      "orig": "blocked_key",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "email",
-                      "kind": "param",
-                      "name": "channel",
-                      "orig": "channel",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/members/{id}/notificationsChannelSettings/{channel}/{blockedKeys}",
-                "rename": {
-                  "param": {
-                    "blockedKeys": "blocked_key",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -15265,17 +15479,6 @@ def make_config():
                     "var": "blocked_key",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "blocked_key",
-                    "channel",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{id}",
@@ -15283,35 +15486,54 @@ def make_config():
                   "{channel}",
                   "{blocked_key}",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "blockedKeys": "blocked_key",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "example": "email",
-                      "kind": "param",
-                      "name": "channel",
-                      "orig": "channel",
-                      "reqd": True,
+                      "name": "blocked_key",
+                      "orig": "blocked_key",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "notification_comment_card",
                     },
                     {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
+                      "name": "channel",
+                      "orig": "channel",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "email",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "blocked_key",
+                    "channel",
+                    "id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/members/{id}/notificationsChannelSettings/{channel}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -15326,43 +15548,51 @@ def make_config():
                     "var": "channel",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "channel",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "notificationsChannelSettings",
                   "{channel}",
                 ],
-              },
-              {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "PUT",
-                "orig": "/members/{id}/notificationsChannelSettings",
                 "rename": {
                   "param": {
                     "id": "member_id",
                   },
                 },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "channel",
+                      "orig": "channel",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "email",
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "channel",
+                    "member_id",
+                  ],
+                },
+              },
+              {
+                "kind": "http",
+                "method": "PUT",
+                "orig": "/members/{id}/notificationsChannelSettings",
                 "segments": [
                   {
                     "lit": "members",
@@ -15374,20 +15604,36 @@ def make_config():
                     "lit": "notificationsChannelSettings",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "notificationsChannelSettings",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -15395,11 +15641,10 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
             [
-              "member",
-              "notifications_channel_setting",
+              "$.main.kit.entity.member",
             ],
           ],
         },
@@ -15408,6 +15653,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -15422,27 +15668,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/notifications/{id}/list",
@@ -15457,21 +15682,43 @@ def make_config():
                     "lit": "list",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{id}",
+                  "list",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{id}",
-                  "list",
-                ],
               },
             ],
           },
@@ -15484,6 +15731,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -15498,27 +15746,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/notifications/{id}/memberCreator",
@@ -15533,21 +15760,43 @@ def make_config():
                     "lit": "memberCreator",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{id}",
+                  "memberCreator",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{id}",
-                  "memberCreator",
-                ],
               },
             ],
           },
@@ -15556,25 +15805,11 @@ def make_config():
           "ancestors": [],
         },
       },
-      "notifications_channel_setting": {
-        "fields": [],
-        "name": "notifications_channel_setting",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "member",
-            ],
-            [
-              "notifications_channel_setting",
-            ],
-          ],
-        },
-      },
       "option": {
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -15589,35 +15824,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "custom_field_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_custom_field_option",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/customFields/{id}/options/{idCustomFieldOption}",
-                "rename": {
-                  "param": {
-                    "id": "custom_field_id",
-                    "idCustomFieldOption": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "customFields",
@@ -15632,44 +15841,53 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "custom_field_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "customFields",
                   "{custom_field_id}",
                   "options",
                   "{id}",
                 ],
-              },
-              {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "custom_field_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/customFields/{id}/options",
                 "rename": {
                   "param": {
                     "id": "custom_field_id",
+                    "idCustomFieldOption": "id",
                   },
                 },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "custom_field_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_custom_field_option",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "custom_field_id",
+                    "id",
+                  ],
+                },
+              },
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/customFields/{id}/options",
                 "segments": [
                   {
                     "lit": "customFields",
@@ -15681,20 +15899,37 @@ def make_config():
                     "lit": "options",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "custom_field_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "customFields",
                   "{custom_field_id}",
                   "options",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "custom_field_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "custom_field_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "custom_field_id",
+                  ],
+                },
               },
             ],
           },
@@ -15703,35 +15938,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "custom_field_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_custom_field_option",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/customFields/{id}/options/{idCustomFieldOption}",
-                "rename": {
-                  "param": {
-                    "id": "custom_field_id",
-                    "idCustomFieldOption": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "customFields",
@@ -15746,22 +15955,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "custom_field_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "customFields",
                   "{custom_field_id}",
                   "options",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "custom_field_id",
+                    "idCustomFieldOption": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "custom_field_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_custom_field_option",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "custom_field_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -15769,7 +16004,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "custom_field",
+              "$.main.kit.entity.custom_field",
             ],
           ],
         },
@@ -15783,26 +16018,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/organizations/{id}/prefs/orgInviteRestrict",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -15817,21 +16035,38 @@ def make_config():
                     "lit": "orgInviteRestrict",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "prefs",
                   "orgInviteRestrict",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -15839,7 +16074,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "organization",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -15847,50 +16082,61 @@ def make_config():
       "organization": {
         "fields": [
           {
-            "format": "date",
             "name": "dateLastActivity",
+            "title": "Date Last Activity",
             "type": "`$STRING`",
+            "format": "date",
           },
           {
             "name": "displayName",
+            "title": "Display Name",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idBoards",
+            "title": "Id Boards",
             "type": "`$ARRAY`",
           },
           {
             "name": "idEnterprise",
+            "title": "Id Enterprise",
             "type": "`$STRING`",
           },
           {
             "name": "memberships",
+            "title": "Memberships",
             "type": "`$ARRAY`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
             "name": "offering",
+            "title": "Offering",
             "type": "`$STRING`",
           },
           {
             "name": "prefs",
+            "title": "Prefs",
             "type": "`$OBJECT`",
           },
           {
             "name": "premiumFeatures",
+            "title": "Premium Features",
             "type": "`$ARRAY`",
           },
           {
-            "format": "url",
             "name": "url",
+            "title": "Url",
             "type": "`$STRING`",
+            "format": "url",
           },
         ],
         "id": {
@@ -15904,35 +16150,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "desc",
-                      "orig": "desc",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "display_name",
-                      "orig": "display_name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "website",
-                      "orig": "website",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/organizations",
@@ -15941,6 +16158,43 @@ def make_config():
                     "lit": "organizations",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "desc",
+                      "orig": "desc",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "display_name",
+                      "orig": "display_name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "website",
+                      "orig": "website",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "desc",
@@ -15949,35 +16203,8 @@ def make_config():
                     "website",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "file",
-                      "orig": "file",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/organizations/{id}/logo",
@@ -15992,6 +16219,36 @@ def make_config():
                     "lit": "logo",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{id}",
+                  "logo",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "file",
+                      "orig": "file",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "logo",
                   "exist": [
@@ -15999,28 +16256,8 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{id}",
-                  "logo",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/organizations/{id}/tags",
@@ -16035,21 +16272,33 @@ def make_config():
                     "lit": "tags",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{id}",
+                  "tags",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "tag",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{id}",
-                  "tags",
-                ],
               },
             ],
           },
@@ -16058,128 +16307,88 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "count",
-                      "orig": "count",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "start_index",
-                      "orig": "start_index",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/organizations",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "organizations",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "count",
-                    "enterpris_id",
-                    "field",
-                    "filter",
-                    "start_index",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "organizations",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "organizations",
-                ],
-              },
-              {
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
+                      "name": "enterprise_id",
                       "orig": "id",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                   ],
                   "query": [
                     {
-                      "example": "all",
+                      "name": "count",
+                      "orig": "count",
+                      "type": "`$INTEGER`",
                       "kind": "query",
+                    },
+                    {
                       "name": "field",
                       "orig": "field",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
                     },
                     {
-                      "example": "all",
-                      "kind": "query",
                       "name": "filter",
                       "orig": "filter",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
                     },
                     {
-                      "example": False,
+                      "name": "start_index",
+                      "orig": "start_index",
+                      "type": "`$INTEGER`",
                       "kind": "query",
-                      "name": "paid_account",
-                      "orig": "paid_account",
-                      "type": "`$BOOLEAN`",
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "count",
+                    "enterprise_id",
+                    "field",
+                    "filter",
+                    "start_index",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/organizations",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -16191,6 +16400,55 @@ def make_config():
                     "lit": "organizations",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "organizations",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "paid_account",
+                      "orig": "paid_account",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -16199,46 +16457,11 @@ def make_config():
                     "paid_account",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "organizations",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "action_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{id}/organization",
-                "rename": {
-                  "param": {
-                    "id": "action_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -16250,52 +16473,52 @@ def make_config():
                     "lit": "organization",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{action_id}",
+                  "organization",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "action_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "action_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{action_id}",
-                  "organization",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/organizationsInvited",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -16307,21 +16530,47 @@ def make_config():
                     "lit": "organizationsInvited",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "organizationsInvited",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "member_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "organizationsInvited",
-                ],
               },
             ],
           },
@@ -16330,25 +16579,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/{field}",
@@ -16363,52 +16593,46 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "notification_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/notifications/{id}/organization",
-                "rename": {
-                  "param": {
-                    "id": "notification_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "notifications",
@@ -16420,35 +16644,49 @@ def make_config():
                     "lit": "organization",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "{notification_id}",
+                  "organization",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "notification_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "notification_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "notification_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "{notification_id}",
-                  "organization",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}",
@@ -16460,19 +16698,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -16481,41 +16732,15 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_org",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/enterprises/{id}/organizations/{idOrg}",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idOrg": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "organizations",
@@ -16524,36 +16749,50 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "enterpris_id",
-                    "id",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "organizations",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idOrg": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "organizations",
-                  "{id}",
-                ],
-              },
-              {
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
+                      "name": "enterprise_id",
                       "orig": "id",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_org",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "enterprise_id",
+                    "id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/organizations/{id}",
@@ -16565,33 +16804,34 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/organizations/{id}/logo",
@@ -16606,21 +16846,34 @@ def make_config():
                     "lit": "logo",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{id}",
+                  "logo",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "logo",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{id}",
-                  "logo",
-                ],
               },
             ],
           },
@@ -16629,92 +16882,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "desc",
-                      "orig": "desc",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "display_name",
-                      "orig": "display_name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/associated_domain",
-                      "orig": "prefs/associated_domain",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/board_visibility_restrict/org",
-                      "orig": "prefs/board_visibility_restrict/org",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/board_visibility_restrict/private",
-                      "orig": "prefs/board_visibility_restrict/private",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/board_visibility_restrict/public",
-                      "orig": "prefs/board_visibility_restrict/public",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/external_members_disabled",
-                      "orig": "prefs/external_members_disabled",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/google_apps_version",
-                      "orig": "prefs/google_apps_version",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/org_invite_restrict",
-                      "orig": "prefs/org_invite_restrict",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prefs/permission_level",
-                      "orig": "prefs/permission_level",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "website",
-                      "orig": "website",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/organizations/{id}",
@@ -16726,6 +16893,101 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "desc",
+                      "orig": "desc",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "display_name",
+                      "orig": "display_name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/associated_domain",
+                      "orig": "prefs/associated_domain",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/board_visibility_restrict/org",
+                      "orig": "prefs/board_visibility_restrict/org",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/board_visibility_restrict/private",
+                      "orig": "prefs/board_visibility_restrict/private",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/board_visibility_restrict/public",
+                      "orig": "prefs/board_visibility_restrict/public",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/external_members_disabled",
+                      "orig": "prefs/external_members_disabled",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/google_apps_version",
+                      "orig": "prefs/google_apps_version",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/org_invite_restrict",
+                      "orig": "prefs/org_invite_restrict",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prefs/permission_level",
+                      "orig": "prefs/permission_level",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "website",
+                      "orig": "website",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "desc",
@@ -16743,51 +17005,8 @@ def make_config():
                     "website",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "email",
-                      "orig": "email",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "full_name",
-                      "orig": "full_name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "normal",
-                      "kind": "query",
-                      "name": "type",
-                      "orig": "type",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/organizations/{id}/members",
@@ -16802,6 +17021,51 @@ def make_config():
                     "lit": "members",
                   },
                 ],
+                "parts": [
+                  "organizations",
+                  "{id}",
+                  "members",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "email",
+                      "orig": "email",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "full_name",
+                      "orig": "full_name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "normal",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "member",
                   "exist": [
@@ -16811,15 +17075,6 @@ def make_config():
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "organizations",
-                  "{id}",
-                  "members",
-                ],
               },
             ],
           },
@@ -16827,16 +17082,16 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "action",
+              "$.main.kit.entity.action",
             ],
             [
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             ],
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
             [
-              "notification",
+              "$.main.kit.entity.notification",
             ],
           ],
         },
@@ -16844,36 +17099,44 @@ def make_config():
       "pending_organization": {
         "fields": [
           {
-            "format": "date",
             "name": "date",
+            "title": "Date",
             "type": "`$STRING`",
+            "format": "date",
           },
           {
             "name": "displayName",
+            "title": "Display Name",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idMember",
+            "title": "Id Member",
             "type": "`$STRING`",
           },
           {
             "name": "logoUrl",
+            "title": "Logo Url",
             "type": "`$STRING`",
           },
           {
             "name": "memberRequestor",
+            "title": "Member Requestor",
             "type": "`$OBJECT`",
           },
           {
             "name": "membershipCount",
+            "title": "Membership Count",
             "type": "`$NUMBER`",
           },
           {
             "name": "transferability",
+            "title": "Transferability",
             "type": "`$OBJECT`",
           },
         ],
@@ -16888,67 +17151,67 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "active_since",
-                      "orig": "active_since",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "inactive_since",
-                      "orig": "inactive_since",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/pendingOrganizations",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "pendingOrganizations",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "active_since",
-                    "enterpris_id",
-                    "inactive_since",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "pendingOrganizations",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "pendingOrganizations",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "active_since",
+                      "orig": "active_since",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "inactive_since",
+                      "orig": "inactive_since",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "active_since",
+                    "enterprise_id",
+                    "inactive_since",
+                  ],
+                },
               },
             ],
           },
@@ -16956,7 +17219,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             ],
           ],
         },
@@ -16965,6 +17228,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -16979,26 +17243,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/boardPlugins",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -17010,20 +17257,37 @@ def make_config():
                     "lit": "boardPlugins",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "boardPlugins",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                  ],
+                },
               },
             ],
           },
@@ -17032,35 +17296,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "enabled",
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/plugins",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -17072,35 +17310,49 @@ def make_config():
                     "lit": "plugins",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "plugins",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "enabled",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "board_id",
                     "filter",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "plugins",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/plugins/{id}/",
@@ -17112,19 +17364,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "plugins",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "plugins",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -17133,18 +17398,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/plugins/{id}/",
@@ -17156,19 +17409,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "plugins",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "plugins",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -17176,7 +17442,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -17190,26 +17456,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/pluginData",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -17221,20 +17470,37 @@ def make_config():
                     "lit": "pluginData",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "pluginData",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -17243,26 +17509,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/pluginData",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -17274,20 +17523,37 @@ def make_config():
                     "lit": "pluginData",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "pluginData",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                  ],
+                },
               },
             ],
           },
@@ -17295,10 +17561,10 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
             [
-              "organization",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -17307,27 +17573,32 @@ def make_config():
         "fields": [
           {
             "name": "description",
-            "short": "The description to show for the given locale",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "The description to show for the given locale",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "locale",
-            "short": "The locale that this listing should be displayed for.",
+            "title": "Locale",
             "type": "`$STRING`",
+            "short": "The locale that this listing should be displayed for.",
           },
           {
             "name": "name",
-            "short": "The name to use for the given locale.",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "The name to use for the given locale.",
           },
           {
             "name": "overview",
-            "short": "The overview to show for the given locale.",
+            "title": "Overview",
             "type": "`$STRING`",
+            "short": "The overview to show for the given locale.",
           },
         ],
         "id": {
@@ -17341,26 +17612,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_plugin",
-                      "orig": "id_plugin",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/plugins/{idPlugin}/listing",
-                "rename": {
-                  "param": {
-                    "idPlugin": "id_plugin",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "plugins",
@@ -17372,20 +17626,37 @@ def make_config():
                     "lit": "listing",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id_plugin",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "plugins",
                   "{id_plugin}",
                   "listing",
                 ],
+                "rename": {
+                  "param": {
+                    "idPlugin": "id_plugin",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id_plugin",
+                      "orig": "id_plugin",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id_plugin",
+                  ],
+                },
               },
             ],
           },
@@ -17394,35 +17665,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_listing",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_plugin",
-                      "orig": "id_plugin",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/plugins/{idPlugin}/listings/{idListing}",
-                "rename": {
-                  "param": {
-                    "idListing": "id",
-                    "idPlugin": "id_plugin",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "plugins",
@@ -17437,22 +17682,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "id_plugin",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "plugins",
                   "{id_plugin}",
                   "listings",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "idListing": "id",
+                    "idPlugin": "id_plugin",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_listing",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_plugin",
+                      "orig": "id_plugin",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "id_plugin",
+                  ],
+                },
               },
             ],
           },
@@ -17460,7 +17731,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "plugin",
+              "$.main.kit.entity.plugin",
             ],
           ],
         },
@@ -17469,6 +17740,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -17483,50 +17755,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_action",
-                      "orig": "id_action",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "emoji",
-                      "orig": "emoji",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{idAction}/reactions/{id}",
-                "rename": {
-                  "param": {
-                    "idAction": "id_action",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -17541,6 +17772,57 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{id_action}",
+                  "reactions",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "idAction": "id_action",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_action",
+                      "orig": "id_action",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "emoji",
+                      "orig": "emoji",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "emoji",
@@ -17549,54 +17831,11 @@ def make_config():
                     "member",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{id_action}",
-                  "reactions",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_action",
-                      "orig": "id_action",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "emoji",
-                      "orig": "emoji",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "member",
-                      "orig": "member",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{idAction}/reactions",
-                "rename": {
-                  "param": {
-                    "idAction": "id_action",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -17608,6 +17847,48 @@ def make_config():
                     "lit": "reactions",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{id_action}",
+                  "reactions",
+                ],
+                "rename": {
+                  "param": {
+                    "idAction": "id_action",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id_action",
+                      "orig": "id_action",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "emoji",
+                      "orig": "emoji",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                    {
+                      "name": "member",
+                      "orig": "member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "emoji",
@@ -17615,15 +17896,6 @@ def make_config():
                     "member",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "actions",
-                  "{id_action}",
-                  "reactions",
-                ],
               },
             ],
           },
@@ -17632,34 +17904,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id_action",
-                      "orig": "id_action",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/actions/{idAction}/reactions/{id}",
-                "rename": {
-                  "param": {
-                    "idAction": "id_action",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -17674,22 +17921,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "id_action",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "actions",
                   "{id_action}",
                   "reactions",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "idAction": "id_action",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id_action",
+                      "orig": "id_action",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "id_action",
+                  ],
+                },
               },
             ],
           },
@@ -17697,7 +17969,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "action",
+              "$.main.kit.entity.action",
             ],
           ],
         },
@@ -17711,23 +17983,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "ids",
-                      "orig": "ids",
-                      "type": "`$ARRAY`",
-                    },
-                    {
-                      "example": True,
-                      "kind": "query",
-                      "name": "read",
-                      "orig": "read",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/notifications/all/read",
@@ -17742,21 +17997,39 @@ def make_config():
                     "lit": "read",
                   },
                 ],
+                "parts": [
+                  "notifications",
+                  "all",
+                  "read",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "ids",
+                      "orig": "ids",
+                      "type": "`$ARRAY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "read",
+                      "orig": "read",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ids",
                     "read",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "notifications",
-                  "all",
-                  "read",
-                ],
               },
             ],
           },
@@ -17769,23 +18042,22 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
             "name": "pos",
+            "title": "Pos",
             "type": "`$ANY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 0,
-            },
           },
           {
             "name": "query",
+            "title": "Query",
             "type": "`$STRING`",
           },
         ],
@@ -17800,49 +18072,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "reqd": True,
-                      "type": "`$ANY`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "query",
-                      "orig": "query",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/members/{id}/savedSearches",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -17854,6 +18086,55 @@ def make_config():
                     "lit": "savedSearches",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "savedSearches",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.pos`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "member_id",
@@ -17862,15 +18143,6 @@ def make_config():
                     "query",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.pos`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "savedSearches",
-                ],
               },
             ],
           },
@@ -17879,26 +18151,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/savedSearches",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -17910,20 +18165,37 @@ def make_config():
                     "lit": "savedSearches",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "savedSearches",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -17932,33 +18204,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_search",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/savedSearches/{idSearch}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idSearch": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -17973,22 +18221,46 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.pos`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "savedSearches",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idSearch": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.pos`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_search",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -17997,33 +18269,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_search",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/members/{id}/savedSearches/{idSearch}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idSearch": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -18038,22 +18286,46 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "member_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "members",
                   "{member_id}",
                   "savedSearches",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idSearch": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_search",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "member_id",
+                  ],
+                },
               },
             ],
           },
@@ -18062,53 +18334,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_search",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "query",
-                      "orig": "query",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/members/{id}/savedSearches/{idSearch}",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                    "idSearch": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -18123,6 +18351,60 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "savedSearches",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                    "idSearch": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.pos`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_search",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
@@ -18132,16 +18414,6 @@ def make_config():
                     "query",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.pos`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "savedSearches",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -18149,7 +18421,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
           ],
         },
@@ -18163,154 +18435,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "name,idOrganization",
-                      "kind": "query",
-                      "name": "board_field",
-                      "orig": "board_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "board_organization",
-                      "orig": "board_organization",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": 10,
-                      "kind": "query",
-                      "name": "boards_limit",
-                      "orig": "boards_limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "false",
-                      "kind": "query",
-                      "name": "card_attachment",
-                      "orig": "card_attachment",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "card_board",
-                      "orig": "card_board",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "card_field",
-                      "orig": "card_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "card_list",
-                      "orig": "card_list",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "card_member",
-                      "orig": "card_member",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "card_sticker",
-                      "orig": "card_sticker",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": 10,
-                      "kind": "query",
-                      "name": "cards_limit",
-                      "orig": "cards_limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "cards_page",
-                      "orig": "cards_page",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "id_board",
-                      "orig": "id_board",
-                      "type": "`$ANY`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "id_card",
-                      "orig": "id_card",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "id_organization",
-                      "orig": "id_organization",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "avatarHash,fullName,initials,username,confirmed",
-                      "kind": "query",
-                      "name": "member_field",
-                      "orig": "member_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "10",
-                      "kind": "query",
-                      "name": "members_limit",
-                      "orig": "members_limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "model_type",
-                      "orig": "model_type",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "name,displayName",
-                      "kind": "query",
-                      "name": "organization_field",
-                      "orig": "organization_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "10",
-                      "kind": "query",
-                      "name": "organizations_limit",
-                      "orig": "organizations_limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "partial",
-                      "orig": "partial",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "query",
-                      "orig": "query",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search",
@@ -18319,6 +18443,162 @@ def make_config():
                     "lit": "search",
                   },
                 ],
+                "parts": [
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "board_field",
+                      "orig": "board_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name,idOrganization",
+                    },
+                    {
+                      "name": "board_organization",
+                      "orig": "board_organization",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "boards_limit",
+                      "orig": "boards_limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 10,
+                    },
+                    {
+                      "name": "card_attachment",
+                      "orig": "card_attachment",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "false",
+                    },
+                    {
+                      "name": "card_board",
+                      "orig": "card_board",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "card_field",
+                      "orig": "card_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "card_list",
+                      "orig": "card_list",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "card_member",
+                      "orig": "card_member",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "card_sticker",
+                      "orig": "card_sticker",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "cards_limit",
+                      "orig": "cards_limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 10,
+                    },
+                    {
+                      "name": "cards_page",
+                      "orig": "cards_page",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "example": 0,
+                    },
+                    {
+                      "name": "id_board",
+                      "orig": "id_board",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_card",
+                      "orig": "id_card",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_organization",
+                      "orig": "id_organization",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "member_field",
+                      "orig": "member_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "avatarHash,fullName,initials,username,confirmed",
+                    },
+                    {
+                      "name": "members_limit",
+                      "orig": "members_limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": "10",
+                    },
+                    {
+                      "name": "model_type",
+                      "orig": "model_type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "organization_field",
+                      "orig": "organization_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name,displayName",
+                    },
+                    {
+                      "name": "organizations_limit",
+                      "orig": "organizations_limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": "10",
+                    },
+                    {
+                      "name": "partial",
+                      "orig": "partial",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "board_field",
@@ -18344,13 +18624,6 @@ def make_config():
                     "query",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "search",
-                ],
               },
             ],
           },
@@ -18368,35 +18641,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/myPrefs/showSidebar",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -18411,22 +18658,48 @@ def make_config():
                     "lit": "showSidebar",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "value",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "myPrefs",
                   "showSidebar",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "value",
+                  ],
+                },
               },
             ],
           },
@@ -18434,7 +18707,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -18448,35 +18721,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/myPrefs/showSidebarActivity",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -18491,22 +18738,48 @@ def make_config():
                     "lit": "showSidebarActivity",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "value",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "myPrefs",
                   "showSidebarActivity",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "value",
+                  ],
+                },
               },
             ],
           },
@@ -18514,7 +18787,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -18528,35 +18801,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/myPrefs/showSidebarBoardActions",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -18571,22 +18818,48 @@ def make_config():
                     "lit": "showSidebarBoardActions",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "value",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "myPrefs",
                   "showSidebarBoardActions",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "value",
+                  ],
+                },
               },
             ],
           },
@@ -18594,7 +18867,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -18608,35 +18881,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "value",
-                      "orig": "value",
-                      "reqd": True,
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/boards/{id}/myPrefs/showSidebarMembers",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -18651,22 +18898,48 @@ def make_config():
                     "lit": "showSidebarMembers",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "board_id",
-                    "value",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "boards",
                   "{board_id}",
                   "myPrefs",
                   "showSidebarMembers",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "value",
+                      "orig": "value",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "board_id",
+                    "value",
+                  ],
+                },
               },
             ],
           },
@@ -18674,7 +18947,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -18683,6 +18956,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -18697,44 +18971,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_sticker",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/stickers/{idSticker}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idSticker": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -18749,6 +18988,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "stickers",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idSticker": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_sticker",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
@@ -18756,55 +19040,11 @@ def make_config():
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "stickers",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/stickers",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -18816,21 +19056,55 @@ def make_config():
                     "lit": "stickers",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "stickers",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "stickers",
-                ],
               },
             ],
           },
@@ -18839,35 +19113,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_sticker",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/cards/{id}/stickers/{idSticker}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idSticker": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -18882,22 +19130,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                    "id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "stickers",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idSticker": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_sticker",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -18906,65 +19180,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_sticker",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "left",
-                      "orig": "left",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "rotate",
-                      "orig": "rotate",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "top",
-                      "orig": "top",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "z_index",
-                      "orig": "z_index",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/cards/{id}/stickers/{idSticker}",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                    "idSticker": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -18979,6 +19197,72 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{card_id}",
+                  "stickers",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                    "idSticker": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_sticker",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "left",
+                      "orig": "left",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "rotate",
+                      "orig": "rotate",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "example": 0,
+                    },
+                    {
+                      "name": "top",
+                      "orig": "top",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "z_index",
+                      "orig": "z_index",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "card_id",
@@ -18989,16 +19273,6 @@ def make_config():
                     "z_index",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{card_id}",
-                  "stickers",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -19006,7 +19280,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -19015,6 +19289,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -19029,25 +19304,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organizations/{id}/tags",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -19059,20 +19318,36 @@ def make_config():
                     "lit": "tags",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "tags",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -19081,33 +19356,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_tag",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "organization_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/organizations/{id}/tags/{idTag}",
-                "rename": {
-                  "param": {
-                    "id": "organization_id",
-                    "idTag": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "organizations",
@@ -19122,22 +19373,46 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "organization_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "organizations",
                   "{organization_id}",
                   "tags",
                   "{id}",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "organization_id",
+                    "idTag": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_tag",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "organization_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                    "organization_id",
+                  ],
+                },
               },
             ],
           },
@@ -19145,7 +19420,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "organization",
+              "$.main.kit.entity.organization",
             ],
           ],
         },
@@ -19153,35 +19428,36 @@ def make_config():
       "token": {
         "fields": [
           {
-            "format": "date-time",
             "name": "dateCreated",
+            "title": "Date Created",
             "type": "`$STRING`",
+            "format": "date-time",
           },
           {
-            "format": "date-time",
             "name": "dateExpires",
+            "title": "Date Expires",
             "type": "`$STRING`",
+            "format": "date-time",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idMember",
+            "title": "Id Member",
             "type": "`$STRING`",
           },
           {
             "name": "identifier",
+            "title": "Identifier",
             "type": "`$STRING`",
           },
           {
             "name": "permissions",
+            "title": "Permissions",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 3,
-            },
           },
         ],
         "id": {
@@ -19195,35 +19471,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "member_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "webhook",
-                      "orig": "webhook",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/members/{id}/tokens",
-                "rename": {
-                  "param": {
-                    "id": "member_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "members",
@@ -19235,21 +19485,47 @@ def make_config():
                     "lit": "tokens",
                   },
                 ],
+                "parts": [
+                  "members",
+                  "{member_id}",
+                  "tokens",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "member_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "member_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "webhook",
+                      "orig": "webhook",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "member_id",
                     "webhook",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "members",
-                  "{member_id}",
-                  "tokens",
-                ],
               },
             ],
           },
@@ -19258,41 +19534,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "token",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "webhook",
-                      "orig": "webhook",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tokens/{token}",
-                "rename": {
-                  "param": {
-                    "token": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "tokens",
@@ -19301,6 +19545,46 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "tokens",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "token": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "webhook",
+                      "orig": "webhook",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
@@ -19308,14 +19592,6 @@ def make_config():
                     "webhook",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "tokens",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -19324,25 +19600,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "token",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/tokens/{token}/",
-                "rename": {
-                  "param": {
-                    "token": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "tokens",
@@ -19351,19 +19611,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "tokens",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "token": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "tokens",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -19371,7 +19647,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "member",
+              "$.main.kit.entity.member",
             ],
           ],
         },
@@ -19380,18 +19656,22 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "newBillableMembers",
+            "title": "New Billable Members",
             "type": "`$ARRAY`",
           },
           {
             "name": "restrictedMembers",
+            "title": "Restricted Members",
             "type": "`$ARRAY`",
           },
           {
             "name": "transferrable",
+            "title": "Transferrable",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -19406,41 +19686,15 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "enterpris_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_organization",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enterprises/{id}/transferrable/organization/{idOrganization}",
-                "rename": {
-                  "param": {
-                    "id": "enterpris_id",
-                    "idOrganization": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "enterprises",
                   },
                   {
-                    "var": "enterpris_id",
+                    "var": "enterprise_id",
                   },
                   {
                     "lit": "transferrable",
@@ -19452,23 +19706,49 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "enterpris_id",
-                    "id",
-                  ],
+                "parts": [
+                  "enterprises",
+                  "{enterprise_id}",
+                  "transferrable",
+                  "organization",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "enterprise_id",
+                    "idOrganization": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "enterprises",
-                  "{enterpris_id}",
-                  "transferrable",
-                  "organization",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "enterprise_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id_organization",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "enterprise_id",
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -19476,7 +19756,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "enterpris",
+              "$.main.kit.entity.enterprise",
             ],
           ],
         },
@@ -19485,39 +19765,48 @@ def make_config():
         "fields": [
           {
             "name": "attachments",
+            "title": "Attachments",
             "type": "`$OBJECT`",
           },
           {
             "name": "closed",
+            "title": "Closed",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idBoard",
+            "title": "Id Board",
             "type": "`$STRING`",
           },
           {
             "name": "limits",
+            "title": "Limits",
             "type": "`$OBJECT`",
           },
           {
             "name": "name",
-            "short": "The name of the list",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "The name of the list",
           },
           {
             "name": "pos",
+            "title": "Pos",
             "type": "`$NUMBER`",
           },
           {
             "name": "softLimit",
+            "title": "Soft Limit",
             "type": "`$STRING`",
           },
           {
             "name": "subscribed",
+            "title": "Subscribed",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -19532,42 +19821,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "name",
-                      "orig": "name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "top",
-                      "kind": "query",
-                      "name": "pos",
-                      "orig": "pos",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/boards/{id}/lists",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -19579,6 +19835,48 @@ def make_config():
                     "lit": "lists",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "lists",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.limits`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "name",
+                      "orig": "name",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "pos",
+                      "orig": "pos",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "top",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "board_id",
@@ -19586,15 +19884,6 @@ def make_config():
                     "pos",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.limits`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "lists",
-                ],
               },
             ],
           },
@@ -19603,54 +19892,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "board_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "card",
-                      "orig": "card",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "card_field",
-                      "orig": "card_field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "filter",
-                      "orig": "filter",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards/{id}/lists",
-                "rename": {
-                  "param": {
-                    "id": "board_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "boards",
@@ -19662,6 +19906,60 @@ def make_config():
                     "lit": "lists",
                   },
                 ],
+                "parts": [
+                  "boards",
+                  "{board_id}",
+                  "lists",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "board_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "board_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "card",
+                      "orig": "card",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "card_field",
+                      "orig": "card_field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                    {
+                      "name": "filter",
+                      "orig": "filter",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "board_id",
@@ -19671,15 +19969,6 @@ def make_config():
                     "filter",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "boards",
-                  "{board_id}",
-                  "lists",
-                ],
               },
             ],
           },
@@ -19688,35 +19977,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "action_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/actions/{id}/list",
-                "rename": {
-                  "param": {
-                    "id": "action_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "actions",
@@ -19728,21 +19991,47 @@ def make_config():
                     "lit": "list",
                   },
                 ],
+                "parts": [
+                  "actions",
+                  "{action_id}",
+                  "list",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "action_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.limits`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "action_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action_id",
                     "field",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.limits`",
-                },
-                "parts": [
-                  "actions",
-                  "{action_id}",
-                  "list",
-                ],
               },
             ],
           },
@@ -19750,10 +20039,10 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "action",
+              "$.main.kit.entity.action",
             ],
             [
-              "board",
+              "$.main.kit.entity.board",
             ],
           ],
         },
@@ -19762,32 +20051,39 @@ def make_config():
         "fields": [
           {
             "name": "active",
+            "title": "Active",
             "type": "`$BOOLEAN`",
           },
           {
-            "format": "url",
             "name": "callbackURL",
+            "title": "Callback Url",
             "type": "`$STRING`",
+            "format": "url",
           },
           {
             "name": "consecutiveFailures",
+            "title": "Consecutive Failures",
             "type": "`$NUMBER`",
           },
           {
             "name": "description",
+            "title": "Description",
             "type": "`$STRING`",
           },
           {
-            "format": "date",
             "name": "firstConsecutiveFailDate",
+            "title": "First Consecutive Fail Date",
             "type": "`$STRING`",
+            "format": "date",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "idModel",
+            "title": "Id Model",
             "type": "`$STRING`",
           },
         ],
@@ -19802,37 +20098,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "active",
-                      "orig": "active",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "callback_url",
-                      "orig": "callback_url",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "description",
-                      "orig": "description",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_model",
-                      "orig": "id_model",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/webhooks/",
@@ -19841,6 +20106,45 @@ def make_config():
                     "lit": "webhooks",
                   },
                 ],
+                "parts": [
+                  "webhooks",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "active",
+                      "orig": "active",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "callback_url",
+                      "orig": "callback_url",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "description",
+                      "orig": "description",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_model",
+                      "orig": "id_model",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "active",
@@ -19849,57 +20153,11 @@ def make_config():
                     "id_model",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "webhooks",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "token_id",
-                      "orig": "token",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "callback_url",
-                      "orig": "callback_url",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "description",
-                      "orig": "description",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_model",
-                      "orig": "id_model",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/tokens/{token}/webhooks",
-                "rename": {
-                  "param": {
-                    "token": "token_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "tokens",
@@ -19911,6 +20169,54 @@ def make_config():
                     "lit": "webhooks",
                   },
                 ],
+                "parts": [
+                  "tokens",
+                  "{token_id}",
+                  "webhooks",
+                ],
+                "rename": {
+                  "param": {
+                    "token": "token_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "token_id",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "callback_url",
+                      "orig": "callback_url",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "description",
+                      "orig": "description",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_model",
+                      "orig": "id_model",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "callback_url",
@@ -19919,15 +20225,6 @@ def make_config():
                     "token_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "tokens",
-                  "{token_id}",
-                  "webhooks",
-                ],
               },
             ],
           },
@@ -19936,25 +20233,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "token_id",
-                      "orig": "token",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tokens/{token}/webhooks",
-                "rename": {
-                  "param": {
-                    "token": "token_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "tokens",
@@ -19966,20 +20247,36 @@ def make_config():
                     "lit": "webhooks",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "token_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "tokens",
                   "{token_id}",
                   "webhooks",
                 ],
+                "rename": {
+                  "param": {
+                    "token": "token_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "token_id",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "token_id",
+                  ],
+                },
               },
             ],
           },
@@ -19988,25 +20285,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/webhooks/{id}/{field}",
@@ -20021,51 +20299,46 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "webhooks",
+                  "{id}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "webhooks",
-                  "{id}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_webhook",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "token_id",
-                      "orig": "token",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tokens/{token}/webhooks/{idWebhook}",
-                "rename": {
-                  "param": {
-                    "idWebhook": "id",
-                    "token": "token_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "tokens",
@@ -20080,36 +20353,49 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "token_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "tokens",
                   "{token_id}",
                   "webhooks",
                   "{id}",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "idWebhook": "id",
+                    "token": "token_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
                       "name": "id",
-                      "orig": "id",
-                      "reqd": True,
+                      "orig": "id_webhook",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "token_id",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "id",
+                    "token_id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/webhooks/{id}",
@@ -20121,19 +20407,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "webhooks",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "webhooks",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -20142,34 +20441,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_webhook",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "token_id",
-                      "orig": "token",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/tokens/{token}/webhooks/{idWebhook}",
-                "rename": {
-                  "param": {
-                    "idWebhook": "id",
-                    "token": "token_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "tokens",
@@ -20184,36 +20458,49 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                    "token_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "tokens",
                   "{token_id}",
                   "webhooks",
                   "{id}",
                 ],
-              },
-              {
+                "rename": {
+                  "param": {
+                    "idWebhook": "id",
+                    "token": "token_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
                       "name": "id",
-                      "orig": "id",
-                      "reqd": True,
+                      "orig": "id_webhook",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "token_id",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "id",
+                    "token_id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/webhooks/{id}",
@@ -20225,19 +20512,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "webhooks",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "webhooks",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -20246,45 +20546,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "active",
-                      "orig": "active",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "callback_url",
-                      "orig": "callback_url",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "description",
-                      "orig": "description",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_model",
-                      "orig": "id_model",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/webhooks/{id}",
@@ -20296,6 +20557,54 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "webhooks",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "active",
+                      "orig": "active",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "callback_url",
+                      "orig": "callback_url",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "description",
+                      "orig": "description",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_model",
+                      "orig": "id_model",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "active",
@@ -20305,65 +20614,11 @@ def make_config():
                     "id_model",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "webhooks",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id_webhook",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "token_id",
-                      "orig": "token",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "callback_url",
-                      "orig": "callback_url",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "description",
-                      "orig": "description",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "5abbe4b7ddc1b351ef961414",
-                      "kind": "query",
-                      "name": "id_model",
-                      "orig": "id_model",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/tokens/{token}/webhooks/{idWebhook}",
-                "rename": {
-                  "param": {
-                    "idWebhook": "id",
-                    "token": "token_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "tokens",
@@ -20378,6 +20633,62 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "tokens",
+                  "{token_id}",
+                  "webhooks",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "idWebhook": "id",
+                    "token": "token_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id_webhook",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                    {
+                      "name": "token_id",
+                      "orig": "token",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "callback_url",
+                      "orig": "callback_url",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "description",
+                      "orig": "description",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "id_model",
+                      "orig": "id_model",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "5abbe4b7ddc1b351ef961414",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "callback_url",
@@ -20387,16 +20698,6 @@ def make_config():
                     "token_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "tokens",
-                  "{token_id}",
-                  "webhooks",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -20404,7 +20705,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "token",
+              "$.main.kit.entity.token",
             ],
           ],
         },

@@ -104,7 +104,7 @@ func transferrable_organizationBasicSetup(extra map[string]any) *entityTestSetup
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"transferrable_organization01", "transferrable_organization02", "transferrable_organization03", "enterpris01", "enterpris02", "enterpris03"},
+		[]any{"transferrable_organization01", "transferrable_organization02", "transferrable_organization03", "enterprise01", "enterprise02", "enterprise03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

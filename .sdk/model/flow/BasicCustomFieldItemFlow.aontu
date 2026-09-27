@@ -1,0 +1,26 @@
+# BasicCustomFieldItemFlow
+
+main: kit: flow: BasicCustomFieldItemFlow:
+{
+  entity: "custom_field_item",
+  kind: "basic",
+  name: "BasicCustomFieldItemFlow",
+  step: [
+    {
+      m: {
+        card_id: "card01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "custom_field_item_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCustomFieldItemFlow"
+}

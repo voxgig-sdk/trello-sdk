@@ -1,0 +1,115 @@
+# Entity: transferrable_organization
+
+main: kit: entity: transferrable_organization: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    newBillableMembers: {
+      h: "New Billable Members"
+      n: "newBillableMembers"
+      r: false
+      t: "`$ARRAY`"
+    }
+    restrictedMembers: {
+      h: "Restricted Members"
+      n: "restrictedMembers"
+      r: false
+      t: "`$ARRAY`"
+    }
+    transferrable: {
+      h: "Transferrable"
+      n: "transferrable"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "transferrable_organization"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /enterprises/{id}/transferrable/organization/{idOrganization}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "enterprise_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id"
+                or: "id_organization"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enterprises/{id}/transferrable/organization/{idOrganization}"
+          q: {
+            exist: [
+              "enterprise_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              id: "enterprise_id"
+              idOrganization: "id"
+            }
+          }
+          s: [
+            {
+              lit: "enterprises"
+            }
+            {
+              var: "enterprise_id"
+            }
+            {
+              lit: "transferrable"
+            }
+            {
+              lit: "organization"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.enterprise")]
+  ]
+
+}

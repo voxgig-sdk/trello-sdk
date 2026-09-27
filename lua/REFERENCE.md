@@ -53,10 +53,6 @@ Create a new `ActionReactionsSummary` entity instance. Pass `nil` for no initial
 
 Create a new `Admin` entity instance. Pass `nil` for no initial data.
 
-#### `Application(data)`
-
-Create a new `Application` entity instance. Pass `nil` for no initial data.
-
 #### `ApplicationCompliance(data)`
 
 Create a new `ApplicationCompliance` entity instance. Pass `nil` for no initial data.
@@ -145,13 +141,9 @@ Create a new `EmailPosition` entity instance. Pass `nil` for no initial data.
 
 Create a new `Emoji` entity instance. Pass `nil` for no initial data.
 
-#### `Enterpris(data)`
+#### `Enterprise(data)`
 
-Create a new `Enterpris` entity instance. Pass `nil` for no initial data.
-
-#### `EnterprisSignupUrl(data)`
-
-Create a new `EnterprisSignupUrl` entity instance. Pass `nil` for no initial data.
+Create a new `Enterprise` entity instance. Pass `nil` for no initial data.
 
 #### `EnterpriseAdmin(data)`
 
@@ -160,6 +152,10 @@ Create a new `EnterpriseAdmin` entity instance. Pass `nil` for no initial data.
 #### `EnterpriseAuditLog(data)`
 
 Create a new `EnterpriseAuditLog` entity instance. Pass `nil` for no initial data.
+
+#### `EnterpriseSignupUrl(data)`
+
+Create a new `EnterpriseSignupUrl` entity instance. Pass `nil` for no initial data.
 
 #### `Export(data)`
 
@@ -209,10 +205,6 @@ Create a new `MembersVoted` entity instance. Pass `nil` for no initial data.
 
 Create a new `Membership` entity instance. Pass `nil` for no initial data.
 
-#### `MostRecent(data)`
-
-Create a new `MostRecent` entity instance. Pass `nil` for no initial data.
-
 #### `NewBillableGuest(data)`
 
 Create a new `NewBillableGuest` entity instance. Pass `nil` for no initial data.
@@ -232,10 +224,6 @@ Create a new `NotificationList` entity instance. Pass `nil` for no initial data.
 #### `NotificationMemberCreator(data)`
 
 Create a new `NotificationMemberCreator` entity instance. Pass `nil` for no initial data.
-
-#### `NotificationsChannelSetting(data)`
-
-Create a new `NotificationsChannelSetting` entity instance. Pass `nil` for no initial data.
 
 #### `Option(data)`
 
@@ -519,7 +507,7 @@ local admin = client:Admin(nil)
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Admin():remove({ enterpris_id = "enterpris_id", id = "id" })
+local result, err = client:Admin():remove({ enterprise_id = "enterprise_id", id = "id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -528,7 +516,7 @@ Update an existing entity. The data must include the entity `id`.
 
 ```lua
 local result, err = client:Admin():update({
-  enterpris_id = "enterpris_id",
+  enterprise_id = "enterprise_id",
   id = "id",
   -- Fields to update
 })
@@ -555,42 +543,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `AdminEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ApplicationEntity
-
-```lua
-local application = client:Application(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ApplicationEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -1177,7 +1129,7 @@ local bulk = client:Bulk(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Bulk():load({ id = {}, enterpris_id = "enterpris_id" })
+local result, err = client:Bulk():load({ id = {}, enterprise_id = "enterprise_id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -2158,10 +2110,10 @@ Return the entity name.
 
 ---
 
-## EnterprisEntity
+## EnterpriseEntity
 
 ```lua
-local enterpris = client:Enterpris(nil)
+local enterprise = client:Enterprise(nil)
 ```
 
 ### Fields
@@ -2194,7 +2146,7 @@ local enterpris = client:Enterpris(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Enterpris():create({
+local result, err = client:Enterprise():create({
   id = --[[ string ]],
 })
 ```
@@ -2204,7 +2156,7 @@ local result, err = client:Enterpris():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Enterpris():load({ id = "enterpris_id" })
+local result, err = client:Enterprise():load({ id = "enterprise_id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -2212,8 +2164,8 @@ local result, err = client:Enterpris():load({ id = "enterpris_id" })
 Update an existing entity. The data must include the entity `id`.
 
 ```lua
-local result, err = client:Enterpris():update({
-  id = "enterpris_id",
+local result, err = client:Enterprise():update({
+  id = "enterprise_id",
   id_organization = "id_organization",
   -- Fields to update
 })
@@ -2239,60 +2191,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `EnterprisEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## EnterprisSignupUrlEntity
-
-```lua
-local enterpris_signup_url = client:EnterprisSignupUrl(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `string` | No |  |
-| `signupUrl` | `string` | No |  |
-
-### Operations
-
-#### `load(reqmatch, ctrl) -> any, err`
-
-Load a single entity matching the given criteria.
-
-```lua
-local result, err = client:EnterprisSignupUrl():load({ id = "enterpris_signup_url_id" })
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `EnterprisSignupUrlEntity` instance with the same client and
+Create a new `EnterpriseEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -2323,7 +2222,7 @@ local enterprise_admin = client:EnterpriseAdmin(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:EnterpriseAdmin():load({ enterpris_id = "enterpris_id" })
+local result, err = client:EnterpriseAdmin():load({ id = "enterprise_admin_id" })
 ```
 
 ### Common Methods
@@ -2367,6 +2266,7 @@ local enterprise_audit_log = client:EnterpriseAuditLog(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `date` | `string` | No |  |
+| `id` | `string` | No |  |
 | `idAction` | `string` | No |  |
 | `member` | `table` | No |  |
 | `memberCreator` | `table` | No |  |
@@ -2404,6 +2304,59 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `EnterpriseAuditLogEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## EnterpriseSignupUrlEntity
+
+```lua
+local enterprise_signup_url = client:EnterpriseSignupUrl(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+| `signupUrl` | `string` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl) -> any, err`
+
+Load a single entity matching the given criteria.
+
+```lua
+local result, err = client:EnterpriseSignupUrl():load({ id = "enterprise_signup_url_id" })
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `EnterpriseSignupUrlEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -3218,42 +3171,6 @@ Return the entity name.
 
 ---
 
-## MostRecentEntity
-
-```lua
-local most_recent = client:MostRecent(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `MostRecentEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## NewBillableGuestEntity
 
 ```lua
@@ -3566,42 +3483,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `NotificationMemberCreatorEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## NotificationsChannelSettingEntity
-
-```lua
-local notifications_channel_setting = client:NotificationsChannelSetting(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `NotificationsChannelSettingEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -4749,7 +4630,7 @@ local transferrable_organization = client:TransferrableOrganization(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:TransferrableOrganization():load({ id = "transferrable_organization_id", enterpris_id = "enterpris_id" })
+local result, err = client:TransferrableOrganization():load({ id = "transferrable_organization_id", enterprise_id = "enterprise_id" })
 ```
 
 ### Common Methods
@@ -4961,14 +4842,14 @@ Return the entity name.
 
 | Feature | Version | Description |
 | --- | --- | --- |
-| `debug` | 0.0.1 | Request/response capture ring buffer for debugging |
-| `idempotency` | 0.0.1 | Idempotency keys for safe retries of mutating operations |
-| `metrics` | 0.0.1 | Statistics capture: per-operation counters and latency |
-| `paging` | 0.0.1 | Pagination signals for list operations |
-| `ratelimit` | 0.0.1 | Client-side rate limiting via a token bucket |
-| `retry` | 0.0.1 | Automatic retry of transient failures with exponential backoff |
-| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
-| `timeout` | 0.0.1 | Per-request timeout with transport abort |
+| `debug` | 0.0.1 | Debug capture |
+| `idempotency` | 0.0.1 | Idempotency |
+| `metrics` | 0.0.1 | Metrics |
+| `paging` | 0.0.1 | Paging |
+| `ratelimit` | 0.0.1 | Rate limiting |
+| `retry` | 0.0.1 | Retry |
+| `test` | 0.0.1 | Test transport |
+| `timeout` | 0.0.1 | Timeout |
 
 
 Features are activated via the `feature` option:
@@ -5014,7 +4895,7 @@ rather than the transport, so their order does not affect what they observe.
 
 #### `debug`
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 **Configuration**
 
@@ -5045,7 +4926,7 @@ its default unless you name it.
 
 #### `idempotency`
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 **Configuration**
 
@@ -5076,7 +4957,7 @@ its default unless you name it.
 
 #### `metrics`
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 **Configuration**
 
@@ -5104,7 +4985,7 @@ its default unless you name it.
 
 #### `paging`
 
-Pagination signals for list operations.
+Paging.
 
 **Configuration**
 
@@ -5139,7 +5020,7 @@ its default unless you name it.
 
 #### `ratelimit`
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 **Configuration**
 
@@ -5170,7 +5051,7 @@ its default unless you name it.
 
 #### `retry`
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 **Configuration**
 
@@ -5204,7 +5085,7 @@ its default unless you name it.
 
 #### `test`
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 **Configuration**
 
@@ -5235,7 +5116,7 @@ its default unless you name it.
 
 #### `timeout`
 
-Per-request timeout with transport abort.
+Timeout.
 
 **Configuration**
 

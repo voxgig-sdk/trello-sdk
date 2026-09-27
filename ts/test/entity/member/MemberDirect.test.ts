@@ -17,10 +17,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -32,9 +28,6 @@ describe('MemberDirect', async () => {
 
   test('direct-exists', async () => {
     const sdk = new TrelloSDK({
-      // Concrete base: a live construction must satisfy any server
-      // variables a templated base URL declares; overriding base with a
-      // literal (as the direct flow tests do) sidesteps the requirement.
       base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
@@ -53,10 +46,10 @@ describe('MemberDirect', async () => {
     const query: any = {}
     if (setup.live) {
       const listResult: any = await client.direct({
-        path: 'enterprises/{enterpris_id}/members',
+        path: 'enterprises/{enterprise_id}/members',
         method: 'GET',
         params: {
-        enterpris_id: setup.idmap['enterpris01'],
+        enterprise_id: setup.idmap['enterprise01'],
         },
       })
       assert(listResult.ok && listResult.status >= 200 && listResult.status < 300,
@@ -110,19 +103,19 @@ describe('MemberDirect', async () => {
     if (liveScenariosActive()) { t.skip('Covered by live operation scenarios'); return }
     const setup = directSetup([{ id: 'direct01' }, { id: 'direct02' }])
     if (maybeSkipControl(t, 'direct', 'direct-list-member', setup.live)) return
-    if (skipIfMissingIds(t, setup, ["enterpris01"])) return
+    if (skipIfMissingIds(t, setup, ["enterprise01"])) return
     const { client, calls } = setup
 
     const params: any = {}
     const query: any = {}
     if (setup.live) {
-      params.enterpris_id = setup.idmap['enterpris01']
+      params.enterprise_id = setup.idmap['enterprise01']
     } else {
-      params.enterpris_id = 'direct01'
+      params.enterprise_id = 'direct01'
     }
 
     const result: any = await client.direct({
-      path: 'enterprises/{enterpris_id}/members',
+      path: 'enterprises/{enterprise_id}/members',
       method: 'GET',
       params,
       query,

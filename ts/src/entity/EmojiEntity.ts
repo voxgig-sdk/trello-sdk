@@ -19,7 +19,6 @@ import type {
   EmojiListMatch,
 } from '../TrelloTypes'
 
-// TODO: needs Entity superclass
 class EmojiEntity extends TrelloEntityBase<Emoji> {
 
   constructor(client: TrelloSDK, entopts: any) {

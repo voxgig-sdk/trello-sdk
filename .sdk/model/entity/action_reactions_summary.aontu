@@ -1,0 +1,70 @@
+# Entity: action_reactions_summary
+
+main: kit: entity: action_reactions_summary: {
+
+  alias: field: {}
+
+  name: "action_reactions_summary"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /actions/{idAction}/reactionsSummary"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "5abbe4b7ddc1b351ef961414"
+                k: "param"
+                n: "id_action"
+                or: "id_action"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/actions/{idAction}/reactionsSummary"
+          q: {
+            exist: [
+              "id_action"
+            ]
+          }
+          r: {
+            param: {
+              idAction: "id_action"
+            }
+          }
+          s: [
+            {
+              lit: "actions"
+            }
+            {
+              var: "id_action"
+            }
+            {
+              lit: "reactionsSummary"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.action")]
+  ]
+
+}

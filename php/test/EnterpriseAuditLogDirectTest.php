@@ -22,7 +22,7 @@ class EnterpriseAuditLogDirectTest extends TestCase
             return;
         }
         if ($setup["live"]) {
-            foreach (["enterpris01"] as $_liveKey) {
+            foreach (["enterprise_audit_log01"] as $_liveKey) {
                 if (!isset($setup["idmap"][$_liveKey]) || $setup["idmap"][$_liveKey] === null) {
                     $this->markTestSkipped("live test needs $_liveKey via *_ENTID env var (synthetic IDs only)");
                     return;
@@ -33,13 +33,13 @@ class EnterpriseAuditLogDirectTest extends TestCase
 
         $params = [];
         if ($setup["live"]) {
-            $params["enterpris_id"] = $setup["idmap"]["enterpris01"];
+            $params["id"] = $setup["idmap"]["enterprise_audit_log01"];
         } else {
-            $params["enterpris_id"] = "direct01";
+            $params["id"] = "direct01";
         }
 
         $result = $client->direct([
-            "path" => "enterprises/{enterpris_id}/auditlog",
+            "path" => "enterprises/{id}/auditlog",
             "method" => "GET",
             "params" => $params,
         ]);

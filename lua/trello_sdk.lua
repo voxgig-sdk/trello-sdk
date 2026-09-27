@@ -395,20 +395,6 @@ function TrelloSDK:Admin(data)
 end
 
 
--- Idiomatic facade: client:Application():list() / client:Application():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function TrelloSDK:Application(data)
-  local EntityMod = require("entity.application_entity")
-  if data == nil then
-    if self._application == nil then
-      self._application = EntityMod.new(self, nil)
-    end
-    return self._application
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:ApplicationCompliance():list() / client:ApplicationCompliance():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function TrelloSDK:ApplicationCompliance(data)
@@ -717,29 +703,15 @@ function TrelloSDK:Emoji(data)
 end
 
 
--- Idiomatic facade: client:Enterpris():list() / client:Enterpris():load({ id = ... })
+-- Idiomatic facade: client:Enterprise():list() / client:Enterprise():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function TrelloSDK:Enterpris(data)
-  local EntityMod = require("entity.enterpris_entity")
+function TrelloSDK:Enterprise(data)
+  local EntityMod = require("entity.enterprise_entity")
   if data == nil then
-    if self._enterpris == nil then
-      self._enterpris = EntityMod.new(self, nil)
+    if self._enterprise == nil then
+      self._enterprise = EntityMod.new(self, nil)
     end
-    return self._enterpris
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:EnterprisSignupUrl():list() / client:EnterprisSignupUrl():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function TrelloSDK:EnterprisSignupUrl(data)
-  local EntityMod = require("entity.enterpris_signup_url_entity")
-  if data == nil then
-    if self._enterpris_signup_url == nil then
-      self._enterpris_signup_url = EntityMod.new(self, nil)
-    end
-    return self._enterpris_signup_url
+    return self._enterprise
   end
   return EntityMod.new(self, data)
 end
@@ -768,6 +740,20 @@ function TrelloSDK:EnterpriseAuditLog(data)
       self._enterprise_audit_log = EntityMod.new(self, nil)
     end
     return self._enterprise_audit_log
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:EnterpriseSignupUrl():list() / client:EnterpriseSignupUrl():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TrelloSDK:EnterpriseSignupUrl(data)
+  local EntityMod = require("entity.enterprise_signup_url_entity")
+  if data == nil then
+    if self._enterprise_signup_url == nil then
+      self._enterprise_signup_url = EntityMod.new(self, nil)
+    end
+    return self._enterprise_signup_url
   end
   return EntityMod.new(self, data)
 end
@@ -941,20 +927,6 @@ function TrelloSDK:Membership(data)
 end
 
 
--- Idiomatic facade: client:MostRecent():list() / client:MostRecent():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function TrelloSDK:MostRecent(data)
-  local EntityMod = require("entity.most_recent_entity")
-  if data == nil then
-    if self._most_recent == nil then
-      self._most_recent = EntityMod.new(self, nil)
-    end
-    return self._most_recent
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:NewBillableGuest():list() / client:NewBillableGuest():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function TrelloSDK:NewBillableGuest(data)
@@ -1020,20 +992,6 @@ function TrelloSDK:NotificationMemberCreator(data)
       self._notification_member_creator = EntityMod.new(self, nil)
     end
     return self._notification_member_creator
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:NotificationsChannelSetting():list() / client:NotificationsChannelSetting():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function TrelloSDK:NotificationsChannelSetting(data)
-  local EntityMod = require("entity.notifications_channel_setting_entity")
-  if data == nil then
-    if self._notifications_channel_setting == nil then
-      self._notifications_channel_setting = EntityMod.new(self, nil)
-    end
-    return self._notifications_channel_setting
   end
   return EntityMod.new(self, data)
 end

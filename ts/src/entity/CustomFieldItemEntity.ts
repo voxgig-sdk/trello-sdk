@@ -19,7 +19,6 @@ import type {
   CustomFieldItemListMatch,
 } from '../TrelloTypes'
 
-// TODO: needs Entity superclass
 class CustomFieldItemEntity extends TrelloEntityBase<CustomFieldItem> {
 
   constructor(client: TrelloSDK, entopts: any) {

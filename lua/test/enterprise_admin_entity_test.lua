@@ -76,7 +76,7 @@ function enterprise_admin_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "enterprise_admin01", "enterprise_admin02", "enterprise_admin03", "enterpris01", "enterpris02", "enterpris03" },
+    { "enterprise_admin01", "enterprise_admin02", "enterprise_admin03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

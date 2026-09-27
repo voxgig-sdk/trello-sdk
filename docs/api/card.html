@@ -9,7 +9,6 @@
 <a href="../api/action.html">Action</a>
 <a href="../api/action_reactions_summary.html">ActionReactionsSummary</a>
 <a href="../api/admin.html">Admin</a>
-<a href="../api/application.html">Application</a>
 <a href="../api/application_compliance.html">ApplicationCompliance</a>
 <a href="../api/associated_domain.html">AssociatedDomain</a>
 <a href="../api/attachment.html">Attachment</a>
@@ -52,10 +51,10 @@
 <a href="../api/custom_sticker.html">CustomSticker</a>
 <a href="../api/email_position.html">EmailPosition</a>
 <a href="../api/emoji.html">Emoji</a>
-<a href="../api/enterpris.html">Enterpris</a>
-<a href="../api/enterpris_signup_url.html">EnterprisSignupUrl</a>
+<a href="../api/enterprise.html">Enterprise</a>
 <a href="../api/enterprise_admin.html">EnterpriseAdmin</a>
 <a href="../api/enterprise_audit_log.html">EnterpriseAuditLog</a>
+<a href="../api/enterprise_signup_url.html">EnterpriseSignupUrl</a>
 <a href="../api/export.html">Export</a>
 <a href="../api/export_download.html">ExportDownload</a>
 <a href="../api/generate.html">Generate</a>
@@ -68,13 +67,11 @@
 <a href="../api/member_privacy.html">MemberPrivacy</a>
 <a href="../api/members_voted.html">MembersVoted</a>
 <a href="../api/membership.html">Membership</a>
-<a href="../api/most_recent.html">MostRecent</a>
 <a href="../api/new_billable_guest.html">NewBillableGuest</a>
 <a href="../api/notification.html">Notification</a>
 <a href="../api/notification_channel_setting.html">NotificationChannelSetting</a>
 <a href="../api/notification_list.html">NotificationList</a>
 <a href="../api/notification_member_creator.html">NotificationMemberCreator</a>
-<a href="../api/notifications_channel_setting.html">NotificationsChannelSetting</a>
 <a href="../api/option.html">Option</a>
 <a href="../api/org_invite_restrict.html">OrgInviteRestrict</a>
 <a href="../api/organization.html">Organization</a>
@@ -108,14 +105,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="card">Card</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="card">Card</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -256,6 +253,76 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">cards, err := client.Card(nil).List(map[string]any{&quot;action_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(cards)
+card, err := client.Card(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(card)
+created, err := client.Card(nil).Create(map[string]any{&quot;id_list&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.Card(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;address&quot;: &quot;example&quot;, &quot;closed&quot;: true}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.Card(nil).Remove(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const cards = await client.Card().list({ action_id: &quot;example&quot; })
+const card = await client.Card().load({ id: &quot;example_id&quot; })
+const created = await client.Card().create({ id_list: &quot;example&quot; })
+const updated = await client.Card().update({ id: &quot;example_id&quot;, address: &quot;example&quot;, closed: true })
+await client.Card().remove({ id: &quot;example_id&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local cards, err = client:Card():list({ action_id = &quot;example&quot; })
+local card, err = client:Card():load({ id = &quot;example_id&quot; })
+local created, err = client:Card():create({ id_list = &quot;example&quot; })
+local updated, err = client:Card():update({ id = &quot;example_id&quot;, address = &quot;example&quot;, closed = true })
+local removed, err = client:Card():remove({ id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$cards = $client-&gt;Card()-&gt;list([&quot;action_id&quot; =&gt; &quot;example&quot;]);
+$card = $client-&gt;Card()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;Card()-&gt;create([&quot;id_list&quot; =&gt; &quot;example&quot;]);
+$updated = $client-&gt;Card()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;address&quot; =&gt; &quot;example&quot;, &quot;closed&quot; =&gt; true]);
+$client-&gt;Card()-&gt;remove([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">cards = client.Card().list({&quot;action_id&quot;: &quot;example&quot;})
+card = client.Card().load({&quot;id&quot;: &quot;example_id&quot;})
+created = client.Card().create({ &quot;id_list&quot;: &quot;example&quot; })
+updated = client.Card().update({&quot;id&quot;: &quot;example_id&quot;, &quot;address&quot;: &quot;example&quot;, &quot;closed&quot;: True})
+client.Card().remove({&quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const cards = await client.Card().list({ action_id: &quot;example&quot; })
+const card = await client.Card().load({ id: &quot;example_id&quot; })
+const created = await client.Card().create({ id_list: &quot;example&quot; })
+const updated = await client.Card().update({ id: &quot;example_id&quot;, address: &quot;example&quot;, closed: true })
+await client.Card().remove({ id: &quot;example_id&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -271,199 +338,199 @@
 <td><code>address</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Address</td>
 </tr>
 <tr>
 <td><code>badges</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Badges</td>
 </tr>
 <tr>
 <td><code>cardRole</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Card Role</td>
 </tr>
 <tr>
 <td><code>checkItemStates</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Check Item States</td>
 </tr>
 <tr>
 <td><code>closed</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>Closed</td>
 </tr>
 <tr>
 <td><code>coordinates</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Coordinates</td>
 </tr>
 <tr>
 <td><code>cover</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Cover</td>
 </tr>
 <tr>
 <td><code>creationMethod</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Creation Method</td>
 </tr>
 <tr>
 <td><code>dateLastActivity</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Date Last Activity</td>
 </tr>
 <tr>
 <td><code>desc</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Desc</td>
 </tr>
 <tr>
 <td><code>descData</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Desc Data</td>
 </tr>
 <tr>
 <td><code>due</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Due</td>
 </tr>
 <tr>
 <td><code>dueReminder</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Due Reminder</td>
 </tr>
 <tr>
 <td><code>id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id</td>
 </tr>
 <tr>
 <td><code>idAttachmentCover</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id Attachment Cover</td>
 </tr>
 <tr>
 <td><code>idBoard</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id Board</td>
 </tr>
 <tr>
 <td><code>idChecklists</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Checklists</td>
 </tr>
 <tr>
 <td><code>idLabels</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Labels</td>
 </tr>
 <tr>
 <td><code>idList</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Id List</td>
 </tr>
 <tr>
 <td><code>idMembers</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Members</td>
 </tr>
 <tr>
 <td><code>idMembersVoted</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Id Members Voted</td>
 </tr>
 <tr>
 <td><code>idShort</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td></td>
+<td>Id Short</td>
 </tr>
 <tr>
 <td><code>labels</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td></td>
+<td>Labels</td>
 </tr>
 <tr>
 <td><code>limits</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Limits</td>
 </tr>
 <tr>
 <td><code>locationName</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Location Name</td>
 </tr>
 <tr>
 <td><code>manualCoverAttachment</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>Manual Cover Attachment</td>
 </tr>
 <tr>
 <td><code>mirrorSourceId</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Mirror Source Id</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Name</td>
 </tr>
 <tr>
 <td><code>pos</code></td>
 <td><code>number</code></td>
 <td>No</td>
-<td></td>
+<td>Pos</td>
 </tr>
 <tr>
 <td><code>shortLink</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Short Link</td>
 </tr>
 <tr>
 <td><code>shortUrl</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Short Url</td>
 </tr>
 <tr>
 <td><code>subscribed</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>Subscribed</td>
 </tr>
 <tr>
 <td><code>url</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Url</td>
 </tr>
 </tbody>
 </table>

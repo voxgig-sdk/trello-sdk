@@ -130,7 +130,7 @@ def _notification_channel_setting_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["notification_channel_setting01", "notification_channel_setting02", "notification_channel_setting03", "member01", "member02", "member03", "notifications_channel_setting01", "notifications_channel_setting02", "notifications_channel_setting03"],
+        ["notification_channel_setting01", "notification_channel_setting02", "notification_channel_setting03", "member01", "member02", "member03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

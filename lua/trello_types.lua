@@ -1,7 +1,7 @@
 -- Typed models for the Trello SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
@@ -65,14 +65,12 @@
 ---@field id? string
 
 ---@class AdminUpdateData
----@field enterpris_id string
+---@field enterprise_id string
 ---@field id string
 
 ---@class AdminRemoveMatch
----@field enterpris_id string
+---@field enterprise_id string
 ---@field id string
-
----@class Application
 
 ---@class ApplicationCompliance
 
@@ -315,7 +313,7 @@
 ---@field id? string
 
 ---@class BulkLoadMatch
----@field enterpris_id string
+---@field enterprise_id string
 ---@field id table
 
 ---@class BulkUpdateData
@@ -563,7 +561,7 @@
 ---@field products? table
 
 ---@class ClaimableOrganizationListMatch
----@field enterpris_id string
+---@field enterprise_id string
 ---@field active_since? string
 ---@field cursor? string
 ---@field inactive_since? string
@@ -706,7 +704,7 @@
 ---@field locale? string
 ---@field spritesheet? boolean
 
----@class Enterpris
+---@class Enterprise
 ---@field dateOrganizationPrefsLastUpdated? string
 ---@field displayName? string
 ---@field domains? table
@@ -726,7 +724,7 @@
 ---@field products? table
 ---@field ssoActivationFailed? boolean
 
----@class EnterprisLoadMatch
+---@class EnterpriseLoadMatch
 ---@field id string
 ---@field field? string
 ---@field member? string
@@ -742,7 +740,7 @@
 ---@field organization_membership? string
 ---@field organization_paid_account? boolean
 
----@class EnterprisCreateData
+---@class EnterpriseCreateData
 ---@field id string
 ---@field expiration? string
 ---@field dateOrganizationPrefsLastUpdated? string
@@ -763,7 +761,7 @@
 ---@field products? table
 ---@field ssoActivationFailed? boolean
 
----@class EnterprisUpdateData
+---@class EnterpriseUpdateData
 ---@field id string
 ---@field id_organization string
 ---@field dateOrganizationPrefsLastUpdated? string
@@ -784,28 +782,18 @@
 ---@field products? table
 ---@field ssoActivationFailed? boolean
 
----@class EnterprisSignupUrl
----@field id? string
----@field signupUrl? string
-
----@class EnterprisSignupUrlLoadMatch
----@field id string
----@field authenticate? boolean
----@field confirmation_accepted? boolean
----@field return_url? string
----@field tos_accepted? boolean
-
 ---@class EnterpriseAdmin
 ---@field fullName? string
 ---@field id? string
 ---@field username? string
 
 ---@class EnterpriseAdminLoadMatch
----@field enterpris_id string
+---@field id string
 ---@field field? string
 
 ---@class EnterpriseAuditLog
 ---@field date? string
+---@field id? string
 ---@field idAction? string
 ---@field member? table
 ---@field memberCreator? table
@@ -813,7 +801,18 @@
 ---@field type? string
 
 ---@class EnterpriseAuditLogListMatch
----@field enterpris_id string
+---@field id string
+
+---@class EnterpriseSignupUrl
+---@field id? string
+---@field signupUrl? string
+
+---@class EnterpriseSignupUrlLoadMatch
+---@field id string
+---@field authenticate? boolean
+---@field confirmation_accepted? boolean
+---@field return_url? string
+---@field tos_accepted? boolean
 
 ---@class Export
 ---@field attempts? number
@@ -1154,8 +1153,6 @@
 ---@field managed? boolean
 ---@field member? table
 
----@class MostRecent
-
 ---@class NewBillableGuest
 ---@field id? string
 
@@ -1254,8 +1251,6 @@
 ---@field id string
 ---@field field? string
 
----@class NotificationsChannelSetting
-
 ---@class Option
 ---@field id? string
 
@@ -1289,7 +1284,7 @@
 ---@field id string
 
 ---@class OrganizationListMatch
----@field enterpris_id string
+---@field enterprise_id string
 ---@field count? number
 ---@field field? string
 ---@field filter? string
@@ -1336,7 +1331,7 @@
 ---@field url? string
 
 ---@class OrganizationRemoveMatch
----@field enterpris_id? string
+---@field enterprise_id? string
 ---@field id string
 
 ---@class PendingOrganization
@@ -1350,7 +1345,7 @@
 ---@field transferability? table
 
 ---@class PendingOrganizationListMatch
----@field enterpris_id string
+---@field enterprise_id string
 ---@field active_since? string
 ---@field inactive_since? string
 
@@ -1553,7 +1548,7 @@
 ---@field transferrable? boolean
 
 ---@class TransferrableOrganizationLoadMatch
----@field enterpris_id string
+---@field enterprise_id string
 ---@field id string
 
 ---@class TrelloList

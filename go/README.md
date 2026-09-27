@@ -256,7 +256,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Action` | `(data map[string]any) TrelloEntity` | Create an Action entity instance. |
 | `ActionReactionsSummary` | `(data map[string]any) TrelloEntity` | Create an ActionReactionsSummary entity instance. |
 | `Admin` | `(data map[string]any) TrelloEntity` | Create an Admin entity instance. |
-| `Application` | `(data map[string]any) TrelloEntity` | Create an Application entity instance. |
 | `ApplicationCompliance` | `(data map[string]any) TrelloEntity` | Create an ApplicationCompliance entity instance. |
 | `AssociatedDomain` | `(data map[string]any) TrelloEntity` | Create an AssociatedDomain entity instance. |
 | `Attachment` | `(data map[string]any) TrelloEntity` | Create an Attachment entity instance. |
@@ -279,10 +278,10 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `CustomSticker` | `(data map[string]any) TrelloEntity` | Create a CustomSticker entity instance. |
 | `EmailPosition` | `(data map[string]any) TrelloEntity` | Create an EmailPosition entity instance. |
 | `Emoji` | `(data map[string]any) TrelloEntity` | Create an Emoji entity instance. |
-| `Enterpris` | `(data map[string]any) TrelloEntity` | Create an Enterpris entity instance. |
-| `EnterprisSignupUrl` | `(data map[string]any) TrelloEntity` | Create an EnterprisSignupUrl entity instance. |
+| `Enterprise` | `(data map[string]any) TrelloEntity` | Create an Enterprise entity instance. |
 | `EnterpriseAdmin` | `(data map[string]any) TrelloEntity` | Create an EnterpriseAdmin entity instance. |
 | `EnterpriseAuditLog` | `(data map[string]any) TrelloEntity` | Create an EnterpriseAuditLog entity instance. |
+| `EnterpriseSignupUrl` | `(data map[string]any) TrelloEntity` | Create an EnterpriseSignupUrl entity instance. |
 | `Export` | `(data map[string]any) TrelloEntity` | Create an Export entity instance. |
 | `ExportDownload` | `(data map[string]any) TrelloEntity` | Create an ExportDownload entity instance. |
 | `Generate` | `(data map[string]any) TrelloEntity` | Create a Generate entity instance. |
@@ -295,13 +294,11 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `MemberPrivacy` | `(data map[string]any) TrelloEntity` | Create a MemberPrivacy entity instance. |
 | `MembersVoted` | `(data map[string]any) TrelloEntity` | Create a MembersVoted entity instance. |
 | `Membership` | `(data map[string]any) TrelloEntity` | Create a Membership entity instance. |
-| `MostRecent` | `(data map[string]any) TrelloEntity` | Create a MostRecent entity instance. |
 | `NewBillableGuest` | `(data map[string]any) TrelloEntity` | Create a NewBillableGuest entity instance. |
 | `Notification` | `(data map[string]any) TrelloEntity` | Create a Notification entity instance. |
 | `NotificationChannelSetting` | `(data map[string]any) TrelloEntity` | Create a NotificationChannelSetting entity instance. |
 | `NotificationList` | `(data map[string]any) TrelloEntity` | Create a NotificationList entity instance. |
 | `NotificationMemberCreator` | `(data map[string]any) TrelloEntity` | Create a NotificationMemberCreator entity instance. |
-| `NotificationsChannelSetting` | `(data map[string]any) TrelloEntity` | Create a NotificationsChannelSetting entity instance. |
 | `Option` | `(data map[string]any) TrelloEntity` | Create an Option entity instance. |
 | `OrgInviteRestrict` | `(data map[string]any) TrelloEntity` | Create an OrgInviteRestrict entity instance. |
 | `Organization` | `(data map[string]any) TrelloEntity` | Create an Organization entity instance. |
@@ -398,15 +395,6 @@ API path: `/actions/{idAction}/reactionsSummary`
 Operations: Remove, Update.
 
 API path: `/enterprises/{id}/admins/{idMember}`
-
-#### Application
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### ApplicationCompliance
 
@@ -725,7 +713,7 @@ Operations: List.
 
 API path: `/emoji`
 
-#### Enterpris
+#### Enterprise
 
 | Field | Description |
 | --- | --- |
@@ -752,17 +740,6 @@ Operations: Create, Load, Update.
 
 API path: `/enterprises/{id}/tokens`
 
-#### EnterprisSignupUrl
-
-| Field | Description |
-| --- | --- |
-| `"id"` |  |
-| `"signupUrl"` |  |
-
-Operations: Load.
-
-API path: `/enterprises/{id}/signupUrl`
-
 #### EnterpriseAdmin
 
 | Field | Description |
@@ -780,6 +757,7 @@ API path: `/enterprises/{id}/admins`
 | Field | Description |
 | --- | --- |
 | `"date"` |  |
+| `"id"` |  |
 | `"idAction"` |  |
 | `"member"` |  |
 | `"memberCreator"` |  |
@@ -789,6 +767,17 @@ API path: `/enterprises/{id}/admins`
 Operations: List.
 
 API path: `/enterprises/{id}/auditlog`
+
+#### EnterpriseSignupUrl
+
+| Field | Description |
+| --- | --- |
+| `"id"` |  |
+| `"signupUrl"` |  |
+
+Operations: Load.
+
+API path: `/enterprises/{id}/signupUrl`
 
 #### Export
 
@@ -960,15 +949,6 @@ Operations: List, Load, Update.
 
 API path: `/enterprises/{id}/members/query`
 
-#### MostRecent
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### NewBillableGuest
 
 | Field | Description |
@@ -1031,15 +1011,6 @@ API path: `/notifications/{id}/list`
 Operations: Load.
 
 API path: `/notifications/{id}/memberCreator`
-
-#### NotificationsChannelSetting
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Option
 
@@ -1393,11 +1364,6 @@ Create an instance: `admin := client.Admin(nil)`
 | `id` | `string` |  |
 
 
-### Application
-
-Create an instance: `application := client.Application(nil)`
-
-
 ### ApplicationCompliance
 
 Create an instance: `applicationCompliance := client.ApplicationCompliance(nil)`
@@ -1717,7 +1683,7 @@ Create an instance: `bulk := client.Bulk(nil)`
 #### Example: Load
 
 ```go
-bulk, err := client.Bulk(nil).Load(map[string]any{"id": []any{}, "enterpris_id": "enterpris_id"}, nil)
+bulk, err := client.Bulk(nil).Load(map[string]any{"id": []any{}, "enterprise_id": "enterprise_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -2247,9 +2213,9 @@ fmt.Println(emojis) // the array of records
 ```
 
 
-### Enterpris
+### Enterprise
 
-Create an instance: `enterpris := client.Enterpris(nil)`
+Create an instance: `enterprise := client.Enterprise(nil)`
 
 #### Operations
 
@@ -2285,51 +2251,23 @@ Create an instance: `enterpris := client.Enterpris(nil)`
 #### Example: Load
 
 ```go
-enterpris, err := client.Enterpris(nil).Load(map[string]any{"id": "enterpris_id"}, nil)
+enterprise, err := client.Enterprise(nil).Load(map[string]any{"id": "enterprise_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(enterpris) // the loaded record
+fmt.Println(enterprise) // the loaded record
 ```
 
 #### Example: Create
 
 ```go
-result, err := client.Enterpris(nil).Create(map[string]any{
+result, err := client.Enterprise(nil).Create(map[string]any{
     "id": "example_id",
 }, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
-```
-
-
-### EnterprisSignupUrl
-
-Create an instance: `enterprisSignupUrl := client.EnterprisSignupUrl(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `Load(match, ctrl)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` |  |
-| `signupUrl` | `string` |  |
-
-#### Example: Load
-
-```go
-enterprisSignupUrl, err := client.EnterprisSignupUrl(nil).Load(map[string]any{"id": "enterpris_signup_url_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(enterprisSignupUrl) // the loaded record
 ```
 
 
@@ -2354,7 +2292,7 @@ Create an instance: `enterpriseAdmin := client.EnterpriseAdmin(nil)`
 #### Example: Load
 
 ```go
-enterpriseAdmin, err := client.EnterpriseAdmin(nil).Load(map[string]any{"enterpris_id": "enterpris_id"}, nil)
+enterpriseAdmin, err := client.EnterpriseAdmin(nil).Load(map[string]any{"id": "enterprise_admin_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -2377,6 +2315,7 @@ Create an instance: `enterpriseAuditLog := client.EnterpriseAuditLog(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `date` | `string` |  |
+| `id` | `string` |  |
 | `idAction` | `string` |  |
 | `member` | `map[string]any` |  |
 | `memberCreator` | `map[string]any` |  |
@@ -2391,6 +2330,34 @@ if err != nil {
     panic(err)
 }
 fmt.Println(enterpriseAuditLogs) // the array of records
+```
+
+
+### EnterpriseSignupUrl
+
+Create an instance: `enterpriseSignupUrl := client.EnterpriseSignupUrl(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
+| `signupUrl` | `string` |  |
+
+#### Example: Load
+
+```go
+enterpriseSignupUrl, err := client.EnterpriseSignupUrl(nil).Load(map[string]any{"id": "enterprise_signup_url_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(enterpriseSignupUrl) // the loaded record
 ```
 
 
@@ -2816,11 +2783,6 @@ fmt.Println(memberships) // the array of records
 ```
 
 
-### MostRecent
-
-Create an instance: `mostRecent := client.MostRecent(nil)`
-
-
 ### NewBillableGuest
 
 Create an instance: `newBillableGuest := client.NewBillableGuest(nil)`
@@ -2991,11 +2953,6 @@ if err != nil {
 }
 fmt.Println(notificationMemberCreator) // the loaded record
 ```
-
-
-### NotificationsChannelSetting
-
-Create an instance: `notificationsChannelSetting := client.NotificationsChannelSetting(nil)`
 
 
 ### Option
@@ -3536,7 +3493,7 @@ Create an instance: `transferrableOrganization := client.TransferrableOrganizati
 #### Example: Load
 
 ```go
-transferrableOrganization, err := client.TransferrableOrganization(nil).Load(map[string]any{"id": "transferrable_organization_id", "enterpris_id": "enterpris_id"}, nil)
+transferrableOrganization, err := client.TransferrableOrganization(nil).Load(map[string]any{"id": "transferrable_organization_id", "enterprise_id": "enterprise_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -3674,14 +3631,14 @@ above:
 
 | Feature | What it does |
 |---|---|
-| [`debug`](#debug) | Request/response capture ring buffer for debugging |
-| [`idempotency`](#idempotency) | Idempotency keys for safe retries of mutating operations |
-| [`metrics`](#metrics) | Statistics capture: per-operation counters and latency |
-| [`paging`](#paging) | Pagination signals for list operations |
-| [`ratelimit`](#ratelimit) | Client-side rate limiting via a token bucket |
-| [`retry`](#retry) | Automatic retry of transient failures with exponential backoff |
-| [`test`](#test) | In-memory mock transport for testing without a live server |
-| [`timeout`](#timeout) | Per-request timeout with transport abort |
+| [`debug`](#debug) | Debug capture |
+| [`idempotency`](#idempotency) | Idempotency |
+| [`metrics`](#metrics) | Metrics |
+| [`paging`](#paging) | Paging |
+| [`ratelimit`](#ratelimit) | Rate limiting |
+| [`retry`](#retry) | Retry |
+| [`test`](#test) | Test transport |
+| [`timeout`](#timeout) | Timeout |
 
 > **Order matters for `ratelimit`, `retry`, `timeout`.** These wrap the
 > transport, so each one wraps whatever is already installed: the order you
@@ -3690,7 +3647,7 @@ above:
 
 ### debug
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 | Option | Default |
 |---|---|
@@ -3702,7 +3659,7 @@ Set `feature.debug.active` to enable it, then override any of the options above.
 
 ### idempotency
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 | Option | Default |
 |---|---|
@@ -3715,7 +3672,7 @@ Set `feature.idempotency.active` to enable it, then override any of the options 
 
 ### metrics
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 | Option | Default |
 |---|---|
@@ -3725,7 +3682,7 @@ Set `feature.metrics.active` to enable it, then override any of the options abov
 
 ### paging
 
-Pagination signals for list operations.
+Paging.
 
 | Option | Default |
 |---|---|
@@ -3741,7 +3698,7 @@ Set `feature.paging.active` to enable it, then override any of the options above
 
 ### ratelimit
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 | Option | Default |
 |---|---|
@@ -3757,7 +3714,7 @@ activated earlier.
 
 ### retry
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 | Option | Default |
 |---|---|
@@ -3776,7 +3733,7 @@ activated earlier.
 
 ### test
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 | Option | Default |
 |---|---|
@@ -3786,7 +3743,7 @@ Set `feature.test.active` to enable it, then override any of the options above.
 
 ### timeout
 
-Per-request timeout with transport abort.
+Timeout.
 
 | Option | Default |
 |---|---|
@@ -3838,14 +3795,14 @@ stage names.
 
 The SDK ships with built-in features:
 
-- **DebugFeature**: Request/response capture ring buffer for debugging
-- **IdempotencyFeature**: Idempotency keys for safe retries of mutating operations
-- **MetricsFeature**: Statistics capture: per-operation counters and latency
-- **PagingFeature**: Pagination signals for list operations
-- **RatelimitFeature**: Client-side rate limiting via a token bucket
-- **RetryFeature**: Automatic retry of transient failures with exponential backoff
-- **TestFeature**: In-memory mock transport for testing without a live server
-- **TimeoutFeature**: Per-request timeout with transport abort
+- **DebugFeature**: Debug capture
+- **IdempotencyFeature**: Idempotency
+- **MetricsFeature**: Metrics
+- **PagingFeature**: Paging
+- **RatelimitFeature**: Rate limiting
+- **RetryFeature**: Retry
+- **TestFeature**: Test transport
+- **TimeoutFeature**: Timeout
 
 Features are initialized in order. Hooks fire in the order features
 were added, so later features can override earlier ones.
